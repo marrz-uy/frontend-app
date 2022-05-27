@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+nav {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+	background-color: #0575E6;
+	color: aliceblue;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.main {
+ margin: 0 auto;
+ color: #4b4a4a ;
+}
