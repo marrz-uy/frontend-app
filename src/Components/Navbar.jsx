@@ -12,13 +12,10 @@ export const Navbar = () => {
     <>
       <ModalLogin isOpen={isOpenModal} closeModal={closeModal} />
       <div className="navbar">
-
         <div className="contentNavbar">
-
           <div className="logoFellUy">
             <img id='feelLogoImg' src={logo} alt="logo"></img>
           </div>
-
           <div className="search">
             <div className="searchIntDiv">
               <input
@@ -28,7 +25,6 @@ export const Navbar = () => {
               ></input>
             </div>
           </div>
-
           <div className="userLogo">
             <img id='userlogoImg' src={userLogo} alt="logo" onClick={openModal}></img>
           </div>

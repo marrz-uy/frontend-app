@@ -1,0 +1,14 @@
+
+.loginOrRegister {
+	/* background-color: aqua; */
+	 display: flex;
+	 flex-direction: column; 
+	/* justify-content: center; */
+	/* align-items: center;  */
+}
+
+button {
+	cursor: pointer;
+	width: 6em;
+	height: 2em;
+}

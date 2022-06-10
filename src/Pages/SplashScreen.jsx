@@ -10,7 +10,7 @@ export const SplashScreen = () => {
     setTimeout(() => {
       setmostrarPantallaInicio(!mostrarPantallaInicio);
       setmostrarPantallaInicio(false);
-    }, 1000);
+    }, 3000);
   }, [mostrarPantallaInicio]);
 
   return (

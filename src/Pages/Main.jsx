@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Register from '../Pages/Register';
-// import Login from '../Pages/Login';
 import {Principal} from '../Pages/Principal'
 import '../css/Main.css';
 
@@ -10,7 +8,6 @@ export const Main = () => {
 		<BrowserRouter>
       <Routes>
         <Route path="*" element={<Principal />} />
-   
       </Routes>
     </BrowserRouter>
 	)

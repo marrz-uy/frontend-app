@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/ModalLogin.css';
-// import Login from './Login';
+import { LoginOrRegister } from './LoginOrRegister';
+
 
 export const ModalLogin = ({ isOpen, closeModal }) => {
   const handleClickClose = (e) => e.stopPropagation();
@@ -11,15 +12,8 @@ export const ModalLogin = ({ isOpen, closeModal }) => {
       }  animate__animated animate__fadeInRight animate__faster`}
       onClick={closeModal}
     >
-      <div
-        onClick={handleClickClose}
-        className="modal-cuerpo"
-      >
-    
-
-
-
-
+      <div onClick={handleClickClose} className="modal-cuerpo">
+        <LoginOrRegister/>
 
         <button onClick={closeModal} className="btn-modal-cerrar ">
           Cerrar
