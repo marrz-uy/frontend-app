@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/ModalLogin.css';
 import { LoginOrRegister } from './LoginOrRegister';
 
-
 export const ModalLogin = ({ isOpen, closeModal }) => {
   const handleClickClose = (e) => e.stopPropagation();
   return (

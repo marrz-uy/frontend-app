@@ -1,14 +1,12 @@
 import '../css/Principal.css'
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
-import predefTour from '../Assets/categoriesImages/predefinedTour.png'; 
-import setYourTour from '../Assets/categoriesImages/setTour.png';
+import predefTour from '../Assets/categoriesImages/la-carretera.png'; 
+import setYourTour from '../Assets/categoriesImages/mosaico.png';
 import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 
-
 export const Principal = () => {
- 
   return (
     <div className='container'>
       <div className='categories'>
