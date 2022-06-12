@@ -1,6 +1,6 @@
 
-.login {
-	width: 100%;
+.register {
+	width: 70%;
 	flex-direction: column;
 	align-items: center;
 }
@@ -17,6 +17,6 @@
 	height: 2em;
 }
 
-.linkAregistro {
+.linkALogin {
 	margin-top: 10px;
 }

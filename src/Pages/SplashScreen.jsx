@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/SplashScreen.css';
+import '../Css/SplashScreen.css';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import wave from '../Assets/wave.png';
 
