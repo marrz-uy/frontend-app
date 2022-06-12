@@ -7,8 +7,8 @@ import { Nav } from './Layout';
 function App() {
   return (
     <BrowserRouter>
-    <SplashScreen/>
-      <Nav/>
+      <SplashScreen />
+      <Nav />
       <Routes>
         <Route path="/" element={<Principal />} />
         <Route path="/login" element={<Login />} />

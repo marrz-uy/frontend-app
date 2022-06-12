@@ -14,12 +14,12 @@ export const SplashScreen = () => {
   }, [mostrarPantallaInicio]);
 
   return (
-    <div className='splashScreen'>
+    <div className="splashScreen">
       {mostrarPantallaInicio && (
         <div className="pantalla-inicio">
-        <img className='wave' src={wave} alt="wave"></img>
-          <div className='content'>
-            <div className='textSuperior'>
+          <img className="wave" src={wave} alt="wave"></img>
+          <div className="content">
+            <div className="textSuperior">
               <h2>Arma tu tour</h2>
             </div>
             <div>
@@ -32,11 +32,10 @@ export const SplashScreen = () => {
                 </div>
               </div>
             </div>
-            <div className='textInferior'>
+            <div className="textInferior">
               <h2>O descubri los del momento</h2>
             </div>
           </div>
-          
         </div>
       )}
     </div>
