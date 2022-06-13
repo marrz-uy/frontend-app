@@ -101,7 +101,7 @@ const Register = () => {
   );
 };
 
-const formulario = document.getElementById('inputGroup');
+const formulario = document.getElementById('register');
 const inputs = document.querySelectorAll('input');
 
 const expresiones = {
@@ -133,12 +133,12 @@ const validarFormulario = (e) => {
 const validarCampo = (expresion, input, campo) => {
 	if(expresion.test(input.value)){
 		document.getElementById(`grupo__${campo}`).classList.remove('errorMessage');
-		document.getElementById(`grupo__${campo}`).classList.add('successMessage');
+		document.getElementById(`grupo__${campo}`).classList.add('successMessageSubmit');
     document.querySelector(`#grupo__${campo} .errorMessage`).classList.remove('errorMessage');
 		campos[campo] = true;
 	} else {
 		document.getElementById(`grupo__${campo}`).classList.add('errorMessage');
-		document.getElementById(`grupo__${campo}`).classList.remove('successMessage');
+		document.getElementById(`grupo__${campo}`).classList.remove('successMessage-active');
 		document.querySelector(`#grupo__${campo} .errorMessage`).classList.add('errorMessage');
 		campos[campo] = false;
 	}

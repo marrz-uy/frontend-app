@@ -29,12 +29,12 @@
 
 .errorMessageSubmit{
 	color: red;
-	display: none;
+	display: block;
 }
 
 .successMessageSubmit{
 	color: green;
-	display: none;
+	display: block;
 }
 
 .input {
