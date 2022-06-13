@@ -20,3 +20,25 @@
 .linkALogin {
 	margin-top: 10px;
 }
+
+.errorMessage{
+	color: red;
+	display: none;
+	padding: 10px;
+}
+
+.errorMessageSubmit{
+	color: red;
+	display: none;
+}
+
+.successMessageSubmit{
+	color: green;
+	display: none;
+}
+
+.input {
+	border: 1px solid red;
+	border-radius: 5px;
+	height: 2em;
+}
