@@ -1,6 +1,6 @@
-
 .login {
 	width: 70%;
+	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 }
@@ -17,6 +17,36 @@
 	height: 2em;
 }
 
+.btn-login {
+	background-color:#00499de9;
+	color: aliceblue;
+	font-weight: bold;
+	border: 1px solid gray;
+	border-radius: 5px;
+	height: 30px;
+}
+
 .linkAregistro {
 	margin-top: 10px;
+}
+
+.linkAregistro a, a:visited {
+	text-decoration:none ;
+	color: black;
+	cursor: pointer;
+}
+
+.salir {
+	margin-top: 10px;
+}
+
+
+
+/* laptop/desktop - de 1024px en adelante */
+@media screen and (min-width: 1024px) {
+	
+	.login {
+		width: 30%;
+	}
+
 }

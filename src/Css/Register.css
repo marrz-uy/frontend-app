@@ -17,6 +17,29 @@
 	height: 2em;
 }
 
+.btn-register {
+	background-color:#00499de9;
+	color: aliceblue;
+	font-weight: bold;
+	border: 1px solid gray;
+	border-radius: 5px;
+	height: 30px;
+}
+
 .linkALogin {
 	margin-top: 10px;
+}
+
+.linkALogin a, a:visited {
+	text-decoration:none ;
+	color: black;
+}
+
+/* laptop/desktop - de 1024px en adelante */
+@media screen and (min-width: 1024px) {
+	
+	.register {
+		width: 30%;
+	}
+
 }

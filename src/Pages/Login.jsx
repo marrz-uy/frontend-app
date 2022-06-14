@@ -26,7 +26,7 @@ const Login = () => {
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2>Logearse</h2>
+            <h2>Login</h2>
           </div>
           <div className="inputGroup">
             <input

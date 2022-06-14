@@ -62,8 +62,8 @@
 	padding-left: 10px;
 }
 
-/* laptop - de 980px en adelante */
-@media screen and ( min-width: 980px) {
+/* laptop/desktop - de 1024px en adelante */
+@media screen and ( min-width: 1024px) {
 
 	#feelLogoImg {
 		min-width: 5rem;
