@@ -13,7 +13,6 @@
 	width: 90vw;
 }
 
-
 .logoFellUy {
 	width: 10%;
 	display: flex;
@@ -21,6 +20,7 @@
 	align-items: center;
 	margin-top: -2px;
 }
+
 #feelLogoImg {
 	width: 3rem;
 }
@@ -62,8 +62,8 @@
 	padding-left: 10px;
 }
 
-/* laptop - de 980px en adelante */
-@media screen and ( min-width: 980px) {
+/* laptop/desktop - de 1024px en adelante */
+@media screen and ( min-width: 1024px) {
 
 	#feelLogoImg {
 		min-width: 5rem;

@@ -1,16 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
-import { Navbar } from './Components/Navbar';
-import { Main } from './Pages/Main';
-
+import { Principal, Login, Register } from './Pages';
+import { Nav } from './Layout';
 function App() {
   return (
-    <div className="App">
-      <SplashScreen/>
-      <Navbar/>
-      <Main/>
-    </div>
+    <BrowserRouter>
+      <SplashScreen />
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Principal />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
