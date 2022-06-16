@@ -10,6 +10,7 @@ import SearchResults from './Pages/SearchResults';
 function App() {
 
   const [text, setText] = useState('')
+
   return (
     <BrowserRouter>
       <SplashScreen />
@@ -27,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

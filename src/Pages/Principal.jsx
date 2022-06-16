@@ -8,7 +8,7 @@ import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 
-const Principal = () => {
+const Principal = ({ text }) => {
   return (
     <Layout>
       <div className="container">
