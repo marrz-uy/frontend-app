@@ -3,71 +3,75 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
+import { useDispatch, useSelector } from 'react-redux';
+import validator from 'validator';
+
 import '../Css/Register.css';
 
-const Register = () => {
+  const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+
+  const isFormValid = () => {
+    // VALIDACION DE FORMULARIO- email con validator
+
+    if (name.trim().length === 0) {
+      dispatch(setError('Name is required'));
+      return false;
+    } else if (!validator.isEmail(email)) {
+      dispatch(setError('Email is not valid'));
+      return false;
+    } else if (password.length < 8) {
+      dispatch(setError('Incorrect password or/and 8 character minimum'));
+      return false;
+    }
+
+    dispatch(removeError());
+    return true;
+  };
 
   const navigate = useNavigate();
 
   const { http } = AuthUser();
 
+  const dispatch = useDispatch();
+
+  const { msgError } = useSelector((state) => state.ui);
+  // console.log(msgError)
+
   const submitRegister = (e) => {
     e.preventDefault();
+
+    if (isFormValid()) {
+      dispatch(startRegisterWithEmailAndPasswordAndName(email, password, name));
+    }
+
     http.post('/register', { email, password, name }).then((res) => {
       navigate('/login');
     });
   };
-
-  return (
-    <Layout>
-      <div className="register">
-        <form onSubmit={submitRegister}>
-          <div>
-            <h2>Registrarse</h2>
-          </div>
-          <div className="inputGroup">
-            <div className='errorMessage'>
+  /** 
+     <div className='errorMessage'>
               <p id="errorMessageEmail">
                 El email debe ser un mail valido 
               </p>
-            </div>
-            <input
-              className="input"
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div className='errorMessage'>
+      </div>
+
+       <div className='errorMessage'>
               <p id="errorMessagePassword">
                 La contraseña debe tener mínimo 8 caracteres, como máximo 20 caracteres, con al menos 1 letra, 1 número y 1 carácter especial 
               </p>
-            </div>
-            <input
-              className="input"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div className='errorMessage'>
+        </div>
+
+        
+        <div className='errorMessage'>
               <p id="errorMessageName">
                 El nombre debe tener mínimo 4 caracteres, como máximo 16 caracteres, con al menos 1 letra 
               </p>
-            </div>
-            <input
-              className="input"
-              type="text"
-              name="name"
-              placeholder="Nombre"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+        </div>
+
+    
 				      <label class="formLabel" htmlFor="terms">
 					      <input 
                 className ='input' 
@@ -90,8 +94,57 @@ const Register = () => {
                 ¡Te has registrado con éxito!  
               </p>
             </div>
-            <input type="submit" value="Registro" className="btn-register" />
+
+            
+
+  */
+  return (
+    <Layout>
+      <div className="register">
+        <form onSubmit={submitRegister}>
+          {
+            // MENSAJE DE ERROR AL REGISTRARSE
+            msgError && <div className="auth__alert-error">{msgError}</div>
+          }
+          <div>
+            <h2>Registrarse</h2>
           </div>
+          <div className="inputGroup">
+
+            <input
+              className="input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="off"
+            />
+    
+            <input
+              className="input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="off"
+            />
+
+            <input
+              className="input"
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autoComplete="off"
+            />
+            
+            <input type="submit" value="Registro" className="btn-register" />
+
+          </div>
+          
           <div className="linkALogin">
             <Link to="/login">Volver al login</Link>
           </div>
@@ -100,7 +153,7 @@ const Register = () => {
     </Layout>
   );
 };
-
+/*
 const formulario = document.getElementById('register');
 const inputs = document.querySelectorAll('input');
 
@@ -169,5 +222,5 @@ formulario.addEventListener('submit', (e) => {
 		document.getElementById('successMessage').classList.add('successMessage');
 	}
 });
-
+*/
 export default Register;
