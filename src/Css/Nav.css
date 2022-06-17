@@ -5,6 +5,8 @@
     justify-content: center;
     height: 13vh;
     margin: 0;
+    position: fixed;
+    width: 100%;
 }
 
 .contentNavbar {

@@ -4,13 +4,15 @@ import '../Css/ResultCard.css'
 const ResultsCard = (props) => {
   return (
     <div className='resultCard'>
-      <div className='resultImg'>
-        <img src={props.img} alt=''  className='cardImg'></img>
+      <div className='divImg'>
+        <img className='imagen' src={props.img} alt=''></img>
       </div>
-      <div className='resultData'>
+      <div className='data'>
         <h2>{props.nombre}</h2>
         <h4>{props.ciudad}</h4>
         <h6>{props.direccion}</h6>
+        <br/>
+        <h6>{props.caracteristicas}</h6>
       </div>
     </div>
   );

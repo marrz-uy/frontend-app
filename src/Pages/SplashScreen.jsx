@@ -10,7 +10,7 @@ export const SplashScreen = () => {
     setTimeout(() => {
       setmostrarPantallaInicio(!mostrarPantallaInicio);
       setmostrarPantallaInicio(false);
-    }, 1000);
+    }, 3000);
   }, [mostrarPantallaInicio]);
 
   return (
@@ -19,10 +19,10 @@ export const SplashScreen = () => {
         <div className="pantalla-inicio">
           <img className="wave" src={wave} alt="wave"></img>
           <div className="content">
-            <div className="textSuperior">
-              <h2>Arma tu tour</h2>
+            <div className="divTextSuperior">
+              <h2 className="textSuperior">Arma tu tour</h2>
             </div>
-            <div>
+            <div className='divlogoFell'>
               <img src={logo} alt="logo"></img>
               <div className="wrapper">
                 <div className="border">
@@ -32,8 +32,8 @@ export const SplashScreen = () => {
                 </div>
               </div>
             </div>
-            <div className="textInferior">
-              <h2>O descubri los del momento</h2>
+            <div className="divTextInferior">
+              <h2 className="textInferior">O descubri los del momento</h2>
             </div>
           </div>
         </div>

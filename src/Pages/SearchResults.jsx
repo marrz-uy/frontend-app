@@ -5,7 +5,6 @@ import ResultsCard from '../Components/ResultsCard';
 import { filter } from '../Helpers/FilterByType';
 
 const SearchResults = ({ items }) => {
-
   const data = filter(items);
 
   return (
@@ -14,17 +13,20 @@ const SearchResults = ({ items }) => {
         <h6 className="resultsText">
           {data.length} Resultados para {items}
         </h6>
-        {data.map((item) => {
-          return (
-            <ResultsCard
-              key={item.id}
-              nombre={item.nombre}
-              ciudad={item.ciudad}
-              direccion={item.direccion}
-              img={item.img}
-            />
-          );
-        })}
+        <div className='infoResults'>
+          {data.map((item) => {
+            return (
+              <ResultsCard
+                key={item.id}
+                nombre={item.nombre}
+                ciudad={item.ciudad}
+                direccion={item.direccion}
+                img={item.img}
+                caracteristicas={item.caracteristicas}
+              />
+            );
+          })}
+        </div>
       </div>
     </Layout>
   );

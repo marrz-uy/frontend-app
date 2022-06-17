@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import '../Css/Nav.css';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import userLogo from '../Assets/user.svg';
@@ -20,6 +19,13 @@ const Nav = ({ text, setText, setItems }) => {
     navigate('/results');
   };
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      setItems(text);
+      navigate('/results');
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="contentNavbar">
@@ -37,6 +43,7 @@ const Nav = ({ text, setText, setItems }) => {
               placeholder="Busca tu proximo destino"
               value={text}
               onChange={handleText}
+              onKeyPress={handleEnter}
             ></input>
             <span>
               <img

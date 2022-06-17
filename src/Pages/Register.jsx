@@ -26,7 +26,7 @@ const Register = () => {
       <div className="register">
         <form onSubmit={submitRegister}>
           <div>
-            <h2>Registrarse</h2>
+            <h2 className='title'>Registrarse</h2>
           </div>
           <div className="inputGroup">
             <input
