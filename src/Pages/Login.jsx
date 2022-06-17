@@ -26,7 +26,7 @@ const Login = () => {
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2>Login</h2>
+            <h2 className='title'>Login</h2>
           </div>
           <div className="inputGroup">
             <input
@@ -54,7 +54,7 @@ const Login = () => {
           </div>
           <div className="salir">
             <Link to="/">
-              <button>Cerrar</button>
+              <button className='btn-cerrar'>Cerrar</button>
             </Link>
           </div>
         </form>
