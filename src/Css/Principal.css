@@ -1,0 +1,19 @@
+.container {
+	margin-top: 160px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+}
+
+.categories {
+	height: 150px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+}
+
+img {
+	width: 170px;
+}
+
