@@ -1,22 +1,19 @@
 .container {
+	margin-top: 160px;
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
 }
 
-nav {
+.categories {
+	height: 150px;
+	width: 150px;
 	display: flex;
-	justify-content: flex-end;
-	padding-right: 10px;
-	background-color: #0575E6;
-	color: aliceblue;
-	text-decoration: none;
+	justify-content: center;
 }
 
-ul {
-	list-style: none;
+img {
+	width: 170px;
 }
 
-.main {
- margin: 0 auto;
- color: #4b4a4a ;
-}
