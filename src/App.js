@@ -14,9 +14,9 @@ function App() {
     <BrowserRouter>
       <SplashScreen />
 
-      <Nav text={text} setText={setText} setItems={setItems} />
+      <Nav text={text} setText={setText} setItems={setItems} items={items} />
       <Routes>
-        <Route index element={<Principal />} />
+        <Route index element={<Principal setItems={setItems} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/results" element={<SearchResults items={items} />} />
