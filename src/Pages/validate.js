@@ -1,0 +1,5 @@
+const validateUser(){
+    if (condition) {
+        
+    }
+}

@@ -1,14 +1,14 @@
 import '../Pages/Register';
 
-const formulario = document.getElementById('register');
-const inputs = document.querySelectorAll('.register input');
+const formulario = document.getElementById('message');
+const inputs = document.querySelectorAll('.message input');
 
 const expresiones = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 
     password: /^.{8,20}$/, // 8 a 20 digitos.
 
-    name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/ // Letras y espacios, pueden llevar acentos.
+    name: /^[a-zA-Z]{1,6}$/ // solo letras letras hasta 16 digitos.
     
 }
 
@@ -18,6 +18,8 @@ const campos = {
 	name: false
 }
 
+const text = "Waiting for an input";
+
 const validarFormulario = (e) => {
 	switch (e.target.name) {
         case "email":
@@ -25,23 +27,34 @@ const validarFormulario = (e) => {
 		break;
         case "password":
 			validarCampo(expresiones.password, e.target, 'password');
+		break;
 		case "name":
 			validarCampo(expresiones.name, e.target, 'name');
 		break;
+		default:
+			console.log(text);
 	}
 }
 
 const validarCampo = (expresion, input, campo) => {
-	if(expresion.test(input.value)){
+	if(expresion.test (input.value)){
+		/*alert('Campos llenados correctamente');
+		return;*/
+
 		document.getElementById(`grupo__${campo}`).classList.remove('errorMessageSubmit');
 		document.getElementById(`grupo__${campo}`).classList.add('successMessageSubmit');
 		campos[campo] = true;
+		
 	} else {
+		/*alert('Error al llenar los campos, por favor vuelva a intetarlo');
+		return;
+		*/
 		document.getElementById(`grupo__${campo}`).classList.add('errorMessageSubmit');
 		document.getElementById(`grupo__${campo}`).classList.remove('successMessageSubmit');
 		campos[campo] = false;
 	}
 }
+
 
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
@@ -54,16 +67,15 @@ formulario.addEventListener('submit', (e) => {
 	if(campos.email && campos.password && campos.name.checked ){
 		formulario.reset();
 
-		document.getElementById('successMessageSubmit').classList.add('successMessageSubmit');
+		document.getElementById('message').classList.add('successMessageSubmit');
 		setTimeout(() => {
-			document.getElementById('successMessageSubmit').classList.remove('successMessageSubmit');
+			document.getElementById('message').classList.remove('errorMessageSubmit');
 		}, 5000);
 
-		document.querySelectorAll('.successMessageSubmit').forEach((icono) => {
-			icono.classList.remove('successMessageSubmit');
+		document.querySelectorAll('.message').forEach((icono) => {
+			icono.classList.remove('errorMessageSubmit');
 		});
 	} else {
-		document.getElementById('successMessageSubmit').classList.add('successMessageSubmit');
+		document.getElementById('message').classList.add('successMessageSubmit');
 	}
 });
-

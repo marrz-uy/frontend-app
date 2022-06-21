@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import '../Css/Register.css';
-import '../Pages/validation';
+<script type='text/javascripit' src='../Pages/validation.js'></script>
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ const Register = () => {
 
           <div className="inputGroup">
 
-          <div className='errorMessage'>
+          <div class='message' className='errorMessage'>
               <p id="errorMessageEmail">
                 El email debe ser un mail valido 
               </p>
@@ -48,7 +48,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-        <div className='errorMessage'>
+        <div class='message' className='errorMessage'>
               <p id="errorMessagePassword">
                 La contraseña debe tener mínimo 8 caracteres, como máximo 20 caracteres, con al menos 1 letra, 1 número y 1 carácter especial 
               </p>
@@ -63,7 +63,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <div className='errorMessage'>
+            <div class='message' className='errorMessage'>
               <p id="errorMessageName">
                 El nombre debe tener mínimo 4 caracteres, como máximo 16 caracteres, con al menos 1 letra 
               </p>
@@ -78,13 +78,13 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
             />
 
-            <div className='errorMessageSubmit'>
+            <div class='message' className='errorMessageSubmit'>
               <p id="errorMessageSubmit">
                 Error al registrarse, por favor revise los campos, y vuelva a intentarlo 
               </p>
             </div>
 
-            <div className='successMessageSubmit'>
+            <div class='message' className='successMessageSubmit'>
               <p id="successMessageSubmit">
                 ¡Te has registrado con éxito!  
               </p>
