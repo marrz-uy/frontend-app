@@ -7,7 +7,7 @@ export const datos = [
     direccion: 'Yi 1372',
     barrio: 'Centro',
     caracteristicas: 'Desayuno y Wi-Fi gratuitos',
-    img:'https://lh5.googleusercontent.com/p/AF1QipOdpIh5ICpu6Je3teQfj_pT-CGMhMscLoA-U49e=w253-h189-k-no'
+    img: 'https://lh5.googleusercontent.com/p/AF1QipOdpIh5ICpu6Je3teQfj_pT-CGMhMscLoA-U49e=w253-h189-k-no',
   },
   {
     id: '02',
@@ -17,7 +17,7 @@ export const datos = [
     direccion: 'Colonia 1341',
     barrio: 'Centro',
     caracteristicas: 'Desayuno y Wi-Fi gratuitos',
-    img:'https://lh3.googleusercontent.com/proxy/Fpn7XkGET3SxAXwLIh44ozrASTAHJfxvPF-U5FwZkF0oumMTzjVqIlb_hgwLKr4F43OsJqqFJWww7nvc_P7Vtzxmtq_RYN1LIAn-s4rMUpcicHII0npGd1Hlg4AxzwrsXzTsTmq1LIHJQfjW5pWty8knccD-r60=w296-h202-n-k-no-v1-rj'
+    img: 'https://lh3.googleusercontent.com/proxy/Fpn7XkGET3SxAXwLIh44ozrASTAHJfxvPF-U5FwZkF0oumMTzjVqIlb_hgwLKr4F43OsJqqFJWww7nvc_P7Vtzxmtq_RYN1LIAn-s4rMUpcicHII0npGd1Hlg4AxzwrsXzTsTmq1LIHJQfjW5pWty8knccD-r60=w296-h202-n-k-no-v1-rj',
   },
   {
     id: '03',
@@ -27,7 +27,7 @@ export const datos = [
     direccion: 'Aquiles R. Lanza 1323',
     barrio: 'Centro',
     caracteristicas: 'Hotel tranquilo con desayuno incluido',
-    img:'https://lh5.googleusercontent.com/p/AF1QipMDpGa92qALiJT2c8bRdsiB5_MU83-dRujnpi_R=w253-h189-k-no'
+    img: 'https://lh5.googleusercontent.com/p/AF1QipMDpGa92qALiJT2c8bRdsiB5_MU83-dRujnpi_R=w253-h189-k-no',
   },
   {
     id: '04',
@@ -37,7 +37,7 @@ export const datos = [
     direccion: 'Libertad 2851',
     barrio: 'Pocitos',
     caracteristicas: 'Consumo en el lugar · Para llevar · Entrega sin contacto',
-    img: 'https://media-cdn.tripadvisor.com/media/photo-s/01/cd/83/ba/el-salon-principal.jpg'
+    img: 'https://media-cdn.tripadvisor.com/media/photo-s/01/cd/83/ba/el-salon-principal.jpg',
   },
   {
     id: '05',
@@ -47,7 +47,7 @@ export const datos = [
     direccion: 'Eduardo Acevedo Diaz 1055',
     barrio: 'Cordon',
     caracteristicas: '',
-    img: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/e3/0f/2d/lindo-y-agradable-salon.jpg'
+    img: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/e3/0f/2d/lindo-y-agradable-salon.jpg',
   },
   {
     id: '06',
@@ -57,7 +57,7 @@ export const datos = [
     direccion: 'Camino Sanguinetti 5552',
     barrio: 'Pajas Blancas',
     caracteristicas: '',
-    img: 'https://media-cdn.tripadvisor.com/media/photo-s/14/e9/94/ef/restaurante-de-la-baguala.jpg'
+    img: 'https://media-cdn.tripadvisor.com/media/photo-s/14/e9/94/ef/restaurante-de-la-baguala.jpg',
   },
   {
     id: '07',
@@ -67,7 +67,7 @@ export const datos = [
     direccion: 'Rambla',
     barrio: 'Parque Rodo',
     caracteristicas: 'Juegos para niños',
-    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/19/69/c8/el-lago.jpg?w=1000&h=-1&s=1'
+    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/19/69/c8/el-lago.jpg?w=1000&h=-1&s=1',
   },
   {
     id: '08',
@@ -77,7 +77,7 @@ export const datos = [
     direccion: 'Rambla',
     barrio: 'vacio',
     caracteristicas: 'Playa familiar',
-    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/88/15/d0/faixa-de-areia.jpg?w=1200&h=-1&s=1'
+    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/88/15/d0/faixa-de-areia.jpg?w=1200&h=-1&s=1',
   },
   {
     id: '09',
@@ -87,41 +87,83 @@ export const datos = [
     direccion: 'Av Italia',
     barrio: 'Malvin',
     caracteristicas: 'Muchos animalitos lindos',
-    img: 'https://esquinas.montevideo.gub.uy/sites/esquinas.montevideo.gub.uy/files/styles/galeria_normal/public/eventos/imagenes/alebrije-72.jpg?itok=b9btsSxV'
+    img: 'https://esquinas.montevideo.gub.uy/sites/esquinas.montevideo.gub.uy/files/styles/galeria_normal/public/eventos/imagenes/alebrije-72.jpg?itok=b9btsSxV',
   },
-
-
-
-
 
   {
     id: '10',
-    tipo: 'hoteles',
-    nombre: 'Hotel Alvear',
+    tipo: 'transportes',
+    nombre: 'Terminal Tres Cruces',
     ciudad: 'Montevideo',
-    direccion: 'Yi 1372',
-    barrio: 'Centro',
-    caracteristicas: 'Desayuno y Wi-Fi gratuitos',
-    img:'https://lh5.googleusercontent.com/p/AF1QipOdpIh5ICpu6Je3teQfj_pT-CGMhMscLoA-U49e=w253-h189-k-no'
+    direccion: 'Bulevar Gral. Artigas 1825',
+    barrio: 'Tres Cruces',
+    caracteristicas: 'Principal terminal de buses de Uruguay',
+    img: 'https://photo620x400.mnstatic.com/ee98ce5a2449e170d24eeb73c145d713/terminal-tres-cruces.jpg',
   },
   {
     id: '11',
-    tipo: 'hoteles',
-    nombre: 'Hotel Europa',
+    tipo: 'transportes',
+    nombre: 'Estación Baltasar Brum',
     ciudad: 'Montevideo',
-    direccion: 'Colonia 1341',
-    barrio: 'Centro',
-    caracteristicas: 'Desayuno y Wi-Fi gratuitos',
-    img:'https://lh3.googleusercontent.com/proxy/Fpn7XkGET3SxAXwLIh44ozrASTAHJfxvPF-U5FwZkF0oumMTzjVqIlb_hgwLKr4F43OsJqqFJWww7nvc_P7Vtzxmtq_RYN1LIAn-s4rMUpcicHII0npGd1Hlg4AxzwrsXzTsTmq1LIHJQfjW5pWty8knccD-r60=w296-h202-n-k-no-v1-rj'
+    direccion: 'Rio Branco 1685',
+    barrio: 'Ciudad Vieja',
+    caracteristicas: 'Terminal de ómnibus interdepartamentales',
+    img: 'https://media.cdnp.elobservador.com.uy/062021/1624375048003/Terminal-R%C3%ADo-Branco---DB_03.JPG?cw=1500&ch=1000',
   },
   {
     id: '12',
-    tipo: 'hoteles',
-    nombre: 'Hotel Crystal Tower',
+    tipo: 'transportes',
+    nombre: 'Terminal del Cerro',
     ciudad: 'Montevideo',
-    direccion: 'Aquiles R. Lanza 1323',
-    barrio: 'Centro',
-    caracteristicas: 'Hotel tranquilo con desayuno incluido',
-    img:'https://lh5.googleusercontent.com/p/AF1QipMDpGa92qALiJT2c8bRdsiB5_MU83-dRujnpi_R=w253-h189-k-no'
+    direccion: 'Av. Carlos María Ramírez y Dr. Pedro Castellino',
+    barrio: 'Cerro',
+    caracteristicas: 'Terminal de onmibus departamantales',
+    img: 'https://fastly.4sqi.net/img/general/width960/38989709_axDkJ4K1EMTLejeQVZJFyIrK4Pp1fY7V-QTMf_tqK3w.jpg',
+  },
+
+  {
+    id: '13',
+    tipo: 'tours',
+    nombre: 'Tour Ciudad Vieja',
+    ciudad: 'Montevideo',
+    direccion: '',
+    barrio: 'Ciudad Vieja',
+    caracteristicas:
+      'Visita a plaza Matriz, Mercado del Puerto y feria artesanal',
+    img: 'http://www.turismoenmontevideo.com/wp-content/uploads/7-lugares-de-la-ciudad-vieja-de-montevideo-que-debes-conocer.jpg',
+  },
+
+  {
+    id: '14',
+    tipo: 'tours',
+    nombre: 'Tour Futbolistico',
+    ciudad: 'Montevideo',
+    direccion: '',
+    barrio: 'Montevideo',
+    caracteristicas:
+      'Visita al Estadio Centenario, Museo del Futbol y Gran Parque Central',
+    img: 'https://pbs.twimg.com/media/EnDF16aVkAADsYZ.jpg',
+  },
+  {
+    id: '15',
+    tipo: 'tours',
+    nombre: 'Tour Carnaval',
+    ciudad: 'Montevideo',
+    direccion: '',
+    barrio: '',
+    caracteristicas:
+      'Visita al Museo del Carnaval, Ver las Llamadas y Visita al teatro de Verano',
+    img: 'https://montevideo.gub.uy/sites/default/files/styles/noticias_twitter/public/biblioteca/imf00661.jpg?itok=SwuxS5yZ',
+  },
+  {
+    id: '15',
+    tipo: 'armar tour',
+    nombre: 'Seccion en construccion',
+    ciudad: '',
+    direccion: '',
+    barrio: '',
+    caracteristicas:
+      '',
+    img: 'https://retokommerling.com/wp-content/uploads/2014/04/construccion.jpg'
   },
 ];
