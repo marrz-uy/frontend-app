@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
+import PropTypes from 'prop-types';
 import '../Css/Register.css';
 
 const Register = () => {
@@ -20,6 +21,72 @@ const Register = () => {
       navigate('/login');
     });
   };
+
+const text = 'Por favor, ingresa algo';
+
+const getRegExp = (type) => {
+  let regx = null;
+  switch (type) {
+    case 'email':
+      regx = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      break;
+    case 'password':
+      regx = /^.{8,20}$/;// 8 a 20 digitos
+      break;
+    case 'name':
+      regx = /^[a-zA-ZÀ-ÿ\s]{1,40}$/ // Letras y espacios, pueden llevar acentos
+      break;
+    default:
+        console.log(text);
+      break;
+  }
+  return regx;
+}
+
+const validationHandlerName = (e, props) => {
+  if (!props.onValidateFunc) return;
+ 
+  const { value, name } = e.target;
+  let msg = null;
+ 
+  if (!value && props.isReq) {
+    msg = `Por favor, ingrese ${props.title}.`;
+  } else if (value && props.reqType && !getRegExp(props.reqType).test(value)) {
+    msg = `El nombre debe tener entre 1 y 40 letras ${props.title}.`;
+  }
+ 
+  props.onValidateFunc(msg, name);
+}
+
+const validationHandlerEmail = (e, props) => {
+  if (!props.onValidateFunc) return;
+ 
+  const { value, email } = e.target;
+  let msg = null;
+ 
+  if (!value && props.isReq) {
+    msg = `Por favor, ingrese ${props.title}.`;
+  } else if (value && props.reqType && !getRegExp(props.reqType).test(value)) {
+    msg = `El mail debe ser un mail valido ${props.title}.`;
+  }
+ 
+  props.onValidateFunc(msg, email);
+}
+
+const validationHandlerPassword = (e, props) => {
+  if (!props.onValidateFunc) return;
+ 
+  const { value, password } = e.target;
+  let msg = null;
+ 
+  if (!value && props.isReq) {
+    msg = `Por favor, ingrese ${props.title}.`;
+  } else if (value && props.reqType && !getRegExp(props.reqType).test(value)) {
+    msg = `La contraseña debe tener entre 8 y 20 digitos ${props.title}.`;
+  }
+ 
+  props.onValidateFunc(msg, password);
+}
 
   return (
     <Layout>
