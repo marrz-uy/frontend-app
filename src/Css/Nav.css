@@ -25,6 +25,7 @@
 
 #feelLogoImg {
     width: 3rem;
+    filter: drop-shadow(2px 8px 5px #000000e8);
 }
 
 .search {
@@ -57,11 +58,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1.1);
 }
 
 #userlogoImg {
     width: 3rem;
     max-width: 3rem;
+    filter: drop-shadow(2px 8px 5px #000000e8);
 }
 
 .inputSearch {
@@ -69,7 +72,7 @@
     height: 2rem;
     margin: 0 auto;
     border: 1px solid rgb(221, 221, 221);
-    box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.4);
+    box-shadow: 0.3em 0.5em 1em rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     padding-left: 10px;
 }
