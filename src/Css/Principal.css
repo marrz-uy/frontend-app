@@ -16,6 +16,10 @@
 	margin-bottom: 20px;
 }
 
+.categories:hover {
+	transform: scale(1.2);
+}
+
 .categories span {
 	margin-top: -30px;
 }
