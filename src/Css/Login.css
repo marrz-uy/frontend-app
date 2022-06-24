@@ -1,0 +1,65 @@
+.login {
+	margin-top: 130px;
+	width: 70%;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Kodchasan', sans-serif;
+}
+
+.title {
+	margin-bottom: 10px;
+}
+
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}
+
+.input {
+	border: 1px solid gray;
+	border-radius: 5px;
+	
+	padding-left: 10px;
+	color: rgb(170, 170, 170);
+}
+
+.btn-login {
+	background-color:#00499de9;
+	color: aliceblue;
+	font-weight: bold;
+	border: 1px solid gray;
+	border-radius: 5px;
+	height: 30px;
+}
+
+.linkAregistro {
+	margin-top: 10px;
+}
+
+.linkAregistro a, a:visited {
+	text-decoration:none ;
+	color: rgb(81, 81, 81);
+	cursor: pointer;
+}
+
+.salir {
+	margin-top: 10px;
+}
+
+.btn-cerrar {
+	font-family: 'Kodchasan', sans-serif;
+}
+
+
+
+
+/* laptop/desktop - de 1024px en adelante */
+@media screen and (min-width: 1024px) {
+	
+	.login {
+		width: 30%;
+	}
+
+}
