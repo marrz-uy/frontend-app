@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import AuthUser from '../Components/AuthUser'
 import { Layout } from '../Layout'
 import '../Css/Login.css'
+<script type='text/javascripit' src='../Pages/LoginValidation.js'></script>
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,9 +27,11 @@ const Login = () => {
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2>Logearse</h2>
+            <h2>Iniciar sesión</h2>
           </div>
           <div className="inputGroup">
+            <p className='errorMessage'>Error al ingresar el email</p>
+            <p className='successMessage'>Campo completado</p>
             <input
               className="input"
               type="email"
@@ -38,6 +41,8 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <p className='errorMessage'>Error al ingresar la contraseña</p>
+            <p className='successMessage'>Campo completado</p>
             <input
               className="input"
               type="password"
@@ -47,6 +52,8 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <p className='submitMessage' id='errorMessageSubmit'>Error al completar los campos</p>
+            <p className='submitMessage' id='successMessageSubmit'>Haz iniciado sesión correctamente</p>
             <input type="submit" value="Login" className="btn-login" />
           </div>
           <div className="linkAregistro">

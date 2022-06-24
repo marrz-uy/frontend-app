@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import '../Css/Register.css';
-<script type='text/javascripit' src='../Pages/validation.js'></script>
+<script type='text/javascripit' src='../Pages/RegisterValidation.js'></script>
 
 const Register = () => {
   const [email, setEmail] = useState('');

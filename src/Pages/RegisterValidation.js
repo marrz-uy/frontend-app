@@ -1,4 +1,4 @@
-import '../Pages/Register';
+import './Register';
 
 const formulario = document.getElementById('message');
 const inputs = document.querySelectorAll('.message input');
