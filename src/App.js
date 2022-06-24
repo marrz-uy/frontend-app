@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
-import { Navbar } from './Components/Navbar';
-import { Main } from './Pages/Main';
+import { Principal, Login, Register } from './Pages';
+import { Nav } from './Layout';
+import SearchResults from './Pages/SearchResults';
 
 function App() {
+  const [text, setText] = useState('');
+  const [items, setItems] = useState([]);
+
   return (
-    <div className="App">
-      <SplashScreen/>
-      <Navbar/>
-      <Main/>
-    </div>
+    <BrowserRouter>
+      <SplashScreen />
+
+      <Nav text={text} setText={setText} setItems={setItems} items={items} />
+      <Routes>
+        <Route index element={<Principal setItems={setItems} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/results" element={<SearchResults items={items} />} />
+        <Route path="*" element={<div> <h2>404 Page not found</h2> </div> }/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
