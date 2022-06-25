@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0cebd66d.css",
-    "main.js": "/static/js/main.409ef8c6.js",
+    "main.css": "/static/css/main.16b6c1f4.css",
+    "main.js": "/static/js/main.8824708c.js",
     "static/media/wave.png": "/static/media/wave.1a1a69a65bc3f83dc0a0.png",
     "service-worker.js": "/service-worker.js",
     "static/media/mosaico2.png": "/static/media/mosaico2.20e3e5812f97da4e0f82.png",
@@ -11,13 +11,15 @@
     "static/media/hospedaje.png": "/static/media/hospedaje.dca955ccfafc4e05604a.png",
     "static/media/fast-food 1.png": "/static/media/fast-food 1.dc9fe142d6c7868b028d.png",
     "static/media/logoFeelFuenteBlanca.svg": "/static/media/logoFeelFuenteBlanca.73038072e2e9c146df41b37ff2d3bd7f.svg",
+    "static/media/back.svg": "/static/media/back.fa31735f12e7a2dda8e6a250ebbd3687.svg",
     "static/media/user.svg": "/static/media/user.d3416a3cf135df796e550382c560f74f.svg",
     "index.html": "/index.html",
-    "main.0cebd66d.css.map": "/static/css/main.0cebd66d.css.map",
-    "main.409ef8c6.js.map": "/static/js/main.409ef8c6.js.map"
+    "static/media/logout.svg": "/static/media/logout.416119e4106b75d03b38e6f2c55c16df.svg",
+    "main.16b6c1f4.css.map": "/static/css/main.16b6c1f4.css.map",
+    "main.8824708c.js.map": "/static/js/main.8824708c.js.map"
   },
   "entrypoints": [
-    "static/css/main.0cebd66d.css",
-    "static/js/main.409ef8c6.js"
+    "static/css/main.16b6c1f4.css",
+    "static/js/main.8824708c.js"
   ]
 }

@@ -5,7 +5,7 @@ import AuthUser from '../Components/AuthUser'
 import { Layout } from '../Layout'
 import '../Css/Login.css'
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,10 +15,13 @@ const Login = () => {
   const submitLogin = (e) => {
     e.preventDefault();
     http.post('/login', { email, password }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setToken(res.data.user, res.data.access_token);
+      setIsLoggedIn('true')
       navigate('/');
-    });
+    })
+    // setIsLoggedIn('true')
+    
   };
 
   return (

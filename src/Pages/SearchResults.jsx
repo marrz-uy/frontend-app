@@ -6,14 +6,13 @@ import { filter } from '../Helpers/FilterByType';
 
 const SearchResults = ({ items }) => {
   const data = filter(items);
-
   return (
     <Layout>
       <div className="results">
         <h6 className="resultsText">
           {data.length} Resultados para {items}
         </h6>
-        <div className='infoResults'>
+        <div className="infoResults">
           {data.map((item) => {
             return (
               <ResultsCard
