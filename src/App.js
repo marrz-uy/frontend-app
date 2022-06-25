@@ -10,6 +10,7 @@ function App() {
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState('false');
+  const [page, setPage] = useState('principal');
 
   return (
     <BrowserRouter>
@@ -21,12 +22,24 @@ function App() {
         items={items}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        page={page}
       />
       <Routes>
-        <Route index element={<Principal setItems={setItems} />} />
-        <Route path="/login" element={<Login  setIsLoggedIn={setIsLoggedIn}  />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/results" element={<SearchResults items={items} />} />
+        <Route
+          path="/"
+          element={
+            <Principal setItems={setItems} page={page} setPage={setPage} />
+          }
+        />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
+        />
+        <Route path="/register" element={<Register setPage={setPage} />} />
+        <Route
+          path="/results"
+          element={<SearchResults items={items} setPage={setPage} />}
+        />
         <Route
           path="*"
           element={

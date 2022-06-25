@@ -1,4 +1,5 @@
 import { Layout } from '../Layout';
+import { useEffect } from 'react';
 import '../Css/Principal.css';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -8,11 +9,16 @@ import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
 
-const Principal = ({ setItems }) => {
+const Principal = ({ setItems, setPage }) => {
+  useEffect(() => {
+    setPage('principal');
+  }, [setPage]);
+
   const navigate = useNavigate();
 
   const handleCategories = (e) => {
     setItems(e);
+    setPage('results');
     navigate('/results');
   };
 

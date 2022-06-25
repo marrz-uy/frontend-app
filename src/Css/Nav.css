@@ -114,9 +114,21 @@
     filter: drop-shadow(2px 8px 5px #000000e8);
 }
 
+@media screen and (min-width: 480px) {
+
+    .navbar {
+        min-height: 10vh;
+      }
+
+}
+
 
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 1024px) {
+
+    .navbar {
+        min-height: 12vh;
+      }
 
     #feelLogoImg {
         min-width: 5rem;

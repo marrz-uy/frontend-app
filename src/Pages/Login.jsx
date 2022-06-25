@@ -1,11 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import AuthUser from '../Components/AuthUser'
 import { Layout } from '../Layout'
 import '../Css/Login.css'
 
-const Login = ({setIsLoggedIn}) => {
+const Login = ({setIsLoggedIn, setPage}) => {
+
+  useEffect(() => {
+    setPage('login')
+  }, [setPage])
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

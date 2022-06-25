@@ -1,11 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import '../Css/Register.css';
 
-const Register = () => {
+const Register = ({setPage}) => {
+
+  useEffect(() => {
+    setPage('register')
+  }, [setPage])
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');

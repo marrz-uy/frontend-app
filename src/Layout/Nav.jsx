@@ -8,13 +8,11 @@ import LoginRoute from '../Components/LoginRoute';
 import logoutIcon from '../Assets/logout.svg';
 import '../Css/Nav.css';
 
-const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn }) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
  
- const principalRoute = 'http://localhost:3000/'
- const activeRoute = window.location.href
+    
+// console.log('PAGE EN NAV',page)
 
- console.log(principalRoute)
- 
   const { token, logout } = AuthUser();
 
   const [userSession, setUserSession] = useState('');
@@ -64,12 +62,12 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn }) => {
     <div className="navbar">
       <div className="contentNavbar">
         <div className="logoFellUy">
-        {  activeRoute !== principalRoute
-            ?
-            (<Link to="/">
+        {  page !== 'principal'
+        ?
+          ( <Link to="/">
             <img id="arrowImg" src={backArrow} alt="back"></img>
           </Link>)
-          : 
+          :
           ( <Link to="/">
             <img id="feelLogoImg" src={logo} alt="logo"></img>
           </Link>)
