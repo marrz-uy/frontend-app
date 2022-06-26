@@ -30,12 +30,12 @@
 
 #feelLogoImg {
     width: 3rem;
-    filter: drop-shadow(2px 8px 5px #000000e8);
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 #arrowImg {
     width: 2rem;
-    filter: drop-shadow(2px 8px 5px #000000e8);
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 .search {
@@ -75,7 +75,7 @@
 #userlogoImg {
     width: 3rem;
     max-width: 3rem;
-    filter: drop-shadow(2px 8px 5px #000000e8);
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 
@@ -111,7 +111,7 @@
 #logoutImg {
     width: 1.3rem;
     max-width: 1.3rem;
-    filter: drop-shadow(2px 8px 5px #000000e8);
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 @media screen and (min-width: 480px) {
