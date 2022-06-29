@@ -80,7 +80,7 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
               className="inputSearch"
               name="categoria"
               type="text"
-              placeholder="Busca tu proximo destino"
+              placeholder="Buscá tu proximo destino"
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}

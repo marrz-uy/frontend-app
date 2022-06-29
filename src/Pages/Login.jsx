@@ -58,7 +58,7 @@ const Login = ({setIsLoggedIn, setPage}) => {
             <input type="submit" value="Login" className="btn-login" />
           </div>
           <div className="linkAregistro">
-            <Link to="/register">Necesitas una cuenta?</Link>
+            <Link to="/register">Necesitás una cuenta?</Link>
           </div>
           <div className="salir">
             <Link to="/">

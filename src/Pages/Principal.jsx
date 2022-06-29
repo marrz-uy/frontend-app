@@ -45,7 +45,7 @@ const Principal = ({ setItems, setPage }) => {
           onClick={() => handleCategories('restaurantes')}
         >
           <img src={restaurant} alt="hotel"></img>
-          <span>Gastronomia</span>
+          <span>Gastronomía</span>
         </div>
         <div className="categories" onClick={() => handleCategories('paseos')}>
           <img src={trips} alt="hotel"></img>
