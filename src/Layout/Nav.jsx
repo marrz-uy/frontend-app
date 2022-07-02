@@ -1,11 +1,33 @@
-import React from 'react';
-import '../Css/Nav.css';
-import logo from '../Assets/logoFeelFuenteBlanca.svg';
-import userLogo from '../Assets/user.svg';
-import searchlogo from '../Assets/searchLogo.png';
+import React, { useState, useEffect } from 'react';
+import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
+import logo from '../Assets/logoFeelFuenteBlanca.svg';
+import backArrow from '../Assets/back.svg'
+import searchlogo from '../Assets/searchLogo.png';
+import LoginRoute from '../Components/LoginRoute';
+import logoutIcon from '../Assets/logout.svg';
+import '../Css/Nav.css';
 
-const Nav = ({ text, setText, setItems }) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
+ 
+    
+// console.log('PAGE EN NAV',page)
+
+  const { token, logout } = AuthUser();
+
+  const [userSession, setUserSession] = useState('');
+
+  useEffect(() => {
+    if (isLoggedIn === 'false') {
+      setUserSession('Invitado');
+    } else {
+      var session = sessionStorage.getItem('user');
+      const user = JSON.parse(session);
+
+      setUserSession(user.name);
+    }
+  }, [isLoggedIn]);
+
   const navigate = useNavigate();
 
   const handleText = (e) => {
@@ -26,13 +48,31 @@ const Nav = ({ text, setText, setItems }) => {
     }
   };
 
+  const logoutUser = () => {
+    if (token !== undefined) {
+      logout();
+      setIsLoggedIn('false');
+      setUserSession('Invitado');
+      console.log('Cerrando sesion');
+      navigate('/');
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="contentNavbar">
         <div className="logoFellUy">
-          <Link to="/">
+        {  page !== 'principal'
+        ?
+          ( <Link to="/">
+            <img id="arrowImg" src={backArrow} alt="back"></img>
+          </Link>)
+          :
+          ( <Link to="/">
             <img id="feelLogoImg" src={logo} alt="logo"></img>
-          </Link>
+          </Link>)
+        }
+         
         </div>
         <div className="search">
           <div className="searchIntDiv">
@@ -40,7 +80,7 @@ const Nav = ({ text, setText, setItems }) => {
               className="inputSearch"
               name="categoria"
               type="text"
-              placeholder="Busca tu proximo destino"
+              placeholder="Buscá tu proximo destino"
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -56,11 +96,16 @@ const Nav = ({ text, setText, setItems }) => {
           </div>
         </div>
         <div className="userLogo">
-          <Link to="/login">
-            <img id="userlogoImg" src={userLogo} alt="logo"></img>
-          </Link>
+          {isLoggedIn === 'false' ? (
+            <LoginRoute />
+          ) : (
+            <span className="logout" role="button" onClick={logoutUser}>
+            <img id='logoutImg' src={logoutIcon} alt="logo"></img>
+            </span>
+          )}
         </div>
       </div>
+      <div className="msgWelcome">Bienvenido a FeelUy {userSession}</div>
     </div>
   );
 };
