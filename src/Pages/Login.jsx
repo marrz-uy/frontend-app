@@ -1,11 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import AuthUser from '../Components/AuthUser'
 import { Layout } from '../Layout'
 import '../Css/Login.css'
 
-const Login = () => {
+const Login = ({setIsLoggedIn, setPage}) => {
+
+  useEffect(() => {
+    setPage('login')
+  }, [setPage])
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,10 +20,13 @@ const Login = () => {
   const submitLogin = (e) => {
     e.preventDefault();
     http.post('/login', { email, password }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setToken(res.data.user, res.data.access_token);
+      setIsLoggedIn('true')
       navigate('/');
-    });
+    })
+    // setIsLoggedIn('true')
+    
   };
 
   return (
@@ -50,7 +58,7 @@ const Login = () => {
             <input type="submit" value="Login" className="btn-login" />
           </div>
           <div className="linkAregistro">
-            <Link to="/register">Necesitas una cuenta?</Link>
+            <Link to="/register">Necesitás una cuenta?</Link>
           </div>
           <div className="salir">
             <Link to="/">
