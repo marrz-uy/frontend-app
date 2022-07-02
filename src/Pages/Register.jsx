@@ -22,6 +22,7 @@ const Register = ({setPage}) => {
   const submitRegister = (e) => {
     e.preventDefault();
     http.post('/register', { email, password, name }).then((res) => {
+      console.log('RESPUESTA:',res.data)
       navigate('/login');
     });
   };
