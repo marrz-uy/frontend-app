@@ -52,6 +52,12 @@
 	font-family: 'Kodchasan', sans-serif;
 }
 
+.message {
+	min-height: 2.2rem;
+	color: red;
+	/* margin-left: 20px; */
+}
+
 
 
 
