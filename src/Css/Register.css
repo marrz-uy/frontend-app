@@ -43,6 +43,12 @@
 	color: rgb(81, 81, 81);;
 }
 
+.message {
+	min-height: 2.2rem;
+	color: red;
+	/* margin-left: 20px; */
+}
+
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 1024px) {
 	
