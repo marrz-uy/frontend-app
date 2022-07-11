@@ -1,32 +1,59 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import AuthUser from '../Components/AuthUser'
-import { Layout } from '../Layout'
-import '../Css/Login.css'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import AuthUser from '../Components/AuthUser';
+import { Layout } from '../Layout';
+import '../Css/Login.css';
+import {
+  UNAUTHORIZED,
+  UNPROCESABLE,
+  SERVIDOR_APAGADO,
+} from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({setIsLoggedIn, setPage}) => {
-
+const Login = ({ setIsLoggedIn, setPage }) => {
   useEffect(() => {
-    setPage('login')
-  }, [setPage])
+    setPage('login');
+  }, [setPage]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
 
   const submitLogin = (e) => {
     e.preventDefault();
-    http.post('/login', { email, password }).then((res) => {
-      // console.log(res.data);
-      setToken(res.data.user, res.data.access_token);
-      setIsLoggedIn('true')
-      navigate('/');
-    })
-    // setIsLoggedIn('true')
-    
+
+    http
+      .post('/login', { email, password })
+      .then((res) => {
+        //console.log('RESP:', res.data);
+        setToken(res.data.user, res.data.access_token);
+        setIsLoggedIn('true');
+        setLoginErrorMessage('Login correcto');
+        navigate('/');
+      })
+      .catch(function (error) {
+        //console.log('RESP:', error.response.status);
+        if (error.response.status === SERVIDOR_APAGADO) {
+          setLoginErrorMessage('Server off');
+        }
+        if (email === '' && password === '') {
+          setLoginErrorMessage(
+            error.response.data.email + ' and ' + error.response.data.password
+          );
+        } else if (email === '') {
+          setLoginErrorMessage(error.response.data.email);
+        } else {
+          if (error.response.status === UNAUTHORIZED) {
+            setLoginErrorMessage(error.response.data.error + ' user');
+          } else if (error.response.status === UNPROCESABLE) {
+            setLoginErrorMessage(error.response.data.password);
+          }
+        }
+        return loginErrorMessage;
+      });
   };
 
   return (
@@ -34,8 +61,9 @@ const Login = ({setIsLoggedIn, setPage}) => {
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2 className='title'>Login</h2>
+            <h2 className="title">Login</h2>
           </div>
+          <div className="message">{`${loginErrorMessage}`}</div>
           <div className="inputGroup">
             <input
               className="input"
@@ -46,6 +74,7 @@ const Login = ({setIsLoggedIn, setPage}) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
             <input
               className="input"
               type="password"
@@ -62,7 +91,7 @@ const Login = ({setIsLoggedIn, setPage}) => {
           </div>
           <div className="salir">
             <Link to="/">
-              <button className='btn-cerrar'>Cerrar</button>
+              <button className="btn-cerrar">Cerrar</button>
             </Link>
           </div>
         </form>
