@@ -24,6 +24,7 @@ function App() {
         setIsLoggedIn={setIsLoggedIn}
         page={page}
       />
+      
       <Routes>
         <Route
           path="/"

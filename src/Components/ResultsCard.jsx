@@ -7,7 +7,7 @@ const ResultsCard = (props) => {
       <div className='divImg'>
         <img className='imagen' src={props.img} alt=''></img>
       </div>
-      <div className='data'>
+      <div className="data">
         <h2>{props.nombre}</h2>
         <h4>{props.ciudad}</h4>
         <h6>{props.direccion}</h6>
