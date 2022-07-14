@@ -41,6 +41,7 @@ export default function AuthUser() {
       Authorization: `Bearer ${token}`,
     },
   });
+  
   return {
     setToken: saveToken,
     token,
