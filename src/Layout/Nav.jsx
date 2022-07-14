@@ -9,9 +9,6 @@ import logoutIcon from '../Assets/logout.svg';
 import '../Css/Nav.css';
 
 const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
- 
-    
-// console.log('PAGE EN NAV',page)
 
   const { token, logout } = AuthUser();
 

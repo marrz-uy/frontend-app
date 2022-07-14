@@ -27,6 +27,6 @@
 		justify-content: center;
 		flex-wrap: wrap;
 		gap: 2rem;
-		padding-top: 1rem;
+		padding: 1rem;
 	}
 }
