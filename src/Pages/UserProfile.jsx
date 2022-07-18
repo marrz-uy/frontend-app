@@ -21,17 +21,11 @@ const UserProfile = ({ setPage }) => {
     setPage('profile');
   }, [setPage]);
 
+  const preferenciasArray = [];
+
   const [nacionalidad, setNacionalidad] = useState('');
   const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
-  const [preferenciasArray, setPreferenciasArray] = useState([]);
-
-  /* const categoryExists = (array,selectedOption) => {
-    array.includes((selectedOption){
-      if(arrayItem.categoria === selectedOption.categoria){
-        return true
-      }
-    })
-  }; */
+  const [preferencia, setPreferencia] = useState([...preferenciasArray]);
 
   const handlePreferencias = (selectedOption) => {
     const nuevaPreferencia = {
@@ -40,14 +34,17 @@ const UserProfile = ({ setPage }) => {
       value: selectedOption.value,
       label: selectedOption.label,
     };
-    // console.log('nuevo valor:', selectedOption);
-    // console.log('nuevaPreferencia:', nuevaPreferencia);
-    setPreferenciasArray([...preferenciasArray, nuevaPreferencia]);
-  };
-  const regex = new RegExp('"', 'g');
-  const preferencias = JSON.stringify(preferenciasArray).replace(regex, "'");
 
-  // console.log('STRING:', preferencias);
+    //! agregar nueva preferencia a prefrenciasArray
+    // preferenciasArray.push(nuevaPreferencia)
+
+    setPreferencia([...preferencia, nuevaPreferencia]);
+    //! ver preferenciasArray
+    // console.log('preferenciasArray2:', preferenciasArray);
+  };
+
+  // const regex = new RegExp('"', 'g');
+  const preferencias = JSON.stringify(preferencia);
 
   const styles = {
     control: (_, { selectProps: { placeholder } }) => ({
@@ -73,6 +70,14 @@ const UserProfile = ({ setPage }) => {
 
   const submitUserProfile = (e) => {
     e.preventDefault();
+    console.group(
+      '%cPARAMETROS A ENVIAR: ',
+      'color: blue;',
+      user_id,
+      nacionalidad,
+      f_nacimiento,
+      preferencias
+    );
 
     http
       .post('/userProfile', {
@@ -82,12 +87,21 @@ const UserProfile = ({ setPage }) => {
         preferencias,
       })
       .then((res) => {
-        console.log('PERFIL RESPONSE:', res.data.userprofile);
+        console.log(
+          '%cPERFIL RESPONSE MESSAGE:',
+          'color: green;',
+          res.data.message
+        );
+        console.log(
+          '%cPERFIL RESPONSE:',
+          'color: green;',
+          res.data.userprofile
+        );
+        console.groupEnd();
         setUserProfile(res.data.userprofile);
       })
       .catch(function (error) {
-        console.log('ERROR:', error.message);
-        console.log('ERROR STATUS:', error.response.status);
+        console.log('%cERROR:', 'color: red;', error.message);
       });
   };
 

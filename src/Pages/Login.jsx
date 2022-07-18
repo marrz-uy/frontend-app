@@ -28,13 +28,13 @@ const Login = ({ setIsLoggedIn, setPage }) => {
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('LOGIN RESPONSE:', res.data);
+        console.log('%cLOGIN RESPONSE:', "color: green;",res.data);
         setToken(res.data.user, res.data.access_token);
         setIsLoggedIn('true');
         navigate('/profile');
       })
       .catch(function (error) {
-        console.log('RESP:', error.response.data);
+        console.log('%cRESP:', "color: red;",error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
         } else if (email === '' && password === '') {
