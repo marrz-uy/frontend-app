@@ -25,6 +25,14 @@ const UserProfile = ({ setPage }) => {
   const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
   const [preferenciasArray, setPreferenciasArray] = useState([]);
 
+  /* const categoryExists = (array,selectedOption) => {
+    array.includes((selectedOption){
+      if(arrayItem.categoria === selectedOption.categoria){
+        return true
+      }
+    })
+  }; */
+
   const handlePreferencias = (selectedOption) => {
     const nuevaPreferencia = {
       id: selectedOption.id,
@@ -75,7 +83,7 @@ const UserProfile = ({ setPage }) => {
       })
       .then((res) => {
         console.log('PERFIL RESPONSE:', res.data.userprofile);
-        setUserProfile(res.data.userprofile)
+        setUserProfile(res.data.userprofile);
       })
       .catch(function (error) {
         console.log('ERROR:', error.message);
