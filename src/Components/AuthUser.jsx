@@ -17,8 +17,15 @@ export default function AuthUser() {
     return user_detail;
   };
 
+  const getUserProfile = () => {
+    const userProfileString = sessionStorage.getItem('userProfile')
+    const userProfile_detail = JSON.parse(userProfileString)
+    return userProfile_detail
+  }
+
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(getUser());
+  const [userProfile, setUserProfile] = useState(getUserProfile())
 
   const saveToken = (user, token) => {
     sessionStorage.setItem('token', JSON.stringify(token));
@@ -29,6 +36,12 @@ export default function AuthUser() {
     navigate('/principal');
   };
 
+  const saveUserProfile = (userProfile) => {
+    sessionStorage.setItem('userProfile', JSON.stringify(userProfile))
+
+    setUserProfile(userProfile)
+  }
+
   const logout = () => {
     sessionStorage.clear();
     navigate('*');
@@ -38,9 +51,10 @@ export default function AuthUser() {
     baseURL: 'http://localhost:8000/api',
     headers: {
       'Content-type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     },
   });
+  
   
   return {
     setToken: saveToken,
@@ -50,5 +64,7 @@ export default function AuthUser() {
     getUser,
     http,
     logout,
+    setUserProfile: saveUserProfile,
+    userProfile
   };
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
-import { Principal, Login, Register } from './Pages';
+import { Principal, Login, Register, UserProfile  } from './Pages';
 import { Nav } from './Layout';
 import SearchResults from './Pages/SearchResults';
 
@@ -40,6 +40,10 @@ function App() {
         <Route
           path="/results"
           element={<SearchResults items={items} setPage={setPage} />}
+        />
+        <Route
+          path="/profile"
+          element={<UserProfile items={items} setPage={setPage} />}
         />
         <Route
           path="*"

@@ -83,6 +83,7 @@ const Register = ({ setPage }) => {
               type="text"
               name="email"
               placeholder="Email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

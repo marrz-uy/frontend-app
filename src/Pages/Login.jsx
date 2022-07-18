@@ -28,10 +28,10 @@ const Login = ({ setIsLoggedIn, setPage }) => {
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('RESP:', res.data.status);
+        console.log('RESPUESTA SERVIDOR COMPLETA:', res.data);
         setToken(res.data.user, res.data.access_token);
         setIsLoggedIn('true');
-        navigate('/');
+        navigate('/profile');
       })
       .catch(function (error) {
         console.log('RESP:', error.response.data);
@@ -76,6 +76,7 @@ const Login = ({ setIsLoggedIn, setPage }) => {
               id="email"
               name="email"
               placeholder="Email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
