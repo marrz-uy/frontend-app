@@ -35,15 +35,10 @@ const UserProfile = ({ setPage }) => {
       label: selectedOption.label,
     };
 
-    //! agregar nueva preferencia a prefrenciasArray
-    // preferenciasArray.push(nuevaPreferencia)
-
     setPreferencia([...preferencia, nuevaPreferencia]);
-    //! ver preferenciasArray
-    // console.log('preferenciasArray2:', preferenciasArray);
+    console.log('CANT PREFERENCIAS: ', preferencia.length +1)
   };
 
-  // const regex = new RegExp('"', 'g');
   const preferencias = JSON.stringify(preferencia);
 
   const styles = {
@@ -70,7 +65,8 @@ const UserProfile = ({ setPage }) => {
 
   const submitUserProfile = (e) => {
     e.preventDefault();
-    console.group(
+    console.group('%cSOLICITUD CORRECTA','color: green')
+    console.log(
       '%cPARAMETROS A ENVIAR: ',
       'color: blue;',
       user_id,
@@ -89,19 +85,21 @@ const UserProfile = ({ setPage }) => {
       .then((res) => {
         console.log(
           '%cPERFIL RESPONSE MESSAGE:',
-          'color: green;',
+          'color: blue;',
           res.data.message
         );
         console.log(
           '%cPERFIL RESPONSE:',
-          'color: green;',
+          'color: blue;',
           res.data.userprofile
         );
         console.groupEnd();
         setUserProfile(res.data.userprofile);
       })
       .catch(function (error) {
+        console.group('ERRORES')
         console.log('%cERROR:', 'color: red;', error.message);
+        console.groupEnd()
       });
   };
 
