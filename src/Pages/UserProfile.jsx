@@ -16,7 +16,7 @@ import {
   CategoriaServiciosEsenciales,
 } from '../Data/Categorias';
 
-const UserProfile = ({ setIsLoggedIn, setPage }) => {
+const UserProfile = ({ setPage }) => {
   useEffect(() => {
     setPage('profile');
   }, [setPage]);
@@ -74,10 +74,8 @@ const UserProfile = ({ setIsLoggedIn, setPage }) => {
         preferencias,
       })
       .then((res) => {
-        console.log('RESPUESTA OKKKKK:', res.data.userprofile);
-        
+        console.log('PERFIL RESPONSE:', res.data.userprofile);
         setUserProfile(res.data.userprofile)
-        setIsLoggedIn('true');
       })
       .catch(function (error) {
         console.log('ERROR:', error.message);

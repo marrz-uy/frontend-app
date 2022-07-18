@@ -28,7 +28,7 @@ const Login = ({ setIsLoggedIn, setPage }) => {
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('RESPUESTA SERVIDOR COMPLETA:', res.data);
+        console.log('LOGIN RESPONSE:', res.data);
         setToken(res.data.user, res.data.access_token);
         setIsLoggedIn('true');
         navigate('/profile');
