@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react"
 import { Layout } from "../Layout"
+import AuthUser from '../Components/AuthUser'
 import '../Css/UserProfile.css'
 import { Link } from "react-router-dom"
 
 const UserProfile = ({ setPage }) => {
     const [lenguage, setLenguage] = useState('')
-    const [logeado, setLogeado] = useState(true)
+    const [logeado, setLogeado] = useState(false)
 
- /*    let user = localStorage.getItem('user'))
-    user.email */
+    const { getToken, getUser } = AuthUser
+
+    if (getToken) {
+        setLogeado(true)
+    }
 
     useEffect(() => {
         setPage('user')
@@ -33,11 +37,11 @@ const UserProfile = ({ setPage }) => {
             <div className="user-profile">
                 <div className="user-profile__container">
                     <div className="user-profile__description">
-                        {logeado ? <h1>Ignacio Mateu</h1>
+                        {logeado ? <h1>{getUser?.nombre}</h1>
                             : <h1>Invitado</h1>}
                         {logeado ?
                             <div className="user-profile__data">
-                                <h2>mateunacho6@gmail.com</h2>
+                                <h2>{getUser?.email}</h2>
                                 <a href="#" className="user-profile__logout">Cambiar contraseña</a>
                             </div>
                             :

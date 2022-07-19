@@ -52,6 +52,9 @@ h1 {
 .user-profile__button:hover p {
     color: #00499d;
 }
+.user-profile__button:hover {
+    background-color: #FFF;
+}
 .user-profile__data {
     margin: 20px 0 0 0;
     display: flex;
