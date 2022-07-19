@@ -1,0 +1,139 @@
+.navbar {
+    background-color: #00499d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-height: 13vh;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    padding-top: 0.4rem;
+    border-bottom: 1px solid #083d92;
+    box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.6);
+  }
+
+
+.contentNavbar {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+}
+
+.logoFellUy {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2px;
+}
+
+#feelLogoImg {
+    width: 3rem;
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
+}
+
+#arrowImg {
+    width: 2rem;
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
+}
+
+.search {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.8rem;
+}
+
+
+.searchIntDiv {
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchlogo {
+    width: 20px;
+}
+
+.search div span {
+    position: relative;
+    left: -30px
+}
+
+.userLogo {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.1);
+    flex-direction: column;
+}
+
+#userlogoImg {
+    width: 3rem;
+    max-width: 3rem;
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
+}
+
+
+
+.inputSearch {
+    width: 60vw;
+    height: 2rem;
+    margin: 0 auto;
+    border: 1px solid rgb(221, 221, 221);
+    box-shadow: 0.3em 0.5em 1em rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.msgWelcome {
+    color: aliceblue;
+    font-size: 0.7rem;
+    display: flex;
+    min-height: 15px;
+    
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    color: aliceblue;
+    font-size: 0.5rem;
+    cursor: pointer; 
+}
+
+#logoutImg {
+    width: 1.3rem;
+    max-width: 1.3rem;
+    /* filter: drop-shadow(2px 8px 5px #000000e8); */
+}
+
+@media screen and (min-width: 480px) {
+
+    .navbar {
+        min-height: 10vh;
+      }
+
+}
+
+
+/* laptop/desktop - de 1024px en adelante */
+@media screen and (min-width: 1024px) {
+
+    .navbar {
+        min-height: 12vh;
+      }
+
+    #feelLogoImg {
+        min-width: 5rem;
+        max-width: 6rem;
+        margin-top: -20px;
+    }
+
+}
