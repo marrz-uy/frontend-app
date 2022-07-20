@@ -10,7 +10,7 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({ setIsLoggedIn, setPage }) => {
+const Login = ({ setIsLoggedIn, setPage}) => {
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -24,17 +24,17 @@ const Login = ({ setIsLoggedIn, setPage }) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-
+    
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('%cLOGIN RESPONSE:', "color: green;",res.data);
-        setToken(res.data.user, res.data.access_token);
+        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        setToken(res.data.user, res.data.access_token, res.data.userProfile);
         setIsLoggedIn('true');
         navigate('/profile');
       })
       .catch(function (error) {
-        console.log('%cRESP:', "color: red;",error.response.data);
+        console.log('%cRESP:', 'color: red;', error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
         } else if (email === '' && password === '') {
@@ -59,8 +59,10 @@ const Login = ({ setIsLoggedIn, setPage }) => {
         }
         return loginErrorMessage;
       });
+    
   };
 
+ 
   return (
     <Layout>
       <div className="login">

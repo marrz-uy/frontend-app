@@ -12,35 +12,40 @@ export default function AuthUser() {
   };
 
   const getUser = () => {
-    const userString = sessionStorage.getItem('user');
-    const user_detail = JSON.parse(userString);
-    return user_detail;
+    try {
+      const userString = sessionStorage.getItem('user');
+      const user_detail = JSON.parse(userString);
+      return user_detail;
+    } catch (error) {
+      console.log('USER PROFILE SIN DATOS', error);
+    }
   };
 
   const getUserProfile = () => {
-    const userProfileString = sessionStorage.getItem('userProfile')
-    const userProfile_detail = JSON.parse(userProfileString)
-    return userProfile_detail
-  }
+    const userProfileString = sessionStorage.getItem('userProfile');
+    const userProfile_detail = JSON.parse(userProfileString);
+    return userProfile_detail;
+  };
 
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(getUser());
-  const [userProfile, setUserProfile] = useState(getUserProfile())
+  const [userProfile, setUserProfile] = useState(getUserProfile());
 
-  const saveToken = (user, token) => {
+  const saveToken = (user, token, userProfile) => {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
 
     setToken(token);
     setUser(user);
+    setUserProfile(userProfile);
     navigate('/principal');
   };
 
-  const saveUserProfile = (userProfile) => {
-    sessionStorage.setItem('userProfile', JSON.stringify(userProfile))
-
-    setUserProfile(userProfile)
-  }
+  // const saveUserProfile = (userProfile) => {
+  //   sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+  //   setUserProfile(userProfile);
+  // };
 
   const logout = () => {
     sessionStorage.clear();
@@ -51,11 +56,10 @@ export default function AuthUser() {
     baseURL: 'http://localhost:8000/api',
     headers: {
       'Content-type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
-  
-  
+
   return {
     setToken: saveToken,
     token,
@@ -64,7 +68,7 @@ export default function AuthUser() {
     getUser,
     http,
     logout,
-    setUserProfile: saveUserProfile,
-    userProfile
+    userProfile,
+    getUserProfile,
   };
 }

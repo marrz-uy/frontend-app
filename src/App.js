@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState('false');
   const [page, setPage] = useState('principal');
+  const [idUserSession, setIdUserSession] = useState('')
 
   return (
     <BrowserRouter>
@@ -30,7 +31,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Principal setItems={setItems} page={page} setPage={setPage} />
+            <Principal setItems={setItems} page={page} setPage={setPage} idUserSession={idUserSession} setIdUserSession={setIdUserSession}/>
           }
         />
         <Route

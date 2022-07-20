@@ -17,19 +17,32 @@ import {
 } from '../Data/Categorias';
 
 const UserPreferences = ({ setPage }) => {
-  const { http, getUser } = AuthUser();
-  
+  const { http, getUserProfile, getUser } = AuthUser();
+
   const preferenciasArray = [];
   const [nacionalidad, setNacionalidad] = useState('');
   const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
-
-  const user_id = getUser().id;
+  const [user_id, setUser_id] = useState('');
   const f_nacimiento = fechaDeNacimiento;
- 
+
   useEffect(() => {
     setPage('profile');
   }, [setPage]);
+
+  useEffect(() => {
+    try {
+      const userProfile = getUserProfile();
+      setUser_id(getUser().id);
+    } catch (error) {
+      console.log('USUARIO SIN PERFIL');
+    }
+
+    console.log('USER-ID RECUPERADO', user_id);
+    
+  });
+
+  ///CREAR VARIABLE PARA GUARDAR PERFIL DE USUARIO SI HAY**************************************************
 
   const addPreferencia = (selectedOption) => {
     const nuevaPreferencia = {
@@ -89,7 +102,6 @@ const UserPreferences = ({ setPage }) => {
     }),
   };
 
-
   const submitUserProfile = (e) => {
     e.preventDefault();
     console.group('%cSOLICITUD CORRECTA', 'color: green');
@@ -116,7 +128,7 @@ const UserPreferences = ({ setPage }) => {
           res.data.message
         );
         console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
-        console.groupEnd()
+        console.groupEnd();
       })
       .catch(function (error) {
         console.group('%cERRORES', 'color: red;');
