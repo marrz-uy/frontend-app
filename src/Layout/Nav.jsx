@@ -7,6 +7,8 @@ import searchlogo from '../Assets/searchLogo.png';
 import LoginRoute from '../Components/LoginRoute';
 import logoutIcon from '../Assets/logout.svg';
 import '../Css/Nav.css';
+import UserProfile from '../Pages/UserProfile';
+import UserRoute from '../Components/UserRoute'
 
 const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
 
@@ -59,17 +61,17 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
     <div className="navbar">
       <div className="contentNavbar">
         <div className="logoFellUy">
-        {  page !== 'principal'
-        ?
-          ( <Link to="/">
-            <img id="arrowImg" src={backArrow} alt="back"></img>
-          </Link>)
-          :
-          ( <Link to="/">
-            <img id="feelLogoImg" src={logo} alt="logo"></img>
-          </Link>)
-        }
-         
+          {page !== 'principal'
+            ?
+            (<Link to="/">
+              <img id="arrowImg" src={backArrow} alt="back"></img>
+            </Link>)
+            :
+            (<Link to="/">
+              <img id="feelLogoImg" src={logo} alt="logo"></img>
+            </Link>)
+          }
+
         </div>
         <div className="search">
           <div className="searchIntDiv">
@@ -94,10 +96,10 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
         </div>
         <div className="userLogo">
           {isLoggedIn === 'false' ? (
-            <LoginRoute />
+            <UserRoute/>
           ) : (
             <span className="logout" role="button" onClick={logoutUser}>
-            <img id='logoutImg' src={logoutIcon} alt="logo"></img>
+              <img id='logoutImg' src={logoutIcon} alt="logo"></img>
             </span>
           )}
         </div>

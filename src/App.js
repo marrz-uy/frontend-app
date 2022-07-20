@@ -5,6 +5,7 @@ import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences  } from './Pages';
 import { Nav } from './Layout';
 import SearchResults from './Pages/SearchResults';
+import UserProfile from './Pages/UserProfile';
 
 function App() {
   const [text, setText] = useState('');
@@ -37,6 +38,7 @@ function App() {
           element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
         />
         <Route path="/register" element={<Register setPage={setPage} />} />
+        <Route path="/user" element={<UserProfile setPage={setPage}/>}/>
         <Route
           path="/results"
           element={<SearchResults items={items} setPage={setPage} />}
