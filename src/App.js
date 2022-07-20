@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
-import { Principal, Login, Register, UserProfile  } from './Pages';
+import { Principal, Login, Register, UserPreferences  } from './Pages';
 import { Nav } from './Layout';
 import SearchResults from './Pages/SearchResults';
 
@@ -43,7 +43,7 @@ function App() {
         />
         <Route
           path="/profile"
-          element={<UserProfile items={items} setPage={setPage} />}
+          element={<UserPreferences items={items} setPage={setPage} />}
         />
         <Route
           path="*"

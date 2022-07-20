@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import { Layout } from '../Layout';
-import '../Css/UserProfile.css';
+import '../Css/UserPreferences.css';
 import {
   CategoriaAlojamiento,
   CategoriaGastronomia,
@@ -16,18 +16,22 @@ import {
   CategoriaServiciosEsenciales,
 } from '../Data/Categorias';
 
-const UserProfile = ({ setPage }) => {
-  useEffect(() => {
-    setPage('profile');
-  }, [setPage]);
-
+const UserPreferences = ({ setPage }) => {
+  const { http, getUser } = AuthUser();
+  
   const preferenciasArray = [];
-
   const [nacionalidad, setNacionalidad] = useState('');
   const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
 
-  const handlePreferencias = (selectedOption) => {
+  const user_id = getUser().id;
+  const f_nacimiento = fechaDeNacimiento;
+ 
+  useEffect(() => {
+    setPage('profile');
+  }, [setPage]);
+
+  const addPreferencia = (selectedOption) => {
     const nuevaPreferencia = {
       id: selectedOption.id,
       categoria: selectedOption.categoria,
@@ -36,9 +40,37 @@ const UserProfile = ({ setPage }) => {
     };
 
     setPreferencia([...preferencia, nuevaPreferencia]);
-    console.log('CANT PREFERENCIAS: ', preferencia.length +1)
+    console.log('CANT PREFERENCIAS: ', preferencia.length + 1);
   };
 
+  const updatePreferencia = (selectedOption) => {
+    const nuevaPreferencia = preferencia.map((prefe) => {
+      if (prefe.categoria === selectedOption.categoria) {
+        return {
+          ...prefe,
+          id: selectedOption.id,
+          categoria: selectedOption.categoria,
+          value: selectedOption.value,
+          label: selectedOption.label,
+        };
+      }
+      return prefe;
+    });
+
+    setPreferencia(nuevaPreferencia);
+  };
+
+  const handlePreferencias = (selectedOption) => {
+    if (preferencia.some((e) => e.categoria === selectedOption.categoria)) {
+      console.log('repetidoooooo');
+      updatePreferencia(selectedOption);
+    } else {
+      console.log('nuevooooooooo');
+      addPreferencia(selectedOption);
+    }
+  };
+
+  // console.log('PREFERENCIA: ', preferencia);
   const preferencias = JSON.stringify(preferencia);
 
   const styles = {
@@ -57,17 +89,12 @@ const UserProfile = ({ setPage }) => {
     }),
   };
 
-  const { http, getUser, setUserProfile } = AuthUser();
-
-  const user_id = getUser().id;
-
-  const f_nacimiento = fechaDeNacimiento;
 
   const submitUserProfile = (e) => {
     e.preventDefault();
-    console.group('%cSOLICITUD CORRECTA','color: green')
+    console.group('%cSOLICITUD CORRECTA', 'color: green');
     console.log(
-      '%cPARAMETROS A ENVIAR: ',
+      '%cDATOS ENVIADOS: ',
       'color: blue;',
       user_id,
       nacionalidad,
@@ -88,18 +115,13 @@ const UserProfile = ({ setPage }) => {
           'color: blue;',
           res.data.message
         );
-        console.log(
-          '%cPERFIL RESPONSE:',
-          'color: blue;',
-          res.data.userprofile
-        );
-        console.groupEnd();
-        setUserProfile(res.data.userprofile);
+        console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
+        console.groupEnd()
       })
       .catch(function (error) {
-        console.group('ERRORES')
+        console.group('%cERRORES', 'color: red;');
         console.log('%cERROR:', 'color: red;', error.message);
-        console.groupEnd()
+        console.groupEnd();
       });
   };
 
@@ -224,4 +246,4 @@ const UserProfile = ({ setPage }) => {
   );
 };
 
-export default UserProfile;
+export default UserPreferences;
