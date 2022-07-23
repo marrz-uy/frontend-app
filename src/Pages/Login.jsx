@@ -10,7 +10,7 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({ setIsLoggedIn, setPage}) => {
+const Login = ({ setIsLoggedIn, setPage }) => {
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -24,7 +24,6 @@ const Login = ({ setIsLoggedIn, setPage}) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-    
     http
       .post('/login', { email, password })
       .then((res) => {
@@ -59,10 +58,8 @@ const Login = ({ setIsLoggedIn, setPage}) => {
         }
         return loginErrorMessage;
       });
-    
   };
 
- 
   return (
     <Layout>
       <div className="login">

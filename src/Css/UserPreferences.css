@@ -1,6 +1,6 @@
 .userProfile {
 	margin-top: 80px;
-	width: 70%;
+	max-width: 70%;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
@@ -45,6 +45,8 @@
 label {
 	font-weight: 600;
 	font-size: 0.7rem;
+	display: flex;
+	align-items: center;
 }
 
 .selectIndividual {
@@ -92,13 +94,19 @@ form {
 	height: 30px;
 }
 
+.categoryImage {
+	display:flex;
+	width: 1.5rem;
+	padding-top: 6px;
+	margin-right: 5px;
+}
+
 @media screen and (min-width: 480px) {
 
 	.userProfile {
 		text-align: center;
-		 ;
 		margin-top: 120px;
-		width: 70%;
+		width: 50%;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;

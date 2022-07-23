@@ -17,14 +17,19 @@ export default function AuthUser() {
       const user_detail = JSON.parse(userString);
       return user_detail;
     } catch (error) {
-      console.log('USER PROFILE SIN DATOS', error);
+      console.log('USER SIN DATOS', error);
     }
   };
 
   const getUserProfile = () => {
+    try {
     const userProfileString = sessionStorage.getItem('userProfile');
-    const userProfile_detail = JSON.parse(userProfileString);
+    // const userProfile_detail = JSON.parse(userProfileString);
+    const userProfile_detail = userProfileString;
     return userProfile_detail;
+  } catch (error) {
+    console.log('USER PROFILE SIN DATOS', error);
+  }
   };
 
   const [token, setToken] = useState(getToken());
@@ -34,7 +39,16 @@ export default function AuthUser() {
   const saveToken = (user, token, userProfile) => {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+    if (userProfile === null || userProfile === 'undefined') {
+      sessionStorage.setItem(
+        'userProfile',
+        JSON.stringify({
+          preferencias: 'SIN PREFERENCIAS',
+        })
+      );
+    } else {
+      sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+    }
 
     setToken(token);
     setUser(user);
@@ -42,10 +56,10 @@ export default function AuthUser() {
     navigate('/principal');
   };
 
-  // const saveUserProfile = (userProfile) => {
-  //   sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-  //   setUserProfile(userProfile);
-  // };
+  const saveUserProfile = (userProfile) => {
+    sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+    setUserProfile(userProfile);
+  };
 
   const logout = () => {
     sessionStorage.clear();
@@ -70,5 +84,6 @@ export default function AuthUser() {
     logout,
     userProfile,
     getUserProfile,
+    saveUserProfile,
   };
 }
