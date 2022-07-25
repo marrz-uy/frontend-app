@@ -25,7 +25,7 @@ import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
 
-const UserPreferences = ({ setPage }) => {
+const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
 
   const preferenciasArray = [];
@@ -34,30 +34,23 @@ const UserPreferences = ({ setPage }) => {
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
-  const [pefilRecuperado, setPefilRecuperado] = useState({});
-  console.log('PERFIL RECUPERADO1: ', pefilRecuperado);
-
+  // const [pefilRecuperado, setPefilRecuperado] = useState({});
+  
   useEffect(() => {
     setPage('profile');
     try {
       setUser_id(getUser().id);
-      console.log('ID RECUPERADO: ', user_id);
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO')
     }
   }, [setPage, getUser, user_id, setUser_id, pefilRecuperado] );
 
-  //!Prueba1
+
   const recuperarPerfil = () => {
     if (user_id !== null || user_id !== '') {
-      //! BORRAR
       // console.log('idddddd: ', user_id);
       try {
         setPefilRecuperado(getUserProfile());
-        
-        //*********************************************** */
-        console.log('PERFIL RECUPERADO2: ',pefilRecuperado );
-        
       } catch (error) {
         console.log('NO HAY PERFIL')
       }
@@ -103,7 +96,7 @@ const UserPreferences = ({ setPage }) => {
     }
   };
 
-  console.log('PREFERENCIA: ', preferencia);
+  // console.log('PREFERENCIA: ', preferencia);
   const preferencias = JSON.stringify(preferencia) ;
 
 
@@ -119,8 +112,6 @@ const UserPreferences = ({ setPage }) => {
       f_nacimiento,
       preferencias
     );
-    
-
     http
       .patch(`/userProfile/${user_id}`, {
         nacionalidad,
@@ -140,9 +131,9 @@ const UserPreferences = ({ setPage }) => {
         );
         console.groupEnd();
         if(res.data.message !== 'NO EXISTE PERFIL PARA EL USUARIO'){
-          console.log('%cDATOS UPDATE A GUARDAR EN SESSIONSTORAGE', 'color: pink;',res.data)
+          console.log('%cDATOS UPDATE A GUARDAR EN SESSIONSTORAGE', 'color: pink;',res.data.user)
           saveUserProfile(res.data.user);
-          
+          recuperarPerfil()
         }
       })
       .catch(function (error) {
@@ -180,6 +171,7 @@ const UserPreferences = ({ setPage }) => {
         console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
         console.groupEnd();
         saveUserProfile(res.data.userprofile);
+        recuperarPerfil()
       })
       .catch(function (error) {
         console.group('%cERRORES', 'color: red;');
@@ -190,10 +182,11 @@ const UserPreferences = ({ setPage }) => {
 
   const handleUserProfile = (e) => {
     e.preventDefault();
+    recuperarPerfil()
+    console.log('VUELVO A RECUPERAR: ', pefilRecuperado );
+    const sinPreferencias = "{}"
+    console.log('sinPreferencias: ',sinPreferencias );
 
-    const sinPreferencias = "{\"preferencias\":\"SIN PREFERENCIAS\"}"
-    console.log('sinPreferencias.preferencias: ',sinPreferencias.preferencias );
-    console.log('pefilRecuperado3: ', JSON.parse(pefilRecuperado) );
     console.log('pefilRecuperado.preferencias: ', pefilRecuperado );
 
     if ( pefilRecuperado  === sinPreferencias) {
@@ -224,7 +217,8 @@ const UserPreferences = ({ setPage }) => {
       boxShadow: '2px 2px 2px rgba(0,0,0, 0.4)',
       fontSize: 10,
       lineHeight: 1.09,
-      placeholder: placeholder,
+      placeholder: placeholder
+      
     }),
   };
 
@@ -275,13 +269,14 @@ const UserPreferences = ({ setPage }) => {
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
               <img src={hotelImg} className="categoryImage" alt="hot"></img>
-              Alojamiento{' '}
+              Alojamiento 
             </label>
 
             <Select
               options={CategoriaAlojamiento}
               styles={styles}
               onChange={handlePreferencias}
+              
             />
           </div>
           <div className="selectIndividual">

@@ -42,9 +42,7 @@ export default function AuthUser() {
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem(
         'userProfile',
-        JSON.stringify({
-          preferencias: 'SIN PREFERENCIAS',
-        })
+        JSON.stringify({})
       );
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
