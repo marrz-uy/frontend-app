@@ -1,5 +1,5 @@
 import { Layout } from '../Layout';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import '../Css/Principal.css';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -10,7 +10,9 @@ import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
 
 const Principal = ({ setItems, setPage }) => {
-  // setPage('principal');
+  useEffect(() => {
+    setPage('principal');
+  }, [setPage]);
 
   const navigate = useNavigate();
 

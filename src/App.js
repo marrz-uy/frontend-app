@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
-import {
-  Principal,
-  Login,
-  Register,
-  UserPreferences,
-  ViewMyProfile,
-} from './Pages';
+import { Principal, Login, Register, UserPreferences } from './Pages';
 import { Nav } from './Layout';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
@@ -19,7 +13,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState('false');
   const [page, setPage] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState({});
-  // const [idUserSession, setIdUserSession] = useState('')
 
   return (
     <BrowserRouter>
@@ -69,17 +62,6 @@ function App() {
           path="/setprofile"
           element={
             <UserPreferences
-              items={items}
-              setPage={setPage}
-              pefilRecuperado={pefilRecuperado}
-              setPefilRecuperado={setPefilRecuperado}
-            />
-          }
-        />
-        <Route
-          path="/viewprofile"
-          element={
-            <ViewMyProfile
               items={items}
               setPage={setPage}
               pefilRecuperado={pefilRecuperado}

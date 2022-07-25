@@ -23,13 +23,13 @@ export default function AuthUser() {
 
   const getUserProfile = () => {
     try {
-    const userProfileString = sessionStorage.getItem('userProfile');
-    // const userProfile_detail = JSON.parse(userProfileString);
-    const userProfile_detail = userProfileString;
-    return userProfile_detail;
-  } catch (error) {
-    console.log('USER PROFILE SIN DATOS', error);
-  }
+      const userProfileString = sessionStorage.getItem('userProfile');
+      // const userProfile_detail = JSON.parse(userProfileString);
+      const userProfile_detail = userProfileString;
+      return userProfile_detail;
+    } catch (error) {
+      console.log('USER PROFILE SIN DATOS', error);
+    }
   };
 
   const [token, setToken] = useState(getToken());
@@ -40,12 +40,13 @@ export default function AuthUser() {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
     if (userProfile === null || userProfile === 'undefined') {
-      sessionStorage.setItem(
-        'userProfile',
-        JSON.stringify({})
-      );
+      sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+      sessionStorage.setItem(
+        'preferencias',
+        JSON.stringify(userProfile.preferencias)
+      );
     }
 
     setToken(token);
@@ -56,6 +57,10 @@ export default function AuthUser() {
 
   const saveUserProfile = (userProfile) => {
     sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+    sessionStorage.setItem(
+      'preferencias',
+      JSON.stringify(userProfile.preferencias)
+    );
     setUserProfile(userProfile);
   };
 

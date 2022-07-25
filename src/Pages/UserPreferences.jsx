@@ -27,32 +27,28 @@ import servicios from '../Assets/categoriesImages/services 1.png';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
-
   const preferenciasArray = [];
   const [nacionalidad, setNacionalidad] = useState('');
   const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
-  // const [pefilRecuperado, setPefilRecuperado] = useState({});
-  
+
   useEffect(() => {
     setPage('profile');
     try {
       setUser_id(getUser().id);
     } catch (error) {
-      console.log('NO HAY NADIE LOGUEADO')
+      console.log('NO HAY NADIE LOGUEADO', error);
     }
-  }, [setPage, getUser, user_id, setUser_id, pefilRecuperado] );
-
+  }, [setPage, getUser, user_id, setUser_id, pefilRecuperado]);
 
   const recuperarPerfil = () => {
     if (user_id !== null || user_id !== '') {
-      // console.log('idddddd: ', user_id);
       try {
         setPefilRecuperado(getUserProfile());
       } catch (error) {
-        console.log('NO HAY PERFIL')
+        console.log('NO HAY PERFIL', error);
       }
     }
   };
@@ -64,9 +60,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       value: selectedOption.value,
       label: selectedOption.label,
     };
-
     setPreferencia([...preferencia, nuevaPreferencia]);
-    console.log('CANT PREFERENCIAS: ', preferencia.length + 1);
   };
 
   const updatePreferencia = (selectedOption) => {
@@ -82,27 +76,20 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       }
       return prefe;
     });
-
     setPreferencia(nuevaPreferencia);
   };
 
   const handlePreferencias = (selectedOption) => {
     if (preferencia.some((e) => e.categoria === selectedOption.categoria)) {
-      console.log('repetidoooooo');
       updatePreferencia(selectedOption);
     } else {
-      console.log('nuevooooooooo');
       addPreferencia(selectedOption);
     }
   };
 
-  // console.log('PREFERENCIA: ', preferencia);
-  const preferencias = JSON.stringify(preferencia) ;
+  const preferencias = JSON.stringify(preferencia);
 
-
-//!OKKKK
   const updateUserProfile = () => {
-    // e.preventDefault();
     console.group('%cSOLICITUD CORRECTA', 'color: green');
     console.log(
       '%cDATOS UPDATE ENVIADOS: ',
@@ -130,10 +117,14 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           res.data.user
         );
         console.groupEnd();
-        if(res.data.message !== 'NO EXISTE PERFIL PARA EL USUARIO'){
-          console.log('%cDATOS UPDATE A GUARDAR EN SESSIONSTORAGE', 'color: pink;',res.data.user)
+        if (res.data.message !== 'NO EXISTE PERFIL PARA EL USUARIO') {
+          console.log(
+            '%cDATOS UPDATE A GUARDAR EN SESSIONSTORAGE',
+            'color: pink;',
+            res.data.user
+          );
           saveUserProfile(res.data.user);
-          recuperarPerfil()
+          recuperarPerfil();
         }
       })
       .catch(function (error) {
@@ -144,7 +135,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   };
 
   const submitUserProfile = () => {
-    // e.preventDefault();
     console.group('%cSOLICITUD CORRECTA', 'color: green');
     console.log(
       '%cDATOS ENVIADOS: ',
@@ -154,7 +144,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       f_nacimiento,
       preferencias
     );
-
     http
       .post('/userProfile', {
         user_id,
@@ -171,7 +160,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
         console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
         console.groupEnd();
         saveUserProfile(res.data.userprofile);
-        recuperarPerfil()
+        recuperarPerfil();
       })
       .catch(function (error) {
         console.group('%cERRORES', 'color: red;');
@@ -182,26 +171,14 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
 
   const handleUserProfile = (e) => {
     e.preventDefault();
-    recuperarPerfil()
-    console.log('VUELVO A RECUPERAR: ', pefilRecuperado );
-    const sinPreferencias = "{}"
-    console.log('sinPreferencias: ',sinPreferencias );
-
-    console.log('pefilRecuperado.preferencias: ', pefilRecuperado );
-
-    if ( pefilRecuperado  === sinPreferencias) {
-
-      console.log('INSERTAR PERFIL NUEVO');
-      console.log('pefilRecuperado4: ',pefilRecuperado)
-      submitUserProfile()
+    recuperarPerfil();
+    const sinPreferencias = '{}';
+    if (pefilRecuperado === sinPreferencias) {
+      submitUserProfile();
       setPefilRecuperado(getUserProfile());
-      console.log('pefilRecuperado5: ',pefilRecuperado)
     } else {
-      updateUserProfile()
-      console.log('ACTUALIZARRRRRRRRRRRRRRRRR');
-      console.log('pefilRecuperado6: ',pefilRecuperado)
+      updateUserProfile();
       setPefilRecuperado(getUserProfile());
-      console.log('pefilRecuperado7: ',pefilRecuperado)
     }
   };
 
@@ -217,8 +194,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       boxShadow: '2px 2px 2px rgba(0,0,0, 0.4)',
       fontSize: 10,
       lineHeight: 1.09,
-      placeholder: placeholder
-      
+      placeholder: placeholder,
     }),
   };
 
@@ -232,7 +208,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               : 'Mi Perfil'}
           </h2>
         </div>
-        <form onSubmit={handleUserProfile} >
+        <form onSubmit={handleUserProfile}>
           <div className="nacionalidadYfchanacimiento">
             <div className="inputGroupPreferencias nacionalidad">
               <label htmlFor="nacionalidad">Nacionalidad</label>
@@ -269,14 +245,12 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
               <img src={hotelImg} className="categoryImage" alt="hot"></img>
-              Alojamiento 
+              Alojamiento
             </label>
-
             <Select
               options={CategoriaAlojamiento}
               styles={styles}
               onChange={handlePreferencias}
-              
             />
           </div>
           <div className="selectIndividual">

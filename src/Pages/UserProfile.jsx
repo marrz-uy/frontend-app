@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
-import '../Css/UserProfile.css';
 import { Link } from 'react-router-dom';
+import '../Css/UserProfile.css';
 
 const UserProfile = ({ setPage }) => {
   const [lenguage, setLenguage] = useState('');

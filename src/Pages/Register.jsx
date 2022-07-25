@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
@@ -7,30 +7,26 @@ import '../Css/Register.css';
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
 
 const Register = ({ setPage }) => {
-  setPage('register');
+  useEffect(() => {
+    setPage('register');
+  }, [setPage]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [name, setName] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
-
   const navigate = useNavigate();
-
   const { http } = AuthUser();
 
   const submitRegister = (e) => {
     e.preventDefault();
-    console.log(email, password, passwordConfirmation, name);
-
     http
       .post('/register', { email, password, passwordConfirmation, name })
       .then((res) => {
         console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Usuario se registro correctamente');
-        setTimeout(() => {
-          
-        }, 3000);
+        setTimeout(() => {}, 3000);
         navigate('/login');
       })
       .catch(function (error) {
