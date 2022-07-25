@@ -1,16 +1,15 @@
-import React , { useEffect }from 'react'
+import React, { useEffect } from 'react';
 import { Layout } from '../Layout';
 import '../Css/SearchResults.css';
 import ResultsCard from '../Components/ResultsCard';
 import { filter } from '../Helpers/FilterByType';
 
 const SearchResults = ({ items, setPage }) => {
-  
   useEffect(() => {
-    setPage('results')
-  }, [setPage])
+    setPage('results');
+  }, [setPage]);
 
-  const data = filter(items)
+  const data = filter(items);
 
   return (
     <Layout>

@@ -1,0 +1,164 @@
+.userProfile {
+	margin-top: 80px;
+	max-width: 70%;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Kodchasan', sans-serif;
+}
+
+.formPreferencias {
+	display: flex;
+	flex-direction: column;
+}
+
+.titlePreferencias {
+	margin-top: 0.4rem;
+	font-size: 1rem;
+}
+
+.inputGroupPreferencias {
+	display: flex;
+	max-width: 100%;
+	word-wrap: break-word;
+	justify-content: space-between;
+	gap: 0.3rem;
+}
+
+.inputPreferencias {
+	max-width: 7rem;
+	border: 1px solid gray;
+	border-radius: 5px;
+	height: 1.8em;
+	font-size: 0.7rem;
+}
+
+.inputGroupPreferencias input {
+	padding: 5px;
+}
+
+.fecha {
+	align-items: flex-end;
+	margin-top: 5px;
+}
+
+label {
+	font-weight: 600;
+	font-size: 0.7rem;
+	display: flex;
+	align-items: center;
+}
+
+.selectIndividual {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+select {
+	max-height: 2rem;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 5px;
+	box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.351);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+}
+
+.btn-enviar {
+	margin-top: 0.7rem;
+	background-color: #00499de9;
+	color: aliceblue;
+	font-weight: bold;
+	border: 1px solid gray;
+	border-radius: 5px;
+	height: 30px;
+}
+
+.linkALoginPreferencias {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	cursor: pointer;
+}
+
+.linkALoginPreferencias a, a:visited {
+	text-decoration: none;
+}
+
+.prueba {
+	background-color: aquamarine;
+	height: 30px;
+}
+
+.categoryImage {
+	display:flex;
+	width: 1.5rem;
+	padding-top: 6px;
+	margin-right: 5px;
+}
+
+@media screen and (min-width: 480px) {
+
+	.userProfile {
+		text-align: center;
+		margin-top: 120px;
+		width: 50%;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		font-family: 'Kodchasan', sans-serif;
+		padding-bottom: 20px;
+	}
+
+	.nacionalidadYfchanacimiento {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.nacionalidad {
+		align-items: flex-end;
+		margin-right: 30px;
+	}
+
+	.fecha {
+		align-items: flex-end;
+	}
+
+	.titlePreferencias {
+		font-size: 1.4rem;
+	}
+
+	.inputPreferencias {
+		max-width: 20rem;
+		height: 1.8rem;
+		font-size: 1rem;
+	}
+
+	.selectIndividual {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	form {
+		gap: 1rem;
+	}
+
+	label {
+		font-weight: 600;
+		font-size: 1.3rem;
+	}
+
+	select {
+		font-size: 1.5rem;
+		color: rgb(89, 89, 89);
+		min-width: 17rem;
+	}
+
+}
