@@ -128,20 +128,32 @@ h1 {
 .user-profile__item {
     border: none;
     width: 100%;
-    color: gray;
     background-color: transparent;
     text-align: left;
     padding: .5rem 0;
     text-decoration: none;
     font-size: 1rem;
-    font-weight: 700;
     font-family: 'Courier New', Courier, monospace;
     cursor: pointer;
+    color: unset;
+}
+
+.user-profile__item a {
+    text-decoration: none;
+    font-weight: 700;
+    outline: none;
+    color: unset;
 }
 
 @media screen and (min-width: 480px) {
     .user-profile__item {
         font-size: 1.5rem;
+        font-weight: 800;
+    }
+    .user-profile__item a {
+        font-size: 1.5rem;
+        font-weight: 800;
+        font-family: 'Courier New', Courier, monospace;
     }
 }
 

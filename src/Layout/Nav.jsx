@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AuthUser from '../Components/AuthUser';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg'
 import searchlogo from '../Assets/searchLogo.png';
@@ -9,12 +9,13 @@ import logoutIcon from '../Assets/logout.svg';
 import '../Css/Nav.css';
 import UserProfile from '../Pages/UserProfile';
 import UserRoute from '../Components/UserRoute'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
-
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page, bars, handleClickBars }) => {
   const { token, logout } = AuthUser();
-
   const [userSession, setUserSession] = useState('');
+  const [lenguage, setLenguage] = useState('Spanish')
 
   useEffect(() => {
     if (isLoggedIn === 'false') {
@@ -57,6 +58,16 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
     }
   };
 
+  const handleLenguage = () => {
+    if (lenguage == 'Spanish') {
+      localStorage.setItem('lenguage', 'English')
+    } else {
+      localStorage.setItem('lenguage', 'Spanish')
+    }
+    setLenguage(localStorage.getItem('lenguage'))
+  }
+
+
   return (
     <div className="navbar">
       <div className="contentNavbar">
@@ -95,12 +106,21 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
           </div>
         </div>
         <div className="userLogo">
-          {isLoggedIn === 'false' ? (
-            <UserRoute/>
+          {isLoggedIn === 'true' ? (
+            <>
+              <FontAwesomeIcon icon={faBars} className='userLogo__faBars' onClick={handleClickBars} />
+              <div className='userLogo__contain'>
+                <div className='userLogo__lenguage' onClick={handleLenguage}>
+                  {lenguage === 'Spanish' ? <img src="https://img.icons8.com/officel/80/000000/uruguay.png" />
+                    : <img src="https://img.icons8.com/office/80/000000/great-britain.png" />
+                  }
+                  <p>Idioma</p>
+                </div>
+                <LoginRoute />
+              </div>
+            </>
           ) : (
-            <span className="logout" role="button" onClick={logoutUser}>
-              <img id='logoutImg' src={logoutIcon} alt="logo"></img>
-            </span>
+            <UserRoute />
           )}
         </div>
       </div>
