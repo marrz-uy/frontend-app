@@ -21,14 +21,13 @@ const Nav = ({
   handleClickBars,
 }) => {
   const { getUser, getLoggedIn } = AuthUser();
+  // sessionStorage.setItem('isLoggedIn', 'false')
 
   useEffect(() => {
-    sessionStorage.setItem('isLoggedIn', 'false')
-    console.log('ISLOGGEDIN: ', isLoggedIn);
     setIsLoggedIn(getLoggedIn());
     console.log('ISLOGGEDIN: ', isLoggedIn);
     return () => {};
-  }, [setIsLoggedIn ]);
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn ]);
 
   const [lenguage, setLenguage] = useState('Spanish');
 

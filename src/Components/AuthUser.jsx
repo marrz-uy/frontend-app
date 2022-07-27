@@ -40,6 +40,7 @@ export default function AuthUser() {
   const saveToken = (user, token, userProfile) => {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('isLoggedIn', 'true');
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
