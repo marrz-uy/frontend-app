@@ -67,6 +67,7 @@
     display: none;
 }
 
+
 @media (min-width: 800px) {
     .userLogo__contain {
         display: flex;
@@ -83,7 +84,7 @@
 }
 
 .userLogo__lenguage {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -132,7 +133,6 @@
     justify-content: center;
     align-items: center;
     transform: scale(1.1);
-    flex-direction: column;
 }
 
 .userLogo__faBars {
@@ -143,10 +143,14 @@
     display: block;
 }
 
-@media (min-width: 800px) {
+@media screen and (min-width: 800px) {
     .userLogo__faBars {
         display: none;
     }
+
+    .ocultaLenguage {
+		display: flex;
+	}
 }
 
 

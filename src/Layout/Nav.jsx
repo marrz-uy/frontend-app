@@ -23,13 +23,10 @@ const Nav = ({
   const { getUser, getLoggedIn } = AuthUser();
 
   useEffect(() => {
-    setIsLoggedIn(getLoggedIn())
-  console.log('ISLOGGEDIN: ',isLoggedIn)
-    return () => {
-      
-    }
-  }, [setIsLoggedIn, getLoggedIn])
-  
+    setIsLoggedIn(getLoggedIn());
+    console.log('ISLOGGEDIN: ', isLoggedIn);
+    return () => {};
+  }, [setIsLoggedIn, getLoggedIn]);
 
   const [lenguage, setLenguage] = useState('Spanish');
 
@@ -98,32 +95,33 @@ const Nav = ({
           </div>
         </div>
         <div className="userLogo">
+        <div className="userLogo__lenguage ocultaLenguage" onClick={handleLenguage}>
+            {lenguage === 'Spanish' ? (
+              <img
+                src="https://img.icons8.com/officel/80/000000/uruguay.png"
+                alt="img"
+              />
+            ) : (
+              <img
+                src="https://img.icons8.com/office/80/000000/great-britain.png"
+                alt="img"
+              />
+            )}
+            <p>Idioma</p>
+          </div>
           {isLoggedIn === 'false' ? (
             <>
               <Link to="/userbar">
                 <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
               </Link>
               <div className="userLogo__contain">
-                <div className="userLogo__lenguage" onClick={handleLenguage}>
-                  {lenguage === 'Spanish' ? (
-                    <img
-                      src="https://img.icons8.com/officel/80/000000/uruguay.png"
-                      alt="img"
-                    />
-                  ) : (
-                    <img
-                      src="https://img.icons8.com/office/80/000000/great-britain.png"
-                      alt="img"
-                    />
-                  )}
-                  <p>Idioma</p>
-                </div>
                 <LoginRoute />
               </div>
             </>
           ) : (
             <UserRoute />
           )}
+          
         </div>
       </div>
       <div className="msgWelcome">
