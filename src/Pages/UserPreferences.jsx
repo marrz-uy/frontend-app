@@ -36,7 +36,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   
 
   useEffect(() => {
-    setPage('profile');
+    setPage('preferences');
     try {
       setUser_id(getUser().id);
     } catch (error) {
