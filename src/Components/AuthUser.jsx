@@ -78,6 +78,15 @@ export default function AuthUser() {
     },
   });
 
+  const getLoggedIn = () => {
+    try {
+      const user_detail = sessionStorage.getItem('isLoggedIn');
+      return user_detail;
+    } catch (error) {
+      console.log('USER SIN DATOS', error);
+    }
+  };
+
   return {
     setToken: saveToken,
     token,
@@ -89,5 +98,6 @@ export default function AuthUser() {
     userProfile,
     getUserProfile,
     saveUserProfile,
+    getLoggedIn
   };
 }

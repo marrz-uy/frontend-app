@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import AuthUser from '../Components/AuthUser';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
 import LoginRoute from '../Components/LoginRoute';
-import logoutIcon from '../Assets/logout.svg';
 import '../Css/Nav.css';
-import UserProfile from '../Pages/UserProfile';
 import UserRoute from '../Components/UserRoute';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -22,19 +20,18 @@ const Nav = ({
   bars,
   handleClickBars,
 }) => {
-  const { token, getUser } = AuthUser();
-  const [userSession, setUserSession] = useState('');
-  const [lenguage, setLenguage] = useState('Spanish');
+  const { getUser, getLoggedIn } = AuthUser();
 
-  /*   useEffect(() => {
-    if (isLoggedIn === 'false') {
-      setUserSession('Invitado');
-    } else {
-      var session = sessionStorage.getItem('user');
-      const user = JSON.parse(session);
-      setUserSession(user.name);
+  useEffect(() => {
+    setIsLoggedIn(getLoggedIn())
+  console.log('ISLOGGEDIN: ',isLoggedIn)
+    return () => {
+      
     }
-  }, [isLoggedIn]); */
+  }, [setIsLoggedIn, getLoggedIn])
+  
+
+  const [lenguage, setLenguage] = useState('Spanish');
 
   const navigate = useNavigate();
 
@@ -55,16 +52,6 @@ const Nav = ({
       navigate('/results');
     }
   };
-
-  /*   const logoutUser = () => {
-    if (token !== undefined) {
-      logout();
-      setIsLoggedIn('false');
-      setUserSession('Invitado');
-      console.log('Cerrando sesion');
-      navigate('/');
-    }
-  }; */
 
   const handleLenguage = () => {
     if (lenguage === 'Spanish') {
@@ -139,7 +126,9 @@ const Nav = ({
           )}
         </div>
       </div>
-      <div className="msgWelcome">Bienvenido a FeelUy {getUser()?.name || 'Invitado'}</div>
+      <div className="msgWelcome">
+        Bienvenido a FeelUy {getUser()?.name || 'Invitado'}
+      </div>
     </div>
   );
 };

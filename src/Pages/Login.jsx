@@ -10,8 +10,12 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({ setIsLoggedIn, setPage, pefilRecuperado, setPefilRecuperado }) => {
-  
+const Login = ({
+  setIsLoggedIn,
+  setPage,
+  pefilRecuperado,
+  setPefilRecuperado,
+}) => {
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -30,7 +34,7 @@ const Login = ({ setIsLoggedIn, setPage, pefilRecuperado, setPefilRecuperado }) 
       .then((res) => {
         console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
-        sessionStorage.setItem('isLoggedIn', 'true')
+        sessionStorage.setItem('isLoggedIn', 'trueeeee');
         setIsLoggedIn('true');
         navigate('/user');
       })
