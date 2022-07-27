@@ -11,6 +11,7 @@ const UserProfile = ({
   setUserSession,
 }) => {
   const [lenguage, setLenguage] = useState('');
+  const [usuario, setUsuario] = useState('');
 
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ const UserProfile = ({
     setPage('user');
     sessionStorage.setItem('isLoggedIn', 'true');
     try {
-      var traeUsuario =  getUser()?.profile.preferencias;
+      var traeUsuario = getUser()?.profile.preferencias;
       const user = JSON.parse(traeUsuario);
-      console.log('USER PREFERENCES ',user)
+      console.log('USER PREFERENCES ', user);
+      setUsuario(user);
+      console.log('USUARIO: ', usuario);
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
@@ -46,7 +49,7 @@ const UserProfile = ({
       console.log('LOGOUT: ');
       console.log('TOKEN: ', token);
       logout();
-      sessionStorage.setItem('isLoggedIn', 'false')
+      sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
       setUserSession('Invitado');
       console.log('Cerrando sesion');
@@ -69,23 +72,37 @@ const UserProfile = ({
           </div>
           <div className="user-profile__links">
             <div className="user-profile__container-item user-profile__container-item--preferences">
-              <div className='misPreferencias'>
-              { }
+              <div className="misPreferencias">
+                {/* {usuario.map((item) => {
+                  return (
+                    <ul>
+                      <li key={item.id}>{item.categoria}</li>
+                    </ul>
+                  );
+                })} */}
               </div>
-              <button className="user-profile__item">
-                <Link to="/preferences">Preferencias</Link>
-              </button>
-              <img src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png" alt='img'/>
+              <div className="divBtnPreferencias">
+                <button className="user-profile__item">
+                  <Link to="/preferences">Cambiar Preferencias</Link>
+                </button>
+                <img
+                  src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"
+                  alt="img"
+                />
+              </div>
             </div>
-            <div
-              className="user-profile__container-item"
-              onClick={handleLenguage}
-            >
-              <button className="user-profile__item">Cambiar idioma</button>
+            <div className="divBtnLenguaje" onClick={handleLenguage}>
+              <button className="user-profile__item"> Cambiar Idioma</button>
               {lenguage === 'Spanish' ? (
-                <img src="https://img.icons8.com/officel/80/000000/uruguay.png"  alt='img'/>
+                <img
+                  src="https://img.icons8.com/officel/80/000000/uruguay.png"
+                  alt="img"
+                />
               ) : (
-                <img src="https://img.icons8.com/plasticine/100/000000/great-britain.png" alt='img' />
+                <img
+                  src="https://img.icons8.com/plasticine/100/000000/great-britain.png"
+                  alt="img"
+                />
               )}
             </div>
           </div>

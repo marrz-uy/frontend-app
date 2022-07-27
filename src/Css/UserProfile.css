@@ -11,7 +11,7 @@ h1 {
 @media screen and (min-width: 480px) {
   .user-profile {
     margin: 8rem 2rem 0;
-  /* margin-top: 8rem; */
+    /* margin-top: 8rem; */
   }
 }
 
@@ -26,8 +26,8 @@ h1 {
 
 @media screen and (min-width: 480px) {
   .user-profile__container {
-      width: 60%;
-      gap: 3rem;
+    width: 60%;
+    gap: 3rem;
   }
 }
 
@@ -38,10 +38,11 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
+
 @media screen and (min-width: 480px) {
   .user-profile__description {
-      text-align: left;
-      display: unset;
+    text-align: left;
+    display: unset;
   }
 }
 
@@ -53,9 +54,11 @@ h1 {
 .user-profile__button:hover p {
   color: #00499d;
 }
+
 .user-profile__button:hover {
   background-color: #FFF;
 }
+
 .user-profile__data {
   margin: 20px 0 0 0;
   display: flex;
@@ -63,6 +66,7 @@ h1 {
   gap: 1.4rem;
   font-weight: 500;
 }
+
 .user-profile__data a {
   display: inline-block;
   text-decoration: none;
@@ -76,11 +80,13 @@ h1 {
   padding: 5px;
   border-radius: 10px;
 }
+
 @media screen and (min-width: 480px) {
   .user-profile__data a {
-      width: 50%;
+    width: 50%;
   }
 }
+
 .user-profile__data a:hover {
   background-color: rgba(249, 246, 246, 0.1);
 }
@@ -102,26 +108,44 @@ h1 {
   text-align: left;
 }
 
-.misPreferencias{
+.misPreferencias {
   display: flex;
   flex-direction: column;
+  background-color: #00499d;
+  width: 100%;
+
+}
+
+.divBtnPreferencias {
+  display: flex;
+  flex-direction: row;
+}
+
+.divBtnLenguaje {
+  display: flex;
+  flex-direction: row;
+  padding-left: 3px;
+
 }
 
 .user-profile__container-item {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid gray;
   cursor: pointer;
   padding: 1px 2px;
 }
+
 .user-profile__container-item:hover {
   background-color: rgba(180, 180, 180, 0.1);
 }
 
-.user-profile__container-item img {
+.divBtnLenguaje img {
   width: 40px;
   height: 40px;
+  padding-right: 5px;
 }
 
 .user-profile__container-item--preferences img {
@@ -136,9 +160,10 @@ h1 {
   width: 100%;
   background-color: transparent;
   text-align: left;
-  padding: .5rem 0;
+  /* padding: .5rem; */
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 700;
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
   color: unset;
@@ -153,13 +178,14 @@ h1 {
 
 @media screen and (min-width: 480px) {
   .user-profile__item {
-      font-size: 1.5rem;
-      font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 800;
   }
+
   .user-profile__item a {
-      font-size: 1.5rem;
-      font-weight: 800;
-      font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Courier New', Courier, monospace;
   }
 }
 
@@ -202,16 +228,3 @@ h1 {
   cursor: pointer;
   background-color: rgba(249, 246, 246, 0.1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
