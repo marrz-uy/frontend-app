@@ -73,13 +73,11 @@ const UserProfile = ({
           <div className="user-profile__links">
             <div className="user-profile__container-item user-profile__container-item--preferences">
               <div className="misPreferencias">
-                {/* {usuario.map((item) => {
-                  return (
-                    <ul>
-                      <li key={item.id}>{item.categoria}</li>
-                    </ul>
-                  );
-                })} */}
+                <p>Nacionalidad: {getUser()?.profile.nacionalidad}</p>
+                <p>Fecha de nacimiento: {getUser()?.profile.f_nacimiento}</p>
+                <ul>
+                 
+                </ul>
               </div>
               <div className="divBtnPreferencias">
                 <button className="user-profile__item">

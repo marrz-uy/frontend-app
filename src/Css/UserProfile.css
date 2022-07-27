@@ -111,8 +111,9 @@ h1 {
 .misPreferencias {
   display: flex;
   flex-direction: column;
-  background-color: #00499d;
+  
   width: 100%;
+  margin-bottom: 1rem;
 
 }
 
