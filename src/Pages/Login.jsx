@@ -30,8 +30,9 @@ const Login = ({ setIsLoggedIn, setPage, pefilRecuperado, setPefilRecuperado }) 
       .then((res) => {
         console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
+        sessionStorage.setItem('isLoggedIn', 'true')
         setIsLoggedIn('true');
-        navigate('/setprofile');
+        navigate('/user');
       })
       .catch(function (error) {
         console.log('%cRESP:', 'color: red;', error.response.data);

@@ -33,6 +33,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
+  
 
   useEffect(() => {
     setPage('profile');

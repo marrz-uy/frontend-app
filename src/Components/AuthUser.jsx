@@ -15,6 +15,7 @@ export default function AuthUser() {
     try {
       const userString = sessionStorage.getItem('user');
       const user_detail = JSON.parse(userString);
+      // const user_detail = userString;
       return user_detail;
     } catch (error) {
       console.log('USER SIN DATOS', error);

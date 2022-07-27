@@ -1,21 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
-import { Link } from 'react-router-dom';
 import '../Css/UserProfile.css';
+import { Link, useNavigate } from 'react-router-dom';
 
-const UserProfile = ({ setPage }) => {
+const UserProfile = ({
+  setPage,
+  setIsLoggedIn,
+  userSession,
+  setUserSession,
+}) => {
   const [lenguage, setLenguage] = useState('');
-  const [logeado, setLogeado] = useState(false);
 
-  const { getToken, getUser } = AuthUser;
-
-  if (getToken) {
-    setLogeado(true);
-  }
+  const { logout, token, getUser } = AuthUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage('user');
+    sessionStorage.setItem('isLoggedIn', 'true');
+    /* try {
+      var traeUsuario = sessionStorage.getUser('user');
+      const user = JSON.parse(traeUsuario);
+      setUsuario(user);
+    } catch (error) {
+      console.log('NO HAY NADIE LOGUEADO', error);
+    } */
   }, [setPage]);
 
   useEffect(() => {
@@ -25,11 +34,23 @@ const UserProfile = ({ setPage }) => {
 
   const handleLenguage = () => {
     if (lenguage === 'Spanish') {
-      sessionStorage.setItem('lenguage', 'Spanish');
+      localStorage.setItem('lenguage', 'English');
     } else {
-      sessionStorage.setItem('lenguage', 'English');
+      localStorage.setItem('lenguage', 'Spanish');
     }
-    setLenguage(sessionStorage.getItem('lenguage'));
+    setLenguage(localStorage.getItem('lenguage'));
+  };
+
+  const logoutUser = () => {
+    if (token !== null) {
+      console.log('LOGOUT: ');
+      console.log('TOKEN: ', token);
+      logout();
+      setIsLoggedIn('false');
+      setUserSession('Invitado');
+      console.log('Cerrando sesion');
+      navigate('/');
+    }
   };
 
   return (
@@ -37,33 +58,20 @@ const UserProfile = ({ setPage }) => {
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
-            {logeado ? <h1>{getUser?.nombre}</h1> : <h1>Invitado</h1>}
-            {logeado ? (
-              <div className="user-profile__data">
-                <h2>{getUser?.email}</h2>
-                <a href="#" className="user-profile__logout">
-                  Cambiar contraseña
-                </a>
-              </div>
-            ) : (
-              <Link to="/login" className="user-profile__button">
-                <p>Iniciar Sesion</p>
-              </Link>
-            )}
-
-            <div className="user-profile__register">
-              {!logeado && (
-                <>
-                  <p>No tienes cuenta?</p>
-                  <Link to="/register">Registrate</Link>
-                </>
-              )}
+            <h1>*{}</h1>
+            <div className="user-profile__data">
+              <h2>*{}</h2>
+              {/* <a href="#" className="user-profile__logout">
+                Cambiar contraseña
+              </a> */}
             </div>
           </div>
           <div className="user-profile__links">
             <div className="user-profile__container-item user-profile__container-item--preferences">
-              <button className="user-profile__item">Preferencias</button>
-              <img src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png" alt='img'/>{' '}
+              <button className="user-profile__item">
+                <Link to="/preferences">Preferencias</Link>
+              </button>
+              <img src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png" alt='img'/>
             </div>
             <div
               className="user-profile__container-item"
@@ -71,13 +79,15 @@ const UserProfile = ({ setPage }) => {
             >
               <button className="user-profile__item">Cambiar idioma</button>
               {lenguage === 'Spanish' ? (
-                <img src="https://img.icons8.com/officel/80/000000/uruguay.png" alt='uy'/>
+                <img src="https://img.icons8.com/officel/80/000000/uruguay.png"  alt='img'/>
               ) : (
-                <img src="https://img.icons8.com/plasticine/100/000000/great-britain.png" alt='eng'/>
+                <img src="https://img.icons8.com/plasticine/100/000000/great-britain.png" alt='img' />
               )}
             </div>
           </div>
-          {logeado && <button className="user-profile__logout">Logout</button>}
+          <button className="user-profile__logout" onClick={logoutUser}>
+            Logout
+          </button>
         </div>
       </div>
     </Layout>
