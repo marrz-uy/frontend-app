@@ -18,13 +18,13 @@ const UserProfile = ({
   useEffect(() => {
     setPage('user');
     sessionStorage.setItem('isLoggedIn', 'true');
-    /* try {
-      var traeUsuario = sessionStorage.getUser('user');
+    try {
+      var traeUsuario =  getUser()?.profile.preferencias;
       const user = JSON.parse(traeUsuario);
-      setUsuario(user);
+      console.log('USER PREFERENCES ',user)
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
-    } */
+    }
   }, [setPage]);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const UserProfile = ({
       console.log('LOGOUT: ');
       console.log('TOKEN: ', token);
       logout();
+      sessionStorage.setItem('isLoggedIn', 'false')
       setIsLoggedIn('false');
       setUserSession('Invitado');
       console.log('Cerrando sesion');
@@ -58,9 +59,9 @@ const UserProfile = ({
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
-            <h1>*{}</h1>
+            <h2>{getUser()?.name}</h2>
             <div className="user-profile__data">
-              <h2>*{}</h2>
+              <h3>{getUser()?.email}</h3>
               {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
               </a> */}
@@ -68,6 +69,9 @@ const UserProfile = ({
           </div>
           <div className="user-profile__links">
             <div className="user-profile__container-item user-profile__container-item--preferences">
+              <div className='misPreferencias'>
+              { }
+              </div>
               <button className="user-profile__item">
                 <Link to="/preferences">Preferencias</Link>
               </button>

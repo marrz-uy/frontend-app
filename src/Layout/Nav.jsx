@@ -22,7 +22,7 @@ const Nav = ({
   bars,
   handleClickBars,
 }) => {
-  const { token, logout } = AuthUser();
+  const { token, getUser } = AuthUser();
   const [userSession, setUserSession] = useState('');
   const [lenguage, setLenguage] = useState('Spanish');
 
@@ -139,7 +139,7 @@ const Nav = ({
           )}
         </div>
       </div>
-      <div className="msgWelcome">Bienvenido a FeelUy {userSession}</div>
+      <div className="msgWelcome">Bienvenido a FeelUy {getUser()?.name || 'Invitado'}</div>
     </div>
   );
 };

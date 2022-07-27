@@ -59,11 +59,11 @@ function App() {
             <UserBar
               setPage={setPage}
               isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
           }
         />
-        
+
         <Route
           path="/user"
           element={
@@ -72,7 +72,7 @@ function App() {
               userSession={userSession}
               setUserSession={setUserSession}
               isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
           }
         />
@@ -92,7 +92,6 @@ function App() {
             />
           }
         />
-
 
         <Route
           path="*"

@@ -101,6 +101,11 @@ h1 {
   text-align: left;
 }
 
+.misPreferencias{
+  display: flex;
+  flex-direction: column;
+}
+
 .user-profile__container-item {
   display: flex;
   justify-content: space-between;
