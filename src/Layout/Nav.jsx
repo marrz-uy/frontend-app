@@ -110,7 +110,7 @@ const Nav = ({
             )}
             <p>Idioma</p>
           </div>
-          {isLoggedIn === 'false' ? (
+          {isLoggedIn === 'false' || isLoggedIn === null ? (
             <>
               <Link to="/userbar">
                 <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
