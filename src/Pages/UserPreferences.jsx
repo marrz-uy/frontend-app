@@ -204,7 +204,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       <div className="userProfile" onLoad={recuperarPerfil}>
         <div>
           <h2 className="title">
-            {pefilRecuperado.preferencias === 'sin preferencias'
+            {pefilRecuperado?.preferencias === 'sin preferencias'
               ? 'Crear Perfil'
               : 'Mi Perfil'}
           </h2>

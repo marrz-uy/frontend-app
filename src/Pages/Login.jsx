@@ -34,8 +34,8 @@ const Login = ({
       .then((res) => {
         console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
-        sessionStorage.setItem('isLoggedIn', 'trueeeee');
-        setIsLoggedIn('true');
+        // sessionStorage.setItem('isLoggedIn', 'true');
+        // setIsLoggedIn('true');
         navigate('/user');
       })
       .catch(function (error) {

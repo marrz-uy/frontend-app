@@ -23,10 +23,12 @@ const Nav = ({
   const { getUser, getLoggedIn } = AuthUser();
 
   useEffect(() => {
+    sessionStorage.setItem('isLoggedIn', 'false')
+    console.log('ISLOGGEDIN: ', isLoggedIn);
     setIsLoggedIn(getLoggedIn());
     console.log('ISLOGGEDIN: ', isLoggedIn);
     return () => {};
-  }, [setIsLoggedIn, getLoggedIn]);
+  }, [setIsLoggedIn ]);
 
   const [lenguage, setLenguage] = useState('Spanish');
 
