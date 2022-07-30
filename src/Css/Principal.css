@@ -28,6 +28,14 @@ img {
 	width: 170px;
 }
 
+@media screen and (min-width: 800px) {
+
+	.container {
+		margin-top: 8rem;
+	}
+	
+	}
+
 @media screen and (min-width: 1024px) {
 
 .container {

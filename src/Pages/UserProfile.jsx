@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const UserProfile = ({
   setPage,
   setIsLoggedIn,
+  isLoggedIn,
   userSession,
   setUserSession,
 }) => {
@@ -16,20 +17,20 @@ const UserProfile = ({
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect((getUser) => {
     setPage('user');
     sessionStorage.setItem('isLoggedIn', 'true');
     try {
-      var traeUsuario = getUser()?.profile.preferencias;
-      const user = JSON.parse(traeUsuario);
+      const traerUsuario = getUser()?.profile.preferencias;
+      var user = JSON.parse(traerUsuario);
       console.log('USER PREFERENCES ', user);
       setUsuario(user);
-      console.log('USUARIO: ', usuario);
     } catch (error) {
-      console.log('NO HAY NADIE LOGUEADO', error);
+      // console.log('NO HAY NADIE LOGUEADO', error);
     }
-  }, [setPage]);
-
+  }, [setPage, setUsuario]);
+  
+   console.log('USUARIO: ', usuario);
   useEffect(() => {
     window.localStorage.setItem('lenguage', 'Spanish');
     setLenguage(localStorage.getItem('lenguage'));
@@ -56,6 +57,7 @@ const UserProfile = ({
       navigate('/');
     }
   };
+  
 
   return (
     <Layout>
@@ -65,23 +67,16 @@ const UserProfile = ({
             <h2>{getUser()?.name}</h2>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              {/* <a href="#" className="user-profile__logout">
+              <a href="#" className="user-profile__logout">
                 Cambiar contraseña
-              </a> */}
+              </a>
             </div>
           </div>
           <div className="user-profile__links">
             <div className="user-profile__container-item user-profile__container-item--preferences">
-              <div className="misPreferencias">
-                <p>Nacionalidad: {getUser()?.profile.nacionalidad}</p>
-                <p>Fecha de nacimiento: {getUser()?.profile.f_nacimiento}</p>
-                <ul>
-                 
-                </ul>
-              </div>
               <div className="divBtnPreferencias">
                 <button className="user-profile__item">
-                  <Link to="/preferences">Cambiar Preferencias</Link>
+                  <Link to="/preferences">Preferencias</Link>
                 </button>
                 <img
                   src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"

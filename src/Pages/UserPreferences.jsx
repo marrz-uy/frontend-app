@@ -33,12 +33,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
-  
 
   useEffect(() => {
     setPage('preferences');
     try {
-      setUser_id(getUser().id);
+      setUser_id(getUser()?.id);
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
@@ -53,6 +52,26 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       }
     }
   };
+
+//! CONTINUAR ACA---------------------------------------------------------------------------
+  const traerPreferencias = () => {
+    const preferenciasSessionStorage = JSON.parse(
+      sessionStorage.getItem('preferencias')
+    );
+    return preferenciasSessionStorage;
+  };
+
+
+  const filterData = (categoria) => {
+    const data = traerPreferencias()?.filter(
+      (item) => item.categoria === categoria
+    );
+    return data;
+  };
+
+  console.log('filter()=>', filterData('Alojamiento'));
+  console.log('CategoriaAlojamiento =>', CategoriaAlojamiento);
+//---------------------------------------------------------------------------
 
   const addPreferencia = (selectedOption) => {
     const nuevaPreferencia = {
@@ -174,10 +193,23 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     e.preventDefault();
     recuperarPerfil();
     const sinPreferencias = '{}';
+
     if (pefilRecuperado === sinPreferencias) {
+      console.log('CANT de preferencias submit: ', preferencias.length);
+      if (preferencias.length < 3) {
+        alert(
+          'No selecciono ninguna preferencia de categoria, seleccione alguna para obtener resultados personalizados  en sus busquedas'
+        );
+      }
       submitUserProfile();
       setPefilRecuperado(getUserProfile());
     } else {
+      console.log('CANT de preferencias update: ', preferencias.length);
+      if (preferencias.length < 3) {
+        alert(
+          'No selecciono ninguna preferencia de categoria, seleccione alguna para obtener resultados personalizados en sus busquedas'
+        );
+      }
       updateUserProfile();
       setPefilRecuperado(getUserProfile());
     }
@@ -198,6 +230,9 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       placeholder: placeholder,
     }),
   };
+
+
+  
 
   return (
     <Layout>
@@ -249,6 +284,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Alojamiento
             </label>
             <Select
+              defaultValue={filterData('Alojamiento')}
               options={CategoriaAlojamiento}
               styles={styles}
               onChange={handlePreferencias}
@@ -260,6 +296,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Gastronomia
             </label>
             <Select
+              defaultValue={filterData('Gastronomia')}
               options={CategoriaGastronomia}
               styles={styles}
               onChange={handlePreferencias}
@@ -271,6 +308,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Espectaculos
             </label>
             <Select
+              defaultValue={filterData('Espectaculos')}
               options={CategoriaEspectaculos}
               styles={styles}
               onChange={handlePreferencias}
@@ -282,6 +320,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Actividades Al Aire Libre
             </label>
             <Select
+              defaultValue={filterData('Actividades Al Aire Libre')}
               options={CategoriaActividadesAlAireLibre}
               styles={styles}
               onChange={handlePreferencias}
@@ -293,6 +332,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Actividades Nocturnas
             </label>
             <Select
+              defaultValue={filterData('Actividades Nocturnas')}
               options={CategoriaActividadesNocturnas}
               styles={styles}
               onChange={handlePreferencias}
@@ -304,6 +344,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Transporte
             </label>
             <Select
+              defaultValue={filterData('Transporte')}
               options={CategoriaTransporte}
               styles={styles}
               onChange={handlePreferencias}
@@ -315,6 +356,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Actividades Infantiles
             </label>
             <Select
+              defaultValue={filterData('Actividades Infantiles')}
               options={CategoriaActividadesInfantiles}
               styles={styles}
               onChange={handlePreferencias}
@@ -326,6 +368,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               Servicios Esenciales
             </label>
             <Select
+              defaultValue={filterData('Servicios Esenciales')}
               options={CategoriaServiciosEsenciales}
               styles={styles}
               onChange={handlePreferencias}

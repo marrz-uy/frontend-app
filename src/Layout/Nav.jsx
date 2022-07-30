@@ -27,7 +27,7 @@ const Nav = ({
     setIsLoggedIn(getLoggedIn());
     console.log('ISLOGGEDIN: ', isLoggedIn);
     return () => {};
-  }, [setIsLoggedIn, getLoggedIn, isLoggedIn ]);
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const [lenguage, setLenguage] = useState('Spanish');
 
@@ -95,8 +95,11 @@ const Nav = ({
             </span>
           </div>
         </div>
-        <div className="userLogo">
-        <div className="userLogo__lenguage ocultaLenguage" onClick={handleLenguage}>
+        <div className="menuLogo">
+          <div
+            className="userLogo__lenguage ocultaLenguage"
+            onClick={handleLenguage}
+          >
             {lenguage === 'Spanish' ? (
               <img
                 src="https://img.icons8.com/officel/80/000000/uruguay.png"
@@ -122,11 +125,12 @@ const Nav = ({
           ) : (
             <UserRoute />
           )}
-          
         </div>
       </div>
-      <div className="msgWelcome">
-        Bienvenido a FeelUy {getUser()?.name || 'Invitado'}
+      <div className="divMsgWelcome">
+        <span className="msgWelcome">
+          Bienvenido a FeelUy {getUser()?.name || 'Invitado'}
+        </span>
       </div>
     </div>
   );

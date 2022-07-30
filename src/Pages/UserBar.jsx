@@ -7,7 +7,6 @@ import '../Css/UserBar.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-
 const UserBar = ({ bars }) => {
   const [lenguage, setLenguage] = useState('Spanish');
 
@@ -23,8 +22,7 @@ const UserBar = ({ bars }) => {
   return (
     <Layout>
       <nav className="userBar">
-      <div className="">
-        {/* <div className="animate__animated animate__backInDown"> */}
+        <div className="animate__animated animate__slideInRight animate__faster">
           <ul className="userBar__link">
             <li>
               <Link to="/register">Registrarse</Link>
@@ -35,9 +33,15 @@ const UserBar = ({ bars }) => {
             <li onClick={handleLenguage}>
               <p>Cambiar idioma</p>
               {lenguage === 'Spanish' ? (
-                <img src="https://img.icons8.com/officel/80/000000/uruguay.png" alt='img'/>
+                <img
+                  src="https://img.icons8.com/officel/80/000000/uruguay.png"
+                  alt="img"
+                />
               ) : (
-                <img src="https://img.icons8.com/office/80/000000/great-britain.png" alt='img'/>
+                <img
+                  src="https://img.icons8.com/office/80/000000/great-britain.png"
+                  alt="img"
+                />
               )}
             </li>
           </ul>

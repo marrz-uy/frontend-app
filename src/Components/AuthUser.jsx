@@ -45,10 +45,7 @@ export default function AuthUser() {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      sessionStorage.setItem(
-        'preferencias',
-        JSON.stringify(userProfile.preferencias)
-      );
+      sessionStorage.setItem('preferencias',userProfile.preferencias);
     }
 
     setToken(token);
@@ -60,9 +57,7 @@ export default function AuthUser() {
   const saveUserProfile = (userProfile) => {
     sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
     sessionStorage.setItem(
-      'preferencias',
-      JSON.stringify(userProfile.preferencias)
-    );
+      'preferencias',userProfile.preferencias);
     setUserProfile(userProfile);
   };
 
