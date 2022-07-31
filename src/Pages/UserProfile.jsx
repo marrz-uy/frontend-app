@@ -3,6 +3,7 @@ import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import '../Css/UserProfile.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { traerPreferencias } from '../Helpers/TraerPreferencias';
 
 const UserProfile = ({
   setPage,
@@ -17,20 +18,23 @@ const UserProfile = ({
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
 
-  useEffect((getUser) => {
-    setPage('user');
-    sessionStorage.setItem('isLoggedIn', 'true');
-    try {
-      const traerUsuario = getUser()?.profile.preferencias;
-      var user = JSON.parse(traerUsuario);
-      console.log('USER PREFERENCES ', user);
-      setUsuario(user);
-    } catch (error) {
-      // console.log('NO HAY NADIE LOGUEADO', error);
-    }
-  }, [setPage, setUsuario]);
-  
-   console.log('USUARIO: ', usuario);
+  useEffect(
+    (getUser) => {
+      setPage('user');
+      sessionStorage.setItem('isLoggedIn', 'true');
+      try {
+        const traerUsuario = getUser()?.profile.preferencias;
+        var user = JSON.parse(traerUsuario);
+        console.log('USER PREFERENCES ', user);
+        setUsuario(user);
+      } catch (error) {
+        // console.log('NO HAY NADIE LOGUEADO', error);
+      }
+    },
+    [setPage, setUsuario]
+  );
+
+  console.log('USUARIO: ', usuario);
   useEffect(() => {
     window.localStorage.setItem('lenguage', 'Spanish');
     setLenguage(localStorage.getItem('lenguage'));
@@ -57,26 +61,52 @@ const UserProfile = ({
       navigate('/');
     }
   };
-  
+
+  const preferenciasEnArray = traerPreferencias();
+  console.log('preferenciasEnArray', preferenciasEnArray);
 
   return (
     <Layout>
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
-            <h2>{getUser()?.name}</h2>
+            <div className="userName">
+              <h2>{getUser()?.name}</h2>
+            </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              <a href="#" className="user-profile__logout">
+              <h5>Nacionalidad: {getUser()?.profile?.nacionalidad}</h5>
+              <h5>Fecha de nacimiento: {getUser()?.profile?.f_nacimiento}</h5>
+              {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
-              </a>
+              </a> */}
             </div>
           </div>
           <div className="user-profile__links">
+            <div className="misPreferencias">
+              <h2>Mis preferencias</h2>
+              <ul className='lista'>
+                {preferenciasEnArray != null || preferenciasEnArray != undefined ? (
+                  preferenciasEnArray?.map((item) => {
+                    return (
+                      <p key={item.id}>
+                        <span>
+                          {item.categoria}: <span className='label'>{item.label}</span>
+                        </span>
+                      </p>
+                    );
+                  })
+                ) : (
+                  <h5 style={{ color: '#ffcc05' }}>
+                    Usuario sin preferencias guardadas*
+                  </h5>
+                )}
+              </ul>
+            </div>
             <div className="user-profile__container-item user-profile__container-item--preferences">
               <div className="divBtnPreferencias">
                 <button className="user-profile__item">
-                  <Link to="/preferences">Preferencias</Link>
+                  <Link to="/preferences">Cambiar Preferencias</Link>
                 </button>
                 <img
                   src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"

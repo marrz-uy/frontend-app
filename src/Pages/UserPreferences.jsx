@@ -16,14 +16,16 @@ import {
   CategoriaServiciosEsenciales,
 } from '../Data/Categorias';
 
-import hotelImg from '../Assets/categoriesImages/hospedaje.png';
-import restaurant from '../Assets/categoriesImages/fast-food 1.png';
+import alojamiento from '../Assets/categoriesImages/hospedaje.png';
+import gastronomia from '../Assets/categoriesImages/fast-food 1.png';
 import airelibre from '../Assets/categoriesImages/hiking 1.png';
-import transport from '../Assets/categoriesImages/bus.png';
-import teatro from '../Assets/categoriesImages/teatro 1.png';
+import transporte from '../Assets/categoriesImages/bus.png';
+import espectaculos from '../Assets/categoriesImages/teatro 1.png';
 import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
+import { traerPreferencias } from '../Helpers/TraerPreferencias';
+import { filterData } from '../Helpers/FilterByCategory';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
@@ -33,11 +35,16 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [preferencia, setPreferencia] = useState([...preferenciasArray]);
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  console.log('traerPreferencias()=>', traerPreferencias());
 
   useEffect(() => {
     setPage('preferences');
     try {
       setUser_id(getUser()?.id);
+      // setNacionalidad(getUser()?.profile?.nacionalidad)
+      // setFechaDeNacimiento(getUser()?.profile?.f_nacimiento)
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
@@ -53,25 +60,8 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     }
   };
 
-//! CONTINUAR ACA---------------------------------------------------------------------------
-  const traerPreferencias = () => {
-    const preferenciasSessionStorage = JSON.parse(
-      sessionStorage.getItem('preferencias')
-    );
-    return preferenciasSessionStorage;
-  };
-
-
-  const filterData = (categoria) => {
-    const data = traerPreferencias()?.filter(
-      (item) => item.categoria === categoria
-    );
-    return data;
-  };
-
-  console.log('filter()=>', filterData('Alojamiento'));
-  console.log('CategoriaAlojamiento =>', CategoriaAlojamiento);
-//---------------------------------------------------------------------------
+  // console.log('filter()=>', filterData('Alojamiento'));
+  //---------------------------------------------------------------------------
 
   const addPreferencia = (selectedOption) => {
     const nuevaPreferencia = {
@@ -119,6 +109,12 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       f_nacimiento,
       preferencias
     );
+    console.log('PREFERENCIAs A ENVIAR1: ', preferencias);
+    if (preferencias === '[]') {
+      console.log('IBAN VACIAS AGREGUE RECUPERADO2: ', preferencias);
+      setPreferencia(traerPreferencias());
+      console.log('PREFERENCIAs A ENVIAR 3: ', preferencias);
+    }
     http
       .patch(`/userProfile/${user_id}`, {
         nacionalidad,
@@ -204,14 +200,17 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       submitUserProfile();
       setPefilRecuperado(getUserProfile());
     } else {
-      console.log('CANT de preferencias update: ', preferencias.length);
+      // console.log('CANT de preferencias update: ', preferencias.length);
       if (preferencias.length < 3) {
         alert(
-          'No selecciono ninguna preferencia de categoria, seleccione alguna para obtener resultados personalizados en sus busquedas'
+          'Debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
         );
+        return
       }
+      
       updateUserProfile();
       setPefilRecuperado(getUserProfile());
+      setSubmitMessage('Perfil actualizado correctamente')
     }
   };
 
@@ -231,8 +230,21 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     }),
   };
 
+  const recuperarNacionalidaOnFocus = () => {
+    if (nacionalidad) {
+      setNacionalidad('');
+    } else {
+      setNacionalidad(getUser()?.profile?.nacionalidad);
+    }
+  };
 
-  
+  const recuperarFechaNacimientoOnFocus = () => {
+    if (f_nacimiento) {
+      setFechaDeNacimiento('');
+    } else {
+      setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
+    }
+  };
 
   return (
     <Layout>
@@ -256,6 +268,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 autoComplete="off"
                 value={nacionalidad}
                 onChange={(e) => setNacionalidad(e.target.value)}
+                onFocus={recuperarNacionalidaOnFocus}
                 required
               />
             </div>
@@ -267,10 +280,10 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 id="fecha"
                 type="date"
                 name="fechaDeNacimiento"
-                placeholder="Fecha de Nacimiento"
                 required
                 value={fechaDeNacimiento}
                 onChange={(e) => setFechaDeNacimiento(e.target.value)}
+                onFocus={recuperarFechaNacimientoOnFocus}
               />
             </div>
           </div>
@@ -280,7 +293,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </div>
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
-              <img src={hotelImg} className="categoryImage" alt="hot"></img>
+              <img src={alojamiento} className="categoryImage" alt="hot"></img>
               Alojamiento
             </label>
             <Select
@@ -292,7 +305,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </div>
           <div className="selectIndividual">
             <label htmlFor="gastronomia">
-              <img src={restaurant} className="categoryImage" alt="Res"></img>
+              <img src={gastronomia} className="categoryImage" alt="Res"></img>
               Gastronomia
             </label>
             <Select
@@ -304,7 +317,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </div>
           <div className="selectIndividual">
             <label htmlFor="espectaculos">
-              <img src={teatro} className="categoryImage" alt="res"></img>
+              <img src={espectaculos} className="categoryImage" alt="res"></img>
               Espectaculos
             </label>
             <Select
@@ -340,7 +353,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </div>
           <div className="selectIndividual">
             <label htmlFor="transporte">
-              <img src={transport} className="categoryImage" alt="Tra"></img>
+              <img src={transporte} className="categoryImage" alt="Tra"></img>
               Transporte
             </label>
             <Select
@@ -377,7 +390,8 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <input type="submit" value="Enviar" className="btn-enviar " />
         </form>
         <div className="linkALoginPreferencias">
-          <Link to="/">Volver al Inicio</Link>
+          <div className="submiMessage">{`${submitMessage}`}</div>
+          <Link to="/user">Volver atras</Link>
         </div>
       </div>
     </Layout>
