@@ -8,7 +8,6 @@ import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
-import UserBar from './UserBar'
 
 const Principal = ({ setItems, setPage, bars }) => {
   useEffect(() => {
