@@ -183,7 +183,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     const sinPreferencias = '{}';
 
     if (pefilRecuperado === sinPreferencias) {
-      console.log('CANT de preferencias submit: ', preferencias.length);
       if (preferencias.length < 3) {
         alert(
           'No selecciono ninguna preferencia de categoria,',
@@ -193,17 +192,12 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       submitUserProfile();
       setPefilRecuperado(getUserProfile());
     } else {
-
-
-      console.log('CANT de preferencias update: ', preferencias.length);
-
       if (preferencias.length < 3) {
         alert(
           'Debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
         );
-        return
+        return;
       }
-
       updateUserProfile();
       setPefilRecuperado(getUserProfile());
     }
@@ -242,7 +236,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
     }
   };
-  
 
   return (
     <Layout>
@@ -270,7 +263,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 required
               />
             </div>
-
             <div className="inputGroupPreferencias fecha">
               <label htmlFor="fechaDeNacimiento">Fecha de Nacimiento</label>
               <input
@@ -278,14 +270,13 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 id="fecha"
                 type="date"
                 name="fechaDeNacimiento"
-                required
                 value={fechaDeNacimiento}
                 onChange={(e) => setFechaDeNacimiento(e.target.value)}
                 onFocus={recuperarFechaNacimientoOnFocus}
+                required
               />
             </div>
           </div>
-
           <div>
             <h4 className="titlePreferencias">Mis Preferencias</h4>
           </div>
