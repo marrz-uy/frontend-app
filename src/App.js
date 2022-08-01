@@ -69,6 +69,7 @@ function App() {
           element={
             <UserProfile
               setPage={setPage}
+              page={page}
               userSession={userSession}
               setUserSession={setUserSession}
               isLoggedIn={isLoggedIn}

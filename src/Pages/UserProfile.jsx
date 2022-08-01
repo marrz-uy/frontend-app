@@ -4,39 +4,28 @@ import AuthUser from '../Components/AuthUser';
 import '../Css/UserProfile.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
+import { traerPerfil } from '../Helpers/TraerPerfil';
 
 const UserProfile = ({
   setPage,
+  page,
   setIsLoggedIn,
   isLoggedIn,
   userSession,
   setUserSession,
 }) => {
   const [lenguage, setLenguage] = useState('');
-  const [usuario, setUsuario] = useState('');
-
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
+  const preferenciasEnArray = traerPreferencias();
+  const pefilEnArray = traerPerfil();
 
-  useEffect(
-    (getUser) => {
-      setPage('user');
-      sessionStorage.setItem('isLoggedIn', 'true');
-      try {
-        const traerUsuario = getUser()?.profile.preferencias;
-        var user = JSON.parse(traerUsuario);
-        console.log('USER PREFERENCES ', user);
-        setUsuario(user);
-      } catch (error) {
-        // console.log('NO HAY NADIE LOGUEADO', error);
-      }
-    },
-    [setPage, setUsuario]
-  );
-
-  console.log('USUARIO: ', usuario);
   useEffect(() => {
-    window.localStorage.setItem('lenguage', 'Spanish');
+    setPage('user');
+  }, [setPage]);
+
+  useEffect(() => {
+    localStorage.setItem('lenguage', 'Spanish');
     setLenguage(localStorage.getItem('lenguage'));
   }, []);
 
@@ -50,9 +39,7 @@ const UserProfile = ({
   };
 
   const logoutUser = () => {
-    if (token !== null) {
-      console.log('LOGOUT: ');
-      console.log('TOKEN: ', token);
+    if (token) {
       logout();
       sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
@@ -61,9 +48,6 @@ const UserProfile = ({
       navigate('/');
     }
   };
-
-  const preferenciasEnArray = traerPreferencias();
-  console.log('preferenciasEnArray', preferenciasEnArray);
 
   return (
     <Layout>
@@ -75,8 +59,14 @@ const UserProfile = ({
             </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              <h5>Nacionalidad: {getUser()?.profile?.nacionalidad}</h5>
-              <h5>Fecha de nacimiento: {getUser()?.profile?.f_nacimiento}</h5>
+              <h5>
+                Nacionalidad:
+                {pefilEnArray?.nacionalidad}
+              </h5>
+              <h5>
+                Fecha de Nacimiento:
+                {pefilEnArray?.f_nacimiento}
+              </h5>
               {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
               </a> */}
@@ -85,20 +75,21 @@ const UserProfile = ({
           <div className="user-profile__links">
             <div className="misPreferencias">
               <h2>Mis preferencias</h2>
-              <ul className='lista'>
-                {preferenciasEnArray != null || preferenciasEnArray != undefined ? (
+              <ul className="lista">
+                {preferenciasEnArray ? (
                   preferenciasEnArray?.map((item) => {
                     return (
                       <p key={item.id}>
                         <span>
-                          {item.categoria}: <span className='label'>{item.label}</span>
+                          {item.categoria}:{' '}
+                          <span className="label">{item.label}</span>
                         </span>
                       </p>
                     );
                   })
                 ) : (
                   <h5 style={{ color: '#ffcc05' }}>
-                    Usuario sin preferencias guardadas*
+                    Sin preferencias registradas*
                   </h5>
                 )}
               </ul>
@@ -106,7 +97,11 @@ const UserProfile = ({
             <div className="user-profile__container-item user-profile__container-item--preferences">
               <div className="divBtnPreferencias">
                 <button className="user-profile__item">
-                  <Link to="/preferences">Cambiar Preferencias</Link>
+                  <Link to="/preferences">
+                    {preferenciasEnArray
+                      ? `Cambiar Preferencias`
+                      : `Ingresar Preferencias`}
+                  </Link>
                 </button>
                 <img
                   src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"

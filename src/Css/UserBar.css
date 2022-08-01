@@ -29,7 +29,7 @@
 	text-align: center;
 	padding: 10px;
 	border-bottom: 1px solid gray;
-	align-items: end;
+	align-items: flex-end;
 }
 
 .userBar__link li a {

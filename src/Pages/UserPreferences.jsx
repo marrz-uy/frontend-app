@@ -51,7 +51,8 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   }, [setPage, getUser, user_id, setUser_id, pefilRecuperado]);
 
   const recuperarPerfil = () => {
-    if (user_id !== null || user_id !== '') {
+    /* if (user_id !== null || user_id !== '') { */
+    if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
       } catch (error) {
@@ -59,9 +60,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       }
     }
   };
-
-  // console.log('filter()=>', filterData('Alojamiento'));
-  //---------------------------------------------------------------------------
 
   const addPreferencia = (selectedOption) => {
     const nuevaPreferencia = {
@@ -109,12 +107,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       f_nacimiento,
       preferencias
     );
-    console.log('PREFERENCIAs A ENVIAR1: ', preferencias);
-    if (preferencias === '[]') {
-      console.log('IBAN VACIAS AGREGUE RECUPERADO2: ', preferencias);
-      setPreferencia(traerPreferencias());
-      console.log('PREFERENCIAs A ENVIAR 3: ', preferencias);
-    }
     http
       .patch(`/userProfile/${user_id}`, {
         nacionalidad,
@@ -194,24 +186,29 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       console.log('CANT de preferencias submit: ', preferencias.length);
       if (preferencias.length < 3) {
         alert(
-          'No selecciono ninguna preferencia de categoria, seleccione alguna para obtener resultados personalizados  en sus busquedas'
+          'No selecciono ninguna preferencia de categoria,',
+          'seleccione alguna para obtener resultados personalizados en sus busquedas'
         );
       }
       submitUserProfile();
       setPefilRecuperado(getUserProfile());
     } else {
-      // console.log('CANT de preferencias update: ', preferencias.length);
+
+
+      console.log('CANT de preferencias update: ', preferencias.length);
+
       if (preferencias.length < 3) {
         alert(
           'Debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
         );
         return
       }
-      
+
       updateUserProfile();
       setPefilRecuperado(getUserProfile());
-      setSubmitMessage('Perfil actualizado correctamente')
     }
+
+    setSubmitMessage('Perfil guardado correctamente');
   };
 
   const styles = {
@@ -245,6 +242,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
     }
   };
+  
 
   return (
     <Layout>

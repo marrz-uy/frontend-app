@@ -44,11 +44,11 @@ const Login = ({
         console.log('%cRESP:', 'color: red;', error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
-        } else if (email === '' && password === '') {
+        } else if (!email && !password) {
           setLoginErrorMessage('Todos los campos son obligatorios');
-        } else if (email === '') {
+        } else if (!email) {
           setLoginErrorMessage(error.response.data.email);
-        } else if (password === '') {
+        } else if (!password) {
           setLoginErrorMessage(error.response.data.password);
         } else {
           if (error.response.status === UNAUTHORIZED) {
