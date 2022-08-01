@@ -10,7 +10,14 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({ setIsLoggedIn, setPage }) => {
+const Login = ({
+  setIsLoggedIn,
+  setPage,
+  pefilRecuperado,
+  setPefilRecuperado,
+}) => {
+
+  sessionStorage.setItem('isLoggedIn', 'false')
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -24,24 +31,24 @@ const Login = ({ setIsLoggedIn, setPage }) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('RESP:', res.data.status);
-        setToken(res.data.user, res.data.access_token);
+        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        setToken(res.data.user, res.data.access_token, res.data.userProfile);
+        sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
-        navigate('/');
+        navigate('/user');
       })
       .catch(function (error) {
-        console.log('RESP:', error.response.data);
+        console.log('%cRESP:', 'color: red;', error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
-        } else if (email === '' && password === '') {
+        } else if (!email && !password) {
           setLoginErrorMessage('Todos los campos son obligatorios');
-        } else if (email === '') {
+        } else if (!email) {
           setLoginErrorMessage(error.response.data.email);
-        } else if (password === '') {
+        } else if (!password) {
           setLoginErrorMessage(error.response.data.password);
         } else {
           if (error.response.status === UNAUTHORIZED) {
@@ -76,6 +83,7 @@ const Login = ({ setIsLoggedIn, setPage }) => {
               id="email"
               name="email"
               placeholder="Email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

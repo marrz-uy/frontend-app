@@ -8,8 +8,9 @@ import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
+import UserBar from './UserBar'
 
-const Principal = ({ setItems, setPage }) => {
+const Principal = ({ setItems, setPage, bars }) => {
   useEffect(() => {
     setPage('principal');
   }, [setPage]);
@@ -24,41 +25,43 @@ const Principal = ({ setItems, setPage }) => {
 
   return (
     <Layout>
-      <div className="container">
-        <div className="categories" onClick={() => handleCategories('tours')}>
-          <img className="lacarretera" src={predefTour} alt="hotel"></img>
-          <span>Tours Predefinidos</span>
+      
+        <div className="container">
+          <div className="categories" onClick={() => handleCategories('tours')}>
+            <img className="lacarretera" src={predefTour} alt="hotel"></img>
+            <span>Tours Predefinidos</span>
+          </div>
+          <div
+            className="categories"
+            onClick={() => handleCategories('armar tour')}
+          >
+            <img src={setYourTour} alt="hotel"></img>
+            <span>Armar Tour</span>
+          </div>
+          <div className="categories" onClick={() => handleCategories('hoteles')}>
+            <img src={hotelImg} alt="hotel"></img>
+            <span>Hospedaje</span>
+          </div>
+          <div
+            className="categories"
+            onClick={() => handleCategories('restaurantes')}
+          >
+            <img src={restaurant} alt="hotel"></img>
+            <span>Gastronomía</span>
+          </div>
+          <div className="categories" onClick={() => handleCategories('paseos')}>
+            <img src={trips} alt="hotel"></img>
+            <span>Paseos</span>
+          </div>
+          <div
+            className="categories"
+            onClick={() => handleCategories('transportes')}
+          >
+            <img src={transport} alt="hotel"></img>
+            <span>Transporte</span>
+          </div>
         </div>
-        <div
-          className="categories"
-          onClick={() => handleCategories('armar tour')}
-        >
-          <img src={setYourTour} alt="hotel"></img>
-          <span>Armar Tour</span>
-        </div>
-        <div className="categories" onClick={() => handleCategories('hoteles')}>
-          <img src={hotelImg} alt="hotel"></img>
-          <span>Hospedaje</span>
-        </div>
-        <div
-          className="categories"
-          onClick={() => handleCategories('restaurantes')}
-        >
-          <img src={restaurant} alt="hotel"></img>
-          <span>Gastronomía</span>
-        </div>
-        <div className="categories" onClick={() => handleCategories('paseos')}>
-          <img src={trips} alt="hotel"></img>
-          <span>Paseos</span>
-        </div>
-        <div
-          className="categories"
-          onClick={() => handleCategories('transportes')}
-        >
-          <img src={transport} alt="hotel"></img>
-          <span>Transporte</span>
-        </div>
-      </div>
+      
     </Layout>
   );
 };

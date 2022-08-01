@@ -11,25 +11,33 @@
     padding-top: 0.4rem;
     border-bottom: 1px solid #083d92;
     box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.6);
-  }
+    z-index: 1;
+    min-width: 375px;
+    min-height: 75.5px;
+}
 
 
 .contentNavbar {
     display: flex;
     justify-content: space-between;
     width: 90vw;
+    margin-top: 0.5rem;
+    min-width: 338px;
 }
 
 .logoFellUy {
-    width: 10%;
+    width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -2px;
+    min-height: 3rem;
+    min-width: 48px;
 }
 
 #feelLogoImg {
     width: 3rem;
+    position: relative;
+    top: -3px;
     /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
@@ -43,15 +51,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 0.8rem;
+    margin-left: 1rem;
 }
-
 
 .searchIntDiv {
     margin-left: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .searchlogo {
@@ -60,16 +68,52 @@
 
 .search div span {
     position: relative;
-    left: -30px
+    left: -28px;
+    top: 1px;
 }
 
-.userLogo {
-    width: 10%;
+.userLogo__contain {
+    display: none;
+}
+
+.userLogo__lenguage {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 0 auto;
+    padding: 0 auto;
+    color: #FFF;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.userLogo__lenguage img {
+    width: 37px;
+    height: 28px;
+}
+
+.userLogo__lenguage p {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.menuLogo {
+    width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1.1);
-    flex-direction: column;
+    /* transform: scale(1.1); */
+}
+
+.userLogo__faBars {
+    width: 30px;
+    height: 30px;
+    color: #FFF;
+    display: flex;
 }
 
 #userlogoImg {
@@ -78,24 +122,34 @@
     /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
-
+#userLogoImg--login {
+    display: none;
+    width: 3rem;
+    max-width: 3rem;
+}
 
 .inputSearch {
     width: 60vw;
-    height: 2rem;
+    height: 1.8rem;
     margin: 0 auto;
     border: 1px solid rgb(221, 221, 221);
     box-shadow: 0.3em 0.5em 1em rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     padding-left: 10px;
+    min-width: 217px;
+}
+
+.divMsgWelcome {
+    display: flex;
+    align-content: center;
+    /* margin-top: 0.6rem; */
 }
 
 .msgWelcome {
-    color: aliceblue;
-    font-size: 0.7rem;
+    color: #ffcc05;
+    font-size: 0.8rem;
     display: flex;
-    min-height: 15px;
-    
+    min-height: 20px;
 }
 
 .logout {
@@ -105,21 +159,127 @@
     min-height: 3rem;
     color: aliceblue;
     font-size: 0.5rem;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 #logoutImg {
     width: 1.3rem;
     max-width: 1.3rem;
-    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 @media screen and (min-width: 480px) {
 
+    #feelLogoImg {
+        position: relative;
+        /* top: 10px; */
+    }
+
+    #userLogoImg--login {
+        display: block;
+    }
+
     .navbar {
         min-height: 10vh;
+    }
+
+    .search div span {
+        position: relative;
+        left: -28px;
+        top: 1px;
+        right: 20px;
+    }
+
+}
+
+@media screen and (min-width: 480px) and (orientation : landscape){
+    .navbar {       
+        min-height: 95px;
+    }
+
+}
+
+@media screen and (min-width: 800px) and (orientation : landscape){
+    .navbar {       
+        min-height: 95px;
+    }
+    .contentNavbar {
+        max-width: 130vh;
       }
 
+     
+}
+
+@media screen and (min-width: 1224px) and (orientation : landscape){
+    .navbar {       
+        min-height: 110px;
+    }
+
+    .contentNavbar {
+        max-width: 130vh;
+      }
+} 
+
+@media screen and (min-width: 800px) {
+
+    .contentNavbar {
+        max-width: 160vh;
+    }
+
+    .search div span {
+        
+        left: -35px;
+      }
+
+    .userLogo__faBars {
+        display: none;
+    }
+
+    .ocultaLenguage {
+        display: flex;
+    }
+
+    .userLogo__contain {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 2px;
+    }
+
+    .msgWelcome {
+        font-size: 1rem;
+    }
+
+    /*  #feelLogoImg {
+        position: relative;
+        top: 10px;
+    } */
+
+    #arrowImg {
+        position: relative;
+        top: 2px;
+        /* filter: drop-shadow(2px 8px 5px #000000e8); */
+    }
+
+    .inputSearch {
+        height: 2.5rem;
+    }
+
+    .navbar {
+        max-height: 16vh;
+    }
+
+    .divMsgWelcome {
+        margin-top: 0.5rem;
+    }
+}
+
+
+@media (min-width: 920px) {
+    .userLogo__contain {
+        gap: 3rem;
+        padding-bottom: 2px;
+    }
 }
 
 
@@ -127,13 +287,14 @@
 @media screen and (min-width: 1024px) {
 
     .navbar {
-        min-height: 12vh;
-      }
+        min-height: 8vh;
+    }
 
     #feelLogoImg {
         min-width: 5rem;
         max-width: 6rem;
-        margin-top: -20px;
+        max-height: 5rem;
+        margin-top: -13px;
     }
 
 }

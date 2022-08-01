@@ -1,0 +1,79 @@
+.userBar {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	transition: all .3s ease;
+	overflow: hidden;
+	margin-top: 3.5rem;
+}
+
+.userBar__link {
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	gap: 5rem;
+	align-items: center;
+	background-color: #00499d;
+	width: 100vw;
+	height: 100vh;
+	padding-top: 7rem;
+	min-height: 480px;
+}
+
+.userBar__link li {
+	display: flex;
+	justify-content: flex-start;
+	gap: 30%;
+	align-items: left;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	border-bottom: 1px solid gray;
+	align-items: flex-end;
+}
+
+.userBar__link li a {
+	color: #edf0f1;
+	padding: 0px 25px;
+	font-weight: 500;
+	font-size: 16px;
+	transition: all 0.3s ease 0s;
+	border-radius: 50px;
+	text-decoration: none;
+	/* text-transform: uppercase; */
+	margin-bottom: 5px;
+	
+}
+
+.userBar__link li p {
+	color: #edf0f1;
+	padding: 0px 25px;
+	font-weight: 500;
+	font-size: 16px;
+	transition: all 0.3s ease 0s;
+	border-radius: 50px;
+	text-decoration: none;
+	/* text-transform: uppercase; */
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.userBar__link li img {
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+}
+
+.userBar__lenguage {
+	color: #edf0f1;
+	padding: 0px 25px 0 0;
+	font-weight: 500;
+	font-size: 16px;
+	transition: all 0.3s ease 0s;
+	text-decoration: none;
+	/* text-transform: uppercase; */
+}
+
+animate__animated.animate__faster {
+  min-height: 600px;
+}

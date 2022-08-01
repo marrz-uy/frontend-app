@@ -16,23 +16,17 @@ const Register = ({ setPage }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [name, setName] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
-
   const navigate = useNavigate();
-
   const { http } = AuthUser();
 
   const submitRegister = (e) => {
     e.preventDefault();
-    console.log(email, password, passwordConfirmation, name);
-
     http
       .post('/register', { email, password, passwordConfirmation, name })
       .then((res) => {
         console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Usuario se registro correctamente');
-        setTimeout(() => {
-          
-        }, 3000);
+        setTimeout(() => {}, 3000);
         navigate('/login');
       })
       .catch(function (error) {
@@ -83,6 +77,7 @@ const Register = ({ setPage }) => {
               type="text"
               name="email"
               placeholder="Email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
