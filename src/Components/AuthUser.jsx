@@ -15,6 +15,7 @@ export default function AuthUser() {
     try {
       const userString = sessionStorage.getItem('user');
       const user_detail = JSON.parse(userString);
+      // const user_detail = userString;
       return user_detail;
     } catch (error) {
       console.log('USER SIN DATOS', error);
@@ -39,14 +40,12 @@ export default function AuthUser() {
   const saveToken = (user, token, userProfile) => {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('isLoggedIn', 'true');
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      sessionStorage.setItem(
-        'preferencias',
-        JSON.stringify(userProfile.preferencias)
-      );
+      sessionStorage.setItem('preferencias',userProfile.preferencias);
     }
 
     setToken(token);
@@ -58,9 +57,7 @@ export default function AuthUser() {
   const saveUserProfile = (userProfile) => {
     sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
     sessionStorage.setItem(
-      'preferencias',
-      JSON.stringify(userProfile.preferencias)
-    );
+      'preferencias',userProfile.preferencias);
     setUserProfile(userProfile);
   };
 
@@ -77,6 +74,15 @@ export default function AuthUser() {
     },
   });
 
+  const getLoggedIn = () => {
+    try {
+      const user_detail = sessionStorage.getItem('isLoggedIn');
+      return user_detail;
+    } catch (error) {
+      console.log('USER SIN DATOS', error);
+    }
+  };
+
   return {
     setToken: saveToken,
     token,
@@ -88,5 +94,6 @@ export default function AuthUser() {
     userProfile,
     getUserProfile,
     saveUserProfile,
+    getLoggedIn
   };
 }

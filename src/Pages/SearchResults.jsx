@@ -13,7 +13,7 @@ const SearchResults = ({ items, setPage }) => {
 
   return (
     <Layout>
-      <div className="results">
+      <div className="results ">
         <h6 className="resultsText">
           {data.length} Resultados para {items}
         </h6>
