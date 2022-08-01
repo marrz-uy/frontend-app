@@ -37,14 +37,12 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const f_nacimiento = fechaDeNacimiento;
   const [submitMessage, setSubmitMessage] = useState('');
 
-  console.log('traerPreferencias()=>', traerPreferencias());
+  // console.log('traerPreferencias()=>', traerPreferencias());
 
   useEffect(() => {
     setPage('preferences');
     try {
       setUser_id(getUser()?.id);
-      // setNacionalidad(getUser()?.profile?.nacionalidad)
-      // setFechaDeNacimiento(getUser()?.profile?.f_nacimiento)
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
