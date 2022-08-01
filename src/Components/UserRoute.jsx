@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import userLogo from '../Assets/user.svg';
 
-const LoginRoute = () => {
+const UserRoute = () => {
     return (
         <>
             <Link to="/user">
@@ -12,4 +12,4 @@ const LoginRoute = () => {
     )
 }
 
-export default LoginRoute
+export default UserRoute
