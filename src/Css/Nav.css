@@ -38,12 +38,10 @@
     width: 3rem;
     position: relative;
     top: -3px;
-    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 #arrowImg {
     width: 2rem;
-    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 .search {
@@ -106,7 +104,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* transform: scale(1.1); */
 }
 
 .userLogo__faBars {
@@ -119,7 +116,6 @@
 #userlogoImg {
     width: 3rem;
     max-width: 3rem;
-    /* filter: drop-shadow(2px 8px 5px #000000e8); */
 }
 
 #userLogoImg--login {
@@ -142,7 +138,6 @@
 .divMsgWelcome {
     display: flex;
     align-content: center;
-    /* margin-top: 0.6rem; */
 }
 
 .msgWelcome {
@@ -195,7 +190,6 @@
     .navbar {       
         min-height: 95px;
     }
-
 }
 
 @media screen and (min-width: 800px) and (orientation : landscape){
@@ -205,8 +199,6 @@
     .contentNavbar {
         max-width: 130vh;
       }
-
-     
 }
 
 @media screen and (min-width: 1224px) and (orientation : landscape){
@@ -274,14 +266,12 @@
     }
 }
 
-
 @media (min-width: 920px) {
     .userLogo__contain {
         gap: 3rem;
         padding-bottom: 2px;
     }
 }
-
 
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 1024px) {

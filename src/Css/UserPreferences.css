@@ -4,7 +4,6 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	font-family: 'Kodchasan', sans-serif;
 }
 
 .formPreferencias {
@@ -77,6 +76,7 @@ form {
 	border: 1px solid gray;
 	border-radius: 5px;
 	height: 30px;
+	font-family: 'Kodchasan';
 }
 
 .linkALoginPreferencias {
@@ -90,10 +90,10 @@ form {
 	text-decoration: none;
 }
 
-.prueba {
+/* .prueba {
 	background-color: aquamarine;
 	height: 30px;
-}
+} */
 
 .categoryImage {
 	display:flex;
@@ -116,7 +116,6 @@ form {
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
-		font-family: 'Kodchasan', sans-serif;
 		padding-bottom: 20px;
 	}
 
