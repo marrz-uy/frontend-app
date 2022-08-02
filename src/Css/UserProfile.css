@@ -175,14 +175,12 @@ h1 {
   text-align: left;
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 700;
   cursor: pointer;
   color: unset;
 }
 
 .user-profile__item a {
   text-decoration: none;
-  font-weight: 700;
   outline: none;
   color: unset;
 }
@@ -190,12 +188,11 @@ h1 {
 @media screen and (min-width: 480px) {
   .user-profile__item {
     font-size: 1.5rem;
-    font-weight: 800;
+    /* font-weight: 800; */
   }
 
   .user-profile__item a {
     font-size: 1.5rem;
-    font-weight: 800;
   }
 }
 
