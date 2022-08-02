@@ -1,13 +1,10 @@
 import React from 'react';
 import { Layout } from '../Layout';
-import AuthUser from '../Components/AuthUser';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../Css/UserBar.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const UserBar = ({ bars }) => {
+const UserBar = () => {
   const [lenguage, setLenguage] = useState('Spanish');
 
   const handleLenguage = () => {
