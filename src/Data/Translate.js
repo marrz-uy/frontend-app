@@ -22,6 +22,11 @@ export const translations = {
     gastronomylabel: 'Gastronomia',
     outingLabel: 'Paseos',
     transportLabel: 'transporte',
+    //* LOGIN
+    loginTitle: 'Login',
+    needAnAccountText: 'Necesitas una cuenta?',
+    closeButtonValue: 'Cerrar',
+
   },
   en: {
     //* BANDERA
@@ -46,5 +51,9 @@ export const translations = {
     gastronomylabel: 'Gastronomy',
     outingLabel: 'Outing',
     transportLabel: 'Transport',
+    //* LOGIN
+    loginTitle: 'Login',
+    needAnAccountText: 'Do you need an account?',
+    closeButtonValue: 'Close',
   },
 };

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
 import '../Css/SplashScreen.css';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import wave from '../Assets/wave.png';
 
 export const SplashScreen = () => {
   const [mostrarPantallaInicio, setmostrarPantallaInicio] = useState(true);
+  const { textos } = useContext(LenguageContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +22,7 @@ export const SplashScreen = () => {
           <img className="wave" src={wave} alt="wave"></img>
           <div className="content">
             <div className="divTextSuperior">
-              <h2 className="textSuperior">Arma tu tour</h2>
+              <h2 className="textSuperior">{textos.splashScreenTextSup}</h2>
             </div>
             <div className='divlogoFell'>
               <img src={logo} alt="logo"></img>
@@ -33,7 +35,7 @@ export const SplashScreen = () => {
               </div>
             </div>
             <div className="divTextInferior">
-              <h2 className="textInferior">O descubri los del momento</h2>
+              <h2 className="textInferior">{textos.splashScreenTextInf}</h2>
             </div>
           </div>
         </div>

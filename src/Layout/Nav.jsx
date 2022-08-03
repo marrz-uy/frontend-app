@@ -80,7 +80,7 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
         <div className="menuLogo">
           <div
             className="userLogo__lenguage ocultaLenguage"
-            value="es"
+            // value="es"
             onClick={handleLenguage}
           >
             <img src={textos.flag} alt="img" />
