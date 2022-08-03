@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
 import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
@@ -10,26 +11,16 @@ import UserRoute from '../Components/UserRoute';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Nav = ({
-  text,
-  setText,
-  setItems,
-  isLoggedIn,
-  setIsLoggedIn,
-  page,
-  bars,
-  handleClickBars,
-}) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   const { getUser, getLoggedIn } = AuthUser();
-  // sessionStorage.setItem('isLoggedIn', 'false')
 
+  const { textos, handleLenguage } = useContext(LenguageContext);
+  // console.log('LENGUAJE NAV: ', lenguage);
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    console.log('ISLOGGEDIN: ', isLoggedIn);
+    // console.log('ISLOGGEDIN: ', isLoggedIn);
     return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
-
-  const [lenguage, setLenguage] = useState('Spanish');
 
   const navigate = useNavigate();
 
@@ -49,15 +40,6 @@ const Nav = ({
       setItems(text);
       navigate('/results');
     }
-  };
-
-  const handleLenguage = () => {
-    if (lenguage === 'Spanish') {
-      localStorage.setItem('lenguage', 'English');
-    } else {
-      localStorage.setItem('lenguage', 'Spanish');
-    }
-    setLenguage(localStorage.getItem('lenguage'));
   };
 
   return (
@@ -80,7 +62,7 @@ const Nav = ({
               className="inputSearch"
               name="categoria"
               type="text"
-              placeholder="Buscá tu proximo destino"
+              placeholder={textos.searchPlaceholder}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -98,20 +80,11 @@ const Nav = ({
         <div className="menuLogo">
           <div
             className="userLogo__lenguage ocultaLenguage"
+            value="es"
             onClick={handleLenguage}
           >
-            {lenguage === 'Spanish' ? (
-              <img
-                src="https://img.icons8.com/officel/80/000000/uruguay.png"
-                alt="img"
-              />
-            ) : (
-              <img
-                src="https://img.icons8.com/office/80/000000/great-britain.png"
-                alt="img"
-              />
-            )}
-            <p>Idioma</p>
+            <img src={textos.flag} alt="img" />
+            {/* <p>{textos.lenguageFlagLabel}</p> */}
           </div>
           {isLoggedIn === 'false' || isLoggedIn === null ? (
             <>
@@ -129,7 +102,8 @@ const Nav = ({
       </div>
       <div className="divMsgWelcome">
         <span className="msgWelcome">
-          Bienvenido a FeelUy {getUser()?.name || 'Invitado'}
+          {textos.wellcomeMessage}{' '}
+          {getUser()?.name ? getUser()?.name : textos.wellcomeMessageUser}
         </span>
       </div>
     </div>

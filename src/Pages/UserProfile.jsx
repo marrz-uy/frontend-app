@@ -59,14 +59,8 @@ const UserProfile = ({
             </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              <h5>
-                Nacionalidad:
-                {' '}{pefilEnArray?.nacionalidad}
-              </h5>
-              <h5>
-                Fecha de Nacimiento:
-                {' '}{pefilEnArray?.f_nacimiento}
-              </h5>
+              <h5>Nacionalidad: {pefilEnArray?.nacionalidad}</h5>
+              <h5>Fecha de Nacimiento: {pefilEnArray?.f_nacimiento}</h5>
               {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
               </a> */}

@@ -1,20 +1,11 @@
-import React from 'react';
+import React, {useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import '../Css/UserBar.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 const UserBar = () => {
-  const [lenguage, setLenguage] = useState('Spanish');
-
-  const handleLenguage = () => {
-    if (lenguage === 'Spanish') {
-      localStorage.setItem('lenguage', 'English');
-    } else {
-      localStorage.setItem('lenguage', 'Spanish');
-    }
-    setLenguage(localStorage.getItem('lenguage'));
-  };
+  const { textos, handleLenguage } = useContext(LenguageContext);
 
   return (
     <Layout>
@@ -22,24 +13,17 @@ const UserBar = () => {
         <div className="animate__animated animate__slideInRight animate__faster">
           <ul className="userBar__link">
             <li>
-              <Link to="/register">Registrarse</Link>
+              <Link to="/register">{textos.registerLabel}</Link>
             </li>
             <li>
-              <Link to="/login">Iniciar Sesion</Link>
+              <Link to="/login">{textos.loginLabel}</Link>
             </li>
             <li onClick={handleLenguage}>
-              <p>Cambiar idioma</p>
-              {lenguage === 'Spanish' ? (
-                <img
-                  src="https://img.icons8.com/officel/80/000000/uruguay.png"
-                  alt="img"
-                />
-              ) : (
-                <img
-                  src="https://img.icons8.com/office/80/000000/great-britain.png"
-                  alt="img"
-                />
-              )}
+              <p>{textos.changeLanguageLabel}</p>
+              <img
+                src={textos.flag}
+                alt="img"
+              />
             </li>
           </ul>
         </div>

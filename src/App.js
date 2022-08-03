@@ -4,6 +4,7 @@ import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
+import { LenguageProvider } from '../src/Context/LenguageContext'
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
 
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <LenguageProvider>
       <SplashScreen />
       <Nav
         text={text}
@@ -103,6 +105,7 @@ function App() {
           }
         />
       </Routes>
+      </LenguageProvider>
     </BrowserRouter>
   );
 }
