@@ -1,34 +1,28 @@
 import { createContext, useState } from 'react';
 import { translations } from '../Data/Translate';
+import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 
 const LenguageContext = createContext();
 
-/* if(localStorage.getItem('lenguaje') === null){
-  console.log('LOCAL STORAGE LENGUAJE',localStorage.getItem('lenguaje'))
-  localStorage.setItem('lenguage', 'es');
-} */
-const savedLenguage = localStorage.getItem('lenguage')
-console.log('LOCAL STORAGE LENGUAJE2',localStorage.getItem('lenguaje'))
-const InitialLenguage = savedLenguage
-console.log('savedLenguage', savedLenguage)
-console.log('InitialLenguage', InitialLenguage)
+const InitialLanguage = getLanguageStorage()
+
 
 const LenguageProvider = ({ children }) => {
-  const [lenguage, setLenguage] = useState(InitialLenguage);
+  const [lenguage, setLenguage] = useState(InitialLanguage);
   const [textos, setTextos] = useState(translations[lenguage]);
 
-  // console.log('TEXTOS: ', texto);
+  console.log('getLenguageStorage: ', getLanguageStorage());
 
   const handleLenguage = (e) => {
     e.preventDefault();
-    if (lenguage === InitialLenguage) {
+    if (lenguage === 'es') {
       setLenguage('en');
       setTextos(translations.en);
-      localStorage.setItem('lenguage', 'en');
+      localStorage.setItem('language', 'en');
     } else {
       setLenguage('es');
       setTextos(translations.es);
-      localStorage.setItem('lenguage', 'es');
+      localStorage.setItem('language', 'es');
     }
     console.log('LENGUAJE: ', lenguage);
   };
