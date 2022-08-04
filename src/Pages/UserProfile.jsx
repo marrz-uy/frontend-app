@@ -5,29 +5,29 @@ import LenguageContext from '../Context/LenguageContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
-// import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
+import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
+let initialLanguage = getLanguageStorage()
 
 const UserProfile = ({
   setPage,
-  page,
   setIsLoggedIn,
-  isLoggedIn,
-  userSession,
   setUserSession,
 }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
-  const preferenciasEnArray = traerPreferencias();
+  const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
+  // const preferenciasEnArray = traerPreferencias()
   const pefilEnArray = traerPerfil();
   const { textos, handleLenguage } = useContext(LenguageContext);
-  const [language, setLenguage] = useState('');
-
+  const [language, setLenguage] = useState(initialLanguage);
+ 
   useEffect(() => {
     setPage('user');
-    setLenguage(localStorage.getItem('language'));
-    console.log('LENGUAJE USERPREOFILE: ', language);
-  }, [setPage, setLenguage, language]);
+    setLenguage(getLanguageStorage());
+    console.log('LENGUAJE DENTRO USEEFFECT',language);
+    setPrefeEnArrayInicial(traerPreferencias());
+  }, [setPage, language, getLanguageStorage, setLenguage ]);
 
   const logoutUser = () => {
     if (token) {
@@ -65,18 +65,18 @@ const UserProfile = ({
             <div className="misPreferencias">
               <h2>{textos.myPreferencesTitle}</h2>
               <ul className="lista">
-                {preferenciasEnArray ? (
-                  preferenciasEnArray?.map((item) => {
+                {prefeEnArrayInicial ? (
+                  prefeEnArrayInicial?.map((item) => {
                     return (
                       <p key={item.id}>
                         <span>
-                          {language === 'es'
-                            ? `${item.categoria}`
+                          {getLanguageStorage() === 'es'
+                            ? `${item.categoria} :`
                             : `${item.category} :`}
                           <span className="label">
                             {' '}
-                            {language === 'es'
-                              ? `${item.label}`
+                            {getLanguageStorage() === 'es'
+                              ? `${item.labelEsp}`
                               : `${item.labelEng}`}
                           </span>
                         </span>
@@ -94,7 +94,7 @@ const UserProfile = ({
               <div className="divBtnPreferencias">
                 <button className="user-profile__item">
                   <Link to="/preferences">
-                    {preferenciasEnArray
+                    {prefeEnArrayInicial
                       ? textos.changePreferencesButtonValue
                       : textos.enterPreferencesButtonValue}
                   </Link>

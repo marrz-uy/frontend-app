@@ -6,7 +6,6 @@ const LenguageContext = createContext();
 
 const InitialLanguage = getLanguageStorage()
 
-
 const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [textos, setTextos] = useState(translations[lenguage]);
@@ -24,7 +23,7 @@ const LenguageProvider = ({ children }) => {
       setTextos(translations.es);
       localStorage.setItem('language', 'es');
     }
-    console.log('LENGUAJE: ', lenguage);
+    // console.log('LENGUAJE: ', lenguage);
   };
 
   //Los valores y funciones que se necesitan compartir van en data
