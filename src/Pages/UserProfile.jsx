@@ -27,7 +27,7 @@ const UserProfile = ({
     setLenguage(getLanguageStorage());
     console.log('LENGUAJE DENTRO USEEFFECT',language);
     setPrefeEnArrayInicial(traerPreferencias());
-  }, [setPage, language, getLanguageStorage, setLenguage ]);
+  }, [, setLenguage, setPrefeEnArrayInicial]);
 
   const logoutUser = () => {
     if (token) {
