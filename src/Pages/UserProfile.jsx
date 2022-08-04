@@ -23,11 +23,10 @@ const UserProfile = ({
   const [language, setLenguage] = useState(initialLanguage);
  
   useEffect(() => {
-    setPage('user');
     setLenguage(getLanguageStorage());
     console.log('LENGUAJE DENTRO USEEFFECT',language);
     setPrefeEnArrayInicial(traerPreferencias());
-  }, [setPage, setLenguage, setPrefeEnArrayInicial]);
+  }, [setLenguage, setPrefeEnArrayInicial]);
 
   const logoutUser = () => {
     if (token) {
