@@ -24,7 +24,6 @@ import espectaculos from '../Assets/categoriesImages/teatro 1.png';
 import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
-// import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { filterData } from '../Helpers/FilterByCategory';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
@@ -37,7 +36,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const f_nacimiento = fechaDeNacimiento;
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // console.log('traerPreferencias()=>', traerPreferencias());
 
   useEffect(() => {
     setPage('preferences');
