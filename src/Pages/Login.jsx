@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
+import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import '../Css/Login.css';
 import {
@@ -12,9 +12,7 @@ import {
 
 const Login = ({
   setIsLoggedIn,
-  setPage,
-  pefilRecuperado,
-  setPefilRecuperado,
+  setPage
 }) => {
 
   sessionStorage.setItem('isLoggedIn', 'false')
@@ -25,6 +23,7 @@ const Login = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
+  const { textos } = useContext(LenguageContext);
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
@@ -73,7 +72,7 @@ const Login = ({
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2 className="title">Login</h2>
+            <h2 className="title">{textos.loginTitle}</h2>
           </div>
           <div className="message">{`${loginErrorMessage}`}</div>
           <div className="inputGroup">
@@ -99,11 +98,11 @@ const Login = ({
             <input type="submit" value="Login" className="btn-login" />
           </div>
           <div className="linkAregistro">
-            <Link to="/register">Necesitás una cuenta?</Link>
+            <Link to="/register">{textos.needAnAccountText}</Link>
           </div>
           <div className="salir">
             <Link to="/">
-              <button className="btn-cerrar">Cerrar</button>
+              <button className="btn-cerrar">{textos.closeButtonValue}</button>
             </Link>
           </div>
         </form>
