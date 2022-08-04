@@ -40,6 +40,19 @@ export const translations = {
     whithoutPreferencesText: 'Sin preferencias registradas',
     changePreferencesButtonValue: 'Cambiar Preferencias',
     enterPreferencesButtonValue: 'Ingresar Preferencias',
+    //* USERPREFERENCES
+    preferencesTitleCreateProfile:'Crear Perfil',
+    preferencesTitleUpdateProfile:'Actualizar Perfil',
+    preferencesLodginLabel: 'Alojamiento',
+    preferencesGastronomyLabel: 'Gastronomia',
+    preferencesShowsLabel: 'Espectaculos',
+    preferencesOutdoorActivitiesLabel: 'Actividades Al Aire Libre',
+    preferencesNightActivitiesLabel: 'Actividades Nocturnas',
+    preferencesTransportLabellabel: 'Transporte',
+    preferencesChildrensActivitiesLabel: 'Actividades Infantiles',
+    preferencesEssentialsServicesLabel: 'Servicios Esenciales',
+    prefrencesbtnSendValue: 'Enviar',
+    preferencesBackText: 'Volver Atras',
     //* FOOTER
     contactText: 'Contactanos'
 
@@ -85,6 +98,19 @@ export const translations = {
     whithoutPreferencesText: 'Whithout Preferences',
     changePreferencesButtonValue: 'Change Preferences',
     enterPreferencesButtonValue: 'Enter Preferences',
+    //* USERPREFERENCES
+    preferencesTitleCreateProfile:'Create Profile',
+    preferencesTitleUpdateProfile:'Update Profile',
+    preferencesLodginLabel: 'Lodgin',
+    preferencesGastronomyLabel: 'Gastronomy',
+    preferencesShowsLabel: 'Shows',
+    preferencesOutdoorActivitiesLabel: 'Outdoor Activities',
+    preferencesNightActivitiesLabel: 'Night Activities',
+    preferencesTransportLabellabel: 'Transport',
+    preferencesChildrensActivitiesLabel: 'Children`s Activities',
+    preferencesEssentialsServicesLabel: 'Essentials Services',
+    prefrencesbtnSendValue: 'Send',
+    preferencesBackText: 'Back',
     
     //* FOOTER
     contactText: 'Contact Us.'

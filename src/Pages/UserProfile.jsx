@@ -5,7 +5,7 @@ import LenguageContext from '../Context/LenguageContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
-import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
+// import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
 
 const UserProfile = ({
@@ -25,8 +25,8 @@ const UserProfile = ({
 
   useEffect(() => {
     setPage('user');
-    setLenguage(localStorage.getItem('language'))
-    console.log('LENGUAJE USERPREOFILE: ', language)
+    setLenguage(localStorage.getItem('language'));
+    console.log('LENGUAJE USERPREOFILE: ', language);
   }, [setPage, setLenguage, language]);
 
   const logoutUser = () => {
@@ -51,10 +51,10 @@ const UserProfile = ({
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
               <h5>
-                {textos.userNationalityText}: {pefilEnArray?.nacionalidad}
+                {textos.userNationalityText} : {pefilEnArray?.nacionalidad}
               </h5>
               <h5>
-                {textos.userDateOfBirthText}: {pefilEnArray?.f_nacimiento}
+                {textos.userDateOfBirthText} : {pefilEnArray?.f_nacimiento}
               </h5>
               {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
@@ -70,16 +70,15 @@ const UserProfile = ({
                     return (
                       <p key={item.id}>
                         <span>
-                          {language === 'es' ? 
-                         `${item.categoria}`
-                          :
-                          `${item.category}`
-                          }
-                          <span className="label">{' '}{language === 'es' ? 
-                         `${item.etiqueta}`
-                          :
-                          `${item.label}`
-                          }</span>
+                          {language === 'es'
+                            ? `${item.categoria}`
+                            : `${item.category} :`}
+                          <span className="label">
+                            {' '}
+                            {language === 'es'
+                              ? `${item.label}`
+                              : `${item.labelEng}`}
+                          </span>
                         </span>
                       </p>
                     );
