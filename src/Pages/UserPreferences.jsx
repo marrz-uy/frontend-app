@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
-// import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserPreferences.css';
 import {
   CategoriaAlojamiento,
@@ -35,7 +34,6 @@ import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
 import { filterData } from '../Helpers/FilterByCategory';
-// import { traerPreferencias } from '../Helpers/TraerPreferencias';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
@@ -48,9 +46,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [submitMessage, setSubmitMessage] = useState('');
   const { textos } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
-
-  // console.log('traerPreferencias()=>', traerPreferencias());
-  // console.log('CategoriaAlojamiento()=>', CategoriaAlojamiento);
 
   useEffect(() => {
     setPage('preferences');
@@ -291,7 +286,9 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               />
             </div>
             <div className="inputGroupPreferencias fecha">
-              <label htmlFor="fechaDeNacimiento">{textos.userDateOfBirthText}</label>
+              <label htmlFor="fechaDeNacimiento">
+                {textos.userDateOfBirthText}
+              </label>
               <input
                 className="inputPreferencias"
                 id="fecha"
@@ -425,7 +422,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               onChange={handlePreferencias}
             />
           </div>
-          <input type="submit" value={textos.prefrencesbtnSendValue} className="btn-enviar " />
+          <input
+            type="submit"
+            value={textos.prefrencesbtnSendValue}
+            className="btn-enviar "
+          />
         </form>
         <div className="linkALoginPreferencias">
           <div className="submiMessage">{`${submitMessage}`}</div>
