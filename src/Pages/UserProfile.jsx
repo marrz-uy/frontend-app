@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
-import '../Css/UserProfile.css';
+import LenguageContext from '../Context/LenguageContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
+import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
+import '../Css/UserProfile.css';
 
 const UserProfile = ({
   setPage,
@@ -14,29 +16,18 @@ const UserProfile = ({
   userSession,
   setUserSession,
 }) => {
-  const [lenguage, setLenguage] = useState('');
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const preferenciasEnArray = traerPreferencias();
   const pefilEnArray = traerPerfil();
+  const { textos, handleLenguage } = useContext(LenguageContext);
+  const [language, setLenguage] = useState('');
 
   useEffect(() => {
     setPage('user');
-  }, [setPage]);
-
-  useEffect(() => {
-    localStorage.setItem('lenguage', 'Spanish');
-    setLenguage(localStorage.getItem('lenguage'));
-  }, []);
-
-  const handleLenguage = () => {
-    if (lenguage === 'Spanish') {
-      localStorage.setItem('lenguage', 'English');
-    } else {
-      localStorage.setItem('lenguage', 'Spanish');
-    }
-    setLenguage(localStorage.getItem('lenguage'));
-  };
+    setLenguage(localStorage.getItem('language'))
+    console.log('LENGUAJE USERPREOFILE: ', language)
+  }, [setPage, setLenguage, language]);
 
   const logoutUser = () => {
     if (token) {
@@ -59,8 +50,12 @@ const UserProfile = ({
             </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              <h5>Nacionalidad: {pefilEnArray?.nacionalidad}</h5>
-              <h5>Fecha de Nacimiento: {pefilEnArray?.f_nacimiento}</h5>
+              <h5>
+                {textos.userNationalityText}: {pefilEnArray?.nacionalidad}
+              </h5>
+              <h5>
+                {textos.userDateOfBirthText}: {pefilEnArray?.f_nacimiento}
+              </h5>
               {/* <a href="#" className="user-profile__logout">
                 Cambiar contraseña
               </a> */}
@@ -68,22 +63,30 @@ const UserProfile = ({
           </div>
           <div className="user-profile__links">
             <div className="misPreferencias">
-              <h2>Mis preferencias</h2>
+              <h2>{textos.myPreferencesTitle}</h2>
               <ul className="lista">
                 {preferenciasEnArray ? (
                   preferenciasEnArray?.map((item) => {
                     return (
                       <p key={item.id}>
                         <span>
-                          {item.categoria}:{' '}
-                          <span className="label">{item.label}</span>
+                          {language === 'es' ? 
+                         `${item.categoria}`
+                          :
+                          `${item.category}`
+                          }
+                          <span className="label">{' '}{language === 'es' ? 
+                         `${item.etiqueta}`
+                          :
+                          `${item.label}`
+                          }</span>
                         </span>
                       </p>
                     );
                   })
                 ) : (
                   <h5 style={{ color: '#ffcc05' }}>
-                    Sin preferencias registradas*
+                    {textos.whithoutPreferencesText}*
                   </h5>
                 )}
               </ul>
@@ -93,8 +96,8 @@ const UserProfile = ({
                 <button className="user-profile__item">
                   <Link to="/preferences">
                     {preferenciasEnArray
-                      ? `Cambiar Preferencias`
-                      : `Ingresar Preferencias`}
+                      ? textos.changePreferencesButtonValue
+                      : textos.enterPreferencesButtonValue}
                   </Link>
                 </button>
                 <img
@@ -104,18 +107,11 @@ const UserProfile = ({
               </div>
             </div>
             <div className="divBtnLenguaje" onClick={handleLenguage}>
-              <button className="user-profile__item"> Cambiar Idioma</button>
-              {lenguage === 'Spanish' ? (
-                <img
-                  src="https://img.icons8.com/officel/80/000000/uruguay.png"
-                  alt="img"
-                />
-              ) : (
-                <img
-                  src="https://img.icons8.com/plasticine/100/000000/great-britain.png"
-                  alt="img"
-                />
-              )}
+              <button className="user-profile__item">
+                {' '}
+                {textos.changeLanguageLabel}
+              </button>
+              <img src={textos.flag} alt="img" />
             </div>
           </div>
           <button className="user-profile__logout" onClick={logoutUser}>

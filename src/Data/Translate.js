@@ -26,6 +26,22 @@ export const translations = {
     loginTitle: 'Login',
     needAnAccountText: 'Necesitas una cuenta?',
     closeButtonValue: 'Cerrar',
+    //* REGISTER
+    registerTitle: 'Registrarse',
+    registerEmailPlaceholder: 'email',
+    registerPasswordConfirmationPlaceholder: 'Confirmacion de Password',
+    registerNamePlaceholder: 'Nombre',
+    registerButtonValue: 'Registro',
+    backTologinText: 'Volver al login',
+    //* USERPROFILE
+    userNationalityText: 'Nacionalidad',
+    userDateOfBirthText: 'Fecha de nacimiento',
+    myPreferencesTitle: 'Mis Preferencias',
+    whithoutPreferencesText: 'Sin preferencias registradas',
+    changePreferencesButtonValue: 'Cambiar Preferencias',
+    enterPreferencesButtonValue: 'Ingresar Preferencias',
+    //* FOOTER
+    contactText: 'Contactanos'
 
   },
   en: {
@@ -55,5 +71,22 @@ export const translations = {
     loginTitle: 'Login',
     needAnAccountText: 'Do you need an account?',
     closeButtonValue: 'Close',
+    //* REGISTER
+    registerTitle: 'Register',
+    registerEmailPlaceholder: 'Email',
+    registerPasswordConfirmationPlaceholder: 'Password Confirmation',
+    registerNamePlaceholder: 'Name',
+    registerButtonValue: 'Register',
+    backTologinText: 'Back to login',
+    //* USERPROFILE
+    userNationalityText: 'Nationalty',
+    userDateOfBirthText: 'Date of Birth',
+    myPreferencesTitle: 'My Preferences',
+    whithoutPreferencesText: 'Whithout Preferences',
+    changePreferencesButtonValue: 'Change Preferences',
+    enterPreferencesButtonValue: 'Enter Preferences',
+    
+    //* FOOTER
+    contactText: 'Contact Us.'
   },
 };

@@ -6,6 +6,9 @@ const getLang = () => {
 
 export const getLanguageStorage = () => {
   let lang = getLang();
+  if(!lang){
+    lang = 'es'
+  }
   console.log('get lang ', lang);
 
   return lang;

@@ -43,15 +43,12 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     setPage('preferences');
     try {
       setUser_id(getUser()?.id);
-      // setNacionalidad(getUser()?.profile?.nacionalidad)
-      // setFechaDeNacimiento(getUser()?.profile?.f_nacimiento)
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
   }, [setPage, getUser, user_id, setUser_id, pefilRecuperado]);
 
   const recuperarPerfil = () => {
-    /* if (user_id !== null || user_id !== '') { */
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
@@ -65,8 +62,10 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     const nuevaPreferencia = {
       id: selectedOption.id,
       categoria: selectedOption.categoria,
+      category: selectedOption.category,
       value: selectedOption.value,
       label: selectedOption.label,
+      etiqueta: selectedOption.etiqueta,
     };
     setPreferencia([...preferencia, nuevaPreferencia]);
   };
@@ -78,8 +77,10 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           ...prefe,
           id: selectedOption.id,
           categoria: selectedOption.categoria,
+          category: selectedOption.category,
           value: selectedOption.value,
           label: selectedOption.label,
+          etiqueta: selectedOption.etiqueta,
         };
       }
       return prefe;
@@ -194,7 +195,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     } else {
       if (preferencias.length < 3) {
         alert(
-          'Debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
+          'Las preferencias antiguas se muestran pero no se seleccionan, debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
         );
         return;
       }
