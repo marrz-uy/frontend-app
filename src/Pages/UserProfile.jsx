@@ -21,10 +21,10 @@ const UserProfile = ({
   const pefilEnArray = traerPerfil();
   const { textos, handleLenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState(initialLanguage);
+  console.log(language)
  
   useEffect(() => {
     setLenguage(getLanguageStorage());
-    console.log('LENGUAJE DENTRO USEEFFECT',language);
     setPrefeEnArrayInicial(traerPreferencias());
   }, [setLenguage, setPrefeEnArrayInicial]);
 
