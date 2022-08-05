@@ -68,7 +68,7 @@ export default function AuthUser() {
 
   const http = axios.create({
 
-    baseURL: 'https://c9af-2800-a4-169c-bd00-c50b-6d3e-ecb7-ea99.sa.ngrok.io/api',
+    baseURL: 'http://localhost:8000/api',
 
     headers: {
       'Content-type': 'application/json',
