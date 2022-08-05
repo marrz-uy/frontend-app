@@ -1,4 +1,4 @@
-const CategoriaAlojamiento = [
+const LodginCategory = [
   {
     id: '01',
     categoria: 'Alojamiento',
@@ -31,7 +31,7 @@ const CategoriaAlojamiento = [
     categoria: 'Alojamiento',
     category: 'Lodgin',
     value: 'estancia turistica',
-    label: 'Estancia turistica',
+    label: 'Tourist ranch',
     labelEng: 'Tourist ranch',
     labelEsp: 'Estancia turistica',
   },
@@ -40,17 +40,17 @@ const CategoriaAlojamiento = [
     categoria: 'Alojamiento',
     category: 'Lodgin',
     value: 'casa',
-    label: 'Casa',
+    label: 'House',
     labelEng: 'House',
     labelEsp: 'Casa',
   },
 ];
-const CategoriaGastronomia = [
+const GastronomyCategory = [
   {
     id: '11',
     categoria: 'Gastronomia',
     value: 'restaurante',
-    label: 'Restaurante',
+    label: 'Restaurant',
     category: 'Gastronomy',
     labelEng: 'Restaurant',
     labelEsp: 'Restaurante',
@@ -59,7 +59,7 @@ const CategoriaGastronomia = [
     id: '12',
     categoria: 'Gastronomia',
     value: 'cervezeria',
-    label: 'Cervezeria',
+    label: 'Beer shop',
     category: 'Gastronomy',
     labelEng: 'Beer shop',
     labelEsp: 'Cervezeria',
@@ -68,7 +68,7 @@ const CategoriaGastronomia = [
     id: '13',
     categoria: 'Gastronomia',
     value: 'comida rapida',
-    label: 'Comida rapida',
+    label: 'Fast food',
     category: 'Gastronomy',
     labelEng: 'Fast food',
     labelEsp: 'Comida rapida',
@@ -84,12 +84,12 @@ const CategoriaGastronomia = [
   },
 ];
 
-const CategoriaEspectaculos = [
+const ShowCategory = [
   {
     id: '21',
     categoria: 'Espectaculos',
     value: 'cine',
-    label: 'Cine',
+    label: 'Cinema',
     category: 'Shows',
     labelEng: 'Cinema',
     labelEsp: 'Cine',
@@ -98,16 +98,16 @@ const CategoriaEspectaculos = [
     id: '22',
     categoria: 'Espectaculos',
     value: 'teatro',
-    label: 'Teatro',
+    label: 'Theater',
     category: 'Shows',
     labelEng: 'Theater',
-    labelEsp: 'Teatro',
+    labelEsp: 'Cine',
   },
   {
     id: '23',
     categoria: 'Espectaculos',
     value: 'carnaval',
-    label: 'Carnaval',
+    label: 'Carnival',
     category: 'Shows',
     labelEng: 'Carnival',
     labelEsp: 'Carnaval',
@@ -116,19 +116,19 @@ const CategoriaEspectaculos = [
     id: '24',
     categoria: 'Espectaculos',
     value: 'futbol',
-    label: 'Futbol',
+    label: 'Football/Soccer',
     category: 'Shows',
     labelEng: 'Football/Soccer',
     labelEsp: 'Futbol',
   },
 ];
 
-const CategoriaActividadesAlAireLibre = [
+const OutdoorActivitiesCategory = [
   {
     id: '31',
     categoria: 'Actividades Al Aire Libre',
     value: 'playa',
-    label: 'Playa',
+    label: 'Beach',
     category: 'Outdoor Activities',
     labelEng: 'Beach',
     labelEsp: 'Playa',
@@ -137,7 +137,7 @@ const CategoriaActividadesAlAireLibre = [
     id: '32',
     categoria: 'Actividades Al Aire Libre',
     value: 'ejecicios al aire libre',
-    label: 'Ejecicios al aire libre',
+    label: 'Outdoor exercises',
     category: 'Outdoor Activities',
     labelEng: 'Outdoor exercises',
     labelEsp: 'Ejecicios al aire libre',
@@ -146,7 +146,7 @@ const CategoriaActividadesAlAireLibre = [
     id: '33',
     categoria: 'Actividades Al Aire Libre',
     value: 'cerros',
-    label: 'Cerros',
+    label: 'Hills',
     category: 'Outdoor Activities',
     labelEng: 'Hills',
     labelEsp: 'Cerros',
@@ -155,19 +155,19 @@ const CategoriaActividadesAlAireLibre = [
     id: '34',
     categoria: 'Actividades Al Aire Libre',
     value: 'sierra',
-    label: 'Sierras',
+    label: 'Mountain ranges',
     category: 'Outdoor Activities',
     labelEng: 'Mountain ranges',
     labelEsp: 'Sierras',
   },
 ];
 
-const CategoriaActividadesNocturnas = [
+const NightActivitiesCatergory = [
   {
     id: '41',
     categoria: 'Actividades Nocturnas',
     value: 'discoteca',
-    label: 'Discotecas',
+    label: 'Nightclubs',
     category: 'Night Activities',
     labelEng: 'Nightclubs',
     labelEsp: 'Discotecas',
@@ -194,7 +194,7 @@ const CategoriaActividadesNocturnas = [
     id: '44',
     categoria: 'Actividades Nocturnas',
     value: 'cantina',
-    label: 'Cantina',
+    label: 'Canteen',
     category: 'Night Activities',
     labelEng: 'Canteen',
     labelEsp: 'Cantina',
@@ -210,12 +210,12 @@ const CategoriaActividadesNocturnas = [
   },
 ];
 
-const CategoriaTransporte = [
+const TransportationCategory = [
   {
     id: '51',
     categoria: 'Transporte',
     value: 'omnibus',
-    label: 'Omnibus',
+    label: 'Bus',
     category: 'Transport',
     labelEng: 'Bus',
     labelEsp: 'Omnibus',
@@ -240,12 +240,12 @@ const CategoriaTransporte = [
   },
 ];
 
-const CategoriaActividadesInfantiles = [
+const ChildrensActivitiesCategory = [
   {
     id: '61',
     categoria: 'Actividades Infantiles',
     value: 'circo',
-    label: 'Circo',
+    label: 'Circus',
     category: 'Children`s Activities',
     labelEng: 'Circus',
     labelEsp: 'Circo',
@@ -254,7 +254,7 @@ const CategoriaActividadesInfantiles = [
     id: '62',
     categoria: 'Actividades Infantiles',
     value: 'calesitas',
-    label: 'Calesitas',
+    label: 'Carousels',
     category: 'Children`s Activities',
     labelEng: 'Carousels',
     labelEsp: 'Calesitas',
@@ -263,7 +263,7 @@ const CategoriaActividadesInfantiles = [
     id: '63',
     categoria: 'Actividades Infantiles',
     value: 'video Juegos',
-    label: 'Video Juegos',
+    label: 'Video Games',
     category: 'Children`s Activities',
     labelEng: 'Video Games',
     labelEsp: 'Video Juegos',
@@ -272,19 +272,19 @@ const CategoriaActividadesInfantiles = [
     id: '64',
     categoria: 'Actividades Infantiles',
     value: 'juegos infantiles',
-    label: 'Juegos Infantiles',
+    label: 'Children`s games',
     category: 'Children`s Activities',
     labelEng: 'Children`s games',
     labelEsp: 'Juegos Infantiles',
   },
 ];
 
-const CategoriaServiciosEsenciales = [
+const EssentialServicesCategory = [
   {
     id: '71',
     categoria: 'Servicios Esenciales',
     value: 'hospitales',
-    label: 'Hospitales',
+    label: 'Hospitals',
     category: 'Essential Services',
     labelEng: 'Hospitals',
     labelEsp: 'Hospitales',
@@ -293,7 +293,7 @@ const CategoriaServiciosEsenciales = [
     id: '72',
     categoria: 'Servicios Esenciales',
     value: 'farmacias',
-    label: 'Farmacias',
+    label: 'Pharmacy',
     category: 'Essential Services',
     labelEng: 'Pharmacy',
     labelEsp: 'Farmacias',
@@ -302,7 +302,7 @@ const CategoriaServiciosEsenciales = [
     id: '73',
     categoria: 'Servicios Esenciales',
     value: 'estaciones de servicios',
-    label: 'Estaciones de servicios',
+    label: 'Gas Station',
     category: 'Essential Services',
     labelEng: 'Gas Station',
     labelEsp: 'Estaciones de servicios',
@@ -311,7 +311,7 @@ const CategoriaServiciosEsenciales = [
     id: '74',
     categoria: 'Servicios Esenciales',
     value: 'cerrajeria',
-    label: 'Cerrajeria',
+    label: 'Locksmith',
     category: 'Essential Services',
     labelEng: 'Locksmith',
     labelEsp: 'Cerrajeria',
@@ -319,8 +319,8 @@ const CategoriaServiciosEsenciales = [
   {
     id: '75',
     categoria: 'Servicios Esenciales',
-    value: 'seccionales policiales',
-    label: 'Seccionales policiales',
+    value: 'Seccionales policiales',
+    label: 'Police Station',
     category: 'Essential Services',
     labelEng: 'Police Station',
     labelEsp: 'Seccionales policiales',
@@ -328,12 +328,12 @@ const CategoriaServiciosEsenciales = [
 ];
 
 export {
-  CategoriaAlojamiento,
-  CategoriaGastronomia,
-  CategoriaEspectaculos,
-  CategoriaActividadesAlAireLibre,
-  CategoriaActividadesNocturnas,
-  CategoriaTransporte,
-  CategoriaActividadesInfantiles,
-  CategoriaServiciosEsenciales,
+  LodginCategory,
+  GastronomyCategory,
+  ShowCategory,
+  OutdoorActivitiesCategory,
+  NightActivitiesCatergory,
+  TransportationCategory,
+  ChildrensActivitiesCategory,
+  EssentialServicesCategory,
 };

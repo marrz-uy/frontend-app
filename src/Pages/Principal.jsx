@@ -1,5 +1,6 @@
 import { Layout } from '../Layout';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
 import '../Css/Principal.css';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -9,7 +10,8 @@ import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
 
-const Principal = ({ setItems, setPage, bars }) => {
+const Principal = ({ setItems, setPage }) => {
+  const { textos } = useContext(LenguageContext);
   useEffect(() => {
     setPage('principal');
   }, [setPage]);
@@ -24,43 +26,41 @@ const Principal = ({ setItems, setPage, bars }) => {
 
   return (
     <Layout>
-      
-        <div className="container">
-          <div className="categories" onClick={() => handleCategories('tours')}>
-            <img className="lacarretera" src={predefTour} alt="hotel"></img>
-            <span>Tours Predefinidos</span>
-          </div>
-          <div
-            className="categories"
-            onClick={() => handleCategories('armar tour')}
-          >
-            <img src={setYourTour} alt="hotel"></img>
-            <span>Armar Tour</span>
-          </div>
-          <div className="categories" onClick={() => handleCategories('hoteles')}>
-            <img src={hotelImg} alt="hotel"></img>
-            <span>Hospedaje</span>
-          </div>
-          <div
-            className="categories"
-            onClick={() => handleCategories('restaurantes')}
-          >
-            <img src={restaurant} alt="hotel"></img>
-            <span>Gastronomía</span>
-          </div>
-          <div className="categories" onClick={() => handleCategories('paseos')}>
-            <img src={trips} alt="hotel"></img>
-            <span>Paseos</span>
-          </div>
-          <div
-            className="categories"
-            onClick={() => handleCategories('transportes')}
-          >
-            <img src={transport} alt="hotel"></img>
-            <span>Transporte</span>
-          </div>
+      <div className="container">
+        <div className="categories" onClick={() => handleCategories('tours')}>
+          <img className="lacarretera" src={predefTour} alt="hotel"></img>
+          <span>{textos.predefinedToursLabel}</span>
         </div>
-      
+        <div
+          className="categories"
+          onClick={() => handleCategories('armar tour')}
+        >
+          <img src={setYourTour} alt="img"></img>
+          <span>{textos.buildMyTourLabel}</span>
+        </div>
+        <div className="categories" onClick={() => handleCategories('hoteles')}>
+          <img src={hotelImg} alt="img"></img>
+          <span>{textos.lodginLabel}</span>
+        </div>
+        <div
+          className="categories"
+          onClick={() => handleCategories('restaurantes')}
+        >
+          <img src={restaurant} alt="img"></img>
+          <span>{textos.gastronomylabel}</span>
+        </div>
+        <div className="categories" onClick={() => handleCategories('paseos')}>
+          <img src={trips} alt="img"></img>
+          <span>{textos.outingLabel}</span>
+        </div>
+        <div
+          className="categories"
+          onClick={() => handleCategories('transportes')}
+        >
+          <img src={transport} alt="img"></img>
+          <span>{textos.transportLabel}</span>
+        </div>
+      </div>
     </Layout>
   );
 };
