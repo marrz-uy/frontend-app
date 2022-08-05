@@ -7,7 +7,7 @@ import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
-let initialLanguage = getLanguageStorage()
+// let initialLanguage = getLanguageStorage()
 
 const UserProfile = ({
   setPage,
@@ -20,13 +20,13 @@ const UserProfile = ({
   // const preferenciasEnArray = traerPreferencias()
   const pefilEnArray = traerPerfil();
   const { textos, handleLenguage } = useContext(LenguageContext);
-  const [language, setLenguage] = useState(initialLanguage);
+  const [language, setLenguage] = useState('');
   console.log(language)
  
   useEffect(() => {
     setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
-  }, [setLenguage, setPrefeEnArrayInicial]);
+  }, [setLenguage, setPrefeEnArrayInicial, language]);
 
   const logoutUser = () => {
     if (token) {
