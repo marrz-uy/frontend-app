@@ -7,7 +7,7 @@ export const translations = {
     splashScreenTextSup: 'Arma tu tour',
     splashScreenTextInf: 'o descubri los del momento',
     //* NAVBAR
-    wellcomeMessage: 'Bienvenido a FeelUy ',
+    wellcomeMessage: 'Bienvenido/a',
     wellcomeMessageUser: 'invitado',
     searchPlaceholder: 'Buscá tu proximo destino',
     lenguageFlagLabel: 'Lenguaje',
@@ -65,7 +65,7 @@ export const translations = {
     splashScreenTextSup: 'Build your tour',
     splashScreenTextInf: 'or discover the ones of the moment',
     //* NAVBAR
-    wellcomeMessage: 'Wellcome to FeelUy ',
+    wellcomeMessage: 'Wellcome ',
     wellcomeMessageUser: 'Guest',
     searchPlaceholder: 'Find your next destiny',
     lenguageFlagLabel: 'Lenguage',
@@ -107,11 +107,10 @@ export const translations = {
     preferencesOutdoorActivitiesLabel: 'Outdoor Activities',
     preferencesNightActivitiesLabel: 'Night Activities',
     preferencesTransportLabellabel: 'Transport',
-    preferencesChildrensActivitiesLabel: 'Children`s Activities',
+    preferencesChildrensActivitiesLabel: 'Childrens Activities',
     preferencesEssentialsServicesLabel: 'Essentials Services',
     prefrencesbtnSendValue: 'Send',
     preferencesBackText: 'Back',
-    
     //* FOOTER
     contactText: 'Contact Us.'
   },
