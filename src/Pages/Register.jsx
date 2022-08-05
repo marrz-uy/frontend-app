@@ -1,8 +1,8 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext  } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
+import LenguageContext from '../Context/LenguageContext';
 import '../Css/Register.css';
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
 
@@ -10,7 +10,6 @@ const Register = ({ setPage }) => {
   useEffect(() => {
     setPage('register');
   }, [setPage]);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -18,6 +17,7 @@ const Register = ({ setPage }) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
+  const { textos } = useContext(LenguageContext);
 
   const submitRegister = (e) => {
     e.preventDefault();
@@ -68,7 +68,7 @@ const Register = ({ setPage }) => {
       <div className="register">
         <form onSubmit={submitRegister}>
           <div>
-            <h2 className="title">Registrarse</h2>
+            <h2 className="title">{textos.registerTitle}</h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
@@ -76,7 +76,7 @@ const Register = ({ setPage }) => {
               className="input"
               type="text"
               name="email"
-              placeholder="Email"
+              placeholder={textos.registerEmailPlaceholder}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -93,7 +93,7 @@ const Register = ({ setPage }) => {
               className="input"
               type="password"
               name="passwordConfirm"
-              placeholder="Confirmacion de Password"
+              placeholder={textos.registerPasswordConfirmationPlaceholder}
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
@@ -101,14 +101,14 @@ const Register = ({ setPage }) => {
               className="input"
               type="text"
               name="name"
-              placeholder="Nombre"
+              placeholder={textos.registerNamePlaceholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <input type="submit" value="Registro" className="btn-register" />
+            <input type="submit" value={textos.registerButtonValue} className="btn-register" />
           </div>
           <div className="linkALogin">
-            <Link to="/login">Volver al login</Link>
+            <Link to="/login">{textos.backTologinText}</Link>
           </div>
         </form>
       </div>
