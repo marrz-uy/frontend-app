@@ -4,13 +4,11 @@ import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 
 const LenguageContext = createContext();
 
-const InitialLanguage = getLanguageStorage()
+const InitialLanguage = getLanguageStorage();
 
 const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [textos, setTextos] = useState(translations[lenguage]);
-
-  console.log('getLenguageStorage: ', getLanguageStorage());
 
   const handleLenguage = (e) => {
     e.preventDefault();
@@ -23,10 +21,8 @@ const LenguageProvider = ({ children }) => {
       setTextos(translations.es);
       localStorage.setItem('language', 'es');
     }
-    // console.log('LENGUAJE: ', lenguage);
   };
 
-  //Los valores y funciones que se necesitan compartir van en data
   const data = { textos, handleLenguage, lenguage };
 
   return (

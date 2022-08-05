@@ -107,11 +107,10 @@ export const translations = {
     preferencesOutdoorActivitiesLabel: 'Outdoor Activities',
     preferencesNightActivitiesLabel: 'Night Activities',
     preferencesTransportLabellabel: 'Transport',
-    preferencesChildrensActivitiesLabel: 'Children`s Activities',
+    preferencesChildrensActivitiesLabel: 'Childrens Activities',
     preferencesEssentialsServicesLabel: 'Essentials Services',
     prefrencesbtnSendValue: 'Send',
     preferencesBackText: 'Back',
-    
     //* FOOTER
     contactText: 'Contact Us.'
   },

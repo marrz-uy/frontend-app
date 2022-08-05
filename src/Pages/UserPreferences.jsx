@@ -50,7 +50,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   useEffect(() => {
     setPage('preferences');
     setLenguage(localStorage.getItem('language'));
-    console.log('LENGUAJE USERPREFERENCES: ', language);
     try {
       setUser_id(getUser()?.id);
     } catch (error) {
@@ -70,7 +69,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
-        console.log('pefilRecuperado', pefilRecuperado);
+        // console.log('pefilRecuperado', pefilRecuperado);
       } catch (error) {
         console.log('NO HAY PERFIL', error);
       }

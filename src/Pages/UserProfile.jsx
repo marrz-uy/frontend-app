@@ -21,7 +21,7 @@ const UserProfile = ({
   const pefilEnArray = traerPerfil();
   const { textos, handleLenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
-  console.log(language)
+  // console.log(language)
  
   useEffect(() => {
     setLenguage(getLanguageStorage());
@@ -34,7 +34,7 @@ const UserProfile = ({
       sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
       setUserSession('Invitado');
-      console.log('Cerrando sesion');
+      console.log('Cerrando sesion...');
       navigate('/');
     }
   };
