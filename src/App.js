@@ -11,100 +11,101 @@ import UserProfile from './Pages/UserProfile';
 function App() {
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState('false');
+  const [isLoggedIn, setIsLoggedIn] = useState('true');
   const [page, setPage] = useState('principal');
   const [bars, setBars] = useState(false);
   const [userSession, setUserSession] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState('');
-  
+
   const handleClickBars = () => {
     setBars(!bars);
   };
 
   return (
     <BrowserRouter>
-    <LenguageProvider>
-      <SplashScreen />
-      <Nav
-        text={text}
-        setText={setText}
-        setItems={setItems}
-        items={items}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        page={page}
-        handleClickBars={handleClickBars}
-      />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Principal
-              setItems={setItems}
-              page={page}
-              setPage={setPage}
-              bars={bars}
-            />
-          }
+      <LenguageProvider>
+        <SplashScreen />
+        <Nav
+          text={text}
+          setText={setText}
+          setItems={setItems}
+          items={items}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          page={page}
+          handleClickBars={handleClickBars}
         />
 
-        <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
-        />
-        <Route path="/register" element={<Register setPage={setPage} />} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Principal
+                setItems={setItems}
+                page={page}
+                setPage={setPage}
+                bars={bars}
+              />
+            }
+          />
 
-        <Route
-          path="/userbar"
-          element={
-            <UserBar
-              setPage={setPage}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          }
-        />
+          <Route
+            path="/login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
+          />
+          <Route path="/register" element={<Register setPage={setPage} />} />
 
-        <Route
-          path="/user"
-          element={
-            <UserProfile
-              setPage={setPage}
-              page={page}
-              userSession={userSession}
-              setUserSession={setUserSession}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          }
-        />
+          <Route
+            path="/userbar"
+            element={
+              <UserBar
+                setPage={setPage}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserSession={setUserSession}
+              />
+            }
+          />
 
-        <Route
-          path="/results"
-          element={<SearchResults items={items} setPage={setPage} />}
-        />
+          <Route
+            path="/user"
+            element={
+              <UserProfile
+                setPage={setPage}
+                page={page}
+                userSession={userSession}
+                setUserSession={setUserSession}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          />
 
-        <Route
-          path="/preferences"
-          element={
-            <UserPreferences
-              setPage={setPage}
-              pefilRecuperado={pefilRecuperado}
-              setPefilRecuperado={setPefilRecuperado}
-            />
-          }
-        />
+          <Route
+            path="/results"
+            element={<SearchResults items={items} setPage={setPage} />}
+          />
 
-        <Route
-          path="*"
-          element={
-            <div>
-              <h2>404 Page not found</h2>
-            </div>
-          }
-        />
-      </Routes>
+          <Route
+            path="/preferences"
+            element={
+              <UserPreferences
+                setPage={setPage}
+                pefilRecuperado={pefilRecuperado}
+                setPefilRecuperado={setPefilRecuperado}
+              />
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <div>
+                <h2>404 Page not found</h2>
+              </div>
+            }
+          />
+        </Routes>
       </LenguageProvider>
     </BrowserRouter>
   );
