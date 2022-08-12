@@ -5,9 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../Assets/logoFeelFuenteBlanca.svg";
 import backArrow from "../Assets/back.svg";
 import searchlogo from "../Assets/searchLogo.png";
-import LoginRoute from "../Components/LoginRoute";
 import "../Css/Nav.css";
-import UserRoute from "../Components/UserRoute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 

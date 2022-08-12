@@ -22,7 +22,7 @@ const Register = ({ setPage }) => {
   const submitRegister = (e) => {
     e.preventDefault();
     http
-      .post('/register', { email, password, passwordConfirmation, name })
+      .post('http://localhost:8000/api/register', { email, password, passwordConfirmation, name })
       .then((res) => {
         console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Usuario se registro correctamente');

@@ -10,12 +10,8 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({
-  setIsLoggedIn,
-  setPage
-}) => {
-
-  sessionStorage.setItem('isLoggedIn', 'false')
+const Login = ({ setIsLoggedIn, setPage }) => {
+  sessionStorage.setItem('isLoggedIn', 'false');
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -31,9 +27,10 @@ const Login = ({
   const submitLogin = (e) => {
     e.preventDefault();
     http
-      .post('/login', { email, password })
+      .post('http://localhost:8000/api/login', { email, password })
       .then((res) => {
-        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        // console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        console.log('%cLogin succesfull', 'color: green;');
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
         sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
