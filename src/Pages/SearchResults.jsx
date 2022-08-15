@@ -2,43 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { Layout } from '../Layout';
 import '../Css/SearchResults.css';
 import ResultsCard from '../Components/ResultsCard';
+import { getData } from '../Helpers/TraerPuntoInteresDesdeBackoffice';
 // import { filter } from '../Helpers/FilterByType';
 // import {traerPuntoInteresDesdeBackoffice} from '../Helpers/TraerPuntoInteresDesdeBackoffice'
-import AuthUser from '../Components/AuthUser';
+// import AuthUser from '../Components/AuthUser';
 
-const SearchResults = ({ items, setPage }) => {
+const SearchResults = ({ items, setPage, text }) => {
+  const [data, setData] = useState([]);
+  // const [categoria, setCategoria] = useState('')
 
-  const [data, setData] = useState([])
+  // const { http } = AuthUser();
 
-  const { http } = AuthUser();
-
-  const traerPuntoInteresDesdeBackoffice = () => {
-    const datosBackoffice = http
-      .get('http://localhost:8001/api/PuntosInteres')
-      .then((res) => {
-        console.log('%cPUNTOS DE INTERESES RESPONSE:', 'color: green;', res.data);
-        setData(res.data)
-      });
-  
-    return datosBackoffice;
-  };
+  console.log('%cITEMS search results:', 'color: orange;', items);
 
   useEffect(() => {
     setPage('results');
-    traerPuntoInteresDesdeBackoffice()
-  }, [setPage]);
-  
-  console.log('DATAAAAA: ', data)
-  // const data = filter(items);
+    if(items !== undefined){
+
+      setData(items);
+    }
+  }, [setPage, items]);
+  try {
+    console.log('DATAAAAA: ', data);
+    console.log('DATAAAAA TYPE: ', typeof data);
+  } catch (error) {
+    console.log('error de parseoooooo')
+  }
+  // // // const data = filter(items);
 
   return (
     <Layout>
       <div className="results ">
         <h6 className="resultsText">
-          {data.length} Resultados para Puntos de Interes{/* {items} */}
+          {items.length} Resultados para {text}
         </h6>
         <div className="infoResults">
-          {data.map((item) => {
+          {items.length === 0 ? 'Intente otra busqueda' :
+            items.map((item) => {
             return (
               <ResultsCard
                 key={item.id}

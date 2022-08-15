@@ -1,15 +1,25 @@
-import React, { useEffect, useContext } from "react";
-import LenguageContext from "../Context/LenguageContext";
-import AuthUser from "../Components/AuthUser";
-import { useNavigate, Link } from "react-router-dom";
-import logo from "../Assets/logoFeelFuenteBlanca.svg";
-import backArrow from "../Assets/back.svg";
-import searchlogo from "../Assets/searchLogo.png";
-import "../Css/Nav.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
+import LenguageContext from '../Context/LenguageContext';
+import AuthUser from '../Components/AuthUser';
+import { useNavigate, Link } from 'react-router-dom';
+import logo from '../Assets/logoFeelFuenteBlanca.svg';
+import backArrow from '../Assets/back.svg';
+import searchlogo from '../Assets/searchLogo.png';
+import '../Css/Nav.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { getData } from '../Helpers/TraerPuntoInteresDesdeBackoffice';
 
-const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
+const Nav = ({
+  text,
+  setText,
+  items,
+  setItems,
+  isLoggedIn,
+  setIsLoggedIn,
+  page,
+}) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
@@ -17,10 +27,23 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
     // console.log('ISLOGGEDIN: ', isLoggedIn);
-    return () => {};
+    // return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
+  const url = 'http://localhost:8001/api/PuntosInteres/';
+
+  const getData = (categoria) => {
+    axios
+      .get(`${url}${categoria}`)
+      .then((response) => {
+        const allDdata = response.data;
+        console.log('ALLDATA: ', allDdata);
+        setItems(allDdata);
+        // return allDdata;
+      })
+      .catch((error) => console.error(`Error en catchchch: ${error}`));
+  };
 
   const handleText = (e) => {
     e.preventDefault();
@@ -29,22 +52,26 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setItems(text);
-    navigate("/results");
+    setItems([])
+    getData(text);
+    navigate('/results');
   };
 
   const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      setItems(text);
-      navigate("/results");
+    setItems([])
+    if (e.key === 'Enter') {
+      getData(text);
+      navigate('/results');
     }
   };
+
+  // console.log('%cITEMS NAV0:', 'color: violet;', items);
 
   return (
     <div className="navbar">
       <div className="contentNavbar">
         <div className="logoFellUy">
-          {page !== "principal" ? (
+          {page !== 'principal' ? (
             <Link to="/">
               <img id="arrowImg" src={backArrow} alt="back"></img>
             </Link>
@@ -82,25 +109,17 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
             onClick={handleLenguage}
           >
             <img src={textos.flag} alt="img" />
-            {/* <p>{textos.lenguageFlagLabel}</p> */}
           </div>
-          {/* {isLoggedIn === 'false' || isLoggedIn === null ? ( */}
           <>
             <Link to="/userbar">
               <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
             </Link>
-            {/*  <div className="userLogo__contain">
-              <LoginRoute />
-            </div> */}
           </>
-          {/* ) : ( */}
-          {/* <UserRoute /> */}
-          {/* )} */}
         </div>
       </div>
       <div className="divMsgWelcome">
         <span className="msgWelcome">
-          {textos.wellcomeMessage}{" "}
+          {textos.wellcomeMessage}{' '}
           {getUser()?.name ? getUser()?.name : textos.wellcomeMessageUser}
         </span>
       </div>

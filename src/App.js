@@ -4,7 +4,7 @@ import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
-import { LenguageProvider } from '../src/Context/LenguageContext'
+import { LenguageProvider } from '../src/Context/LenguageContext';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
 
@@ -83,7 +83,14 @@ function App() {
 
           <Route
             path="/results"
-            element={<SearchResults items={items} setPage={setPage} />}
+            element={
+              <SearchResults
+                items={items}
+                setPage={setPage}
+                text={text}
+                setText={setText}
+              />
+            }
           />
 
           <Route
