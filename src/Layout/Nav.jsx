@@ -9,63 +9,49 @@ import searchlogo from '../Assets/searchLogo.png';
 import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { getData } from '../Helpers/TraerPuntoInteresDesdeBackoffice';
 
-const Nav = ({
-  text,
-  setText,
-  items,
-  setItems,
-  isLoggedIn,
-  setIsLoggedIn,
-  page,
-}) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
-  // console.log('LENGUAJE NAV: ', lenguage);
+
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    // console.log('ISLOGGEDIN: ', isLoggedIn);
-    // return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
   const url = 'http://localhost:8001/api/PuntosInteres/';
 
-  const getData = (categoria) => {
+  const getData = (Tipo) => {
     axios
-      .get(`${url}${categoria}`)
+      .get(`${url}${Tipo}`)
       .then((response) => {
         const allDdata = response.data;
         console.log('ALLDATA: ', allDdata);
-        setItems(allDdata);
-        // return allDdata;
+        setItems(allDdata.data);
       })
-      .catch((error) => console.error(`Error en catchchch: ${error}`));
+      .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   const handleText = (e) => {
-    e.preventDefault();
-    setText(e.target.value.toLowerCase());
+    // e.preventDefault();
+    setText(e.target.value);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setItems([])
+  const handleSearch = () => {
+    // e.preventDefault();
+    setItems([]);
     getData(text);
     navigate('/results');
   };
 
   const handleEnter = (e) => {
-    setItems([])
+    setItems([]);
     if (e.key === 'Enter') {
       getData(text);
       navigate('/results');
     }
   };
-
-  // console.log('%cITEMS NAV0:', 'color: violet;', items);
 
   return (
     <div className="navbar">
@@ -105,7 +91,6 @@ const Nav = ({
         <div className="menuLogo">
           <div
             className="userLogo__lenguage ocultaLenguage"
-            // value="es"
             onClick={handleLenguage}
           >
             <img src={textos.flag} alt="img" />
