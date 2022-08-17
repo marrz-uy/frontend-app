@@ -18,44 +18,50 @@ const Principal = ({ setItems, setPage }) => {
 
   const navigate = useNavigate();
 
-  const handleCategories = (e) => {
-    setItems(e);
-    setPage('results');
-    navigate('/results');
-  };
+  // const handleCategories = (e) => {
+  //   setItems(e);
+  //   setPage('results');
+  //   navigate('/results');
+  // };
 
   return (
     <Layout>
       <div className="container">
-        <div className="categories" onClick={() => handleCategories('tours')}>
+        <div className="categories" 
+        // onClick={() => handleCategories('tours')}
+        >
           <img className="lacarretera" src={predefTour} alt="hotel"></img>
           <span>{textos.predefinedToursLabel}</span>
         </div>
         <div
           className="categories"
-          onClick={() => handleCategories('armar tour')}
+          // onClick={() => handleCategories('armar tour')}
         >
           <img src={setYourTour} alt="img"></img>
           <span>{textos.buildMyTourLabel}</span>
         </div>
-        <div className="categories" onClick={() => handleCategories('hoteles')}>
+        <div className="categories" 
+        // onClick={() => handleCategories('hoteles')}
+        >
           <img src={hotelImg} alt="img"></img>
           <span>{textos.lodginLabel}</span>
         </div>
         <div
           className="categories"
-          onClick={() => handleCategories('restaurantes')}
+          // onClick={() => handleCategories('restaurantes')}
         >
           <img src={restaurant} alt="img"></img>
           <span>{textos.gastronomylabel}</span>
         </div>
-        <div className="categories" onClick={() => handleCategories('paseos')}>
+        <div className="categories" 
+        // onClick={() => handleCategories('paseos')}
+        >
           <img src={trips} alt="img"></img>
           <span>{textos.outingLabel}</span>
         </div>
         <div
           className="categories"
-          onClick={() => handleCategories('transportes')}
+          // onClick={() => handleCategories('transportes')}
         >
           <img src={transport} alt="img"></img>
           <span>{textos.transportLabel}</span>
