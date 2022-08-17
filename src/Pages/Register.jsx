@@ -85,7 +85,7 @@ const Register = ({ setPage }) => {
               className="input"
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={textos.registerPasswordPlaceholder}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

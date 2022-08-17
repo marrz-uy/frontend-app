@@ -78,7 +78,7 @@ const Login = ({ setIsLoggedIn, setPage }) => {
               type="text"
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder={textos.emailPlaceholder}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -88,11 +88,11 @@ const Login = ({ setIsLoggedIn, setPage }) => {
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder={textos.passwordPlaceholder}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" value="Login" className="btn-login" />
+            <input type="submit" value={textos.loginButtonValue} className="btn-login" />
           </div>
           <div className="linkAregistro">
             <Link to="/register">{textos.needAnAccountText}</Link>

@@ -9,7 +9,7 @@ export const translations = {
     //* NAVBAR
     wellcomeMessage: 'Bienvenido/a',
     wellcomeMessageUser: 'invitado',
-    searchPlaceholder: 'Buscá tu proximo destino',
+    searchPlaceholder: 'Busca tu próximo destino',
     lenguageFlagLabel: 'Lenguaje',
     //* USERBAR
     registerLabel: 'Registrarse',
@@ -23,12 +23,16 @@ export const translations = {
     outingLabel: 'Paseos',
     transportLabel: 'transporte',
     //* LOGIN
-    loginTitle: 'Login',
+    loginTitle: 'Iniciar Sesion',
+    emailPlaceholder: 'Correo Electronico',
+    passwordPlaceholder: 'Contraseña',
     needAnAccountText: 'Necesitas una cuenta?',
+    loginButtonValue: 'Iniciar Sesion',
     closeButtonValue: 'Cerrar',
     //* REGISTER
     registerTitle: 'Registrarse',
-    registerEmailPlaceholder: 'email',
+    registerEmailPlaceholder: 'Correo Electronico',
+    registerPasswordPlaceholder: 'Contraseña',
     registerPasswordConfirmationPlaceholder: 'Confirmacion de Password',
     registerNamePlaceholder: 'Nombre',
     registerButtonValue: 'Registro',
@@ -54,7 +58,12 @@ export const translations = {
     prefrencesbtnSendValue: 'Enviar',
     preferencesBackText: 'Volver Atras',
     //* FOOTER
-    contactText: 'Contactanos'
+    contactText: 'Contactanos',
+    //* SEARCHRESULTS
+    ceroResults: '0 Resultados',
+    resultsFor: 'Resultados para',
+    noResults: 'Lo sentimos, intente otra busqueda por favor'
+
 
   },
   en: {
@@ -74,16 +83,19 @@ export const translations = {
     loginLabel: 'Login',
     changeLanguageLabel: 'Change Lenguage',
     //* PRINCIPAL
-    predefinedToursLabel: 'Predefined Tours',
+    predefinedToursLabel: 'Default Tours',
     buildMyTourLabel: 'Build My Tour',
-    lodginLabel: 'Lodgin',
+    lodginLabel: 'Hotel',
     gastronomylabel: 'Gastronomy',
-    outingLabel: 'Outing',
+    outingLabel: 'Trips',
     transportLabel: 'Transport',
     //* LOGIN
     loginTitle: 'Login',
     needAnAccountText: 'Do you need an account?',
     closeButtonValue: 'Close',
+    emailPlaceholder: 'Email',
+    passwordPlaceholder: 'Password',
+    loginButtonValue: 'Login',
     //* REGISTER
     registerTitle: 'Register',
     registerEmailPlaceholder: 'Email',
@@ -91,6 +103,8 @@ export const translations = {
     registerNamePlaceholder: 'Name',
     registerButtonValue: 'Register',
     backTologinText: 'Back to login',
+    registerPasswordPlaceholder: 'Password',
+   
     //* USERPROFILE
     userNationalityText: 'Nationalty',
     userDateOfBirthText: 'Date of Birth',
@@ -112,6 +126,10 @@ export const translations = {
     prefrencesbtnSendValue: 'Send',
     preferencesBackText: 'Back',
     //* FOOTER
-    contactText: 'Contact Us.'
+    contactText: 'Contact Us.',
+    //* SEARCHRESULTS
+    ceroResults: '0 Results',
+    resultsFor: 'Results for',
+    noResults: 'Sorry, please try another search'
   },
 };
