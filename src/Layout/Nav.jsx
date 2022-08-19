@@ -20,7 +20,7 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
-  const url = 'http://localhost:8001/api/PuntosInteres/';
+  const url = 'http://localhost:8000/api/PuntosInteres/';
 
   const getData = (Tipo) => {
     axios
