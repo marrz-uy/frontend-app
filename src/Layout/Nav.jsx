@@ -1,13 +1,12 @@
 import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
 import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
-import LoginRoute from '../Components/LoginRoute';
 import '../Css/Nav.css';
-import UserRoute from '../Components/UserRoute';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,29 +14,41 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
-  // console.log('LENGUAJE NAV: ', lenguage);
+
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    // console.log('ISLOGGEDIN: ', isLoggedIn);
-    return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
+  const url = 'http://localhost:8000/api/PuntosInteres/';
 
-  const handleText = (e) => {
-    e.preventDefault();
-    setText(e.target.value.toLowerCase());
+  const getData = (Tipo) => {
+    axios
+      .get(`${url}${Tipo}`)
+      .then((response) => {
+        const allDdata = response.data;
+        console.log('ALLDATA: ', allDdata);
+        setItems(allDdata.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setItems(text);
+  const handleText = (e) => {
+    // e.preventDefault();
+    setText(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // e.preventDefault();
+    setItems([]);
+    getData(text);
     navigate('/results');
   };
 
   const handleEnter = (e) => {
+    setItems([]);
     if (e.key === 'Enter') {
-      setItems(text);
+      getData(text);
       navigate('/results');
     }
   };
@@ -80,24 +91,15 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
         <div className="menuLogo">
           <div
             className="userLogo__lenguage ocultaLenguage"
-            // value="es"
             onClick={handleLenguage}
           >
             <img src={textos.flag} alt="img" />
-            {/* <p>{textos.lenguageFlagLabel}</p> */}
           </div>
-          {isLoggedIn === 'false' || isLoggedIn === null ? (
-            <>
-              <Link to="/userbar">
-                <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
-              </Link>
-              <div className="userLogo__contain">
-                <LoginRoute />
-              </div>
-            </>
-          ) : (
-            <UserRoute />
-          )}
+          <>
+            <Link to="/userbar">
+              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
+            </Link>
+          </>
         </div>
       </div>
       <div className="divMsgWelcome">

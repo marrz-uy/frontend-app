@@ -10,12 +10,8 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({
-  setIsLoggedIn,
-  setPage
-}) => {
-
-  sessionStorage.setItem('isLoggedIn', 'false')
+const Login = ({ setIsLoggedIn, setPage }) => {
+  sessionStorage.setItem('isLoggedIn', 'false');
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -33,7 +29,8 @@ const Login = ({
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        // console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        console.log('%cLogin succesfull', 'color: green;');
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
         sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
@@ -81,7 +78,7 @@ const Login = ({
               type="text"
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder={textos.emailPlaceholder}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -91,11 +88,11 @@ const Login = ({
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder={textos.passwordPlaceholder}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" value="Login" className="btn-login" />
+            <input type="submit" value={textos.loginButtonValue} className="btn-login" />
           </div>
           <div className="linkAregistro">
             <Link to="/register">{textos.needAnAccountText}</Link>

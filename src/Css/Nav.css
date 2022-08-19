@@ -19,7 +19,6 @@
     
 }
 
-
 .contentNavbar {
     display: flex;
     justify-content: space-between;
@@ -225,10 +224,10 @@
         
         left: -35px;
       }
-
+/* 
     .userLogo__faBars {
         display: none;
-    }
+    } */
 
     .ocultaLenguage {
         display: flex;
@@ -267,6 +266,9 @@
 
     .divMsgWelcome {
         margin-top: 0.5rem;
+    }
+    .userBar__link {
+        text-align: center;
     }
 }
 
