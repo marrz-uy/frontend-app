@@ -27,7 +27,7 @@ const Login = ({ setIsLoggedIn, setPage }) => {
   const submitLogin = (e) => {
     e.preventDefault();
     http
-      .post('http://localhost:8000/api/login', { email, password })
+      .post('/login', { email, password })
       .then((res) => {
         // console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
         console.log('%cLogin succesfull', 'color: green;');
