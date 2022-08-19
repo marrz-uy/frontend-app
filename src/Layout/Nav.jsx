@@ -28,13 +28,13 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
       .then((response) => {
         const allDdata = response.data;
         console.log('ALLDATA: ', allDdata);
-        setItems(allDdata.data);
+        setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   const handleText = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setText(e.target.value);
   };
 

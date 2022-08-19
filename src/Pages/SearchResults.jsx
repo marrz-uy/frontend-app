@@ -1,45 +1,54 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
-import '../Css/SearchResults.css';
 import ResultsCard from '../Components/ResultsCard';
+import PageNumbers from '../Components/PageNumbers';
+import '../Css/SearchResults.css';
 
-const SearchResults = ({ items, setPage, text }) => {
-  // console.log('%cITEMS search results:', 'color: orange;', items);
+const SearchResults = ({ items, setPage, text, setText }) => {
+  console.log('%cITEMS search results:', 'color: orange;', items);
   const { textos } = useContext(LenguageContext);
+  const [datos, setDatos] = useState([]);
+  const [cantPaginas, setCantPaginas] = useState();
 
   useEffect(() => {
     setPage('results');
-  }, [setPage]);
+    setDatos(items.data);
+    setCantPaginas(items.last_page);
+  }, [setPage, items]);
+
+  console.log('%cDATOS search results:', 'color: orange;', datos);
+  console.log('%cCANTPAGINAS search results:', 'color: violet;', cantPaginas);
 
   return (
     <Layout>
       <div className="results ">
         <h6 className="resultsText">
-          {!items || items.length === 0
+          {!datos || datos.length === 0
             ? textos.ceroResults
-            : `${items.length} ${textos.resultsFor} ${text}`}
+            : `${datos.length} ${textos.resultsFor} ${text}`}
         </h6>
         <div className="infoResults">
-          {!items ? (
+          {!datos ? (
             <div className="sinResultado">
               <p>{textos.noResults}</p>
             </div>
           ) : (
-            items.map((item) => {
+            datos.map((dato) => {
               return (
                 <ResultsCard
-                  key={item.id}
-                  nombre={item.Nombre}
-                  ciudad={item.Ciudad}
-                  direccion={item.Direccion}
-                  caracteristicas={item.Contacto}
-                  imagen={item.Imagen}
+                  key={dato.id}
+                  nombre={dato.Nombre}
+                  ciudad={dato.Ciudad}
+                  direccion={dato.Direccion}
+                  caracteristicas={dato.Contacto}
+                  imagen={dato.Imagen}
                 />
               );
             })
           )}
         </div>
+        {cantPaginas > 1 ? <PageNumbers cant={cantPaginas} /> : null}
       </div>
     </Layout>
   );
