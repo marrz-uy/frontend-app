@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 .navbar {
     background-color: #00499d;
     display: flex;
@@ -14,8 +16,8 @@
     z-index: 1;
     min-width: 375px;
     min-height: 75.5px;
+    
 }
-
 
 .contentNavbar {
     display: flex;
@@ -145,7 +147,7 @@
     font-size: 0.8rem;
     display: flex;
     min-height: 20px;
-    font-family: 'Roboto';
+    font-family: 'Kodchasan';
 }
 
 .logout {
@@ -222,10 +224,10 @@
         
         left: -35px;
       }
-
+/* 
     .userLogo__faBars {
         display: none;
-    }
+    } */
 
     .ocultaLenguage {
         display: flex;
@@ -264,6 +266,9 @@
 
     .divMsgWelcome {
         margin-top: 0.5rem;
+    }
+    .userBar__link {
+        text-align: center;
     }
 }
 

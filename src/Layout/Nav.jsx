@@ -1,63 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
+import LenguageContext from '../Context/LenguageContext';
 import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
-import LoginRoute from '../Components/LoginRoute';
 import '../Css/Nav.css';
-import UserRoute from '../Components/UserRoute';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Nav = ({
-  text,
-  setText,
-  setItems,
-  isLoggedIn,
-  setIsLoggedIn,
-  page,
-  bars,
-  handleClickBars,
-}) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
   const { getUser, getLoggedIn } = AuthUser();
-  // sessionStorage.setItem('isLoggedIn', 'false')
+
+  const { textos, handleLenguage } = useContext(LenguageContext);
 
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    console.log('ISLOGGEDIN: ', isLoggedIn);
-    return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
-  const [lenguage, setLenguage] = useState('Spanish');
-
   const navigate = useNavigate();
+  const url = 'http://localhost:8000/api/PuntosInteres/';
 
-  const handleText = (e) => {
-    e.preventDefault();
-    setText(e.target.value.toLowerCase());
+  const getData = (Tipo) => {
+    axios
+      .get(`${url}${Tipo}`)
+      .then((response) => {
+        const allDdata = response.data;
+        console.log('ALLDATA: ', allDdata);
+        setItems(allDdata.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setItems(text);
+  const handleText = (e) => {
+    // e.preventDefault();
+    setText(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // e.preventDefault();
+    setItems([]);
+    getData(text);
     navigate('/results');
   };
 
   const handleEnter = (e) => {
+    setItems([]);
     if (e.key === 'Enter') {
-      setItems(text);
+      getData(text);
       navigate('/results');
     }
-  };
-
-  const handleLenguage = () => {
-    if (lenguage === 'Spanish') {
-      localStorage.setItem('lenguage', 'English');
-    } else {
-      localStorage.setItem('lenguage', 'Spanish');
-    }
-    setLenguage(localStorage.getItem('lenguage'));
   };
 
   return (
@@ -80,7 +73,7 @@ const Nav = ({
               className="inputSearch"
               name="categoria"
               type="text"
-              placeholder="Buscá tu proximo destino"
+              placeholder={textos.searchPlaceholder}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -100,36 +93,19 @@ const Nav = ({
             className="userLogo__lenguage ocultaLenguage"
             onClick={handleLenguage}
           >
-            {lenguage === 'Spanish' ? (
-              <img
-                src="https://img.icons8.com/officel/80/000000/uruguay.png"
-                alt="img"
-              />
-            ) : (
-              <img
-                src="https://img.icons8.com/office/80/000000/great-britain.png"
-                alt="img"
-              />
-            )}
-            <p>Idioma</p>
+            <img src={textos.flag} alt="img" />
           </div>
-          {isLoggedIn === 'false' || isLoggedIn === null ? (
-            <>
-              <Link to="/userbar">
-                <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
-              </Link>
-              <div className="userLogo__contain">
-                <LoginRoute />
-              </div>
-            </>
-          ) : (
-            <UserRoute />
-          )}
+          <>
+            <Link to="/userbar">
+              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
+            </Link>
+          </>
         </div>
       </div>
       <div className="divMsgWelcome">
         <span className="msgWelcome">
-          Bienvenido a FeelUy {getUser()?.name || 'Invitado'}
+          {textos.wellcomeMessage}{' '}
+          {getUser()?.name ? getUser()?.name : textos.wellcomeMessageUser}
         </span>
       </div>
     </div>

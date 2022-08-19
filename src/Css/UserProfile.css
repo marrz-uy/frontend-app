@@ -157,7 +157,8 @@ h1 {
 
 .divBtnLenguaje img {
   width: 40px;
-  height: 40px;
+	height: 25px;
+	cursor: pointer;
   padding-right: 5px;
 }
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Select from 'react-select';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import { Layout } from '../Layout';
+import LenguageContext from '../Context/LenguageContext';
 import '../Css/UserPreferences.css';
 import {
   CategoriaAlojamiento,
@@ -15,7 +15,16 @@ import {
   CategoriaActividadesInfantiles,
   CategoriaServiciosEsenciales,
 } from '../Data/Categorias';
-
+import {
+  LodginCategory,
+  GastronomyCategory,
+  ShowCategory,
+  OutdoorActivitiesCategory,
+  NightActivitiesCatergory,
+  TransportationCategory,
+  ChildrensActivitiesCategory,
+  EssentialServicesCategory,
+} from '../Data/Categories';
 import alojamiento from '../Assets/categoriesImages/hospedaje.png';
 import gastronomia from '../Assets/categoriesImages/fast-food 1.png';
 import airelibre from '../Assets/categoriesImages/hiking 1.png';
@@ -24,7 +33,6 @@ import espectaculos from '../Assets/categoriesImages/teatro 1.png';
 import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
-import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { filterData } from '../Helpers/FilterByCategory';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
@@ -36,25 +44,32 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
   const [submitMessage, setSubmitMessage] = useState('');
-
-  console.log('traerPreferencias()=>', traerPreferencias());
+  const { textos } = useContext(LenguageContext);
+  const [language, setLenguage] = useState('');
 
   useEffect(() => {
     setPage('preferences');
+    setLenguage(localStorage.getItem('language'));
     try {
       setUser_id(getUser()?.id);
-      // setNacionalidad(getUser()?.profile?.nacionalidad)
-      // setFechaDeNacimiento(getUser()?.profile?.f_nacimiento)
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
-  }, [setPage, getUser, user_id, setUser_id, pefilRecuperado]);
+  }, [
+    setPage,
+    getUser,
+    user_id,
+    setUser_id,
+    pefilRecuperado,
+    setLenguage,
+    language,
+  ]);
 
   const recuperarPerfil = () => {
-    /* if (user_id !== null || user_id !== '') { */
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
+        // console.log('pefilRecuperado', pefilRecuperado);
       } catch (error) {
         console.log('NO HAY PERFIL', error);
       }
@@ -65,8 +80,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     const nuevaPreferencia = {
       id: selectedOption.id,
       categoria: selectedOption.categoria,
+      category: selectedOption.category,
       value: selectedOption.value,
       label: selectedOption.label,
+      labelEng: selectedOption.labelEng,
+      labelEsp: selectedOption.labelEsp,
     };
     setPreferencia([...preferencia, nuevaPreferencia]);
   };
@@ -78,8 +96,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           ...prefe,
           id: selectedOption.id,
           categoria: selectedOption.categoria,
+          category: selectedOption.category,
           value: selectedOption.value,
           label: selectedOption.label,
+          labelEng: selectedOption.labelEng,
+          labelEsp: selectedOption.labelEsp,
         };
       }
       return prefe;
@@ -108,7 +129,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .patch(`/userProfile/${user_id}`, {
+      .patch(`http://localhost:8000/api/userProfile/${user_id}`, {
         nacionalidad,
         f_nacimiento,
         preferencias,
@@ -153,7 +174,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .post('/userProfile', {
+      .post('http://localhost:8000/api/userProfile', {
         user_id,
         nacionalidad,
         f_nacimiento,
@@ -194,7 +215,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     } else {
       if (preferencias.length < 3) {
         alert(
-          'Debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
+          'Las preferencias antiguas se muestran pero no se seleccionan, debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
         );
         return;
       }
@@ -242,15 +263,15 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       <div className="userProfile" onLoad={recuperarPerfil}>
         <div>
           <h2 className="title">
-            {pefilRecuperado?.preferencias === 'sin preferencias'
-              ? 'Crear Perfil'
-              : 'Mi Perfil'}
+            {pefilRecuperado?.preferencias === ''
+              ? textos.preferencesTitleCreateProfile
+              : textos.preferencesTitleUpdateProfile}
           </h2>
         </div>
         <form onSubmit={handleUserProfile}>
           <div className="nacionalidadYfchanacimiento">
             <div className="inputGroupPreferencias nacionalidad">
-              <label htmlFor="nacionalidad">Nacionalidad</label>
+              <label htmlFor="nacionalidad">{textos.userNationalityText}</label>
               <input
                 className="inputPreferencias"
                 type="text"
@@ -264,7 +285,9 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
               />
             </div>
             <div className="inputGroupPreferencias fecha">
-              <label htmlFor="fechaDeNacimiento">Fecha de Nacimiento</label>
+              <label htmlFor="fechaDeNacimiento">
+                {textos.userDateOfBirthText}
+              </label>
               <input
                 className="inputPreferencias"
                 id="fecha"
@@ -278,16 +301,18 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
             </div>
           </div>
           <div>
-            <h4 className="titlePreferencias">Mis Preferencias</h4>
+            <h4 className="titlePreferencias">{textos.myPreferencesTitle}</h4>
           </div>
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
               <img src={alojamiento} className="categoryImage" alt="hot"></img>
-              Alojamiento
+              {textos.preferencesLodginLabel}
             </label>
             <Select
               defaultValue={filterData('Alojamiento')}
-              options={CategoriaAlojamiento}
+              options={
+                language === 'es' ? CategoriaAlojamiento : LodginCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -295,11 +320,13 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="gastronomia">
               <img src={gastronomia} className="categoryImage" alt="Res"></img>
-              Gastronomia
+              {textos.preferencesGastronomyLabel}
             </label>
             <Select
               defaultValue={filterData('Gastronomia')}
-              options={CategoriaGastronomia}
+              options={
+                language === 'es' ? CategoriaGastronomia : GastronomyCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -307,11 +334,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="espectaculos">
               <img src={espectaculos} className="categoryImage" alt="res"></img>
-              Espectaculos
+              {textos.preferencesShowsLabel}
             </label>
             <Select
               defaultValue={filterData('Espectaculos')}
-              options={CategoriaEspectaculos}
+              options={language === 'es' ? CategoriaEspectaculos : ShowCategory}
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -319,11 +346,15 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesAlAireLibre">
               <img src={airelibre} className="categoryImage" alt="Esp"></img>
-              Actividades Al Aire Libre
+              {textos.preferencesOutdoorActivitiesLabel}
             </label>
             <Select
               defaultValue={filterData('Actividades Al Aire Libre')}
-              options={CategoriaActividadesAlAireLibre}
+              options={
+                language === 'es'
+                  ? CategoriaActividadesAlAireLibre
+                  : OutdoorActivitiesCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -331,11 +362,15 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesNocturnas">
               <img src={nocturna} className="categoryImage" alt="Noc"></img>
-              Actividades Nocturnas
+              {textos.preferencesNightActivitiesLabel}
             </label>
             <Select
               defaultValue={filterData('Actividades Nocturnas')}
-              options={CategoriaActividadesNocturnas}
+              options={
+                language === 'es'
+                  ? CategoriaActividadesNocturnas
+                  : NightActivitiesCatergory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -343,11 +378,13 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="transporte">
               <img src={transporte} className="categoryImage" alt="Tra"></img>
-              Transporte
+              {textos.preferencesTransportLabellabel}
             </label>
             <Select
               defaultValue={filterData('Transporte')}
-              options={CategoriaTransporte}
+              options={
+                language === 'es' ? CategoriaTransporte : TransportationCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -355,11 +392,15 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesInfantiles">
               <img src={infantiles} className="categoryImage" alt="Inf"></img>
-              Actividades Infantiles
+              {textos.preferencesChildrensActivitiesLabel}
             </label>
             <Select
               defaultValue={filterData('Actividades Infantiles')}
-              options={CategoriaActividadesInfantiles}
+              options={
+                language === 'es'
+                  ? CategoriaActividadesInfantiles
+                  : ChildrensActivitiesCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
@@ -367,20 +408,28 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="serviciosEsenciales">
               <img src={servicios} className="categoryImage" alt="Ser"></img>
-              Servicios Esenciales
+              {textos.preferencesEssentialsServicesLabel}
             </label>
             <Select
               defaultValue={filterData('Servicios Esenciales')}
-              options={CategoriaServiciosEsenciales}
+              options={
+                language === 'es'
+                  ? CategoriaServiciosEsenciales
+                  : EssentialServicesCategory
+              }
               styles={styles}
               onChange={handlePreferencias}
             />
           </div>
-          <input type="submit" value="Enviar" className="btn-enviar " />
+          <input
+            type="submit"
+            value={textos.prefrencesbtnSendValue}
+            className="btn-enviar "
+          />
         </form>
         <div className="linkALoginPreferencias">
           <div className="submiMessage">{`${submitMessage}`}</div>
-          <Link to="/user">Volver atras</Link>
+          <Link to="/user">{textos.preferencesBackText}</Link>
         </div>
       </div>
     </Layout>
