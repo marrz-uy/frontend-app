@@ -1,25 +1,27 @@
 import React, { useEffect, useContext, useState } from 'react';
+import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
 import PageNumbers from '../Components/PageNumbers';
 import '../Css/SearchResults.css';
 
-const SearchResults = ({ items, setPage, text, setText }) => {
+const SearchResults = ({ items,setItems, setPage, text, setText, paginaActual, setPaginaActual }) => {
   console.log('%cITEMS search results:', 'color: orange;', items);
   const { textos } = useContext(LenguageContext);
   const [datos, setDatos] = useState([]);
   const [cantPaginas, setCantPaginas] = useState();
-
+  
   useEffect(() => {
     setPage('results');
     setDatos(items.data);
     setCantPaginas(items.last_page);
+    setPaginaActual(items.current_page)
   }, [setPage, items]);
 
   console.log('%cDATOS search results:', 'color: orange;', datos);
   console.log('%cCANTPAGINAS search results:', 'color: violet;', cantPaginas);
-
+  console.log('%cPGINAACTUAL search results:', 'color: blue;', paginaActual);
   return (
     <Layout>
       <div className="results ">
@@ -48,7 +50,7 @@ const SearchResults = ({ items, setPage, text, setText }) => {
             })
           )}
         </div>
-        {cantPaginas > 1 ? <PageNumbers cant={cantPaginas} /> : null}
+        {cantPaginas > 1 ? <PageNumbers cant={cantPaginas}/> : null}
       </div>
     </Layout>
   );

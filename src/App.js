@@ -16,6 +16,7 @@ function App() {
   const [bars, setBars] = useState(false);
   const [userSession, setUserSession] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState('');
+  const [paginaActual, setPaginaActual] = useState(1);
 
   const handleClickBars = () => {
     setBars(!bars);
@@ -34,6 +35,8 @@ function App() {
           setIsLoggedIn={setIsLoggedIn}
           page={page}
           handleClickBars={handleClickBars}
+          paginaActual={paginaActual}
+          setPaginaActual={setPaginaActual}
         />
 
         <Routes>
@@ -89,6 +92,8 @@ function App() {
                 setPage={setPage}
                 text={text}
                 setText={setText}
+                paginaActual={paginaActual}
+                setPaginaActual={setPaginaActual}
               />
             }
           />
