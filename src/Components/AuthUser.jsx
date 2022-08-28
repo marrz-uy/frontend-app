@@ -69,7 +69,8 @@ export default function AuthUser() {
     baseURL: 'https://f71b-2800-a4-16c9-cd00-903f-5ae4-76d0-e9b9.sa.ngrok.io/api',
     headers: {
       'Content-type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
+      'Access-Control-Allow-Origin': '*'
     },
   });
 
