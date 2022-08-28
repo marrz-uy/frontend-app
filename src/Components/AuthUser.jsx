@@ -45,7 +45,7 @@ export default function AuthUser() {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      sessionStorage.setItem('preferencias',userProfile.preferencias);
+      sessionStorage.setItem('preferencias', userProfile.preferencias);
     }
 
     setToken(token);
@@ -56,8 +56,7 @@ export default function AuthUser() {
 
   const saveUserProfile = (userProfile) => {
     sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-    sessionStorage.setItem(
-      'preferencias',userProfile.preferencias);
+    sessionStorage.setItem('preferencias', userProfile.preferencias);
     setUserProfile(userProfile);
   };
 
@@ -67,9 +66,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-
-    baseURL: 'https://c9af-2800-a4-169c-bd00-c50b-6d3e-ecb7-ea99.sa.ngrok.io/api',
-
+    baseURL: 'http://localhost:8000/api',
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -96,6 +93,6 @@ export default function AuthUser() {
     userProfile,
     getUserProfile,
     saveUserProfile,
-    getLoggedIn
+    getLoggedIn,
   };
 }
