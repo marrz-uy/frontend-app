@@ -1,5 +1,6 @@
 .layout {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	color: rgb(81, 81, 81);

@@ -36,7 +36,7 @@ const Nav = ({
       .get(`${url}${Tipo}`)
       .then((response) => {
         const allDdata = response.data;
-        console.log('ALLDATA: ', allDdata);
+        // console.log('ALLDATAcccccccc: ', allDdata);
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -44,21 +44,30 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
-    setText(e.target.value);
+    let t = e.target.value;
+    setText(t);
   };
 
   const handleSearch = () => {
     // e.preventDefault();
     setItems([]);
-    getData(text);
-    navigate('/results');
+    if (text.length > 2) {
+      getData(text);
+      navigate('/results');
+      return;
+    }
+    alert('Ingrese un texto mayor a 2 caracteres');
   };
 
   const handleEnter = (e) => {
     setItems([]);
     if (e.key === 'Enter') {
-      getData(text);
-      navigate('/results');
+      if (text.length > 2) {
+        getData(text);
+        navigate('/results');
+        return;
+      }
+      alert('Ingrese un texto mayor a 2 caracteres');
     }
   };
 

@@ -13,8 +13,8 @@ const PageNumbers = ({cant}) => {
 		
 		console.log('NUMBER',number)
     return (
-      <div>
-        <button key={number} id={number}>{number}</button>
+      <div key={number}>
+        <button  id={number}>{number}</button>
       </div>
     );
   });
