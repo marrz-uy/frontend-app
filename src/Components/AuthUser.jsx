@@ -71,8 +71,8 @@ export default function AuthUser() {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-      'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, X-Token-Auth, Authorization'
+      'Access-Control-Allow-Methods': "GET, POST, PUT, DELETE",
+      'Access-Control-Allow-Headers': "X-Requested-With, Content-Type, X-Token-Auth, Authorization"
     },
   });
 
