@@ -34,7 +34,7 @@ const Nav = ({
   const getData = (Tipo) => {
     console.log('URLLLLLL: ', url+Tipo )
     axios
-      .get(`${url}${Tipo}`)
+      .get(`PuntosInteres/${Tipo}`)
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
