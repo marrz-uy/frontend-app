@@ -32,6 +32,7 @@ const Nav = ({
   const url = 'https://68cf-2800-a4-160a-dd00-33db-a966-4b07-1f20.sa.ngrok.io/api/PuntosInteres/';
 
   const getData = (Tipo) => {
+    // console.log('URLLLLLL: ', )
     axios
       .get(`${url}${Tipo}`)
       .then((response) => {
