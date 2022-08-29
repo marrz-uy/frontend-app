@@ -29,7 +29,7 @@ const Nav = ({
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
-  const url = 'https://68cf-2800-a4-160a-dd00-33db-a966-4b07-1f20.sa.ngrok.io/api/PuntosInteres/';
+  const url = 'PuntosInteres/';
 
   const getData = (Tipo) => {
     console.log('URLLLLLL: ', url+Tipo )
