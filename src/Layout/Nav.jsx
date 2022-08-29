@@ -29,7 +29,7 @@ const Nav = ({
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
-  const url = 'https://f71b-2800-a4-16c9-cd00-903f-5ae4-76d0-e9b9.sa.ngrok.io/api/PuntosInteres/';
+  const url = 'https://68cf-2800-a4-160a-dd00-33db-a966-4b07-1f20.sa.ngrok.io/api/PuntosInteres/';
 
   const getData = (Tipo) => {
     axios
