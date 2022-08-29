@@ -36,7 +36,6 @@ const Nav = ({
       .get(`${url}${Tipo}`)
       .then((response) => {
         const allDdata = response.data;
-        // console.log('ALLDATAcccccccc: ', allDdata);
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -48,8 +47,8 @@ const Nav = ({
     setText(t);
   };
 
-  const handleSearch = () => {
-    // e.preventDefault();
+  const handleSearch = (e) => {
+    e.preventDefault();
     setItems([]);
     if (text.length > 2) {
       getData(text);
