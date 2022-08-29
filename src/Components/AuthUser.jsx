@@ -70,7 +70,7 @@ export default function AuthUser() {
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
-      
+      'Access-Control-Allow-Origin': '*',
     },
   });
 
