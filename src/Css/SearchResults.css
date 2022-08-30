@@ -19,9 +19,12 @@
 	margin: auto;
 }
 
-/* .seccionPaginado{
-	margin-bottom: 3rem;
-} */
+.seccionPaginado {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
+}
 
 .contenedorPaginado {
 	width: 100%;
@@ -47,17 +50,12 @@
 	border: 1px solid rgba(128, 128, 128, 0.638);
 	color: rgba(0, 0, 0, 0.483);
 	border-radius: 4px;
-	width: 2rem;
+	width: 3rem;
 	background-color: transparent;
 }
 
-.btnNumero:hover {
-	color: gray;
-	background-color: aliceblue;
-}
-
 .active {
-	width: 2rem;
+	width: 3rem;
 	background-color: #00499d;
 	color: black;
 }
@@ -65,8 +63,6 @@
 .none {
 	visibility: hidden;
 }
-
-
 
 
 /* laptop/desktop - de 1024px en adelante */
@@ -121,6 +117,11 @@
 		height: 3rem;
 		background-color: transparent;
 	}
+
+	.btnNumero:hover {
+	color: gray;
+	background-color: rgb(255, 255, 255);
+}
 
 	.active {
 		background-color: #00499d;

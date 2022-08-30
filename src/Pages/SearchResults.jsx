@@ -5,12 +5,10 @@ import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
 import '../Css/SearchResults.css';
 
-const SearchResults = ({ items, setItems, setPage, text, setText }) => {
-  // console.log('%cITEMS search results:', 'color: orange;', items);
+const SearchResults = ({ items, setPage, text }) => {
   const { textos } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
-  const [cantPaginas, setCantPaginas] = useState(items.last_page);
-  const [paginaActual, setPaginaActual] = useState();
+  const [cantPaginas, setCantPaginas] = useState(items?.last_page);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
@@ -20,41 +18,27 @@ const SearchResults = ({ items, setItems, setPage, text, setText }) => {
   useEffect(() => {
     setPage('results');
     setDatos(items);
-    setCantPaginas(items.last_page);
-    setPaginaActual(items.current_page);
+    setCantPaginas(items?.last_page);
   }, [setPage, items]);
 
   const getData = (numPage) => {
-    // console.log('RUTA AXIOS: ', `${items.path}?page=${numPage}`);
     axios
-      .get(`${items.path}?page=${numPage}`)
+      .get(`${items?.path}?page=${numPage}`)
       .then((response) => {
-        const allDdata = response.data;
+        const allDdata = response?.data;
         setDatos(allDdata);
+        console.log('datos de axios: ', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
-
-  // console.log('%cDATOS search results:', 'color: orange;', datos);
-  // console.log('%cCANTPAGINAS search results:', 'color: violet;', cantPaginas);
-  // console.log('%cPAGINAACTUAL search results:', 'color: blue;', datos?.current_page);
-  // console.log('%cTOTAL REGISTROS search results:', 'color: blue;', datos?.total);
-  // console.log('%cPATH search results:', 'color: blue;', items.path);
 
   const handlePageChange = (e) => {
     e.preventDefault();
     console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
+    console.log('nuevaData: ', datos);
   };
-
-  console.log('NUEVA DATA2: ', datos);
-
-  // console.log('%cDATOS search results:', 'color: orange;', datos);
-  // console.log('%cCANTPAGINAS search results:', 'color: violet;', cantPaginas);
-  // console.log('%cPAGINAACTUAL search results:', 'color: blue;', datos?.current_page);
-  // console.log('%cTOTAL REGISTROS search results:', 'color: blue;', datos?.total);
-  // console.log('%cPATH search results:', 'color: blue;', datos?.path);
 
   return (
     <Layout>
@@ -95,29 +79,27 @@ const SearchResults = ({ items, setItems, setPage, text, setText }) => {
                     datos?.current_page !== 1 ? 'btnNumero' : 'btnNumero none'
                   }
                   value={datos?.current_page - 1}
-                      onClick={handlePageChange}
+                  onClick={handlePageChange}
                 >
                   {'< pre'}
                 </button>
               </div>
 
-              {pages.map((number) => {
-                return (
-                  <div key={number} className="numeroDePagina">
-                    <button
-                      className={
-                        datos?.current_page === number
-                          ? 'btnNumero active'
-                          : 'btnNumero'
-                      }
-                      value={number}
-                      onClick={handlePageChange}
-                    >
-                      {number}
-                    </button>
-                  </div>
-                );
-              })}
+              {pages.map((number) => (
+                <div key={number} className="numeroDePagina">
+                  <button
+                    className={
+                      datos?.current_page === number
+                        ? 'btnNumero active'
+                        : 'btnNumero'
+                    }
+                    value={number}
+                    onClick={handlePageChange}
+                  >
+                    {number}
+                  </button>
+                </div>
+              ))}
               <div className="numeroDePagina">
                 <button
                   className={
@@ -126,7 +108,7 @@ const SearchResults = ({ items, setItems, setPage, text, setText }) => {
                       : 'btnNumero none'
                   }
                   value={datos?.current_page + 1}
-                      onClick={handlePageChange}
+                  onClick={handlePageChange}
                 >
                   {'sig >'}
                 </button>
