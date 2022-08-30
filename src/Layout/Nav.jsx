@@ -10,7 +10,16 @@ import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
+const Nav = ({
+  text,
+  setText,
+  setItems,
+  isLoggedIn,
+  setIsLoggedIn,
+  page,
+  paginaActual,
+  setPaginaActual,
+}) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
@@ -27,29 +36,38 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
       .get(`${url}${Tipo}`)
       .then((response) => {
         const allDdata = response.data;
-        console.log('ALLDATA: ', allDdata);
-        setItems(allDdata.data);
+        // console.log('ALLDATAcccccccc: ', allDdata);
+        setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   const handleText = (e) => {
-    // e.preventDefault();
-    setText(e.target.value);
+    e.preventDefault();
+    let t = e.target.value;
+    setText(t);
   };
 
   const handleSearch = () => {
     // e.preventDefault();
     setItems([]);
-    getData(text);
-    navigate('/results');
+    if (text.length > 2) {
+      getData(text);
+      navigate('/results');
+      return;
+    }
+    alert('Ingrese un texto mayor a 2 caracteres');
   };
 
   const handleEnter = (e) => {
     setItems([]);
     if (e.key === 'Enter') {
-      getData(text);
-      navigate('/results');
+      if (text.length > 2) {
+        getData(text);
+        navigate('/results');
+        return;
+      }
+      alert('Ingrese un texto mayor a 2 caracteres');
     }
   };
 
