@@ -23,9 +23,9 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserSession }) => {
   };
 
   return (
-    <Layout>
+    // <Layout>
       <nav className="userBar">
-        <div className="animate__animated animate__slideInRight animate__faster">
+        <div className="animate__animated animate__slideInLeft animate__faster">
           <ul className="userBar__link">
             {isLoggedIn === "false" || isLoggedIn === null ? (
               <>
@@ -59,7 +59,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserSession }) => {
           </ul>
         </div>
       </nav>
-    </Layout>
+    // </Layout>
   );
 };
 export default UserBar;

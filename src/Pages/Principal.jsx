@@ -9,8 +9,9 @@ import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
+import UserBar from './UserBar';
 
-const Principal = ({ setItems, setPage }) => {
+const Principal = ({ setItems, setPage, userBar, setUserBar }) => {
   const { textos } = useContext(LenguageContext);
   useEffect(() => {
     setPage('principal');
@@ -25,7 +26,9 @@ const Principal = ({ setItems, setPage }) => {
   };
 
   return (
+    <>
     <Layout>
+      <div className='main-container'>
       <div className="container">
         <div className="categories" onClick={() => handleCategories('tours')}>
           <img className="lacarretera" src={predefTour} alt="hotel"></img>
@@ -61,7 +64,10 @@ const Principal = ({ setItems, setPage }) => {
           <span>{textos.transportLabel}</span>
         </div>
       </div>
+      </div>
     </Layout>
+      {userBar && <UserBar/>}
+      </>
   );
 };
 

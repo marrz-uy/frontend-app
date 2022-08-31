@@ -4,7 +4,18 @@
 	gap: 2rem;
 	transition: all .3s ease;
 	overflow: hidden;
+	width: 100%;
 	margin-top: 3.5rem;
+	z-index: 1000;
+	/* position: relative; */
+}
+
+@media (min-width: 480px) {
+	.userBar {
+		/* position: relative; */
+		/* right: -50%; */
+		/* top: 0; */
+	}
 }
 
 .userBar__link {
@@ -14,10 +25,15 @@
 	gap: 5rem;
 	align-items: center;
 	background-color: #00499d;
-	width: 100vw;
 	height: 100vh;
 	padding-top: 7rem;
 	min-height: 480px;
+}
+
+@media (min-width: 480px) {
+	.userBar__link {
+		width: 50vw;
+	}
 }
 
 
@@ -46,7 +62,7 @@
 	text-decoration: none;
 	/* text-transform: uppercase; */
 	margin-bottom: 5px;
-	
+
 }
 
 .userBar__link li p {
@@ -83,7 +99,7 @@
 }
 
 animate__animated.animate__faster {
-  min-height: 600px;
+	min-height: 600px;
 }
 
 @media (min-width: 880px) {

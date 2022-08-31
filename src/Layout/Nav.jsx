@@ -11,7 +11,7 @@ import UserRoute from "../Components/UserRoute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page, userBar, setUserBar }) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
@@ -91,6 +91,7 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page }) => {
             <Link to="/userbar">
               <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
             </Link>
+            <button onClick={() => setUserBar(!userBar)}>Test</button>
             {/*  <div className="userLogo__contain">
               <LoginRoute />
             </div> */}
