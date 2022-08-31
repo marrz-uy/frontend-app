@@ -3,12 +3,12 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 10px;
+	gap: 30px;
 }
 
 .categories {
-	height: 155px;
-	width: 150px;
+	height: 130px;
+	width: 130px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -21,17 +21,60 @@
 }
 
 .categories span {
-	margin-top: -30px;
+	display: flex;
+	justify-content: center;
+	word-wrap: normal;
+	margin-top: -20px;
+	font-size: 0.8rem;
+	width: 150px;
 }
 
 img {
-	width: 170px;
+	width: 120px;
 }
+
+.seeAllButtonDiv{
+	width: 75%;
+	display: flex;
+	align-content: flex-start;
+	padding: 0.5rem 0;
+}
+
+.seeAllButton{
+	width: 100%;
+}
+
+.seeAllButton:hover{
+	cursor: pointer;
+}
+
+.moreServicesContainer{
+	/* margin-top: 6.5rem; */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+}
+
+.moreServicesContainer .categories {
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.categories_title{
+	margin-left: 30px;
+}
+
 
 @media screen and (min-width: 800px) {
 
 	.container {
 		margin-top: 8rem;
+	}
+
+	.seeAllButtonDiv{
+		width: 30%;
 	}
 	
 	}

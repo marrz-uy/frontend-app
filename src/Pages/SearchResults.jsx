@@ -9,7 +9,11 @@ const SearchResults = ({ items, setPage, text }) => {
   const { textos } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState(items?.last_page);
+  const [limiteCantidadPaginas, setLimiteCantidadPaginas] = useState(5);
+  const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
+  const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
 
+  console.log('ITEMS searchResults: ', items);
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -32,12 +36,19 @@ const SearchResults = ({ items, setPage, text }) => {
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
+
   const handlePageChange = (e) => {
     e.preventDefault();
     console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
     console.log('nuevaData: ', datos);
+
+    // setLimiteCantidadPaginas(datos.current_page + 1);
+    if (datos.current_page + 1 > limiteMaximoPaginas) {
+      setLimiteMaximoPaginas(limiteMaximoPaginas + limiteCantidadPaginas);
+      setLimiteMinimoPaginas(limiteMinimoPaginas + limiteCantidadPaginas);
+    }
   };
 
   return (
@@ -85,21 +96,30 @@ const SearchResults = ({ items, setPage, text }) => {
                 </button>
               </div>
 
-              {pages.map((number) => (
-                <div key={number} className="numeroDePagina">
-                  <button
-                    className={
-                      datos?.current_page === number
-                        ? 'btnNumero active'
-                        : 'btnNumero'
-                    }
-                    value={number}
-                    onClick={handlePageChange}
-                  >
-                    {number}
-                  </button>
-                </div>
-              ))}
+              {pages.map((number) => {
+                if (
+                  number < limiteMaximoPaginas + 1 &&
+                  number > limiteMinimoPaginas
+                ) {
+                  return (
+                    <div key={number} className="numeroDePagina">
+                      <button
+                        className={
+                          datos?.current_page === number
+                            ? 'btnNumero active'
+                            : 'btnNumero'
+                        }
+                        value={number}
+                        onClick={handlePageChange}
+                      >
+                        {number}
+                      </button>
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
               <div className="numeroDePagina">
                 <button
                   className={

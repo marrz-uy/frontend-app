@@ -44,7 +44,9 @@ function App() {
             path="/"
             element={
               <Principal
+                items={items}
                 setItems={setItems}
+                setText={setText}
                 page={page}
                 setPage={setPage}
                 bars={bars}

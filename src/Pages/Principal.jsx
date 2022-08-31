@@ -1,6 +1,7 @@
+import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
-import { useEffect, useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
+import axios from 'axios';
 import '../Css/Principal.css';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -8,53 +9,81 @@ import setYourTour from '../Assets/categoriesImages/mosaico2.png';
 import restaurant from '../Assets/categoriesImages/fast-food 1.png';
 import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
+import teatro from '../Assets/categoriesImages/teatro 1.png';
+import actividaesNocturnas from '../Assets/categoriesImages/cocktail 1.png';
+import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
+import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
 import { useNavigate } from 'react-router-dom';
 
-const Principal = ({ setItems, setPage }) => {
+const Principal = ({ setItems,  items,  setPage, setText }) => {
   const { textos } = useContext(LenguageContext);
+  const [seeAll, setSeeAll] = useState(false);
+  const [btnText, setBtnText] = useState('');
   useEffect(() => {
     setPage('principal');
   }, [setPage]);
 
+  console.log('BTNTXT: ', btnText)
+
+  const getData = (categoria) => {
+    axios
+      .get(`http://localhost:8000/api/PuntosInteres/categoria/${categoria}`)
+      .then((response) => {
+        const allDdata = response.data;
+        setItems(allDdata);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
   const navigate = useNavigate();
 
-  // const handleCategories = (e) => {
-  //   setItems(e);
-  //   setPage('results');
-  //   navigate('/results');
-  // };
+  const handleSeeAll = () => {
+    setSeeAll(!seeAll);
+    setBtnText(!btnText)
+  };
+
+  const handleCategories = (e) => {
+    setItems(e);
+    setText(`${textos.category} ${e}`)
+    getData(e);
+    setPage('results');
+    navigate('/results');
+  };
 
   return (
     <Layout>
       <div className="container">
-        <div className="categories" 
-        // onClick={() => handleCategories('tours')}
+        <div
+          className="categories"
+          // onClick={() => handleCategories('tours')}
         >
-          <img className="lacarretera" src={predefTour} alt="hotel"></img>
+          <img src={predefTour} alt="hotel"></img>
           <span>{textos.predefinedToursLabel}</span>
         </div>
         <div
           className="categories"
           // onClick={() => handleCategories('armar tour')}
         >
-          <img src={setYourTour} alt="img"></img>
+          <img src={setYourTour} alt="setYourTour"></img>
           <span>{textos.buildMyTourLabel}</span>
         </div>
-        <div className="categories" 
-        // onClick={() => handleCategories('hoteles')}
+        <div
+          className="categories"
+          // onClick={() => handleCategories('hoteles')}
         >
-          <img src={hotelImg} alt="img"></img>
+          <img src={hotelImg} alt="hotel"></img>
           <span>{textos.lodginLabel}</span>
         </div>
         <div
           className="categories"
           // onClick={() => handleCategories('restaurantes')}
         >
-          <img src={restaurant} alt="img"></img>
+          <img src={restaurant} alt="restaurantes"></img>
           <span>{textos.gastronomylabel}</span>
         </div>
-        <div className="categories" 
-        // onClick={() => handleCategories('paseos')}
+        <div
+          className="categories"
+          // onClick={() => handleCategories('Actividades al Aire Libre')}
         >
           <img src={trips} alt="img"></img>
           <span>{textos.outingLabel}</span>
@@ -63,10 +92,43 @@ const Principal = ({ setItems, setPage }) => {
           className="categories"
           // onClick={() => handleCategories('transportes')}
         >
-          <img src={transport} alt="img"></img>
+          <img src={transport} alt="transportes"></img>
           <span>{textos.transportLabel}</span>
         </div>
       </div>
+
+      <div className="seeAllButtonDiv">
+        <button className="seeAllButton" onClick={handleSeeAll} >
+        {btnText === true ? 'Ver menos categorias': 'Ver mas categorias'}
+        </button>
+      </div>
+
+      {seeAll ? (
+        <>
+          <div className="moreServicesContainer">
+
+            <div className="categories" onClick={() => handleCategories('Espectaculos')}>
+              <img src={teatro} alt="espectaculos"></img>
+              <span>{textos.showsLabel}</span>
+            </div>
+
+            <div className="categories">
+              <img src={actividaesNocturnas} alt="actividaesNocturnas"></img>
+              <span>{textos.nightActivitiesLabel}</span>
+            </div>
+            <div className="categories" onClick={() => handleCategories('Servicios Esenciales')} >
+              <img src={serviciosEscenciales} alt="serviciosEscenciales"></img>
+              <span>{textos.esentialsServicesLabel}</span>
+            </div>
+            <div className="categories">
+              <img src={serviciosInfantiles} alt="serviciosInfantiles"></img>
+              <span>{textos.childActivities}</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </Layout>
   );
 };
