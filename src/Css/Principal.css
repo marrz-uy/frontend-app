@@ -1,5 +1,14 @@
 .container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.container:first-child {
 	margin-top: 6.5rem;
+}
+
+.containerCategories {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -33,36 +42,37 @@ img {
 	width: 120px;
 }
 
-.seeAllButtonDiv{
-	width: 75%;
-	display: flex;
-	align-content: flex-start;
-	padding: 0.5rem 0;
-}
-
-.seeAllButton{
+.seeAllButtonDiv {
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 0.5rem 0;
+
 }
 
-.seeAllButton:hover{
+.seeAllButton {
+	width: 75%;
+	background-color: transparent;
+	color: #444;
+	box-shadow: .5rem .5rem 1rem #ccc,
+		-.5rem -.5rem 1rem #fff;
+	border: 2px solid #eee;
+	border-radius: .5rem;
+	transition: all 1s ease;
 	cursor: pointer;
 }
 
-.moreServicesContainer{
-	/* margin-top: 6.5rem; */
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 30px;
+.seeAllButton:hover {
+	box-shadow: .2rem .2rem 1rem #fff,
+		-.2rem -.2rem 1rem #ccc;
 }
 
-.moreServicesContainer .categories {
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
+.seeAllButton:active {
+	box-shadow: inset .5rem .5rem 1rem #fff,
+		inset -.5rem -.5rem 1rem #ccc;
 }
 
-.categories_title{
+.categories_title {
 	margin-left: 30px;
 }
 
@@ -70,23 +80,79 @@ img {
 @media screen and (min-width: 800px) {
 
 	.container {
-		margin-top: 8rem;
+		display: flex;
+		justify-content: center;
 	}
 
-	.seeAllButtonDiv{
-		width: 30%;
+	.containerCategories {
+		margin-top: 6rem;
+		padding-right: 1.5rem;
 	}
-	
+
+
+	.seeAllButtonDiv {
+		width: 100%;
 	}
+
+	.categories {
+		height: 70px;
+		width: 70px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.categories:hover {
+		transform: scale(1.2);
+	}
+
+	.categories span {
+		display: flex;
+		justify-content: center;
+		word-wrap: normal;
+		margin-top: -20px;
+		font-size: 0.8rem;
+		width: 80px;
+	}
+
+	img {
+		width: 60px;
+	}
+
+}
 
 @media screen and (min-width: 1024px) {
 
-.container {
-  margin-top: 180px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
+	.container {
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
+
+	.containerCategories {
+		/* margin-top: 180px; */
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 3rem;
+		padding-right: 1.5rem;
+	}
+
+	.categories span {
+		display: flex;
+		justify-content: center;
+		word-wrap: normal;
+		margin-top: -10px;
+		font-size: 0.8rem;
+		width: 90px;
+		text-align: center;
+	}
+
+	.seeAllButtonDiv {
+		display: none;
+		width: 30%;
+	}
 
 }
