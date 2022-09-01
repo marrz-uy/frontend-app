@@ -9,7 +9,11 @@ const SearchResults = ({ items, setPage, text }) => {
   const { textos } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState(items?.last_page);
+  const [limiteCantidadPaginas ]= useState(5);
+  const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
+  const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
 
+  // console.log('ITEMS searchResults: ', items)
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -27,9 +31,32 @@ const SearchResults = ({ items, setPage, text }) => {
       .then((response) => {
         const allDdata = response?.data;
         setDatos(allDdata);
-        console.log('datos de axios: ', allDdata);
+        // console.log('datos de axios: ', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  const handleChangePrevPage = (e) => {
+    e.preventDefault();
+    let nuevaData = getData(e.target.value);
+    setDatos(nuevaData);
+    // console.log('nuevaData: ', datos);
+    if (datos.current_page - 2 < limiteMinimoPaginas) {
+      setLimiteMinimoPaginas(limiteMinimoPaginas - limiteCantidadPaginas);
+      setLimiteMaximoPaginas(limiteMaximoPaginas - limiteCantidadPaginas);
+    }
+  };
+
+  const handleChangeNextPage = (e) => {
+    e.preventDefault();
+    console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
+    let nuevaData = getData(e.target.value);
+    setDatos(nuevaData);
+    // console.log('nuevaData: ', datos);
+    if (datos.current_page + 1 > limiteMaximoPaginas) {
+      setLimiteMaximoPaginas(limiteMaximoPaginas + limiteCantidadPaginas);
+      setLimiteMinimoPaginas(limiteMinimoPaginas + limiteCantidadPaginas);
+    }
   };
 
   const handlePageChange = (e) => {
@@ -37,7 +64,6 @@ const SearchResults = ({ items, setPage, text }) => {
     console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
-    console.log('nuevaData: ', datos);
   };
 
   return (
@@ -79,27 +105,36 @@ const SearchResults = ({ items, setPage, text }) => {
                     datos?.current_page !== 1 ? 'btnNumero' : 'btnNumero none'
                   }
                   value={datos?.current_page - 1}
-                  onClick={handlePageChange}
+                  onClick={handleChangePrevPage}
                 >
                   {'< pre'}
                 </button>
               </div>
 
-              {pages.map((number) => (
-                <div key={number} className="numeroDePagina">
-                  <button
-                    className={
-                      datos?.current_page === number
-                        ? 'btnNumero active'
-                        : 'btnNumero'
-                    }
-                    value={number}
-                    onClick={handlePageChange}
-                  >
-                    {number}
-                  </button>
-                </div>
-              ))}
+              {pages.map((number) => {
+                if (
+                  number < limiteMaximoPaginas + 1 &&
+                  number > limiteMinimoPaginas
+                ) {
+                  return (
+                    <div key={number} className="numeroDePagina">
+                      <button
+                        className={
+                          datos?.current_page === number
+                            ? 'btnNumero active'
+                            : 'btnNumero'
+                        }
+                        value={number}
+                        onClick={handlePageChange}
+                      >
+                        {number}
+                      </button>
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
               <div className="numeroDePagina">
                 <button
                   className={
@@ -108,7 +143,7 @@ const SearchResults = ({ items, setPage, text }) => {
                       : 'btnNumero none'
                   }
                   value={datos?.current_page + 1}
-                  onClick={handlePageChange}
+                  onClick={handleChangeNextPage}
                 >
                   {'sig >'}
                 </button>

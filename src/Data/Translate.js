@@ -20,8 +20,12 @@ export const translations = {
     buildMyTourLabel: 'Armar Mi Tour',
     lodginLabel: 'Hospedaje',
     gastronomylabel: 'Gastronomia',
-    outingLabel: 'Paseos',
-    transportLabel: 'transporte',
+    outingLabel: 'Actividades al Aire Libre',
+    transportLabel: 'Transporte',
+    showsLabel: 'Espectaculos',
+    nightActivitiesLabel: 'Actividades Nocturnas',
+    esentialsServicesLabel: 'Servicios Esenciales',
+    childActivities: 'Actividades Infantiles',
     //* LOGIN
     loginTitle: 'Iniciar Sesion',
     emailPlaceholder: 'Correo Electronico',
@@ -62,9 +66,8 @@ export const translations = {
     //* SEARCHRESULTS
     ceroResults: '0 Resultados',
     resultsFor: 'Resultados para',
-    noResults: 'Lo sentimos, intente otra busqueda por favor'
-
-
+    noResults: 'Lo sentimos, intente otra busqueda por favor',
+    category: 'Categoria',
   },
   en: {
     //* BANDERA
@@ -87,8 +90,12 @@ export const translations = {
     buildMyTourLabel: 'Build My Tour',
     lodginLabel: 'Hotel',
     gastronomylabel: 'Gastronomy',
-    outingLabel: 'Trips',
+    outingLabel: 'Outdoor Activities',
     transportLabel: 'Transport',
+    showsLabel: 'Shows',
+    nightActivitiesLabel: 'Evening activities',
+    esentialsServicesLabel: 'Essential Services',
+    childActivities: 'Children´s activities',
     //* LOGIN
     loginTitle: 'Login',
     needAnAccountText: 'Do you need an account?',
@@ -130,6 +137,7 @@ export const translations = {
     //* SEARCHRESULTS
     ceroResults: '0 Results',
     resultsFor: 'Results for',
-    noResults: 'Sorry, please try another search'
+    noResults: 'Sorry, please try another search',
+    category: 'Category',
   },
 };

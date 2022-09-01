@@ -5,6 +5,7 @@
 	display: flex;
 	justify-content: flex-start;
 	max-height: 25vh;
+	min-height: 141px;
 	background-color: rgb(255, 255, 255);
 }
 

@@ -29,14 +29,12 @@ const Nav = ({
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
-  const url = 'http://localhost:8000/api/PuntosInteres/';
 
-  const getData = (Tipo) => {
+  const getData = (nombre) => {
     axios
-      .get(`${url}${Tipo}`)
+      .get(`http://localhost:8000/api/PuntosInteres/nombre/${nombre}`)
       .then((response) => {
         const allDdata = response.data;
-        // console.log('ALLDATAcccccccc: ', allDdata);
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
