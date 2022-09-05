@@ -16,7 +16,7 @@ import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
 import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 
-const Principal = ({ setItems, items, setPage, setText }) => {
+const Principal = ({ setItems, items, setPage, page, setText }) => {
   const { textos } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -26,9 +26,14 @@ const Principal = ({ setItems, items, setPage, setText }) => {
   console.log('WIDTH: ', width)
   
 
+
   useEffect(() => {
     setPage('principal');
-  }, [setPage]);
+    if(page === 'principal'){
+      setText('')
+    }
+  }, [setPage, setText, page]);
+
 
   console.log('BTNTXT: ', btnText);
 
