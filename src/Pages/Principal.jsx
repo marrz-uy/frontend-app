@@ -2,6 +2,7 @@ import { Layout } from '../Layout';
 import { useEffect, useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
 import '../Css/Principal.css';
+import '../Css/userBarClick.css'
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
 import setYourTour from '../Assets/categoriesImages/mosaico2.png';
@@ -10,8 +11,9 @@ import trips from '../Assets/categoriesImages/summer-holidays 1.png';
 import transport from '../Assets/categoriesImages/bus.png';
 import { useNavigate } from 'react-router-dom';
 import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 
-const Principal = ({ setItems, setPage, userBar, setUserBar }) => {
+const Principal = ({ setItems, setPage, userBar, setUserBar,isLoggedIn, setIsLoggedIn }) => {
   const { textos } = useContext(LenguageContext);
   useEffect(() => {
     setPage('principal');
@@ -25,10 +27,15 @@ const Principal = ({ setItems, setPage, userBar, setUserBar }) => {
     navigate('/results');
   };
 
+  handleUserBar(userBar)
+
+  useEffect(() => {
+    setIsLoggedIn("true")
+  }, [])
+
   return (
-    <>
     <Layout>
-      <div className='main-container'>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="categories" onClick={() => handleCategories('tours')}>
           <img className="lacarretera" src={predefTour} alt="hotel"></img>
@@ -64,10 +71,8 @@ const Principal = ({ setItems, setPage, userBar, setUserBar }) => {
           <span>{textos.transportLabel}</span>
         </div>
       </div>
-      </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
-      {userBar && <UserBar/>}
-      </>
   );
 };
 

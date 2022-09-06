@@ -4,6 +4,9 @@ import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import '../Css/Login.css';
+import '../Css/userBarClick.css'
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 import {
   UNAUTHORIZED,
   UNPROCESABLE,
@@ -12,7 +15,10 @@ import {
 
 const Login = ({
   setIsLoggedIn,
-  setPage
+  setPage, 
+  isLoggedIn, 
+  userBar, 
+  setUserBar
 }) => {
 
   sessionStorage.setItem('isLoggedIn', 'false')
@@ -67,8 +73,11 @@ const Login = ({
       });
   };
 
+  handleUserBar(userBar)
+
   return (
     <Layout>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
@@ -107,6 +116,7 @@ const Login = ({
           </div>
         </form>
       </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
   );
 };

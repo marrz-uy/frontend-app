@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import { Layout } from '../Layout';
 import '../Css/SearchResults.css';
+import '../Css/userBarClick.css'
 import ResultsCard from '../Components/ResultsCard';
 import { filter } from '../Helpers/FilterByType';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 
-const SearchResults = ({ items, setPage }) => {
+const SearchResults = ({ items, setPage, userBar, setIsLoggedIn, isLoggedIn, setUserBar }) => {
   useEffect(() => {
     setPage('results');
   }, [setPage]);
 
   const data = filter(items);
 
+  handleUserBar(userBar)
+
   return (
     <Layout>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="results ">
         <h6 className="resultsText">
           {data.length} Resultados para {items}
@@ -32,6 +38,7 @@ const SearchResults = ({ items, setPage }) => {
           })}
         </div>
       </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
   );
 };

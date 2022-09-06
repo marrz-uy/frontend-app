@@ -50,15 +50,19 @@ function App() {
                 bars={bars}
                 userBar={userBar}
                 setUserBar={setUserBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
 
           <Route
             path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
+            element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} userBar={userBar}
+              isLoggedIn={isLoggedIn} setUserBar={setUserBar} />}
           />
-          <Route path="/register" element={<Register setPage={setPage} />} />
+          <Route path="/register" element={<Register setPage={setPage} userBar={userBar} setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn} setUserBar={setUserBar} />} />
 
           <Route
             path="/userbar"
@@ -82,13 +86,17 @@ function App() {
                 setUserSession={setUserSession}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
+                userBar={userBar}
+                setUserBar={setUserBar}
               />
             }
           />
 
           <Route
             path="/results"
-            element={<SearchResults items={items} setPage={setPage} />}
+            element={<SearchResults items={items} setPage={setPage} userBar={userBar} isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}
+            />}
           />
 
           <Route
@@ -98,6 +106,10 @@ function App() {
                 setPage={setPage}
                 pefilRecuperado={pefilRecuperado}
                 setPefilRecuperado={setPefilRecuperado}
+                userBar={userBar}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserBar={setUserBar}
               />
             }
           />

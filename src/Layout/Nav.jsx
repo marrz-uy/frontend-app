@@ -10,6 +10,7 @@ import "../Css/Nav.css";
 import UserRoute from "../Components/UserRoute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page, userBar, setUserBar }) => {
   const { getUser, getLoggedIn } = AuthUser();
@@ -88,10 +89,11 @@ const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page, userBar
           </div>
           {/* {isLoggedIn === 'false' || isLoggedIn === null ? ( */}
           <>
-            <Link to="/userbar">
-              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
-            </Link>
-            <button onClick={() => setUserBar(!userBar)}>Test</button>
+            {/* <Link to="/userbar"> */}
+              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" onClick={() => setUserBar(!userBar)} />
+              {/* <img color="whitez" src="https://img.icons8.com/external-neu-royyan-wijaya/32/000000/external-cancel-neu-interface-neu-royyan-wijaya-2.png"/> */}
+            {/* </Link> */}
+            {/* <button onClick={() => setUserBar(!userBar)}>Test</button> */}
             {/*  <div className="userLogo__contain">
               <LoginRoute />
             </div> */}

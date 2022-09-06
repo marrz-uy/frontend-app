@@ -4,9 +4,12 @@ import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import '../Css/Register.css';
+import '../Css/userBarClick.css'
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 
-const Register = ({ setPage }) => {
+const Register = ({ setPage, userBar, setIsLoggedIn, isLoggedIn, setUserBar }) => {
   useEffect(() => {
     setPage('register');
   }, [setPage]);
@@ -62,9 +65,11 @@ const Register = ({ setPage }) => {
         return registerErrorMessage;
       });
   };
+  handleUserBar(userBar)
 
   return (
     <Layout>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="register">
         <form onSubmit={submitRegister}>
           <div>
@@ -112,6 +117,7 @@ const Register = ({ setPage }) => {
           </div>
         </form>
       </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
   );
 };
