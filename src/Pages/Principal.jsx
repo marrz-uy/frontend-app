@@ -15,8 +15,11 @@ import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
 import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
+import UserBar from './UserBar';
 
-const Principal = ({ setItems, items, setPage, page, setText }) => {
+
+const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBar,isLoggedIn, setIsLoggedIn }) => {
   const { textos } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -42,7 +45,7 @@ const Principal = ({ setItems, items, setPage, page, setText }) => {
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  };
+  }; 
 
   const navigate = useNavigate();
 
@@ -59,8 +62,12 @@ const Principal = ({ setItems, items, setPage, page, setText }) => {
     navigate('/results');
   };
 
+  handleUserBar(userBar)
+
+
   return (
     <Layout>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="containerCategories">
           <div
@@ -194,6 +201,7 @@ const Principal = ({ setItems, items, setPage, page, setText }) => {
           </button>
         </div>
       </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
   );
 };
