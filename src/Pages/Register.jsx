@@ -65,6 +65,7 @@ const Register = ({ setPage, userBar, setIsLoggedIn, isLoggedIn, setUserBar }) =
         return registerErrorMessage;
       });
   };
+  
   handleUserBar(userBar)
 
   return (

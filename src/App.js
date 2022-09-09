@@ -8,6 +8,8 @@ import { LenguageProvider } from '../src/Context/LenguageContext';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
 import UpdateUserEmail from './Pages/UpdateUserEmail';
+import UpdateUserName from './Pages/UpdateUserName';
+import UpdateUserPassword from './Pages/UpdateUserPassword';
 
 function App() {
   const [text, setText] = useState('');
@@ -91,6 +93,31 @@ function App() {
             path="/updateEmail"
             element={
               <UpdateUserEmail
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
+
+          <Route
+            path="/updateName"
+            element={
+              <UpdateUserName
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
+          <Route
+            path="/updatePassword"
+            element={
+              <UpdateUserPassword
                 setPage={setPage}
                 userBar={userBar}
                 setIsLoggedIn={setIsLoggedIn}

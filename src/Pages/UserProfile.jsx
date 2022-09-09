@@ -53,10 +53,10 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
                   <Link to="/updateEmail">Cambiar Email </Link>
                 </button>
                 <button className="updateBtn">
-                  <Link to="">Cambiar Nombre </Link>
+                  <Link to="/updateName">Cambiar Nombre </Link>
                 </button>
                 <button className="updateBtn">
-                  <Link to="">Cambiar Contraseña </Link>
+                  <Link to="/updatePassword">Cambiar Contraseña </Link>
                 </button>
               </div>
             </div>
