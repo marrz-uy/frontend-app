@@ -15,20 +15,25 @@ import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
 import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
+import UserBar from './UserBar';
 
-const Principal = ({ setItems, items, setPage, setText }) => {
+
+const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBar,isLoggedIn, setIsLoggedIn }) => {
   const { textos } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
 
-  const {width} = useScreenSize()
+  const { width } = useScreenSize();
 
-  console.log('WIDTH: ', width)
-  
+  console.log('WIDTH: ', width);
 
   useEffect(() => {
     setPage('principal');
-  }, [setPage]);
+    if (page === 'principal') {
+      setText('');
+    }
+  }, [setPage, setText, page]);
 
   console.log('BTNTXT: ', btnText);
 
@@ -40,14 +45,13 @@ const Principal = ({ setItems, items, setPage, setText }) => {
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  };
+  }; 
 
   const navigate = useNavigate();
 
   const handleSeeAll = () => {
     setSeeAll(!seeAll);
     setBtnText(!btnText);
-    
   };
 
   const handleCategories = (e) => {
@@ -58,82 +62,133 @@ const Principal = ({ setItems, items, setPage, setText }) => {
     navigate('/results');
   };
 
+  handleUserBar(userBar)
+
+
   return (
     <Layout>
+      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="containerCategories">
           <div
             className="categories"
             // onClick={() => handleCategories('Tours Predefinidos')}
           >
-            <img src={predefTour} alt="hotel"></img>
-            <span>{textos.predefinedToursLabel}</span>
+            <div className="categoriesImage">
+              <img src={predefTour} alt="hotel"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.predefinedToursLabel}</span>
+            </div>
           </div>
           <div
             className="categories"
             // onClick={() => handleCategories('Armar tour')}
           >
-            <img src={setYourTour} alt="setYourTour"></img>
-            <span>{textos.buildMyTourLabel}</span>
+            <div className="categoriesImage">
+              <img src={setYourTour} alt="setYourTour"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.buildMyTourLabel}</span>
+            </div>
           </div>
           <div
             className="categories"
             // onClick={() => handleCategories('Alojamiento')}
           >
-            <img src={hotelImg} alt="hotel"></img>
-            <span>{textos.lodginLabel}</span>
+            <div className="categoriesImage">
+              <img src={hotelImg} alt="hotel"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.lodginLabel}</span>
+            </div>
           </div>
           <div
             className="categories"
             // onClick={() => handleCategories('Gastronomia')}
           >
-            <img src={restaurant} alt="restaurantes"></img>
-            <span>{textos.gastronomylabel}</span>
+            <div className="categoriesImage">
+              <img src={restaurant} alt="restaurantes"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.gastronomylabel}</span>
+            </div>
           </div>
           <div
             className="categories"
             // onClick={() => handleCategories('Actividades al Aire Libre')}
           >
-            <img src={trips} alt="img"></img>
-            <span>{textos.outingLabel}</span>
+            <div className="categoriesImage">
+              <img src={trips} alt="img"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.outingLabel}</span>
+            </div>
           </div>
           <div
             className="categories"
             // onClick={() => handleCategories('Transporte')}
           >
-            <img src={transport} alt="transportes"></img>
-            <span>{textos.transportLabel}</span>
+            <div className="categoriesImage">
+              <img src={transport} alt="transportes"></img>
+            </div>
+            <div className="categoriesText">
+              <span>{textos.transportLabel}</span>
+            </div>
           </div>
         </div>
 
-        {seeAll || width > 811 ? (
+        {seeAll || width > 810 ? (
           <>
             <div className="containerCategories">
               <div
                 className="categories"
                 onClick={() => handleCategories('Espectaculos')}
               >
-                <img src={teatro} alt="espectaculos"></img>
-                <span>{textos.showsLabel}</span>
+                <div className="categoriesImage">
+                  <img src={teatro} alt="espectaculos"></img>
+                </div>
+                <div className="categoriesText">
+                  <span>{textos.showsLabel}</span>
+                </div>
               </div>
 
               <div className="categories">
-                <img src={actividaesNocturnas} alt="Actividaes Nocturnas"></img>
-                <span>{textos.nightActivitiesLabel}</span>
+                <div className="categoriesImage">
+                  <img
+                    src={actividaesNocturnas}
+                    alt="Actividaes Nocturnas"
+                  ></img>
+                </div>
+                <div className="categoriesText">
+                  <span>{textos.nightActivitiesLabel}</span>
+                </div>
               </div>
+
               <div
                 className="categories"
                 onClick={() => handleCategories('Servicios Esenciales')}
               >
-                <img
-                  src={serviciosEscenciales}
-                  alt="Servicios Esenciales"
-                ></img>
-                <span>{textos.esentialsServicesLabel}</span>
+                <div className="categoriesImage">
+                  <img
+                    src={serviciosEscenciales}
+                    alt="Servicios Esenciales"
+                  ></img>
+                </div>
+                <div className="categoriesText">
+                  <span>{textos.esentialsServicesLabel}</span>
+                </div>
               </div>
               <div className="categories">
-                <img src={serviciosInfantiles} alt="Servicios Infantiles"></img>
-                <span>{textos.childActivities}</span>
+                <div className="categoriesImage">
+                  <img
+                    src={serviciosInfantiles}
+                    alt="Servicios Infantiles"
+                  ></img>
+                </div>
+                <div className="categoriesText">
+                  <span>{textos.childActivities}</span>
+                </div>
               </div>
             </div>
           </>
@@ -146,6 +201,7 @@ const Principal = ({ setItems, items, setPage, setText }) => {
           </button>
         </div>
       </div>
+      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
     </Layout>
   );
 };

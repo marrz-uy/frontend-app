@@ -1,71 +1,46 @@
-import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
-import LenguageContext from '../Context/LenguageContext';
-import AuthUser from '../Components/AuthUser';
-import { useNavigate, Link } from 'react-router-dom';
-import logo from '../Assets/logoFeelFuenteBlanca.svg';
-import backArrow from '../Assets/back.svg';
-import searchlogo from '../Assets/searchLogo.png';
-import '../Css/Nav.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+// HECHO
+import React, { useEffect, useContext } from "react";
+import LenguageContext from "../Context/LenguageContext";
+import AuthUser from "../Components/AuthUser";
+import { useNavigate, Link } from "react-router-dom";
+import logo from "../Assets/logoFeelFuenteBlanca.svg";
+import backArrow from "../Assets/back.svg";
+import searchlogo from "../Assets/searchLogo.png";
+import LoginRoute from "../Components/LoginRoute";
+import "../Css/Nav.css";
+import UserRoute from "../Components/UserRoute";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = ({
-  text,
-  setText,
-  setItems,
-  isLoggedIn,
-  setIsLoggedIn,
-  page,
-  paginaActual,
-  setPaginaActual,
-}) => {
+const Nav = ({ text, setText, setItems, isLoggedIn, setIsLoggedIn, page, userBar, setUserBar }) => {
   const { getUser, getLoggedIn } = AuthUser();
 
   const { textos, handleLenguage } = useContext(LenguageContext);
-
+  // console.log('LENGUAJE NAV: ', lenguage);
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
+    // console.log('ISLOGGEDIN: ', isLoggedIn);
+    return () => {};
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
 
-  const getData = (nombre) => {
-    axios
-      .get(`http://localhost:8000/api/PuntosInteres/nombre/${nombre}`)
-      .then((response) => {
-        const allDdata = response.data;
-        setItems(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  };
-
   const handleText = (e) => {
     e.preventDefault();
-    let t = e.target.value;
-    setText(t);
+    setText(e.target.value.toLowerCase());
   };
 
-  const handleSearch = () => {
-    // e.preventDefault();
-    setItems([]);
-    if (text.length > 2) {
-      getData(text);
-      navigate('/results');
-      return;
-    }
-    alert('Ingrese un texto mayor a 2 caracteres');
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setItems(text);
+    navigate("/results");
   };
 
   const handleEnter = (e) => {
-    setItems([]);
-    if (e.key === 'Enter') {
-      if (text.length > 2) {
-        getData(text);
-        navigate('/results');
-        return;
-      }
-      alert('Ingrese un texto mayor a 2 caracteres');
+    if (e.key === "Enter") {
+      setItems(text);
+      navigate("/results");
     }
   };
 
@@ -73,7 +48,7 @@ const Nav = ({
     <div className="navbar">
       <div className="contentNavbar">
         <div className="logoFellUy">
-          {page !== 'principal' ? (
+          {page !== "principal" ? (
             <Link to="/">
               <img id="arrowImg" src={backArrow} alt="back"></img>
             </Link>
@@ -107,20 +82,31 @@ const Nav = ({
         <div className="menuLogo">
           <div
             className="userLogo__lenguage ocultaLenguage"
+            // value="es"
             onClick={handleLenguage}
           >
             <img src={textos.flag} alt="img" />
+            {/* <p>{textos.lenguageFlagLabel}</p> */}
           </div>
+          {/* {isLoggedIn === 'false' || isLoggedIn === null ? ( */}
           <>
-            <Link to="/userbar">
-              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
-            </Link>
+            {/* <Link to="/userbar"> */}
+              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" onClick={() => setUserBar(!userBar)} />
+              {/* <img color="whitez" src="https://img.icons8.com/external-neu-royyan-wijaya/32/000000/external-cancel-neu-interface-neu-royyan-wijaya-2.png"/> */}
+            {/* </Link> */}
+            {/* <button onClick={() => setUserBar(!userBar)}>Test</button> */}
+            {/*  <div className="userLogo__contain">
+              <LoginRoute />
+            </div> */}
           </>
+          {/* ) : ( */}
+          {/* <UserRoute /> */}
+          {/* )} */}
         </div>
       </div>
       <div className="divMsgWelcome">
         <span className="msgWelcome">
-          {textos.wellcomeMessage}{' '}
+          {textos.wellcomeMessage}{" "}
           {getUser()?.name ? getUser()?.name : textos.wellcomeMessageUser}
         </span>
       </div>

@@ -13,10 +13,10 @@
     padding-top: 0.4rem;
     border-bottom: 1px solid #083d92;
     box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    z-index: 6;
     min-width: 375px;
     min-height: 75.5px;
-    
+
 }
 
 .contentNavbar {
@@ -112,7 +112,16 @@
     width: 30px;
     height: 30px;
     color: #FFF;
-    display: flex;
+    /* display: flex; */
+    cursor: pointer;
+}
+
+.userLogo__cancel {
+    width: 30px;
+    height: 30px;
+    color: #FFF;
+    /* display: flex; */
+    cursor: pointer;
 }
 
 #userlogoImg {
@@ -189,30 +198,31 @@
 
 }
 
-@media screen and (min-width: 480px) and (orientation : landscape){
-    .navbar {       
+@media screen and (min-width: 480px) and (orientation : landscape) {
+    .navbar {
         min-height: 95px;
     }
 }
 
-@media screen and (min-width: 800px) and (orientation : landscape){
-    .navbar {       
+@media screen and (min-width: 800px) and (orientation : landscape) {
+    .navbar {
         min-height: 95px;
     }
+
     .contentNavbar {
         max-width: 130vh;
-      }
+    }
 }
 
-@media screen and (min-width: 1224px) and (orientation : landscape){
-    .navbar {       
+@media screen and (min-width: 1224px) and (orientation : landscape) {
+    .navbar {
         min-height: 110px;
     }
 
     .contentNavbar {
         max-width: 130vh;
-      }
-} 
+    }
+}
 
 @media screen and (min-width: 800px) {
 
@@ -221,10 +231,11 @@
     }
 
     .search div span {
-        
+
         left: -35px;
-      }
-/* 
+    }
+
+    /* 
     .userLogo__faBars {
         display: none;
     } */
@@ -267,6 +278,7 @@
     .divMsgWelcome {
         margin-top: 0.5rem;
     }
+
     .userBar__link {
         text-align: center;
     }

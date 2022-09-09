@@ -9,11 +9,7 @@ import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
 // let initialLanguage = getLanguageStorage()
 
-const UserProfile = ({
-  setPage,
-  setIsLoggedIn,
-  setUserSession,
-}) => {
+const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
@@ -22,7 +18,7 @@ const UserProfile = ({
   const { textos, handleLenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
   // console.log(language)
- 
+
   useEffect(() => {
     setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
@@ -44,25 +40,37 @@ const UserProfile = ({
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
-            <div className="userName">
-              <h2>{getUser()?.name}</h2>
+            <div className="user-profile__data">
+              <h3>{getUser()?.name}</h3>
             </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
+            </div>
+
+            <div className="user-profile__container-item user-profile__container-item--preferences">
+              <div className="divBtnPreferencias">
+                <button className="updateBtn">
+                  <Link to="/updateEmail">Cambiar Email </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updateName">Cambiar Nombre </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updatePassword">Cambiar Contraseña </Link>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="user-profile__links">
+            <div className="misPreferencias">
+              <h2>{textos.myPreferencesTitle}</h2>
               <h5>
                 {textos.userNationalityText} : {pefilEnArray?.nacionalidad}
               </h5>
               <h5>
                 {textos.userDateOfBirthText} : {pefilEnArray?.f_nacimiento}
               </h5>
-              {/* <a href="#" className="user-profile__logout">
-                Cambiar contraseña
-              </a> */}
-            </div>
-          </div>
-          <div className="user-profile__links">
-            <div className="misPreferencias">
-              <h2>{textos.myPreferencesTitle}</h2>
               <ul className="lista">
                 {prefeEnArrayInicial ? (
                   prefeEnArrayInicial?.map((item) => {
