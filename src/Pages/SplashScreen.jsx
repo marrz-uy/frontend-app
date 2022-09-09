@@ -25,7 +25,10 @@ export const SplashScreen = () => {
               <h2 className="textSuperior">{textos.splashScreenTextSup}</h2>
             </div>
             <div className='divlogoFell'>
+            <div>
+
               <img src={logo} alt="logo"></img>
+            </div>
               <div className="wrapper">
                 <div className="border">
                   <div className="space">

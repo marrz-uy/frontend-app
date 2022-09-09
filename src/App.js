@@ -7,6 +7,9 @@ import { Nav } from './Layout';
 import { LenguageProvider } from '../src/Context/LenguageContext';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
+import UpdateUserEmail from './Pages/UpdateUserEmail';
+import UpdateUserName from './Pages/UpdateUserName';
+import UpdateUserPassword from './Pages/UpdateUserPassword';
 
 function App() {
   const [text, setText] = useState('');
@@ -17,6 +20,7 @@ function App() {
   const [userSession, setUserSession] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
+  const [userBar, setUserBar] = useState(false);
 
   const handleClickBars = () => {
     setBars(!bars);
@@ -37,6 +41,8 @@ function App() {
           handleClickBars={handleClickBars}
           paginaActual={paginaActual}
           setPaginaActual={setPaginaActual}
+          userBar={userBar}
+          setUserBar={setUserBar}
         />
 
         <Routes>
@@ -50,15 +56,76 @@ function App() {
                 page={page}
                 setPage={setPage}
                 bars={bars}
+                userBar={userBar}
+                setUserBar={setUserBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
 
           <Route
             path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} setPage={setPage} />}
+            element={
+              <Login
+                setIsLoggedIn={setIsLoggedIn}
+                setPage={setPage}
+                userBar={userBar}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
           />
-          <Route path="/register" element={<Register setPage={setPage} />} />
+          <Route
+            path="/register"
+            element={
+              <Register
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
+
+          <Route
+            path="/updateEmail"
+            element={
+              <UpdateUserEmail
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
+
+          <Route
+            path="/updateName"
+            element={
+              <UpdateUserName
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
+          <Route
+            path="/updatePassword"
+            element={
+              <UpdateUserPassword
+                setPage={setPage}
+                userBar={userBar}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                setUserBar={setUserBar}
+              />
+            }
+          />
 
           <Route
             path="/userbar"
@@ -82,6 +149,8 @@ function App() {
                 setUserSession={setUserSession}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
+                userBar={userBar}
+                setUserBar={setUserBar}
               />
             }
           />
@@ -96,6 +165,10 @@ function App() {
                 setText={setText}
                 paginaActual={paginaActual}
                 setPaginaActual={setPaginaActual}
+                userBar={userBar}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserBar={setUserBar}
               />
             }
           />
@@ -107,6 +180,10 @@ function App() {
                 setPage={setPage}
                 pefilRecuperado={pefilRecuperado}
                 setPefilRecuperado={setPefilRecuperado}
+                userBar={userBar}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserBar={setUserBar}
               />
             }
           />
