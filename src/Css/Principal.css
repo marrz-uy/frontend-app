@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	padding-top: 6.5rem;
 }
 
 .container:first-child {
@@ -131,6 +132,7 @@ img {
 		display: flex;
 		justify-content: center;
 		flex-direction: row;
+		padding-top: 4rem;
 	}
 
 	.containerCategories {
