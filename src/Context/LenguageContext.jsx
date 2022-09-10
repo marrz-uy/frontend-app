@@ -1,6 +1,7 @@
-import { createContext, useState } from 'react';
-import { translations } from '../Data/Translate';
+import { createContext, useState, useEffect } from 'react';
+import { translations } from '../Data/Translate'; //! ARCHIVO TEXTOS OBJETO
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
+import axios from 'axios';
 
 const LenguageContext = createContext();
 
@@ -9,6 +10,25 @@ const InitialLanguage = getLanguageStorage();
 const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [textos, setTextos] = useState(translations[lenguage]);
+  const [traduccionesBD, setTraduccionesBD] = useState({});
+  const [tags, setTags] = useState({})
+
+  const getTranslations = () => {
+    axios
+      .get(`http://localhost:8000/api/translations`)
+      .then((response) => {
+        const tradBD = response.data;
+        setTraduccionesBD(tradBD);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  useEffect(() => {
+    getTranslations();
+  }, []);
+
+  console.log('traduccionesBD: ', traduccionesBD)
+  console.log('traduccionesBD: ', typeof(traduccionesBD) )
 
   const handleLenguage = (e) => {
     e.preventDefault();
@@ -23,7 +43,7 @@ const LenguageProvider = ({ children }) => {
     }
   };
 
-  const data = { textos, handleLenguage, lenguage };
+  const data = { textos, handleLenguage, lenguage, traduccionesBD };
 
   return (
     <LenguageContext.Provider value={data}>{children}</LenguageContext.Provider>

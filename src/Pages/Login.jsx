@@ -4,7 +4,7 @@ import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import '../Css/Login.css';
-import '../Css/userBarClick.css'
+import '../Css/userBarClick.css';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import {
@@ -13,15 +13,8 @@ import {
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
 
-const Login = ({
-  setIsLoggedIn,
-  setPage, 
-  isLoggedIn, 
-  userBar, 
-  setUserBar
-}) => {
-
-  sessionStorage.setItem('isLoggedIn', 'false')
+const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
+  sessionStorage.setItem('isLoggedIn', 'false');
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -73,11 +66,11 @@ const Login = ({
       });
   };
 
-  handleUserBar(userBar)
+  handleUserBar(userBar);
 
   return (
     <Layout>
-      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
@@ -116,7 +109,13 @@ const Login = ({
           </div>
         </form>
       </div>
-      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };

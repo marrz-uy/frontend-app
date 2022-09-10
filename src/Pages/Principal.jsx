@@ -18,15 +18,26 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 
-
-const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBar,isLoggedIn, setIsLoggedIn }) => {
-  const { textos } = useContext(LenguageContext);
+const Principal = ({
+  setItems,
+  items,
+  setPage,
+  page,
+  setText,
+  userBar,
+  setUserBar,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
+  const { textos, traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
+  console.log('LENGUAJE: ', lenguage);
 
   const { width } = useScreenSize();
 
-  console.log('WIDTH: ', width);
+  //! console.log('WIDTH: ', width);
+  //! console.log('TEXTOS: ', textos);
 
   useEffect(() => {
     setPage('principal');
@@ -35,7 +46,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
     }
   }, [setPage, setText, page]);
 
-  console.log('BTNTXT: ', btnText);
+  // console.log('BTNTXT: ', btnText);
 
   const getData = (categoria) => {
     axios
@@ -45,7 +56,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  }; 
+  };
 
   const navigate = useNavigate();
 
@@ -62,12 +73,11 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
     navigate('/results');
   };
 
-  handleUserBar(userBar)
-
+  handleUserBar(userBar);
 
   return (
     <Layout>
-      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="containerCategories">
           <div
@@ -78,7 +88,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={predefTour} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.predefinedToursLabel}</span>
+              <span>{traduccionesBD[10]?.[lenguage]}</span>
             </div>
           </div>
           <div
@@ -89,7 +99,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.buildMyTourLabel}</span>
+              <span>{traduccionesBD[11]?.[lenguage]}</span>
             </div>
           </div>
           <div
@@ -100,7 +110,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={hotelImg} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.lodginLabel}</span>
+              <span>{traduccionesBD[12]?.[lenguage]}</span>
             </div>
           </div>
           <div
@@ -111,7 +121,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={restaurant} alt="restaurantes"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.gastronomylabel}</span>
+              <span>{traduccionesBD[13]?.[lenguage]}</span>
             </div>
           </div>
           <div
@@ -122,7 +132,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={trips} alt="img"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.outingLabel}</span>
+              <span>{traduccionesBD[14]?.[lenguage]}</span>
             </div>
           </div>
           <div
@@ -133,7 +143,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={transport} alt="transportes"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.transportLabel}</span>
+              <span>{traduccionesBD[15]?.[lenguage]}</span>
             </div>
           </div>
         </div>
@@ -149,7 +159,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   <img src={teatro} alt="espectaculos"></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.showsLabel}</span>
+                  <span>{traduccionesBD[44]?.[lenguage]}</span>
                 </div>
               </div>
 
@@ -161,7 +171,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.nightActivitiesLabel}</span>
+                  <span>{traduccionesBD[45]?.[lenguage]}</span>
                 </div>
               </div>
 
@@ -176,7 +186,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.esentialsServicesLabel}</span>
+                  <span>{traduccionesBD[46]?.[lenguage]}</span>
                 </div>
               </div>
               <div className="categories">
@@ -187,7 +197,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.childActivities}</span>
+                  <span>{traduccionesBD[47]?.[lenguage]}</span>
                 </div>
               </div>
             </div>
@@ -201,7 +211,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
           </button>
         </div>
       </div>
-      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };
