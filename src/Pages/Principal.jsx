@@ -248,7 +248,15 @@ const Principal = ({
         )}
         <div className="seeAllButtonDiv">
           <button className="seeAllButton" onClick={handleSeeAll}>
-            {btnText === true ? 'Ver menos categorias' : 'Ver mas categorias'}
+            {btnText === true ? filtrarTraduccion(
+                      traduccionesBD,
+                      'seeLessCategories',
+                      lenguage
+                    ) : filtrarTraduccion(
+                      traduccionesBD,
+                      'seeMoreCategories',
+                      lenguage
+                    )}
           </button>
         </div>
       </div>
