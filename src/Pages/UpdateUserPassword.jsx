@@ -3,11 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
-import '../Css/Register.css';
-import '../Css/userBarClick.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import '../Css/Register.css';
+import '../Css/userBarClick.css';
 
 const UpdateUserData = ({
   setPage,
@@ -24,7 +25,7 @@ const UpdateUserData = ({
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
-  const { textos } = useContext(LenguageContext);
+  const { textos, traduccionesBD, lenguage  } = useContext(LenguageContext);
   const userData = JSON.parse(sessionStorage.getItem('user'))
 
 
@@ -63,15 +64,15 @@ const UpdateUserData = ({
       <div className="register">
         <form onSubmit={submitUpdateName}>
           <div>
-            <h2 className="title">Actualizar Password</h2>
+            <h2 className="title">{filtrarTraduccion(traduccionesBD, 'passwordUpdateTitle', lenguage)}</h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
-          <input
+            <input
               className="input"
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={filtrarTraduccion(traduccionesBD, 'registerPasswordPlaceholder', lenguage)}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -79,15 +80,19 @@ const UpdateUserData = ({
               className="input"
               type="password"
               name="passwordConfirm"
-              placeholder={textos.registerPasswordConfirmationPlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerPasswordConfirmationPlaceholder',
+                lenguage
+              )}
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
 
-            <input type="submit" value="Actualizar" className="btn-register" />
+            <input type="submit" value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}  className="btn-register" />
           </div>
           <div className="linkALogin">
-            <Link to="/user">Volver a Perfil de Usuario</Link>
+            <Link to="/user">{filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}</Link>
           </div>
         </form>
       </div>

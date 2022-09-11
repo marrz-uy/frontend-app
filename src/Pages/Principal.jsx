@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
 import axios from 'axios';
-import '../Css/Principal.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
 import setYourTour from '../Assets/categoriesImages/mosaico2.png';
@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
+import '../Css/Principal.css';
 
 const Principal = ({
   setItems,
@@ -29,24 +30,24 @@ const Principal = ({
   isLoggedIn,
   setIsLoggedIn,
 }) => {
-  const { textos, traduccionesBD, lenguage } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
-  console.log('LENGUAJE: ', lenguage);
+  // console.log('LENGUAJE: ', lenguage);
 
   const { width } = useScreenSize();
 
-  //! console.log('WIDTH: ', width);
-  //! console.log('TEXTOS: ', textos);
-
+  /* console.log(
+    'FILTRADOOOOOOOO1: ',
+    filtrarTraduccion(traduccionesBD, 'predefinedToursLabel', lenguage)
+  );
+ */
   useEffect(() => {
     setPage('principal');
     if (page === 'principal') {
       setText('');
     }
   }, [setPage, setText, page]);
-
-  // console.log('BTNTXT: ', btnText);
 
   const getData = (categoria) => {
     axios
@@ -67,7 +68,7 @@ const Principal = ({
 
   const handleCategories = (e) => {
     setItems(e);
-    setText(`${textos.category} ${e}`);
+    setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
     getData(e);
     setPage('results');
     navigate('/results');
@@ -88,7 +89,13 @@ const Principal = ({
               <img src={predefTour} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[10]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'predefinedToursLabel',
+                  lenguage
+                )}
+              </span>
             </div>
           </div>
           <div
@@ -99,7 +106,13 @@ const Principal = ({
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[11]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'buildMyTourLabel',
+                  lenguage
+                )}
+              </span>
             </div>
           </div>
           <div
@@ -110,7 +123,9 @@ const Principal = ({
               <img src={hotelImg} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[12]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'lodginLabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -121,7 +136,9 @@ const Principal = ({
               <img src={restaurant} alt="restaurantes"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[13]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'gastronomylabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -132,7 +149,9 @@ const Principal = ({
               <img src={trips} alt="img"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[14]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'outingLabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -143,7 +162,9 @@ const Principal = ({
               <img src={transport} alt="transportes"></img>
             </div>
             <div className="categoriesText">
-              <span>{traduccionesBD[15]?.[lenguage]}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'transportLabel', lenguage)}
+              </span>
             </div>
           </div>
         </div>
@@ -159,7 +180,9 @@ const Principal = ({
                   <img src={teatro} alt="espectaculos"></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{traduccionesBD[44]?.[lenguage]}</span>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'showsLabel', lenguage)}
+                  </span>
                 </div>
               </div>
 
@@ -171,7 +194,13 @@ const Principal = ({
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{traduccionesBD[45]?.[lenguage]}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'nightActivitiesLabel',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
 
@@ -186,7 +215,13 @@ const Principal = ({
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{traduccionesBD[46]?.[lenguage]}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'esentialsServicesLabel',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
               <div className="categories">
@@ -197,7 +232,13 @@ const Principal = ({
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{traduccionesBD[47]?.[lenguage]}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'childActivities',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
             </div>

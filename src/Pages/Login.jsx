@@ -2,9 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
-import '../Css/Login.css';
-import '../Css/userBarClick.css';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import {
@@ -12,6 +11,8 @@ import {
   UNPROCESABLE,
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
+import '../Css/Login.css';
+import '../Css/userBarClick.css';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   sessionStorage.setItem('isLoggedIn', 'false');
@@ -22,7 +23,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
@@ -74,7 +75,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       <div className="login">
         <form onSubmit={submitLogin}>
           <div>
-            <h2 className="title">{textos.loginTitle}</h2>
+            <h2 className="title">
+              {filtrarTraduccion(traduccionesBD, 'loginTitle', lenguage)}
+            </h2>
           </div>
           <div className="message">{`${loginErrorMessage}`}</div>
           <div className="inputGroup">
@@ -83,7 +86,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="text"
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder={filtrarTraduccion(traduccionesBD, 'emailPlaceholder', lenguage)}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -93,18 +96,18 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder={filtrarTraduccion(traduccionesBD, 'passwordPlaceholder', lenguage)}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" value="Login" className="btn-login" />
+            <input type="submit" value={filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)} className="btn-login" />
           </div>
           <div className="linkAregistro">
-            <Link to="/register">{textos.needAnAccountText}</Link>
+            <Link to="/register">{filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}</Link>
           </div>
           <div className="salir">
             <Link to="/">
-              <button className="btn-cerrar">{textos.closeButtonValue}</button>
+              <button className="btn-cerrar">{filtrarTraduccion(traduccionesBD, 'closeButtonValue', lenguage)}</button>
             </Link>
           </div>
         </form>
