@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
@@ -15,7 +16,8 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
   // const preferenciasEnArray = traerPreferencias()
   const pefilEnArray = traerPerfil();
-  const { textos, handleLenguage } = useContext(LenguageContext);
+  const { handleLenguage, traduccionesBD, lenguage } =
+    useContext(LenguageContext);
   const [language, setLenguage] = useState('');
   // console.log(language)
 
@@ -50,13 +52,23 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
             <div className="user-profile__container-item user-profile__container-item--preferences">
               <div className="divBtnPreferencias">
                 <button className="updateBtn">
-                  <Link to="/updateEmail">Cambiar Email </Link>
+                  <Link to="/updateEmail">
+                    {filtrarTraduccion(traduccionesBD, 'changeEmail', lenguage)}
+                  </Link>
                 </button>
                 <button className="updateBtn">
-                  <Link to="/updateName">Cambiar Nombre </Link>
+                  <Link to="/updateName">
+                    {filtrarTraduccion(traduccionesBD, 'changename', lenguage)}
+                  </Link>
                 </button>
                 <button className="updateBtn">
-                  <Link to="/updatePassword">Cambiar Contraseña </Link>
+                  <Link to="/updatePassword">
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'changePassword',
+                      lenguage
+                    )}
+                  </Link>
                 </button>
               </div>
             </div>
@@ -64,12 +76,12 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
 
           <div className="user-profile__links">
             <div className="misPreferencias">
-              <h2>{textos.myPreferencesTitle}</h2>
+              <h2>{filtrarTraduccion(traduccionesBD, 'myPreferencesTitle', lenguage)}</h2>
               <h5>
-                {textos.userNationalityText} : {pefilEnArray?.nacionalidad}
+                {filtrarTraduccion(traduccionesBD, 'userNationalityText', lenguage)} : {pefilEnArray?.nacionalidad}
               </h5>
               <h5>
-                {textos.userDateOfBirthText} : {pefilEnArray?.f_nacimiento}
+                {filtrarTraduccion(traduccionesBD, 'userDateOfBirthText', lenguage)} : {pefilEnArray?.f_nacimiento}
               </h5>
               <ul className="lista">
                 {prefeEnArrayInicial ? (
@@ -92,7 +104,7 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
                   })
                 ) : (
                   <h5 style={{ color: '#ffcc05' }}>
-                    {textos.whithoutPreferencesText}*
+                    {filtrarTraduccion(traduccionesBD, 'whithoutPreferencesText', lenguage)}*
                   </h5>
                 )}
               </ul>
@@ -102,8 +114,8 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
                 <button className="user-profile__item">
                   <Link to="/preferences">
                     {prefeEnArrayInicial
-                      ? textos.changePreferencesButtonValue
-                      : textos.enterPreferencesButtonValue}
+                      ? filtrarTraduccion(traduccionesBD, 'changePreferencesButtonValue', lenguage)
+                      : filtrarTraduccion(traduccionesBD, 'enterPreferencesButtonValue', lenguage)}
                   </Link>
                 </button>
                 <img
@@ -115,13 +127,13 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
             <div className="divBtnLenguaje" onClick={handleLenguage}>
               <button className="user-profile__item">
                 {' '}
-                {textos.changeLanguageLabel}
+                {filtrarTraduccion(traduccionesBD, 'changeLanguageLabel', lenguage)}
               </button>
-              <img src={textos.flag} alt="img" />
+              <img src={filtrarTraduccion(traduccionesBD, 'flag', lenguage)} alt="img" />
             </div>
           </div>
           <button className="user-profile__logout" onClick={logoutUser}>
-            Logout
+          {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
           </button>
         </div>
       </div>
