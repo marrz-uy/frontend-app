@@ -26,8 +26,8 @@ const LenguageProvider = ({ children }) => {
     getTranslations();
   }, []);
 
- /*  console.log('traduccionesBD: ', traduccionesBD)
-  console.log('traduccionesBD: ', typeof(traduccionesBD) ) */
+  console.log('traduccionesBD: ', traduccionesBD)
+  // console.log('traduccionesBD: ', typeof(traduccionesBD) )
 
   const handleLenguage = (e) => {
     e.preventDefault();

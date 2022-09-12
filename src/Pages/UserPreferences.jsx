@@ -243,7 +243,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     }),
   };
 
-  const recuperarNacionalidaOnFocus = () => {
+  /* const recuperarNacionalidaOnFocus = () => {
     if (nacionalidad) {
       setNacionalidad('');
     } else {
@@ -257,7 +257,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     } else {
       setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
     }
-  };
+  }; */
 
   return (
     <Layout>
@@ -295,7 +295,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 autoComplete="off"
                 value={nacionalidad}
                 onChange={(e) => setNacionalidad(e.target.value)}
-                onFocus={recuperarNacionalidaOnFocus}
+                // onFocus={recuperarNacionalidaOnFocus}
                 required
               />
             </div>
@@ -314,7 +314,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 name="fechaDeNacimiento"
                 value={fechaDeNacimiento}
                 onChange={(e) => setFechaDeNacimiento(e.target.value)}
-                onFocus={recuperarFechaNacimientoOnFocus}
+                // onFocus={recuperarFechaNacimientoOnFocus}
                 required
               />
             </div>
