@@ -19,9 +19,9 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserSession, setUserBar }) => {
       logout();
       sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
-      setUserSession('Invitado');
       console.log('Cerrando sesion...');
       navigate('/');
+      setUserBar(false)
     }
   };
 
