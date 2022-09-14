@@ -3,11 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
-import '../Css/Register.css';
-import '../Css/userBarClick.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import '../Css/Register.css';
+import '../Css/userBarClick.css';
 
 const UpdateUserData = ({
   setPage,
@@ -23,9 +24,8 @@ const UpdateUserData = ({
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
-  const { textos } = useContext(LenguageContext);
-  const userData = JSON.parse(sessionStorage.getItem('user'))
-
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const userData = JSON.parse(sessionStorage.getItem('user'));
 
   const submitUpdateName = (e) => {
     e.preventDefault();
@@ -62,23 +62,35 @@ const UpdateUserData = ({
       <div className="register">
         <form onSubmit={submitUpdateName}>
           <div>
-            <h2 className="title">Actualizar Nombre</h2>
+            <h2 className="title">
+              {filtrarTraduccion(traduccionesBD, 'nameUpdateTitle', lenguage)}
+            </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
-          <input
+            <input
               className="input"
               type="text"
               name="name"
-              placeholder={textos.registerNamePlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerNamePlaceholder',
+                lenguage
+              )}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
 
-            <input type="submit" value="Actualizar" className="btn-register" />
+            <input
+              type="submit"
+              value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}
+              className="btn-register"
+            />
           </div>
           <div className="linkALogin">
-            <Link to="/user">Volver a Perfil de Usuario</Link>
+            <Link to="/user">
+              {filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}
+            </Link>
           </div>
         </form>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
@@ -17,19 +17,22 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState('true');
   const [page, setPage] = useState('principal');
   const [bars, setBars] = useState(false);
-  const [userSession, setUserSession] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
   const [userBar, setUserBar] = useState(false);
-
+  const [splash, setSplash] = useState();
   const handleClickBars = () => {
     setBars(!bars);
   };
 
+  useEffect(() => {
+    setSplash(sessionStorage?.getItem('splash'));
+  }, []);
+
   return (
     <BrowserRouter>
       <LenguageProvider>
-        <SplashScreen />
+        {splash === null ? <SplashScreen /> : null}
         <Nav
           text={text}
           setText={setText}
@@ -134,7 +137,6 @@ function App() {
                 setPage={setPage}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                setUserSession={setUserSession}
               />
             }
           />
@@ -145,8 +147,6 @@ function App() {
               <UserProfile
                 setPage={setPage}
                 page={page}
-                userSession={userSession}
-                setUserSession={setUserSession}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 userBar={userBar}

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import '../Css/Footer.css';
 
 const Footer = () => {
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   return (
     <div className="footer oculto">
@@ -14,7 +15,11 @@ const Footer = () => {
       <div>
         <h6>
           <a href="mailto:marrz2022@gmail.com?Subject=Aplicacion%20Web">
-          {textos.contactText}
+          {filtrarTraduccion(
+                  traduccionesBD,
+                  'contactText',
+                  lenguage
+                )}
           </a>
         </h6>
       </div>
