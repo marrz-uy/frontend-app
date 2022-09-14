@@ -86,7 +86,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="text"
               id="email"
               name="email"
-              placeholder={filtrarTraduccion(traduccionesBD, 'emailPlaceholder', lenguage)}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'emailPlaceholder',
+                lenguage
+              )}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -96,18 +100,34 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="password"
               id="password"
               name="password"
-              placeholder={filtrarTraduccion(traduccionesBD, 'passwordPlaceholder', lenguage)}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'passwordPlaceholder',
+                lenguage
+              )}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" value={filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)} className="btn-login" />
+            <input
+              type="submit"
+              value={filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)}
+              className="btn-login"
+            />
           </div>
           <div className="linkAregistro">
-            <Link to="/register">{filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}</Link>
+            <Link to="/register">
+              {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
+            </Link>
           </div>
           <div className="salir">
             <Link to="/">
-              <button className="btn-cerrar">{filtrarTraduccion(traduccionesBD, 'closeButtonValue', lenguage)}</button>
+              <button className="btn-cerrar">
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'closeButtonValue',
+                  lenguage
+                )}
+              </button>
             </Link>
           </div>
         </form>

@@ -17,7 +17,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState('true');
   const [page, setPage] = useState('principal');
   const [bars, setBars] = useState(false);
-  const [userSession, setUserSession] = useState('');
   const [pefilRecuperado, setPefilRecuperado] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
   const [userBar, setUserBar] = useState(false);
@@ -138,7 +137,6 @@ function App() {
                 setPage={setPage}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                setUserSession={setUserSession}
               />
             }
           />
@@ -149,8 +147,6 @@ function App() {
               <UserProfile
                 setPage={setPage}
                 page={page}
-                userSession={userSession}
-                setUserSession={setUserSession}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 userBar={userBar}

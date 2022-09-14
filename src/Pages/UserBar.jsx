@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/UserBar.css';
 
-const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserSession, setUserBar }) => {
+const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
   const { traduccionesBD, lenguage, handleLenguage } =
     useContext(LenguageContext);
   const { logout, token } = AuthUser();
