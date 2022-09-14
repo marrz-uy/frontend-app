@@ -35,7 +35,7 @@ const Nav = ({
 
   const getData = (nombre) => {
     axios
-      .get(`/api/PuntosInteres/nombre/${nombre}`)
+      .get(`/PuntosInteres/nombre/${nombre}`)
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
