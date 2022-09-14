@@ -24,7 +24,6 @@ const SearchResults = ({
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
 
-  // console.log('ITEMS searchResults: ', items)
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -42,7 +41,6 @@ const SearchResults = ({
       .then((response) => {
         const allDdata = response?.data;
         setDatos(allDdata);
-        // console.log('datos de axios: ', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -51,7 +49,6 @@ const SearchResults = ({
     e.preventDefault();
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
-    // console.log('nuevaData: ', datos);
     if (datos.current_page - 2 < limiteMinimoPaginas) {
       setLimiteMinimoPaginas(limiteMinimoPaginas - limiteCantidadPaginas);
       setLimiteMaximoPaginas(limiteMaximoPaginas - limiteCantidadPaginas);
@@ -63,7 +60,6 @@ const SearchResults = ({
     console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
-    // console.log('nuevaData: ', datos);
     if (datos.current_page + 1 > limiteMaximoPaginas) {
       setLimiteMaximoPaginas(limiteMaximoPaginas + limiteCantidadPaginas);
       setLimiteMinimoPaginas(limiteMinimoPaginas + limiteCantidadPaginas);
@@ -124,7 +120,6 @@ const SearchResults = ({
                   {'< pre'}
                 </button>
               </div>
-
               {pages.map((number) => {
                 if (
                   number < limiteMaximoPaginas + 1 &&

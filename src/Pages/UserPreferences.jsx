@@ -70,7 +70,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
-        // console.log('pefilRecuperado', pefilRecuperado);
       } catch (error) {
         console.log('NO HAY PERFIL', error);
       }
@@ -243,22 +242,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     }),
   };
 
-  /* const recuperarNacionalidaOnFocus = () => {
-    if (nacionalidad) {
-      setNacionalidad('');
-    } else {
-      setNacionalidad(getUser()?.profile?.nacionalidad);
-    }
-  };
-
-  const recuperarFechaNacimientoOnFocus = () => {
-    if (f_nacimiento) {
-      setFechaDeNacimiento('');
-    } else {
-      setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
-    }
-  }; */
-
   return (
     <Layout>
       <div className="userProfile" onLoad={recuperarPerfil}>
@@ -295,7 +278,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 autoComplete="off"
                 value={nacionalidad}
                 onChange={(e) => setNacionalidad(e.target.value)}
-                // onFocus={recuperarNacionalidaOnFocus}
                 required
               />
             </div>
@@ -314,7 +296,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 name="fechaDeNacimiento"
                 value={fechaDeNacimiento}
                 onChange={(e) => setFechaDeNacimiento(e.target.value)}
-                // onFocus={recuperarFechaNacimientoOnFocus}
                 required
               />
             </div>

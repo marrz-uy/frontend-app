@@ -62,7 +62,9 @@ const UpdateUserData = ({
       <div className="register">
         <form onSubmit={submitUpdateName}>
           <div>
-            <h2 className="title">{filtrarTraduccion(traduccionesBD, 'nameUpdateTitle', lenguage)}</h2>
+            <h2 className="title">
+              {filtrarTraduccion(traduccionesBD, 'nameUpdateTitle', lenguage)}
+            </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
@@ -70,15 +72,25 @@ const UpdateUserData = ({
               className="input"
               type="text"
               name="name"
-              placeholder={filtrarTraduccion(traduccionesBD, 'registerNamePlaceholder', lenguage)}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerNamePlaceholder',
+                lenguage
+              )}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
 
-            <input type="submit" value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)} className="btn-register" />
+            <input
+              type="submit"
+              value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}
+              className="btn-register"
+            />
           </div>
           <div className="linkALogin">
-            <Link to="/user">{filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}</Link>
+            <Link to="/user">
+              {filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}
+            </Link>
           </div>
         </form>
       </div>

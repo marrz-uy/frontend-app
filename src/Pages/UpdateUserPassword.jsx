@@ -25,7 +25,7 @@ const UpdateUserData = ({
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
-  const { textos, traduccionesBD, lenguage  } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage  } = useContext(LenguageContext);
   const userData = JSON.parse(sessionStorage.getItem('user'))
 
 

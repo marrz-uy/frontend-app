@@ -33,15 +33,9 @@ const Principal = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
-  // console.log('LENGUAJE: ', lenguage);
 
   const { width } = useScreenSize();
 
-  /* console.log(
-    'FILTRADOOOOOOOO1: ',
-    filtrarTraduccion(traduccionesBD, 'predefinedToursLabel', lenguage)
-  );
- */
   useEffect(() => {
     setPage('principal');
     if (page === 'principal') {

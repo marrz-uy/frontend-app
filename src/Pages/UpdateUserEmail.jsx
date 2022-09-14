@@ -82,7 +82,6 @@ const UpdateUserData = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
             <input
               type="submit"
               value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}

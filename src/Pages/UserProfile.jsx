@@ -14,12 +14,10 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
-  // const preferenciasEnArray = traerPreferencias()
   const pefilEnArray = traerPerfil();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
   const [language, setLenguage] = useState('');
-  // console.log(language)
 
   useEffect(() => {
     setLenguage(getLanguageStorage());
