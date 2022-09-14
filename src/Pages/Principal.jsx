@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
 import axios from 'axios';
-import '../Css/Principal.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
 import setYourTour from '../Assets/categoriesImages/mosaico2.png';
@@ -17,16 +17,24 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
+import '../Css/Principal.css';
 
-
-const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBar,isLoggedIn, setIsLoggedIn }) => {
-  const { textos } = useContext(LenguageContext);
+const Principal = ({
+  setItems,
+  items,
+  setPage,
+  page,
+  setText,
+  userBar,
+  setUserBar,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
 
   const { width } = useScreenSize();
-
-  console.log('WIDTH: ', width);
 
   useEffect(() => {
     setPage('principal');
@@ -34,8 +42,6 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
       setText('');
     }
   }, [setPage, setText, page]);
-
-  console.log('BTNTXT: ', btnText);
 
   const getData = (categoria) => {
     axios
@@ -45,7 +51,7 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
         setItems(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  }; 
+  };
 
   const navigate = useNavigate();
 
@@ -56,18 +62,17 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
 
   const handleCategories = (e) => {
     setItems(e);
-    setText(`${textos.category} ${e}`);
+    setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
     getData(e);
     setPage('results');
     navigate('/results');
   };
 
-  handleUserBar(userBar)
-
+  handleUserBar(userBar);
 
   return (
     <Layout>
-      <div className='userbar-click' onClick={() => setUserBar(false)}></div>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="containerCategories">
           <div
@@ -78,7 +83,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={predefTour} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.predefinedToursLabel}</span>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'predefinedToursLabel',
+                  lenguage
+                )}
+              </span>
             </div>
           </div>
           <div
@@ -89,7 +100,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.buildMyTourLabel}</span>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'buildMyTourLabel',
+                  lenguage
+                )}
+              </span>
             </div>
           </div>
           <div
@@ -100,7 +117,9 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={hotelImg} alt="hotel"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.lodginLabel}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'lodginLabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -111,7 +130,9 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={restaurant} alt="restaurantes"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.gastronomylabel}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'gastronomylabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -122,7 +143,9 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={trips} alt="img"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.outingLabel}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'outingLabel', lenguage)}
+              </span>
             </div>
           </div>
           <div
@@ -133,7 +156,9 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
               <img src={transport} alt="transportes"></img>
             </div>
             <div className="categoriesText">
-              <span>{textos.transportLabel}</span>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'transportLabel', lenguage)}
+              </span>
             </div>
           </div>
         </div>
@@ -149,7 +174,9 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   <img src={teatro} alt="espectaculos"></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.showsLabel}</span>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'showsLabel', lenguage)}
+                  </span>
                 </div>
               </div>
 
@@ -161,7 +188,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.nightActivitiesLabel}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'nightActivitiesLabel',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
 
@@ -176,7 +209,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.esentialsServicesLabel}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'esentialsServicesLabel',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
               <div className="categories">
@@ -187,7 +226,13 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
                   ></img>
                 </div>
                 <div className="categoriesText">
-                  <span>{textos.childActivities}</span>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'childActivities',
+                      lenguage
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -197,11 +242,25 @@ const Principal = ({ setItems, items, setPage, page, setText, userBar, setUserBa
         )}
         <div className="seeAllButtonDiv">
           <button className="seeAllButton" onClick={handleSeeAll}>
-            {btnText === true ? 'Ver menos categorias' : 'Ver mas categorias'}
+            {btnText === true ? filtrarTraduccion(
+                      traduccionesBD,
+                      'seeLessCategories',
+                      lenguage
+                    ) : filtrarTraduccion(
+                      traduccionesBD,
+                      'seeMoreCategories',
+                      lenguage
+                    )}
           </button>
         </div>
       </div>
-      {userBar && <UserBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserBar={setUserBar}/>}
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };
