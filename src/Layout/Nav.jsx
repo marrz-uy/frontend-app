@@ -35,7 +35,7 @@ const Nav = ({
 
   const getData = (nombre) => {
     axios
-      .get(`https://5f78-2800-a4-fdd-5200-6e06-5d7a-5bcc-420b.sa.ngrok.io/api/PuntosInteres/nombre/${nombre}`)
+      .get(`/PuntosInteres/nombre/${nombre}`)
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
