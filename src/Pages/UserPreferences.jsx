@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
-import '../Css/UserPreferences.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import {
   CategoriaAlojamiento,
   CategoriaGastronomia,
@@ -34,6 +34,7 @@ import nocturna from '../Assets/categoriesImages/cocktail 1.png';
 import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
 import { filterData } from '../Helpers/FilterByCategory';
+import '../Css/UserPreferences.css';
 
 const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
@@ -44,7 +45,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
   const [user_id, setUser_id] = useState();
   const f_nacimiento = fechaDeNacimiento;
   const [submitMessage, setSubmitMessage] = useState('');
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
 
   useEffect(() => {
@@ -69,7 +70,6 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
-        // console.log('pefilRecuperado', pefilRecuperado);
       } catch (error) {
         console.log('NO HAY PERFIL', error);
       }
@@ -242,36 +242,34 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
     }),
   };
 
-  const recuperarNacionalidaOnFocus = () => {
-    if (nacionalidad) {
-      setNacionalidad('');
-    } else {
-      setNacionalidad(getUser()?.profile?.nacionalidad);
-    }
-  };
-
-  const recuperarFechaNacimientoOnFocus = () => {
-    if (f_nacimiento) {
-      setFechaDeNacimiento('');
-    } else {
-      setFechaDeNacimiento(getUser()?.profile?.f_nacimiento);
-    }
-  };
-
   return (
     <Layout>
       <div className="userProfile" onLoad={recuperarPerfil}>
         <div>
           <h2 className="title">
             {pefilRecuperado?.preferencias === ''
-              ? textos.preferencesTitleCreateProfile
-              : textos.preferencesTitleUpdateProfile}
+              ? filtrarTraduccion(
+                  traduccionesBD,
+                  'preferencesTitleCreateProfile',
+                  lenguage
+                )
+              : filtrarTraduccion(
+                  traduccionesBD,
+                  'preferencesTitleUpdateProfile',
+                  lenguage
+                )}
           </h2>
         </div>
         <form onSubmit={handleUserProfile}>
           <div className="nacionalidadYfchanacimiento">
             <div className="inputGroupPreferencias nacionalidad">
-              <label htmlFor="nacionalidad">{textos.userNationalityText}</label>
+              <label htmlFor="nacionalidad">
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'userNationalityText',
+                  lenguage
+                )}
+              </label>
               <input
                 className="inputPreferencias"
                 type="text"
@@ -280,13 +278,16 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 autoComplete="off"
                 value={nacionalidad}
                 onChange={(e) => setNacionalidad(e.target.value)}
-                onFocus={recuperarNacionalidaOnFocus}
                 required
               />
             </div>
             <div className="inputGroupPreferencias fecha">
               <label htmlFor="fechaDeNacimiento">
-                {textos.userDateOfBirthText}
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'userDateOfBirthText',
+                  lenguage
+                )}
               </label>
               <input
                 className="inputPreferencias"
@@ -295,18 +296,27 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
                 name="fechaDeNacimiento"
                 value={fechaDeNacimiento}
                 onChange={(e) => setFechaDeNacimiento(e.target.value)}
-                onFocus={recuperarFechaNacimientoOnFocus}
                 required
               />
             </div>
           </div>
           <div>
-            <h4 className="titlePreferencias">{textos.myPreferencesTitle}</h4>
+            <h4 className="titlePreferencias">
+              {filtrarTraduccion(
+                traduccionesBD,
+                'myPreferencesTitle',
+                lenguage
+              )}
+            </h4>
           </div>
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
               <img src={alojamiento} className="categoryImage" alt="hot"></img>
-              {textos.preferencesLodginLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesLodginLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Alojamiento')}
@@ -320,7 +330,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="gastronomia">
               <img src={gastronomia} className="categoryImage" alt="Res"></img>
-              {textos.preferencesGastronomyLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesGastronomyLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Gastronomia')}
@@ -334,7 +348,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="espectaculos">
               <img src={espectaculos} className="categoryImage" alt="res"></img>
-              {textos.preferencesShowsLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesShowsLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Espectaculos')}
@@ -346,7 +364,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesAlAireLibre">
               <img src={airelibre} className="categoryImage" alt="Esp"></img>
-              {textos.preferencesOutdoorActivitiesLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesOutdoorActivitiesLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Actividades Al Aire Libre')}
@@ -362,7 +384,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesNocturnas">
               <img src={nocturna} className="categoryImage" alt="Noc"></img>
-              {textos.preferencesNightActivitiesLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesNightActivitiesLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Actividades Nocturnas')}
@@ -378,7 +404,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="transporte">
               <img src={transporte} className="categoryImage" alt="Tra"></img>
-              {textos.preferencesTransportLabellabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesTransportLabellabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Transporte')}
@@ -392,7 +422,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="actividadesInfantiles">
               <img src={infantiles} className="categoryImage" alt="Inf"></img>
-              {textos.preferencesChildrensActivitiesLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesChildrensActivitiesLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Actividades Infantiles')}
@@ -408,7 +442,11 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           <div className="selectIndividual">
             <label htmlFor="serviciosEsenciales">
               <img src={servicios} className="categoryImage" alt="Ser"></img>
-              {textos.preferencesEssentialsServicesLabel}
+              {filtrarTraduccion(
+                traduccionesBD,
+                'preferencesEssentialsServicesLabel',
+                lenguage
+              )}
             </label>
             <Select
               defaultValue={filterData('Servicios Esenciales')}
@@ -423,13 +461,19 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </div>
           <input
             type="submit"
-            value={textos.prefrencesbtnSendValue}
+            value={filtrarTraduccion(
+              traduccionesBD,
+              'prefrencesbtnSendValue',
+              lenguage
+            )}
             className="btn-enviar "
           />
         </form>
         <div className="linkALoginPreferencias">
           <div className="submiMessage">{`${submitMessage}`}</div>
-          <Link to="/user">{textos.preferencesBackText}</Link>
+          <Link to="/user">
+            {filtrarTraduccion(traduccionesBD, 'preferencesBackText', lenguage)}
+          </Link>
         </div>
       </div>
     </Layout>

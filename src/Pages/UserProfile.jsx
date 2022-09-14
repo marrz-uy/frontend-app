@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link, useNavigate } from 'react-router-dom';
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
@@ -9,20 +10,15 @@ import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
 // let initialLanguage = getLanguageStorage()
 
-const UserProfile = ({
-  setPage,
-  setIsLoggedIn,
-  setUserSession,
-}) => {
+const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
-  // const preferenciasEnArray = traerPreferencias()
   const pefilEnArray = traerPerfil();
-  const { textos, handleLenguage } = useContext(LenguageContext);
+  const { handleLenguage, traduccionesBD, lenguage } =
+    useContext(LenguageContext);
   const [language, setLenguage] = useState('');
-  // console.log(language)
- 
+
   useEffect(() => {
     setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
@@ -44,25 +40,47 @@ const UserProfile = ({
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
-            <div className="userName">
-              <h2>{getUser()?.name}</h2>
+            <div className="user-profile__data">
+              <h3>{getUser()?.name}</h3>
             </div>
             <div className="user-profile__data">
               <h3>{getUser()?.email}</h3>
-              <h5>
-                {textos.userNationalityText} : {pefilEnArray?.nacionalidad}
-              </h5>
-              <h5>
-                {textos.userDateOfBirthText} : {pefilEnArray?.f_nacimiento}
-              </h5>
-              {/* <a href="#" className="user-profile__logout">
-                Cambiar contraseña
-              </a> */}
+            </div>
+
+            <div className="user-profile__container-item user-profile__container-item--preferences">
+              <div className="divBtnPreferencias">
+                <button className="updateBtn">
+                  <Link to="/updateEmail">
+                    {filtrarTraduccion(traduccionesBD, 'changeEmail', lenguage)}
+                  </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updateName">
+                    {filtrarTraduccion(traduccionesBD, 'changename', lenguage)}
+                  </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updatePassword">
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'changePassword',
+                      lenguage
+                    )}
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
+
           <div className="user-profile__links">
             <div className="misPreferencias">
-              <h2>{textos.myPreferencesTitle}</h2>
+              <h2>{filtrarTraduccion(traduccionesBD, 'myPreferencesTitle', lenguage)}</h2>
+              <h5>
+                {filtrarTraduccion(traduccionesBD, 'userNationalityText', lenguage)} : {pefilEnArray?.nacionalidad}
+              </h5>
+              <h5>
+                {filtrarTraduccion(traduccionesBD, 'userDateOfBirthText', lenguage)} : {pefilEnArray?.f_nacimiento}
+              </h5>
               <ul className="lista">
                 {prefeEnArrayInicial ? (
                   prefeEnArrayInicial?.map((item) => {
@@ -84,7 +102,7 @@ const UserProfile = ({
                   })
                 ) : (
                   <h5 style={{ color: '#ffcc05' }}>
-                    {textos.whithoutPreferencesText}*
+                    {filtrarTraduccion(traduccionesBD, 'whithoutPreferencesText', lenguage)}*
                   </h5>
                 )}
               </ul>
@@ -94,8 +112,8 @@ const UserProfile = ({
                 <button className="user-profile__item">
                   <Link to="/preferences">
                     {prefeEnArrayInicial
-                      ? textos.changePreferencesButtonValue
-                      : textos.enterPreferencesButtonValue}
+                      ? filtrarTraduccion(traduccionesBD, 'changePreferencesButtonValue', lenguage)
+                      : filtrarTraduccion(traduccionesBD, 'enterPreferencesButtonValue', lenguage)}
                   </Link>
                 </button>
                 <img
@@ -107,13 +125,13 @@ const UserProfile = ({
             <div className="divBtnLenguaje" onClick={handleLenguage}>
               <button className="user-profile__item">
                 {' '}
-                {textos.changeLanguageLabel}
+                {filtrarTraduccion(traduccionesBD, 'changeLanguageLabel', lenguage)}
               </button>
-              <img src={textos.flag} alt="img" />
+              <img src={filtrarTraduccion(traduccionesBD, 'flag', lenguage)} alt="img" />
             </div>
           </div>
           <button className="user-profile__logout" onClick={logoutUser}>
-            Logout
+          {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
           </button>
         </div>
       </div>

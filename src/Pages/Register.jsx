@@ -1,12 +1,22 @@
-import React, { useState, useEffect, useContext  } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
-import '../Css/Register.css';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
+import '../Css/Register.css';
+import '../Css/userBarClick.css';
 
-const Register = ({ setPage }) => {
+const Register = ({
+  setPage,
+  userBar,
+  setIsLoggedIn,
+  isLoggedIn,
+  setUserBar,
+}) => {
   useEffect(() => {
     setPage('register');
   }, [setPage]);
@@ -17,7 +27,7 @@ const Register = ({ setPage }) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const submitRegister = (e) => {
     e.preventDefault();
@@ -63,12 +73,17 @@ const Register = ({ setPage }) => {
       });
   };
 
+  handleUserBar(userBar);
+
   return (
     <Layout>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="register">
         <form onSubmit={submitRegister}>
           <div>
-            <h2 className="title">{textos.registerTitle}</h2>
+            <h2 className="title">
+              {filtrarTraduccion(traduccionesBD, 'registerTitle', lenguage)}
+            </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
@@ -76,7 +91,11 @@ const Register = ({ setPage }) => {
               className="input"
               type="text"
               name="email"
-              placeholder={textos.registerEmailPlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerEmailPlaceholder',
+                lenguage
+              )}
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -85,7 +104,11 @@ const Register = ({ setPage }) => {
               className="input"
               type="password"
               name="password"
-              placeholder={textos.registerPasswordPlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerPasswordPlaceholder',
+                lenguage
+              )}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -93,7 +116,11 @@ const Register = ({ setPage }) => {
               className="input"
               type="password"
               name="passwordConfirm"
-              placeholder={textos.registerPasswordConfirmationPlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerPasswordConfirmationPlaceholder',
+                lenguage
+              )}
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
@@ -101,17 +128,40 @@ const Register = ({ setPage }) => {
               className="input"
               type="text"
               name="name"
-              placeholder={textos.registerNamePlaceholder}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerNamePlaceholder',
+                lenguage
+              )}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <input type="submit" value={textos.registerButtonValue} className="btn-register" />
+            <input
+              type="submit"
+              value={filtrarTraduccion(
+                traduccionesBD,
+                'registerButtonValue',
+                lenguage
+              )}
+              className="btn-register"
+            />
           </div>
           <div className="linkALogin">
-            <Link to="/login">{textos.backTologinText}</Link>
+            <Link to="/login">{filtrarTraduccion(
+                traduccionesBD,
+                'backTologinText',
+                lenguage
+              )}</Link>
           </div>
         </form>
       </div>
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };

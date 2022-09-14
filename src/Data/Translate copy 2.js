@@ -1,4 +1,5 @@
 export const translations = {
+  
   es: {
     //* BANDERA
     flag: 'https://flagcdn.com/h40/uy.png',
