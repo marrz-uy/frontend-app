@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
@@ -20,9 +21,10 @@ const Nav = ({
   userBar,
   setUserBar,
 }) => {
-  const { getLoggedIn } = AuthUser();
+  const { getUser, getLoggedIn } = AuthUser();
 
-  const { handleLenguage } = useContext(LenguageContext);
+  const { handleLenguage, traduccionesBD, lenguage } =
+    useContext(LenguageContext);
 
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
@@ -88,6 +90,11 @@ const Nav = ({
               className="inputSearch"
               name="categoria"
               type="text"
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'searchPlaceholder',
+                lenguage
+              )}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -107,7 +114,11 @@ const Nav = ({
             className="userLogo__lenguage ocultaLenguage"
             onClick={handleLenguage}
           >
-            <img src="" alt="img" />
+            <img src={filtrarTraduccion(
+                traduccionesBD,
+                'flag',
+                lenguage
+              )} alt="img" />
           </div>
 
           <>
@@ -120,7 +131,18 @@ const Nav = ({
         </div>
       </div>
       <div className="divMsgWelcome">
-        <span className="msgWelcome"></span>
+        <span className="msgWelcome">
+          {filtrarTraduccion(
+                traduccionesBD,
+                'wellcomeMessage',
+                lenguage
+              )}{' '}
+          {getUser()?.name ? getUser()?.name : filtrarTraduccion(
+                traduccionesBD,
+                'wellcomeMessageUser',
+                lenguage
+              )}
+        </span>
       </div>
     </div>
   );
