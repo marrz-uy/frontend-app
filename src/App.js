@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
@@ -21,15 +21,19 @@ function App() {
   const [pefilRecuperado, setPefilRecuperado] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
   const [userBar, setUserBar] = useState(false);
-
+  const [splash, setSplash] = useState();
   const handleClickBars = () => {
     setBars(!bars);
   };
 
+  useEffect(() => {
+    setSplash(sessionStorage?.getItem('splash'));
+  }, []);
+
   return (
     <BrowserRouter>
       <LenguageProvider>
-        <SplashScreen />
+        {splash === null ? <SplashScreen /> : null}
         <Nav
           text={text}
           setText={setText}

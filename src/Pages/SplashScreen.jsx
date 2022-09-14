@@ -14,6 +14,7 @@ export const SplashScreen = () => {
       setmostrarPantallaInicio(!mostrarPantallaInicio);
       setmostrarPantallaInicio(false);
     }, 3000);
+    sessionStorage.setItem('splash', null)
   }, [mostrarPantallaInicio]);
 
   return (
