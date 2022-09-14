@@ -17,24 +17,22 @@ const Nav = ({
   isLoggedIn,
   setIsLoggedIn,
   page,
-  paginaActual,
-  setPaginaActual,
+  userBar,
+  setUserBar,
 }) => {
-  const { getUser, getLoggedIn } = AuthUser();
+  const { getLoggedIn } = AuthUser();
 
-  const { textos, handleLenguage } = useContext(LenguageContext);
+  const { handleLenguage } = useContext(LenguageContext);
 
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
 
   const navigate = useNavigate();
-  const url = 'PuntosInteres/';
 
-  const getData = (Tipo) => {
-    console.log('URLLLLLL: ', url+Tipo )
+  const getData = (nombre) => {
     axios
-      .get(`https://68cf-2800-a4-160a-dd00-33db-a966-4b07-1f20.sa.ngrok.io/api/PuntosInteres/${Tipo}`)
+      .get(`http://localhost:8000/api/PuntosInteres/nombre/${nombre}`)
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
@@ -48,8 +46,7 @@ const Nav = ({
     setText(t);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const handleSearch = () => {
     setItems([]);
     if (text.length > 2) {
       getData(text);
@@ -91,7 +88,6 @@ const Nav = ({
               className="inputSearch"
               name="categoria"
               type="text"
-              placeholder={textos.searchPlaceholder}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -111,20 +107,20 @@ const Nav = ({
             className="userLogo__lenguage ocultaLenguage"
             onClick={handleLenguage}
           >
-            <img src={textos.flag} alt="img" />
+            <img src="" alt="img" />
           </div>
+
           <>
-            <Link to="/userbar">
-              <FontAwesomeIcon icon={faBars} className="userLogo__faBars" />
-            </Link>
+            <FontAwesomeIcon
+              icon={faBars}
+              className="userLogo__faBars"
+              onClick={() => setUserBar(!userBar)}
+            />
           </>
         </div>
       </div>
       <div className="divMsgWelcome">
-        <span className="msgWelcome">
-          {textos.wellcomeMessage}{' '}
-          {getUser()?.name ? getUser()?.name : textos.wellcomeMessageUser}
-        </span>
+        <span className="msgWelcome"></span>
       </div>
     </div>
   );

@@ -3,12 +3,26 @@ import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
 import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/SearchResults.css';
+import '../Css/userBarClick.css';
 
-const SearchResults = ({ items, setPage, text }) => {
+const SearchResults = ({
+  items,
+  setPage,
+  text,
+  userBar,
+  setIsLoggedIn,
+  isLoggedIn,
+  setUserBar,
+}) => {
   const { textos } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
-  const [cantPaginas, setCantPaginas] = useState(items.last_page);
+  const [cantPaginas, setCantPaginas] = useState(items?.last_page);
+  const [limiteCantidadPaginas] = useState(5);
+  const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
+  const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
@@ -18,17 +32,38 @@ const SearchResults = ({ items, setPage, text }) => {
   useEffect(() => {
     setPage('results');
     setDatos(items);
-    setCantPaginas(items.last_page);
+    setCantPaginas(items?.last_page);
   }, [setPage, items]);
 
   const getData = (numPage) => {
     axios
-      .get(`${items.path}?page=${numPage}`)
+      .get(`${items?.path}?page=${numPage}`)
       .then((response) => {
-        const allDdata = response.data;
+        const allDdata = response?.data;
         setDatos(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  const handleChangePrevPage = (e) => {
+    e.preventDefault();
+    let nuevaData = getData(e.target.value);
+    setDatos(nuevaData);
+    if (datos.current_page - 2 < limiteMinimoPaginas) {
+      setLimiteMinimoPaginas(limiteMinimoPaginas - limiteCantidadPaginas);
+      setLimiteMaximoPaginas(limiteMaximoPaginas - limiteCantidadPaginas);
+    }
+  };
+
+  const handleChangeNextPage = (e) => {
+    e.preventDefault();
+    console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
+    let nuevaData = getData(e.target.value);
+    setDatos(nuevaData);
+    if (datos.current_page + 1 > limiteMaximoPaginas) {
+      setLimiteMaximoPaginas(limiteMaximoPaginas + limiteCantidadPaginas);
+      setLimiteMinimoPaginas(limiteMinimoPaginas + limiteCantidadPaginas);
+    }
   };
 
   const handlePageChange = (e) => {
@@ -38,10 +73,11 @@ const SearchResults = ({ items, setPage, text }) => {
     setDatos(nuevaData);
   };
 
-  console.log('NUEVA DATA2: ', datos);
+  handleUserBar(userBar);
 
   return (
     <Layout>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
         <h6 className="resultsText">
           {!datos?.data || datos.data?.length === 0
@@ -79,28 +115,34 @@ const SearchResults = ({ items, setPage, text }) => {
                     datos?.current_page !== 1 ? 'btnNumero' : 'btnNumero none'
                   }
                   value={datos?.current_page - 1}
-                  onClick={handlePageChange}
+                  onClick={handleChangePrevPage}
                 >
                   {'< pre'}
                 </button>
               </div>
-
               {pages.map((number) => {
-                return (
-                  <div key={number} className="numeroDePagina">
-                    <button
-                      className={
-                        datos?.current_page === number
-                          ? 'btnNumero active'
-                          : 'btnNumero'
-                      }
-                      value={number}
-                      onClick={handlePageChange}
-                    >
-                      {number}
-                    </button>
-                  </div>
-                );
+                if (
+                  number < limiteMaximoPaginas + 1 &&
+                  number > limiteMinimoPaginas
+                ) {
+                  return (
+                    <div key={number} className="numeroDePagina">
+                      <button
+                        className={
+                          datos?.current_page === number
+                            ? 'btnNumero active'
+                            : 'btnNumero'
+                        }
+                        value={number}
+                        onClick={handlePageChange}
+                      >
+                        {number}
+                      </button>
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
               })}
               <div className="numeroDePagina">
                 <button
@@ -110,7 +152,7 @@ const SearchResults = ({ items, setPage, text }) => {
                       : 'btnNumero none'
                   }
                   value={datos?.current_page + 1}
-                  onClick={handlePageChange}
+                  onClick={handleChangeNextPage}
                 >
                   {'sig >'}
                 </button>
@@ -119,6 +161,13 @@ const SearchResults = ({ items, setPage, text }) => {
           </div>
         ) : null}
       </div>
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };
