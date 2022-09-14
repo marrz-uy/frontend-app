@@ -129,7 +129,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .patch(`http://localhost:8000/api/userProfile/${user_id}`, {
+      .patch(`/userProfile/${user_id}`, {
         nacionalidad,
         f_nacimiento,
         preferencias,
@@ -174,7 +174,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .post('http://localhost:8000/api/userProfile', {
+      .post('/userProfile', {
         user_id,
         nacionalidad,
         f_nacimiento,

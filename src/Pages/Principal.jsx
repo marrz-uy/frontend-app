@@ -45,7 +45,7 @@ const Principal = ({
 
   const getData = (categoria) => {
     axios
-      .get(`http://localhost:8000/api/PuntosInteres/categoria/${categoria}`)
+      .get(`/PuntosInteres/categoria/${categoria}`)
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
