@@ -10,7 +10,7 @@ import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
 // let initialLanguage = getLanguageStorage()
 
-const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
+const UserProfile = ({ setPage, setIsLoggedIn }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
@@ -20,16 +20,16 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserSession }) => {
   const [language, setLenguage] = useState('');
 
   useEffect(() => {
+    setPage('userProfile');
     setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
-  }, [setLenguage, setPrefeEnArrayInicial, language]);
+  }, [setLenguage, setPrefeEnArrayInicial, setPage]);
 
   const logoutUser = () => {
     if (token) {
       logout();
       sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
-      setUserSession('Invitado');
       console.log('Cerrando sesion...');
       navigate('/');
     }
