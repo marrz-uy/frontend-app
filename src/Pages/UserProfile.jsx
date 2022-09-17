@@ -17,7 +17,7 @@ const UserProfile = ({ setPage, setIsLoggedIn }) => {
   const pefilEnArray = traerPerfil();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
-  const [language, setLenguage] = useState('');
+  const [setLenguage] = useState('');
 
   useEffect(() => {
     setPage('userProfile');

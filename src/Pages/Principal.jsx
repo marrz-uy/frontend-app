@@ -17,6 +17,12 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
+import { Slider } from '../Components/Slider';
+import {
+  turisticas,
+  alojamientos,
+  gastronomicas,
+} from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
@@ -242,15 +248,13 @@ const Principal = ({
         )}
         <div className="seeAllButtonDiv">
           <button className="seeAllButton" onClick={handleSeeAll}>
-            {btnText === true ? filtrarTraduccion(
-                      traduccionesBD,
-                      'seeLessCategories',
-                      lenguage
-                    ) : filtrarTraduccion(
-                      traduccionesBD,
-                      'seeMoreCategories',
-                      lenguage
-                    )}
+            {btnText === true
+              ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
+              : filtrarTraduccion(
+                  traduccionesBD,
+                  'seeMoreCategories',
+                  lenguage
+                )}
           </button>
         </div>
       </div>
@@ -261,6 +265,21 @@ const Principal = ({
           setUserBar={setUserBar}
         />
       )}
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={turisticas}
+      />
+      <Slider
+        title="Descubre Alojamientos"
+        description="Alojamientos populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Buscando un lugar para comer?"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={gastronomicas}
+      />
     </Layout>
   );
 };
