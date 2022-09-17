@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
 .navbar {
     background-color: #00499d;
     display: flex;
@@ -16,7 +15,6 @@
     z-index: 6;
     min-width: 375px;
     min-height: 75.5px;
-
 }
 
 .contentNavbar {
@@ -156,7 +154,7 @@
     font-size: 0.8rem;
     display: flex;
     min-height: 20px;
-    font-family: 'Kodchasan';
+    font-family: sans-serif;
 }
 
 .logout {
@@ -175,75 +173,62 @@
 }
 
 @media screen and (min-width: 480px) {
-
     #feelLogoImg {
         position: relative;
         /* top: 10px; */
     }
-
     #userLogoImg--login {
         display: block;
     }
-
     .navbar {
         min-height: 10vh;
     }
-
     .search div span {
         position: relative;
         left: -28px;
         top: 1px;
         right: 20px;
     }
-
 }
 
-@media screen and (min-width: 480px) and (orientation : landscape) {
+@media screen and (min-width: 480px) and (orientation: landscape) {
     .navbar {
         min-height: 95px;
     }
 }
 
-@media screen and (min-width: 800px) and (orientation : landscape) {
+@media screen and (min-width: 800px) and (orientation: landscape) {
     .navbar {
         min-height: 95px;
     }
-
     .contentNavbar {
         max-width: 130vh;
     }
 }
 
-@media screen and (min-width: 1224px) and (orientation : landscape) {
+@media screen and (min-width: 1224px) and (orientation: landscape) {
     .navbar {
         min-height: 110px;
     }
-
     .contentNavbar {
         max-width: 130vh;
     }
 }
 
 @media screen and (min-width: 800px) {
-
     .contentNavbar {
         max-width: 160vh;
     }
-
     .search div span {
-
         left: -35px;
     }
-
     /* 
     .userLogo__faBars {
         display: none;
     } */
-
     .ocultaLenguage {
         display: flex;
     }
-
     .userLogo__contain {
         display: flex;
         align-items: center;
@@ -251,34 +236,27 @@
         gap: 1rem;
         padding-bottom: 2px;
     }
-
     .msgWelcome {
         font-size: 1rem;
     }
-
     /*  #feelLogoImg {
         position: relative;
         top: 10px;
     } */
-
     #arrowImg {
         position: relative;
         top: 2px;
         /* filter: drop-shadow(2px 8px 5px #000000e8); */
     }
-
     .inputSearch {
         height: 2.5rem;
     }
-
     .navbar {
         max-height: 16vh;
     }
-
     .divMsgWelcome {
         margin-top: 0.5rem;
     }
-
     .userBar__link {
         text-align: center;
     }
@@ -291,18 +269,17 @@
     }
 }
 
-/* laptop/desktop - de 1024px en adelante */
-@media screen and (min-width: 1024px) {
 
+/* laptop/desktop - de 1024px en adelante */
+
+@media screen and (min-width: 1024px) {
     .navbar {
         min-height: 8vh;
     }
-
     #feelLogoImg {
         min-width: 5rem;
         max-width: 6rem;
         max-height: 5rem;
         margin-top: -13px;
     }
-
 }
