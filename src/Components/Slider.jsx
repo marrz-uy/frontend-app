@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import useScreenSize from '../Helpers/ScreenSize';
 import '../Css/Slider.css';
 
 export const Slider = ({ arrayimages, title, description }) => {
