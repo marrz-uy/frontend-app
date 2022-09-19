@@ -164,7 +164,7 @@ const Principal = ({
           </div>
         </div>
 
-        {seeAll || width > 810 ? (
+        {seeAll || width > 809 ? (
           <>
             <div className="containerCategories">
               <div
@@ -259,8 +259,8 @@ const Principal = ({
         arrayimages={alojamientos}
       />
       <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
+        title="Buscas alojamiento?"
+        description="Alojamientos populares que eligieron nuestros usuarios"
         arrayimages={alojamientos}
       />
       <Slider
