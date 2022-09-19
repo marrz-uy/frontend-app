@@ -12,6 +12,10 @@ import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
 
+/* import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; */
+
+
 function App() {
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);

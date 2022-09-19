@@ -3,20 +3,19 @@ import { motion } from 'framer-motion';
 import '../Css/Slider.css';
 
 export const Slider = ({ arrayimages, title, description }) => {
-  // const { width } = useScreenSize();
-  // const [leftMove, setleftMove] = useState();
   const [width, setWidth] = useState(0);
   const slider = useRef();
 
   useEffect(() => {
     setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
   }, []);
+  console.log(width);
 
   return (
     <div className="componentSlider">
       <h4 className="titleSlider">{title}</h4>
       <span className="descriptionSlider">{description}</span>
-      <motion.div
+      <div
         ref={slider}
         arrayimages={arrayimages}
         tile={title}
@@ -41,7 +40,7 @@ export const Slider = ({ arrayimages, title, description }) => {
             </motion.div>
           ))}
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 };

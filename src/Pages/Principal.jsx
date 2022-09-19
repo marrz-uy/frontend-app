@@ -18,11 +18,8 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
-import {
-  turisticas,
-  alojamientos,
-  gastronomicas,
-} from '../Data/SliderImages.js';
+import { Slider2 } from '../Components/Slider2';
+import { turisticas } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
@@ -258,6 +255,20 @@ const Principal = ({
           </button>
         </div>
       </div>
+
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={turisticas}
+      />
+
+        <Slider2
+          title="Descubre Uruguay"
+          description="Destino populares que eligieron nuestros usuarios"
+          arrayimages={turisticas}
+        />
+  
+
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}
@@ -265,21 +276,6 @@ const Principal = ({
           setUserBar={setUserBar}
         />
       )}
-      <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={turisticas}
-      />
-      <Slider
-        title="Descubre Alojamientos"
-        description="Alojamientos populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Buscando un lugar para comer?"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={gastronomicas}
-      />
     </Layout>
   );
 };
