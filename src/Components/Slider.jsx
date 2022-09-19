@@ -1,20 +1,19 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '../Css/Slider.css';
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
 export const Slider = ({ arrayimages, title, description }) => {
-  console.log('dataaaa: ', arrayimages)
   return (
     <>
       <div className="tituloSlider">
         <div className="titulo">
           <h4>{title}</h4>
         </div>
-        <div className='description'>
+        <div className="description">
           <span>{description}</span>
         </div>
       </div>
@@ -51,9 +50,9 @@ export const Slider = ({ arrayimages, title, description }) => {
         {arrayimages.map((img, index) => (
           <div className="item" key={img}>
             <SwiperSlide key={img}>
-                <img src={img}  alt="" />
+              <img src={img} alt="" />
               <a href={img}>
-              <span>{`Nombre de imagen ${index+1}`}</span>
+                <span>{`Nombre de imagen ${index + 1}`}</span>
               </a>
             </SwiperSlide>
           </div>
