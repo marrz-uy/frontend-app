@@ -1,6 +1,6 @@
 .tituloSlider{
   margin-top: 3rem;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   box-shadow: -9px -10px 36px -4px rgba(0, 0, 0, 0.030);
@@ -19,7 +19,7 @@
 }
 
 .swiper {
-  width: 70%;
+  width: 85%;
   height: 100%;
   margin-bottom: 2rem;
   border-top: none;

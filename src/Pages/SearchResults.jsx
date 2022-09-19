@@ -8,7 +8,6 @@ import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
-
 const SearchResults = ({
   items,
   setPage,
@@ -24,7 +23,8 @@ const SearchResults = ({
   const [limiteCantidadPaginas] = useState(5);
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
-
+  
+  // console.log(filtrarTraduccion(traduccionesBD, 'noResults', lenguage))
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -86,7 +86,7 @@ const SearchResults = ({
             : `${items.total} ${filtrarTraduccion(traduccionesBD, 'resultsFor', lenguage)} ${text}, pagina ${datos.current_page}`}
         </h6>
         <div className="infoResults">
-          {!datos ? (
+          {!datos?.data || datos.data?.length === 0 ? (
             <div className="sinResultado">
               <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
