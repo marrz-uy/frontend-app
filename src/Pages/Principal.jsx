@@ -17,15 +17,12 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
-// import { Slider } from '../Components/Slider';
-import { Slider2 } from '../Components/Slider2';
-import { Slider3 } from '../Components/Slider3';
-import { turisticas } from '../Data/SliderImages.js';
+import { Slider } from '../Components/Slider';
+import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
   setItems,
-  items,
   setPage,
   page,
   setText,
@@ -256,24 +253,21 @@ const Principal = ({
           </button>
         </div>
       </div>
-
-      {/* <Slider
+      <Slider
         title="Descubre Uruguay"
         description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={turisticas}
-      /> */}
-      
-        <Slider2
-          title="Descubre Uruguay"
-          description="Destino populares que eligieron nuestros usuarios"
-          arrayimages={turisticas}
-        />
-
-
-
-        
-      {/* <Slider3 /> */}
-
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Deseas salir a comer?"
+        description="Restaurantes que eligieron nuestros usuarios"
+        arrayimages={gastronomicas}
+      />
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}

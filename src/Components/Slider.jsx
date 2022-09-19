@@ -1,46 +1,64 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import '../Css/Slider.css';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from 'swiper';
 
 export const Slider = ({ arrayimages, title, description }) => {
-  const [width, setWidth] = useState(0);
-  const slider = useRef();
-
-  useEffect(() => {
-    setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
-  }, []);
-  console.log(width);
-
+  console.log('dataaaa: ', arrayimages)
   return (
-    <div className="componentSlider">
-      <h4 className="titleSlider">{title}</h4>
-      <span className="descriptionSlider">{description}</span>
-      <div
-        ref={slider}
-        arrayimages={arrayimages}
-        tile={title}
-        description={description}
-        className="sliderContainer"
-      >
-        <motion.div
-          className="slider"
-          drag="x"
-          dragConstraints={{ right: 0, left: -width }}
-        >
-          {arrayimages.map((img, index) => (
-            <motion.div className="item" key={index}>
-              {/* <img src={img} alt="" /> */}
-              <img
-                className="images"
-                style={{
-                  backgroundImage: `url(${img})`,
-                }}
-                alt=""
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+    <>
+      <div className="tituloSlider">
+        <div className="titulo">
+          <h4>{title}</h4>
+        </div>
+        <div className='description'>
+          <span>{description}</span>
+        </div>
       </div>
-    </div>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
+        loop={true}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          '@0.00': {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          '@0.75': {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          '@1.00': {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          '@1.50': {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {arrayimages.map((img, index) => (
+          <div className="item" key={img}>
+            <SwiperSlide key={img}>
+                <img src={img}  alt="" />
+              <a href={img}>
+              <span>{`Nombre de imagen ${index+1}`}</span>
+              </a>
+            </SwiperSlide>
+          </div>
+        ))}
+      </Swiper>
+    </>
   );
 };

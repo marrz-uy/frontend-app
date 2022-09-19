@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
@@ -17,7 +18,7 @@ const SearchResults = ({
   isLoggedIn,
   setUserBar,
 }) => {
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState(items?.last_page);
   const [limiteCantidadPaginas] = useState(5);
@@ -81,13 +82,13 @@ const SearchResults = ({
       <div className="results ">
         <h6 className="resultsText">
           {!datos?.data || datos.data?.length === 0
-            ? textos.ceroResults
-            : `${items.total} ${textos.resultsFor} ${text}, pagina ${datos.current_page}`}
+            ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
+            : `${items.total} ${filtrarTraduccion(traduccionesBD, 'resultsFor', lenguage)} ${text}, pagina ${datos.current_page}`}
         </h6>
         <div className="infoResults">
           {!datos ? (
             <div className="sinResultado">
-              <p>{textos.noResults}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
           ) : (
             datos.data?.map((dato) => {
@@ -110,9 +111,6 @@ const SearchResults = ({
           <div className="contenedorPaginado">
             <div className="paginado">
               <div className="numeroDePagina">
-
-
-                {/* BOTON *******************************************************************/}
                 <button
                   className={
                     datos?.current_page !== 1 ? 'btnNumero' : 'btnNumero none'
@@ -122,18 +120,14 @@ const SearchResults = ({
                 >
                   {'< pre'}
                 </button>
-
-
-                {/* NUMEROS ******************************************************************/}
               </div>
               {pages.map((number) => {
                 if (
-                  number < limiteMaximoPaginas + 1 && number > limiteMinimoPaginas
+                  number < limiteMaximoPaginas + 1 &&
+                  number > limiteMinimoPaginas
                 ) {
                   return (
                     <div key={number} className="numeroDePagina">
-
-                    
                       <button
                         className={
                           datos?.current_page === number
@@ -152,8 +146,6 @@ const SearchResults = ({
                 }
               })}
               <div className="numeroDePagina">
-
-                      {/* BOTON ***************************************************************/}
                 <button
                   className={
                     datos?.current_page !== datos?.last_page
