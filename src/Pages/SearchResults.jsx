@@ -110,6 +110,9 @@ const SearchResults = ({
           <div className="contenedorPaginado">
             <div className="paginado">
               <div className="numeroDePagina">
+
+
+                {/* BOTON *******************************************************************/}
                 <button
                   className={
                     datos?.current_page !== 1 ? 'btnNumero' : 'btnNumero none'
@@ -119,14 +122,18 @@ const SearchResults = ({
                 >
                   {'< pre'}
                 </button>
+
+
+                {/* NUMEROS ******************************************************************/}
               </div>
               {pages.map((number) => {
                 if (
-                  number < limiteMaximoPaginas + 1 &&
-                  number > limiteMinimoPaginas
+                  number < limiteMaximoPaginas + 1 && number > limiteMinimoPaginas
                 ) {
                   return (
                     <div key={number} className="numeroDePagina">
+
+                    
                       <button
                         className={
                           datos?.current_page === number
@@ -145,6 +152,8 @@ const SearchResults = ({
                 }
               })}
               <div className="numeroDePagina">
+
+                      {/* BOTON ***************************************************************/}
                 <button
                   className={
                     datos?.current_page !== datos?.last_page
