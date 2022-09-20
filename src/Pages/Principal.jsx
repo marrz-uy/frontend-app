@@ -18,7 +18,7 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
-import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
+import { gastronomicas, alojamientos, turisticas } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
@@ -256,7 +256,7 @@ const Principal = ({
       <Slider
         title="Descubre Uruguay"
         description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
+        arrayimages={turisticas}
       />
       <Slider
         title="Buscas alojamiento?"
