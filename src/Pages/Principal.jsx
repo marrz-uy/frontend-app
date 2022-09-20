@@ -18,16 +18,11 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
-import {
-  turisticas,
-  alojamientos,
-  gastronomicas,
-} from '../Data/SliderImages.js';
+import { gastronomicas, alojamientos, turisticas } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
   setItems,
-  items,
   setPage,
   page,
   setText,
@@ -169,7 +164,7 @@ const Principal = ({
           </div>
         </div>
 
-        {seeAll || width > 810 ? (
+        {seeAll || width > 809 ? (
           <>
             <div className="containerCategories">
               <div
@@ -258,6 +253,21 @@ const Principal = ({
           </button>
         </div>
       </div>
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={turisticas}
+      />
+      <Slider
+        title="Buscas alojamiento?"
+        description="Alojamientos populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Deseas salir a comer?"
+        description="Restaurantes que eligieron nuestros usuarios"
+        arrayimages={gastronomicas}
+      />
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}
@@ -265,21 +275,6 @@ const Principal = ({
           setUserBar={setUserBar}
         />
       )}
-      <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={turisticas}
-      />
-      <Slider
-        title="Descubre Alojamientos"
-        description="Alojamientos populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Buscando un lugar para comer?"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={gastronomicas}
-      />
     </Layout>
   );
 };

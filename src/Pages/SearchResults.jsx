@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
-
 const SearchResults = ({
   items,
   setPage,
@@ -17,13 +17,13 @@ const SearchResults = ({
   isLoggedIn,
   setUserBar,
 }) => {
-  const { textos } = useContext(LenguageContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState(items?.last_page);
   const [limiteCantidadPaginas] = useState(5);
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
-
+  
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -80,14 +80,14 @@ const SearchResults = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
         <h6 className="resultsText">
-          {!datos?.data || datos.data?.length === 0
-            ? textos.ceroResults
-            : `${items.total} ${textos.resultsFor} ${text}, pagina ${datos.current_page}`}
+          {!datos?.data 
+            ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
+            : `${items.total} ${filtrarTraduccion(traduccionesBD, 'resultsFor', lenguage)} ${text}, pagina ${datos.current_page}`}
         </h6>
         <div className="infoResults">
-          {!datos ? (
+          {!datos?.data || datos.data?.length === 0 ? (
             <div className="sinResultado">
-              <p>{textos.noResults}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
           ) : (
             datos.data?.map((dato) => {
