@@ -4,12 +4,17 @@ import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
+import Footer  from '../src/Layout/Footer.jsx';
 import { LenguageProvider } from '../src/Context/LenguageContext';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
 import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
+
+/* import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; */
+
 
 function App() {
   const [text, setText] = useState('');
@@ -197,6 +202,7 @@ function App() {
             }
           />
         </Routes>
+        {/* <Footer/> */}
       </LenguageProvider>
     </BrowserRouter>
   );

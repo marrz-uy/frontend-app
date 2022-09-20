@@ -8,7 +8,7 @@ body {
     height: 900px;
     background-color: #f5f5dc;
     margin: auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -51,7 +51,7 @@ header {
 #sesion {
     padding: 50px;
     float: right;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     background-color: #00499d;
     color: #f5f5dc;
     padding: 30px 30px;
