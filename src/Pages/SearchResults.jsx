@@ -24,7 +24,6 @@ const SearchResults = ({
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
   
-  // console.log(filtrarTraduccion(traduccionesBD, 'noResults', lenguage))
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
@@ -81,7 +80,7 @@ const SearchResults = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
         <h6 className="resultsText">
-          {!datos?.data || datos.data?.length === 0
+          {!datos?.data 
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
             : `${items.total} ${filtrarTraduccion(traduccionesBD, 'resultsFor', lenguage)} ${text}, pagina ${datos.current_page}`}
         </h6>

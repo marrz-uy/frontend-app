@@ -9,6 +9,7 @@ const InitialLanguage = getLanguageStorage();
 const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [traduccionesBD, setTraduccionesBD] = useState([]);
+  localStorage.setItem('language', 'en')
 
   const getTranslations = () => {
     axios
@@ -34,6 +35,7 @@ const LenguageProvider = ({ children }) => {
       localStorage.setItem('language', 'es');
     }
   };
+  // console.log(lenguage)
 
   const data = { handleLenguage, lenguage, traduccionesBD };
 
