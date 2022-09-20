@@ -17,11 +17,12 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
+import { Slider } from '../Components/Slider';
+import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
   setItems,
-  items,
   setPage,
   page,
   setText,
@@ -163,7 +164,7 @@ const Principal = ({
           </div>
         </div>
 
-        {seeAll || width > 810 ? (
+        {seeAll || width > 809 ? (
           <>
             <div className="containerCategories">
               <div
@@ -242,18 +243,31 @@ const Principal = ({
         )}
         <div className="seeAllButtonDiv">
           <button className="seeAllButton" onClick={handleSeeAll}>
-            {btnText === true ? filtrarTraduccion(
-                      traduccionesBD,
-                      'seeLessCategories',
-                      lenguage
-                    ) : filtrarTraduccion(
-                      traduccionesBD,
-                      'seeMoreCategories',
-                      lenguage
-                    )}
+            {btnText === true
+              ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
+              : filtrarTraduccion(
+                  traduccionesBD,
+                  'seeMoreCategories',
+                  lenguage
+                )}
           </button>
         </div>
       </div>
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Buscas alojamiento?"
+        description="Alojamientos populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Deseas salir a comer?"
+        description="Restaurantes que eligieron nuestros usuarios"
+        arrayimages={gastronomicas}
+      />
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}
