@@ -11,10 +11,6 @@ import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
 
-/* import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css"; */
-
-
 function App() {
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
@@ -51,7 +47,6 @@ function App() {
           userBar={userBar}
           setUserBar={setUserBar}
         />
-
         <Routes>
           <Route
             path="/"
@@ -70,7 +65,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/login"
             element={
@@ -108,7 +102,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/updateName"
             element={
@@ -133,7 +126,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/userbar"
             element={
@@ -144,7 +136,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/user"
             element={
@@ -158,7 +149,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/results"
             element={
@@ -176,7 +166,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/preferences"
             element={
@@ -191,7 +180,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="*"
             element={
@@ -201,7 +189,6 @@ function App() {
             }
           />
         </Routes>
-        {/* <Footer/> */}
       </LenguageProvider>
     </BrowserRouter>
   );

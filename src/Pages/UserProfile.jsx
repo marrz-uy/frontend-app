@@ -8,7 +8,6 @@ import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
-//  let initialLanguage = getLanguageStorage()
 
 const UserProfile = ({ setPage, setIsLoggedIn }) => {
   const { logout, token, getUser } = AuthUser();
@@ -21,7 +20,6 @@ const UserProfile = ({ setPage, setIsLoggedIn }) => {
 
   useEffect(() => {
     setPage('userProfile');
-    // setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
   }, [setLenguage, setPrefeEnArrayInicial, setPage]);
 
