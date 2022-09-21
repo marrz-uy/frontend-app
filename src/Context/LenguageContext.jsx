@@ -13,7 +13,7 @@ const LenguageProvider = ({ children }) => {
 
   const getTranslations = () => {
     axios
-      .get(`/translations`)
+      .get(`https://e9af-2800-a4-1643-c700-d735-e10a-10d3-30f2.sa.ngrok.io/api/translations`)
       .then((response) => {
         const tradBD = response.data;
         setTraduccionesBD(tradBD);
