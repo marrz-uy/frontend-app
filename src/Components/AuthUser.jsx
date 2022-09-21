@@ -66,7 +66,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-    baseURL: 'https://b35b-2800-a4-1725-bf00-11c5-b27e-d8b4-b83a.sa.ngrok.io/api',
+    baseURL: 'https://e9af-2800-a4-1643-c700-d735-e10a-10d3-30f2.sa.ngrok.io/api',
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
