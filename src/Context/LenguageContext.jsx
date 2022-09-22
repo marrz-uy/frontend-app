@@ -13,13 +13,13 @@ const LenguageProvider = ({ children }) => {
   
   // const getTranslations = () => {
     
-    http
+    /* http
       .post('/translation',)
       .then((response) => {
         const tradBD = response.data;
         setTraduccionesBD(tradBD);
       })
-      .catch((error) => console.error(`Error en catch: ${error}`));
+      .catch((error) => console.error(`Error en catch: ${error}`)); */
   // };
 
   useEffect(() => {
