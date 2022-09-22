@@ -66,11 +66,11 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-    baseURL: 'https://6c92-2800-a4-1707-4800-2758-c230-ba49-b80a.sa.ngrok.io/api',
+    baseURL: 'https://65d0-2800-a4-1707-4800-2758-c230-ba49-b80a.sa.ngrok.io/api',
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://feeluy.netlify.app',
     }, 
   });
 
