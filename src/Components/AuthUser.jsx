@@ -70,7 +70,7 @@ export default function AuthUser() {
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
-      'Access-Control-Allow-Origin': 'https://feeluy.netlify.app',
+      'Access-Control-Allow-Origin': 'https://f902-2800-a4-17d0-f800-8194-788e-aca6-806a.sa.ngrok.io',
     }, 
   });
 
