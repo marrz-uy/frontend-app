@@ -14,7 +14,7 @@ const LenguageProvider = ({ children }) => {
   // const getTranslations = () => {
     
     /* http
-      .post('/translation',)
+      .post('/translations',)
       .then((response) => {
         const tradBD = response.data;
         setTraduccionesBD(tradBD);
@@ -24,7 +24,7 @@ const LenguageProvider = ({ children }) => {
 
   useEffect(() => {
     http
-    .post('/translation',)
+    .post('/translations',)
     .then((response) => {
       const tradBD = response.data;
       setTraduccionesBD(tradBD);
