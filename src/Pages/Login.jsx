@@ -37,7 +37,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         setToken(res.data.user, res.data.access_token, res.data.userProfile);
         sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
-        navigate('/user');
+        navigate('/');
       })
       .catch(function (error) {
         console.log('%cRESP:', 'color: red;', error.response.data);
