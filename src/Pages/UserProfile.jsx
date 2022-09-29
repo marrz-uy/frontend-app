@@ -8,9 +8,12 @@ import { traerPreferencias } from '../Helpers/TraerPreferencias';
 import { traerPerfil } from '../Helpers/TraerPerfil';
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
+import UserBar from './UserBar';
+import '../Css/userBarClick.css';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 //  let initialLanguage = getLanguageStorage()
 
-const UserProfile = ({ setPage, setIsLoggedIn }) => {
+const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }) => {
   const { logout, token, getUser } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
@@ -34,9 +37,11 @@ const UserProfile = ({ setPage, setIsLoggedIn }) => {
       navigate('/');
     }
   };
+  handleUserBar(userBar);
 
   return (
     <Layout>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="user-profile">
         <div className="user-profile__container">
           <div className="user-profile__description">
@@ -131,15 +136,15 @@ const UserProfile = ({ setPage, setIsLoggedIn }) => {
                   <button className="user-profile__item">
                     {prefeEnArrayInicial
                       ? filtrarTraduccion(
-                          traduccionesBD,
-                          'changePreferencesButtonValue',
-                          lenguage
-                        )
+                        traduccionesBD,
+                        'changePreferencesButtonValue',
+                        lenguage
+                      )
                       : filtrarTraduccion(
-                          traduccionesBD,
-                          'enterPreferencesButtonValue',
-                          lenguage
-                        )}
+                        traduccionesBD,
+                        'enterPreferencesButtonValue',
+                        lenguage
+                      )}
                   </button>
                   <img
                     src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"
@@ -170,6 +175,13 @@ const UserProfile = ({ setPage, setIsLoggedIn }) => {
           </div>
         </div>
       </div>
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };
