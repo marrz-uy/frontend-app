@@ -116,10 +116,10 @@ const SearchResults = ({
   const handleDistance = (e) => {
     if (text) {
       e.preventDefault();
-      console.log('ENVIOOOOOOOOO->', distanciaAEnviar);
-      console.log('DISTLABEL 1->', Number(e.target.value));
-      console.log('DISTLABEL 2->', distLabel);
-      console.log('VALOR DE INPUT:', e.target.value);
+      // console.log('ENVIOOOOOOOOO->', distanciaAEnviar);
+      // console.log('DISTLABEL 1->', Number(e.target.value));
+      // console.log('DISTLABEL 2->', distLabel);
+      // console.log('VALOR DE INPUT:', e.target.value);
       http
         .post(`/PuntosInteresCercanos/nombre/${text}`, {
           latitudAEnviar,

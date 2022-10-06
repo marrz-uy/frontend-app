@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
-import axios from 'axios';
+import AuthUser from '../Components/AuthUser';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -37,6 +37,8 @@ const Principal = ({
 
   const { width } = useScreenSize();
 
+  const { http } = AuthUser();
+
   useEffect(() => {
     setPage('principal');
     if (page === 'principal') {
@@ -45,7 +47,7 @@ const Principal = ({
   }, [setPage, setText, page]);
 
   const getData = (categoria) => {
-    axios
+    http
       .get(`/PuntosInteres/categoria/${categoria}`)
       .then((response) => {
         const allDdata = response.data;
