@@ -1,6 +1,4 @@
-// HECHO
 import React, { useEffect, useContext, useState } from 'react';
-// import axios from 'axios';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from '../Components/AuthUser';
@@ -52,8 +50,6 @@ const Nav = ({
     setLongitudAEnviar(long);
     setDistancia(50000);
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn, lat, long]);
-
-  // console.log('LOCATION:', location);
 
   const navigate = useNavigate();
 

@@ -60,6 +60,7 @@ const SearchResults = ({
     setLatitudAEnviar(+lat);
     setLongitudAEnviar(+long);
     setDistLabel(distanciaAEnviar / 1000);
+    // eslint-disable-next-line
   }, [setPage, items, lat, long]);
 
   const getData = (numPage) => {
@@ -98,7 +99,6 @@ const SearchResults = ({
 
   const handleChangeNextPage = (e) => {
     e.preventDefault();
-    // console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
     if (datos.current_page + 1 > limiteMaximoPaginas) {
@@ -109,7 +109,6 @@ const SearchResults = ({
 
   const handlePageChange = (e) => {
     e.preventDefault();
-    // console.log('%cPAGINA CLICKEADA: ', 'color: green;', e.target.value);
     let nuevaData = getData(e.target.value);
     setDatos(nuevaData);
   };
@@ -117,13 +116,9 @@ const SearchResults = ({
   const handleDistance = (e) => {
     if (text) {
       e.preventDefault();
-      // e.stopPropagation()
-      // setDistanciaAEnviar(Number(e.target.value));
       console.log('ENVIOOOOOOOOO->', distanciaAEnviar);
       console.log('DISTLABEL 1->', Number(e.target.value));
-      // setDistLabel(distanciaAEnviar);
       console.log('DISTLABEL 2->', distLabel);
-      // setDatos([]);
       console.log('VALOR DE INPUT:', e.target.value);
       http
         .post(`/PuntosInteresCercanos/nombre/${text}`, {
