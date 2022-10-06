@@ -180,5 +180,3 @@ const Nav = ({
 };
 
 export default Nav;
-
-// http://localhost:8000/api/PuntosInteresCercanos/nombre/farama?page=1

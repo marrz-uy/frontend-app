@@ -48,7 +48,6 @@ function App() {
           userBar={userBar}
           setUserBar={setUserBar}
         />
-
         <Routes>
           <Route
             path="/"
@@ -67,7 +66,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/login"
             element={
@@ -92,7 +90,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/updateEmail"
             element={
@@ -105,7 +102,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/updateName"
             element={
@@ -130,7 +126,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/userbar"
             element={
@@ -141,7 +136,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/user"
             element={
@@ -155,7 +149,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/results"
             element={
@@ -174,7 +167,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/preferences"
             element={
@@ -189,7 +181,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="*"
             element={
@@ -199,7 +190,6 @@ function App() {
             }
           />
         </Routes>
-        {/* <Footer/> */}
       </LenguageProvider>
     </BrowserRouter>
   );
