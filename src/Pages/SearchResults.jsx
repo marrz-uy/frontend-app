@@ -28,7 +28,13 @@ const SearchResults = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (lat.length === 6) {
+    lat = lat + 0;
+  }
   let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (long.length === 6) {
+    long = long + 0;
+  }
   const [distLabel, setDistLabel] = useState('Total');
   const { http } = AuthUser();
 
@@ -44,7 +50,7 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  console.log('TEXT=>',text, typeof(text) )
+  console.log('TEXT=>', text, typeof text);
 
   useEffect(() => {
     console.log('useEffect');
@@ -109,7 +115,7 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
-    if(text){
+    if (text) {
       e.preventDefault();
       // e.stopPropagation()
       // setDistanciaAEnviar(Number(e.target.value));
@@ -132,7 +138,6 @@ const SearchResults = ({
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
-    
   };
   console.log('DISTLABEL 3->', distLabel * 1000);
 
@@ -172,8 +177,13 @@ const SearchResults = ({
             onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
           ></input>
           {/* <span>{distanciaAEnviar / 1000} Kmts</span> */}
-          <button onClick={handleDistance} className={location.loaded ===true ?'btnSearch':'btnSearchInactivo'}>
-          {distanciaAEnviar / 1000} Kmts
+          <button
+            onClick={handleDistance}
+            className={
+              location.loaded === true ? 'btnSearch' : 'btnSearchInactivo'
+            }
+          >
+            {distanciaAEnviar / 1000} Kmts
           </button>
         </div>
 

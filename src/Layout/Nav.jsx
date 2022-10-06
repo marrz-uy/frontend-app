@@ -30,18 +30,27 @@ const Nav = ({
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (lat.length === 6) {
+    lat = lat + 0;
+  }
+
   let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (long.length === 6) {
+    long = long + 0;
+  }
   const [distanciaAEnviar, setDistancia] = useState('');
   const { http, getUser, getLoggedIn } = AuthUser();
+
+  console.log('LAT Y LONG', lat.length, long.length);
 
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
   useEffect(() => {
-    setLatitudAEnviar(+lat);
-    setLongitudAEnviar(+long);
-    setDistancia(50000);
     setIsLoggedIn(getLoggedIn());
+    setLatitudAEnviar(lat);
+    setLongitudAEnviar(long);
+    setDistancia(50000);
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn, lat, long]);
 
   // console.log('LOCATION:', location);
@@ -108,14 +117,18 @@ const Nav = ({
         <div className="search">
           <div className="searchIntDiv">
             <input
-              className={location.loaded ===true ?"inputSearch":"disabled"}
+              className={location.loaded === true ? 'inputSearch' : 'disabled'}
               name="categoria"
               type="text"
-              placeholder={location.loaded ===true ? filtrarTraduccion(
-                traduccionesBD,
-                'searchPlaceholder',
-                lenguage
-              ):'Buscando...'}
+              placeholder={
+                location.loaded === true
+                  ? filtrarTraduccion(
+                      traduccionesBD,
+                      'searchPlaceholder',
+                      lenguage
+                    )
+                  : 'Buscando...'
+              }
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -167,3 +180,5 @@ const Nav = ({
 };
 
 export default Nav;
+
+// http://localhost:8000/api/PuntosInteresCercanos/nombre/farama?page=1

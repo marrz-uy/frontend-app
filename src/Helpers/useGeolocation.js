@@ -6,7 +6,7 @@ const useGeoLocation = () => {
     coordinates: { lat: '', lng: '' },
     accuracy: '',
   });
-
+  console.log('GEOLOCATION: ', location)
   const onSuccess = (location) => {
     setLocation({
       loaded: true,
