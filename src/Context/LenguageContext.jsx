@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
-import axios from 'axios';
-
+import AuthUser from '../Components/AuthUser';
 const LenguageContext = createContext();
 
 const InitialLanguage = getLanguageStorage();
@@ -10,19 +9,28 @@ const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [traduccionesBD, setTraduccionesBD] = useState([]);
   localStorage.setItem('language', 'en')
-
-  const getTranslations = () => {
-    axios
-      .get(`http://localhost:8000/api/translations`)
+  const { http } = AuthUser();
+  
+  // const getTranslations = () => {
+    
+    /* http
+      .post('/translations',)
       .then((response) => {
         const tradBD = response.data;
         setTraduccionesBD(tradBD);
       })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  };
+      .catch((error) => console.error(`Error en catch: ${error}`)); */
+  // };
 
   useEffect(() => {
-    getTranslations();
+    http
+    .get('/translations',)
+    .then((response) => {
+      const tradBD = response.data;
+      setTraduccionesBD(tradBD);
+    })
+    .catch((error) => console.error(`Error en catch: ${error}`));
+    // eslint-disable-next-line
   }, []);
 
   const handleLenguage = (e) => {

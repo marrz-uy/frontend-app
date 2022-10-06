@@ -11,7 +11,7 @@ import '../Css/UserProfile.css';
 import UserBar from './UserBar';
 import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
-//  let initialLanguage = getLanguageStorage()
+
 
 const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }) => {
   const { logout, token, getUser } = AuthUser();
@@ -24,7 +24,6 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
 
   useEffect(() => {
     setPage('userProfile');
-    // setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
   }, [setLenguage, setPrefeEnArrayInicial, setPage]);
 
