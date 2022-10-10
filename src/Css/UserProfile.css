@@ -225,6 +225,14 @@
   background-color: rgba(249, 246, 246, 0.1);
 }
 
+@media screen and (min-width: 480px) {
+  .user-profile  {
+      width: 60%;
+      height: 85vh;
+      
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .updateBtn {
     width: 7rem;

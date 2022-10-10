@@ -25,9 +25,28 @@
 }
 
 .data {
+	display: flex;
+	flex-direction: column;
+	justify-content:space-between;
 	width: 70vw;
 	margin-bottom: 5px;
-	overflow: hidden;
+	margin: 8px 0;
+	overflow:auto;
+	gap: 5px;
+}
+
+.data h3 {
+	max-width: 245px;
+}
+
+h2, h4, h6 {
+	margin-bottom: 5px;
+}
+
+.diaYHora{
+	display: flex;
+	gap: 5px;
+	margin-top: 10px;
 }
 
 /* laptop/desktop - de 1024px en adelante */
@@ -66,7 +85,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 5px;
-		gap: 5px;
+		/* gap: 5px; */
 	}
 
 	.data h2 {
@@ -75,7 +94,7 @@
 		min-height: 70px;
 	}
 
-	.data h6 {
+	.data h4, h6 {
 		display: flex;
 		max-width: 230px;
 	}

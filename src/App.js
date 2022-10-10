@@ -4,7 +4,6 @@ import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
-import Footer  from '../src/Layout/Footer.jsx';
 import { LenguageProvider } from '../src/Context/LenguageContext';
 import SearchResults from './Pages/SearchResults';
 import UserProfile from './Pages/UserProfile';
@@ -12,11 +11,9 @@ import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
 
-/* import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css"; */
-
-
 function App() {
+  const [searchType, setSearchType] = useState('');
+  const [categoryName, setCategoryName] = useState('');
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState('true');
@@ -51,8 +48,9 @@ function App() {
           setPaginaActual={setPaginaActual}
           userBar={userBar}
           setUserBar={setUserBar}
+          searchType={searchType}
+          setSearchType={setSearchType}
         />
-
         <Routes>
           <Route
             path="/"
@@ -68,10 +66,13 @@ function App() {
                 setUserBar={setUserBar}
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                categoryName={categoryName}
+                setCategoryName={setCategoryName}
               />
             }
           />
-
           <Route
             path="/login"
             element={
@@ -96,7 +97,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/updateEmail"
             element={
@@ -109,7 +109,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/updateName"
             element={
@@ -134,7 +133,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/userbar"
             element={
@@ -145,7 +143,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/user"
             element={
@@ -159,12 +156,12 @@ function App() {
               />
             }
           />
-
           <Route
             path="/results"
             element={
               <SearchResults
                 items={items}
+                setItems={setItems}
                 setPage={setPage}
                 text={text}
                 setText={setText}
@@ -174,10 +171,13 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserBar={setUserBar}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                categoryName={categoryName}
+                setCategoryName={setCategoryName}
               />
             }
           />
-
           <Route
             path="/preferences"
             element={
@@ -192,7 +192,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="*"
             element={
@@ -202,7 +201,6 @@ function App() {
             }
           />
         </Routes>
-        {/* <Footer/> */}
       </LenguageProvider>
     </BrowserRouter>
   );

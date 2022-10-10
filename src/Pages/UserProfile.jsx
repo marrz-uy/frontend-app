@@ -24,7 +24,6 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
 
   useEffect(() => {
     setPage('userProfile');
-    // setLenguage(getLanguageStorage());
     setPrefeEnArrayInicial(traerPreferencias());
   }, [setLenguage, setPrefeEnArrayInicial, setPage]);
 
