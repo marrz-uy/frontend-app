@@ -9,7 +9,7 @@ import { Pagination, Navigation } from 'swiper';
 export const Slider = ({ arrayimages, title, description }) => {
   return (
     <>
-      <div className="tituloSlider">
+      <div className="tituloSlider" id="tituloSlider">
         <div className="titulo">
           <h4>{title}</h4>
         </div>
@@ -18,6 +18,7 @@ export const Slider = ({ arrayimages, title, description }) => {
         </div>
       </div>
       <Swiper
+        id="slider1"
         slidesPerView={1}
         spaceBetween={10}
         loop={true}
