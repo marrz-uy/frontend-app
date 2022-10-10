@@ -20,7 +20,6 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
-  searchType, 
   setSearchType
 }) => {
   const location = useGeoLocation();
@@ -42,8 +41,6 @@ const Nav = ({
 
   const [distanciaAEnviar, setDistancia] = useState('');
   const { http, getUser, getLoggedIn } = AuthUser();
-
-  // console.log('LAT Y LONG', lat.length, long.length);
 
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
@@ -74,8 +71,6 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
-    
-    // let t = e.target.value;
     setText(e.target.value);
   };
 
