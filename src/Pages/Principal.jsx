@@ -292,6 +292,7 @@ const Principal = ({
           </button>
         </div>
       </div>
+      <div className='contenedorSliders'>
       <Slider
         title="Descubre Uruguay"
         description="Destino populares que eligieron nuestros usuarios"
@@ -307,6 +308,7 @@ const Principal = ({
         description="Restaurantes que eligieron nuestros usuarios"
         arrayimages={gastronomicas}
       />
+      </div>
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}
