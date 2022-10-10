@@ -8,7 +8,7 @@
 -moz-box-shadow: -9px -10px 36px -4px rgba(0, 0, 0, 0.030);
   border-bottom: none;
   padding: 0.5rem 0 1rem 10px;
-  z-index: 10;
+  z-index: 1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -31,7 +31,7 @@
 }
 
 .swiper-slide {
-  padding: 10px 10px 3rem 10px;
+  padding: 0px 0px 3rem 0px;
   text-align: center;
   font-size: 18px;
   background: #fff;
