@@ -12,7 +12,7 @@
     padding-top: 0.4rem;
     border-bottom: 1px solid #083d92;
     box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.6);
-    z-index: 6;
+    z-index: 1000;
     min-width: 375px;
     min-height: 75.5px;
 }
@@ -170,6 +170,19 @@
 #logoutImg {
     width: 1.3rem;
     max-width: 1.3rem;
+}
+
+.disabled {
+    pointer-events: none;
+    width: 60vw;
+    height: 1.8rem;
+    margin: 0 auto;
+    border: 1px solid  #00499d;
+    box-shadow: 0.3em 0.5em 1em rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding-left: 10px;
+    min-width: 217px;
+    background-color:   #00499d;
 }
 
 @media screen and (min-width: 480px) {

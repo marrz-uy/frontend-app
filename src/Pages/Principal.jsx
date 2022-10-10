@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
-import axios from 'axios';
+import AuthUser from '../Components/AuthUser';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
@@ -17,11 +17,17 @@ import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
+import { Slider } from '../Components/Slider';
+import {
+  gastronomicas,
+  alojamientos,
+  turisticas,
+} from '../Data/SliderImages.js';
 import '../Css/Principal.css';
+import useGeoLocation from '../Helpers/useGeolocation';
 
 const Principal = ({
   setItems,
-  items,
   setPage,
   page,
   setText,
@@ -29,23 +35,54 @@ const Principal = ({
   setUserBar,
   isLoggedIn,
   setIsLoggedIn,
+  searchType,
+  setSearchType,
+  categoryName, 
+  setCategoryName
 }) => {
+  const location = useGeoLocation();
+  const latitud = JSON.stringify(location.coordinates.lat);
+  const longitud = JSON.stringify(location.coordinates.lng);
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState('');
+  const [longitudAEnviar, setLongitudAEnviar] = useState('');
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
+
+  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (lat.length === 6) {
+    lat = lat + 0;
+  }
+
+  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (long.length === 6) {
+    long = long + 0;
+  }
+
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
 
   const { width } = useScreenSize();
 
+  const { http } = AuthUser();
+
   useEffect(() => {
     setPage('principal');
     if (page === 'principal') {
       setText('');
     }
-  }, [setPage, setText, page]);
+    setLatitudAEnviar(+lat);
+    setLongitudAEnviar(+long);
+    setDistanciaAEnviar(50000);
+  }, [setPage, setText, page, lat, long]);
 
   const getData = (categoria) => {
-    axios
-      .get(`http://localhost:8000/api/PuntosInteres/categoria/${categoria}`)
+    http
+      .post(`/PuntosInteresCercanos/categoria/${categoria}`, {
+        latitudAEnviar,
+        longitudAEnviar,
+        distanciaAEnviar,
+      })
       .then((response) => {
         const allDdata = response.data;
         setItems(allDdata);
@@ -63,8 +100,11 @@ const Principal = ({
   const handleCategories = (e) => {
     setItems(e);
     setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
+    // console.log('TEXT PRINCIPAL:', e);
     getData(e);
     setPage('results');
+    setSearchType('categoria');
+    setCategoryName(e)
     navigate('/results');
   };
 
@@ -150,7 +190,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Transporte')}
+            onClick={() => handleCategories('Transporte')}
           >
             <div className="categoriesImage">
               <img src={transport} alt="transportes"></img>
@@ -163,7 +203,7 @@ const Principal = ({
           </div>
         </div>
 
-        {seeAll || width > 810 ? (
+        {seeAll || width > 809 ? (
           <>
             <div className="containerCategories">
               <div
@@ -242,17 +282,32 @@ const Principal = ({
         )}
         <div className="seeAllButtonDiv">
           <button className="seeAllButton" onClick={handleSeeAll}>
-            {btnText === true ? filtrarTraduccion(
-                      traduccionesBD,
-                      'seeLessCategories',
-                      lenguage
-                    ) : filtrarTraduccion(
-                      traduccionesBD,
-                      'seeMoreCategories',
-                      lenguage
-                    )}
+            {btnText === true
+              ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
+              : filtrarTraduccion(
+                  traduccionesBD,
+                  'seeMoreCategories',
+                  lenguage
+                )}
           </button>
         </div>
+      </div>
+      <div className='contenedorSliders'>
+      <Slider
+        title="Descubre Uruguay"
+        description="Destino populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Buscas alojamiento?"
+        description="Alojamientos populares que eligieron nuestros usuarios"
+        arrayimages={alojamientos}
+      />
+      <Slider
+        title="Deseas salir a comer?"
+        description="Restaurantes que eligieron nuestros usuarios"
+        arrayimages={gastronomicas}
+      />
       </div>
       {userBar && (
         <UserBar
