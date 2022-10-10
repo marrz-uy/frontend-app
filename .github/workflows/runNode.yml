@@ -6,7 +6,7 @@ on:
 jobs:
   RunTest:
     services:
-      mysql:
+      node:
         image: node:latest
         ports:
           - 3000:3000
