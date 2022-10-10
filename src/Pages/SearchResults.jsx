@@ -12,7 +12,6 @@ import '../Css/userBarClick.css';
 
 const SearchResults = ({
   items,
-  setItems,
   setPage,
   text,
   setText,
@@ -21,9 +20,7 @@ const SearchResults = ({
   isLoggedIn,
   setUserBar,
   searchType,
-  setSearchType,
   categoryName,
-  setCategoryName,
 }) => {
   const location = useGeoLocation();
   const latitud = JSON.stringify(location.coordinates.lat);
@@ -54,17 +51,6 @@ const SearchResults = ({
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
   }
-
-  console.log('SEARCH TYPE:', searchType);
-  //  console.log('TEXT RESULTS', text, typeof text);
-
-  console.log(
-    '%cLAST PAGES ITEMS y DATOS:',
-    'color: yellow;',
-    items?.last_page,
-    datos?.last_page
-  );
-  console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
 
   useEffect(() => {
     setPage('results');
@@ -130,10 +116,6 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
-    console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
-    console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
-    console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
-
     if (text) {
       e.preventDefault();
 
@@ -152,16 +134,9 @@ const SearchResults = ({
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
   };
-  console.log('DISTLABEL 3->', distLabel * 1000);
+  // console.log('DISTLABEL 3->', distLabel * 1000);
 
   handleUserBar(userBar);
-
-  console.log(
-    'DATA A enviar',
-    latitudAEnviar,
-    longitudAEnviar,
-    distanciaAEnviar
-  );
 
   return (
     <Layout>
