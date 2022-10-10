@@ -1,0 +1,20 @@
+name: TestAndBuild
+on:
+  pull_request:
+    branches:
+      - stage
+jobs:
+  RunTest:
+    services:
+      mysql:
+        image: node:latest
+        ports:
+          - 3000:3000
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Preparar node
+        run: |
+          npm install
