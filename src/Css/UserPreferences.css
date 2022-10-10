@@ -118,43 +118,54 @@ a:visited {
         flex-direction: column;
         align-items: center;
         padding-bottom: 20px;
+        height: 82vh;
     }
-    .nacionalidadYfchanacimiento {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-    .nacionalidad {
-        align-items: flex-end;
-        margin-right: 30px;
-    }
-    .fecha {
-        align-items: flex-end;
-    }
-    .titlePreferencias {
-        font-size: 1.4rem;
-    }
-    .inputPreferencias {
-        max-width: 20rem;
-        height: 1.8rem;
-        font-size: 1rem;
-    }
-    .selectIndividual {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    form {
-        gap: 1rem;
-    }
-    label {
-        font-weight: 600;
-        font-size: 1.3rem;
-    }
-    select {
-        font-size: 1.5rem;
-        color: rgb(89, 89, 89);
-        min-width: 17rem;
-    }
+
+
+.nacionalidadYfchanacimiento {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nacionalidad {
+    align-items: flex-end;
+    margin-right: 30px;
+}
+
+.fecha {
+    align-items: flex-end;
+}
+
+.titlePreferencias {
+    font-size: 1.4rem;
+}
+
+.inputPreferencias {
+    max-width: 20rem;
+    height: 1.8rem;
+    font-size: 1rem;
+}
+
+.selectIndividual {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+form {
+    gap: 1rem;
+}
+
+label {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+select {
+    font-size: 1.5rem;
+    color: rgb(89, 89, 89);
+    min-width: 17rem;
+}
 }
