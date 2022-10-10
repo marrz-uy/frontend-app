@@ -20,6 +20,8 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
+  searchType, 
+  setSearchType
 }) => {
   const location = useGeoLocation();
   const latitud = JSON.stringify(location.coordinates.lat);
@@ -27,6 +29,7 @@ const Nav = ({
 
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
+
   let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
   if (lat.length === 6) {
     lat = lat + 0;
@@ -36,10 +39,11 @@ const Nav = ({
   if (long.length === 6) {
     long = long + 0;
   }
+
   const [distanciaAEnviar, setDistancia] = useState('');
   const { http, getUser, getLoggedIn } = AuthUser();
 
-  console.log('LAT Y LONG', lat.length, long.length);
+  // console.log('LAT Y LONG', lat.length, long.length);
 
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
@@ -70,6 +74,7 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
+    
     // let t = e.target.value;
     setText(e.target.value);
   };
@@ -77,6 +82,7 @@ const Nav = ({
   const handleSearch = () => {
     setItems([]);
     if (text.length > 2) {
+      setSearchType('nombre');
       getData(text);
       navigate('/results');
       return;
@@ -88,6 +94,7 @@ const Nav = ({
     setItems([]);
     if (e.key === 'Enter') {
       if (text.length > 2) {
+        setSearchType('nombre');
         getData(text);
         navigate('/results');
         return;

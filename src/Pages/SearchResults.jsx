@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import AuthUser from '../Components/AuthUser';
+import useGeoLocation from '../Helpers/useGeolocation';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
@@ -8,17 +9,21 @@ import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
-import useGeoLocation from '../Helpers/useGeolocation';
 
 const SearchResults = ({
   items,
   setItems,
   setPage,
   text,
+  setText,
   userBar,
   setIsLoggedIn,
   isLoggedIn,
   setUserBar,
+  searchType,
+  setSearchType,
+  categoryName,
+  setCategoryName,
 }) => {
   const location = useGeoLocation();
   const latitud = JSON.stringify(location.coordinates.lat);
@@ -40,7 +45,7 @@ const SearchResults = ({
 
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
-  const [cantPaginas, setCantPaginas] = useState(items?.last_page);
+  const [cantPaginas, setCantPaginas] = useState('');
   const [limiteCantidadPaginas] = useState(5);
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
@@ -50,30 +55,41 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  console.log('TEXT=>', text, typeof text);
+  console.log('SEARCH TYPE:', searchType);
+  //  console.log('TEXT RESULTS', text, typeof text);
+
+  console.log(
+    '%cLAST PAGES ITEMS y DATOS:',
+    'color: yellow;',
+    items?.last_page,
+    datos?.last_page
+  );
+  console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
 
   useEffect(() => {
-    console.log('useEffect');
     setPage('results');
     setDatos(items);
     setCantPaginas(items?.last_page);
     setLatitudAEnviar(+lat);
     setLongitudAEnviar(+long);
     setDistLabel(distanciaAEnviar / 1000);
+    if (searchType === 'categoria') {
+      setText(categoryName);
+    }
     // eslint-disable-next-line
-  }, [setPage, items, lat, long]);
+  }, [setPage, items, lat, long, searchType, categoryName]);
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
-    console.log(
+    /* console.log(
       items.path,
-      '?page=',
+      '------/?page=',
       numPage,
       '///',
       latitudAEnviar,
       longitudAEnviar,
       distanciaAEnviar
-    );
+    ); */
     http
       .post(`${items?.path}?page=${numPage}`, {
         latitudAEnviar,
@@ -114,14 +130,15 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
+    console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
+    console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
+    console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
+
     if (text) {
       e.preventDefault();
-      // console.log('ENVIOOOOOOOOO->', distanciaAEnviar);
-      // console.log('DISTLABEL 1->', Number(e.target.value));
-      // console.log('DISTLABEL 2->', distLabel);
-      // console.log('VALOR DE INPUT:', e.target.value);
+
       http
-        .post(`/PuntosInteresCercanos/nombre/${text}`, {
+        .post(`/PuntosInteresCercanos/${searchType}/${text}`, {
           latitudAEnviar,
           longitudAEnviar,
           distanciaAEnviar,
@@ -129,6 +146,7 @@ const SearchResults = ({
         .then((res) => {
           const allDdata = res.data;
           setDatos(allDdata);
+          setCantPaginas(allDdata?.last_page);
           console.log('%cDATA RESPONSE RESULTS:', 'color: green;', datos);
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
@@ -144,6 +162,7 @@ const SearchResults = ({
     longitudAEnviar,
     distanciaAEnviar
   );
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -193,8 +212,15 @@ const SearchResults = ({
                 <ResultsCard
                   key={dato.id}
                   nombre={dato.Nombre}
+                  nombreEvento={dato.NombreEvento}
+                  lugarDeEvento={dato.Nombre}
                   ciudad={dato.Ciudad}
                   direccion={dato.Direccion}
+                  fechaInicio={dato.FechaInicio}
+                  fechaFin={dato.FechaFin}
+                  horaInicio={dato.HoraDeApertura}
+                  horaFin={dato.HoraDeCierre}
+                  tipoEvento={dato.Tipo}
                   caracteristicas={dato.Contacto}
                   imagen={dato.Imagen}
                 />

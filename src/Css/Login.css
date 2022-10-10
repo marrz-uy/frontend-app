@@ -62,8 +62,9 @@ a:visited {
 
 /* laptop/desktop - de 1024px en adelante */
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 480px) {
     .login {
         width: 30%;
+        height: 90vh
     }
 }

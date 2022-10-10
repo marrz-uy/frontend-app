@@ -12,6 +12,8 @@ import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
 
 function App() {
+  const [searchType, setSearchType] = useState('');
+  const [categoryName, setCategoryName] = useState('');
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState('true');
@@ -46,6 +48,8 @@ function App() {
           setPaginaActual={setPaginaActual}
           userBar={userBar}
           setUserBar={setUserBar}
+          searchType={searchType}
+          setSearchType={setSearchType}
         />
         <Routes>
           <Route
@@ -62,6 +66,10 @@ function App() {
                 setUserBar={setUserBar}
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                categoryName={categoryName}
+                setCategoryName={setCategoryName}
               />
             }
           />
@@ -163,6 +171,10 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserBar={setUserBar}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                categoryName={categoryName}
+                setCategoryName={setCategoryName}
               />
             }
           />
