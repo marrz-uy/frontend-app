@@ -9,7 +9,7 @@ const ResultsCard = (props) => {
       </div>
       <div className="data">
         {props.nombreEvento ? (
-          <h3>{props.nombreEvento} - {props.lugarDeEvento}</h3>
+          <h3>{props.nombreEvento} en {props.lugarDeEvento}</h3>
         ) : (
           <h3>{props.nombre}</h3>
         )}

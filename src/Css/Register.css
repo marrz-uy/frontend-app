@@ -51,6 +51,14 @@ a:visited {
     /* margin-left: 20px; */
 }
 
+@media screen and (min-width: 480px) {
+    .register {
+        width: 30%;
+        height: 81vh;
+        
+    }
+}
+
 
 /* laptop/desktop - de 1024px en adelante */
 
