@@ -1,8 +1,8 @@
 name: BuildContainerAndPush
 on:
-  pull_request:
+  push:
     branches:
-      - main 
+      - github-actions-front 
 
 jobs:
   BuildContainer: 
