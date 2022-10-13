@@ -69,6 +69,22 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    http
+      .get('/login.provider/google')
+      .then((res) => {
+        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
+        // setToken(res.data.user, res.data.access_token, res.data.userProfile);
+        // sessionStorage.setItem('isLoggedIn', 'true');
+        // setIsLoggedIn('true');
+        // navigate('/');
+      })
+      .catch(function (error) {
+        return loginErrorMessage;
+      });
+  };
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -118,6 +134,23 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <Link to="/register">
               {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
             </Link>
+          </div>
+          <span> o </span>
+          <div className="auth__social-networks">
+            <p>Login with social networks</p>
+
+            <div className="google-btn" onClick={handleGoogleLogin}>
+              <div className="google-icon-wrapper">
+                <img
+                  className="google-icon"
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  alt="google button"
+                />
+              </div>
+              <p className="btn-text">
+                <b>Sign in with google</b>
+              </p>
+            </div>
           </div>
           <div className="salir">
             <Link to="/">

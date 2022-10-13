@@ -21,7 +21,7 @@ import { Slider } from '../Components/Slider';
 import {
   gastronomicas,
   alojamientos,
-  turisticas,
+  // turisticas,
 } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 import useGeoLocation from '../Helpers/useGeolocation';
