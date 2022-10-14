@@ -24,6 +24,7 @@ const SearchResults = ({
   setSearchType,
   categoryName,
   setCategoryName,
+  setDestination
 }) => {
   const location = useGeoLocation();
   const latitud = JSON.stringify(location.coordinates.lat);
@@ -171,10 +172,10 @@ const SearchResults = ({
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
             : `${datos.total} ${filtrarTraduccion(
-                traduccionesBD,
-                'resultsFor',
-                lenguage
-              )} ${text}, pagina ${datos.current_page}`}
+              traduccionesBD,
+              'resultsFor',
+              lenguage
+            )} ${text}, pagina ${datos.current_page}`}
         </h6>
 
         <div className="filtrarDistancia">
@@ -211,6 +212,7 @@ const SearchResults = ({
               return (
                 <ResultsCard
                   key={dato.id}
+                  id={dato.id}
                   nombre={dato.Nombre}
                   nombreEvento={dato.NombreEvento}
                   lugarDeEvento={dato.Nombre}
@@ -223,6 +225,8 @@ const SearchResults = ({
                   tipoEvento={dato.Tipo}
                   caracteristicas={dato.Contacto}
                   imagen={dato.Imagen}
+                  setDestination={setDestination}
+                  dato={dato}
                 />
               );
             })
