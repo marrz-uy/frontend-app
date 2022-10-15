@@ -48,8 +48,12 @@
 }
 
 .mySwiper2 {
-  height: 80%;
+  height: 65%;
   width: 100%;
+}
+
+.swiper-wrapper{
+	height: 115%;
 }
 
 .mySwiper {
