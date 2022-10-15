@@ -219,8 +219,9 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-
-              <div className="categories">
+              <div className="categories" 
+              onClick={() => handleCategories('Actividades Nocturnas')}
+              >
                 <div className="categoriesImage">
                   <img
                     src={actividaesNocturnas}
