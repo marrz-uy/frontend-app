@@ -1,30 +1,20 @@
-import React from 'react';
-import { Layout } from '../Layout';
-import '../Css/PuntoInteresInfo.css';
-import UserBar from './UserBar';
-import '../Css/userBarClick.css';
-import { handleUserBar } from '../Helpers/HandUserBarClick';
-import { Swiper, SwiperSlide } from 'swiper/react';
-// import SwiperCore, { Thumbs } from 'swiper/core';
-import { Controller } from 'swiper';
-import '../Css/Slider.css';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-/* import 'swiper/css';
-import 'swiper/css/free-mode'
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs'; */
-import '../Css/SliderPuntoInteresInfo.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';
+import '../Css/PuntoInteresInfo.css';
+import '../Css/userBarClick.css';
+import '../Css/Slider.css';
+import '../Css/SliderPuntoInteresInfo.css';
 
 const PuntoInteresInfo = ({
-  setUserBar,
-  userBar,
-  isLoggedIn,
-  setIsLoggedIn,
+    setUserBar,
+    userBar,
+    isLoggedIn,
+    setIsLoggedIn,
   destination,
   setPage,
 }) => {
