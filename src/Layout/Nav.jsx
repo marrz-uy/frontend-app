@@ -1,6 +1,4 @@
-// HECHO
-import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useEffect, useContext, useState } from 'react';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from '../Components/AuthUser';
@@ -11,6 +9,7 @@ import searchlogo from '../Assets/searchLogo.png';
 import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import useGeoLocation from '../Helpers/useGeolocation';
 
 const Nav = ({
   text,
@@ -21,37 +20,69 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
+  searchType, 
+  setSearchType
 }) => {
-  const { getUser, getLoggedIn } = AuthUser();
+  const location = useGeoLocation();
+  const latitud = JSON.stringify(location.coordinates.lat);
+  const longitud = JSON.stringify(location.coordinates.lng);
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState();
+  const [longitudAEnviar, setLongitudAEnviar] = useState();
+
+  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (lat.length === 6) {
+    lat = lat + 0;
+  }
+
+  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
+  if (long.length === 6) {
+    long = long + 0;
+  }
+
+  const [distanciaAEnviar, setDistancia] = useState('');
+  const { http, getUser, getLoggedIn } = AuthUser();
+
+  // console.log('LAT Y LONG', lat.length, long.length);
 
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-  }, [setIsLoggedIn, getLoggedIn, isLoggedIn]);
+    setLatitudAEnviar(lat);
+    setLongitudAEnviar(long);
+    setDistancia(50000);
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, lat, long]);
 
   const navigate = useNavigate();
 
-  const getData = (nombre) => {
-    axios
-      .get(`http://localhost:8000/api/PuntosInteres/nombre/${nombre}`)
-      .then((response) => {
-        const allDdata = response.data;
+  const getData = () => {
+    http
+      .post(`/PuntosInteresCercanos/nombre/${text}`, {
+        latitudAEnviar,
+        longitudAEnviar,
+        distanciaAEnviar,
+      })
+      .then((res) => {
+        const allDdata = res.data;
         setItems(allDdata);
+        console.log('%cDATA RESPONSE NAV:', 'color: green;', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   const handleText = (e) => {
     e.preventDefault();
-    let t = e.target.value;
-    setText(t);
+    
+    // let t = e.target.value;
+    setText(e.target.value);
   };
 
   const handleSearch = () => {
     setItems([]);
     if (text.length > 2) {
+      setSearchType('nombre');
       getData(text);
       navigate('/results');
       return;
@@ -63,6 +94,7 @@ const Nav = ({
     setItems([]);
     if (e.key === 'Enter') {
       if (text.length > 2) {
+        setSearchType('nombre');
         getData(text);
         navigate('/results');
         return;
@@ -88,14 +120,18 @@ const Nav = ({
         <div className="search">
           <div className="searchIntDiv">
             <input
-              className="inputSearch"
+              className={location.loaded === true ? 'inputSearch' : 'disabled'}
               name="categoria"
               type="text"
-              placeholder={filtrarTraduccion(
-                traduccionesBD,
-                'searchPlaceholder',
-                lenguage
-              )}
+              placeholder={
+                location.loaded === true
+                  ? filtrarTraduccion(
+                      traduccionesBD,
+                      'searchPlaceholder',
+                      lenguage
+                    )
+                  : 'Buscando...'
+              }
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -115,11 +151,10 @@ const Nav = ({
             className="userLogo__lenguage ocultaLenguage"
             onClick={handleLenguage}
           >
-            <img src={filtrarTraduccion(
-                traduccionesBD,
-                'flag',
-                lenguage
-              )} alt="img" />
+            <img
+              src={filtrarTraduccion(traduccionesBD, 'flag', lenguage)}
+              alt="img"
+            />
           </div>
 
           <>
@@ -133,12 +168,10 @@ const Nav = ({
       </div>
       <div className="divMsgWelcome">
         <span className="msgWelcome">
-          {filtrarTraduccion(
-                traduccionesBD,
-                'wellcomeMessage',
-                lenguage
-              )}{' '}
-          {getUser()?.name ? getUser()?.name : filtrarTraduccion(
+          {filtrarTraduccion(traduccionesBD, 'wellcomeMessage', lenguage)}{' '}
+          {getUser()?.name
+            ? getUser()?.name
+            : filtrarTraduccion(
                 traduccionesBD,
                 'wellcomeMessageUser',
                 lenguage

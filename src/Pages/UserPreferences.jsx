@@ -35,8 +35,11 @@ import infantiles from '../Assets/categoriesImages/calesita 1.png';
 import servicios from '../Assets/categoriesImages/services 1.png';
 import { filterData } from '../Helpers/FilterByCategory';
 import '../Css/UserPreferences.css';
+import UserBar from './UserBar';
+import '../Css/userBarClick.css';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 
-const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
+const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado, setUserBar, userBar, isLoggedIn, setIsLoggedIn }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
   const preferenciasArray = [];
   const [nacionalidad, setNacionalidad] = useState('');
@@ -129,7 +132,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .patch(`http://localhost:8000/api/userProfile/${user_id}`, {
+      .patch(`/userProfile/${user_id}`, {
         nacionalidad,
         f_nacimiento,
         preferencias,
@@ -174,7 +177,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       preferencias
     );
     http
-      .post('http://localhost:8000/api/userProfile', {
+      .post('/userProfile', {
         user_id,
         nacionalidad,
         f_nacimiento,
@@ -241,23 +244,25 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
       placeholder: placeholder,
     }),
   };
+  handleUserBar(userBar);
 
   return (
     <Layout>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="userProfile" onLoad={recuperarPerfil}>
         <div>
           <h2 className="title">
             {pefilRecuperado?.preferencias === ''
               ? filtrarTraduccion(
-                  traduccionesBD,
-                  'preferencesTitleCreateProfile',
-                  lenguage
-                )
+                traduccionesBD,
+                'preferencesTitleCreateProfile',
+                lenguage
+              )
               : filtrarTraduccion(
-                  traduccionesBD,
-                  'preferencesTitleUpdateProfile',
-                  lenguage
-                )}
+                traduccionesBD,
+                'preferencesTitleUpdateProfile',
+                lenguage
+              )}
           </h2>
         </div>
         <form onSubmit={handleUserProfile}>
@@ -476,6 +481,13 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado }) => {
           </Link>
         </div>
       </div>
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };
