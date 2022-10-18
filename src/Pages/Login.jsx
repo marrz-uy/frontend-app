@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
@@ -70,18 +71,40 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
-  const handleProviderLogin = ( provider) => {
+  const handleProviderLogin = (provider) => {
     //  e.preventDefault();
-    http
-      .get(`http://localhost:8000/api/login/${provider}`)
-      .then((response) => {
-        const dataProvider = response.data;
-        // setUserGoogle(dataProvider);
-        console.log('Provider: ', provider);
-        console.log('dataProvider: ', dataProvider);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-    // navigate('/');
+    // const cookies = '';
+    // const headers = {
+    //   accept:
+    //     'application/json, text/javascript, image/avif,image/webp, */*; q=0.01',
+    //   'accept-language': 'en-US,en;q=0.9,es;q=0.8',
+    //   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    //   'User-Agent':
+    //     'Mozilla/5.0 (X11; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0',
+    //   // 'Accept-Encoding': 'gzip, deflate, br',
+    //   'Cache-Control': 'no-cache',
+    //   // Connection: 'keep-alive',
+    //   // Host: 'localhost:8000',
+    //   Pragma: 'no-cache',
+    //   // 'sec-fetch-dest': 'image',
+    //   // 'sec-fetch-mode': 'no-cors',
+    //   // 'sec-fetch-site': 'same-origin',
+    //   'x-requested-with': 'XMLHttpRequest',
+    //   // cookie: cookies,
+    //   // Referer:
+    //   //   'http://localhost:8000/api/login/google/callback?code=4%2F0ARtbsJoADTfhBEqG6ylHIeA2e9sGuEXHNRT8dBMqbF_cLd8qT4DoEObyjt0wuQNgzy-sdQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent',
+    //   'Referrer-Policy': 'strict-origin-when-cross-origin',
+    // };
+    // axios
+    //   .get(`/login/${provider}`, { headers })
+    //   .then((response) => {
+    //     const dataProvider = response.data;
+    //     // setUserGoogle(dataProvider);
+    //     console.log('Provider: ', provider);
+    //     console.log('dataProvider: ', dataProvider);
+    //   })
+    //   .catch((error) => console.error(`Error en catch: ${error}`));
+    navigate('');
   };
 
   return (
@@ -137,7 +160,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           <span> o </span>
           <div className="auth__social-networks">
             <p>Login with social networks</p>
-
+                <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?client_id=714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fapi%2Flogin%2Fgoogle%2Fcallback&scope=openid%20profile%20email&response_type=code&flowName=GeneralOAuthFlow" target="_blank" rel="noopener noreferrer" alt='link'>
             <div
               className="google-btn"
               onClick={() => handleProviderLogin('google')}
@@ -153,6 +176,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
                 <b>Sign in with google</b>
               </p>
             </div>
+          
+          </a>
           </div>
           <div className="salir">
             <Link to="/">
