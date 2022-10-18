@@ -24,6 +24,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const [userGoogle, setUserGoogle] = useState('');
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
@@ -69,8 +70,18 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
-  const handleGoogleLogin = (e) => {
-    navigate('www.google.com');
+  const handleProviderLogin = ( provider) => {
+    //  e.preventDefault();
+    http
+      .get(`http://localhost:8000/api/login/${provider}`)
+      .then((response) => {
+        const dataProvider = response.data;
+        // setUserGoogle(dataProvider);
+        console.log('Provider: ', provider);
+        console.log('dataProvider: ', dataProvider);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+    // navigate('/');
   };
 
   return (
@@ -127,20 +138,21 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           <div className="auth__social-networks">
             <p>Login with social networks</p>
 
-            <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?client_id=714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fgoogle-callback&scope=openid%20profile%20email&response_type=code&state=OX4UGacikzqta55jBW5db0ISm7pRgzw3HimUuRGw&flowName=GeneralOAuthFlow">
-              <div className="google-btn" onClick={handleGoogleLogin}>
-                <div className="google-icon-wrapper">
-                  <img
-                    className="google-icon"
-                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                    alt="google button"
-                  />
-                </div>
-                <p className="btn-text">
-                  <b>Sign in with google</b>
-                </p>
+            <div
+              className="google-btn"
+              onClick={() => handleProviderLogin('google')}
+            >
+              <div className="google-icon-wrapper">
+                <img
+                  className="google-icon"
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  alt="google button"
+                />
               </div>
-            </a>
+              <p className="btn-text">
+                <b>Sign in with google</b>
+              </p>
+            </div>
           </div>
           <div className="salir">
             <Link to="/">
