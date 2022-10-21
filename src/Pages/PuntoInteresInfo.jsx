@@ -11,19 +11,21 @@ import '../Css/Slider.css';
 import '../Css/SliderPuntoInteresInfo.css';
 
 const PuntoInteresInfo = ({
-    setUserBar,
-    userBar,
-    isLoggedIn,
-    setIsLoggedIn,
+  setUserBar,
+  userBar,
+  isLoggedIn,
+  setIsLoggedIn,
   destination,
   setPage,
 }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   handleUserBar(userBar);
   const { http } = AuthUser();
   const navigate = useNavigate();
+  // const { Latitud, Longitud } = destination
+  const { Facebook, Instagram } = destination
   // console.log(destination)
-  const { id } = destination;
+  // const { id } = destination;
+  console.log(destination)
 
   const { puntointeres_id } = destination;
   const [puntodeInteres, setPuntodeInteres] = useState({});
@@ -40,13 +42,12 @@ const PuntoInteresInfo = ({
                 })
         }
      */
+
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
     setPage('infoResults');
-    // getPuntoDeInteres()
-    // console.log(puntodeInteres)
   }, []);
 
   return (
@@ -54,29 +55,32 @@ const PuntoInteresInfo = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="puntoInteres__container">
         <div className="puntoInteres__imagen">
-          <Slider2 />
+          <Slider2 imagen={destination.Imagen} />
         </div>
         <div className="puntoInteres__info">
-          <h2 className="puntoInteres__info__tipo">{destination.tipo}Evento</h2>
-          <h1 className="puntoInteres__info__nombre">{destination.nombre}</h1>
+          <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
+          <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
-            <h2 className="puntoInteres__info__ciudad">
-              <span>Direccion: </span>
-              {destination.ciudad}
-            </h2>
-            <h2 className="puntoInteres__info__direccion">
-              {destination.direccion}
-            </h2>
+            <p><span>Ciudad: </span>{destination.Ciudad}</p>
+            <p><span>Departamento: </span>{destination.Departamento}</p>
+            <p><span>Direccion: </span>{destination.Direccion}</p>
           </div>
           <div className="puntoInteres__info__datos2">
             <p className="puntoInteres__info__descripcion">
-              <span>Descripcion: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Maxime ex libero ut minima consectetur obcaecati
-              ipsa a ipsam perspiciatis, veniam laboriosam sunt aspernatur neque
-              autem recusandae sit incidunt nam quis?
+              <span>Descripcion: </span>{destination.Descripcion}
             </p>
           </div>
-          <h2>{destination.contacto}</h2>
+          <div className='puntoInteres__info__horarios'>
+            <p><span>Hora de apertura:</span> {destination.HoraDeApertura}</p>
+            <p><span>Hora de cierre:</span> {destination.HoraDeCierre}</p>
+          </div>
+          {Facebook | Instagram !== null ? (
+            <div className='puntoInteres__info__social'>
+              <h2>Mas informacion</h2>
+              <a href={destination.Instagram}><img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png" alt='instagram' /></a>
+              <a href={destination.Faceebok}><img src="https://img.icons8.com/fluency/48/000000/facebook.png" alt='facebook' /></a>
+            </div>
+          ) : ''}
         </div>
       </div>
       {userBar && (
