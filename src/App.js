@@ -10,6 +10,7 @@ import UserProfile from './Pages/UserProfile';
 import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
+import PuntoInteresInfo from './Pages/PuntoInteresInfo';
 
 function App() {
   const [searchType, setSearchType] = useState('');
@@ -23,6 +24,8 @@ function App() {
   const [paginaActual, setPaginaActual] = useState(1);
   const [userBar, setUserBar] = useState(false);
   const [splash, setSplash] = useState();
+  const [destination, setDestination] = useState([])
+
   const handleClickBars = () => {
     setBars(!bars);
   };
@@ -175,6 +178,7 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
+                setDestination={setDestination}
               />
             }
           />
@@ -189,6 +193,19 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setUserBar={setUserBar}
+              />
+            }
+          />
+          <Route
+            path='/infoResults'
+            element={
+              <PuntoInteresInfo
+                setPage={setPage}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                userBar={userBar}
+                setUserBar={setUserBar}
+                destination={destination}
               />
             }
           />

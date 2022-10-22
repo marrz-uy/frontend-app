@@ -7,6 +7,7 @@
 	max-height: 25vh;
 	min-height: 141px;
 	background-color: rgb(255, 255, 255);
+	cursor: pointer;
 }
 
 .divImg {
@@ -27,11 +28,11 @@
 .data {
 	display: flex;
 	flex-direction: column;
-	justify-content:space-between;
+	justify-content: space-between;
 	width: 70vw;
 	margin-bottom: 5px;
 	margin: 8px 0;
-	overflow:auto;
+	overflow: auto;
 	gap: 5px;
 }
 
@@ -39,11 +40,13 @@
 	max-width: 245px;
 }
 
-h2, h4, h6 {
+h2,
+h4,
+h6 {
 	margin-bottom: 5px;
 }
 
-.diaYHora{
+.diaYHora {
 	display: flex;
 	gap: 5px;
 	margin-top: 10px;
@@ -94,7 +97,8 @@ h2, h4, h6 {
 		min-height: 70px;
 	}
 
-	.data h4, h6 {
+	.data h4,
+	h6 {
 		display: flex;
 		max-width: 230px;
 	}

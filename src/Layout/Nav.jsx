@@ -20,7 +20,7 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
-  searchType, 
+  searchType,
   setSearchType
 }) => {
   const location = useGeoLocation();
@@ -74,7 +74,7 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
-    
+
     // let t = e.target.value;
     setText(e.target.value);
   };
@@ -108,9 +108,15 @@ const Nav = ({
       <div className="contentNavbar">
         <div className="logoFellUy">
           {page !== 'principal' ? (
-            <Link to="/">
-              <img id="arrowImg" src={backArrow} alt="back"></img>
-            </Link>
+            page === 'infoResults' ? (
+              <Link to='/results'>
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            ) : (
+              <Link to='/'>
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            )
           ) : (
             <Link to="/">
               <img id="feelLogoImg" src={logo} alt="logo"></img>
@@ -126,10 +132,10 @@ const Nav = ({
               placeholder={
                 location.loaded === true
                   ? filtrarTraduccion(
-                      traduccionesBD,
-                      'searchPlaceholder',
-                      lenguage
-                    )
+                    traduccionesBD,
+                    'searchPlaceholder',
+                    lenguage
+                  )
                   : 'Buscando...'
               }
               value={text}
@@ -172,10 +178,10 @@ const Nav = ({
           {getUser()?.name
             ? getUser()?.name
             : filtrarTraduccion(
-                traduccionesBD,
-                'wellcomeMessageUser',
-                lenguage
-              )}
+              traduccionesBD,
+              'wellcomeMessageUser',
+              lenguage
+            )}
         </span>
       </div>
     </div>
