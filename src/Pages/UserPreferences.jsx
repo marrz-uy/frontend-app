@@ -39,7 +39,15 @@ import UserBar from './UserBar';
 import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 
-const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado, setUserBar, userBar, isLoggedIn, setIsLoggedIn }) => {
+const UserPreferences = ({
+  setPage,
+  pefilRecuperado,
+  setPefilRecuperado,
+  setUserBar,
+  userBar,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
   const preferenciasArray = [];
   const [nacionalidad, setNacionalidad] = useState('');
@@ -55,7 +63,7 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado, setUser
     setPage('preferences');
     setLenguage(localStorage.getItem('language'));
     try {
-      setUser_id(getUser()?.id);
+      setUser_id(sessionStorage?.getItem('id'));
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
@@ -254,15 +262,15 @@ const UserPreferences = ({ setPage, pefilRecuperado, setPefilRecuperado, setUser
           <h2 className="title">
             {pefilRecuperado?.preferencias === ''
               ? filtrarTraduccion(
-                traduccionesBD,
-                'preferencesTitleCreateProfile',
-                lenguage
-              )
+                  traduccionesBD,
+                  'preferencesTitleCreateProfile',
+                  lenguage
+                )
               : filtrarTraduccion(
-                traduccionesBD,
-                'preferencesTitleUpdateProfile',
-                lenguage
-              )}
+                  traduccionesBD,
+                  'preferencesTitleUpdateProfile',
+                  lenguage
+                )}
           </h2>
         </div>
         <form onSubmit={handleUserProfile}>

@@ -16,7 +16,7 @@ function App() {
   const [categoryName, setCategoryName] = useState('');
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState('true');
+  const [isLoggedIn, setIsLoggedIn] = useState('');
   const [page, setPage] = useState('principal');
   const [bars, setBars] = useState(false);
   const [pefilRecuperado, setPefilRecuperado] = useState('');

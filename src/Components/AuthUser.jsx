@@ -3,12 +3,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AuthUser() {
+
   const navigate = useNavigate();
 
   const getToken = () => {
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken;
+    try {
+      const tokenString = sessionStorage.getItem('token');
+      // const userToken = JSON.parse(tokenString);
+      const userToken = tokenString;
+      return userToken;
+    } catch (error) {
+      console.log('TOKEN SIN DATOS', error);
+    }
   };
 
   const getUser = () => {
@@ -33,24 +39,38 @@ export default function AuthUser() {
     }
   };
 
+  const getEmail = () => {
+    try {
+      const emailString = sessionStorage.getItem('email');
+      // const userToken = JSON.parse(tokenString);
+      const userEmail = emailString;
+      return userEmail;
+    } catch (error) {
+      console.log('EMAIL SIN DATOS', error);
+    }
+  };
+
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(getUser());
   const [userProfile, setUserProfile] = useState(getUserProfile());
+  const [email, setEmail] = useState(getEmail());
 
-  const saveToken = (user, token, userProfile) => {
+  const saveToken = (user, token, email, userProfile) => {
     sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('email', JSON.stringify(email));
     sessionStorage.setItem('isLoggedIn', 'true');
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      sessionStorage.setItem('preferencias', userProfile.preferencias);
+      sessionStorage.setItem('userProfile', userProfile.preferencias);
     }
 
     setToken(token);
     setUser(user);
     setUserProfile(userProfile);
+    setEmail(email);
     navigate('/principal');
   };
 
@@ -69,9 +89,9 @@ export default function AuthUser() {
     baseURL: 'http://localhost:8000/api',
     headers: {
       'Content-type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      'Access-Control-Allow-Origin': '*'
-    }, 
+      Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Origin': '*',
+    },
   });
 
   const getLoggedIn = () => {
@@ -87,13 +107,15 @@ export default function AuthUser() {
     setToken: saveToken,
     token,
     user,
+    email,
+    userProfile,
+    http,
     getToken,
     getUser,
-    http,
-    logout,
-    userProfile,
+    getEmail,
     getUserProfile,
-    saveUserProfile,
     getLoggedIn,
+    logout,
+    saveUserProfile,
   };
 }

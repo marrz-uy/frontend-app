@@ -44,12 +44,6 @@
 	cursor: pointer;
 }
 
-/* @media (min-width: 880px) and (max-width:) {
-	.userBar__cancel {
-		margin-top: 16%;
-	}
-} */
-
 @media (min-width: 580px) {
 	.userBar__cancel {
 		margin-top: 9%;
@@ -96,8 +90,6 @@
 	align-items: flex-end;
 }
 
-
-
 .userBar__link li a {
 	color: #edf0f1;
 	padding: 0px 25px;
@@ -108,7 +100,6 @@
 	text-decoration: none;
 	/* text-transform: uppercase; */
 	margin-bottom: 5px;
-
 }
 
 .userBar__link li p {
@@ -145,24 +136,7 @@
 }
 
 @media (min-width: 800px) {
-
 	.userBar__link .userBar__lenguage {
 		display: none;
 	}
-
-
-	/* .userBar__link li:nth-child(1) {
-		display: none;
-	}
-	
-	.userBar__register {
-		display: none;
-	}
-
-	.userBar__register a {
-		display: none;
-	}
-	.userBar__login a {
-		display: none;
-	} */
 }

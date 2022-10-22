@@ -11,10 +11,17 @@ import '../Css/UserProfile.css';
 import UserBar from './UserBar';
 import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 //  let initialLanguage = getLanguageStorage()
 
-const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }) => {
-  const { logout, token, getUser } = AuthUser();
+const UserProfile = ({
+  setPage,
+  setIsLoggedIn,
+  setUserBar,
+  userBar,
+  isLoggedIn,
+}) => {
+  const { logout, token, getUser, getEmail } = AuthUser();
   const navigate = useNavigate();
   const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
   const pefilEnArray = traerPerfil();
@@ -37,6 +44,8 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
     }
   };
   handleUserBar(userBar);
+  const userType = sessionStorage?.getItem('userType');
+  console.log('userType: ' + userType);
 
   return (
     <Layout>
@@ -45,10 +54,10 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
         <div className="user-profile__container">
           <div className="user-profile__description">
             <div className="user-profile__data">
-              <h3>{getUser()?.name}</h3>
+              <h3>{getUser()}</h3>
             </div>
             <div className="user-profile__data">
-              <h3>{getUser()?.email}</h3>
+              <h3>{getEmail()}</h3>
             </div>
             <div className="divBtnUpdates">
               <button className="updateBtn">
@@ -135,15 +144,15 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
                   <button className="user-profile__item">
                     {prefeEnArrayInicial
                       ? filtrarTraduccion(
-                        traduccionesBD,
-                        'changePreferencesButtonValue',
-                        lenguage
-                      )
+                          traduccionesBD,
+                          'changePreferencesButtonValue',
+                          lenguage
+                        )
                       : filtrarTraduccion(
-                        traduccionesBD,
-                        'enterPreferencesButtonValue',
-                        lenguage
-                      )}
+                          traduccionesBD,
+                          'enterPreferencesButtonValue',
+                          lenguage
+                        )}
                   </button>
                   <img
                     src="https://img.icons8.com/external-creatype-filed-outline-colourcreatype/64/000000/external-preferences-tools-design-creatype-filed-outline-colourcreatype.png"
@@ -166,10 +175,15 @@ const UserProfile = ({ setPage, setIsLoggedIn, setUserBar, userBar, isLoggedIn }
                 alt="img"
               />
             </div>
+
             <div className="divBtnLogout">
-              <button className="user-profile__logout" onClick={logoutUser}>
-                {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
-              </button>
+              {userType === 'feel' ? (
+                <button className="user-profile__logout" onClick={logoutUser}>
+                  {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
+                </button>
+              ) : (
+                <LogoutGoogleButton />
+              )}
             </div>
           </div>
         </div>

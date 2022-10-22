@@ -7,6 +7,8 @@ import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import { GoogleLogin } from 'react-google-login';
+import { gapi } from 'gapi-script';
 import {
   UNAUTHORIZED,
   UNPROCESABLE,
@@ -16,7 +18,7 @@ import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
-  sessionStorage.setItem('isLoggedIn', 'false');
+  // sessionStorage.setItem('isLoggedIn', 'false');
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -25,20 +27,28 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  const [userGoogle, setUserGoogle] = useState('');
+  // const [googleUserResponse, setGoogleUserResponse] = useState('');
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
 
   const submitLogin = (e) => {
     e.preventDefault();
+    sessionStorage.setItem('userType', 'feel');
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('%cLOGIN RESPONSE:', 'color: green;', res.data);
-        setToken(res.data.user, res.data.access_token, res.data.userProfile);
+        console.log('%cLOGIN RESPONSE:', 'color: green;', res);
+        setToken(
+          res.data.user,
+          res.data.access_token,
+          res.data.email,
+          res.data.userProfile
+        );
         sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('id', res?.data.id);
         setIsLoggedIn('true');
+        console.log('%cSUBMIT LOGIN APP:', 'color: red;', isLoggedIn);
         navigate('/');
       })
       .catch(function (error) {
@@ -71,41 +81,81 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
-  const handleProviderLogin = (provider) => {
-    //  e.preventDefault();
-    // const cookies = '';
-    // const headers = {
-    //   accept:
-    //     'application/json, text/javascript, image/avif,image/webp, */*; q=0.01',
-    //   'accept-language': 'en-US,en;q=0.9,es;q=0.8',
-    //   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    //   'User-Agent':
-    //     'Mozilla/5.0 (X11; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0',
-    //   // 'Accept-Encoding': 'gzip, deflate, br',
-    //   'Cache-Control': 'no-cache',
-    //   // Connection: 'keep-alive',
-    //   // Host: 'localhost:8000',
-    //   Pragma: 'no-cache',
-    //   // 'sec-fetch-dest': 'image',
-    //   // 'sec-fetch-mode': 'no-cors',
-    //   // 'sec-fetch-site': 'same-origin',
-    //   'x-requested-with': 'XMLHttpRequest',
-    //   // cookie: cookies,
-    //   // Referer:
-    //   //   'http://localhost:8000/api/login/google/callback?code=4%2F0ARtbsJoADTfhBEqG6ylHIeA2e9sGuEXHNRT8dBMqbF_cLd8qT4DoEObyjt0wuQNgzy-sdQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent',
-    //   'Referrer-Policy': 'strict-origin-when-cross-origin',
-    // };
-    // axios
-    //   .get(`/login/${provider}`, { headers })
-    //   .then((response) => {
-    //     const dataProvider = response.data;
-    //     // setUserGoogle(dataProvider);
-    //     console.log('Provider: ', provider);
-    //     console.log('dataProvider: ', dataProvider);
-    //   })
-    //   .catch((error) => console.error(`Error en catch: ${error}`));
-    navigate('');
+  const clientId =
+    '714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com';
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: '',
+      });
+    };
+    gapi.load('client:auth2', initClient);
+  });
+
+  const handleFailure = (result) => {
+    console.log('Error o cambio de cuenta cancelado:', result);
   };
+
+  const handleOAuth = (googleUser) => {
+    // console.log('PROFILE OBJECT: ', googleUser.profileObj);
+    sessionStorage.setItem(
+      'email',
+      JSON.stringify(googleUser.profileObj.email)
+    );
+    sessionStorage.setItem('userType', 'google');
+    sessionStorage.setItem('user', JSON.stringify(googleUser.profileObj.name));
+    http
+      .post('http://localhost:8000/oauth/token', {
+        grant_type: 'social',
+        client_id: '2',
+        client_secret: 'iz0NJbrzVcOerQQxdeOFigkyK4o2TuJQDxpWp5ML',
+        provider: 'google',
+        access_token: googleUser.tokenObj.access_token,
+      })
+      .then((response) => {
+        sessionStorage.setItem(
+          'token',
+          JSON.stringify(response?.data.access_token)
+        );
+        sessionStorage.setItem(
+          'refresh_token',
+          JSON.stringify(response?.data.refresh_token)
+        );
+        // console.log('RESPONSE DE PASSPORT: ', response?.data);
+
+        sessionStorage.setItem('isLoggedIn', 'true');
+        setIsLoggedIn('true');
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+
+    let emailGoogleUser = sessionStorage.getItem('email');
+    console.log('emailGoogleUser:', emailGoogleUser);
+
+    traerIduserGoogle();
+    navigate('/');
+  };
+
+  const traerIduserGoogle = () => {
+    let emailGoogleUser = JSON.parse(sessionStorage.getItem('email'));
+    console.log('%cemailGoogleUser:', 'color: pink;', emailGoogleUser);
+    axios
+      .post('http://localhost:8000/api/userGoogleData', {
+        email: emailGoogleUser,
+      })
+      .then((response) => {
+        // setGoogleUserResponse(response?.data);
+        sessionStorage.setItem('id', response?.data.userGoogleId);
+        console.log(
+          'RESPONSE DE DATAGOOGLEUSER2: ',
+          response?.data.userGoogleId
+        );
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  console.log('isLoggedIn FUERA1: ', isLoggedIn);
+  console.log('isLoggedIn FUERA2: ', isLoggedIn);
 
   return (
     <Layout>
@@ -157,28 +207,14 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
             </Link>
           </div>
-          <span> o </span>
-          <div className="auth__social-networks">
-            <p>Login with social networks</p>
-                <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?client_id=714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fapi%2Flogin%2Fgoogle%2Fcallback&scope=openid%20profile%20email&response_type=code&flowName=GeneralOAuthFlow" target="_blank" rel="noopener noreferrer" alt='link'>
-            <div
-              className="google-btn"
-              onClick={() => handleProviderLogin('google')}
-            >
-              <div className="google-icon-wrapper">
-                <img
-                  className="google-icon"
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                  alt="google button"
-                />
-              </div>
-              <p className="btn-text">
-                <b>Sign in with google</b>
-              </p>
-            </div>
-          
-          </a>
-          </div>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Log in with Google"
+            onSuccess={handleOAuth}
+            onFailure={handleFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+          ></GoogleLogin>
           <div className="salir">
             <Link to="/">
               <button className="btn-cerrar">
@@ -192,6 +228,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           </div>
         </form>
       </div>
+
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}

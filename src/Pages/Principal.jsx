@@ -110,6 +110,8 @@ const Principal = ({
 
   handleUserBar(userBar);
 
+  
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -293,19 +295,20 @@ const Principal = ({
         </div>
       </div>
       <div className='contenedorSliders'>
+      
       <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
+        title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
+        description={filtrarTraduccion(traduccionesBD, 'Slider1Description', lenguage) }
         arrayimages={alojamientos}
       />
       <Slider
-        title="Buscas alojamiento?"
-        description="Alojamientos populares que eligieron nuestros usuarios"
+        title={`${filtrarTraduccion(traduccionesBD, 'Slider2Title', lenguage)} Montevideo`}
+        description={`${filtrarTraduccion(traduccionesBD, 'Slider2Description', lenguage)} Montevideo`}
         arrayimages={alojamientos}
       />
       <Slider
-        title="Deseas salir a comer?"
-        description="Restaurantes que eligieron nuestros usuarios"
+        title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
+        description={filtrarTraduccion(traduccionesBD, 'Slider3Description', lenguage)}
         arrayimages={gastronomicas}
       />
       </div>

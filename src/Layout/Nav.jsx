@@ -20,7 +20,6 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
-  searchType, 
   setSearchType
 }) => {
   const location = useGeoLocation();
@@ -156,7 +155,6 @@ const Nav = ({
               alt="img"
             />
           </div>
-
           <>
             <FontAwesomeIcon
               icon={faBars}
@@ -169,8 +167,8 @@ const Nav = ({
       <div className="divMsgWelcome">
         <span className="msgWelcome">
           {filtrarTraduccion(traduccionesBD, 'wellcomeMessage', lenguage)}{' '}
-          {getUser()?.name
-            ? getUser()?.name
+          {getUser()
+            ? getUser()
             : filtrarTraduccion(
                 traduccionesBD,
                 'wellcomeMessageUser',
