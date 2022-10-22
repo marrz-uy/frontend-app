@@ -35,10 +35,8 @@ const Principal = ({
   setUserBar,
   isLoggedIn,
   setIsLoggedIn,
-  searchType,
   setSearchType,
-  categoryName, 
-  setCategoryName
+  setCategoryName,
 }) => {
   const location = useGeoLocation();
   const latitud = JSON.stringify(location.coordinates.lat);
@@ -104,7 +102,7 @@ const Principal = ({
     getData(e);
     setPage('results');
     setSearchType('categoria');
-    setCategoryName(e)
+    setCategoryName(e);
     navigate('/results');
   };
 
@@ -219,8 +217,10 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-
-              <div className="categories">
+              <div
+                className="categories"
+                onClick={() => handleCategories('Actividades Nocturnas')}
+              >
                 <div className="categoriesImage">
                   <img
                     src={actividaesNocturnas}
@@ -258,7 +258,10 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div className="categories">
+              <div
+                className="categories"
+                onClick={() => handleCategories('Actividades Infantiles')}
+              >
                 <div className="categoriesImage">
                   <img
                     src={serviciosInfantiles}
@@ -292,22 +295,22 @@ const Principal = ({
           </button>
         </div>
       </div>
-      <div className='contenedorSliders'>
-      <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Buscas alojamiento?"
-        description="Alojamientos populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Deseas salir a comer?"
-        description="Restaurantes que eligieron nuestros usuarios"
-        arrayimages={gastronomicas}
-      />
+      <div className="contenedorSliders">
+        <Slider
+          title="Descubre Uruguay"
+          description="Destino populares que eligieron nuestros usuarios"
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title="Buscas alojamiento?"
+          description="Alojamientos populares que eligieron nuestros usuarios"
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title="Deseas salir a comer?"
+          description="Restaurantes que eligieron nuestros usuarios"
+          arrayimages={gastronomicas}
+        />
       </div>
       {userBar && (
         <UserBar

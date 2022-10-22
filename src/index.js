@@ -11,7 +11,6 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-
 serviceWorkerRegistration.register({
   onUpdate: async (registration) => {
     if (registration && registration.waiting) {
