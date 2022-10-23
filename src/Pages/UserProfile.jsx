@@ -44,6 +44,7 @@ const UserProfile = ({
     }
   };
   handleUserBar(userBar);
+
   const userType = sessionStorage?.getItem('userType');
   console.log('userType: ' + userType);
 
@@ -59,27 +60,30 @@ const UserProfile = ({
             <div className="user-profile__data">
               <h3>{getEmail()}</h3>
             </div>
-            <div className="divBtnUpdates">
-              <button className="updateBtn">
-                <Link to="/updateEmail">
-                  {filtrarTraduccion(traduccionesBD, 'changeEmail', lenguage)}
-                </Link>
-              </button>
-              <button className="updateBtn">
-                <Link to="/updateName">
-                  {filtrarTraduccion(traduccionesBD, 'changename', lenguage)}
-                </Link>
-              </button>
-              <button className="updateBtn">
-                <Link to="/updatePassword">
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'changePassword',
-                    lenguage
-                  )}
-                </Link>
-              </button>
-            </div>
+            {userType === 'feel' ? (
+              <div className="divBtnUpdates">
+                <button className="updateBtn">
+                  <Link to="/updateEmail">
+                    {filtrarTraduccion(traduccionesBD, 'changeEmail', lenguage)}
+                  </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updateName">
+                    {filtrarTraduccion(traduccionesBD, 'changename', lenguage)}
+                  </Link>
+                </button>
+                <button className="updateBtn">
+                  <Link to="/updatePassword">
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'changePassword',
+                      lenguage
+                    )}
+                  </Link>
+                </button>
+              </div>
+            ) : null}
+
           </div>
 
           <div className="user-profile__links">

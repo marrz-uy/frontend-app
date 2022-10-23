@@ -83,7 +83,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const clientId =
     '714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com';
-  useEffect(() => {
+  /* useEffect(() => {
     const initClient = () => {
       gapi.client.init({
         clientId: clientId,
@@ -91,7 +91,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       });
     };
     gapi.load('client:auth2', initClient);
-  });
+  }); */
 
   const handleFailure = (result) => {
     console.log('Error o cambio de cuenta cancelado:', result);
@@ -99,12 +99,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const handleOAuth = (googleUser) => {
     // console.log('PROFILE OBJECT: ', googleUser.profileObj);
-    sessionStorage.setItem(
-      'email',
-      JSON.stringify(googleUser.profileObj.email)
-    );
+    sessionStorage.setItem('email', googleUser.profileObj.email);
     sessionStorage.setItem('userType', 'google');
-    sessionStorage.setItem('user', JSON.stringify(googleUser.profileObj.name));
+    sessionStorage.setItem('user', googleUser.profileObj.name);
     http
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
@@ -127,7 +124,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
       })
-      .catch((error) => console.error(`Error en catch: ${error}`));
+      .catch((error) => {
+        console.error(`Error en catch: ${error}`)
+        //!BORRAR SIGUIENTE LINEA LUEGO DE ARREGLAR CORS PARA CHROME
+        // sessionStorage.setItem('isLoggedIn', 'true');
+    });
 
     let emailGoogleUser = sessionStorage.getItem('email');
     console.log('emailGoogleUser:', emailGoogleUser);
@@ -137,7 +138,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   };
 
   const traerIduserGoogle = () => {
-    let emailGoogleUser = JSON.parse(sessionStorage.getItem('email'));
+    let emailGoogleUser = sessionStorage.getItem('email');
     console.log('%cemailGoogleUser:', 'color: pink;', emailGoogleUser);
     axios
       .post('http://localhost:8000/api/userGoogleData', {
@@ -146,6 +147,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .then((response) => {
         // setGoogleUserResponse(response?.data);
         sessionStorage.setItem('id', response?.data.userGoogleId);
+        sessionStorage.setItem('userProfile', JSON.stringify(response?.data.userProfile));
         console.log(
           'RESPONSE DE DATAGOOGLEUSER2: ',
           response?.data.userGoogleId
@@ -213,7 +215,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             onSuccess={handleOAuth}
             onFailure={handleFailure}
             cookiePolicy={'single_host_origin'}
-            isSignedIn={true}
+            // isSignedIn={true}
           ></GoogleLogin>
           <div className="salir">
             <Link to="/">

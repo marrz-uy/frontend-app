@@ -26,16 +26,17 @@ const UpdateUserData = ({
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
-  const userData = JSON.parse(sessionStorage.getItem('user'));
+  // const userData = JSON.parse(sessionStorage.getItem('user'));
+  const Id = sessionStorage.getItem('id');
 
   const submitUpdateEmail = (e) => {
     e.preventDefault();
     http
-      .patch(`/updateEmail/${userData.id}`, { email })
+      .patch(`/updateEmail/${Id}`, { email })
       .then((res) => {
         console.log('RESPUESTA:', res.data.user);
         setRegisterErrorMessage('El Usuario se actualizo correctamente');
-        sessionStorage.setItem('user', JSON.stringify(res.data.user));
+        sessionStorage.setItem('email', res.data.user.email);
         navigate('/user');
       })
       .catch(function (error) {

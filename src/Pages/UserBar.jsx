@@ -91,7 +91,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
                   </p>
                 ) : (
-                  <LogoutGoogleButton/>
+                  <LogoutGoogleButton />
                 )}
               </li>
             </>

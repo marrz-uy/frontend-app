@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AuthUser() {
-
   const navigate = useNavigate();
 
   const getToken = () => {
@@ -19,12 +18,15 @@ export default function AuthUser() {
 
   const getUser = () => {
     try {
-      const userString = sessionStorage.getItem('user');
-      const user_detail = JSON.parse(userString);
-      // const user_detail = userString;
-      return user_detail;
+      const userString = sessionStorage?.getItem('user');
+      if (userString !== null) {
+        // const user_detail = JSON.parse(userString);
+        const user_detail = userString;
+        let userDetail = user_detail.toString().replace(/[",']/gi, '')
+        return userDetail;
+      }
     } catch (error) {
-      console.log('USER SIN DATOS', error);
+      console.log('USER SIN DATOS- getUser()-AuthUser.jsx', error);
     }
   };
 
@@ -42,8 +44,12 @@ export default function AuthUser() {
   const getEmail = () => {
     try {
       const emailString = sessionStorage.getItem('email');
-      // const userToken = JSON.parse(tokenString);
-      const userEmail = emailString;
+      // const userEmail = JSON.parse(emailString);
+      // const user_Email = emailString;
+      if(!emailString) {
+        return ''
+      }
+      let userEmail = emailString.toString().replace(/[",']/gi, '')
       return userEmail;
     } catch (error) {
       console.log('EMAIL SIN DATOS', error);
@@ -56,9 +62,9 @@ export default function AuthUser() {
   const [email, setEmail] = useState(getEmail());
 
   const saveToken = (user, token, email, userProfile) => {
-    sessionStorage.setItem('token', JSON.stringify(token));
-    sessionStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.setItem('email', JSON.stringify(email));
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('user', user);
+    sessionStorage.setItem('email', email);
     sessionStorage.setItem('isLoggedIn', 'true');
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem('userProfile', JSON.stringify({}));

@@ -26,17 +26,17 @@ const UpdateUserData = ({
   const navigate = useNavigate();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage  } = useContext(LenguageContext);
-  const userData = JSON.parse(sessionStorage.getItem('user'))
+  const Id = sessionStorage.getItem('id')
 
 
   const submitUpdateName = (e) => {
     e.preventDefault();
     http
-      .patch(`/updatePassword/${userData.id}`, { password, passwordConfirmation })
+      .patch(`/updatePassword/${Id}`, { password, passwordConfirmation })
       .then((res) => {
         console.log('RESPUESTA:', res.data.user);
         setRegisterErrorMessage('El Usuario se actualizo correctamente');
-        sessionStorage.setItem('user', JSON.stringify(res.data.user));
+        // sessionStorage.setItem('user', JSON.stringify(res.data.user));
         navigate('/user');
       })
       .catch(function (error) {
