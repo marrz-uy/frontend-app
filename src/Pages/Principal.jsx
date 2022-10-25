@@ -37,27 +37,10 @@ const Principal = ({
   setIsLoggedIn,
   searchType,
   setSearchType,
-  categoryName, 
-  setCategoryName
+  categoryName,
+  setCategoryName,
 }) => {
-  const location = useGeoLocation();
-  const latitud = JSON.stringify(location.coordinates.lat);
-  const longitud = JSON.stringify(location.coordinates.lng);
-
-  const [latitudAEnviar, setLatitudAEnviar] = useState('');
-  const [longitudAEnviar, setLongitudAEnviar] = useState('');
-  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
-
-  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (lat.length === 6) {
-    lat = lat + 0;
-  }
-
-  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (long.length === 6) {
-    long = long + 0;
-  }
-
+  // const location = useGeoLocation();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -71,10 +54,38 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
-    setLatitudAEnviar(+lat);
-    setLongitudAEnviar(+long);
-    setDistanciaAEnviar(50000);
-  }, [setPage, setText, page, lat, long]);
+  }, [setPage, setText, page]);
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState('');
+  const [longitudAEnviar, setLongitudAEnviar] = useState('');
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
+
+  const { loaded, latitud, longitud, accuracy, altitude, speed } =
+    useGeoLocation();
+
+  console.log(
+    'LOCATION: ',
+    loaded,
+    latitud,
+    longitud,
+    accuracy,
+    altitude,
+    speed
+  );
+
+  useEffect(() => {
+    if (latitud !== null || longitud !== null) {
+      setLatitudAEnviar(+latitud);
+      setLongitudAEnviar(+longitud);
+      setDistanciaAEnviar(50000);
+      console.log(
+        'A ENVIAR: ',
+        loaded,
+        latitud,
+        longitud
+      );
+    }
+  }, [loaded, latitud, longitud]);
 
   const getData = (categoria) => {
     http
@@ -100,17 +111,15 @@ const Principal = ({
   const handleCategories = (e) => {
     setItems(e);
     setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
-    // console.log('TEXT PRINCIPAL:', e);
+    console.log('%cTEXT PRINCIPAL:', 'color: green;', e);
     getData(e);
     setPage('results');
     setSearchType('categoria');
-    setCategoryName(e)
+    setCategoryName(e);
     navigate('/results');
   };
 
   handleUserBar(userBar);
-
-  
 
   return (
     <Layout>
@@ -294,23 +303,38 @@ const Principal = ({
           </button>
         </div>
       </div>
-      <div className='contenedorSliders'>
-      
-      <Slider
-        title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
-        description={filtrarTraduccion(traduccionesBD, 'Slider1Description', lenguage) }
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title={`${filtrarTraduccion(traduccionesBD, 'Slider2Title', lenguage)} Montevideo`}
-        description={`${filtrarTraduccion(traduccionesBD, 'Slider2Description', lenguage)} Montevideo`}
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
-        description={filtrarTraduccion(traduccionesBD, 'Slider3Description', lenguage)}
-        arrayimages={gastronomicas}
-      />
+      <div className="contenedorSliders">
+        <Slider
+          title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
+          description={filtrarTraduccion(
+            traduccionesBD,
+            'Slider1Description',
+            lenguage
+          )}
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title={`${filtrarTraduccion(
+            traduccionesBD,
+            'Slider2Title',
+            lenguage
+          )} Montevideo`}
+          description={`${filtrarTraduccion(
+            traduccionesBD,
+            'Slider2Description',
+            lenguage
+          )} Montevideo`}
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
+          description={filtrarTraduccion(
+            traduccionesBD,
+            'Slider3Description',
+            lenguage
+          )}
+          arrayimages={gastronomicas}
+        />
       </div>
       {userBar && (
         <UserBar

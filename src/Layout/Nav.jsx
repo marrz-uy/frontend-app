@@ -20,39 +20,27 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
-  setSearchType
+  setSearchType,
 }) => {
-  const location = useGeoLocation();
-  const latitud = JSON.stringify(location.coordinates.lat);
-  const longitud = JSON.stringify(location.coordinates.lng);
-
-  const [latitudAEnviar, setLatitudAEnviar] = useState();
-  const [longitudAEnviar, setLongitudAEnviar] = useState();
-
-  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (lat.length === 6) {
-    lat = lat + 0;
-  }
-
-  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (long.length === 6) {
-    long = long + 0;
-  }
-
-  const [distanciaAEnviar, setDistancia] = useState('');
   const { http, getUser, getLoggedIn } = AuthUser();
-
-  // console.log('LAT Y LONG', lat.length, long.length);
-
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
+  const { loaded, latitud, longitud } = useGeoLocation();
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState();
+  const [longitudAEnviar, setLongitudAEnviar] = useState();
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
+
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    setLatitudAEnviar(lat);
-    setLongitudAEnviar(long);
-    setDistancia(50000);
-  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, lat, long]);
+    if (latitud !== null || longitud !== null) {
+      setLatitudAEnviar(+latitud);
+      setLongitudAEnviar(+longitud);
+      setDistanciaAEnviar(50000);
+      console.log('A ENVIAR: ', loaded, latitud, longitud);
+    }
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
 
   const navigate = useNavigate();
 
@@ -73,7 +61,7 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
-    
+
     // let t = e.target.value;
     setText(e.target.value);
   };
@@ -119,18 +107,14 @@ const Nav = ({
         <div className="search">
           <div className="searchIntDiv">
             <input
-              className={location.loaded === true ? 'inputSearch' : 'disabled'}
+              className={loaded === true ? 'inputSearch' : 'disabled'}
               name="categoria"
               type="text"
-              placeholder={
-                location.loaded === true
-                  ? filtrarTraduccion(
-                      traduccionesBD,
-                      'searchPlaceholder',
-                      lenguage
-                    )
-                  : 'Buscando...'
-              }
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'searchPlaceholder',
+                lenguage
+              )}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}

@@ -25,22 +25,7 @@ const SearchResults = ({
   categoryName,
   setCategoryName,
 }) => {
-  const location = useGeoLocation();
-  const latitud = JSON.stringify(location.coordinates.lat);
-  const longitud = JSON.stringify(location.coordinates.lng);
-
-  const [latitudAEnviar, setLatitudAEnviar] = useState('');
-  const [longitudAEnviar, setLongitudAEnviar] = useState('');
-  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
-  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (lat.length === 6) {
-    lat = lat + 0;
-  }
-  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (long.length === 6) {
-    long = long + 0;
-  }
-  const [distLabel, setDistLabel] = useState('Total');
+  // const [distLabel, setDistLabel] = useState('Total');
   const { http } = AuthUser();
 
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -55,29 +40,35 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  console.log('SEARCH TYPE:', searchType);
+  // console.log('SEARCH TYPE:', searchType);
   //  console.log('TEXT RESULTS', text, typeof text);
 
-  console.log(
-    '%cLAST PAGES ITEMS y DATOS:',
-    'color: yellow;',
-    items?.last_page,
-    datos?.last_page
-  );
-  console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
+  // console.log(
+  //   '%cLAST PAGES ITEMS y DATOS:',
+  //   'color: yellow;',
+  //   items?.last_page,
+  //   datos?.last_page
+  // );
+  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
+
+  const { loaded, latitud, longitud } = useGeoLocation();
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState('');
+  const [longitudAEnviar, setLongitudAEnviar] = useState('');
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
 
   useEffect(() => {
     setPage('results');
     setDatos(items);
     setCantPaginas(items?.last_page);
-    setLatitudAEnviar(+lat);
-    setLongitudAEnviar(+long);
-    setDistLabel(distanciaAEnviar / 1000);
-    if (searchType === 'categoria') {
-      setText(categoryName);
+    if (latitud !== null || longitud !== null) {
+      setLatitudAEnviar(+latitud);
+      setLongitudAEnviar(+longitud);
+      setDistanciaAEnviar(50000);
+      console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
     // eslint-disable-next-line
-  }, [setPage, items, lat, long, searchType, categoryName]);
+  }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
@@ -130,9 +121,9 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
-    console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
-    console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
-    console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
+    // console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
+    // console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
+    // console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
 
     if (text) {
       e.preventDefault();
@@ -152,7 +143,7 @@ const SearchResults = ({
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
   };
-  console.log('DISTLABEL 3->', distLabel * 1000);
+  // console.log('DISTLABEL 3->', distLabel * 1000);
 
   handleUserBar(userBar);
 
@@ -176,30 +167,33 @@ const SearchResults = ({
                 lenguage
               )} ${text}, pagina ${datos.current_page}`}
         </h6>
-
-        <div className="filtrarDistancia">
-          <label htmlFor="inputRange">Distancia</label>
-          <input
-            className="inputRange"
-            id="inputRange"
-            name="inputRange"
-            type="range"
-            min="1000"
-            max="50000"
-            step="1000"
-            value={distanciaAEnviar}
-            onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
-          ></input>
-          {/* <span>{distanciaAEnviar / 1000} Kmts</span> */}
-          <button
-            onClick={handleDistance}
-            className={
-              location.loaded === true ? 'btnSearch' : 'btnSearchInactivo'
-            }
-          >
-            {distanciaAEnviar / 1000} Kmts
-          </button>
-        </div>
+        {latitud && longitud ? (
+          <div className="filtrarDistancia">
+            <label htmlFor="inputRange">Distancia</label>
+            <input
+              className="inputRange"
+              id="inputRange"
+              name="inputRange"
+              type="range"
+              min="1000"
+              max="50000"
+              step="1000"
+              value={distanciaAEnviar}
+              onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
+            ></input>
+            <button
+              onClick={handleDistance}
+              className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
+            >
+              {distanciaAEnviar / 1000} Kmts
+            </button>
+          </div>
+        ) : (
+          <div className="sinGeolocalizacion">
+            <h5>Localizacion no permitida por el usuario</h5>
+            <h6>Vuelva a abrir la aplicacion para volver a activarla</h6>
+          </div>
+        )}
 
         <div className="infoResults">
           {!datos?.data || datos.data?.length === 0 ? (
