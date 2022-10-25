@@ -9,7 +9,6 @@ import searchlogo from '../Assets/searchLogo.png';
 import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import useGeoLocation from '../Helpers/useGeolocation';
 
 const Nav = ({
   text,
@@ -21,12 +20,15 @@ const Nav = ({
   userBar,
   setUserBar,
   setSearchType,
+  loaded,
+  latitud,
+  longitud,
 }) => {
   const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
-  const { loaded, latitud, longitud } = useGeoLocation();
+  // const { loaded, latitud, longitud } = useGeoLocation();
 
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();

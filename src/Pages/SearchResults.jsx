@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 import AuthUser from '../Components/AuthUser';
-import useGeoLocation from '../Helpers/useGeolocation';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
@@ -24,6 +23,9 @@ const SearchResults = ({
   setSearchType,
   categoryName,
   setCategoryName,
+  loaded,
+  latitud,
+  longitud,
 }) => {
   // const [distLabel, setDistLabel] = useState('Total');
   const { http } = AuthUser();
@@ -40,18 +42,17 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  // console.log('SEARCH TYPE:', searchType);
-  //  console.log('TEXT RESULTS', text, typeof text);
+  console.log('SEARCH TYPE:', searchType);
+   console.log('TEXT RESULTS', text, typeof text);
+   console.log('CATEGORIA', text);
 
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
+  console.log(
+    '%cLAST PAGES ITEMS y DATOS:',
+    'color: yellow;',
+    items?.last_page,
+    datos?.last_page
+  );
   // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
-
-  const { loaded, latitud, longitud } = useGeoLocation();
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
@@ -190,8 +191,8 @@ const SearchResults = ({
           </div>
         ) : (
           <div className="sinGeolocalizacion">
-            <h5>Localizacion no permitida por el usuario</h5>
-            <h6>Vuelva a abrir la aplicacion para volver a activarla</h6>
+            <h5>Localizacion no admitida por el usuario</h5>
+            <h6>Recargue la aplicacion para volver a activarla</h6>
           </div>
         )}
 

@@ -10,6 +10,7 @@ import UserProfile from './Pages/UserProfile';
 import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
+import useGeoLocation from '../src/Helpers/useGeolocation.js';
 
 function App() {
   const [searchType, setSearchType] = useState('');
@@ -27,6 +28,15 @@ function App() {
     setBars(!bars);
   };
 
+  const { loaded, latitud, longitud } =
+    useGeoLocation();
+
+  console.log('LOCATION APP: ', loaded, latitud, longitud);
+
+  /* const [loaded, setLoaded] = useState('')
+  const [latitud, setLatitud] = useState('')
+  const [longitud, setLongitud] = useState('')
+ */
   useEffect(() => {
     setSplash(sessionStorage?.getItem('splash'));
   }, []);
@@ -50,6 +60,9 @@ function App() {
           setUserBar={setUserBar}
           searchType={searchType}
           setSearchType={setSearchType}
+          loaded={loaded}
+          latitud={latitud}
+          longitud={longitud}
         />
         <Routes>
           <Route
@@ -70,6 +83,9 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
+                loaded={loaded}
+                latitud={latitud}
+                longitud={longitud}
               />
             }
           />
@@ -175,6 +191,9 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
+                loaded={loaded}
+                latitud={latitud}
+                longitud = {longitud}
               />
             }
           />

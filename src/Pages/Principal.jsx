@@ -21,10 +21,8 @@ import { Slider } from '../Components/Slider';
 import {
   gastronomicas,
   alojamientos,
-  // turisticas,
 } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
-import useGeoLocation from '../Helpers/useGeolocation';
 
 const Principal = ({
   setItems,
@@ -39,8 +37,16 @@ const Principal = ({
   setSearchType,
   categoryName,
   setCategoryName,
+  loaded,
+  latitud,
+  longitud,
 }) => {
-  // const location = useGeoLocation();
+  console.log(
+    'LOCATION PRINCIPAL: ',
+    loaded,
+    latitud,
+    longitud
+  );
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -60,17 +66,14 @@ const Principal = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
 
-  const { loaded, latitud, longitud, accuracy, altitude, speed } =
-    useGeoLocation();
+  // const { loaded, latitud, longitud, accuracy, altitude, speed } =
+  //   useGeoLocation();
 
   console.log(
     'LOCATION: ',
     loaded,
     latitud,
-    longitud,
-    accuracy,
-    altitude,
-    speed
+    longitud
   );
 
   useEffect(() => {
@@ -110,8 +113,8 @@ const Principal = ({
 
   const handleCategories = (e) => {
     setItems(e);
-    setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
-    console.log('%cTEXT PRINCIPAL:', 'color: green;', e);
+    setText(e);
+    console.log('%cTEXT PRINCIPAL:', 'color: violet;', e);
     getData(e);
     setPage('results');
     setSearchType('categoria');

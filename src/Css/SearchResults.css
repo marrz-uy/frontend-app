@@ -9,6 +9,7 @@
 .resultsText {
 	margin: 0px auto 10px;
 	min-height: .8rem;
+	color: #0a5eb7;
 }
 
 .sinResultado {
@@ -126,6 +127,12 @@
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
+	color: #8f8f8f;
+}
+
+.sinGeolocalizacion h5, h6{
+	
+	color: #8f8f8f;
 }
 
 
