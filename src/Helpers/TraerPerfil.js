@@ -1,7 +1,7 @@
 
 export const traerPerfil = () => {
-	const pefilSessionStorage = JSON.parse(
-		sessionStorage.getItem('userProfile')
-	);
+	const pefilSessionStorage = 
+		sessionStorage?.getItem('userProfile')
+
 	return pefilSessionStorage;
 };

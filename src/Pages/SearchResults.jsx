@@ -23,6 +23,7 @@ const SearchResults = ({
   setSearchType,
   categoryName,
   setCategoryName,
+  setDestination,
   loaded,
   latitud,
   longitud,
@@ -155,6 +156,11 @@ const SearchResults = ({
     distanciaAEnviar
   );
 
+  
+  const getBackgroundSize = () => {
+    return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
+  };
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -180,6 +186,7 @@ const SearchResults = ({
               max="50000"
               step="1000"
               value={distanciaAEnviar}
+              style={getBackgroundSize()}
               onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
             ></input>
             <button
@@ -218,6 +225,8 @@ const SearchResults = ({
                   tipoEvento={dato.Tipo}
                   caracteristicas={dato.Contacto}
                   imagen={dato.Imagen}
+                  setDestination={setDestination}
+                  dato={dato}
                 />
               );
             })

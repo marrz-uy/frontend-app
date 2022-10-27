@@ -106,7 +106,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'iz0NJbrzVcOerQQxdeOFigkyK4o2TuJQDxpWp5ML',
+        client_secret: 'mBEutE4dHq6N8zBcLKJaI56X5BIixQCswDtAPEgl',
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })
@@ -125,10 +125,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         setIsLoggedIn('true');
       })
       .catch((error) => {
-        console.error(`Error en catch: ${error}`)
+        console.error(`Error en catch: ${error}`);
         //!BORRAR SIGUIENTE LINEA LUEGO DE ARREGLAR CORS PARA CHROME
         // sessionStorage.setItem('isLoggedIn', 'true');
-    });
+      });
 
     let emailGoogleUser = sessionStorage.getItem('email');
     console.log('emailGoogleUser:', emailGoogleUser);
@@ -147,7 +147,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .then((response) => {
         // setGoogleUserResponse(response?.data);
         sessionStorage.setItem('id', response?.data.userGoogleId);
-        sessionStorage.setItem('userProfile', JSON.stringify(response?.data.userProfile));
+        sessionStorage.setItem(
+          'userProfile',
+          JSON.stringify(response?.data.userProfile)
+        );
         console.log(
           'RESPONSE DE DATAGOOGLEUSER2: ',
           response?.data.userGoogleId

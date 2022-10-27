@@ -9,6 +9,8 @@ import searchlogo from '../Assets/searchLogo.png';
 import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import locationOn from '../Assets/locationOn.png';
+import locationOff from '../Assets/locationOff.png';
 
 const Nav = ({
   text,
@@ -40,7 +42,7 @@ const Nav = ({
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      console.log('A ENVIAR: ', loaded, latitud, longitud);
+      // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
 
@@ -94,12 +96,30 @@ const Nav = ({
 
   return (
     <div className="navbar">
+      <div className="locationIcon">
+        {latitud && longitud ? (<>
+          <div className="hide"><p>Geolocalizacion activa</p> </div>
+          <img src={ locationOn } alt="sds" id='locOn'></img>
+          </>
+        ) : (<>
+          <div className="hide">Geolocalizacion inactiva</div>
+          <img src={ locationOff } alt="sds"></img>
+
+        </>
+        )}
+      </div>
       <div className="contentNavbar">
         <div className="logoFellUy">
           {page !== 'principal' ? (
-            <Link to="/">
-              <img id="arrowImg" src={backArrow} alt="back"></img>
-            </Link>
+            page === 'infoResults' ? (
+              <Link to="/results">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            ) : (
+              <Link to="/">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            )
           ) : (
             <Link to="/">
               <img id="feelLogoImg" src={logo} alt="logo"></img>
