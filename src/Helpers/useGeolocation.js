@@ -3,17 +3,30 @@ import { useState, useEffect } from 'react';
 const useGeoLocation = () => {
   const [location, setLocation] = useState({
     loaded: false,
-    coordinates: { lat: '', lng: '' },
+    latitud: '',
+    longitud: '',
     accuracy: '',
+    altitude: '',
+    speed: '',
   });
   // console.log('GEOLOCATION: ', location);
   const onSuccess = (location) => {
+    let latitud = location.coords.latitude
+      .toString()
+      .replace(/[-,.]/gi, '')
+      .slice(0, 7);
+    let longitud = location.coords.longitude
+      .toString()
+      .replace(/[-,.]/gi, '')
+      .slice(0, 7);
+    if (latitud.length === 6 || longitud.length === 6) {
+      latitud = latitud + 0;
+      longitud = longitud + 0;
+    }
     setLocation({
       loaded: true,
-      coordinates: {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
-      },
+      latitud: latitud,
+      longitud: longitud,
       accuracy: location.coords.accuracy,
       altitude: location.coords.altitude,
       speed: location.coords.speed,
@@ -42,6 +55,11 @@ const useGeoLocation = () => {
   }, []);
 
   return location;
+  // return {
+  //   loaded: location.loaded,
+  //   latitud: location.coords.latitude,
+  //   longitud: location.coords.longitude,
+  // };
 };
 
 export default useGeoLocation;

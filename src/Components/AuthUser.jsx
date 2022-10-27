@@ -6,19 +6,42 @@ export default function AuthUser() {
   const navigate = useNavigate();
 
   const getToken = () => {
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken;
+    try {
+      const tokenString = sessionStorage.getItem('token');
+      // const userToken = JSON.parse(tokenString);
+      const userToken = tokenString;
+      return userToken;
+    } catch (error) {
+      console.log('TOKEN SIN DATOS', error);
+    }
   };
 
   const getUser = () => {
     try {
-      const userString = sessionStorage.getItem('user');
-      const user_detail = JSON.parse(userString);
-      // const user_detail = userString;
-      return user_detail;
+      const userString = sessionStorage?.getItem('user');
+      if (userString !== null) {
+        // const user_detail = JSON.parse(userString);
+        const user_detail = userString;
+        let userDetail = user_detail.toString().replace(/[",']/gi, '')
+        return userDetail;
+      }
     } catch (error) {
-      console.log('USER SIN DATOS', error);
+      console.log('USER SIN DATOS- getUser()-AuthUser.jsx', error);
+    }
+  };
+
+  const getEmail = () => {
+    try {
+      const emailString = sessionStorage.getItem('email');
+      // const userEmail = JSON.parse(emailString);
+      // const user_Email = emailString;
+      if(!emailString) {
+        return ''
+      }
+      let userEmail = emailString.toString().replace(/[",']/gi, '')
+      return userEmail;
+    } catch (error) {
+      console.log('EMAIL SIN DATOS', error);
     }
   };
 
@@ -36,21 +59,23 @@ export default function AuthUser() {
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(getUser());
   const [userProfile, setUserProfile] = useState(getUserProfile());
+  const [email, setEmail] = useState(getEmail());
 
-  const saveToken = (user, token, userProfile) => {
-    sessionStorage.setItem('token', JSON.stringify(token));
-    sessionStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.setItem('isLoggedIn', 'true');
+    const saveToken = (user, token, email, userProfile) => {
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('user', user);
+    sessionStorage.setItem('email', email);
     if (userProfile === null || userProfile === 'undefined') {
       sessionStorage.setItem('userProfile', JSON.stringify({}));
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      sessionStorage.setItem('preferencias', userProfile.preferencias);
+      sessionStorage.setItem('userProfile', userProfile.preferencias);
     }
 
     setToken(token);
     setUser(user);
     setUserProfile(userProfile);
+    setEmail(email);
     navigate('/principal');
   };
 
@@ -70,6 +95,7 @@ export default function AuthUser() {
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
+      'Access-Control-Allow-Origin': '*',
     }, 
   });
 
@@ -86,13 +112,15 @@ export default function AuthUser() {
     setToken: saveToken,
     token,
     user,
+    email,
+    userProfile,
+    http,
     getToken,
     getUser,
-    http,
-    logout,
-    userProfile,
+    getEmail,
     getUserProfile,
-    saveUserProfile,
     getLoggedIn,
+    logout,
+    saveUserProfile,
   };
 }

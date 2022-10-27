@@ -6,9 +6,9 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+ <App />
   </React.StrictMode>,
-  document.getElementById('root')
+ document.getElementById('root')
 )
 
 serviceWorkerRegistration.register({
@@ -16,7 +16,7 @@ serviceWorkerRegistration.register({
     if (registration && registration.waiting) {
       await registration.unregister();
       registration.waiting.postMessage({ type: "SKIP_WAITING" });
-      window.location.reload();
+       window.location.reload();
     }
   },
 });

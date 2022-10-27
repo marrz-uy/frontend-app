@@ -6,6 +6,7 @@ import AuthUser from '../Components/AuthUser';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import '../Css/UserBar.css';
 
 const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
@@ -24,6 +25,8 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       setUserBar(false)
     }
   };
+
+  const userType = sessionStorage?.getItem('userType');
 
   return (
     <nav className="userBar">
@@ -83,9 +86,13 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 </Link>
               </li>
               <li className="userBar__lenguage" onClick={logoutUser}>
-                <p>
-                  {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
-                </p>
+               {userType === 'feel' ? (
+                  <p>
+                    {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
+                  </p>
+                ) : (
+                  <LogoutGoogleButton />
+                )}
               </li>
             </>
           ) : (

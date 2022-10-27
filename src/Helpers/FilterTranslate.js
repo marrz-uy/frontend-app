@@ -5,8 +5,10 @@ export const filtrarTraduccion = (array, etiqueta, lenguage) => {
       filtrado = item;
       if (lenguage === 'es') {
         filtrado = filtrado.es;
+        localStorage.setItem('language', 'es')
       } else {
         filtrado = filtrado.en;
+        localStorage.setItem('language', 'en')
       }
     }
   });

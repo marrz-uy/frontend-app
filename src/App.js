@@ -10,6 +10,7 @@ import UserProfile from './Pages/UserProfile';
 import UpdateUserEmail from './Pages/UpdateUserEmail';
 import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
+import useGeoLocation from '../src/Helpers/useGeolocation.js';
 import PuntoInteresInfo from './Pages/PuntoInteresInfo';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   const [categoryName, setCategoryName] = useState('');
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState('true');
+  const [isLoggedIn, setIsLoggedIn] = useState('');
   const [page, setPage] = useState('principal');
   const [bars, setBars] = useState(false);
   const [pefilRecuperado, setPefilRecuperado] = useState('');
@@ -29,6 +30,9 @@ function App() {
   const handleClickBars = () => {
     setBars(!bars);
   };
+
+  const { loaded, latitud, longitud } =
+  useGeoLocation();
 
   useEffect(() => {
     setSplash(sessionStorage?.getItem('splash'));
@@ -53,6 +57,9 @@ function App() {
           setUserBar={setUserBar}
           searchType={searchType}
           setSearchType={setSearchType}
+          loaded={loaded}
+          latitud={latitud}
+          longitud={longitud}
         />
         <Routes>
           <Route
@@ -73,6 +80,10 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
+                setDestination={setDestination}
+                loaded={loaded}
+                latitud={latitud}
+                longitud={longitud}
               />
             }
           />
@@ -179,6 +190,9 @@ function App() {
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
                 setDestination={setDestination}
+                loaded={loaded}
+                latitud={latitud}
+                longitud = {longitud}
               />
             }
           />
