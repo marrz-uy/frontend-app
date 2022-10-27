@@ -86,8 +86,17 @@ export default function AuthUser() {
   };
 
   const logout = () => {
+    http
+      .post('/logout', {
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(`Error en catch lOGOUT: ${error}`);
+      });
     sessionStorage.clear();
-    navigate('*');
+    // navigate('*');
   };
 
   const http = axios.create({
@@ -95,7 +104,6 @@ export default function AuthUser() {
     headers: {
       'Content-type': 'application/json',
       'Authorization': `Bearer ${token}`,
-      'Access-Control-Allow-Origin': '*',
     }, 
   });
 
