@@ -98,11 +98,11 @@ const Nav = ({
     <div className="navbar">
       <div className="locationIcon">
         {latitud && longitud ? (<>
-          <div className="hide"><p>Geolocalizacion activa</p> </div>
+          <div className="hideActive"><p>Geolocalizacion activa</p> </div>
           <img src={ locationOn } alt="sds" id='locOn'></img>
           </>
         ) : (<>
-          <div className="hide">Geolocalizacion inactiva</div>
+          <div className="hideInactive">Geolocalizacion inactiva</div>
           <img src={ locationOff } alt="sds"></img>
 
         </>
