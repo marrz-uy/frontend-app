@@ -25,16 +25,13 @@ function App() {
   const [paginaActual, setPaginaActual] = useState(1);
   const [userBar, setUserBar] = useState(false);
   const [splash, setSplash] = useState();
-  const [destination, setDestination] = useState([])
+  const [destination, setDestination] = useState([]);
 
   const handleClickBars = () => {
     setBars(!bars);
   };
 
-  const { loaded, latitud, longitud } =
-    useGeoLocation();
-
-  // console.log('LOCATION APP: ', loaded, latitud, longitud);
+  const { loaded, latitud, longitud } = useGeoLocation();
 
   useEffect(() => {
     setSplash(sessionStorage?.getItem('splash'));
@@ -82,7 +79,6 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
-                setDestination={setDestination}
                 loaded={loaded}
                 latitud={latitud}
                 longitud={longitud}
@@ -191,9 +187,10 @@ function App() {
                 setSearchType={setSearchType}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
+                setDestination={setDestination}
                 loaded={loaded}
                 latitud={latitud}
-                longitud = {longitud}
+                longitud={longitud}
               />
             }
           />
@@ -212,7 +209,7 @@ function App() {
             }
           />
           <Route
-            path='/infoResults'
+            path="/infoResults"
             element={
               <PuntoInteresInfo
                 setPage={setPage}
