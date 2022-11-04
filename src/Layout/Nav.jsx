@@ -25,6 +25,8 @@ const Nav = ({
   loaded,
   latitud,
   longitud,
+}) => {
+  const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
