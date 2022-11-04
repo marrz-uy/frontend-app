@@ -21,10 +21,8 @@ import { Slider } from '../Components/Slider';
 import {
   gastronomicas,
   alojamientos,
-  turisticas,
 } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
-import useGeoLocation from '../Helpers/useGeolocation';
 
 const Principal = ({
   setItems,
@@ -37,27 +35,18 @@ const Principal = ({
   setIsLoggedIn,
   searchType,
   setSearchType,
-  categoryName, 
-  setCategoryName
+  categoryName,
+  setCategoryName,
+  loaded,
+  latitud,
+  longitud,
 }) => {
-  const location = useGeoLocation();
-  const latitud = JSON.stringify(location.coordinates.lat);
-  const longitud = JSON.stringify(location.coordinates.lng);
-
-  const [latitudAEnviar, setLatitudAEnviar] = useState('');
-  const [longitudAEnviar, setLongitudAEnviar] = useState('');
-  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
-
-  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (lat.length === 6) {
-    lat = lat + 0;
-  }
-
-  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (long.length === 6) {
-    long = long + 0;
-  }
-
+  console.log(
+    'LOCATION PRINCIPAL: ',
+    loaded,
+    latitud,
+    longitud
+  );
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -71,10 +60,35 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
-    setLatitudAEnviar(+lat);
-    setLongitudAEnviar(+long);
-    setDistanciaAEnviar(50000);
-  }, [setPage, setText, page, lat, long]);
+  }, [setPage, setText, page]);
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState('');
+  const [longitudAEnviar, setLongitudAEnviar] = useState('');
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
+
+  // const { loaded, latitud, longitud, accuracy, altitude, speed } =
+  //   useGeoLocation();
+
+  console.log(
+    'LOCATION: ',
+    loaded,
+    latitud,
+    longitud
+  );
+
+  useEffect(() => {
+    if (latitud !== null || longitud !== null) {
+      setLatitudAEnviar(+latitud);
+      setLongitudAEnviar(+longitud);
+      setDistanciaAEnviar(50000);
+      console.log(
+        'A ENVIAR: ',
+        loaded,
+        latitud,
+        longitud
+      );
+    }
+  }, [loaded, latitud, longitud]);
 
   const getData = (categoria) => {
     http
@@ -99,12 +113,12 @@ const Principal = ({
 
   const handleCategories = (e) => {
     setItems(e);
-    setText(`${filtrarTraduccion(traduccionesBD, 'category', lenguage)} ${e}`);
-    // console.log('TEXT PRINCIPAL:', e);
+    setText(e);
+    console.log('%cTEXT PRINCIPAL:', 'color: violet;', e);
     getData(e);
     setPage('results');
     setSearchType('categoria');
-    setCategoryName(e)
+    setCategoryName(e);
     navigate('/results');
   };
 
@@ -164,7 +178,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Gastronomia')}
+            onClick={() => handleCategories('Gastronomia')}
           >
             <div className="categoriesImage">
               <img src={restaurant} alt="restaurantes"></img>
@@ -177,7 +191,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Actividades al Aire Libre')}
+            onClick={() => handleCategories('Paseos')}
           >
             <div className="categoriesImage">
               <img src={trips} alt="img"></img>
@@ -220,7 +234,9 @@ const Principal = ({
                 </div>
               </div>
 
-              <div className="categories">
+              <div className="categories"
+              onClick={() => handleCategories('Actividades Nocturnas')}
+              >
                 <div className="categoriesImage">
                   <img
                     src={actividaesNocturnas}
@@ -258,7 +274,9 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div className="categories">
+              <div className="categories"
+              onClick={() => handleCategories('Actividades Infantiles')}
+              >
                 <div className="categoriesImage">
                   <img
                     src={serviciosInfantiles}
@@ -292,21 +310,39 @@ const Principal = ({
           </button>
         </div>
       </div>
-      <Slider
-        title="Descubre Uruguay"
-        description="Destino populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Buscas alojamiento?"
-        description="Alojamientos populares que eligieron nuestros usuarios"
-        arrayimages={alojamientos}
-      />
-      <Slider
-        title="Deseas salir a comer?"
-        description="Restaurantes que eligieron nuestros usuarios"
-        arrayimages={gastronomicas}
-      />
+      <div className="contenedorSliders">
+        <Slider
+          title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
+          description={filtrarTraduccion(
+            traduccionesBD,
+            'Slider1Description',
+            lenguage
+          )}
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title={`${filtrarTraduccion(
+            traduccionesBD,
+            'Slider2Title',
+            lenguage
+          )} Montevideo`}
+          description={`${filtrarTraduccion(
+            traduccionesBD,
+            'Slider2Description',
+            lenguage
+          )} Montevideo`}
+          arrayimages={alojamientos}
+        />
+        <Slider
+          title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
+          description={filtrarTraduccion(
+            traduccionesBD,
+            'Slider3Description',
+            lenguage
+          )}
+          arrayimages={gastronomicas}
+        />
+      </div>
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}

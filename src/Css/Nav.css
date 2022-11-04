@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 .navbar {
     background-color: #00499d;
     display: flex;
@@ -177,25 +178,123 @@
     width: 60vw;
     height: 1.8rem;
     margin: 0 auto;
-    border: 1px solid  #00499d;
+    border: 1px solid #00499d;
     box-shadow: 0.3em 0.5em 1em rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     padding-left: 10px;
     min-width: 217px;
-    background-color:   #00499d;
+    background-color: #00499d;
 }
+
+.locationIcon {
+    display: flex;
+    justify-content: center;
+    width: 1rem;
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+}
+
+.locationIcon img {
+    width: 0.9rem;
+}
+
+.hideActive {
+    display: none;
+}
+
+.hideInactive {
+    display: none;
+}
+
+.locationIcon:hover > .hideActive {
+    display: flex;
+    font-size: 11px;
+    z-index: 100;
+    width: 11rem;
+    color: rgb(12, 169, 242);
+    position: absolute;
+    top: 0.2rem;
+    right: -30px;
+}
+
+.locationIcon:hover > .hideInactive {
+    display: flex;
+    font-size: 11px;
+    z-index: 100;
+    width: 11rem;
+    color: rgb(155, 155, 155);
+    position: absolute;
+    top: 0.2rem;
+    right: -30px;
+}
+
+@keyframes locOn {
+    0% {
+        transform: scale(0.7);
+    }
+
+    10% {
+        transform: scale(0.9);
+    }
+
+    20% {
+        transform: scale(0.7);
+    }
+
+    30% {
+        transform: scale(0.9);
+    }
+
+    40% {
+        transform: scale(0.7);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    60% {
+        transform: scale(0.7);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    80% {
+        transform: scale(0.7);
+    }
+
+    91% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(0.7);
+    }
+}
+
+#locOn {
+    animation: locOn 6s ease-in 0s infinite normal forwards;
+}
+
+/* animation: loading 3s steps(1000) infinite; */
 
 @media screen and (min-width: 480px) {
     #feelLogoImg {
         position: relative;
         /* top: 10px; */
     }
+
     #userLogoImg--login {
         display: block;
     }
+
     .navbar {
         min-height: 10vh;
     }
+
     .search div span {
         position: relative;
         left: -28px;
@@ -203,6 +302,7 @@
         right: 20px;
     }
 }
+
 
 @media screen and (min-width: 480px) and (orientation: landscape) {
     .navbar {
@@ -212,29 +312,36 @@
 
 @media screen and (min-width: 800px) and (orientation: landscape) {
     .navbar {
-        min-height: 95px;
+        min-height: 110px;
     }
+
     .contentNavbar {
         max-width: 130vh;
+    }
+
+    .locationIcon {
+        width: 2rem;
+        position: absolute;
+        top: 0.4rem;
+        right: 0rem;
+    }
+
+    .locationIcon img {
+        width: 0.9rem;
     }
 }
 
-@media screen and (min-width: 1224px) and (orientation: landscape) {
-    .navbar {
-        min-height: 110px;
-    }
-    .contentNavbar {
-        max-width: 130vh;
-    }
-}
+
 
 @media screen and (min-width: 800px) {
     .contentNavbar {
         max-width: 160vh;
     }
+
     .search div span {
         left: -35px;
     }
+
     /* 
     .userLogo__faBars {
         display: none;
@@ -242,6 +349,7 @@
     .ocultaLenguage {
         display: flex;
     }
+
     .userLogo__contain {
         display: flex;
         align-items: center;
@@ -249,9 +357,11 @@
         gap: 1rem;
         padding-bottom: 2px;
     }
+
     .msgWelcome {
         font-size: 1rem;
     }
+
     /*  #feelLogoImg {
         position: relative;
         top: 10px;
@@ -261,18 +371,33 @@
         top: 2px;
         /* filter: drop-shadow(2px 8px 5px #000000e8); */
     }
+
     .inputSearch {
         height: 2.5rem;
     }
+
     .navbar {
         max-height: 16vh;
     }
+
     .divMsgWelcome {
         margin-top: 0.5rem;
     }
+
     .userBar__link {
         text-align: center;
     }
+
+    .locationIcon:hover > .hideActive {
+        right: -1.5rem;
+        top: 0.37rem
+    }
+
+    .locationIcon:hover > .hideInactive {
+        right: -1.5rem;
+        top: 0.37rem
+    }
+
 }
 
 @media (min-width: 920px) {
@@ -287,12 +412,67 @@
 
 @media screen and (min-width: 1024px) {
     .navbar {
-        min-height: 8vh;
+        min-height: 110px;
     }
+
     #feelLogoImg {
         min-width: 5rem;
         max-width: 6rem;
         max-height: 5rem;
         margin-top: -13px;
+    }
+}
+
+@media screen and (min-width: 1224px) and (orientation: landscape) {
+    .navbar {
+        min-height: 110px;
+    }
+
+    .contentNavbar {
+        max-width: 130vh;
+    }
+
+    .locationIcon {
+        width: 2rem;
+        position: absolute;
+        top: 2rem;
+        right: 1rem;
+    }
+
+    .locationIcon img {
+        width: 1.3rem;
+    }
+
+    .locationIcon:hover > .hideActive {
+        right: -3.5rem;
+        top: 2.5rem
+    }
+
+    .locationIcon:hover > .hideInactive {
+        right: -3.5rem;
+        top: 2.5rem
+    }
+}
+
+@media screen and (min-width: 1800px){
+    .locationIcon {
+        width: 2rem;
+        position: relative;
+        top: 2.8rem;
+        right: -555px;
+    }
+
+    .locationIcon img {
+        width: 1.3rem;
+    }
+
+    .locationIcon:hover > .hideActive {
+        right: -6.5rem;
+        top: 2.5rem
+    }
+
+    .locationIcon:hover > .hideInactive {
+        right: -6.5rem;
+        top: 2.5rem
     }
 }
