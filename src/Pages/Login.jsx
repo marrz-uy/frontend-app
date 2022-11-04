@@ -106,19 +106,13 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'mBEutE4dHq6N8zBcLKJaI56X5BIixQCswDtAPEgl',
+        client_secret: 'mgSJLxFpEcacZEOXLGD9l7CYcgOwSalsgRnLUwht',
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })
       .then((response) => {
-        sessionStorage.setItem(
-          'token',
-          JSON.stringify(response?.data.access_token)
-        );
-        sessionStorage.setItem(
-          'refresh_token',
-          JSON.stringify(response?.data.refresh_token)
-        );
+        sessionStorage.setItem('token', response?.data.access_token);
+        sessionStorage.setItem('refresh_token', response?.data.refresh_token);
         // console.log('RESPONSE DE PASSPORT: ', response?.data);
 
         sessionStorage.setItem('isLoggedIn', 'true');
@@ -147,6 +141,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .then((response) => {
         // setGoogleUserResponse(response?.data);
         sessionStorage.setItem('id', response?.data.userGoogleId);
+        //! Quizas no enviar como string
         sessionStorage.setItem(
           'userProfile',
           JSON.stringify(response?.data.userProfile)
