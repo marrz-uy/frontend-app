@@ -1,9 +1,20 @@
 import React from 'react';
 import '../Css/ResultCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const ResultsCard = (props) => {
+  const { setDestination } = props
+  const { dato } = props
+
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    setDestination(dato)
+    navigate('/infoResults')
+  }
+
   return (
-    <div className="resultCard">
+    <div className="resultCard" onClick={handleClick}>
       <div className="divImg">
         <img className="imagen" src={props.imagen} alt=""></img>
       </div>

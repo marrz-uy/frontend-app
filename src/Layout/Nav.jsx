@@ -9,7 +9,8 @@ import searchlogo from '../Assets/searchLogo.png';
 import '../Css/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import useGeoLocation from '../Helpers/useGeolocation';
+import locationOn from '../Assets/locationOn.png';
+import locationOff from '../Assets/locationOff.png';
 
 const Nav = ({
   text,
@@ -20,37 +21,30 @@ const Nav = ({
   page,
   userBar,
   setUserBar,
-  setSearchType
+  setSearchType,
+  loaded,
+  latitud,
+  longitud,
 }) => {
-  const location = useGeoLocation();
-  const latitud = JSON.stringify(location.coordinates.lat);
-  const longitud = JSON.stringify(location.coordinates.lng);
-
-  const [latitudAEnviar, setLatitudAEnviar] = useState();
-  const [longitudAEnviar, setLongitudAEnviar] = useState();
-
-  let lat = latitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (lat.length === 6) {
-    lat = lat + 0;
-  }
-
-  let long = longitud.toString().replace(/[-,.]/gi, '').slice(0, 7);
-  if (long.length === 6) {
-    long = long + 0;
-  }
-
-  const [distanciaAEnviar, setDistancia] = useState('');
   const { http, getUser, getLoggedIn } = AuthUser();
-
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
+  // const { loaded, latitud, longitud } = useGeoLocation();
+
+  const [latitudAEnviar, setLatitudAEnviar] = useState();
+  const [longitudAEnviar, setLongitudAEnviar] = useState();
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
+
   useEffect(() => {
     setIsLoggedIn(getLoggedIn());
-    setLatitudAEnviar(lat);
-    setLongitudAEnviar(long);
-    setDistancia(50000);
-  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, lat, long]);
+    if (latitud !== null || longitud !== null) {
+      setLatitudAEnviar(+latitud);
+      setLongitudAEnviar(+longitud);
+      setDistanciaAEnviar(50000);
+      // console.log('A ENVIAR: ', loaded, latitud, longitud);
+    }
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
 
   const navigate = useNavigate();
 
@@ -100,12 +94,30 @@ const Nav = ({
 
   return (
     <div className="navbar">
+      <div className="locationIcon">
+        {latitud && longitud ? (<>
+          <div className="hideActive"><p>Geolocalizacion activa</p> </div>
+          <img src={ locationOn } alt="sds" id='locOn'></img>
+          </>
+        ) : (<>
+          <div className="hideInactive">Geolocalizacion inactiva</div>
+          <img src={ locationOff } alt="sds"></img>
+
+        </>
+        )}
+      </div>
       <div className="contentNavbar">
         <div className="logoFellUy">
           {page !== 'principal' ? (
-            <Link to="/">
-              <img id="arrowImg" src={backArrow} alt="back"></img>
-            </Link>
+            page === 'infoResults' ? (
+              <Link to="/results">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            ) : (
+              <Link to="/">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            )
           ) : (
             <Link to="/">
               <img id="feelLogoImg" src={logo} alt="logo"></img>
@@ -115,18 +127,14 @@ const Nav = ({
         <div className="search">
           <div className="searchIntDiv">
             <input
-              className={location.loaded === true ? 'inputSearch' : 'disabled'}
+              className={loaded === true ? 'inputSearch' : 'disabled'}
               name="categoria"
               type="text"
-              placeholder={
-                location.loaded === true
-                  ? filtrarTraduccion(
-                      traduccionesBD,
-                      'searchPlaceholder',
-                      lenguage
-                    )
-                  : 'Buscando...'
-              }
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'searchPlaceholder',
+                lenguage
+              )}
               value={text}
               onChange={handleText}
               onKeyPress={handleEnter}
@@ -151,7 +159,6 @@ const Nav = ({
               alt="img"
             />
           </div>
-
           <>
             <FontAwesomeIcon
               icon={faBars}
@@ -164,8 +171,8 @@ const Nav = ({
       <div className="divMsgWelcome">
         <span className="msgWelcome">
           {filtrarTraduccion(traduccionesBD, 'wellcomeMessage', lenguage)}{' '}
-          {getUser()?.name
-            ? getUser()?.name
+          {getUser()
+            ? getUser()
             : filtrarTraduccion(
                 traduccionesBD,
                 'wellcomeMessageUser',

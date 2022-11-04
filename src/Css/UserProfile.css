@@ -226,10 +226,10 @@
 }
 
 @media screen and (min-width: 480px) {
-  .user-profile  {
-      width: 60%;
-      height: 85vh;
-      
+  .user-profile {
+    width: 60%;
+    height: 85vh;
+
   }
 }
 
@@ -237,5 +237,8 @@
   .updateBtn {
     width: 7rem;
     padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
