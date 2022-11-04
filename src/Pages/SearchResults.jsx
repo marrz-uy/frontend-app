@@ -123,6 +123,7 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
+
     // console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
     // console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
     // console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
@@ -156,7 +157,6 @@ const SearchResults = ({
     distanciaAEnviar
   );
 
-  
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };

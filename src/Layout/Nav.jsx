@@ -25,8 +25,6 @@ const Nav = ({
   loaded,
   latitud,
   longitud,
-}) => {
-  const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
@@ -65,8 +63,6 @@ const Nav = ({
 
   const handleText = (e) => {
     e.preventDefault();
-
-    // let t = e.target.value;
     setText(e.target.value);
   };
 
