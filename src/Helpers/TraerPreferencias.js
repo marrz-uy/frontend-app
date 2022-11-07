@@ -2,7 +2,7 @@
 
 export const traerPreferencias = () => {
 	const preferenciasSessionStorage = JSON.parse(
-		sessionStorage.getItem('preferencias')
+		sessionStorage.getItem('userProfile')
 	);
 	return preferenciasSessionStorage;
 };

@@ -1,6 +1,7 @@
 .user-profile {
   width: 100%;
   margin-top: 6rem;
+  margin-bottom: 1rem;
 }
 
 .divBtnUpdates {
@@ -140,7 +141,12 @@
 
 .label {
   color: #00499d;
-  font-weight: 300;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.dataLabel{
+  color: #e4b705;
+  font-size: 0.8rem;
 }
 
 .divBtnLenguaje {

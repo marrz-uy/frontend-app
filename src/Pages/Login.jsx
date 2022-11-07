@@ -47,6 +47,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         );
         sessionStorage.setItem('isLoggedIn', 'true');
         sessionStorage.setItem('id', res?.data.id);
+        sessionStorage.setItem(
+          'userProfile',
+          JSON.stringify(res?.data.userProfile)
+        );
         setIsLoggedIn('true');
         console.log('%cSUBMIT LOGIN APP:', 'color: red;', isLoggedIn);
         navigate('/');

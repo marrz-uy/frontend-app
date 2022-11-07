@@ -25,15 +25,14 @@ import {
   ChildrensActivitiesCategory,
   EssentialServicesCategory,
 } from '../Data/Categories';
-import alojamiento from '../Assets/categoriesImages/hospedaje.png';
-import gastronomia from '../Assets/categoriesImages/fast-food 1.png';
-import airelibre from '../Assets/categoriesImages/hiking 1.png';
-import transporte from '../Assets/categoriesImages/bus.png';
-import espectaculos from '../Assets/categoriesImages/teatro 1.png';
-import nocturna from '../Assets/categoriesImages/cocktail 1.png';
-import infantiles from '../Assets/categoriesImages/calesita 1.png';
-import servicios from '../Assets/categoriesImages/services 1.png';
-import { filterData } from '../Helpers/FilterByCategory';
+import alojamientoIcono from '../Assets/categoriesImages/hospedaje.png';
+import gastronomiaIcono from '../Assets/categoriesImages/fast-food 1.png';
+import airelibreIcono from '../Assets/categoriesImages/hiking 1.png';
+import transporteIcono from '../Assets/categoriesImages/bus.png';
+import espectaculosIcono from '../Assets/categoriesImages/teatro 1.png';
+import nocturnaIcono from '../Assets/categoriesImages/cocktail 1.png';
+import infantilesIcono from '../Assets/categoriesImages/calesita 1.png';
+import serviciosIcono from '../Assets/categoriesImages/services 1.png';
 import '../Css/UserPreferences.css';
 import UserBar from './UserBar';
 import '../Css/userBarClick.css';
@@ -49,33 +48,42 @@ const UserPreferences = ({
   setIsLoggedIn,
 }) => {
   const { http, getUserProfile, getUser, saveUserProfile } = AuthUser();
-  const preferenciasArray = [];
-  const [nacionalidad, setNacionalidad] = useState('');
-  const [fechaDeNacimiento, setFechaDeNacimiento] = useState('');
-  const [preferencia, setPreferencia] = useState([...preferenciasArray]);
+  const pefilExistente = getUserProfile();
   const [user_id, setUser_id] = useState();
-  const f_nacimiento = fechaDeNacimiento;
   const [submitMessage, setSubmitMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
+
+  const [nacionalidad, setNacionalidad] = useState(
+    pefilExistente?.nacionalidad
+  );
+  const [fechaDeNacimiento, setFechaDeNacimiento] = useState(
+    pefilExistente?.f_nacimiento
+  );
+  const [alojamiento, setAlojamiento] = useState(pefilExistente?.alojamiento);
+  const [gastronomia, setGastronomia] = useState(pefilExistente?.gastronomia);
+  const [espectaculos, setEspectaculos] = useState(pefilExistente?.espectaculos);
+  const [paseos, setPaseos] = useState(pefilExistente?.paseos);
+  const [actividadesNocturnas, setActividadesNocturnas] = useState(pefilExistente?.actividadesNocturnas);
+  const [transporte, setTransporte] = useState(pefilExistente?.transporte);
+  const [actividadesInfantiles, setActividadesInfantiles] = useState(pefilExistente?.actividadesInfantiles);
+  const [serviciosEsenciales, setServiciosEsenciales] = useState(pefilExistente?.serviciosEsenciales);
+  const f_nacimiento = fechaDeNacimiento;
+
+  console.log('USER =>', pefilExistente);
 
   useEffect(() => {
     setPage('preferences');
     setLenguage(localStorage.getItem('language'));
     try {
       setUser_id(sessionStorage?.getItem('id'));
+      console.log('ID-USUARIO: ', user_id);
     } catch (error) {
       console.log('NO HAY NADIE LOGUEADO', error);
     }
-  }, [
-    setPage,
-    getUser,
-    user_id,
-    setUser_id,
-    pefilRecuperado,
-    setLenguage,
-    language,
-  ]);
+  }, [setPage, getUser, user_id, setUser_id, setLenguage, language]);
+
+  console.log('LENGUAJE: ', language);
 
   const recuperarPerfil = () => {
     if (user_id) {
@@ -87,48 +95,6 @@ const UserPreferences = ({
     }
   };
 
-  const addPreferencia = (selectedOption) => {
-    const nuevaPreferencia = {
-      id: selectedOption.id,
-      categoria: selectedOption.categoria,
-      category: selectedOption.category,
-      value: selectedOption.value,
-      label: selectedOption.label,
-      labelEng: selectedOption.labelEng,
-      labelEsp: selectedOption.labelEsp,
-    };
-    setPreferencia([...preferencia, nuevaPreferencia]);
-  };
-
-  const updatePreferencia = (selectedOption) => {
-    const nuevaPreferencia = preferencia.map((prefe) => {
-      if (prefe.categoria === selectedOption.categoria) {
-        return {
-          ...prefe,
-          id: selectedOption.id,
-          categoria: selectedOption.categoria,
-          category: selectedOption.category,
-          value: selectedOption.value,
-          label: selectedOption.label,
-          labelEng: selectedOption.labelEng,
-          labelEsp: selectedOption.labelEsp,
-        };
-      }
-      return prefe;
-    });
-    setPreferencia(nuevaPreferencia);
-  };
-
-  const handlePreferencias = (selectedOption) => {
-    if (preferencia.some((e) => e.categoria === selectedOption.categoria)) {
-      updatePreferencia(selectedOption);
-    } else {
-      addPreferencia(selectedOption);
-    }
-  };
-
-  const preferencias = JSON.stringify(preferencia);
-
   const updateUserProfile = () => {
     console.group('%cSOLICITUD CORRECTA', 'color: green');
     console.log(
@@ -137,13 +103,27 @@ const UserPreferences = ({
       user_id,
       nacionalidad,
       f_nacimiento,
-      preferencias
+      alojamiento,
+      gastronomia,
+      espectaculos,
+      paseos,
+      actividadesNocturnas,
+      transporte,
+      actividadesInfantiles,
+      serviciosEsenciales
     );
     http
       .patch(`/userProfile/${user_id}`, {
         nacionalidad,
         f_nacimiento,
-        preferencias,
+        alojamiento,
+        gastronomia,
+        espectaculos,
+        paseos,
+        actividadesNocturnas,
+        transporte,
+        actividadesInfantiles,
+        serviciosEsenciales,
       })
       .then((res) => {
         console.log(
@@ -182,21 +162,30 @@ const UserPreferences = ({
       user_id,
       nacionalidad,
       f_nacimiento,
-      preferencias
+      alojamiento,
+      gastronomia,
+      espectaculos,
+      paseos,
+      actividadesNocturnas,
+      transporte,
+      actividadesInfantiles,
+      serviciosEsenciales
     );
     http
       .post('/userProfile', {
         user_id,
         nacionalidad,
         f_nacimiento,
-        preferencias,
+        alojamiento,
+        gastronomia,
+        espectaculos,
+        paseos,
+        actividadesNocturnas,
+        transporte,
+        actividadesInfantiles,
+        serviciosEsenciales,
       })
       .then((res) => {
-        console.log(
-          '%cPERFIL RESPONSE MESSAGE:',
-          'color: blue;',
-          res.data.message
-        );
         console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
         console.groupEnd();
         saveUserProfile(res.data.userprofile);
@@ -204,54 +193,41 @@ const UserPreferences = ({
       })
       .catch(function (error) {
         console.group('%cERRORES', 'color: red;');
-        console.log('%cERROR:', 'color: red;', error);
+        console.log('%cERROR:', 'color: red;', error.message);
         console.groupEnd();
       });
   };
 
   const handleUserProfile = (e) => {
     e.preventDefault();
-    recuperarPerfil();
-    const sinPreferencias = '{}';
-
-    if (pefilRecuperado === sinPreferencias) {
-      if (preferencias.length < 3) {
-        alert(
-          'No selecciono ninguna preferencia de categoria,',
-          'seleccione alguna para obtener resultados personalizados en sus busquedas'
-        );
+    try {
+      if (pefilExistente !== null) {
+        updateUserProfile();
+        setSubmitMessage('Perfil actualizado correctamente');
+      } else {
+        submitUserProfile();
+        setSubmitMessage('Perfil guardado correctamente');
       }
-      submitUserProfile();
-      setPefilRecuperado(getUserProfile());
-    } else {
-      if (preferencias.length < 3) {
-        alert(
-          'Las preferencias antiguas se muestran pero no se seleccionan, debe seleccionar al menos una categoria para poder ofrecerle una mejor experiencia en sus busquedas'
-        );
-        return;
-      }
-      updateUserProfile();
-      setPefilRecuperado(getUserProfile());
+    } catch (error) {
+      setSubmitMessage('Perfil no se guardo', error);
     }
-
-    setSubmitMessage('Perfil guardado correctamente');
   };
 
   const styles = {
-    control: (_, { selectProps: { placeholder } }) => ({
+    control: () => ({
       height: 20,
       width: '100%',
       maxWidth: 450,
-      backgroundColor: 'rgba(255,255,255)',
+      // backgroundColor: 'rgba(255,255,255)',
       display: 'flex',
       border: '1px solid rgba(190,190,190)',
-      borderRadius: '5px',
+      borderRadius: '3px',
       boxShadow: '2px 2px 2px rgba(0,0,0, 0.4)',
       fontSize: 10,
       lineHeight: 1.09,
-      placeholder: placeholder,
     }),
   };
+
   handleUserBar(userBar);
 
   return (
@@ -260,14 +236,14 @@ const UserPreferences = ({
       <div className="userProfile" onLoad={recuperarPerfil}>
         <div>
           <h2 className="title">
-            {pefilRecuperado?.preferencias === ''
+            {pefilExistente === null
               ? filtrarTraduccion(
                   traduccionesBD,
                   'preferencesTitleCreateProfile',
                   lenguage
                 )
               : filtrarTraduccion(
-                traduccionesBD,
+                  traduccionesBD,
                   'preferencesTitleUpdateProfile',
                   lenguage
                 )}
@@ -324,7 +300,11 @@ const UserPreferences = ({
           </div>
           <div className="selectIndividual">
             <label htmlFor="alojamiento">
-              <img src={alojamiento} className="categoryImage" alt="hot"></img>
+              <img
+                src={alojamientoIcono}
+                className="categoryImage"
+                alt="hot"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesLodginLabel',
@@ -332,17 +312,24 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Alojamiento')}
+              defaultValue={{
+                value: pefilExistente?.alojamiento,
+                label: pefilExistente?.alojamiento,
+              }}
               options={
                 language === 'es' ? CategoriaAlojamiento : LodginCategory
               }
+              onChange={(e) => setAlojamiento(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="gastronomia">
-              <img src={gastronomia} className="categoryImage" alt="Res"></img>
+              <img
+                src={gastronomiaIcono}
+                className="categoryImage"
+                alt="Res"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesGastronomyLabel',
@@ -350,17 +337,24 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Gastronomia')}
+              defaultValue={{
+                value: pefilExistente?.gastronomia,
+                label: pefilExistente?.gastronomia,
+              }}
               options={
                 language === 'es' ? CategoriaGastronomia : GastronomyCategory
               }
+              onChange={(e) => setGastronomia(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="espectaculos">
-              <img src={espectaculos} className="categoryImage" alt="res"></img>
+              <img
+                src={espectaculosIcono}
+                className="categoryImage"
+                alt="res"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesShowsLabel',
@@ -368,15 +362,22 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Espectaculos')}
+              defaultValue={{
+                value: pefilExistente?.espectaculos,
+                label: pefilExistente?.espectaculos,
+              }}
               options={language === 'es' ? CategoriaEspectaculos : ShowCategory}
+              onChange={(e) => setEspectaculos(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="actividadesAlAireLibre">
-              <img src={airelibre} className="categoryImage" alt="Esp"></img>
+              <img
+                src={airelibreIcono}
+                className="categoryImage"
+                alt="Esp"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesOutdoorActivitiesLabel',
@@ -384,19 +385,26 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Actividades Al Aire Libre')}
+              defaultValue={{
+                value: pefilExistente?.paseos,
+                label: pefilExistente?.paseos,
+              }}
               options={
                 language === 'es'
                   ? CategoriaActividadesAlAireLibre
                   : OutdoorActivitiesCategory
               }
+              onChange={(e) => setPaseos(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="actividadesNocturnas">
-              <img src={nocturna} className="categoryImage" alt="Noc"></img>
+              <img
+                src={nocturnaIcono}
+                className="categoryImage"
+                alt="Noc"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesNightActivitiesLabel',
@@ -404,19 +412,26 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Actividades Nocturnas')}
+              defaultValue={{
+                value: pefilExistente?.actividadesNocturnas,
+                label: pefilExistente?.actividadesNocturnas,
+              }}
               options={
                 language === 'es'
                   ? CategoriaActividadesNocturnas
                   : NightActivitiesCatergory
               }
+              onChange={(e) => setActividadesNocturnas(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="transporte">
-              <img src={transporte} className="categoryImage" alt="Tra"></img>
+              <img
+                src={transporteIcono}
+                className="categoryImage"
+                alt="Tra"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesTransportLabellabel',
@@ -424,17 +439,24 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Transporte')}
+              defaultValue={{
+                value: pefilExistente?.transporte,
+                label: pefilExistente?.transporte,
+              }}
               options={
                 language === 'es' ? CategoriaTransporte : TransportationCategory
               }
+              onChange={(e) => setTransporte(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="actividadesInfantiles">
-              <img src={infantiles} className="categoryImage" alt="Inf"></img>
+              <img
+                src={infantilesIcono}
+                className="categoryImage"
+                alt="Inf"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesChildrensActivitiesLabel',
@@ -442,19 +464,26 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Actividades Infantiles')}
+              defaultValue={{
+                value: pefilExistente?.actividadesInfantiles,
+                label: pefilExistente?.actividadesInfantiles,
+              }}
               options={
                 language === 'es'
                   ? CategoriaActividadesInfantiles
                   : ChildrensActivitiesCategory
               }
+              onChange={(e) => setActividadesInfantiles(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <div className="selectIndividual">
             <label htmlFor="serviciosEsenciales">
-              <img src={servicios} className="categoryImage" alt="Ser"></img>
+              <img
+                src={serviciosIcono}
+                className="categoryImage"
+                alt="Ser"
+              ></img>
               {filtrarTraduccion(
                 traduccionesBD,
                 'preferencesEssentialsServicesLabel',
@@ -462,14 +491,17 @@ const UserPreferences = ({
               )}
             </label>
             <Select
-              defaultValue={filterData('Servicios Esenciales')}
+              defaultValue={{
+                value: pefilExistente?.serviciosEsenciales,
+                label: pefilExistente?.serviciosEsenciales,
+              }}
               options={
                 language === 'es'
                   ? CategoriaServiciosEsenciales
                   : EssentialServicesCategory
               }
+              onChange={(e) => setServiciosEsenciales(e.value)}
               styles={styles}
-              onChange={handlePreferencias}
             />
           </div>
           <input

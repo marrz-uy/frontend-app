@@ -1,329 +1,159 @@
 const LodginCategory = [
   {
-    id: '01',
-    categoria: 'Alojamiento',
-    category: 'Lodgin',
-    value: 'hotel',
-    label: 'Hotel',
-    labelEng: 'Hotel',
-    labelEsp: 'Hotel',
+    value: 'Hotel',
+    label: 'Hotel'
   },
   {
-    id: '02',
-    categoria: 'Alojamiento',
-    category: 'Lodgin',
-    value: 'hostel',
-    label: 'Hostel',
-    labelEng: 'Hostel',
-    labelEsp: 'Hostel',
+    value: 'Hostel',
+    label: 'Hostel'
   },
   {
-    id: '03',
-    categoria: 'Alojamiento',
-    category: 'Lodgin',
-    value: 'camping',
-    label: 'Camping',
-    labelEng: 'Camping',
-    labelEsp: 'Camping',
+    value: 'Camping',
+    label: 'Camping'
   },
   {
-    id: '04',
-    categoria: 'Alojamiento',
-    category: 'Lodgin',
-    value: 'estancia turistica',
-    label: 'Tourist ranch',
-    labelEng: 'Tourist ranch',
-    labelEsp: 'Estancia turistica',
+    value: 'Estancia turistica',
+    label: 'Tourist ranch'
   },
   {
-    id: '05',
-    categoria: 'Alojamiento',
-    category: 'Lodgin',
-    value: 'casa',
-    label: 'House',
-    labelEng: 'House',
-    labelEsp: 'Casa',
+    value: 'Casa',
+    label: 'House'
   },
 ];
 const GastronomyCategory = [
   {
-    id: '11',
-    categoria: 'Gastronomia',
-    value: 'restaurante',
-    label: 'Restaurant',
-    category: 'Gastronomy',
-    labelEng: 'Restaurant',
-    labelEsp: 'Restaurante',
+    value: 'Restaurante',
+    label: 'Restaurant'
   },
   {
-    id: '12',
-    categoria: 'Gastronomia',
-    value: 'cervezeria',
-    label: 'Beer shop',
-    category: 'Gastronomy',
-    labelEng: 'Beer shop',
-    labelEsp: 'Cervezeria',
+    value: 'Cervezeria',
+    label: 'Beer shop'
   },
   {
-    id: '13',
-    categoria: 'Gastronomia',
-    value: 'comida rapida',
-    label: 'Fast food',
-    category: 'Gastronomy',
-    labelEng: 'Fast food',
-    labelEsp: 'Comida rapida',
+    value: 'Comida rapida',
+    label: 'Fast food'
   },
   {
-    id: '14',
-    categoria: 'Gastronomia',
-    value: 'bar',
-    label: 'Bar',
-    category: 'Gastronomy',
-    labelEng: 'Bar',
-    labelEsp: 'Bar',
+    value: 'Bar',
+    label: 'Bar'
   },
 ];
 
 const ShowCategory = [
   {
-    id: '21',
-    categoria: 'Espectaculos',
-    value: 'cine',
-    label: 'Cinema',
-    category: 'Shows',
-    labelEng: 'Cinema',
-    labelEsp: 'Cine',
+    value: 'Cine',
+    label: 'Cinema'
   },
   {
-    id: '22',
-    categoria: 'Espectaculos',
-    value: 'teatro',
-    label: 'Theater',
-    category: 'Shows',
-    labelEng: 'Theater',
-    labelEsp: 'Cine',
+    value: 'Teatro',
+    label: 'Theater'
   },
   {
-    id: '23',
-    categoria: 'Espectaculos',
-    value: 'carnaval',
-    label: 'Carnival',
-    category: 'Shows',
-    labelEng: 'Carnival',
-    labelEsp: 'Carnaval',
+    value: 'Carnaval',
+    label: 'Carnival'
   },
   {
-    id: '24',
-    categoria: 'Espectaculos',
-    value: 'futbol',
-    label: 'Football/Soccer',
-    category: 'Shows',
-    labelEng: 'Football/Soccer',
-    labelEsp: 'Futbol',
+    value: 'Futbol',
+    label: 'Football/Soccer'
   },
 ];
 
 const OutdoorActivitiesCategory = [
   {
-    id: '31',
-    categoria: 'Actividades Al Aire Libre',
-    value: 'playa',
-    label: 'Beach',
-    category: 'Outdoor Activities',
-    labelEng: 'Beach',
-    labelEsp: 'Playa',
+    value: 'Playa',
+    label: 'Beach'
   },
   {
-    id: '32',
-    categoria: 'Actividades Al Aire Libre',
-    value: 'ejecicios al aire libre',
-    label: 'Outdoor exercises',
-    category: 'Outdoor Activities',
-    labelEng: 'Outdoor exercises',
-    labelEsp: 'Ejecicios al aire libre',
+    value: 'Ejecicios al aire libre',
+    label: 'Outdoor exercises'
   },
   {
-    id: '33',
-    categoria: 'Actividades Al Aire Libre',
-    value: 'cerros',
-    label: 'Hills',
-    category: 'Outdoor Activities',
-    labelEng: 'Hills',
-    labelEsp: 'Cerros',
+    value: 'Cerros',
+    label: 'Hills'
   },
   {
-    id: '34',
-    categoria: 'Actividades Al Aire Libre',
-    value: 'sierra',
-    label: 'Mountain ranges',
-    category: 'Outdoor Activities',
-    labelEng: 'Mountain ranges',
-    labelEsp: 'Sierras',
+    value: 'Sierras',
+    label: 'Mountain ranges'
   },
 ];
 
 const NightActivitiesCatergory = [
   {
-    id: '41',
-    categoria: 'Actividades Nocturnas',
-    value: 'discoteca',
-    label: 'Nightclubs',
-    category: 'Night Activities',
-    labelEng: 'Nightclubs',
-    labelEsp: 'Discotecas',
+    value: 'Discotecas',
+    label: 'Nightclubs'
   },
   {
-    id: '42',
-    categoria: 'Actividades Nocturnas',
-    value: 'casino',
-    label: 'Casino',
-    category: 'Night Activities',
-    labelEng: 'Casino',
-    labelEsp: 'Casino',
+    value: 'Casino',
+    label: 'Casino'
   },
   {
-    id: '43',
-    categoria: 'Actividades Nocturnas',
-    value: 'pool',
-    label: 'Pool',
-    category: 'Night Activities',
-    labelEng: 'Pool',
-    labelEsp: 'Pool',
+    value: 'Pool',
+    label: 'Pool'
   },
   {
-    id: '44',
-    categoria: 'Actividades Nocturnas',
-    value: 'cantina',
-    label: 'Canteen',
-    category: 'Night Activities',
-    labelEng: 'Canteen',
-    labelEsp: 'Cantina',
+    value: 'Cantina',
+    label: 'Canteen'
   },
   {
-    id: '45',
-    categoria: 'Actividades Nocturnas',
-    value: 'bowling',
-    label: 'Bowling',
-    category: 'Night Activities',
-    labelEng: 'Bowling',
-    labelEsp: 'Bowling',
+    value: 'Bowling',
+    label: 'Bowling'
   },
 ];
 
 const TransportationCategory = [
   {
-    id: '51',
-    categoria: 'Transporte',
-    value: 'omnibus',
-    label: 'Bus',
-    category: 'Transport',
-    labelEng: 'Bus',
-    labelEsp: 'Omnibus',
+    value: 'Omnibus',
+    label: 'Bus'
   },
   {
-    id: '52',
-    categoria: 'Transporte',
-    value: 'taxi',
-    label: 'Taxi',
-    category: 'Transport',
-    labelEng: 'Taxi',
-    labelEsp: 'Taxi',
+    value: 'Taxi',
+    label: 'Taxi'
   },
   {
-    id: '53',
-    categoria: 'Transporte',
-    value: 'remis',
-    label: 'Remis',
-    category: 'Transport',
-    labelEng: 'Remis',
-    labelEsp: 'Remis',
+    value: 'Remis',
+    label: 'Remis'
   },
 ];
 
 const ChildrensActivitiesCategory = [
   {
-    id: '61',
-    categoria: 'Actividades Infantiles',
-    value: 'circo',
-    label: 'Circus',
-    category: 'Children`s Activities',
-    labelEng: 'Circus',
-    labelEsp: 'Circo',
+    value: 'Circo',
+    label: 'Circus'
   },
   {
-    id: '62',
-    categoria: 'Actividades Infantiles',
-    value: 'calesitas',
-    label: 'Carousels',
-    category: 'Children`s Activities',
-    labelEng: 'Carousels',
-    labelEsp: 'Calesitas',
+    value: 'Calesitas',
+    label: 'Carousels'
   },
   {
-    id: '63',
-    categoria: 'Actividades Infantiles',
-    value: 'video Juegos',
-    label: 'Video Games',
-    category: 'Children`s Activities',
-    labelEng: 'Video Games',
-    labelEsp: 'Video Juegos',
+    value: 'Video Juegos',
+    label: 'Video Games'
   },
   {
-    id: '64',
-    categoria: 'Actividades Infantiles',
-    value: 'juegos infantiles',
-    label: 'Children`s games',
-    category: 'Children`s Activities',
-    labelEng: 'Children`s games',
-    labelEsp: 'Juegos Infantiles',
+    value: 'Juegos infantiles',
+    label: 'Children`s games'
   },
 ];
 
 const EssentialServicesCategory = [
   {
-    id: '71',
-    categoria: 'Servicios Esenciales',
-    value: 'hospitales',
-    label: 'Hospitals',
-    category: 'Essential Services',
-    labelEng: 'Hospitals',
-    labelEsp: 'Hospitales',
+    value: 'Hospitales',
+    label: 'Hospitals'
   },
   {
-    id: '72',
-    categoria: 'Servicios Esenciales',
-    value: 'farmacias',
-    label: 'Pharmacy',
-    category: 'Essential Services',
-    labelEng: 'Pharmacy',
-    labelEsp: 'Farmacias',
+    value: 'Farmacias',
+    label: 'Pharmacy'
   },
   {
-    id: '73',
-    categoria: 'Servicios Esenciales',
-    value: 'estaciones de servicios',
-    label: 'Gas Station',
-    category: 'Essential Services',
-    labelEng: 'Gas Station',
-    labelEsp: 'Estaciones de servicios',
+    value: 'Estaciones de servicios',
+    label: 'Gas Station'
   },
   {
-    id: '74',
-    categoria: 'Servicios Esenciales',
-    value: 'cerrajeria',
-    label: 'Locksmith',
-    category: 'Essential Services',
-    labelEng: 'Locksmith',
-    labelEsp: 'Cerrajeria',
+    value: 'Cerrajeria',
+    label: 'Locksmith'
   },
   {
-    id: '75',
-    categoria: 'Servicios Esenciales',
     value: 'Seccionales policiales',
-    label: 'Police Station',
-    category: 'Essential Services',
-    labelEng: 'Police Station',
-    labelEsp: 'Seccionales policiales',
+    label: 'Police Station'
   },
 ];
 
