@@ -5,7 +5,7 @@
 }
 
 .divBtnUpdates {
-  width: 100%;
+  width: 98%;
   display: flex;
   justify-content: space-between;
   margin: 0.8rem 0;
@@ -26,7 +26,7 @@
     -.5rem -.5rem 1rem #fff;
   -moz-box-shadow: .5rem .5rem 1rem #ccc,
     -.5rem -.5rem 1rem #fff;
-  border: 2px solid #eee;
+  border: 1px solid rgb(231, 231, 231);
   border-radius: .5rem;
   transition: all 1s ease;
   cursor: pointer;
@@ -144,7 +144,8 @@
   font-size: 0.8rem;
   font-weight: 500;
 }
-.dataLabel{
+
+.dataLabel {
   color: #e4b705;
   font-size: 0.8rem;
 }
@@ -218,12 +219,11 @@
   color: #444;
   box-shadow: .5rem .5rem 1rem #ccc, -.5rem -.5rem 1rem #fff;
   -moz-box-shadow: .5rem .5rem 1rem #ccc, -.5rem -.5rem 1rem #fff;
-  border: 2px solid #eee;
+  border: 1px solid rgb(231, 231, 231);
   border-radius: .5rem;
   transition: all 1s ease;
   cursor: pointer;
-  padding: 10px 5rem;
-
+  padding: 5px 5rem;
 }
 
 .user-profile__logout:hover {
@@ -241,10 +241,11 @@
 
 @media screen and (min-width: 1024px) {
   .updateBtn {
-    width: 7rem;
-    padding: 0.5rem;
+    width: 7.3rem;
+    /* padding: 0.5rem; */
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 2rem;
   }
 }

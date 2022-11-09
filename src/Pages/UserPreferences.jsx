@@ -260,6 +260,7 @@ const UserPreferences = ({
   });
 
   const handleChangeNationality = (e) => {
+    e.preventDefault();
     console.log('sdhshdks', e.target.value);
     setNacionalidad(e.target.value);
   };
@@ -305,7 +306,7 @@ const UserPreferences = ({
                     return (
                       <option key={index}>
                       {item.flag}{' '}
-                      {item.translations.spa.common}
+                      {language === 'es' ? item.translations.spa.common: item.name.common}
                       </option>
                     );
                   })}
