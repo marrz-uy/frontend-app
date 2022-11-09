@@ -124,7 +124,8 @@ a:visited {
 @media screen and (min-width: 480px) {
     .userProfile {
         text-align: center;
-        margin-top: 120px;
+        margin-top: 14rem;
+        margin-bottom: 8rem;
         width: 50%;
         justify-content: center;
         flex-direction: column;
