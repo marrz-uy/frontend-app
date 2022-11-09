@@ -42,8 +42,8 @@ const UserProfile = ({
   handleUserBar(userBar);
 
   const userType = sessionStorage?.getItem('userType');
-  console.log('userType: ' + userType);
-  console.log('perfilUsuario: ', perfilUsuario);
+  // console.log('userType: ' + userType);
+  // console.log('perfilUsuario: ', perfilUsuario);
 
   return (
     <Layout>

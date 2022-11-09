@@ -18,7 +18,6 @@ import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
-  // sessionStorage.setItem('isLoggedIn', 'false');
   useEffect(() => {
     setPage('login');
   }, [setPage]);
@@ -27,7 +26,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  // const [googleUserResponse, setGoogleUserResponse] = useState('');
 
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
@@ -38,7 +36,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     http
       .post('/login', { email, password })
       .then((res) => {
-        console.log('%cLOGIN RESPONSE:', 'color: green;', res);
+        // console.log('%cLOGIN RESPONSE:', 'color: green;', res);
         setToken(
           res.data.user,
           res.data.access_token,
@@ -52,11 +50,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           JSON.stringify(res?.data.userProfile)
         );
         setIsLoggedIn('true');
-        console.log('%cSUBMIT LOGIN APP:', 'color: red;', isLoggedIn);
         navigate('/');
       })
       .catch(function (error) {
-        console.log('%cRESP:', 'color: red;', error.response.data);
+        // console.log('%cRESP:', 'color: red;', error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
         } else if (!email && !password) {
@@ -102,7 +99,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   };
 
   const handleOAuth = (googleUser) => {
-    // console.log('PROFILE OBJECT: ', googleUser.profileObj);
     sessionStorage.setItem('email', googleUser.profileObj.email);
     sessionStorage.setItem('userType', 'google');
     sessionStorage.setItem('user', googleUser.profileObj.name);
@@ -117,15 +113,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .then((response) => {
         sessionStorage.setItem('token', response?.data.access_token);
         sessionStorage.setItem('refresh_token', response?.data.refresh_token);
-        // console.log('RESPONSE DE PASSPORT: ', response?.data);
-
         sessionStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn('true');
       })
       .catch((error) => {
         console.error(`Error en catch: ${error}`);
-        //!BORRAR SIGUIENTE LINEA LUEGO DE ARREGLAR CORS PARA CHROME
-        // sessionStorage.setItem('isLoggedIn', 'true');
       });
 
     let emailGoogleUser = sessionStorage.getItem('email');
@@ -137,29 +129,19 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const traerIduserGoogle = () => {
     let emailGoogleUser = sessionStorage.getItem('email');
-    console.log('%cemailGoogleUser:', 'color: pink;', emailGoogleUser);
     axios
       .post('http://localhost:8000/api/userGoogleData', {
         email: emailGoogleUser,
       })
       .then((response) => {
-        // setGoogleUserResponse(response?.data);
         sessionStorage.setItem('id', response?.data.userGoogleId);
-        //! Quizas no enviar como string
         sessionStorage.setItem(
           'userProfile',
           JSON.stringify(response?.data.userProfile)
         );
-        console.log(
-          'RESPONSE DE DATAGOOGLEUSER2: ',
-          response?.data.userGoogleId
-        );
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
-
-  console.log('isLoggedIn FUERA1: ', isLoggedIn);
-  console.log('isLoggedIn FUERA2: ', isLoggedIn);
 
   return (
     <Layout>

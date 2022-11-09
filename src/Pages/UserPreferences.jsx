@@ -62,12 +62,20 @@ const UserPreferences = ({
   );
   const [alojamiento, setAlojamiento] = useState(pefilExistente?.alojamiento);
   const [gastronomia, setGastronomia] = useState(pefilExistente?.gastronomia);
-  const [espectaculos, setEspectaculos] = useState(pefilExistente?.espectaculos);
+  const [espectaculos, setEspectaculos] = useState(
+    pefilExistente?.espectaculos
+  );
   const [paseos, setPaseos] = useState(pefilExistente?.paseos);
-  const [actividadesNocturnas, setActividadesNocturnas] = useState(pefilExistente?.actividadesNocturnas);
+  const [actividadesNocturnas, setActividadesNocturnas] = useState(
+    pefilExistente?.actividadesNocturnas
+  );
   const [transporte, setTransporte] = useState(pefilExistente?.transporte);
-  const [actividadesInfantiles, setActividadesInfantiles] = useState(pefilExistente?.actividadesInfantiles);
-  const [serviciosEsenciales, setServiciosEsenciales] = useState(pefilExistente?.serviciosEsenciales);
+  const [actividadesInfantiles, setActividadesInfantiles] = useState(
+    pefilExistente?.actividadesInfantiles
+  );
+  const [serviciosEsenciales, setServiciosEsenciales] = useState(
+    pefilExistente?.serviciosEsenciales
+  );
   const f_nacimiento = fechaDeNacimiento;
 
   console.log('USER =>', pefilExistente);
@@ -215,17 +223,45 @@ const UserPreferences = ({
 
   const styles = {
     control: () => ({
-      height: 20,
+      height: 25,
       width: '100%',
       maxWidth: 450,
-      // backgroundColor: 'rgba(255,255,255)',
+      backgroundColor: 'rgba(190,200,200)',
       display: 'flex',
       border: '1px solid rgba(190,190,190)',
       borderRadius: '3px',
       boxShadow: '2px 2px 2px rgba(0,0,0, 0.4)',
-      fontSize: 10,
-      lineHeight: 1.09,
+      fontSize: 11,
+      fontWeight: 'bold',
     }),
+  };
+  const [nationalitiesAndFlags, setNationalitiesAndFlags] = useState([]);
+
+  useEffect(() => {
+    http
+      .get('https://restcountries.com/v3.1/all')
+      .then((res) => {
+        console.log('%cNACIONALIDAD RESPONSE:', 'color: blue;', res.data);
+        setNationalitiesAndFlags(res.data);
+      })
+      .catch(function (error) {
+        console.group('%cNACIONALIDAD ERRORES', 'color: red;');
+        console.log('%cERROR:', 'color: red;', error.message);
+        console.groupEnd();
+      });
+    //eslint-disable-next-line
+  }, []);
+
+ 
+
+
+  const nationalitiesAndFlagsSort = nationalitiesAndFlags.sort((a, b) => {
+    return a.ccn3 - b.ccn3;
+  });
+
+  const handleChangeNationality = (e) => {
+    console.log('sdhshdks', e.target.value);
+    setNacionalidad(e.target.value);
   };
 
   handleUserBar(userBar);
@@ -259,16 +295,22 @@ const UserPreferences = ({
                   lenguage
                 )}
               </label>
-              <input
-                className="inputPreferencias"
-                type="text"
-                name="nacionalidad"
-                autoFocus
-                autoComplete="off"
-                value={nacionalidad}
-                onChange={(e) => setNacionalidad(e.target.value)}
-                required
-              />
+              <div>
+                <select
+                  className="nationalitiesSelect"
+                  onChange={handleChangeNationality}
+                  value={nacionalidad}
+                >
+                  {nationalitiesAndFlagsSort?.map((item,index) => {
+                    return (
+                      <option key={index}>
+                      {item.flag}{' '}
+                      {item.translations.spa.common}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
             <div className="inputGroupPreferencias fecha">
               <label htmlFor="fechaDeNacimiento">
