@@ -18,7 +18,7 @@
 
 .inputGroupPreferencias {
     display: flex;
-    max-width: 100%;
+    width: 100%;
     word-wrap: break-word;
     justify-content: space-between;
     gap: 0.3rem;
@@ -29,11 +29,18 @@
     border: 1px solid gray;
     border-radius: 5px;
     height: 1.8em;
-    font-size: 0.7rem;
+    font-size: 9px;
+
 }
 
 .inputGroupPreferencias input {
-    padding: 5px;
+    padding: 2px 0 0 10px;
+    min-width: 10rem;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+    color: rgb(45, 45, 45);
+    min-height: 19px;
 }
 
 .fecha {
@@ -91,12 +98,6 @@ a:visited {
     text-decoration: none;
 }
 
-
-/* .prueba {
-	background-color: aquamarine;
-	height: 30px;
-} */
-
 .categoryImage {
     display: flex;
     width: 1.5rem;
@@ -107,6 +108,17 @@ a:visited {
 .submiMessage {
     color: rgb(7, 191, 130);
     font-size: 1rem;
+}
+
+.nationalitiesSelect {
+    max-width: 10rem;
+    border: 1px solid rgb(170, 170, 170);
+    color: rgb(68, 68, 68);
+    border-radius: 3px;
+}
+
+.css-b62m3t-container {
+    min-width: 12rem;
 }
 
 @media screen and (min-width: 480px) {
@@ -122,50 +134,51 @@ a:visited {
     }
 
 
-.nacionalidadYfchanacimiento {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+    .nacionalidadYfchanacimiento {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-.nacionalidad {
-    align-items: flex-end;
-    margin-right: 30px;
-}
+    .nacionalidad {
+        align-items: flex-end;
+    }
 
-.fecha {
-    align-items: flex-end;
-}
+    .fecha {
+        align-items: flex-end;
+    }
 
-.titlePreferencias {
-    font-size: 1.4rem;
-}
+    .titlePreferencias {
+        font-size: 1.4rem;
+    }
 
-.inputPreferencias {
-    max-width: 20rem;
-    height: 1.8rem;
-    font-size: 1rem;
-}
+    .inputPreferencias {
+        max-width: 20rem;
+        height: 1.8rem;
+        font-size: 1rem;
+        padding: 2px 0 0 10px;
+        min-height: 32px;
+    }
 
-.selectIndividual {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+    .selectIndividual {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-form {
-    gap: 1rem;
-}
+    form {
+        gap: 1rem;
+    }
 
-label {
-    font-weight: 600;
-    font-size: 1.3rem;
-}
+    label {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
 
-select {
-    font-size: 1.5rem;
-    color: rgb(89, 89, 89);
-    min-width: 17rem;
-}
+    select {
+        font-size: 1.5rem;
+        color: rgb(89, 89, 89);
+        min-width: 17rem;
+    }
 }
