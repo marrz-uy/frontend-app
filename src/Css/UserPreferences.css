@@ -157,6 +157,8 @@ a:visited {
         max-width: 20rem;
         height: 1.8rem;
         font-size: 1rem;
+        padding: 2px 0 0 10px;
+        min-height: 32px;
     }
 
     .selectIndividual {
