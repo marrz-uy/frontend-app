@@ -41,12 +41,12 @@ const Principal = ({
   latitud,
   longitud,
 }) => {
-  // console.log(
-  //   'LOCATION PRINCIPAL: ',
-  //   loaded,
-  //   latitud,
-  //   longitud
-  // );
+  console.log(
+    'LOCATION PRINCIPAL: ',
+    loaded,
+    latitud,
+    longitud
+  );
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -66,11 +66,27 @@ const Principal = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
 
+  // const { loaded, latitud, longitud, accuracy, altitude, speed } =
+  //   useGeoLocation();
+
+  console.log(
+    'LOCATION: ',
+    loaded,
+    latitud,
+    longitud
+  );
+
   useEffect(() => {
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
+      console.log(
+        'A ENVIAR: ',
+        loaded,
+        latitud,
+        longitud
+      );
     }
   }, [loaded, latitud, longitud]);
 
@@ -98,6 +114,7 @@ const Principal = ({
   const handleCategories = (e) => {
     setItems(e);
     setText(e);
+    console.log('%cTEXT PRINCIPAL:', 'color: violet;', e);
     getData(e);
     setPage('results');
     setSearchType('categoria');

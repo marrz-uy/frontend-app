@@ -1,160 +1,329 @@
 const CategoriaAlojamiento = [
   {
-    value: 'Hotel',
-    label: 'Hotel'
-    
+    id: '01',
+    categoria: 'Alojamiento',
+    category: 'Lodgin',
+    value: 'hotel',
+    label: 'Hotel',
+    labelEng: 'Hotel',
+    labelEsp: 'Hotel',
   },
   {
-    value: 'Hostel',
-    label: 'Hostel'
+    id: '02',
+    categoria: 'Alojamiento',
+    category: 'Lodgin',
+    value: 'hostel',
+    label: 'Hostel',
+    labelEng: 'Hostel',
+    labelEsp: 'Hostel',
   },
   {
-    value: 'Camping',
-    label: 'Camping'
+    id: '03',
+    categoria: 'Alojamiento',
+    category: 'Lodgin',
+    value: 'camping',
+    label: 'Camping',
+    labelEng: 'Camping',
+    labelEsp: 'Camping',
   },
   {
-    value: 'Estancia turistica',
-    label: 'Estancia turistica'
+    id: '04',
+    categoria: 'Alojamiento',
+    category: 'Lodgin',
+    value: 'estancia turistica',
+    label: 'Estancia turistica',
+    labelEng: 'Tourist ranch',
+    labelEsp: 'Estancia turistica',
   },
   {
-    value: 'Casa',
-    label: 'Casa'
+    id: '05',
+    categoria: 'Alojamiento',
+    category: 'Lodgin',
+    value: 'casa',
+    label: 'Casa',
+    labelEng: 'House',
+    labelEsp: 'Casa',
   },
 ];
 const CategoriaGastronomia = [
   {
-    value: 'Restaurante',
-    label: 'Restaurante'
+    id: '11',
+    categoria: 'Gastronomia',
+    value: 'restaurante',
+    label: 'Restaurante',
+    category: 'Gastronomy',
+    labelEng: 'Restaurant',
+    labelEsp: 'Restaurante',
   },
   {
-    value: 'Cervezeria',
-    label: 'Cervezeria'
+    id: '12',
+    categoria: 'Gastronomia',
+    value: 'cervezeria',
+    label: 'Cervezeria',
+    category: 'Gastronomy',
+    labelEng: 'Beer shop',
+    labelEsp: 'Cervezeria',
   },
   {
-    value: 'Comida rapida',
-    label: 'Comida rapida'
+    id: '13',
+    categoria: 'Gastronomia',
+    value: 'comida rapida',
+    label: 'Comida rapida',
+    category: 'Gastronomy',
+    labelEng: 'Fast food',
+    labelEsp: 'Comida rapida',
   },
   {
-    value: 'Bar',
-    label: 'Bar'
+    id: '14',
+    categoria: 'Gastronomia',
+    value: 'bar',
+    label: 'Bar',
+    category: 'Gastronomy',
+    labelEng: 'Bar',
+    labelEsp: 'Bar',
   },
 ];
 
 const CategoriaEspectaculos = [
   {
-    value: 'Cine',
-    label: 'Cine'
+    id: '21',
+    categoria: 'Espectaculos',
+    value: 'cine',
+    label: 'Cine',
+    category: 'Shows',
+    labelEng: 'Cinema',
+    labelEsp: 'Cine',
   },
   {
-    value: 'Teatro',
-    label: 'Teatro'
+    id: '22',
+    categoria: 'Espectaculos',
+    value: 'teatro',
+    label: 'Teatro',
+    category: 'Shows',
+    labelEng: 'Theater',
+    labelEsp: 'Teatro',
   },
   {
-    value: 'Carnaval',
-    label: 'Carnaval'
+    id: '23',
+    categoria: 'Espectaculos',
+    value: 'carnaval',
+    label: 'Carnaval',
+    category: 'Shows',
+    labelEng: 'Carnival',
+    labelEsp: 'Carnaval',
   },
   {
-    value: 'Futbol',
-    label: 'Futbol'
+    id: '24',
+    categoria: 'Espectaculos',
+    value: 'futbol',
+    label: 'Futbol',
+    category: 'Shows',
+    labelEng: 'Football/Soccer',
+    labelEsp: 'Futbol',
   },
 ];
 
 const CategoriaActividadesAlAireLibre = [
   {
-    value: 'Playa',
-    label: 'Playa'
+    id: '31',
+    categoria: 'Actividades Al Aire Libre',
+    value: 'playa',
+    label: 'Playa',
+    category: 'Outdoor Activities',
+    labelEng: 'Beach',
+    labelEsp: 'Playa',
   },
   {
-    value: 'Ejecicios al aire libre',
-    label: 'Ejecicios al aire libre'
+    id: '32',
+    categoria: 'Actividades Al Aire Libre',
+    value: 'ejecicios al aire libre',
+    label: 'Ejecicios al aire libre',
+    category: 'Outdoor Activities',
+    labelEng: 'Outdoor exercises',
+    labelEsp: 'Ejecicios al aire libre',
   },
   {
-    value: 'Cerros',
-    label: 'Cerros'
+    id: '33',
+    categoria: 'Actividades Al Aire Libre',
+    value: 'cerros',
+    label: 'Cerros',
+    category: 'Outdoor Activities',
+    labelEng: 'Hills',
+    labelEsp: 'Cerros',
   },
   {
-    value: 'Sierras',
-    label: 'Sierras'
+    id: '34',
+    categoria: 'Actividades Al Aire Libre',
+    value: 'sierra',
+    label: 'Sierras',
+    category: 'Outdoor Activities',
+    labelEng: 'Mountain ranges',
+    labelEsp: 'Sierras',
   },
 ];
 
 const CategoriaActividadesNocturnas = [
   {
-    value: 'Discotecas',
-    label: 'Discotecas'
+    id: '41',
+    categoria: 'Actividades Nocturnas',
+    value: 'discoteca',
+    label: 'Discotecas',
+    category: 'Night Activities',
+    labelEng: 'Nightclubs',
+    labelEsp: 'Discotecas',
   },
   {
-    value: 'Casino',
-    label: 'Casino'
+    id: '42',
+    categoria: 'Actividades Nocturnas',
+    value: 'casino',
+    label: 'Casino',
+    category: 'Night Activities',
+    labelEng: 'Casino',
+    labelEsp: 'Casino',
   },
   {
-    value: 'Pool',
-    label: 'Pool'
+    id: '43',
+    categoria: 'Actividades Nocturnas',
+    value: 'pool',
+    label: 'Pool',
+    category: 'Night Activities',
+    labelEng: 'Pool',
+    labelEsp: 'Pool',
   },
   {
-    value: 'Cantina',
-    label: 'Cantina'
+    id: '44',
+    categoria: 'Actividades Nocturnas',
+    value: 'cantina',
+    label: 'Cantina',
+    category: 'Night Activities',
+    labelEng: 'Canteen',
+    labelEsp: 'Cantina',
   },
   {
-    value: 'Bowling',
-    label: 'Bowling'
+    id: '45',
+    categoria: 'Actividades Nocturnas',
+    value: 'bowling',
+    label: 'Bowling',
+    category: 'Night Activities',
+    labelEng: 'Bowling',
+    labelEsp: 'Bowling',
   },
 ];
 
 const CategoriaTransporte = [
   {
-    value: 'Omnibus',
-    label: 'Omnibus'
+    id: '51',
+    categoria: 'Transporte',
+    value: 'omnibus',
+    label: 'Omnibus',
+    category: 'Transport',
+    labelEng: 'Bus',
+    labelEsp: 'Omnibus',
   },
   {
-    value: 'Taxi',
-    label: 'Taxi'
+    id: '52',
+    categoria: 'Transporte',
+    value: 'taxi',
+    label: 'Taxi',
+    category: 'Transport',
+    labelEng: 'Taxi',
+    labelEsp: 'Taxi',
   },
   {
-    value: 'Remis',
-    label: 'Remis'
+    id: '53',
+    categoria: 'Transporte',
+    value: 'remis',
+    label: 'Remis',
+    category: 'Transport',
+    labelEng: 'Remis',
+    labelEsp: 'Remis',
   },
 ];
 
 const CategoriaActividadesInfantiles = [
   {
-    value: 'Circo',
-    label: 'Circo'
+    id: '61',
+    categoria: 'Actividades Infantiles',
+    value: 'circo',
+    label: 'Circo',
+    category: 'Children`s Activities',
+    labelEng: 'Circus',
+    labelEsp: 'Circo',
   },
   {
-    value: 'Calesitas',
-    label: 'Calesitas'
+    id: '62',
+    categoria: 'Actividades Infantiles',
+    value: 'calesitas',
+    label: 'Calesitas',
+    category: 'Children`s Activities',
+    labelEng: 'Carousels',
+    labelEsp: 'Calesitas',
   },
   {
-    value: 'Video Juegos',
-    label: 'Video Juegos'
+    id: '63',
+    categoria: 'Actividades Infantiles',
+    value: 'video Juegos',
+    label: 'Video Juegos',
+    category: 'Children`s Activities',
+    labelEng: 'Video Games',
+    labelEsp: 'Video Juegos',
   },
   {
-    value: 'Juegos infantiles',
-    label: 'Juegos Infantiles'
+    id: '64',
+    categoria: 'Actividades Infantiles',
+    value: 'juegos infantiles',
+    label: 'Juegos Infantiles',
+    category: 'Children`s Activities',
+    labelEng: 'Children`s games',
+    labelEsp: 'Juegos Infantiles',
   },
 ];
 
 const CategoriaServiciosEsenciales = [
   {
-    value: 'Hospitales',
-    label: 'Hospitales'
+    id: '71',
+    categoria: 'Servicios Esenciales',
+    value: 'hospitales',
+    label: 'Hospitales',
+    category: 'Essential Services',
+    labelEng: 'Hospitals',
+    labelEsp: 'Hospitales',
   },
   {
-    value: 'Farmacias',
-    label: 'Farmacias'
+    id: '72',
+    categoria: 'Servicios Esenciales',
+    value: 'farmacias',
+    label: 'Farmacias',
+    category: 'Essential Services',
+    labelEng: 'Pharmacy',
+    labelEsp: 'Farmacias',
   },
   {
-    value: 'Estaciones de servicios',
-    label: 'Estaciones de servicios'
+    id: '73',
+    categoria: 'Servicios Esenciales',
+    value: 'estaciones de servicios',
+    label: 'Estaciones de servicios',
+    category: 'Essential Services',
+    labelEng: 'Gas Station',
+    labelEsp: 'Estaciones de servicios',
   },
   {
-    value: 'Cerrajeria',
-    label: 'Cerrajeria'
+    id: '74',
+    categoria: 'Servicios Esenciales',
+    value: 'cerrajeria',
+    label: 'Cerrajeria',
+    category: 'Essential Services',
+    labelEng: 'Locksmith',
+    labelEsp: 'Cerrajeria',
   },
   {
-    value: 'Seccionales policiales',
-    label: 'Seccionales policiales'
+    id: '75',
+    categoria: 'Servicios Esenciales',
+    value: 'seccionales policiales',
+    label: 'Seccionales policiales',
+    category: 'Essential Services',
+    labelEng: 'Police Station',
+    labelEsp: 'Seccionales policiales',
   },
 ];
 
