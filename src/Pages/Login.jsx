@@ -14,6 +14,7 @@ import {
   UNPROCESABLE,
   SERVIDOR_APAGADO,
 } from '../Data/HTTPResponseStatusCodes';
+import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
@@ -188,11 +189,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               className="btn-login"
             />
           </div>
-          <div className="linkAregistro">
-            <Link to="/register">
-              {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
-            </Link>
-          </div>
+          <Separador/>
           <GoogleLogin
             clientId={clientId}
             buttonText="Log in with Google"
@@ -201,6 +198,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             cookiePolicy={'single_host_origin'}
             // isSignedIn={true}
           ></GoogleLogin>
+          <div className="linkAregistro">
+            <Link to="/register">
+              {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
+            </Link>
+          </div>
           <div className="salir">
             <Link to="/">
               <button className="btn-cerrar">
