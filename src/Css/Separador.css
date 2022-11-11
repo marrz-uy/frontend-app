@@ -1,0 +1,21 @@
+.divSeparatorsExt{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 20px;
+	align-items: center;
+	width: 100%;
+}
+.separatorInt {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 18px;
+	width: 100%;
+}
+
+.separator{
+	height: 1px;
+	background-color: rgb(176, 176, 176);
+	width: 90%;
+}
