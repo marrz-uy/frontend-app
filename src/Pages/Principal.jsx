@@ -148,7 +148,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Alojamiento')}
+             onClick={() => handleCategories('Alojamiento')}
           >
             <div className="categoriesImage">
               <img src={hotelImg} alt="hotel"></img>
