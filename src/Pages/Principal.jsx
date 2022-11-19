@@ -13,7 +13,7 @@ import teatro from '../Assets/categoriesImages/teatro 1.png';
 import actividaesNocturnas from '../Assets/categoriesImages/cocktail 1.png';
 import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
@@ -129,23 +129,25 @@ const Principal = ({
               </span>
             </div>
           </div>
-          <div
-            className="categories"
-            // onClick={() => handleCategories('Armar tour')}
-          >
-            <div className="categoriesImage">
-              <img src={setYourTour} alt="setYourTour"></img>
+          <Link to="/tour">
+            <div
+              className="categories"
+              // onClick={() => handleCategories('Armar tour')}
+            >
+              <div className="categoriesImage">
+                <img src={setYourTour} alt="setYourTour"></img>
+              </div>
+              <div className="categoriesText">
+                <span>
+                  {filtrarTraduccion(
+                    traduccionesBD,
+                    'buildMyTourLabel',
+                    lenguage
+                  )}
+                </span>
+              </div>
             </div>
-            <div className="categoriesText">
-              <span>
-                {filtrarTraduccion(
-                  traduccionesBD,
-                  'buildMyTourLabel',
-                  lenguage
-                )}
-              </span>
-            </div>
-          </div>
+          </Link>
           <div
             className="categories"
              onClick={() => handleCategories('Alojamiento')}

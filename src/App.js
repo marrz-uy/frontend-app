@@ -12,6 +12,7 @@ import UpdateUserName from './Pages/UpdateUserName';
 import UpdateUserPassword from './Pages/UpdateUserPassword';
 import useGeoLocation from '../src/Helpers/useGeolocation.js';
 import PuntoInteresInfo from './Pages/PuntoInteresInfo';
+import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour'
 
 function App() {
   const [searchType, setSearchType] = useState('');
@@ -219,6 +220,32 @@ function App() {
                 userBar={userBar}
                 setUserBar={setUserBar}
                 destination={destination}
+              />
+            }
+          />
+          <Route
+            path="/tour"
+            element={
+              <BuildMyTour
+                items={items}
+                setItems={setItems}
+                setPage={setPage}
+                text={text}
+                setText={setText}
+                paginaActual={paginaActual}
+                setPaginaActual={setPaginaActual}
+                userBar={userBar}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserBar={setUserBar}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                categoryName={categoryName}
+                setCategoryName={setCategoryName}
+                setDestination={setDestination}
+                loaded={loaded}
+                latitud={latitud}
+                longitud={longitud}
               />
             }
           />
