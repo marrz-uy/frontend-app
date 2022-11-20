@@ -1,11 +1,12 @@
 .buildMyTour {
-	margin-top: 100px;
+	margin-top: 110px;
 	width: 90%;
+	max-width: 1200px;
     display: flex;
 	flex-direction: column;
 	align-items: center;
 	font-family: sans-serif;
-    min-height: 82vh;
+    /* min-height: 82vh;  */
 }
 
 .tituloTourPreferences{
@@ -18,3 +19,11 @@ margin-bottom: 10px;
 	justify-content: space-between;
 	width: 100%;
 }
+
+@media screen and (min-width: 480px) { 
+	.buildMyTour {
+		margin-top: 90px;
+		min-height: 76vh; 
+	}
+}
+
