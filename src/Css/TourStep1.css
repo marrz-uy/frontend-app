@@ -1,0 +1,57 @@
+.descripcionTourStep1Text{
+	font-size: 14px;
+}
+
+.tourPreferences{
+	padding: 10px 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;;
+	gap: 1rem
+}
+
+.tourCards{
+	border:1px solid rgb(239, 8, 8);
+	min-height: 4.3rem;
+	border: 1px solid rgba(121, 120, 120, 0.287);
+	border-radius: 5px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color: rgba(221, 221, 221, 0.03);
+	display: flex;
+	gap: 10px;
+	font-size: 0.8rem;
+}
+
+.cardName{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 50%;
+	padding-left: 8px;
+	font-weight: bold;
+}
+
+.cardPreferences{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: 40%;
+}
+
+.cardRadioBtns{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center; ;
+	width: 10%;
+}
+
+.ubicacion{
+	width: 9rem;
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin-top: 4px;
+	background-color: aliceblue;
+	border: 1px solid rgb(0, 128, 248);
+}

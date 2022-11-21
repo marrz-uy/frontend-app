@@ -1,12 +1,16 @@
 import React from 'react';
+import '../../Css/TourFinalStep.css'
 
 const TourFinalStep = () => {
   return (
-    <div className="tourStep1">
-      <div className="descripcionTourStep1">
-        <h1 className="descripcionTourStep1Text">
-				Se ha guardado su tour
+    <div className="tourFinalStep">
+      <div className="descripcionTourFinalStep">
+        <h1 className="descripcionTourFinalStepText">
+				Elija un nombre para guardar su tour
         </h1>
+        <div className='inputDivTourFinalStep'>
+          <input type="text" required></input>
+        </div>
       </div>
     </div>
   );

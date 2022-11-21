@@ -14,7 +14,7 @@ import teatro from '../Assets/categoriesImages/teatro 1.png';
 import actividaesNocturnas from '../Assets/categoriesImages/cocktail 1.png';
 import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
