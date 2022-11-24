@@ -11,19 +11,24 @@ const TourStep1 = () => {
         </p>
       </div>
       <div className="tourPreferences">
+
         <div className="tourCards schedule">
           <div className="cardName">
             <p>Franja horaria</p>
           </div>
           <div className="cardPreferences">
-            <p>Dia</p>
-            <p>tarde</p>
-            <p>Noche</p>
-          </div>
-          <div className="cardRadioBtns">
-            <input type="radio"></input>
-            <input type="radio"></input>
-            <input type="radio"></input>
+            <div className="preferencesInput">
+              <p>Dia</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Tarde</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Noche</p>
+              <input type="radio"></input>
+            </div>
           </div>
         </div>
         <div className="tourCards tourTypes">
@@ -31,14 +36,18 @@ const TourStep1 = () => {
             <p>Tipo de paseo</p>
           </div>
           <div className="cardPreferences">
-            <p>Espacios cerrados</p>
-            <p>Al aire libre</p>
-            <p>Ambos</p>
-          </div>
-          <div className="cardRadioBtns">
-          <input type="radio"></input>
-            <input type="radio"></input>
-            <input type="radio"></input>
+          <div className="preferencesInput">
+              <p>Espacio cerrado</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Al Aire libre</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Ambos</p>
+              <input type="radio"></input>
+            </div>
           </div>
         </div>
         <div className="tourCards tourPeople">
@@ -46,24 +55,33 @@ const TourStep1 = () => {
             <p>Cantidad de personas</p>
           </div>
           <div className="cardPreferences">
-            <p>Solos</p>
-            <p>Familia</p>
-            <p>Pareja</p>
-            <p>Grupo</p>
-          </div>
-          <div className="cardRadioBtns">
-          <input type="radio"></input>
-            <input type="radio"></input>
-            <input type="radio"></input>
-            <input type="radio"></input>
+          <div className="preferencesInput">
+              <p>Solo</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Familia</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Pareja</p>
+              <input type="radio"></input>
+            </div>
+            <div className="preferencesInput">
+              <p>Grupo</p>
+              <input type="radio"></input>
+            </div>
           </div>
         </div>
+
         <div className="tourCards tourLocation">
           <div className="cardName">
             <p>Ubicacion</p>
           </div>
           <div className="cardPreferences">
-            <p for="ubicacion" className="">Elija destino</p>
+            <p>
+              Elija destino
+            </p>
             <input type="text" className="ubicacion" name="ubicacion"></input>
           </div>
         </div>
