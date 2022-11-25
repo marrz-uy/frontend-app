@@ -57,7 +57,6 @@ const BuildMyTour = ({
     <Layout>
       <div className="buildMyTour">
         <div className="userbar-click" onClick={() => setUserBar(false)}></div>
-        
           <div className="tituloTourPreferences">
             <h2 className="tituloTourPreferencesText">Armar Tour</h2>
           </div>

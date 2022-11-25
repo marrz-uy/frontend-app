@@ -35,4 +35,13 @@
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 	border-bottom: none;
 	overflow-y: scroll;
+	gap: 3px;
+	display: flex;
+	flex-direction: column;
+	padding: 2px 0 0 6px;
+}
+
+.cardContainer{
+	background-color: transparent;
+	width: auto;
 }

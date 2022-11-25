@@ -31,6 +31,17 @@ const TourStep1 = () => {
             </div>
           </div>
         </div>
+        <div className="tourCards tourLocation">
+          <div className="cardName">
+            <p>A que hora comenzar</p>
+          </div>
+          <div className="cardPreferences">
+            <p>
+              Elija un hora
+            </p>
+            <input type="time" className="ubicacion" name="ubicacion"></input>
+          </div>
+        </div>
         <div className="tourCards tourTypes">
           <div className="cardName">
             <p>Tipo de paseo</p>

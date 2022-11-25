@@ -40,7 +40,7 @@ const TourSteps = () => {
     }
   };
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
-  console.log(current);
+  // console.log(current);
   return (
     <>
       <Steps current={current} items={items} />
@@ -63,6 +63,7 @@ const TourSteps = () => {
         )}
         {current === steps.length - 1 && (
           <Button
+          className='btnSiguienteGuardar'
             type="primary"
             onClick={() => message.success('Su tour se ha guardado correctamente!')}
           >

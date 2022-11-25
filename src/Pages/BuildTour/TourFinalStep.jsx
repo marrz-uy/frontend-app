@@ -6,7 +6,7 @@ const TourFinalStep = () => {
     <div className="tourFinalStep">
       <div className="descripcionTourFinalStep">
         <h1 className="descripcionTourFinalStepText">
-				Elija un nombre para guardar su tour
+				Elija un nombre para su tour
         </h1>
         <div className='inputDivTourFinalStep'>
           <input type="text" required></input>
