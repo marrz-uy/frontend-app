@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import AuthUser from '../../Components/AuthUser';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 import '../../Css/TourStep2.css';
-import TourCard from '../../Components/TourCard';
-
+import Column from '../../Components/TourComponents/Column';
 const initialData = [
   {
     id: '01',
-    tipo: 'restaurantes',
+    tipo: 'Restaurant',
     nombre: 'Garo Bar',
     ciudad: 'Montevideo',
     direccion: 'Eduardo Acevedo Diaz 1055',
@@ -17,7 +15,7 @@ const initialData = [
   },
   {
     id: '02',
-    tipo: 'restaurantes',
+    tipo: 'Restaurant',
     nombre: 'La Baguala',
     ciudad: 'Montevideo',
     direccion: 'Camino Sanguinetti 5552',
@@ -27,7 +25,7 @@ const initialData = [
   },
   {
     id: '03',
-    tipo: 'paseos',
+    tipo: 'Paseo',
     nombre: 'Parque Rodo',
     ciudad: 'Montevideo',
     direccion: 'Rambla',
@@ -37,7 +35,7 @@ const initialData = [
   },
   {
     id: '04',
-    tipo: 'paseos',
+    tipo: 'Paseo',
     nombre: 'Playa Ramirez',
     ciudad: 'Montevideo',
     direccion: 'Rambla',
@@ -47,7 +45,7 @@ const initialData = [
   },
   {
     id: '05',
-    tipo: 'paseos',
+    tipo: 'Paseo',
     nombre: 'Circo',
     ciudad: 'Montevideo',
     direccion: 'Av Italia',
@@ -57,7 +55,7 @@ const initialData = [
   },
   {
     id: '06',
-    tipo: 'transportes',
+    tipo: 'Transporte',
     nombre: 'Terminal Tres Cruces',
     ciudad: 'Montevideo',
     direccion: 'Bulevar Gral. Artigas 1825',
@@ -67,7 +65,7 @@ const initialData = [
   },
   {
     id: '07',
-    tipo: 'transportes',
+    tipo: 'Transporte',
     nombre: 'Estación Baltasar Brum',
     ciudad: 'Montevideo',
     direccion: 'Rio Branco 1685',
@@ -77,7 +75,7 @@ const initialData = [
   },
   {
     id: '08',
-    tipo: 'transportes',
+    tipo: 'Transporte',
     nombre: 'Terminal del Cerro',
     ciudad: 'Montevideo',
     direccion: 'Av. Carlos María Ramírez y Dr. Pedro Castellino',
@@ -86,35 +84,61 @@ const initialData = [
     img: 'https://fastly.4sqi.net/img/general/width960/38989709_axDkJ4K1EMTLejeQVZJFyIrK4Pp1fY7V-QTMf_tqK3w.jpg',
   },
 ];
-const columns = [
-  {
-    id: '1',
-    title: 'items',
-    itemsId: [
-      'initialData[0]',
-      'initialData[1]',
-      'initialData[2]',
-      'initialData[3]',
-      'initialData[4]',
-      'initialData[5]',
-      'initialData[6]',
-      'initialData[7]',
-    ],
+const status = {
+  '01': {
+    name: 'TimeLine',
+    color: '#FFFAE6',
+    items: [],
   },
-  {
-    id: '2',
-    title: 'timeLine',
-    itemsTourId: [],
+  '02': {
+    name: 'Items',
+    color: '#EAE6FF',
+    items: initialData,
   },
-];
-console.log('INITIAL DATA: ', initialData);
-console.log('COLUMNS: ', columns);
-
-const columnOrder = ['timeLine', 'items'];
+};
 
 const TourStep2 = () => {
-  const [datos, setDatos] = useState(initialData)
-  console.log(datos)
+  const [columns, setColumns] = useState(status);
+  console.log('COLUMNAS: ', columns);
+  console.log('ITEMS: ');
+
+  const onDragEnd = (result, columns, setColumns) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId];
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems,
+        },
+      });
+    } else {
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      });
+    }
+  };
+  console.log(columns);
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
@@ -123,71 +147,25 @@ const TourStep2 = () => {
           a armar su tour
         </p>
       </div>
-      <DragDropContext onDragEnd={'hanleDragEnd'}>
-        <div className="dragNDropContainer">
-          <Droppable droppableId="timeLine">
-            {(provided, snapshot) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="timelineContainer"
-                style={{
-                  backgroundColor: snapshot.isDraggingOver
-                    ? '#2986f0'
-                    : 'transparent',
-                }}
-              >
-                {/* <div className="verticalLine"></div> */}
-                {provided.placeholder}
+      <div className="dragNDropContainer">
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        >
+          {Object.entries(columns).map(([columnId, column], index) => {
+            return (
+              <div className="seccion" id={column.name} key={columnId}>
+                <Column
+                  className="columna"
+                  droppableId={columnId}
+                  key={columnId}
+                  index={index}
+                  column={column}
+                />
               </div>
-            )}
-          </Droppable>
-
-          <Droppable droppableId="items">
-            {(provided, snapshot) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="resultsContainer"
-                style={{
-                  backgroundColor: snapshot.isDraggingOver
-                    ? '#2986f0'
-                    : 'transparent',
-                }}
-              >
-                {datos &&
-                  datos.map((dato, index) => {
-                    return (
-                      <Draggable
-                        key={dato.id}
-                        draggableId={dato.id.toString()}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className="cardContainer"
-                          >
-                            <TourCard
-                              key={dato.id}
-                              nombre={dato.nombre}
-                              direccion={dato.direccion}
-                              caracteristicas={dato.Contacto}
-                              imagen={dato.img}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </div>
-      </DragDropContext>
+            );
+          })}
+        </DragDropContext>
+      </div>
     </div>
   );
 };
