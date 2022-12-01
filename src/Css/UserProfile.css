@@ -39,7 +39,8 @@
 
 }
 
-.updateBtn a, a:visited {
+.updateBtn a,
+a:visited {
   font-size: 0.7rem;
   text-decoration: none;
   color: rgb(81, 81, 81);
@@ -234,7 +235,8 @@
 @media screen and (min-width: 480px) {
   .user-profile {
     width: 60%;
-    height: 85vh;
+    /* height: 85vh; */
+    height: 100%;
     margin-top: 8rem;
   }
 }

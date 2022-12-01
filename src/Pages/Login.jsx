@@ -107,7 +107,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'inQtNb0a7wMe0LQAIf3kzzYVbmH8So2F79tGc1Jf',
+        client_secret: 'muY39UpkSTLIyRwBM1CXRO2QKgeqzIm5U6dkClD0',
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })
@@ -189,14 +189,14 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               className="btn-login"
             />
           </div>
-          <Separador/>
+          <Separador />
           <GoogleLogin
             clientId={clientId}
             buttonText="Log in with Google"
             onSuccess={handleOAuth}
             onFailure={handleFailure}
             cookiePolicy={'single_host_origin'}
-            // isSignedIn={true}
+          // isSignedIn={true}
           ></GoogleLogin>
           <div className="linkAregistro">
             <Link to="/register">
