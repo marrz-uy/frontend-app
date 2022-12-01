@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../Css/TourSteps.css';
 import { Button, message, Steps } from 'antd';
 import TourStep1 from '../Pages/BuildTour/TourStep1';
 import TourStep2 from '../Pages/BuildTour/TourStep2';
 import TourStep3 from '../Pages/BuildTour/TourStep3';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
+import TourContext from '../Context/TourContext';
+
 
 const steps = [
   {
@@ -26,9 +28,12 @@ const steps = [
 ];
 
 const TourSteps = () => {
+  const {saveTourPreferences, tourPreferences } = useContext(TourContext);
+
   const [current, setCurrent] = useState(0);
 
   const next = () => {
+    saveTourPreferences(tourPreferences)
     if (current < 3) {
       setCurrent(current + 1);
     }

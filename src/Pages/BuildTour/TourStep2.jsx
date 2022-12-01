@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import '../../Css/TourStep2.css';
 import Column from '../../Components/TourComponents/Column';
+import TourContext from '../../Context/TourContext';
+import '../../Css/TourStep2.css';
+
 const initialData = [
   {
     id: '01',
@@ -98,6 +100,10 @@ const status = {
 };
 
 const TourStep2 = () => {
+  const { tourPreferences } = useContext(TourContext);
+
+  console.log('TOUR PRFERENCES Step2: ', tourPreferences);
+
   const [columns, setColumns] = useState(status);
   console.log('COLUMNAS: ', columns);
   console.log('ITEMS: ');
