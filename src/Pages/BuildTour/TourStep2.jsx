@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import TourContext from '../../Context/TourContext';
+import Swal from 'sweetalert2';
 import '../../Css/TourStep2.css';
 
 const initialData = [
@@ -144,14 +145,43 @@ const TourStep2 = () => {
       });
     }
   };
+
+  const handleInfoTour = () => {
+    Swal.fire({
+      title: 'Informacion de su tour',
+      text: `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1. 
+      \n Eligió comenzar el tour en el: ${tourPreferences.franjaHoraria},
+      \n Hora de Comienzo: ${tourPreferences.horaInicio},
+      \n Espacios: ${tourPreferences.lugar},
+      \n Para edades: ${tourPreferences.edad.toLowerCase()},
+      \n Para: ${tourPreferences.personas.toLowerCase()}
+      \n Ubicados en: ${tourPreferences.ubicacion}`,
+      showConfirmButton: true,
+      confirmButtonColor: '#015abb',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown',
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp',
+      },
+    });
+  };
+
   console.log(columns);
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
         <p className="descripcionTourStep2Text">
           Arrastre sus puntos de interes hacia la linea de tiempo para comenzar
-          a armar su tour
+          a armar su tour.
+          <button className="btnInfoTour" onClick={handleInfoTour}>
+            Info Tour
+          </button>
         </p>
+      </div>
+      <div className='titulosColumnas'>
+        <div>Tour</div>
+        <div> Puntos de Interes</div>
       </div>
       <div className="dragNDropContainer">
         <DragDropContext

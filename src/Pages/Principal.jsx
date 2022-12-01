@@ -22,7 +22,6 @@ import { Slider } from '../Components/Slider';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
-
 const Principal = ({
   setItems,
   setPage,
@@ -121,11 +120,19 @@ const Principal = ({
         cancelButtonColor: 'gray',
       }).then((result) => {
         if (result.isConfirmed) {
-            navigate('/login');
-        } 
-  })
+          navigate('/login');
+        }
+      });
       return;
     }
+    sessionStorage.setItem('tourPreferences', JSON.stringify({
+      franjaHoraria: '',
+      horaInicio: '',
+      lugar: '',
+      edad: '',
+      personas: '',
+      ubicacion: '',
+    }));
     navigate('/tour');
   };
 

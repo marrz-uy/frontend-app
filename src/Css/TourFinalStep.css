@@ -4,6 +4,10 @@
 	justify-content: center;
 }
 
+.tourFinalStep{
+	min-height: 400px;
+}
+
 .tourFinalStep input[type='text']{
 	width: 90%;
 	height:2rem;
@@ -12,11 +16,4 @@
 	color: rgb(61, 61, 61);
 	padding: 0 10px;
 	background-color: aliceblue;
-}
-
-tourFinalStep input[type='text']:focus{
-	-moz-border: 2px solid rgb(0, 128, 248);
-	-webkit-border: 2px solid rgb(0, 128, 248);
-	border: 2px solid rgb(0, 128, 248);
-	
 }

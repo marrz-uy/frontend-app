@@ -3,7 +3,6 @@ import { createContext, useState } from 'react';
 const TourContext = createContext();
 
 const TourProvider = ({ children }) => {
-  // const inicialState = sessionStorage.getItem( 'tourPreferences');
   const [tourPreferences, setTourPreferences] = useState();
 
   // console.log('TOURPREFERENCES CONTEXT:', tourPreferences);
@@ -13,11 +12,20 @@ const TourProvider = ({ children }) => {
   };
 
   const getTourPreferences = () => {
-		const preferences =  sessionStorage.getItem('tourPreferences');
-		return JSON.parse(preferences) 
+    try {
+      const preferences = sessionStorage.getItem('tourPreferences');
+      return JSON.parse(preferences);
+    } catch (err) {
+      console.log('No hay tourPreferences en sessionstorages:', err);
+    }
   };
 
-  const data = { saveTourPreferences, tourPreferences, setTourPreferences, getTourPreferences};
+  const data = {
+    saveTourPreferences,
+    tourPreferences,
+    setTourPreferences,
+    getTourPreferences,
+  };
 
   return <TourContext.Provider value={data}>{children}</TourContext.Provider>;
 };

@@ -6,7 +6,7 @@ import TourStep2 from '../Pages/BuildTour/TourStep2';
 import TourStep3 from '../Pages/BuildTour/TourStep3';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
 import TourContext from '../Context/TourContext';
-
+import Swal from 'sweetalert2';
 
 const steps = [
   {
@@ -28,14 +28,34 @@ const steps = [
 ];
 
 const TourSteps = () => {
-  const {saveTourPreferences, tourPreferences } = useContext(TourContext);
+  const { saveTourPreferences, tourPreferences } = useContext(TourContext);
 
   const [current, setCurrent] = useState(0);
 
   const next = () => {
-    saveTourPreferences(tourPreferences)
-    if (current < 3) {
-      setCurrent(current + 1);
+    if (
+      tourPreferences.franjaHoraria === '' ||
+      tourPreferences.horaInicio === '' ||
+      tourPreferences.lugar === '' ||
+      tourPreferences.edad === '' ||
+      tourPreferences.personas === '' ||
+      tourPreferences.ubicacion === ''
+    ) {
+      console.log('Complete todos los campos');
+      Swal.fire({
+        title: 'Atencion!',
+        text: 'Complete todos los campos para continuar',
+        icon: 'info',
+        showConfirmButton: true,
+        confirmButtonColor: '#015abb',
+      })
+    }
+    else{
+      saveTourPreferences(tourPreferences);
+      if (current < 3) {
+        setCurrent(current + 1);
+      }
+      
     }
   };
 
@@ -68,9 +88,11 @@ const TourSteps = () => {
         )}
         {current === steps.length - 1 && (
           <Button
-          className='btnSiguienteGuardar'
+            className="btnSiguienteGuardar"
             type="primary"
-            onClick={() => message.success('Su tour se ha guardado correctamente!')}
+            onClick={() =>
+              message.success('Su tour se ha guardado correctamente!')
+            }
           >
             Guardar
           </Button>

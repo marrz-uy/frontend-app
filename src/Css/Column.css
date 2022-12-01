@@ -9,7 +9,7 @@
 }
 
 .seccion {
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	min-width: 30%;
 	display: flex;
 	border-radius: 4px;
@@ -76,6 +76,11 @@
 	
 }
 
+#Items .droppable .tourCard h6 {
+	color: #025fca;
+	
+}
+
 #Items .timeLineVertical{
 	display: none;
 }
@@ -102,9 +107,7 @@
 
 @media screen and (min-width: 480px) {
 	.dragNDropContainer {
-		
 		max-width: 1200px;
-		
 	}
 	
 }
