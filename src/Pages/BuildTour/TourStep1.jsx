@@ -95,7 +95,7 @@ const TourStep1 = () => {
                 type="time"
                 className="inputsPreferencias"
                 name="ubicacion"
-                onChange={(e) => setHoraInicio(e.target.value)}
+                onChange={(e) => setHoraInicio(e.target.value + ':00')}
               ></input>
             </div>
           </div>

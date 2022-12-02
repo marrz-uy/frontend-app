@@ -146,16 +146,24 @@ const TourStep2 = () => {
     }
   };
 
+  let textoModal = `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1.<br/> 
+
+  <br/>Eligió comenzar el tour en el: ${tourPreferences.franjaHoraria},
+
+  <br/>Hora de Comienzo: ${tourPreferences.horaInicio},
+
+  <br/>Espacios: ${tourPreferences.lugar},
+
+  <br/>Para edades: ${tourPreferences.edad.toLowerCase()},
+
+  <br/>Para: ${tourPreferences.personas.toLowerCase()},
+
+  <br/>Ubicados en: ${tourPreferences.ubicacion}`;
+
   const handleInfoTour = () => {
     Swal.fire({
-      title: 'Informacion de su tour',
-      text: `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1. 
-      \n Eligió comenzar el tour en el: ${tourPreferences.franjaHoraria},
-      \n Hora de Comienzo: ${tourPreferences.horaInicio},
-      \n Espacios: ${tourPreferences.lugar},
-      \n Para edades: ${tourPreferences.edad.toLowerCase()},
-      \n Para: ${tourPreferences.personas.toLowerCase()}
-      \n Ubicados en: ${tourPreferences.ubicacion}`,
+      titleText: 'Informacion de su tour',
+      html: textoModal,
       showConfirmButton: true,
       confirmButtonColor: '#015abb',
       showClass: {
@@ -179,9 +187,9 @@ const TourStep2 = () => {
           </button>
         </p>
       </div>
-      <div className='titulosColumnas'>
+      <div className="titulosColumnas">
         <div>Tour</div>
-        <div> Puntos de Interes</div>
+        <div>Puntos de Interes</div>
       </div>
       <div className="dragNDropContainer">
         <DragDropContext

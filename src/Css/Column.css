@@ -55,6 +55,10 @@
 	display: none;
 }
 
+#TimeLine .tourCard  span{
+	display: none;
+}
+
 #TimeLine .tourCard  .divImgTour .imagenCardTour  {
 	display: flex;
 	border: 5px solid #026ce4;

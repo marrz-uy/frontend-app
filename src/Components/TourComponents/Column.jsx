@@ -37,6 +37,7 @@ const Column = ({ droppableId, column }) => {
                         >
                           <div className="tourCard">
                             <div className="divImgTour">
+                            <span style={{color:'#025fca', padding:'1px 2px'}}>&#x2B05;</span>
                               <img
                                 className="imagenCardTour"
                                 src={item.img}
