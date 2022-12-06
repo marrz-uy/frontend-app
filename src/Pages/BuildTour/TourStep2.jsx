@@ -93,31 +93,25 @@ import '../../Css/TourStep2.css';
 const TourStep2 = () => {
   const { http } = AuthUser();
   const { tourPreferences, getTourPreferences, datosParaTour, setDatosParaTour } = useContext(TourContext);
-  const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
+  // const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
   
-   useEffect(() => {
+   /* useEffect(() => {
     setSavedPreferences(getTourPreferences());
     // setDatosParaTour(datosParaTour)
     // eslint-disable-next-line 
-  }, []) 
+  }, [])  */
 
-  console.log('%csavedPreferences step2 ini:','color: yellow;', savedPreferences);
+  // console.log('%csavedPreferences step2 ini:','color: yellow;', savedPreferences);
   console.log('%ctourPreferences step2 ini:','color: violet;', tourPreferences);
   
-  /* const horaInicio = savedPreferences?.horaInicio;
-  const tipoDeLugar = savedPreferences?.tipoDeLugar;
-  const restriccionDeEdad = savedPreferences?.restriccionDeEdad;
-  const enfoqueDePersonas = savedPreferences?.enfoqueDePersonas;
-  const ubicacion = savedPreferences?.ubicacion; */
-  // const [datos, setDatos] = useState();
   const getdataTour = () => {
     http
       .post('/PuntosInteresParaTour', {
-        "horaInicio": savedPreferences?.horaInicio,
-        "tipoDeLugar": savedPreferences?.tipoDeLugar,
-        "restriccionDeEdad": savedPreferences?.restriccionDeEdad,
-        "enfoqueDePersonas": savedPreferences?.enfoqueDePersonas,
-        "ubicacion": savedPreferences?.ubicacion,
+        "horaInicio": tourPreferences?.horaInicio,
+        "tipoDeLugar": tourPreferences?.tipoDeLugar,
+        "restriccionDeEdad": tourPreferences?.restriccionDeEdad,
+        "enfoqueDePersonas": tourPreferences?.enfoqueDePersonas,
+        "ubicacion": tourPreferences?.ubicacion,
       })
       .then((response) => {
         const allDdata = response?.data;
@@ -129,7 +123,7 @@ const TourStep2 = () => {
     
     useEffect(() => {
       getdataTour()
-      setDatosParaTour(datosParaTour)
+      // setDatosParaTour(datosParaTour)
       // // eslint-disable-next-lin
     }, [])
     

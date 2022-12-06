@@ -1,5 +1,5 @@
-// import React, { memo } from 'react';
-import React from 'react';
+import React, { memo } from 'react';
+// import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import '../../Css/Column.css';
 import drag from '../../Assets/drag.png';
@@ -70,11 +70,11 @@ const Column = ({ droppableId, column }) => {
                                   ) : (
                                     <h6>{item.Nombre}</h6>
                                   )}
-                                  <p>{item.Tipo}</p>
+                                  <p>- {item.Tipo} </p>
+                                  <p>- Abre {''}
+                                  {item.HoraDeApertura}</p>
                                 </div>
                               </div>
-
-                              {/* {item.HoraDeApertura} */}
                             </div>
                           );
                         }}
@@ -92,5 +92,5 @@ const Column = ({ droppableId, column }) => {
   );
 };
 
-// export default memo(Column);
-export default Column;
+export default memo(Column);
+// export default Column;
