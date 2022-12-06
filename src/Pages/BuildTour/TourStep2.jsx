@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import TourContext from '../../Context/TourContext';
 import Swal from 'sweetalert2';
+import AuthUser from '../../Components/AuthUser';
 import '../../Css/TourStep2.css';
 
-const initialData = [
+/* const initialData = [
   {
     id: '01',
     tipo: 'Restaurant',
@@ -86,28 +87,73 @@ const initialData = [
     caracteristicas: 'Terminal de onmibus departamantales',
     img: 'https://fastly.4sqi.net/img/general/width960/38989709_axDkJ4K1EMTLejeQVZJFyIrK4Pp1fY7V-QTMf_tqK3w.jpg',
   },
-];
-const status = {
-  '01': {
-    name: 'TimeLine',
-    color: '#FFFAE6',
-    items: [],
-  },
-  '02': {
-    name: 'Items',
-    color: '#EAE6FF',
-    items: initialData,
-  },
-};
+]; */
+
 
 const TourStep2 = () => {
-  const { tourPreferences } = useContext(TourContext);
+  const { http } = AuthUser();
+  const { tourPreferences, getTourPreferences, datosParaTour, setDatosParaTour } = useContext(TourContext);
+  const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
+  
+   useEffect(() => {
+    setSavedPreferences(getTourPreferences());
+    // setDatosParaTour(datosParaTour)
+    // eslint-disable-next-line 
+  }, []) 
+
+  console.log('%csavedPreferences step2 ini:','color: yellow;', savedPreferences);
+  console.log('%ctourPreferences step2 ini:','color: violet;', tourPreferences);
+  
+  /* const horaInicio = savedPreferences?.horaInicio;
+  const tipoDeLugar = savedPreferences?.tipoDeLugar;
+  const restriccionDeEdad = savedPreferences?.restriccionDeEdad;
+  const enfoqueDePersonas = savedPreferences?.enfoqueDePersonas;
+  const ubicacion = savedPreferences?.ubicacion; */
+  // const [datos, setDatos] = useState();
+  const getdataTour = () => {
+    http
+      .post('/PuntosInteresParaTour', {
+        "horaInicio": savedPreferences?.horaInicio,
+        "tipoDeLugar": savedPreferences?.tipoDeLugar,
+        "restriccionDeEdad": savedPreferences?.restriccionDeEdad,
+        "enfoqueDePersonas": savedPreferences?.enfoqueDePersonas,
+        "ubicacion": savedPreferences?.ubicacion,
+      })
+      .then((response) => {
+        const allDdata = response?.data;
+        setDatosParaTour(allDdata);
+        console.log('RESPONSE HTTP: ',response?.data)
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+    };
+    
+    useEffect(() => {
+      getdataTour()
+      setDatosParaTour(datosParaTour)
+      // // eslint-disable-next-lin
+    }, [])
+    
+    console.log('%cDATOSPARATOUR tourStep2: ', 'color: green;', datosParaTour);
+    // console.log('INITIALDATA tourStep22: ', initialData);
+    const status = {
+      '01': {
+        name: 'TimeLine',
+        color: '#FFFAE6',
+        items: [],
+      },
+      '02': {
+        name: 'Items',
+        color: '#EAE6FF',
+        items: datosParaTour,
+      },
+    };
+
 
   console.log('TOUR PRFERENCES Step2: ', tourPreferences);
 
   const [columns, setColumns] = useState(status);
   console.log('COLUMNAS: ', columns);
-  console.log('ITEMS: ');
+  console.log('ITEMS: ', columns.items);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -146,18 +192,11 @@ const TourStep2 = () => {
     }
   };
 
-  let textoModal = `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1.<br/> 
-
-  <br/>Eligió comenzar el tour en el: ${tourPreferences.franjaHoraria},
-
-  <br/>Hora de Comienzo: ${tourPreferences.horaInicio},
-
-  <br/>Espacios: ${tourPreferences.lugar},
-
-  <br/>Para edades: ${tourPreferences.edad.toLowerCase()},
-
-  <br/>Para: ${tourPreferences.personas.toLowerCase()},
-
+  let textoModal = `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1.<br/>
+  <br/>Hora de Comienzo: ${tourPreferences?.horaInicio},
+  <br/>Espacios: ${tourPreferences.tipoDeLugar},
+  <br/>Para edades: ${tourPreferences.restriccionDeEdad.toLowerCase()},
+  <br/>Para: ${tourPreferences.enfoqueDePersonas.toLowerCase()},
   <br/>Ubicados en: ${tourPreferences.ubicacion}`;
 
   const handleInfoTour = () => {

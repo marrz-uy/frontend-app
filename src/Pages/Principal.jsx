@@ -126,11 +126,10 @@ const Principal = ({
       return;
     }
     sessionStorage.setItem('tourPreferences', JSON.stringify({
-      franjaHoraria: '',
       horaInicio: '',
-      lugar: '',
-      edad: '',
-      personas: '',
+      tipoDeLugar: '',
+      restriccionDeEdad: '',
+      enfoqueDePersonas: '',
       ubicacion: '',
     }));
     navigate('/tour');

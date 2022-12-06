@@ -6,30 +6,28 @@ const TourStep1 = () => {
   const { tourPreferences, setTourPreferences, getTourPreferences } =
     useContext(TourContext);
   const savedPreferences = getTourPreferences();
-  const [franjaHoraria, setFranjaHoraria] = useState(
-    savedPreferences.franjaHoraria
-  );
+  // const [franjaHoraria, setFranjaHoraria] = useState(
+  //   savedPreferences.franjaHoraria
+  // );
   const [horaInicio, setHoraInicio] = useState(savedPreferences.horaInicio);
-  const [lugar, setLugar] = useState(savedPreferences.lugar);
-  const [edad, setEdad] = useState(savedPreferences.edad);
-  const [personas, setPersonas] = useState(savedPreferences.personas);
+  const [tipoDeLugar, seTipoDeLugar] = useState(savedPreferences.tipoDeLugar);
+  const [restriccionDeEdad, setRestriccionDeEdad] = useState(savedPreferences.restriccionDeEdad);
+  const [enfoqueDePersonas, setEnfoqueDePersonas] = useState(savedPreferences.enfoqueDePersonas);
   const [ubicacion, setUbicacion] = useState(savedPreferences.ubicacion);
 
   useEffect(() => {
     setTourPreferences({
-      franjaHoraria: franjaHoraria,
       horaInicio: !horaInicio ? '' : horaInicio,
-      lugar: lugar,
-      edad: edad,
-      personas: personas,
+      tipoDeLugar: tipoDeLugar,
+      restriccionDeEdad: restriccionDeEdad,
+      enfoqueDePersonas: enfoqueDePersonas,
       ubicacion: !ubicacion ? '' : ubicacion,
     });
   }, [
-    franjaHoraria,
     horaInicio,
-    lugar,
-    edad,
-    personas,
+    tipoDeLugar,
+    restriccionDeEdad,
+    enfoqueDePersonas,
     ubicacion,
     setTourPreferences,
   ]);
@@ -39,10 +37,10 @@ const TourStep1 = () => {
     return stringLower && stringLower[0].toUpperCase() + stringLower.slice(1);
   };
 
-  console.log('SAVED PREFERENCES ', savedPreferences);
+  /* console.log('SAVED PREFERENCES ', savedPreferences);
 
   console.log('TOUR PRFERENCES Step1', tourPreferences);
-
+ */
   return (
     <div className="tourStep1">
       <div className="descripcionTourStep1">
@@ -52,38 +50,6 @@ const TourStep1 = () => {
         </p>
       </div>
       <div className="tourPreferences">
-        <div className="tourCards schedule">
-          <div className="cardName">
-            <p>Franja horaria</p>
-          </div>
-          <div className="cardPreferences">
-            <div className="preferencesOptions">
-              <p>Dia</p>
-              <p>Tarde</p>
-              <p>Noche</p>
-            </div>
-            <div className="preferencesInput">
-              <input
-                type="radio"
-                name="franjaHoraria"
-                value="Dia"
-                onChange={(e) => setFranjaHoraria(e.target.value)}
-              ></input>
-              <input
-                type="radio"
-                name="franjaHoraria"
-                value="Tarde"
-                onChange={(e) => setFranjaHoraria(e.target.value)}
-              ></input>
-              <input
-                type="radio"
-                name="franjaHoraria"
-                value="Noche"
-                onChange={(e) => setFranjaHoraria(e.target.value)}
-              ></input>
-            </div>
-          </div>
-        </div>
         <div className="tourCards tourStart">
           <div className="cardName">
             <p>Hora de comienzo</p>
@@ -115,19 +81,19 @@ const TourStep1 = () => {
                 type="radio"
                 name="tipoDePaseo"
                 value="Espacio cerrado"
-                onChange={(e) => setLugar(e.target.value)}
+                onChange={(e) => seTipoDeLugar(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="tipoDePaseo"
                 value="Al aire libre"
-                onChange={(e) => setLugar(e.target.value)}
+                onChange={(e) => seTipoDeLugar(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="tipoDePaseo"
                 value="Ambos"
-                onChange={(e) => setLugar(e.target.value)}
+                onChange={(e) => seTipoDeLugar(e.target.value)}
               ></input>
             </div>
           </div>
@@ -146,13 +112,13 @@ const TourStep1 = () => {
                 type="radio"
                 name="restriccionesDeEdad"
                 value="Todas"
-                onChange={(e) => setEdad(e.target.value)}
+                onChange={(e) => setRestriccionDeEdad(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="restriccionesDeEdad"
                 value="Mayores"
-                onChange={(e) => setEdad(e.target.value)}
+                onChange={(e) => setRestriccionDeEdad(e.target.value)}
               ></input>
             </div>
           </div>
@@ -173,25 +139,25 @@ const TourStep1 = () => {
                 type="radio"
                 name="cantPersonas"
                 value="Grupo"
-                onChange={(e) => setPersonas(e.target.value)}
+                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="cantPersonas"
                 value="Familia"
-                onChange={(e) => setPersonas(e.target.value)}
+                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="cantPersonas"
                 value="Pareja"
-                onChange={(e) => setPersonas(e.target.value)}
+                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
               <input
                 type="radio"
                 name="cantPersonas"
                 value="Solo"
-                onChange={(e) => setPersonas(e.target.value)}
+                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
             </div>
           </div>

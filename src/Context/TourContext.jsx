@@ -4,6 +4,7 @@ const TourContext = createContext();
 
 const TourProvider = ({ children }) => {
   const [tourPreferences, setTourPreferences] = useState();
+  const [datosParaTour, setDatosParaTour] = useState();
 
   // console.log('TOURPREFERENCES CONTEXT:', tourPreferences);
 
@@ -25,6 +26,8 @@ const TourProvider = ({ children }) => {
     tourPreferences,
     setTourPreferences,
     getTourPreferences,
+    datosParaTour,
+    setDatosParaTour,
   };
 
   return <TourContext.Provider value={data}>{children}</TourContext.Provider>;
