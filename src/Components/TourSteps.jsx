@@ -7,6 +7,8 @@ import TourStep3 from '../Pages/BuildTour/TourStep3';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
 import TourContext from '../Context/TourContext';
 import Swal from 'sweetalert2';
+import AuthUser from './AuthUser';
+
 
 const steps = [
   {
@@ -28,7 +30,32 @@ const steps = [
 ];
 
 const TourSteps = () => {
-  const { saveTourPreferences, tourPreferences } = useContext(TourContext);
+
+  const { http } = AuthUser();
+  const {
+    saveTourPreferences,
+    tourPreferences,
+    datosParaTourDB,
+    setDatosParaTourDB,
+  } = useContext(TourContext);
+
+  const getDataTour = () => {
+    http
+      .post('/PuntosInteresParaTour', {
+        horaInicio: tourPreferences?.horaInicio,
+        tipoDeLugar: tourPreferences?.tipoDeLugar,
+        restriccionDeEdad: tourPreferences?.restriccionDeEdad,
+        enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
+        ubicacion: tourPreferences?.ubicacion,
+      })
+      .then((response) => {
+        const allDdata = response?.data;
+        setDatosParaTourDB(allDdata);
+        console.log('RESPONSE HTTP: ', response?.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+  console.log('%cDATOSPARATOUR tourStep: ', 'color: yellow;', datosParaTourDB);
 
   const [current, setCurrent] = useState(0);
 
@@ -48,14 +75,13 @@ const TourSteps = () => {
         icon: 'info',
         showConfirmButton: true,
         confirmButtonColor: '#015abb',
-      })
-    }
-    else{
+      });
+    } else {
       saveTourPreferences(tourPreferences);
+      getDataTour()
       if (current < 3) {
         setCurrent(current + 1);
       }
-      
     }
   };
 

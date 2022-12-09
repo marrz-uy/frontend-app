@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import TourContext from '../../Context/TourContext';
 import Swal from 'sweetalert2';
-import AuthUser from '../../Components/AuthUser';
+// import AuthUser from '../../Components/AuthUser';
 import '../../Css/TourStep2.css';
 
 /* const initialData = [
@@ -89,65 +89,65 @@ import '../../Css/TourStep2.css';
   },
 ]; */
 
-
 const TourStep2 = () => {
-  const { http } = AuthUser();
-  const { tourPreferences, getTourPreferences, datosParaTour, setDatosParaTour } = useContext(TourContext);
+  // const { http } = AuthUser();
+  const {
+    tourPreferences,
+    // getTourPreferences,
+    datosParaTourDB,
+    // setDatosParaTourDB,
+  } = useContext(TourContext);
   // const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
-  
-   /* useEffect(() => {
-    setSavedPreferences(getTourPreferences());
-    // setDatosParaTour(datosParaTour)
-    // eslint-disable-next-line 
-  }, [])  */
+
+  console.log('%cDATOSPARATOUR tourStep2: ', 'color: green;', datosParaTourDB);
+
+  useEffect(() => {
+    // setDatosParaTourDB(getTourPreferences());
+    // eslint-disable-next-line
+  }, []);
 
   // console.log('%csavedPreferences step2 ini:','color: yellow;', savedPreferences);
-  console.log('%ctourPreferences step2 ini:','color: violet;', tourPreferences);
+  // console.log(
+  //   '%ctourPreferences step2 ini:',
+  //   'color: violet;',
+  //   tourPreferences
+  // );
+
+  // const getdataTour = () => {
+  //   http
+  //     .post('/PuntosInteresParaTour', {
+  //       horaInicio: tourPreferences?.horaInicio,
+  //       tipoDeLugar: tourPreferences?.tipoDeLugar,
+  //       restriccionDeEdad: tourPreferences?.restriccionDeEdad,
+  //       enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
+  //       ubicacion: tourPreferences?.ubicacion,
+  //     })
+  //     .then((response) => {
+  //       const allDdata = response?.data;
+  //       setDatosParaTourDB(allDdata);
+  //       console.log('RESPONSE HTTP: ', response?.data);
+  //     })
+  //     .catch((error) => console.error(`Error en catch: ${error}`));
+  // };
+
+  const status = {
+    '01': {
+      name: 'TimeLine',
+      color: '#FFFAE6',
+      items: [],
+    },
+    '02': {
+      name: 'Items',
+      color: '#EAE6FF',
+      items: datosParaTourDB,
+    },
+  };
+
+ 
   
-  const getdataTour = () => {
-    http
-      .post('/PuntosInteresParaTour', {
-        "horaInicio": tourPreferences?.horaInicio,
-        "tipoDeLugar": tourPreferences?.tipoDeLugar,
-        "restriccionDeEdad": tourPreferences?.restriccionDeEdad,
-        "enfoqueDePersonas": tourPreferences?.enfoqueDePersonas,
-        "ubicacion": tourPreferences?.ubicacion,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatosParaTour(allDdata);
-        console.log('RESPONSE HTTP: ',response?.data)
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-    };
-    
-    useEffect(() => {
-      getdataTour()
-      // setDatosParaTour(datosParaTour)
-      // // eslint-disable-next-lin
-    }, [])
-    
-    console.log('%cDATOSPARATOUR tourStep2: ', 'color: green;', datosParaTour);
-    // console.log('INITIALDATA tourStep22: ', initialData);
-    const status = {
-      '01': {
-        name: 'TimeLine',
-        color: '#FFFAE6',
-        items: [],
-      },
-      '02': {
-        name: 'Items',
-        color: '#EAE6FF',
-        items: datosParaTour,
-      },
-    };
-
-
-  console.log('TOUR PRFERENCES Step2: ', tourPreferences);
-
+ 
   const [columns, setColumns] = useState(status);
-  console.log('COLUMNAS: ', columns);
-  console.log('ITEMS: ', columns.items);
+  console.log('COLUMNA ITEMS: ', columns['02'].items);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -208,7 +208,7 @@ const TourStep2 = () => {
     });
   };
 
-  console.log(columns);
+  console.log('COLUMNAS: ',columns);
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
