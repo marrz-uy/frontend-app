@@ -39,6 +39,8 @@ const TourSteps = () => {
     setDatosParaTourDB,
   } = useContext(TourContext);
 
+  const [data, setData] = useState()
+
   const getDataTour = () => {
     http
       .post('/PuntosInteresParaTour', {
@@ -51,14 +53,16 @@ const TourSteps = () => {
       .then((response) => {
         const allDdata = response?.data;
         setDatosParaTourDB(allDdata);
+        setData(response?.data)
+        console.log('%callDdata -1- tourStep: ', 'color: violet;', allDdata);
+        console.log('%cDATOSPARATOUR -1- tourStep: ', 'color: yellow;', datosParaTourDB);
         console.log('RESPONSE HTTP: ', response?.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
-  console.log('%cDATOSPARATOUR tourStep: ', 'color: yellow;', datosParaTourDB);
-
+  
   const [current, setCurrent] = useState(0);
-
+  
   const next = () => {
     if (
       tourPreferences.franjaHoraria === '' ||
@@ -67,18 +71,19 @@ const TourSteps = () => {
       tourPreferences.edad === '' ||
       tourPreferences.personas === '' ||
       tourPreferences.ubicacion === ''
-    ) {
-      console.log('Complete todos los campos');
-      Swal.fire({
-        title: 'Atencion!',
-        text: 'Complete todos los campos para continuar',
-        icon: 'info',
-        showConfirmButton: true,
-        confirmButtonColor: '#015abb',
-      });
-    } else {
+      ) {
+        console.log('Complete todos los campos');
+        Swal.fire({
+          title: 'Atencion!',
+          text: 'Complete todos los campos para continuar',
+          icon: 'info',
+          showConfirmButton: true,
+          confirmButtonColor: '#015abb',
+        });
+      } else {
+        getDataTour()
+        console.log('%cDATOSPARATOUR -2- tourStep: ', 'color: yellow;', datosParaTourDB);
       saveTourPreferences(tourPreferences);
-      getDataTour()
       if (current < 3) {
         setCurrent(current + 1);
       }

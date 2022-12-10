@@ -3,13 +3,16 @@ import TourContext from '../../Context/TourContext';
 import '../../Css/TourStep1.css';
 
 const TourStep1 = () => {
-  const { setTourPreferences, getTourPreferences } =
-    useContext(TourContext);
+  const { setTourPreferences, getTourPreferences } = useContext(TourContext);
   const savedPreferences = getTourPreferences();
   const [horaInicio, setHoraInicio] = useState(savedPreferences.horaInicio);
   const [tipoDeLugar, seTipoDeLugar] = useState(savedPreferences.tipoDeLugar);
-  const [restriccionDeEdad, setRestriccionDeEdad] = useState(savedPreferences.restriccionDeEdad);
-  const [enfoqueDePersonas, setEnfoqueDePersonas] = useState(savedPreferences.enfoqueDePersonas);
+  const [restriccionDeEdad, setRestriccionDeEdad] = useState(
+    savedPreferences.restriccionDeEdad
+  );
+  const [enfoqueDePersonas, setEnfoqueDePersonas] = useState(
+    savedPreferences.enfoqueDePersonas
+  );
   const [ubicacion, setUbicacion] = useState(savedPreferences.ubicacion);
 
   useEffect(() => {
@@ -34,10 +37,6 @@ const TourStep1 = () => {
     return stringLower && stringLower[0].toUpperCase() + stringLower.slice(1);
   };
 
-  /* console.log('SAVED PREFERENCES ', savedPreferences);
-
-  console.log('TOUR PRFERENCES Step1', tourPreferences);
- */
   return (
     <div className="tourStep1">
       <div className="descripcionTourStep1">

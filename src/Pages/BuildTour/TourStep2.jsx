@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 // import AuthUser from '../../Components/AuthUser';
 import '../../Css/TourStep2.css';
 
-/* const initialData = [
+const initialData = [
   {
     id: '01',
     tipo: 'Restaurant',
@@ -87,7 +87,7 @@ import '../../Css/TourStep2.css';
     caracteristicas: 'Terminal de onmibus departamantales',
     img: 'https://fastly.4sqi.net/img/general/width960/38989709_axDkJ4K1EMTLejeQVZJFyIrK4Pp1fY7V-QTMf_tqK3w.jpg',
   },
-]; */
+];
 
 const TourStep2 = () => {
   // const { http } = AuthUser();
@@ -100,35 +100,6 @@ const TourStep2 = () => {
   // const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
 
   console.log('%cDATOSPARATOUR tourStep2: ', 'color: green;', datosParaTourDB);
-
-  useEffect(() => {
-    // setDatosParaTourDB(getTourPreferences());
-    // eslint-disable-next-line
-  }, []);
-
-  // console.log('%csavedPreferences step2 ini:','color: yellow;', savedPreferences);
-  // console.log(
-  //   '%ctourPreferences step2 ini:',
-  //   'color: violet;',
-  //   tourPreferences
-  // );
-
-  // const getdataTour = () => {
-  //   http
-  //     .post('/PuntosInteresParaTour', {
-  //       horaInicio: tourPreferences?.horaInicio,
-  //       tipoDeLugar: tourPreferences?.tipoDeLugar,
-  //       restriccionDeEdad: tourPreferences?.restriccionDeEdad,
-  //       enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
-  //       ubicacion: tourPreferences?.ubicacion,
-  //     })
-  //     .then((response) => {
-  //       const allDdata = response?.data;
-  //       setDatosParaTourDB(allDdata);
-  //       console.log('RESPONSE HTTP: ', response?.data);
-  //     })
-  //     .catch((error) => console.error(`Error en catch: ${error}`));
-  // };
 
   const status = {
     '01': {
@@ -143,11 +114,7 @@ const TourStep2 = () => {
     },
   };
 
- 
-  
- 
   const [columns, setColumns] = useState(status);
-  console.log('COLUMNA ITEMS: ', columns['02'].items);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -164,7 +131,7 @@ const TourStep2 = () => {
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
-          items: sourceItems,
+          items: datosParaTourDB,
         },
         [destination.droppableId]: {
           ...destColumn,
