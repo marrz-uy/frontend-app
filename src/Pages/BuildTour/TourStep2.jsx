@@ -2,104 +2,117 @@ import React, { useState, useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import TourContext from '../../Context/TourContext';
+import AuthUser from '../../Components/AuthUser';
 import Swal from 'sweetalert2';
-// import AuthUser from '../../Components/AuthUser';
 import '../../Css/TourStep2.css';
+// import { fetchDataTour } from '../../Components/TourComponents/fetchdataTour';
 
 const initialData = [
   {
     id: '01',
-    tipo: 'Restaurant',
-    nombre: 'Garo Bar',
-    ciudad: 'Montevideo',
-    direccion: 'Eduardo Acevedo Diaz 1055',
-    barrio: 'Cordon',
-    caracteristicas: '',
-    img: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/e3/0f/2d/lindo-y-agradable-salon.jpg',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '02',
-    tipo: 'Restaurant',
-    nombre: 'La Baguala',
-    ciudad: 'Montevideo',
-    direccion: 'Camino Sanguinetti 5552',
-    barrio: 'Pajas Blancas',
-    caracteristicas: '',
-    img: 'https://media-cdn.tripadvisor.com/media/photo-s/14/e9/94/ef/restaurante-de-la-baguala.jpg',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '03',
-    tipo: 'Paseo',
-    nombre: 'Parque Rodo',
-    ciudad: 'Montevideo',
-    direccion: 'Rambla',
-    barrio: 'Parque Rodo',
-    caracteristicas: 'Juegos para niños',
-    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/19/69/c8/el-lago.jpg?w=1000&h=-1&s=1',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '04',
-    tipo: 'Paseo',
-    nombre: 'Playa Ramirez',
-    ciudad: 'Montevideo',
-    direccion: 'Rambla',
-    barrio: 'vacio',
-    caracteristicas: 'Playa familiar',
-    img: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/88/15/d0/faixa-de-areia.jpg?w=1200&h=-1&s=1',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '05',
-    tipo: 'Paseo',
-    nombre: 'Circo',
-    ciudad: 'Montevideo',
-    direccion: 'Av Italia',
-    barrio: 'Malvin',
-    caracteristicas: 'Muchos animalitos lindos',
-    img: 'https://esquinas.montevideo.gub.uy/sites/esquinas.montevideo.gub.uy/files/styles/galeria_normal/public/eventos/imagenes/alebrije-72.jpg?itok=b9btsSxV',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '06',
-    tipo: 'Transporte',
-    nombre: 'Terminal Tres Cruces',
-    ciudad: 'Montevideo',
-    direccion: 'Bulevar Gral. Artigas 1825',
-    barrio: 'Tres Cruces',
-    caracteristicas: 'Principal terminal de buses de Uruguay',
-    img: 'https://photo620x400.mnstatic.com/ee98ce5a2449e170d24eeb73c145d713/terminal-tres-cruces.jpg',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '07',
-    tipo: 'Transporte',
-    nombre: 'Estación Baltasar Brum',
-    ciudad: 'Montevideo',
-    direccion: 'Rio Branco 1685',
-    barrio: 'Ciudad Vieja',
-    caracteristicas: 'Terminal de ómnibus interdepartamentales',
-    img: 'https://media.cdnp.elobservador.com.uy/062021/1624375048003/Terminal-R%C3%ADo-Branco---DB_03.JPG?cw=1500&ch=1000',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
   {
     id: '08',
-    tipo: 'Transporte',
-    nombre: 'Terminal del Cerro',
-    ciudad: 'Montevideo',
-    direccion: 'Av. Carlos María Ramírez y Dr. Pedro Castellino',
-    barrio: 'Cerro',
-    caracteristicas: 'Terminal de onmibus departamantales',
-    img: 'https://fastly.4sqi.net/img/general/width960/38989709_axDkJ4K1EMTLejeQVZJFyIrK4Pp1fY7V-QTMf_tqK3w.jpg',
+    Ciudad: 'Montevideo',
+    Departamento: 'Indiana',
+    HoraDeApertura: '08:00:00',
+    HoraDeCierre: '22:00:00',
+    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
+    Nombre: 'Casino West Lulu',
   },
 ];
 
 const TourStep2 = () => {
-  // const { http } = AuthUser();
+  const { http } = AuthUser();
   const {
     tourPreferences,
     // getTourPreferences,
-    datosParaTourDB,
-    // setDatosParaTourDB,
+    itemsParaTourDB,
+    setItemsParaTourDB,
   } = useContext(TourContext);
-  // const [savedPreferences, setSavedPreferences] = useState(getTourPreferences())
 
-  console.log('%cDATOSPARATOUR tourStep2: ', 'color: green;', datosParaTourDB);
+  useEffect(() => {
+    http
+      .post('/PuntosInteresParaTour', {
+        horaInicio: tourPreferences?.horaInicio,
+        tipoDeLugar: tourPreferences?.tipoDeLugar,
+        restriccionDeEdad: tourPreferences?.restriccionDeEdad,
+        enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
+        ubicacion: tourPreferences?.ubicacion,
+      })
+      .then((response) => {
+        const allDdata = response?.data;
+        setItemsParaTourDB(allDdata);
+        console.log('%callDdata -1- tourStep:2 ', 'color: violet;', allDdata);
+        console.log(
+          '%cITEMS-PARA-TOUR -1- tourStep2: ',
+          'color: yellow;',
+          itemsParaTourDB
+        );
+        console.log('RESPONSE HTTP: ', response?.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  }, []);
 
   const status = {
     '01': {
@@ -110,16 +123,17 @@ const TourStep2 = () => {
     '02': {
       name: 'Items',
       color: '#EAE6FF',
-      items: datosParaTourDB,
+      items: itemsParaTourDB,
     },
   };
 
   const [columns, setColumns] = useState(status);
+  // console.log('%cCOLUMNA ITEMS: ','color:yellow;', columns['02'].items);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-
+    console.log('%cCOLUMNA ITEMS: ', 'color:yellow;', columns['02'].items);
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -131,7 +145,7 @@ const TourStep2 = () => {
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
-          items: datosParaTourDB,
+          items: sourceItems,
         },
         [destination.droppableId]: {
           ...destColumn,
@@ -175,7 +189,7 @@ const TourStep2 = () => {
     });
   };
 
-  console.log('COLUMNAS: ',columns);
+  // console.log('%cCOLUMNAS: ', 'color: yellow;',columns);
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
@@ -199,11 +213,11 @@ const TourStep2 = () => {
             return (
               <div className="seccion" id={column.name} key={columnId}>
                 <Column
-                  className="columna"
                   droppableId={columnId}
+                  column={column}
                   key={columnId}
                   index={index}
-                  column={column}
+                  className="columna"
                 />
               </div>
             );
