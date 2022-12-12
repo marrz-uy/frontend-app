@@ -5,6 +5,7 @@ const TourContext = createContext();
 const TourProvider = ({ children }) => {
   const [tourPreferences, setTourPreferences] = useState();
   const [itemsParaTourDB, setItemsParaTourDB] = useState();
+  const [savedTourItems, setSavedTourItems] = useState();
 
   // console.log('TOURPREFERENCES CONTEXT:', tourPreferences);
 
@@ -21,6 +22,10 @@ const TourProvider = ({ children }) => {
     }
   };
 
+  const SaveTourItems = (savedTourItems) => {
+    sessionStorage.setItem('tourItems', JSON.stringify(savedTourItems));
+  };
+
   const data = {
     saveTourPreferences,
     tourPreferences,
@@ -28,6 +33,9 @@ const TourProvider = ({ children }) => {
     getTourPreferences,
     itemsParaTourDB,
     setItemsParaTourDB,
+    SaveTourItems,
+    savedTourItems,
+    setSavedTourItems,
   };
 
   return <TourContext.Provider value={data}>{children}</TourContext.Provider>;

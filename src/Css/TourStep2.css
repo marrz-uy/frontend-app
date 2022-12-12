@@ -1,42 +1,39 @@
-.descripcionTourStep2Text {
-	font-size: 14px;
-}
-
-.tourStep2 {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.TourStep2 {
 	min-height: 422px;
 }
 
-.descripcionTourStep2 {
+.tituloSecundarioTourstep2{
+margin-bottom: 20px;
+}
+
+.presentacionPreferencias {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	font-size: 1.2rem;
+	gap: 15px;
+	border-top: 1px solid rgba(170, 170, 170, 0.131);
+	border-radius: 5px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	padding: 30px 5px 20px;
+	/* min-height: 400px; */
+}
+
+.preferenciasIndividuales {
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 }
 
-.descripcionTourStep2Text{
-	line-height: 18px;
+.mensajeInferior {
+	font-size: 14px;
+	position: absolute;
+	bottom: 100px
 }
 
-.btnInfoTour {
-	margin-left: 20px;
-	border: 1px solid rgb(181, 181, 181);
-	border-radius: 3px;
-	padding: 1px 2px
-}
-
-.btnInfoTour:hover {
-	transform: scale(1.1);
-	background-color:rgb(3, 87, 198);
-	color: aliceblue;
-}
-
-.titulosColumnas{
-	margin-top: 10px;
+.alignLeft{
+	width: 50%;
 	display: flex;
-	width: 100%;
-	justify-content: space-around;
-	border-radius: 3px;
-	color:rgb(92, 92, 92)
+	justify-content: flex-start;
 }

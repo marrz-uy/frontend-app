@@ -4,6 +4,7 @@ import { Button, message, Steps } from 'antd';
 import TourStep1 from '../Pages/BuildTour/TourStep1';
 import TourStep2 from '../Pages/BuildTour/TourStep2';
 import TourStep3 from '../Pages/BuildTour/TourStep3';
+import TourStep4 from '../Pages/BuildTour/TourStep4';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
 import TourContext from '../Context/TourContext';
 import Swal from 'sweetalert2';
@@ -15,12 +16,16 @@ const steps = [
     content: 'First-content',
   },
   {
-    title: 'Elegir',
+    title: 'Ver Preferencias',
     content: 'Second-content',
   },
   {
+    title: 'Elegir',
+    content: 'Third-content',
+  },
+  {
     title: 'Ver',
-    content: 'Second-content',
+    content: 'Fourth-content',
   },
   {
     title: 'Fin',
@@ -34,6 +39,8 @@ const TourSteps = () => {
     tourPreferences,
     itemsParaTourDB,
     setItemsParaTourDB,
+    savedTourItems,
+    SaveTourItems,
   } = useContext(TourContext);
 
   const { http } = AuthUser();
@@ -82,7 +89,10 @@ const TourSteps = () => {
     } else {
       saveTourPreferences(tourPreferences);
       GetItemsPraTour();
-      if (current < 3) {
+      if (savedTourItems){
+        SaveTourItems(savedTourItems)
+      }
+      if (current < 4) {
         setCurrent(current + 1);
       }
     }
@@ -94,20 +104,15 @@ const TourSteps = () => {
     }
   };
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
-  // console.log(current);
+   console.log('CURRENT PAGE: ',current+1);
   return (
     <>
       <Steps current={current} items={items} />
       <div className="steps-content">
-        {current < 1 ? (
-          <TourStep1 />
-        ) : current === 1 ? (
-          <TourStep2 />
-        ) : current === 2 ? (
-          <TourStep3 />
-        ) : (
-          <TourFinalStep />
-        )}
+        {
+          current < 1 ? (<TourStep1 />) : current === 1 ? (<TourStep2 />) : current === 2 ? (<TourStep3 />) : current === 3 ? (<TourStep4 />):(<TourFinalStep/>)
+          
+          }
       </div>
       <div className="steps-action">
         {current < steps.length - 1 && (
