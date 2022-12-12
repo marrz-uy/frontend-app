@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AuthUser from './AuthUser';
 import { Button, message, Steps } from 'antd';
 import TourStep1 from '../Pages/BuildTour/TourStep1';
 import TourStep2 from '../Pages/BuildTour/TourStep2';
@@ -28,15 +29,39 @@ const steps = [
 ];
 
 const TourSteps = () => {
-
   const {
     saveTourPreferences,
     tourPreferences,
+    itemsParaTourDB,
+    setItemsParaTourDB,
   } = useContext(TourContext);
 
-
+  const { http } = AuthUser();
   const [current, setCurrent] = useState(0);
-  
+
+  function GetItemsPraTour() {
+    http
+      .post('/PuntosInteresParaTour', {
+        horaInicio: tourPreferences?.horaInicio,
+        tipoDeLugar: tourPreferences?.tipoDeLugar,
+        restriccionDeEdad: tourPreferences?.restriccionDeEdad,
+        enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
+        ubicacion: tourPreferences?.ubicacion,
+      })
+      .then((response) => {
+        const allDdata = response?.data;
+        setItemsParaTourDB(allDdata);
+        console.log('%callDdata - tourSteps:', 'color: violet;', allDdata);
+        console.log(
+          '%cITEMS-PARA-TOUR - tourSteps: ',
+          'color: yellow;',
+          itemsParaTourDB
+        );
+        console.log('RESPONSE HTTP: ', response?.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  }
+
   const next = () => {
     if (
       tourPreferences.franjaHoraria === '' ||
@@ -45,17 +70,18 @@ const TourSteps = () => {
       tourPreferences.edad === '' ||
       tourPreferences.personas === '' ||
       tourPreferences.ubicacion === ''
-      ) {
-        console.log('Complete todos los campos');
-        Swal.fire({
-          title: 'Atencion!',
-          text: 'Complete todos los campos para continuar',
-          icon: 'info',
-          showConfirmButton: true,
-          confirmButtonColor: '#015abb',
-        });
-      } else {
+    ) {
+      console.log('Complete todos los campos');
+      Swal.fire({
+        title: 'Atencion!',
+        text: 'Complete todos los campos para continuar',
+        icon: 'info',
+        showConfirmButton: true,
+        confirmButtonColor: '#015abb',
+      });
+    } else {
       saveTourPreferences(tourPreferences);
+      GetItemsPraTour();
       if (current < 3) {
         setCurrent(current + 1);
       }

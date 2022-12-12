@@ -5,7 +5,6 @@ import TourContext from '../../Context/TourContext';
 import AuthUser from '../../Components/AuthUser';
 import Swal from 'sweetalert2';
 import '../../Css/TourStep2.css';
-// import { fetchDataTour } from '../../Components/TourComponents/fetchdataTour';
 
 const initialData = [
   {
@@ -82,6 +81,9 @@ const initialData = [
   },
 ];
 
+const data = JSON.parse(sessionStorage.getItem('tourPreferences'))
+console.log('tourPreferences:', data);
+
 const TourStep2 = () => {
   const { http } = AuthUser();
   const {
@@ -91,7 +93,7 @@ const TourStep2 = () => {
     setItemsParaTourDB,
   } = useContext(TourContext);
 
-  useEffect(() => {
+/*   useEffect(() => {
     http
       .post('/PuntosInteresParaTour', {
         horaInicio: tourPreferences?.horaInicio,
@@ -113,7 +115,7 @@ const TourStep2 = () => {
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }, []);
-
+ */
   const status = {
     '01': {
       name: 'TimeLine',
@@ -128,12 +130,12 @@ const TourStep2 = () => {
   };
 
   const [columns, setColumns] = useState(status);
-  // console.log('%cCOLUMNA ITEMS: ','color:yellow;', columns['02'].items);
-
+  console.log('%cCOLUMNA ITEMS - tourStep2: ', 'color:blue;', columns['02'].items);
+  
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-    console.log('%cCOLUMNA ITEMS: ', 'color:yellow;', columns['02'].items);
+    
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -167,7 +169,12 @@ const TourStep2 = () => {
     }
   };
 
-  let textoModal = `Los puntos que se ofrecen para armar su tour estan basados en las preferencias brindadas por ud en el paso 1.<br/>
+
+
+ 
+
+  let textoModal = `Los puntos que se ofrecen para armar su tour 
+  estan basados en las preferencias brindadas por ud en el paso 1.<br/>
   <br/>Hora de Comienzo: ${tourPreferences?.horaInicio},
   <br/>Espacios: ${tourPreferences.tipoDeLugar},
   <br/>Para edades: ${tourPreferences.restriccionDeEdad.toLowerCase()},
@@ -189,7 +196,7 @@ const TourStep2 = () => {
     });
   };
 
-  // console.log('%cCOLUMNAS: ', 'color: yellow;',columns);
+  
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
