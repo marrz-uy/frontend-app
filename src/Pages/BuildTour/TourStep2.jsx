@@ -196,7 +196,7 @@ const TourStep2 = () => {
     });
   };
 
-  
+  console.log('COLUMNS:', columns)
   return (
     <div className="tourStep2">
       <div className="descripcionTourStep2">
