@@ -26,7 +26,7 @@ const TourStep3 = () => {
         >
           {savedTourItems?.map((dat) => {
             return (
-              <div className="cardTourFinal" key={dat.puntosinteres_id}>
+              <div className="cardTourFinal" key={dat.id}>
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"

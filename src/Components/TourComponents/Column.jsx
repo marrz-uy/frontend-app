@@ -22,8 +22,8 @@ const Column = ({ droppableId, column }) => {
               {column?.items?.map((item, index) => {
                 return (
                   <Draggable
-                    key={item.id}
-                    draggableId={item.id.toString()}
+                    key={item.puntosinteres_id}
+                    draggableId={item.puntosinteres_id.toString()}
                     index={index}
                   >
                     {(provided, snapshot) => {
