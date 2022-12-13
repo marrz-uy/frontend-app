@@ -2,91 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import TourContext from '../../Context/TourContext';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
-// import AuthUser from '../../Components/AuthUser';
 import Swal from 'sweetalert2';
 import '../../Css/TourStep3.css';
 
-const initialData = [
-  {
-    id: '01',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '02',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '03',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '04',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '05',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '06',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '07',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-  {
-    id: '08',
-    Ciudad: 'Montevideo',
-    Departamento: 'Indiana',
-    HoraDeApertura: '08:00:00',
-    HoraDeCierre: '22:00:00',
-    Imagen: 'https://via.placeholder.com/640x480.png/00bb88?text=ratione',
-    Nombre: 'Casino West Lulu',
-  },
-];
-
-// const data = JSON.parse(sessionStorage.getItem('tourPreferences'))
-// console.log('tourPreferences:', data);
-
-
 const onDragEnd = (result, columns, setColumns) => {
-  
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -124,12 +43,8 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 const TourStep3 = () => {
-  // const { http } = AuthUser();
-  const {
-    tourPreferences,
-    itemsParaTourDB,
-    setSavedTourItems
-  } = useContext(TourContext);
+  const { tourPreferences, itemsParaTourDB, setSavedTourItems } =
+    useContext(TourContext);
 
   const status = {
     '01': {
@@ -171,14 +86,13 @@ const TourStep3 = () => {
 
   console.log('COLUMNS:', columns);
 
-  console.log('ITEMS ELEGIDOS PARA TOUR:', columns['01'].items)
+  console.log('ITEMS ELEGIDOS PARA TOUR:', columns['01'].items);
   useEffect(() => {
-    let  chosenItems= columns['01'].items
-    setSavedTourItems(chosenItems)
-    console.log(chosenItems)
-  }, [columns, setSavedTourItems])
-  
-  
+    let chosenItems = columns['01'].items;
+    setSavedTourItems(chosenItems);
+    console.log(chosenItems);
+  }, [columns, setSavedTourItems]);
+
   return (
     <div className="tourStep3">
       <div className="descripcionTourStep3">

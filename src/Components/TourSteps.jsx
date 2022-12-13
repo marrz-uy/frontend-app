@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import AuthUser from './AuthUser';
 import { Button, message, Steps } from 'antd';
 import TourStep1 from '../Pages/BuildTour/TourStep1';

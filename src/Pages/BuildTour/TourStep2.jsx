@@ -6,6 +6,7 @@ const TourStep2 = () => {
   const { setSavedTourItems, tourPreferences } = useContext(TourContext);
   useEffect(() => {
     setSavedTourItems({});
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -24,7 +25,7 @@ const TourStep2 = () => {
           <div className="preferenciasIndividuales">
             {tourPreferences.tipoDeLugar === 'Espacio cerrado' ? (
               <>
-                <h4>Eligio espacios cerrados y/o techados</h4>
+                <h4>En espacios cerrados y/o techados</h4>
                 <span> 🏠</span>
               </>
             ) : tourPreferences.tipoDeLugar === 'Al aire libre' ? (

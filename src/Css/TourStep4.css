@@ -1,4 +1,30 @@
-.tourStep4{
+.tourStep4 {
 	min-height: 422px;
 }
 
+.timelineTourFinal{
+	height: 350px;
+}
+
+.cardTourFinal {
+	max-width: 120px;
+}
+
+
+.divImgTourFinal {
+	width: 100%;
+}
+
+.imagenCardTourFinal {
+	border-radius: 5px;
+}
+
+.dataTourFinal h6{
+	color: rgb(80, 80, 80);
+	font-size: 0.9rem;
+}
+
+.dataTourFinal p{
+	font-size: .8rem;
+	color: rgb(80, 80, 80);
+}
