@@ -192,7 +192,7 @@ const SearchResults = ({
                 onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
               ></input>
               <div className='divKilometros'>
-                <span className="kilometros"> {distanciaAEnviar / 1000} </span>
+                <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
               </div>
             </div>
             <button

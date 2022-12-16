@@ -11,17 +11,6 @@ const LenguageProvider = ({ children }) => {
   localStorage.setItem('language', 'en')
   const { http } = AuthUser();
   
-  // const getTranslations = () => {
-    
-    /* http
-      .post('/translations',)
-      .then((response) => {
-        const tradBD = response.data;
-        setTraduccionesBD(tradBD);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`)); */
-  // };
-
   useEffect(() => {
     http
     .get('/translations',)
