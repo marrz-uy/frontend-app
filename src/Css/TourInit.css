@@ -63,3 +63,20 @@
 .myToursCard:hover {
 	background-color: #b8d5f6;
 }
+
+@media screen and (min-width: 480px) { /* tablets */
+	
+ 
+}
+
+@media screen and (min-width: 768px) { /* notebooks */
+ 
+}
+
+@media screen and (min-width: 1024px) { /* large screens */
+ 
+}
+
+@media screen and (min-width: 1200px) { /* extra large screens */
+ 
+}
