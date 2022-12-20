@@ -44,8 +44,8 @@ const SearchResults = ({
   }
 
   console.log('SEARCH TYPE:', searchType);
-   console.log('TEXT RESULTS', text, typeof text);
-   console.log('CATEGORIA', text);
+  console.log('TEXT RESULTS', text, typeof text);
+  console.log('CATEGORIA', text);
 
   console.log(
     '%cLAST PAGES ITEMS y DATOS:',
@@ -123,7 +123,6 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
-
     // console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
     // console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
     // console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
@@ -176,24 +175,31 @@ const SearchResults = ({
         </h6>
         {latitud && longitud ? (
           <div className="filtrarDistancia">
-            <label htmlFor="inputRange">Distancia</label>
-            <input
-              className="inputRange"
-              id="inputRange"
-              name="inputRange"
-              type="range"
-              min="1000"
-              max="50000"
-              step="1000"
-              value={distanciaAEnviar}
-              style={getBackgroundSize()}
-              onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
-            ></input>
+            <div className="etiquetasDistancia">
+              <label htmlFor="inputRange">Distancia</label>
+            </div>
+            <div className="box">
+              <input
+                className="inputRange"
+                id="inputRange"
+                name="inputRange"
+                type="range"
+                min="1000"
+                max="50000"
+                step="1000"
+                value={distanciaAEnviar}
+                style={getBackgroundSize()}
+                onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
+              ></input>
+              <div className='divKilometros'>
+                <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
+              </div>
+            </div>
             <button
               onClick={handleDistance}
               className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
             >
-              {distanciaAEnviar / 1000} Kmts
+              Filtrar
             </button>
           </div>
         ) : (

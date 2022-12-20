@@ -1,0 +1,58 @@
+.steps-content {
+  min-height: 24rem;
+  text-align: center;
+  background-color: #ffffff;
+	border: none;
+  border-radius: 2px;
+}
+
+
+.ant-steps-vertical{
+	flex-direction: row !important;
+	justify-content: space-around !important;
+	margin-left: 35px;
+} 
+
+
+.ant-steps-item-title{
+	display: none !important;
+	font-size: 10px !important; 
+	
+}
+
+.ant-steps-item-tail::after {
+	width: 39px !important;
+	height: 3% !important;
+	position: absolute;
+	top: 16px;
+	left: 20px;
+}
+
+.ant-message {
+	top:10rem !important;
+}
+
+.steps-action{
+	width: 100%;
+	display: flex !important;
+	justify-content:flex-start !important;
+	max-width: 500px !important;
+  margin: 1rem 0;
+}
+
+.btnSiguienteGuardar{
+	min-width: 90px;
+}
+
+@media screen and (min-width: 480px) { 
+	.ant-steps-item-title{
+		display: flex !important;
+		font-size: 16px !important; 
+	}
+
+	.step-action{
+		display: flex !important;
+		justify-content: space-between !important;
+		max-width: 450px !important;
+	}
+}

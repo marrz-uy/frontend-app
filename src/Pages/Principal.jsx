@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
+import Swal from 'sweetalert2';
 import AuthUser from '../Components/AuthUser';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
@@ -18,10 +19,7 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
-import {
-  gastronomicas,
-  alojamientos,
-} from '../Data/SliderImages.js';
+import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 
 const Principal = ({
@@ -41,12 +39,14 @@ const Principal = ({
   latitud,
   longitud,
 }) => {
-  console.log(
-    'LOCATION PRINCIPAL: ',
-    loaded,
-    latitud,
-    longitud
-  );
+  // console.log(
+  //   'LOCATION PRINCIPAL: ',
+  //   loaded,
+  //   latitud,
+  //   longitud
+  // );
+
+
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -66,27 +66,11 @@ const Principal = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
 
-  // const { loaded, latitud, longitud, accuracy, altitude, speed } =
-  //   useGeoLocation();
-
-  console.log(
-    'LOCATION: ',
-    loaded,
-    latitud,
-    longitud
-  );
-
   useEffect(() => {
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      console.log(
-        'A ENVIAR: ',
-        loaded,
-        latitud,
-        longitud
-      );
     }
   }, [loaded, latitud, longitud]);
 
@@ -114,13 +98,55 @@ const Principal = ({
   const handleCategories = (e) => {
     setItems(e);
     setText(e);
-    console.log('%cTEXT PRINCIPAL:', 'color: violet;', e);
     getData(e);
     setPage('results');
     setSearchType('categoria');
     setCategoryName(e);
     navigate('/results');
   };
+
+  const handlebuildTour = (e) => {
+    e.preventDefault();
+
+    const id = sessionStorage.getItem('id');
+    if (id === null) {
+      Swal.fire({
+        title: 'Lo sentimos!',
+        text: 'Para poder armar su tour debe estar logueado',
+        icon: 'info',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Iniciar Sesion',
+        cancelButtonText: 'Cerrar',
+        confirmButtonColor: '#083d99',
+        cancelButtonColor: 'gray',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+      return;
+    }
+    sessionStorage.setItem(
+      'tourPreferences',
+      JSON.stringify({
+        horaInicio: '',
+        tipoDeLugar: '',
+        restriccionDeEdad: '',
+        enfoqueDePersonas: '',
+        ubicacion: '',
+      })
+    );
+    navigate('/tour');
+  };
+
+
+
+
+
+  const handlePredefinedTours = () => {
+    navigate('/predefined');
+  }
 
   handleUserBar(userBar);
 
@@ -131,7 +157,7 @@ const Principal = ({
         <div className="containerCategories">
           <div
             className="categories"
-            // onClick={() => handleCategories('Tours Predefinidos')}
+            onClick={(e) => handlePredefinedTours(e)}
           >
             <div className="categoriesImage">
               <img src={predefTour} alt="hotel"></img>
@@ -146,10 +172,7 @@ const Principal = ({
               </span>
             </div>
           </div>
-          <div
-            className="categories"
-            // onClick={() => handleCategories('Armar tour')}
-          >
+          <div className="categories" onClick={(e) => handlebuildTour(e)}>
             <div className="categoriesImage">
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
@@ -165,7 +188,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Alojamiento')}
+            onClick={() => handleCategories('Alojamiento')}
           >
             <div className="categoriesImage">
               <img src={hotelImg} alt="hotel"></img>
@@ -234,8 +257,9 @@ const Principal = ({
                 </div>
               </div>
 
-              <div className="categories"
-              onClick={() => handleCategories('Actividades Nocturnas')}
+              <div
+                className="categories"
+                onClick={() => handleCategories('Actividades Nocturnas')}
               >
                 <div className="categoriesImage">
                   <img
@@ -274,8 +298,9 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div className="categories"
-              onClick={() => handleCategories('Actividades Infantiles')}
+              <div
+                className="categories"
+                onClick={() => handleCategories('Actividades Infantiles')}
               >
                 <div className="categoriesImage">
                   <img
