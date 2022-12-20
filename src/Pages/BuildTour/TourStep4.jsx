@@ -30,6 +30,7 @@ const TourStep3 = () => {
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"
+                    id='imagenCardTourFinal'
                     src={dat.Imagen}
                     alt=""
                   ></img>

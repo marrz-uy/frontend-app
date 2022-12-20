@@ -17,3 +17,21 @@
 	padding: 0 10px;
 	background-color: aliceblue;
 }
+
+@media screen and (min-width: 480px) {
+	.tourFinalStep{
+		min-height: 500px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.tourFinalStep{
+		min-height: 500px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.tourFinalStep{
+		min-height: 500px;
+	}
+}

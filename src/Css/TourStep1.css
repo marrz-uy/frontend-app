@@ -81,3 +81,15 @@
 		margin-bottom: .8rem;
 	}
 }
+
+@media screen and (min-width: 768px) {
+	.tourStep1{
+		min-height: 490px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.TourStep2{
+		min-height: 500px;
+	}
+}

@@ -6,6 +6,12 @@
 margin-bottom: 20px;
 }
 
+.descripcionTourStep2{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .presentacionPreferencias {
 	display: flex;
 	flex-direction: column;
@@ -28,8 +34,8 @@ margin-bottom: 20px;
 
 .mensajeInferior {
 	font-size: 12px;
-	position: absolute;
-	bottom: 100px
+	margin-top: 1rem;
+	/* width: 500px; */
 }
 
 .alignLeft{
@@ -38,8 +44,38 @@ margin-bottom: 20px;
 	justify-content: flex-start;
 }
 
-/* @media screen and (min-width: 480px) {
-	.descripcionTourStep4Text {
-		margin-bottom: .8rem;
+@media screen and (min-width: 480px) {
+	.TourStep2 {
+		min-height: 490px;
 	}
-} */
+}
+
+@media screen and (min-width: 768px) {
+	.TourStep2{
+		width: 900px;
+		min-height: 500px;
+	}
+
+	.descripcionTourStep2{
+		width: 100%;
+	}
+
+	.presentacionPreferencias{
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.TourStep2{
+		width: 900px;
+		min-height: 500px;
+	}
+
+	.descripcionTourStep2{
+		width: 100%;
+	}
+
+	.presentacionPreferencias{
+		width: 70%;
+	}
+}
