@@ -30,7 +30,7 @@ export default function App({ imagen }) {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={imagen} alt="imagen de punto de interes" />
+          <img src={imagen} width='10px' height='10px' alt="imagen de punto de interes" />
         </SwiperSlide>
         <SwiperSlide>
           <img src={imagen} alt="imagen de punto de interes" />
@@ -57,7 +57,7 @@ export default function App({ imagen }) {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={imagen} alt="imagen de punto de interes" />
+          <img src={imagen} width='10px' height='10px' alt="imagen de punto de interes" />
         </SwiperSlide>
         <SwiperSlide>
           <img src={imagen} alt="imagen de punto de interes" />

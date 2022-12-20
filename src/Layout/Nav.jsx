@@ -108,21 +108,12 @@ const Nav = ({
       </div>
       <div className="contentNavbar">
         <div className="logoFellUy">
-          {page !== 'principal' ? (
-            page === 'infoResults' ? (
-              <Link to="/results">
-                <img id="arrowImg" src={backArrow} alt="back"></img>
-              </Link>
-            ) : (
-              <Link to="/">
-                <img id="arrowImg" src={backArrow} alt="back"></img>
-              </Link>
-            )
-          ) : (
-            <Link to="/">
-              <img id="feelLogoImg" src={logo} alt="logo"></img>
-            </Link>
-          )}
+          {
+            page !== 'principal' 
+          ? (page === 'infoResults' ? (<Link to="/results"><img id="arrowImg" src={backArrow} alt="back"></img></Link>) : (<Link to="/"><img id="arrowImg" src={backArrow} alt="back"></img> </Link>)) 
+          : (<Link to="/"><img id="feelLogoImg" src={logo} alt="logo"></img></Link>)
+          
+          }
         </div>
         <div className="search">
           <div className="searchIntDiv">

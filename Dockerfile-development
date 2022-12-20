@@ -1,0 +1,4 @@
+FROM node:12.22.12-buster-slim
+WORKDIR /app
+
+CMD npm install && npm start

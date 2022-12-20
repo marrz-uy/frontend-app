@@ -4,15 +4,11 @@ import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link, useNavigate } from 'react-router-dom';
-import { traerPreferencias } from '../Helpers/TraerPreferencias';
-import { traerPerfil } from '../Helpers/TraerPerfil';
-import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import '../Css/UserProfile.css';
 import UserBar from './UserBar';
 import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import LogoutGoogleButton from '../Components/LogoutGoogleButton';
-//  let initialLanguage = getLanguageStorage()
 
 const UserProfile = ({
   setPage,
@@ -21,18 +17,18 @@ const UserProfile = ({
   userBar,
   isLoggedIn,
 }) => {
-  const { logout, token, getUser, getEmail } = AuthUser();
+  const { logout, token, getUser, getEmail, getUserProfile } = AuthUser();
   const navigate = useNavigate();
-  const [prefeEnArrayInicial, setPrefeEnArrayInicial] = useState('');
-  const pefilEnArray = traerPerfil();
+  const [perfilUsuario, setPerfilUsuario] = useState('');
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
   const [setLenguage] = useState('');
 
   useEffect(() => {
     setPage('userProfile');
-    setPrefeEnArrayInicial(traerPreferencias());
-  }, [setLenguage, setPrefeEnArrayInicial, setPage]);
+    setPerfilUsuario(getUserProfile());
+    // eslint-disable-next-line
+  }, [setLenguage, setPage, setPerfilUsuario]);
 
   const logoutUser = () => {
     if (token) {
@@ -46,7 +42,8 @@ const UserProfile = ({
   handleUserBar(userBar);
 
   const userType = sessionStorage?.getItem('userType');
-  console.log('userType: ' + userType);
+  // console.log('userType: ' + userType);
+  // console.log('perfilUsuario: ', perfilUsuario);
 
   return (
     <Layout>
@@ -83,7 +80,6 @@ const UserProfile = ({
                 </button>
               </div>
             ) : null}
-
           </div>
 
           <div className="user-profile__links">
@@ -101,7 +97,7 @@ const UserProfile = ({
                   'userNationalityText',
                   lenguage
                 )}{' '}
-                : {pefilEnArray?.nacionalidad}
+                : {perfilUsuario?.nacionalidad}
               </h5>
               <h5>
                 {filtrarTraduccion(
@@ -109,27 +105,146 @@ const UserProfile = ({
                   'userDateOfBirthText',
                   lenguage
                 )}{' '}
-                : {pefilEnArray?.f_nacimiento}
+                : {perfilUsuario?.f_nacimiento}
               </h5>
               <ul className="lista">
-                {prefeEnArrayInicial ? (
-                  prefeEnArrayInicial?.map((item) => {
-                    return (
-                      <p key={item.id}>
-                        <span>
-                          {getLanguageStorage() === 'es'
-                            ? `${item.categoria} :`
-                            : `${item.category} :`}
+                {perfilUsuario ? (
+                  <>
+                    <p>
+                      <span>
+                        {perfilUsuario?.alojamiento ? (
                           <span className="label">
-                            {' '}
-                            {getLanguageStorage() === 'es'
-                              ? `${item.labelEsp}`
-                              : `${item.labelEng}`}
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesLodginLabel',
+                              lenguage
+                            )}
+                            :{' '}
                           </span>
-                        </span>
-                      </p>
-                    );
-                  })
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.alojamiento}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.gastronomia ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesGastronomyLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.gastronomia}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.espectaculos ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesShowsLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.espectaculos}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.paseos ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesOutdoorActivitiesLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">{perfilUsuario?.paseos}</span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.actividadesNocturnas ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesNightActivitiesLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.actividadesNocturnas}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.transporte ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesTransportLabellabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.transporte}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.actividadesInfantiles ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesChildrensActivitiesLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.actividadesInfantiles}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {perfilUsuario?.serviciosEsenciales ? (
+                          <span className="label">
+                            {filtrarTraduccion(
+                              traduccionesBD,
+                              'preferencesEssentialsServicesLabel',
+                              lenguage
+                            )}
+                            :{' '}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="dataLabel">
+                        {perfilUsuario?.serviciosEsenciales}
+                      </span>
+                    </p>
+                  </>
                 ) : (
                   <h5 style={{ color: '#ffcc05' }}>
                     {filtrarTraduccion(
@@ -146,7 +261,7 @@ const UserProfile = ({
               <div className="divBtnPreferencias">
                 <Link to="/preferences">
                   <button className="user-profile__item">
-                    {prefeEnArrayInicial
+                    {perfilUsuario
                       ? filtrarTraduccion(
                           traduccionesBD,
                           'changePreferencesButtonValue',

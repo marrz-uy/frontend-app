@@ -1,10 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
 
-function CustomSelect({ styles, options, placeholder }) {
+function CustomSelect({ styles, options, placeholder, value }) {
   return (
     <div>
-      <Select options={options} styles={styles} placeholder={placeholder} />
+      <Select options={options} styles={styles} placeholder={placeholder} defaultValue={value}/>
     </div>
   );
 }
