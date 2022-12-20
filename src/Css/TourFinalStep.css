@@ -1,0 +1,19 @@
+.inputDivTourFinalStep {
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.tourFinalStep{
+	min-height: 422px;
+}
+
+.tourFinalStep input[type='text']{
+	width: 90%;
+	height:2rem;
+	border: 1px solid rgb(0, 128, 248);
+	border-radius: 8px;
+	color: rgb(61, 61, 61);
+	padding: 0 10px;
+	background-color: aliceblue;
+}
