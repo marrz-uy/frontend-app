@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
-import AuthUser from '../Components/AuthUser';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';
 import SliderMain from '../Components/SliderMain'
-import { Slider } from '../Components/Slider'
 import '../Css/PuntoInteresInfo.css';
 import '../Css/userBarClick.css';
 import '../Css/Slider.css';
 import '../Css/SliderPuntoInteresInfo.css';
-
-
-
 
 const PuntoInteresInfo = ({
   setUserBar,
@@ -24,15 +19,10 @@ const PuntoInteresInfo = ({
   setPage,
 }) => {
   handleUserBar(userBar);
-  const { http } = AuthUser();
   const navigate = useNavigate();
-  // const { Latitud, Longitud } = destination
   const { Facebook, Instagram } = destination
-  // console.log(destination)
-  // const { id } = destination;
-  console.log(destination)
+  
   const [firefox, setFirefox] = useState(false)
-
 
   useEffect(() => {
     var sUsrAg = navigator.userAgent;
@@ -41,31 +31,13 @@ const PuntoInteresInfo = ({
     }
   }, [])
 
-  const { puntointeres_id } = destination;
-  const [puntodeInteres, setPuntodeInteres] = useState({});
-  // console.log(puntodeInteres);
-  /* 
-        const getPuntoDeInteres = () => {
-            http
-                .get(`/PuntosInteres/${puntointeres_id}`)
-                .then((res) => {
-                    setPuntodeInteres(res.data)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-     */
-
-
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
     setPage('infoResults');
+    // eslint-disable-next-line
   }, []);
-
-  const arr = [destination.Imagen, destination.Imagen, destination.Imagen]
 
   return (
     <Layout>

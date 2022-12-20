@@ -12,9 +12,9 @@ const TourStep2 = () => {
   return (
     <div className="TourStep2">
       <div className="descripcionTourStep2">
-      <div className='tituloSecundarioTourstep2'>
-        <h3>Preferencias para el Tour</h3>
-      </div>
+        <div className="tituloSecundarioTourstep2">
+          <h3>Preferencias para el Tour</h3>
+        </div>
         <div className="presentacionPreferencias">
           <div className="preferenciasIndividuales">
             <>
@@ -35,7 +35,7 @@ const TourStep2 = () => {
               </>
             ) : (
               <>
-                <h4>Tanto espacios cerrados como al aire libre</h4>
+                <h4>En espacios cerrados y al aire libre</h4>
                 <span> 🏠🚴🏻‍♂️</span>
               </>
             )}

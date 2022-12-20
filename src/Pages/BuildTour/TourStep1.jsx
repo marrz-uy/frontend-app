@@ -3,8 +3,9 @@ import TourContext from '../../Context/TourContext';
 import '../../Css/TourStep1.css';
 
 const TourStep1 = () => {
-  const { setTourPreferences, getTourPreferences } = useContext(TourContext);
-  const savedPreferences = getTourPreferences();
+  const { setTourPreferences, GetTourPreferences } =
+    useContext(TourContext);
+  const savedPreferences = GetTourPreferences();
   const [horaInicio, setHoraInicio] = useState(savedPreferences.horaInicio);
   const [tipoDeLugar, seTipoDeLugar] = useState(savedPreferences.tipoDeLugar);
   const [restriccionDeEdad, setRestriccionDeEdad] = useState(

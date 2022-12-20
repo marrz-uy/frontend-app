@@ -43,7 +43,7 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 const TourStep3 = () => {
-  const { tourPreferences, itemsParaTourDB, setSavedTourItems } =
+  const { tourPreferences, itemsParaTourDB, setSavedTourItems, savedTourItems } =
     useContext(TourContext);
 
   const status = {
@@ -72,7 +72,7 @@ const TourStep3 = () => {
   const handleInfoTour = () => {
     Swal.fire({
       titleText: 'Informacion de su tour',
-      html: textoModal,
+      html: textoModal, /* var afuera */
       showConfirmButton: true,
       confirmButtonColor: '#015abb',
       showClass: {
@@ -85,12 +85,14 @@ const TourStep3 = () => {
   };
 
   console.log('COLUMNS:', columns);
-
-  console.log('ITEMS ELEGIDOS PARA TOUR:', columns['01'].items);
+  let chosenItems = ''
+  console.log('CHOSEN ITEMS FUERA: ',chosenItems);
+  console.log('savedTourItems- final', savedTourItems)
+  // console.log('ITEMS ELEGIDOS PARA TOUR:', columns['01'].items);
   useEffect(() => {
-    let chosenItems = columns['01'].items;
+    chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
-    console.log(chosenItems);
+    console.log('CHOSEN ITEMS DENTRO: ',chosenItems);
   }, [columns, setSavedTourItems]);
 
   return (

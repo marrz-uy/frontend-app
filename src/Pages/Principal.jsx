@@ -45,6 +45,8 @@ const Principal = ({
   //   latitud,
   //   longitud
   // );
+
+
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -125,15 +127,26 @@ const Principal = ({
       });
       return;
     }
-    sessionStorage.setItem('tourPreferences', JSON.stringify({
-      horaInicio: '',
-      tipoDeLugar: '',
-      restriccionDeEdad: '',
-      enfoqueDePersonas: '',
-      ubicacion: '',
-    }));
+    sessionStorage.setItem(
+      'tourPreferences',
+      JSON.stringify({
+        horaInicio: '',
+        tipoDeLugar: '',
+        restriccionDeEdad: '',
+        enfoqueDePersonas: '',
+        ubicacion: '',
+      })
+    );
     navigate('/tour');
   };
+
+
+
+
+
+  const handlePredefinedTours = () => {
+    navigate('/predefined');
+  }
 
   handleUserBar(userBar);
 
@@ -144,7 +157,7 @@ const Principal = ({
         <div className="containerCategories">
           <div
             className="categories"
-            // onClick={() => handleCategories('Tours Predefinidos')}
+            onClick={(e) => handlePredefinedTours(e)}
           >
             <div className="categoriesImage">
               <img src={predefTour} alt="hotel"></img>
