@@ -50,6 +50,20 @@
 	min-height: 220px;
 	margin-bottom: 2rem;
 }
+details{
+padding: 1rem;
+border-radius: 5px;
+box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
+}
+
+.tourList details:nth-child(odd) {
+	border: 1px solid rgb(233, 233, 233);
+}
+
+.tourList details:nth-child(even) {
+	background:rgb(216, 216, 216);
+}
+
 
 .myToursCard {
 	display: flex;
@@ -65,18 +79,28 @@
 }
 
 @media screen and (min-width: 480px) { /* tablets */
-	
+	.touInit {
+		margin-top: 130px;
+		width: 90%;
+		
+	}
  
 }
 
 @media screen and (min-width: 768px) { /* notebooks */
- 
+	.touInit {
+		width: 70%;
+	}
 }
 
 @media screen and (min-width: 1024px) { /* large screens */
- 
+	.touInit {
+		width: 60%;
+	}
 }
 
 @media screen and (min-width: 1200px) { /* extra large screens */
- 
+	.touInit {
+		width: 50%;
+	}
 }

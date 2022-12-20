@@ -46,6 +46,14 @@
 
 @media screen and (min-width: 480px) { 
 	.ant-steps-item-title{
+		margin-bottom: 1rem;
+	}
+
+	
+}
+
+@media screen and (min-width: 840px) { 
+	.ant-steps-item-title{
 		display: flex !important;
 		font-size: 16px !important; 
 	}

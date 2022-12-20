@@ -37,3 +37,9 @@ margin-bottom: 20px;
 	display: flex;
 	justify-content: flex-start;
 }
+
+/* @media screen and (min-width: 480px) {
+	.descripcionTourStep4Text {
+		margin-bottom: .8rem;
+	}
+} */

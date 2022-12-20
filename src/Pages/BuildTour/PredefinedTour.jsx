@@ -47,9 +47,9 @@ const PredefinedTour = ({
           <div className="seccionVerMisTours">
             
             <div className="pageText">
-              <p>
+              <h3>
                 En esta seccion ud podra ver los tours que tenemos para ofrecerle.
-              </p>
+              </h3>
             </div>
           </div>
           <div className="tourList">

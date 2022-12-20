@@ -2,8 +2,10 @@
 	min-height: 422px;
 }
 
-.timelineTourFinal{
+.timelineTourFinal {
 	height: 350px;
+	background-color: rgb(245, 245, 245);
+	border-radius: 5px;
 }
 
 .cardTourFinal {
@@ -19,12 +21,61 @@
 	border-radius: 5px;
 }
 
-.dataTourFinal h6{
+.dataTourFinal h6 {
 	color: rgb(80, 80, 80);
 	font-size: 0.9rem;
 }
 
-.dataTourFinal p{
+.dataTourFinal p {
 	font-size: .8rem;
 	color: rgb(80, 80, 80);
+}
+
+@media screen and (min-width: 480px) {
+
+	.tourStep4 {
+		min-height: 500px;
+	}
+
+	.descripcionTourStep4Text {
+		margin-bottom: .8rem;
+	}
+
+	.timelineTourFinal {
+		width: 100%;
+		height: 460px;
+		border: 1px solid rgb(240, 240, 240);
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.tourStep4 {
+		min-height: 500px;
+	}
+
+	.descripcionTourStep4Text {
+		margin-bottom: .8rem;
+	}
+
+	.timelineTourFinal {
+		/* width: 100%; */
+		height: 460px;
+		border: 1px solid rgb(240, 240, 240);
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.tourStep4 {
+		min-height: 500px;
+	}
+
+	.descripcionTourStep4Text {
+		margin-bottom: .8rem;
+	}
+	
+	.timelineTourFinal {
+		/* width: 100%; */
+		height: 460px;
+		border: 1px solid rgb(240, 240, 240);
+	}
 }
