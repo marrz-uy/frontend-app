@@ -27,3 +27,10 @@
 		min-height: 76vh;
 	}
 }
+
+@media screen and (max-height: 666px) {
+	.buildMyTour {
+		margin-top: 140px;
+		min-height: 20vh;
+	}
+}

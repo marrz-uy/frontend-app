@@ -64,3 +64,10 @@
 		max-width: 450px !important;
 	}
 }
+
+@media screen and (max-height: 666px) {
+	.steps-content {
+		min-height: 10rem;
+		
+	}
+}

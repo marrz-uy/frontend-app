@@ -35,3 +35,9 @@
 		min-height: 500px;
 	}
 }
+
+@media screen and (max-height: 666px) {
+	.tourFinalStep{
+		min-height: 200px;
+	}
+}
