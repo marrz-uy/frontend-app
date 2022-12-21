@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import logo from '../Assets/logoFeelFuenteBlanca.svg';
+import logo from '../Assets/logos/logofeel.svg';
 import wave from '../Assets/wave.png';
 import '../Css/SplashScreen.css';
 
@@ -32,15 +32,13 @@ export const SplashScreen = () => {
                 )}
               </h2>
             </div>
-            <div className="divlogoFell">
-              <div>
-                <img src={logo} alt="logo"></img>
-              </div>
-              <div className="wrapper">
-                <div className="border">
-                  <div className="space">
-                    <div className="loading"></div>
-                  </div>
+            <div className="divlogoFeel">
+              <img src={logo} alt="logo"></img>
+            </div>
+            <div className="wrapper">
+              <div className="border">
+                <div className="space">
+                  <div className="loading"></div>
                 </div>
               </div>
             </div>

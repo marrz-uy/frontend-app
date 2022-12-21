@@ -17,7 +17,7 @@ const TourStep3 = () => {
       </div>
       <div
         className="timelineTourFinal"
-        style={{ width: '102%', height: '350px' }}
+        // style={{ width: '102%', height: '350px' }}
       >
         <Chrono
           mode="VERTICAL_ALTERNATING"
@@ -30,6 +30,7 @@ const TourStep3 = () => {
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"
+                    id='imagenCardTourFinal'
                     src={dat.Imagen}
                     alt=""
                   ></img>

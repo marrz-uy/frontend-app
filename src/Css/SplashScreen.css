@@ -20,13 +20,13 @@
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-    width: 80%;
+    width: 94%;
 }
 
 .content {
     position: absolute;
     height: 100vh;
-    width: 50vh;
+    width: 60vh;
 }
 
 h2 {
@@ -35,24 +35,25 @@ h2 {
 
 .divTextSuperior {
     margin-bottom: 10%;
-    font-size: 23px;
+    font-size: 2rem;
     width: 70%;
+    text-align: justify;
 }
 
 .textSuperior {
     color: rgba(255, 255, 255, 0.916);
     text-shadow: 1px 1px 2px rgba(0, 94, 255, 0.746), 0 0 1em rgba(1, 0, 70, 0.535), 0 0 0.2em rgb(0, 97, 252);
+    text-align: center;
 }
 
-.divlogoFell {
+.divlogoFeel {
     display: flex;
+    width: max-content;
 }
 
-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
+.divlogoFeel img {
+   width: 240px;
+   height: auto;
 }
 
 .divTextInferior {
@@ -110,7 +111,7 @@ img {
         background-color: #F3F8FC;
     }
     100% {
-        left: 70%;
+        left: 100%;
     }
 }
 
@@ -119,7 +120,7 @@ img {
     height: 110%;
     width: 140%;
     background-color: rgb(233, 233, 233);
-    animation: loading 3s steps(1000) infinite;
+    animation: loading 2s steps(1000) infinite;
 }
 
 

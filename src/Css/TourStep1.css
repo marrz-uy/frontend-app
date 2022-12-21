@@ -1,21 +1,22 @@
-.descripcionTourStep1Text{
+.descripcionTourStep1Text {
 	font-size: 13px;
 }
 
-.tourStep1{
+.tourStep1 {
 	min-height: 422px;
 }
 
-.tourPreferences{
+.tourPreferences {
 	padding: 10px 0;
 	display: flex;
 	justify-content: center;
-	flex-direction: column;;
+	flex-direction: column;
+	;
 	gap: 0.8rem
 }
 
-.tourCards{
-	border:1px solid rgb(239, 8, 8);
+.tourCards {
+	border: 1px solid rgb(239, 8, 8);
 	min-height: 4rem;
 	border: 1px solid rgba(121, 120, 120, 0.287);
 	border-radius: 5px;
@@ -26,7 +27,7 @@
 	font-size: 0.8rem;
 }
 
-.cardName{
+.cardName {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -35,29 +36,30 @@
 	font-weight: bold;
 }
 
-.cardPreferences{
+.cardPreferences {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	width: 55%;
 }
 
-.preferencesOptions{
+.preferencesOptions {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: center;
 }
-.preferencesInput{
+
+.preferencesInput {
 	width: 20%;
 	display: flex;
 	flex-direction: column;
 	align-self: center;
 	align-items: center;
-	gap:3px;
+	gap: 3px;
 }
 
-.inputsPreferencias{
+.inputsPreferencias {
 	width: 9rem;
 	border: 1px solid gray;
 	border-radius: 4px;
@@ -68,8 +70,26 @@
 	color: rgb(44, 44, 44);
 	min-height: 22px;
 }
-.inputsPreferencias:onfocus{
+
+.inputsPreferencias:onfocus {
 	border: 1px solid rgb(0, 128, 248);
 
 }
 
+@media screen and (min-width: 480px) {
+	.descripcionTourStep4Text {
+		margin-bottom: .8rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.tourStep1{
+		min-height: 490px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.TourStep2{
+		min-height: 500px;
+	}
+}

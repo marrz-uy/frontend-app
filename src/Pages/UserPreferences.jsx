@@ -226,7 +226,7 @@ const UserPreferences = ({
       height: 25,
       width: '100%',
       maxWidth: 450,
-      backgroundColor: 'rgba(190,200,200)',
+      backgroundColor: 'rgba(250,250,250)',
       display: 'flex',
       border: '1px solid rgba(190,190,190)',
       borderRadius: '3px',
