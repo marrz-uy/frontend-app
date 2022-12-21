@@ -48,6 +48,9 @@ margin-bottom: 20px;
 	.TourStep2 {
 		min-height: 490px;
 	}
+	.presentacionPreferencias {
+		padding: 30px 10px 20px;
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -62,6 +65,7 @@ margin-bottom: 20px;
 
 	.presentacionPreferencias{
 		width: 70%;
+		padding: 30px 20px 20px;
 	}
 }
 
