@@ -36,26 +36,24 @@
 
 .linkALogin {
     margin-top: 10px;
+    font-family: 'Kodchasan';
 }
 
 .linkALogin a,
 a:visited {
     text-decoration: none;
     color: rgb(81, 81, 81);
-    ;
 }
 
 .message {
     min-height: 2.2rem;
     color: red;
-    /* margin-left: 20px; */
 }
 
 @media screen and (min-width: 480px) {
     .register {
         width: 30%;
-        height: 81vh;
-        
+        /* height: 70vh; */
     }
 }
 
