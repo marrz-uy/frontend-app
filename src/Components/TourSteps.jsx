@@ -25,7 +25,7 @@ const steps = [
     content: 'Third-content',
   },
   {
-    title: 'Ver',
+    title: 'Ver Tour',
     content: 'Fourth-content',
   },
   {

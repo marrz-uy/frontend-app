@@ -31,11 +31,12 @@
     border: 1px solid gray;
     border-radius: 5px;
     height: 45px;
-    font-family: sans-serif;
+    font-family: 'Kodchasan';
 }
 
 .linkAregistro {
     margin-top: 10px;
+    font-family: 'Kodchasan';
 }
 
 .linkAregistro a,
@@ -109,11 +110,8 @@ a:visited {
 }
 
 /* laptop/desktop - de 1024px en adelante */
-
 @media screen and (min-width: 480px) {
     .login {
         width: 30%;
-        height: 81vh;
-        
     }
 }

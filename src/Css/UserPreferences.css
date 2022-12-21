@@ -124,14 +124,14 @@ a:visited {
 @media screen and (min-width: 480px) {
     .userProfile {
         text-align: center;
-        margin-top: 14rem;
-        margin-bottom: 8rem;
+        margin-top: 12rem;
+        /* margin-bottom: 8rem; */
         width: 50%;
-        justify-content: center;
+        /* justify-content: center; */
         flex-direction: column;
         align-items: center;
-        padding-bottom: 20px;
-        height: 100vh;
+        /* padding-bottom: 20px; */
+        /* height: 82vh; */
     }
 
 

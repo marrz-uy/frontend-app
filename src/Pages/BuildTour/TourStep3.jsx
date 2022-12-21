@@ -88,8 +88,8 @@ const TourStep3 = () => {
   let chosenItems = ''
   console.log('CHOSEN ITEMS FUERA: ',chosenItems);
   console.log('savedTourItems- final', savedTourItems)
-  // console.log('ITEMS ELEGIDOS PARA TOUR:', columns['01'].items);
   useEffect(() => {
+    //eslint-disable-next-line
     chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
     console.log('CHOSEN ITEMS DENTRO: ',chosenItems);

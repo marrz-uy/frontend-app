@@ -34,7 +34,7 @@
 	gap: 20px;
 	width: 100%;
 	 /* justify-content: space-evenly;  */
-	
+	align-items: center;
 }
 
 #TimeLine .tourCard  {
@@ -105,15 +105,15 @@
 	width: 10px;
 	position: relative;
 	top: 20px;
-	left: 40px;
+	left: 50%;
 	border-radius: 10px;
 }
 
-@media screen and (min-width: 480px) {
-	.dragNDropContainer {
+/* @media screen and (min-width: 480px) { */
+/* 	.dragNDropContainer {
 		max-width: 1200px;
-	}
-}
+	} */
+/* } */
 
 /****************** CARD **********************/
 
@@ -159,4 +159,22 @@
 .dataTour p {
 	font-size: 10px;
 
+}
+
+@media screen and (min-width: 480px) { 
+	.dragNDropContainer {
+		max-width: 338px;
+	}
+}
+
+@media screen and (min-width: 768px) { 
+	.dragNDropContainer {
+		max-width: 614px;
+	}
+}
+
+@media screen and (min-width: 1024px) { 
+	.dragNDropContainer {
+		max-width: 614px;
+	}
 }
