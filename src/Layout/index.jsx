@@ -8,7 +8,7 @@ const Layout = (props) => {
 	console.log(width, height)
   return (
     <div className="layout"
-		style={{minHeigth:height}}
+		// style={{minHeigth:height}}
 		>
       {props.children}
       <Footer />
