@@ -23,7 +23,14 @@
 
 @media screen and (min-width: 480px) {
 	.buildMyTour {
-		margin-top: 120px;
+		margin-top: 140px;
 		min-height: 76vh;
+	}
+}
+
+@media screen and (max-height: 666px) {
+	.buildMyTour {
+		margin-top: 140px;
+		min-height: 20vh;
 	}
 }

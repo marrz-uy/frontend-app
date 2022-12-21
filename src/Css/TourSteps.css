@@ -46,6 +46,14 @@
 
 @media screen and (min-width: 480px) { 
 	.ant-steps-item-title{
+		margin-bottom: 1rem;
+	}
+
+	
+}
+
+@media screen and (min-width: 840px) { 
+	.ant-steps-item-title{
 		display: flex !important;
 		font-size: 16px !important; 
 	}
@@ -54,5 +62,12 @@
 		display: flex !important;
 		justify-content: space-between !important;
 		max-width: 450px !important;
+	}
+}
+
+@media screen and (max-height: 666px) {
+	.steps-content {
+		min-height: 10rem;
+		
 	}
 }

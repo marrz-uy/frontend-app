@@ -83,12 +83,12 @@ const TourStep2 = () => {
             </>
           </div>
         </div>
-        <div className="mensajeInferior">
-          <p>
-            Puede volver al paso anterior y cambiar alguna o todas las
-            preferencias elegidas
-          </p>
-        </div>
+      </div>
+      <div className="mensajeInferior">
+        <p>
+          Puede volver al paso anterior y cambiar alguna o todas las
+          preferencias elegidas
+        </p>
       </div>
     </div>
   );

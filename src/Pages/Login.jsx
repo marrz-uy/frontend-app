@@ -107,7 +107,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'te7xa6MkL9VUHnXzu3o5usVJ2Cn94rFerpfnwhOp',
+        client_secret: 'kUznfaWwtks8lQraJrc1nlKv1yHVUjRO0JyYSN3M',
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })

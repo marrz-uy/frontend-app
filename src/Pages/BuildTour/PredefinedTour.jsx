@@ -47,9 +47,9 @@ const PredefinedTour = ({
           <div className="seccionVerMisTours">
             
             <div className="pageText">
-              <p>
+              <h3>
                 En esta seccion ud podra ver los tours que tenemos para ofrecerle.
-              </p>
+              </h3>
             </div>
           </div>
           <div className="tourList">
@@ -58,11 +58,13 @@ const PredefinedTour = ({
                 <details key={tour.id}>
                   <summary>
                     <span>{tour.nombreTourPredefinido}</span>
+                    <h6>{tour.descripcionTourPredefinido}</h6>
                   </summary>
                   <div className="myToursCard">
                     {/* <div>Inicia a las {hora(tour.horaInicioTour)} hs</div> */}
                     <div>
                       {' '}
+                          <h6 style={{color:'#00699d'}}>Tenemos estos lugares para que visites</h6>
                       {tour?.tour_items?.map((tourItem) => {
                         return (
                           <div key={tourItem.puntoInteresId}>
