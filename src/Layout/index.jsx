@@ -6,6 +6,7 @@ import '../Css/Layout.css';
 const Layout = (props) => {
 	const {width, height } = useScreenSize()
 	console.log(width, height)
+  // console.log(props)
   return (
     <div className="layout"
 		// style={{minHeigth:height}}

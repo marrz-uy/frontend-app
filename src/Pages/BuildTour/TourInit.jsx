@@ -43,8 +43,9 @@ const TourInit = ({
   };
   return (
     <Layout>
+    <div className='backGround'></div>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
-      <div className="touInit">
+      <div className="tourInit">
         <div className="contenedorTitulo">
           <h2>Bienvenidos a </h2>
           <h1>Arma tu tour</h1>
