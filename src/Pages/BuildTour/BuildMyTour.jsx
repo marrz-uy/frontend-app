@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import PageContext from '../../Context/PageContext';
 import { Layout } from '../../Layout';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import UserBar from '../../Pages/UserBar';
+import TourSteps from '../../Components/TourSteps';
 import '../../Css/BuildMyTour.css';
 import '../../Css/userBarClick.css';
-import TourSteps from '../../Components/TourSteps';
 // import { TourProvider } from '../../Context/TourContext';
 
 const BuildMyTour = ({
@@ -14,9 +15,11 @@ const BuildMyTour = ({
   isLoggedIn,
   setIsLoggedIn,
 }) => {
+  const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('tour-preferences');
-  }, [setPage]);
+    setActivePage('tourInit')
+  }, [setPage, setActivePage]);
 
   handleUserBar(userBar);
   return (

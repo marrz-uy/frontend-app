@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import PageContext from '../Context/PageContext';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -18,6 +19,7 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
+  const { setActivePage } = useContext(PageContext);
   handleUserBar(userBar);
   const navigate = useNavigate();
   const { Facebook, Instagram } = destination
@@ -25,17 +27,19 @@ const PuntoInteresInfo = ({
   const [firefox, setFirefox] = useState(false)
 
   useEffect(() => {
+    setActivePage('infoResults')
     var sUsrAg = navigator.userAgent;
     if (sUsrAg.indexOf("Firefox") > -1) {
       setFirefox(true)
     }
-  }, [])
+  }, [setActivePage])
 
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
     setPage('infoResults');
+    
     // eslint-disable-next-line
   }, []);
 

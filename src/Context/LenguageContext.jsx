@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from 'react';
 import { getLanguageStorage } from '../Helpers/GetLenguageStorage';
 import AuthUser from '../Components/AuthUser';
 const LenguageContext = createContext();
-
 const InitialLanguage = getLanguageStorage();
 
 const LenguageProvider = ({ children }) => {

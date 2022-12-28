@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -19,9 +20,11 @@ import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
+   const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('login');
-  }, [setPage]);
+    setActivePage('login')
+  }, [setPage, setActivePage]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
