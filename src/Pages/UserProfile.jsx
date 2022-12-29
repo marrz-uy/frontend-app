@@ -58,7 +58,7 @@ const UserProfile = ({
               <h3>{getUser()}</h3>
             </div>
             <div className="user-profile__data">
-              <h3>{getEmail()}</h3>
+              <h4>{getEmail()}</h4>
             </div>
             {userType === 'feel' ? (
               <div className="divBtnUpdates">
@@ -87,13 +87,13 @@ const UserProfile = ({
 
           <div className="user-profile__links">
             <div className="misPreferencias">
-              <h3>
+              <h2>
                 {filtrarTraduccion(
                   traduccionesBD,
                   'myPreferencesTitle',
                   lenguage
                 )}
-              </h3>
+              </h2>
               <h5>
                 {filtrarTraduccion(
                   traduccionesBD,

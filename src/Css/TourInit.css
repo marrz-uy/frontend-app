@@ -15,8 +15,6 @@
 
 .textBlur {
 	background-color: #ffffffd6;
-	/* width: 100%;
-	text-align: center; */
 }
 
 .pageText {
@@ -72,6 +70,8 @@
 	min-height: 220px;
 	margin-bottom: 2rem;
 }
+
+li { list-style-image: url('../Assets/localizacion.png'); }
 
 details {
 	padding: 1rem;

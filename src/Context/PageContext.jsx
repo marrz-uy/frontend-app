@@ -1,20 +1,15 @@
 import { createContext, useState, useEffect } from 'react';
-import backPredefinedTour from '../Assets/backPredefinedTour.png'
-import backBuildTour from '../Assets/Group_238.png'
+import backBuildTour from '../Assets/backBuildTour.png'
 const PageContext = createContext();
 
 const PageProvider = ({ children }) => {
   const [activePage, setActivePage] = useState('')
   const [backGround, setBackGround] = useState('')
   useEffect(() => {
-    if(activePage !== 'tourInit' || activePage !==' predefinedTour' ) {
-      setBackGround('transparent')
-    }
-    if(activePage === 'tourInit') {
+    if(activePage === 'tourInit' || activePage === 'predefinedTour') {
       setBackGround(backBuildTour)
-    }
-    if(activePage === 'predefinedTour') {
-      setBackGround(backPredefinedTour)
+    }else{
+      setBackGround('transparent')
     }
   }, [activePage])
   

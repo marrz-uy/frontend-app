@@ -18,6 +18,8 @@ import {
 import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
+/*#  VARIABLE DE ENTORNO ruta src/data/config.js */
+import {CLIENT_SECRET} from '../Data/config.js'
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
    const { setActivePage } = useContext(PageContext);
@@ -110,7 +112,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'kUznfaWwtks8lQraJrc1nlKv1yHVUjRO0JyYSN3M',
+        client_secret: CLIENT_SECRET,
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })

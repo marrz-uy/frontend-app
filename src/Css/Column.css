@@ -27,7 +27,6 @@
 	max-width: 20%;
 	display: flex;
 	justify-content: center;
-	background-color: transparent;
 	background-color: white;
 }
 
@@ -46,6 +45,7 @@
 	border-radius: 1500%;
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 }
+
 #TimeLine .draggable  {
 	z-index: 1;
 	max-width: 60px;
@@ -110,12 +110,6 @@
 	left: 50%;
 	border-radius: 10px;
 }
-
-/* @media screen and (min-width: 480px) { */
-/* 	.dragNDropContainer {
-		max-width: 1200px;
-	} */
-/* } */
 
 /****************** CARD **********************/
 
