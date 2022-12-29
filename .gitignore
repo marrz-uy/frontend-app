@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Archivo con variables de entorno
-src/config.js
+src/data/config.js
