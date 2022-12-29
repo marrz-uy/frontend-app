@@ -18,8 +18,9 @@ import {
 import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
-/*#  VARIABLE DE ENTORNO ruta src/data/config.js */
-import {CLIENT_SECRET} from '../Data/config.js'
+
+/*#  VARIABLE DE ENTORNO ruta src/Config/config.js */
+import {CLIENT_SECRET} from '../Config/config.js'
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
    const { setActivePage } = useContext(PageContext);
