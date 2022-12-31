@@ -23,6 +23,7 @@ const PuntoInteresInfo = ({
   handleUserBar(userBar);
   const navigate = useNavigate();
   const { Facebook, Instagram } = destination
+  console.log('DESTINATION', destination)
   
   const [firefox, setFirefox] = useState(false)
 
