@@ -19,7 +19,7 @@ const PredefinedTour = ({
     setPage('predefinedTour');
     setActivePage('predefinedTour');
   }, [setPage, setActivePage]);
-  console.log('PAGE: ', page)
+  console.log('PAGE: ', page);
   const { http } = AuthUser();
 
   const [appTours, setAppTours] = useState();
@@ -49,13 +49,13 @@ const PredefinedTour = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="tourInit">
         <div className="contenedorTitulo">
-          <h2 className='textBlur'>Bienvenidos a </h2>
-          <h1 className='textBlur'>Tours Predefinidos</h1>
+          <h2 className="textBlur">Bienvenidos a </h2>
+          <h1 className="textBlur">Tours Predefinidos</h1>
         </div>
         <div className="tourSecciones">
           <div className="seccionVerMisTours">
             <div className="pageText">
-              <h3 className='textBlur'>
+              <h3 className="textBlur">
                 En esta seccion ud podra ver los tours que tenemos para
                 ofrecerle.
               </h3>

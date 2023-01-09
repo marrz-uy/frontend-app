@@ -20,13 +20,13 @@ import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
 /*#  VARIABLE DE ENTORNO ruta src/Config/config.js */
-import {CLIENT_SECRET} from '../Config/config.js'
+import { CLIENT_SECRET } from '../Config/config.js';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
-   const { setActivePage } = useContext(PageContext);
+  const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('login');
-    setActivePage('login')
+    setActivePage('login');
   }, [setPage, setActivePage]);
 
   const [email, setEmail] = useState('');
@@ -127,8 +127,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         console.error(`Error en catch: ${error}`);
       });
 
-    let emailGoogleUser = sessionStorage.getItem('email');
-    console.log('emailGoogleUser:', emailGoogleUser);
+    // let emailGoogleUser = sessionStorage.getItem('email');
+    // console.log('emailGoogleUser:', emailGoogleUser);
 
     traerIduserGoogle();
     navigate('/');
