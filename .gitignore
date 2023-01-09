@@ -25,3 +25,4 @@ yarn-error.log*
 
 # Archivo con variable de entorno
 /src/Config/config.js
+/Config/config.js
