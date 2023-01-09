@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TourContext from '../../Context/TourContext';
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import Swal from 'sweetalert2';
@@ -29,6 +31,7 @@ const onDragEnd = (result, columns, setColumns) => {
     });
   } else {
     const column = columns[source.droppableId];
+    const { traduccionesBD, lenguage } = useContext(LenguageContext);
     const copiedItems = [...column.items];
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
@@ -99,16 +102,15 @@ const TourStep3 = () => {
     <div className="tourStep3">
       <div className="descripcionTourStep3">
         <p className="descripcionTourStep3Text">
-          Arrastre sus puntos de interes hacia la linea de tiempo para comenzar
-          a armar su tour.
+        {filtrarTraduccion(traduccionesBD,'dragPointsInterest',lenguage)}
           <button className="btnInfoTour" onClick={handleInfoTour}>
-            Info Tour
+          {filtrarTraduccion(traduccionesBD,'tourInfo',lenguage)}
           </button>
         </p>
       </div>
       <div className="titulosColumnas">
         <div>Tour</div>
-        <div>Puntos de Interes</div>
+        <div>{filtrarTraduccion(traduccionesBD,'pointsInterest',lenguage)}</div>
       </div>
       <div className="dragNDropContainer">
         <DragDropContext

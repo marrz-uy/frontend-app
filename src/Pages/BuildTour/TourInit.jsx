@@ -49,23 +49,23 @@ const TourInit = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="touInit">
         <div className="contenedorTitulo">
-          <h2>Bienvenidos a </h2>
-          <h1>Arma tu tour</h1>
+          <h2>{filtrarTraduccion(traduccionesBD,'welcomeTo',lenguage)}: </h2>
+          <h1>{filtrarTraduccion(traduccionesBD,'splashScreenTextSup',lenguage)}</h1>
         </div>
         <div className="pageText">
-          <p>En esta seccion ud podra crear sus propios tours.</p>
+          <p>{filtrarTraduccion(traduccionesBD,'yourOwnTours',lenguage)}</p>
         </div>
         <div className="tourSecciones">
           <Link to="/buildTour">
-            <div className="seccionCrearTour">Crear tour</div>
+            <div className="seccionCrearTour">{filtrarTraduccion(traduccionesBD,'createTour',lenguage)}</div>
           </Link>
           <div className="seccionVerMisTours">
             <div className="contenedorTitulo">
-              <h1>Ver mis tours</h1>
+              <h1>{filtrarTraduccion(traduccionesBD,'seeMyTours',lenguage)}</h1>
             </div>
             <div className="pageText">
               <p>
-                En esta seccion ud podra ver los tours que creo anteriormente.
+              {filtrarTraduccion(traduccionesBD,'previouslyTours',lenguage)}
               </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ const TourInit = ({
                     <span>{tour.nombreTour}</span>
                   </summary>
                   <div className="myToursCard">
-                    <div>Inicia a las {hora(tour.horaInicioTour)} hs</div>
+                    <div>{filtrarTraduccion(traduccionesBD,'beginsAt',lenguage)} {hora(tour.horaInicioTour)} hs</div>
                     <div>
                       {' '}
                       {tour?.tour_items?.map((tourItem) => {
