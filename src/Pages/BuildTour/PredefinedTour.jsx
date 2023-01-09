@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../../Layout';
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from '../../Components/AuthUser';
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
@@ -15,7 +17,7 @@ const PredefinedTour = ({
     setPage('tourInit');
   }, [setPage]);
   const { http } = AuthUser();
-
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const [appTours, setAppTours] = useState();
   useEffect(() => {
@@ -48,7 +50,7 @@ const PredefinedTour = ({
             
             <div className="pageText">
               <h3>
-                En esta seccion ud podra ver los tours que tenemos para ofrecerle.
+              {filtrarTraduccion(traduccionesBD,'predefinedTour',lenguage)}
               </h3>
             </div>
           </div>
@@ -64,7 +66,7 @@ const PredefinedTour = ({
                     {/* <div>Inicia a las {hora(tour.horaInicioTour)} hs</div> */}
                     <div>
                       {' '}
-                          <h6 style={{color:'#00699d'}}>Tenemos estos lugares para que visites</h6>
+                          <h6 style={{color:'#00699d'}}>{filtrarTraduccion(traduccionesBD,'predefinedPlaces',lenguage)}</h6>
                       {tour?.tour_items?.map((tourItem) => {
                         return (
                           <div key={tourItem.puntoInteresId}>

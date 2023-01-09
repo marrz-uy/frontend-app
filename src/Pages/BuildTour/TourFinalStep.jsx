@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TourContext from '../../Context/TourContext';
 import '../../Css/TourFinalStep.css';
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 
 const TourFinalStep = () => {
   const { tourPreferences, savedTourItems, setDataTourForSave } =
@@ -10,6 +12,7 @@ const TourFinalStep = () => {
 
   const [tourName, setTourName] = useState('');
   const [pInteresString, setPInteresString] = useState('');
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   function getIdString(objects) {
     let idString = '';
@@ -36,7 +39,7 @@ const TourFinalStep = () => {
     <div className="tourFinalStep">
       <div className="descripcionTourFinalStep">
         <h1 className="descripcionTourFinalStepText">
-          Elija un nombre para su tour
+        {filtrarTraduccion(traduccionesBD,'tourName',lenguage)}
         </h1>
         <div className="inputDivTourFinalStep">
           <input

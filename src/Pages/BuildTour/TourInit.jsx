@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../../Layout';
 import { Link } from 'react-router-dom';
-import AuthUser from '../../Components/AuthUser';
+import AuthUser from '../../Components/AuthUser'
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';;
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import '../../Css/TourInit.css';
@@ -19,6 +21,7 @@ const TourInit = ({
   const { http } = AuthUser();
 
   const Id = sessionStorage.getItem('id');
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const [misTours, setMisTours] = useState();
   useEffect(() => {
