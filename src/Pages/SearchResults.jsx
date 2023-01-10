@@ -53,6 +53,7 @@ const SearchResults = ({
     items?.last_page,
     datos?.last_page
   );
+
   // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
@@ -160,6 +161,9 @@ const SearchResults = ({
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
 
+  console.log(datos);
+  console.log(datos.Tipo);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -168,10 +172,10 @@ const SearchResults = ({
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
             : `${datos.total} ${filtrarTraduccion(
-                traduccionesBD,
-                'resultsFor',
-                lenguage
-              )} ${text}, pagina ${datos.current_page}`}
+              traduccionesBD,
+              'resultsFor',
+              lenguage
+            )} ${text}, pagina ${datos.current_page}`}
         </h6>
         {latitud && longitud ? (
           <div className="filtrarDistancia">
@@ -228,7 +232,8 @@ const SearchResults = ({
                   fechaFin={dato.FechaFin}
                   horaInicio={dato.HoraDeApertura}
                   horaFin={dato.HoraDeCierre}
-                  tipoEvento={dato.Tipo}
+                  tipoEvento={dato.TipoEvento}
+                  tipo={dato.Tipo}
                   caracteristicas={dato.Contacto}
                   imagen={dato.Imagen}
                   setDestination={setDestination}
