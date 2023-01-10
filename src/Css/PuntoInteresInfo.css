@@ -232,10 +232,20 @@
     display: flex;
     width: 100%;
     height: 100%;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
     gap: 5px;
+}
+
+.puntoInteres__info__social__masinfo {
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    /* height: 100%; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .puntoInteres__info__social h2 {
@@ -263,7 +273,308 @@
     }
 }
 
+.puntoInteres__especificaciones {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFDFD;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones {
+        display: flex;
+        flex-direction: row;
+        grid-column: 1 / 6;
+        gap: 2rem;
+        /* height: 100%; */
+        background-color: #FFFDFD;
+        /* background-color: black; */
+        border: 1px solid rgb(225, 225, 225, 0.7);
+        padding: 1rem 1.4rem;
+        margin: 1rem;
+        margin-top: -10rem;
+        height: 500px;
+    }
+}
+
+.puntoInteres__especificaciones h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
+.puntoInteres__especificaciones__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.puntoInteres__especificaciones__info h2 {
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__info h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__info h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__info h2 {
+        font-size: 1.6rem;
+    }
+}
+
+.puntoInteres__especificaciones__info p {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 300;
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__info p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__info p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__info p {
+        font-size: 1.4rem;
+    }
+}
+
+.puntoInteres__especificaciones__info p span {
+    font-weight: 700;
+}
+
+.puntoInteres__especificaciones__datos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* gap: ; */
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__datos {
+        display: unset;
+    }
+}
+
+.puntoInteres__especificaciones__datos1 {
+    grid-column: 1 /2;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__datos1 {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 5rem;
+        margin-left: 5rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__datos1 {
+        flex-direction: row;
+        gap: 1.5rem;
+        margin-top: 5rem;
+        margin-left: 5rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__datos1 {
+        flex-direction: row;
+        gap: 2rem;
+        margin-top: 5rem;
+        margin-left: 5rem;
+    }
+}
+
+
+
+.puntoInteres__especificaciones__datos2 {
+    grid-column: 2 /3;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+
+}
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__datos2 {
+        flex-direction: row;
+        margin-top: 1rem;
+        margin-left: 5rem;
+    }
+}
+
+.puntoInteres__especificaciones__datos p {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 300;
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__datos p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__datos p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__datos p {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .puntoInteres__especificaciones__datos p {
+        font-size: 1.4rem;
+    }
+}
+
+.puntoInteres__especificaciones__datos p span {
+    font-weight: 700;
+}
 
 .puntoInteres__info__mapa {}
 
 #mapa {}
+
+/* Gastronomia */
+
+.puntoInteres__especificaciones__gastronomia {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / 6;
+    background-color: #FFFDFD;
+    padding: 1rem;
+    gap: 1rem;
+    height: 500px;
+}
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__gastronomia {
+        display: flex;
+        flex-direction: column;
+        grid-column: 1 / 6;
+        gap: 2rem;
+        /* height: 100%; */
+        background-color: #FFFDFD;
+        /* background-color: black; */
+        border: 1px solid rgb(225, 225, 225, 0.7);
+        padding: 1rem 1.4rem;
+        margin: 1rem;
+        margin-top: -10rem;
+        height: 500px;
+    }
+}
+
+.puntoInteres__especificaciones__info__gastronomia {
+    display: flex;
+}
+
+.puntoInteres__especificaciones__info__gastronomia h2 {
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__info__gastronomia h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__info__gastronomia h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__info__gastronomia h2 {
+        font-size: 1.6rem;
+    }
+}
+
+.puntoInteres__especificaciones__datos__gastronomia {
+    display: flex;
+    gap: 1rem;
+}
+
+.puntoInteres__especificaciones__datos__gastronomia p {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 300;
+}
+
+
+@media screen and (min-width: 600px) {
+    .puntoInteres__especificaciones__datos__gastronomia p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .puntoInteres__especificaciones__datos__gastronomia p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .puntoInteres__especificaciones__datos__gastronomia p {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .puntoInteres__especificaciones__datos__gastronomia p {
+        font-size: 1.4rem;
+    }
+}
+
+.puntoInteres__especificaciones__datos__gastronomia p span {
+    font-weight: 700;
+}

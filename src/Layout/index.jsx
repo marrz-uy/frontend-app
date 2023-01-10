@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import useScreenSize from '../Helpers/ScreenSize';
 import '../Css/Layout.css';
+
 const Layout = (props) => {
 	const {width, height } = useScreenSize()
 	console.log(width, height)
