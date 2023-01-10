@@ -11,24 +11,19 @@ import '../Css/userBarClick.css';
 
 const SearchResults = ({
   items,
-  setItems,
   setPage,
   text,
-  setText,
   userBar,
   setIsLoggedIn,
   isLoggedIn,
   setUserBar,
   searchType,
-  setSearchType,
   categoryName,
-  setCategoryName,
   setDestination,
   loaded,
   latitud,
   longitud,
 }) => {
-  // const [distLabel, setDistLabel] = useState('Total');
   const { http } = AuthUser();
 
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -124,10 +119,6 @@ const SearchResults = ({
   };
 
   const handleDistance = (e) => {
-    // console.log('%cCLICK HANDLEDISTANCE:', 'color: orange;');
-    // console.log('%cCATEGORY NAME:', 'color: violet;', categoryName);
-    // console.log('%cTEXT RESULTS HANDLEDISTANCIA', 'color: pink;', text);
-
     if (text) {
       e.preventDefault();
 
@@ -146,7 +137,6 @@ const SearchResults = ({
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
   };
-  // console.log('DISTLABEL 3->', distLabel * 1000);
 
   handleUserBar(userBar);
 
@@ -172,10 +162,10 @@ const SearchResults = ({
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
             : `${datos.total} ${filtrarTraduccion(
-              traduccionesBD,
-              'resultsFor',
-              lenguage
-            )} ${text}, pagina ${datos.current_page}`}
+                traduccionesBD,
+                'resultsFor',
+                lenguage
+              )} ${text}, pagina ${datos.current_page}`}
         </h6>
         {latitud && longitud ? (
           <div className="filtrarDistancia">
@@ -195,7 +185,7 @@ const SearchResults = ({
                 style={getBackgroundSize()}
                 onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
               ></input>
-              <div className='divKilometros'>
+              <div className="divKilometros">
                 <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
               </div>
             </div>
@@ -208,8 +198,16 @@ const SearchResults = ({
           </div>
         ) : (
           <div className="sinGeolocalizacion">
-            <h5>{filtrarTraduccion(traduccionesBD, 'localizationNotSupported', lenguage)}</h5>
-            <h6>{filtrarTraduccion(traduccionesBD, 'reloadApplication', lenguage)}</h6>
+            <h5>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'localizationNotSupported',
+                lenguage
+              )}
+            </h5>
+            <h6>
+              {filtrarTraduccion(traduccionesBD, 'reloadApplication', lenguage)}
+            </h6>
           </div>
         )}
 
