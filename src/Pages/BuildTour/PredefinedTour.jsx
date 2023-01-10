@@ -25,7 +25,6 @@ const PredefinedTour = ({
   console.log('PAGE: ', page);
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  const [appTours, setAppTours] = useState();
 
   useEffect(() => {
     http
@@ -50,9 +49,12 @@ const PredefinedTour = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="tourInit">
         <div className="contenedorTitulo">
-          <h2 className="textBlur"> {filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)} </h2>
+          <h2 className="textBlur">
+            {' '}
+            {filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)}{' '}
+          </h2>
           <h1 className="textBlur">
-            {filtrarTraduccion(traduccionesBD, 'predefinedTour', lenguage)}
+            {filtrarTraduccion(traduccionesBD, 'predefinedTourTitle', lenguage)}
           </h1>
         </div>
         <div className="tourSecciones">

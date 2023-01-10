@@ -1,3 +1,0 @@
-const CLIENT_SECRET = 'GcPeSv8sHMaA0biXWCPjywY8Gc7LV5bbnK8PjEx6';
-
-export { CLIENT_SECRET };
