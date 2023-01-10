@@ -207,7 +207,7 @@
     display: none;
 }
 
-.locationIcon:hover > .hideActive {
+.locationIcon:hover>.hideActive {
     display: flex;
     font-size: 11px;
     z-index: 100;
@@ -218,7 +218,7 @@
     right: -30px;
 }
 
-.locationIcon:hover > .hideInactive {
+.locationIcon:hover>.hideInactive {
     display: flex;
     font-size: 11px;
     z-index: 100;
@@ -379,12 +379,12 @@
         text-align: center;
     }
 
-    .locationIcon:hover > .hideActive {
+    .locationIcon:hover>.hideActive {
         right: -1.5rem;
         top: 0.37rem
     }
 
-    .locationIcon:hover > .hideInactive {
+    .locationIcon:hover>.hideInactive {
         right: -1.5rem;
         top: 0.37rem
     }
@@ -403,8 +403,8 @@
 
 @media screen and (min-width: 1024px) {
     .navbar {
-        min-height: 110px;
-        max-height: 110px;
+        min-height: 115px;
+        max-height: 115px;
     }
 
     #feelLogoImg {
@@ -421,7 +421,7 @@
 
 @media screen and (min-width: 1224px) and (orientation: landscape) {
     .navbar {
-        min-height: 110px;
+        min-height: 115px;
     }
 
     .contentNavbar {
@@ -439,18 +439,18 @@
         width: 1.3rem;
     }
 
-    .locationIcon:hover > .hideActive {
+    .locationIcon:hover>.hideActive {
         right: -3.5rem;
         top: 2.5rem
     }
 
-    .locationIcon:hover > .hideInactive {
+    .locationIcon:hover>.hideInactive {
         right: -3.5rem;
         top: 2.5rem
     }
 }
 
-@media screen and (min-width: 1800px){
+@media screen and (min-width: 1800px) {
     .locationIcon {
         width: 2rem;
         position: relative;
@@ -462,12 +462,12 @@
         width: 1.3rem;
     }
 
-    .locationIcon:hover > .hideActive {
+    .locationIcon:hover>.hideActive {
         right: -6.5rem;
         top: 2.5rem
     }
 
-    .locationIcon:hover > .hideInactive {
+    .locationIcon:hover>.hideInactive {
         right: -6.5rem;
         top: 2.5rem
     }

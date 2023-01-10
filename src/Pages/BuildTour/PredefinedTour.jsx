@@ -15,6 +15,7 @@ const PredefinedTour = ({
   setUserBar,
 }) => {
   const { setActivePage } = useContext(PageContext);
+  const [appTours, setAppTours] = useState();
   useEffect(() => {
     setPage('predefinedTour');
     setActivePage('predefinedTour');
@@ -22,21 +23,17 @@ const PredefinedTour = ({
   console.log('PAGE: ', page);
   const { http } = AuthUser();
 
-  const [appTours, setAppTours] = useState();
   useEffect(() => {
     http
       .get(`/tourPredefinido`, {})
       .then((response) => {
-        const toursData = response?.data['0'];
-        console.log('%cTOURS APP - tourPredef:', 'color: violet;', toursData);
-
-        setAppTours(toursData);
+        setAppTours(response?.data['0']);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     // eslint-disable-next-line
   }, []);
 
-  console.log('MIS TOURS - var: ', appTours);
+  console.log('MIS TOURS: ', appTours);
   handleUserBar(userBar);
 
   const hora = (str) => {
