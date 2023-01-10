@@ -38,6 +38,7 @@
 
 .data h3 {
 	max-width: 245px;
+	word-wrap: break-word;
 }
 
 h2,

@@ -107,7 +107,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'muY39UpkSTLIyRwBM1CXRO2QKgeqzIm5U6dkClD0',
+        client_secret: 'kUznfaWwtks8lQraJrc1nlKv1yHVUjRO0JyYSN3M',
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })
@@ -149,7 +149,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="login">
         <form onSubmit={submitLogin}>
-          <div>
+          <div className="titulo">
             <h2 className="title">
               {filtrarTraduccion(traduccionesBD, 'loginTitle', lenguage)}
             </h2>
@@ -192,11 +192,15 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           <Separador />
           <GoogleLogin
             clientId={clientId}
-            buttonText="Log in with Google"
+            buttonText={filtrarTraduccion(
+              traduccionesBD,
+              'loginWhithGoole',
+              lenguage
+            )}
             onSuccess={handleOAuth}
             onFailure={handleFailure}
             cookiePolicy={'single_host_origin'}
-          // isSignedIn={true}
+            // isSignedIn={true}
           ></GoogleLogin>
           <div className="linkAregistro">
             <Link to="/register">

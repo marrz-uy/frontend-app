@@ -1,0 +1,60 @@
+.descripcionTourStep3Text {
+	font-size: 14px;
+}
+
+.tourStep3 {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 422px;
+}
+
+.descripcionTourStep3 {
+	display: flex;
+	/* justify-content: space-between; */
+}
+
+.descripcionTourStep3Text{
+	line-height: 18px;
+}
+
+.btnInfoTour {
+	margin-left: 20px;
+	border: 1px solid rgb(181, 181, 181);
+	border-radius: 3px;
+	padding: 1px 2px
+}
+
+.btnInfoTour:hover {
+	transform: scale(1.1);
+	background-color:rgb(3, 87, 198);
+	color: aliceblue;
+}
+
+.titulosColumnas{
+	margin: 10px 0;
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	border-radius: 3px;
+	color:rgb(92, 92, 92)
+}
+
+@media screen and (min-width: 480px) {
+	.descripcionTourStep3Text {
+		margin-bottom: .8rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.tourStep3{
+		min-height: 500px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.tourStep3{
+		min-height: 500px;
+	}
+}

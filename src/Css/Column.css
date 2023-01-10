@@ -1,0 +1,180 @@
+.dragNDropContainer {
+	width: 100%;
+	max-width: 338px;
+	height: 50vh;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	gap: 5px
+}
+
+.seccion {
+	/* margin-top: 10px; */
+	min-width: 30%;
+	display: flex;
+	border-radius: 4px;
+	justify-content: center;
+	min-height: 100%;
+}
+
+.draggable {
+	border: none;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+#TimeLine {
+	max-width: 20%;
+	display: flex;
+	justify-content: center;
+	background-color: transparent;
+}
+
+#TimeLine > .droppable {
+	gap: 20px;
+	width: 100%;
+	 /* justify-content: space-evenly;  */
+	align-items: center;
+}
+
+#TimeLine .tourCard  {
+	background-color: transparent;
+	border: none;
+	display: flex;
+	justify-content: center;
+	border-radius: 1500%;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+}
+#TimeLine .draggable  {
+	z-index: 1;
+	max-width: 60px;
+	border-radius: 50%;
+}
+
+#TimeLine .tourCard  .dataTour{
+	display: none;
+}
+
+#TimeLine .tourCard  span{
+	display: none;
+}
+
+#TimeLine .tourCard  .divImgTour .imagenCardTour  {
+	display: flex;
+	border: 5px solid #026ce4;
+	border-radius: 90%;
+	width: 60px;
+	height: 60px;
+}
+
+#Items {
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	border: 1px solid rgb(234, 234, 234);
+} 
+
+#Items > .droppable {
+	width: 100%;
+	padding: 5px;
+	
+}
+
+#Items .droppable .tourCard h6 {
+	color: #025fca;
+	
+}
+
+#Items .timeLineVertical{
+	display: none;
+}
+
+.droppable {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 5px;
+	overflow-x: hidden;
+	border-radius: 5px;
+}
+
+.timeLineVertical{
+	background-color: #026ce4;
+	height: 90%;
+	width: 10px;
+	position: relative;
+	top: 20px;
+	left: 50%;
+	border-radius: 10px;
+}
+
+/* @media screen and (min-width: 480px) { */
+/* 	.dragNDropContainer {
+		max-width: 1200px;
+	} */
+/* } */
+
+/****************** CARD **********************/
+
+.tourCard {
+	border: 1px solid rgb(236, 236, 236);
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+	border-radius: 5px;
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	height: 50px;
+	max-height: 25vh;
+	min-height: 60px;
+	background-color: rgb(255, 255, 255);
+	cursor: grab;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.divImgTour {
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+
+.imagenCardTour {
+	border-radius: 5px;
+	max-width: 60px;
+	height: auto;
+	background-size: cover;
+}
+
+
+.dataTour {
+	margin-left: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.dataTour p {
+	font-size: 10px;
+
+}
+
+@media screen and (min-width: 480px) { 
+	.dragNDropContainer {
+		max-width: 338px;
+	}
+}
+
+@media screen and (min-width: 768px) { 
+	.dragNDropContainer {
+		max-width: 614px;
+	}
+}
+
+@media screen and (min-width: 1024px) { 
+	.dragNDropContainer {
+		max-width: 614px;
+	}
+}

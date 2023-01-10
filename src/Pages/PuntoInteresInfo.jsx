@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
-import AuthUser from '../Components/AuthUser';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';
 import SliderMain from '../Components/SliderMain'
-import { Slider } from '../Components/Slider'
 import '../Css/PuntoInteresInfo.css';
 import '../Css/userBarClick.css';
 import '../Css/Slider.css';
 import '../Css/SliderPuntoInteresInfo.css';
-
-
-
 
 const PuntoInteresInfo = ({
   setUserBar,
