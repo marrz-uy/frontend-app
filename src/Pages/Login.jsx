@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -18,10 +19,15 @@ import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
+/*#  VARIABLE DE ENTORNO ruta src/Config/config.js */
+import { CLIENT_SECRET } from '../Config/config.js';
+
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
+  const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('login');
-  }, [setPage]);
+    setActivePage('login');
+  }, [setPage, setActivePage]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -107,7 +113,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/oauth/token', {
         grant_type: 'social',
         client_id: '2',
-        client_secret: 'UDncnvtL20uFF3IK87z4zzgUg6YLxv7CZ9FNEaXh',
+
+        client_secret: CLIENT_SECRET,
         provider: 'google',
         access_token: googleUser.tokenObj.access_token,
       })
@@ -121,8 +128,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         console.error(`Error en catch: ${error}`);
       });
 
-    let emailGoogleUser = sessionStorage.getItem('email');
-    console.log('emailGoogleUser:', emailGoogleUser);
+    // let emailGoogleUser = sessionStorage.getItem('email');
+    // console.log('emailGoogleUser:', emailGoogleUser);
 
     traerIduserGoogle();
     navigate('/');

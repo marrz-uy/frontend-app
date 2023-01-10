@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import Swal from 'sweetalert2';
 import AuthUser from '../Components/AuthUser';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
@@ -39,14 +40,7 @@ const Principal = ({
   latitud,
   longitud,
 }) => {
-  // console.log(
-  //   'LOCATION PRINCIPAL: ',
-  //   loaded,
-  //   latitud,
-  //   longitud
-  // );
-
-
+  const { setActivePage } = useContext(PageContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -67,12 +61,13 @@ const Principal = ({
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
 
   useEffect(() => {
+    setActivePage('principal');
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
     }
-  }, [loaded, latitud, longitud]);
+  }, [loaded, latitud, longitud, setActivePage]);
 
   const getData = (categoria) => {
     http
@@ -236,7 +231,6 @@ const Principal = ({
             </div>
           </div>
         </div>
-
         {seeAll || width > 809 ? (
           <>
             <div className="containerCategories">
@@ -273,7 +267,6 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-
               <div
                 className="categories"
                 onClick={() => handleCategories('Servicios Esenciales')}

@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link, useNavigate } from 'react-router-dom';
 import '../Css/UserProfile.css';
@@ -17,6 +18,7 @@ const UserProfile = ({
   userBar,
   isLoggedIn,
 }) => {
+  const { setActivePage } = useContext(PageContext);
   const { logout, token, getUser, getEmail, getUserProfile } = AuthUser();
   const navigate = useNavigate();
   const [perfilUsuario, setPerfilUsuario] = useState('');
@@ -26,6 +28,7 @@ const UserProfile = ({
 
   useEffect(() => {
     setPage('userProfile');
+    setActivePage('userProfile');
     setPerfilUsuario(getUserProfile());
     // eslint-disable-next-line
   }, [setLenguage, setPage, setPerfilUsuario]);
@@ -55,7 +58,7 @@ const UserProfile = ({
               <h3>{getUser()}</h3>
             </div>
             <div className="user-profile__data">
-              <h3>{getEmail()}</h3>
+              <h4>{getEmail()}</h4>
             </div>
             {userType === 'feel' ? (
               <div className="divBtnUpdates">
@@ -84,13 +87,13 @@ const UserProfile = ({
 
           <div className="user-profile__links">
             <div className="misPreferencias">
-              <h3>
+              <h2>
                 {filtrarTraduccion(
                   traduccionesBD,
                   'myPreferencesTitle',
                   lenguage
                 )}
-              </h3>
+              </h2>
               <h5>
                 {filtrarTraduccion(
                   traduccionesBD,
