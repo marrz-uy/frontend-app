@@ -6,8 +6,6 @@ import '../Css/Layout.css';
 
 const Layout = (props) => {
   const { activePage, backGround } = useContext(PageContext);
-  console.log('ACTIVE PAGE: ', activePage);
-  // console.log('BACKGROUND: ', backGround)
 
   return (
     <div className="layout" style={{ backgroundImage: `url(${backGround})` }}>
