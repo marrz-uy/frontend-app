@@ -114,7 +114,7 @@ const Principal = ({
         <div className="containerCategories">
           <div
             className="categories"
-            // onClick={() => handleCategories('Tours Predefinidos')}
+          // onClick={() => handleCategories('Tours Predefinidos')}
           >
             <div className="categoriesImage">
               <img src={predefTour} alt="hotel"></img>
@@ -131,7 +131,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-            // onClick={() => handleCategories('Armar tour')}
+          // onClick={() => handleCategories('Armar tour')}
           >
             <div className="categoriesImage">
               <img src={setYourTour} alt="setYourTour"></img>
@@ -148,7 +148,7 @@ const Principal = ({
           </div>
           <div
             className="categories"
-             onClick={() => handleCategories('Alojamiento')}
+            onClick={() => handleCategories('Alojamiento')}
           >
             <div className="categoriesImage">
               <img src={hotelImg} alt="hotel"></img>
@@ -218,7 +218,7 @@ const Principal = ({
               </div>
 
               <div className="categories"
-              onClick={() => handleCategories('Actividades Nocturnas')}
+                onClick={() => handleCategories('Actividades Nocturnas')}
               >
                 <div className="categoriesImage">
                   <img
@@ -258,7 +258,7 @@ const Principal = ({
                 </div>
               </div>
               <div className="categories"
-              onClick={() => handleCategories('Actividades Infantiles')}
+                onClick={() => handleCategories('Actividades Infantiles')}
               >
                 <div className="categoriesImage">
                   <img
@@ -286,10 +286,10 @@ const Principal = ({
             {btnText === true
               ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
               : filtrarTraduccion(
-                  traduccionesBD,
-                  'seeMoreCategories',
-                  lenguage
-                )}
+                traduccionesBD,
+                'seeMoreCategories',
+                lenguage
+              )}
           </button>
         </div>
       </div>
