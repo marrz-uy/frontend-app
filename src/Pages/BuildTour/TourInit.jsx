@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Layout } from '../../Layout';
 import { Link } from 'react-router-dom';
 import AuthUser from '../../Components/AuthUser';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import '../../Css/TourInit.css';
@@ -19,6 +21,7 @@ const TourInit = ({
   const { http } = AuthUser();
 
   const Id = sessionStorage.getItem('id');
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const [misTours, setMisTours] = useState();
   useEffect(() => {
@@ -31,7 +34,7 @@ const TourInit = ({
         setMisTours(toursData);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   console.log('MIS TOURS - var: ', misTours);
@@ -46,23 +49,29 @@ const TourInit = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="touInit">
         <div className="contenedorTitulo">
-          <h2>Bienvenidos a </h2>
-          <h1>Arma tu tour</h1>
+          <h2>{filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)}: </h2>
+          <h1>
+            {filtrarTraduccion(traduccionesBD, 'splashScreenTextSup', lenguage)}
+          </h1>
         </div>
         <div className="pageText">
-          <p>En esta seccion ud podra crear sus propios tours.</p>
+          <p>{filtrarTraduccion(traduccionesBD, 'yourOwnTours', lenguage)}</p>
         </div>
         <div className="tourSecciones">
           <Link to="/buildTour">
-            <div className="seccionCrearTour">Crear tour</div>
+            <div className="seccionCrearTour">
+              {filtrarTraduccion(traduccionesBD, 'createTour', lenguage)}
+            </div>
           </Link>
           <div className="seccionVerMisTours">
             <div className="contenedorTitulo">
-              <h1>Ver mis tours</h1>
+              <h1>
+                {filtrarTraduccion(traduccionesBD, 'seeMyTours', lenguage)}
+              </h1>
             </div>
             <div className="pageText">
               <p>
-                En esta seccion ud podra ver los tours que creo anteriormente.
+                {filtrarTraduccion(traduccionesBD, 'previouslyTours', lenguage)}
               </p>
             </div>
           </div>
@@ -74,7 +83,10 @@ const TourInit = ({
                     <span>{tour.nombreTour}</span>
                   </summary>
                   <div className="myToursCard">
-                    <div>Inicia a las {hora(tour.horaInicioTour)} hs</div>
+                    <div>
+                      {filtrarTraduccion(traduccionesBD, 'beginsAt', lenguage)}{' '}
+                      {hora(tour.horaInicioTour)} hs
+                    </div>
                     <div>
                       {' '}
                       {tour?.tour_items?.map((tourItem) => {
