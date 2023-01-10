@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Layout } from '../../Layout';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import UserBar from '../../Pages/UserBar';
 import '../../Css/BuildMyTour.css';
@@ -14,6 +16,7 @@ const BuildMyTour = ({
   isLoggedIn,
   setIsLoggedIn,
 }) => {
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   useEffect(() => {
     setPage('tour-preferences');
   }, [setPage]);
@@ -24,7 +27,9 @@ const BuildMyTour = ({
       <div className="buildMyTour">
         <div className="userbar-click" onClick={() => setUserBar(false)}></div>
         <div className="tituloTourPreferences">
-          <h2 className="tituloTourPreferencesText">Armar Tour</h2>
+          <h2 className="tituloTourPreferencesText">
+            {filtrarTraduccion(traduccionesBD, 'buildTour', lenguage)}
+          </h2>
         </div>
         <TourSteps />
       </div>

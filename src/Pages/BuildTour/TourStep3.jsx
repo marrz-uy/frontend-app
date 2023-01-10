@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TourContext from '../../Context/TourContext';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from '../../Components/TourComponents/Column';
 import Swal from 'sweetalert2';
@@ -29,6 +31,7 @@ const onDragEnd = (result, columns, setColumns) => {
     });
   } else {
     const column = columns[source.droppableId];
+
     const copiedItems = [...column.items];
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
@@ -43,8 +46,13 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 const TourStep3 = () => {
-  const { tourPreferences, itemsParaTourDB, setSavedTourItems, savedTourItems } =
-    useContext(TourContext);
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const {
+    tourPreferences,
+    itemsParaTourDB,
+    setSavedTourItems,
+    savedTourItems,
+  } = useContext(TourContext);
 
   const status = {
     '01': {
@@ -72,7 +80,7 @@ const TourStep3 = () => {
   const handleInfoTour = () => {
     Swal.fire({
       titleText: 'Informacion de su tour',
-      html: textoModal, /* var afuera */
+      html: textoModal /* var afuera */,
       showConfirmButton: true,
       confirmButtonColor: '#015abb',
       showClass: {
@@ -85,30 +93,31 @@ const TourStep3 = () => {
   };
 
   console.log('COLUMNS:', columns);
-  let chosenItems = ''
-  console.log('CHOSEN ITEMS FUERA: ',chosenItems);
-  console.log('savedTourItems- final', savedTourItems)
+  let chosenItems = '';
+  console.log('CHOSEN ITEMS FUERA: ', chosenItems);
+  console.log('savedTourItems- final', savedTourItems);
   useEffect(() => {
     //eslint-disable-next-line
     chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
-    console.log('CHOSEN ITEMS DENTRO: ',chosenItems);
+    console.log('CHOSEN ITEMS DENTRO: ', chosenItems);
   }, [columns, setSavedTourItems]);
 
   return (
     <div className="tourStep3">
       <div className="descripcionTourStep3">
         <p className="descripcionTourStep3Text">
-          Arrastre sus puntos de interes hacia la linea de tiempo para comenzar
-          a armar su tour.
+          {filtrarTraduccion(traduccionesBD, 'dragPointsInterest', lenguage)}
           <button className="btnInfoTour" onClick={handleInfoTour}>
-            Info Tour
+            {filtrarTraduccion(traduccionesBD, 'tourInfo', lenguage)}
           </button>
         </p>
       </div>
       <div className="titulosColumnas">
         <div>Tour</div>
-        <div>Puntos de Interes</div>
+        <div>
+          {filtrarTraduccion(traduccionesBD, 'pointsInterest', lenguage)}
+        </div>
       </div>
       <div className="dragNDropContainer">
         <DragDropContext
