@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TourContext from '../../Context/TourContext';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import '../../Css/TourFinalStep.css';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 
 const TourFinalStep = () => {
   const { tourPreferences, savedTourItems, setDataTourForSave } =
@@ -23,9 +23,9 @@ const TourFinalStep = () => {
   }
 
   useEffect(() => {
-    let string =getIdString(savedTourItems)
+    let string = getIdString(savedTourItems);
     const newStr = string.substring(0, string.length - 1);
-    console.log('NEW STRING', newStr)
+    console.log('NEW STRING', newStr);
     setPInteresString(newStr);
     setDataTourForSave({
       usuarioId: Id,
@@ -33,13 +33,20 @@ const TourFinalStep = () => {
       horaInicioTour: horaInicio,
       puntosdeInteresTour: pInteresString,
     });
-  }, [Id, tourName, horaInicio, pInteresString, savedTourItems, setDataTourForSave]);
-  console.log('savedTourItems- final', savedTourItems)
+  }, [
+    Id,
+    tourName,
+    horaInicio,
+    pInteresString,
+    savedTourItems,
+    setDataTourForSave,
+  ]);
+  console.log('savedTourItems- final', savedTourItems);
   return (
     <div className="tourFinalStep">
       <div className="descripcionTourFinalStep">
         <h1 className="descripcionTourFinalStepText">
-        {filtrarTraduccion(traduccionesBD,'tourName',lenguage)}
+          {filtrarTraduccion(traduccionesBD, 'tourName', lenguage)}
         </h1>
         <div className="inputDivTourFinalStep">
           <input

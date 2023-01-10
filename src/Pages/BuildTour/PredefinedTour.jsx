@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Layout } from '../../Layout';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import AuthUser from '../../Components/AuthUser';
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
@@ -36,21 +36,21 @@ const PredefinedTour = ({
   console.log('MIS TOURS - var: ', appTours);
   handleUserBar(userBar);
 
-	return (
+  return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="touInit">
         <div className="contenedorTitulo">
-          <h2>Bienvenidos a </h2>
-          <h1>Tours Predefinidos</h1>
+          <h2> {filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)} </h2>
+          <h1>
+            {filtrarTraduccion(traduccionesBD, 'predefinedTour', lenguage)}
+          </h1>
         </div>
         <div className="tourSecciones">
-          
           <div className="seccionVerMisTours">
-            
             <div className="pageText">
               <h3>
-              {filtrarTraduccion(traduccionesBD,'predefinedTour',lenguage)}
+                {filtrarTraduccion(traduccionesBD, 'predefinedTour', lenguage)}
               </h3>
             </div>
           </div>
@@ -66,7 +66,13 @@ const PredefinedTour = ({
                     {/* <div>Inicia a las {hora(tour.horaInicioTour)} hs</div> */}
                     <div>
                       {' '}
-                          <h6 style={{color:'#00699d'}}>{filtrarTraduccion(traduccionesBD,'predefinedPlaces',lenguage)}</h6>
+                      <h6 style={{ color: '#00699d' }}>
+                        {filtrarTraduccion(
+                          traduccionesBD,
+                          'predefinedPlaces',
+                          lenguage
+                        )}
+                      </h6>
                       {tour?.tour_items?.map((tourItem) => {
                         return (
                           <div key={tourItem.puntoInteresId}>

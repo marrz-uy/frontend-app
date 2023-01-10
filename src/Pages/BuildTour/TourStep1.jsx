@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import TourContext from '../../Context/TourContext';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import '../../Css/TourStep1.css';
 
 const TourStep1 = () => {
-  const { setTourPreferences, GetTourPreferences } =
-    useContext(TourContext);
+  const { setTourPreferences, GetTourPreferences } = useContext(TourContext);
   const savedPreferences = GetTourPreferences();
   const [horaInicio, setHoraInicio] = useState(savedPreferences.horaInicio);
   const [tipoDeLugar, seTipoDeLugar] = useState(savedPreferences.tipoDeLugar);
@@ -45,17 +44,17 @@ const TourStep1 = () => {
     <div className="tourStep1">
       <div className="descripcionTourStep1">
         <p className="descripcionTourStep1Text">
-        {filtrarTraduccion(traduccionesBD,'choosePreferences',lenguage)}
+          {filtrarTraduccion(traduccionesBD, 'choosePreferences', lenguage)}
         </p>
       </div>
       <div className="tourPreferences">
         <div className="tourCards tourStart">
           <div className="cardName">
-            <p>{filtrarTraduccion(traduccionesBD,'startTime',lenguage)}</p>
+            <p>{filtrarTraduccion(traduccionesBD, 'startTime', lenguage)}</p>
           </div>
           <div className="cardPreferences">
             <div className="preferencesOptions">
-              <p>{filtrarTraduccion(traduccionesBD,'chooseTime',lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'chooseTime', lenguage)}</p>
               <input
                 type="time"
                 className="inputsPreferencias"
@@ -67,13 +66,15 @@ const TourStep1 = () => {
         </div>
         <div className="tourCards tourTypes">
           <div className="cardName">
-            <p>{filtrarTraduccion(traduccionesBD,'places',lenguage)}</p>
+            <p>{filtrarTraduccion(traduccionesBD, 'places', lenguage)}</p>
           </div>
           <div className="cardPreferences">
             <div className="preferencesOptions">
-              <p>{filtrarTraduccion(traduccionesBD,'enclosedSpace',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'outdoor',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'both',lenguage)}</p>
+              <p>
+                {filtrarTraduccion(traduccionesBD, 'enclosedSpace', lenguage)}
+              </p>
+              <p>{filtrarTraduccion(traduccionesBD, 'outdoor', lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'both', lenguage)}</p>
             </div>
             <div className="preferencesInput">
               <input
@@ -99,12 +100,16 @@ const TourStep1 = () => {
         </div>
         <div className="tourCards tourAges">
           <div className="cardName">
-            <p>{filtrarTraduccion(traduccionesBD,'ageRestrictions',lenguage)}</p>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'ageRestrictions', lenguage)}
+            </p>
           </div>
           <div className="cardPreferences">
             <div className="preferencesOptions">
-              <p>{filtrarTraduccion(traduccionesBD,'allAges',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'over18Years',lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'allAges', lenguage)}</p>
+              <p>
+                {filtrarTraduccion(traduccionesBD, 'over18Years', lenguage)}
+              </p>
             </div>
             <div className="preferencesInput">
               <input
@@ -124,14 +129,14 @@ const TourStep1 = () => {
         </div>
         <div className="tourCards tourPeople">
           <div className="cardName">
-            <p>{filtrarTraduccion(traduccionesBD,'numberPeople',lenguage)}</p>
+            <p>{filtrarTraduccion(traduccionesBD, 'numberPeople', lenguage)}</p>
           </div>
           <div className="cardPreferences">
             <div className="preferencesOptions">
-              <p>{filtrarTraduccion(traduccionesBD,'group',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'family',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'couple',lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD,'only',lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'group', lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'family', lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'couple', lenguage)}</p>
+              <p>{filtrarTraduccion(traduccionesBD, 'only', lenguage)}</p>
             </div>
             <div className="preferencesInput">
               <input
@@ -163,11 +168,17 @@ const TourStep1 = () => {
         </div>
         <div className="tourCards tourLocation">
           <div className="cardName">
-            <p>{filtrarTraduccion(traduccionesBD,'location',lenguage)}</p>
+            <p>{filtrarTraduccion(traduccionesBD, 'location', lenguage)}</p>
           </div>
           <div className="cardPreferences">
             <div className="preferencesOptions">
-              <p>{filtrarTraduccion(traduccionesBD,'chooseDestination',lenguage)}</p>
+              <p>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'chooseDestination',
+                  lenguage
+                )}
+              </p>
               <input
                 type="text"
                 className="inputsPreferencias"
