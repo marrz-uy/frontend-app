@@ -8,7 +8,6 @@ import UserBar from '../../Pages/UserBar';
 import TourSteps from '../../Components/TourSteps';
 import '../../Css/BuildMyTour.css';
 import '../../Css/userBarClick.css';
-// import { TourProvider } from '../../Context/TourContext';
 
 const BuildMyTour = ({
   setPage,
@@ -21,7 +20,7 @@ const BuildMyTour = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   useEffect(() => {
     setPage('tour-preferences');
-    setActivePage('tourInit')
+    setActivePage('tourInit');
   }, [setPage, setActivePage]);
 
   handleUserBar(userBar);
