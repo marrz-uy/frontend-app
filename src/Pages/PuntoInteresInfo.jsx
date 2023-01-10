@@ -13,7 +13,6 @@ import '../Css/userBarClick.css';
 import '../Css/Slider.css';
 import '../Css/SliderPuntoInteresInfo.css';
 
-
 const PuntoInteresInfo = ({
   setUserBar,
   userBar,
@@ -25,9 +24,9 @@ const PuntoInteresInfo = ({
   const { setActivePage } = useContext(PageContext);
   handleUserBar(userBar);
   const navigate = useNavigate();
-  const { Facebook, Instagram } = destination
+  const { Facebook, Instagram } = destination;
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  const [firefox, setFirefox] = useState(false)
+  const [firefox, setFirefox] = useState(false);
 
   useEffect(() => {
     setActivePage('PuntoInteresInfo');
@@ -61,24 +60,84 @@ const PuntoInteresInfo = ({
           <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
           <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}: </span>{destination.Ciudad}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}: </span>{destination.Departamento}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeAddress', lenguage)}: </span>{destination.Direccion}</p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}:{' '}
+              </span>
+              {destination.Ciudad}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}:{' '}
+              </span>
+              {destination.Departamento}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeAddress', lenguage)}:{' '}
+              </span>
+              {destination.Direccion}
+            </p>
           </div>
           <div className="puntoInteres__info__datos2">
             <p className="puntoInteres__info__descripcion">
-              <span>{filtrarTraduccion(traduccionesBD, 'placeDescription', lenguage)}: </span>{destination.Descripcion}
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeDescription',
+                  lenguage
+                )}
+                :{' '}
+              </span>
+              {destination.Descripcion}
             </p>
           </div>
-          <div className='puntoInteres__info__horarios'>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeOpeningTime', lenguage)}: </span> {destination.HoraDeApertura}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeClosingTime', lenguage)}: </span> {destination.HoraDeCierre}</p>
+          <div className="puntoInteres__info__horarios">
+            <p>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeOpeningTime',
+                  lenguage
+                )}
+                :{' '}
+              </span>{' '}
+              {destination.HoraDeApertura}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeClosingTime',
+                  lenguage
+                )}
+                :{' '}
+              </span>{' '}
+              {destination.HoraDeCierre}
+            </p>
           </div>
-          {Facebook | Instagram !== null ? (
-            <div className='puntoInteres__info__social'>
-              <h2>{filtrarTraduccion(traduccionesBD, 'placeMoreInformation', lenguage)}: </h2>
-              <a href={destination.Instagram}><img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png" alt='instagram' /></a>
-              <a href={destination.Faceebok}><img src="https://img.icons8.com/fluency/48/000000/facebook.png" alt='facebook' /></a>
+          {Facebook | (Instagram !== null) ? (
+            <div className="puntoInteres__info__social">
+              <h2>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeMoreInformation',
+                  lenguage
+                )}
+                :{' '}
+              </h2>
+              <a href={destination.Instagram}>
+                <img
+                  src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
+                  alt="instagram"
+                />
+              </a>
+              <a href={destination.Faceebok}>
+                <img
+                  src="https://img.icons8.com/fluency/48/000000/facebook.png"
+                  alt="facebook"
+                />
+              </a>
             </div>
           ) : (
             ''
@@ -90,7 +149,8 @@ const PuntoInteresInfo = ({
               <h2>Especificaiones del Hotel</h2>
               <p>
                 <span>Habitaciones:</span>{' '}
-                {destination.Habitaciones === 1 ? 'Si' : 'No'}
+                {/* {destination.Habitaciones === 1 ? 'Si' : 'No'} */}
+                {destination.Habitaciones}
               </p>
               <p>
                 <span>Calificaciones:</span>{' '}
