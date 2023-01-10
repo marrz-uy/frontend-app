@@ -140,10 +140,6 @@ const Principal = ({
     navigate('/tour');
   };
 
-
-
-
-
   const handlePredefinedTours = () => {
     navigate('/predefined');
   }
@@ -173,6 +169,7 @@ const Principal = ({
             </div>
           </div>
           <div className="categories" onClick={(e) => handlebuildTour(e)}>
+
             <div className="categoriesImage">
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
@@ -256,9 +253,8 @@ const Principal = ({
                   </span>
                 </div>
               </div>
+              <div className="categories"
 
-              <div
-                className="categories"
                 onClick={() => handleCategories('Actividades Nocturnas')}
               >
                 <div className="categoriesImage">
@@ -298,8 +294,7 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div
-                className="categories"
+              <div className="categories"
                 onClick={() => handleCategories('Actividades Infantiles')}
               >
                 <div className="categoriesImage">
@@ -328,10 +323,10 @@ const Principal = ({
             {btnText === true
               ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
               : filtrarTraduccion(
-                  traduccionesBD,
-                  'seeMoreCategories',
-                  lenguage
-                )}
+                traduccionesBD,
+                'seeMoreCategories',
+                lenguage
+              )}
           </button>
         </div>
       </div>
