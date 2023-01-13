@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { BAD_REQUEST, SERVIDOR_APAGADO } from '../Data/HTTPResponseStatusCodes';
 import UserBar from './UserBar';
@@ -17,9 +18,11 @@ const Register = ({
   isLoggedIn,
   setUserBar,
 }) => {
+  const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('register');
-  }, [setPage]);
+    setActivePage('register');
+  }, [setPage, setActivePage]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -147,11 +150,9 @@ const Register = ({
             />
           </div>
           <div className="linkALogin">
-            <Link to="/login">{filtrarTraduccion(
-                traduccionesBD,
-                'backTologinText',
-                lenguage
-              )}</Link>
+            <Link to="/login">
+              {filtrarTraduccion(traduccionesBD, 'backTologinText', lenguage)}
+            </Link>
           </div>
         </form>
       </div>

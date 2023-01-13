@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import PageContext from '../Context/PageContext';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -12,7 +13,6 @@ import '../Css/userBarClick.css';
 import '../Css/Slider.css';
 import '../Css/SliderPuntoInteresInfo.css';
 
-
 const PuntoInteresInfo = ({
   setUserBar,
   userBar,
@@ -20,31 +20,47 @@ const PuntoInteresInfo = ({
   setIsLoggedIn,
   destination,
   setPage,
+  categoryName,
 }) => {
+  const { setActivePage } = useContext(PageContext);
   handleUserBar(userBar);
   const navigate = useNavigate();
-  const { Facebook, Instagram } = destination
+  const { Facebook, Instagram } = destination;
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  const [firefox, setFirefox] = useState(false)
-
+  const [firefox, setFirefox] = useState(false);
+  console.log('CATEGORY NAME: ', categoryName);
   useEffect(() => {
+    setActivePage('PuntoInteresInfo');
     var sUsrAg = navigator.userAgent;
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
-  }, []);
+  }, [setActivePage]);
 
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
-    setPage('infoResults');
+    setPage('PuntoInteresInfo');
+
     // eslint-disable-next-line
   }, []);
+
+  const handleCategories = (e) => {
+    navigate('/results');
+  };
 
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
+      <div className="divBackbtn">
+        <button
+          className="backBtn"
+          onClick={() => handleCategories(categoryName)}
+        >
+          Volver
+        </button>
+      </div>
       <div className="puntoInteres__container">
         <div className="puntoInteres__imagen">
           {firefox ? (
@@ -57,24 +73,86 @@ const PuntoInteresInfo = ({
           <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
           <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}: </span>{destination.Ciudad}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}: </span>{destination.Departamento}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeAddress', lenguage)}: </span>{destination.Direccion}</p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}:{' '}
+              </span>
+              {destination.Ciudad}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}:{' '}
+              </span>
+              {destination.Departamento}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(traduccionesBD, 'placeAddress', lenguage)}:{' '}
+              </span>
+              {destination.Direccion}
+            </p>
           </div>
           <div className="puntoInteres__info__datos2">
             <p className="puntoInteres__info__descripcion">
-              <span>{filtrarTraduccion(traduccionesBD, 'placeDescription', lenguage)}: </span>{destination.Descripcion}
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeDescription',
+                  lenguage
+                )}
+                :{' '}
+              </span>
+              {destination.Descripcion}
             </p>
           </div>
-          <div className='puntoInteres__info__horarios'>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeOpeningTime', lenguage)}: </span> {destination.HoraDeApertura}</p>
-            <p><span>{filtrarTraduccion(traduccionesBD, 'placeClosingTime', lenguage)}: </span> {destination.HoraDeCierre}</p>
+          <div className="puntoInteres__info__horarios">
+            <p>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeOpeningTime',
+                  lenguage
+                )}
+                :{' '}
+              </span>{' '}
+              {destination.HoraDeApertura}
+            </p>
+            <p>
+              <span>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeClosingTime',
+                  lenguage
+                )}
+                :{' '}
+              </span>{' '}
+              {destination.HoraDeCierre}
+            </p>
           </div>
-          {Facebook | Instagram !== null ? (
-            <div className='puntoInteres__info__social'>
-              <h2>{filtrarTraduccion(traduccionesBD, 'placeMoreInformation', lenguage)}: </h2>
-              <a href={destination.Instagram}><img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png" alt='instagram' /></a>
-              <a href={destination.Faceebok}><img src="https://img.icons8.com/fluency/48/000000/facebook.png" alt='facebook' /></a>
+          {Facebook | (Instagram !== null) ? (
+            <div className="puntoInteres__info__social">
+              <h2>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'placeMoreInformation',
+                  lenguage
+                )}
+                :{' '}
+              </h2>
+              <div>
+                <a href={destination.Instagram}>
+                  <img
+                    src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
+                    alt="instagram"
+                  />
+                </a>
+                <a href={destination.Faceebok}>
+                  <img
+                    src="https://img.icons8.com/fluency/48/000000/facebook.png"
+                    alt="facebook"
+                  />
+                </a>
+              </div>
             </div>
           ) : (
             ''
@@ -83,55 +161,91 @@ const PuntoInteresInfo = ({
         {destination.Tipo === 'Hotel' || destination.Tipo === 'Hostel' ? (
           <div className="puntoInteres__especificaciones">
             <div className="puntoInteres__especificaciones__info">
-              <h2>Especificaiones del Hotel</h2>
+              <h2>
+                {filtrarTraduccion(traduccionesBD, 'hotelEspec', lenguage)}
+              </h2>
               <p>
-                <span>Habitaciones:</span>{' '}
-                {destination.Habitaciones === 1 ? 'Si' : 'No'}
+                <span>
+                  {filtrarTraduccion(traduccionesBD, 'rooms', lenguage)}:
+                </span>{' '}
+                {/* {destination.Habitaciones === 1 ? 'Si' : 'No'} */}
+                {destination.Habitaciones}
               </p>
               <p>
-                <span>Calificaciones:</span>{' '}
-                {destination.Calificaciones === 1 ? 'Si' : 'No'}
+                <span>
+                  {filtrarTraduccion(traduccionesBD, 'ratings', lenguage)}:
+                </span>{' '}
+                {destination.Calificaciones === 1
+                  ? filtrarTraduccion(traduccionesBD, 'yes', lenguage)
+                  : 'No'}
               </p>
             </div>
             <div className="puntoInteres__especificaciones__datos">
               <div className="puntoInteres__especificaciones__datos1">
                 <p>
-                  <span>Baño privado: </span>
-                  {destination.BanoPrivad === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'privateBathroom',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>
+                  {destination.BanoPrivad === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
                   <span>Casino: </span>
-                  {destination.Casino === 1 ? 'Si' : 'No'}
+                  {destination.Casino === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
                   <span>Bar: </span>
-                  {destination.Bar === 1 ? 'Si' : 'No'}
+                  {destination.Bar === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
-                  <span>Restaurante: </span>
-                  {destination.Restaurante === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'restaurant', lenguage)}:{' '}
+                  </span>
+                  {destination.Restaurante === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
-                  <span>Desayuno: </span>
-                  {destination.Desayuno === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'breakfast', lenguage)}:{' '}
+                  </span>
+                  {destination.Desayuno === 1 ? '✅ ' : '❌'}
                 </p>
               </div>
               <div className="puntoInteres__especificaciones__datos2">
                 <p>
-                  <span>TvCable: </span>
-                  {destination.TvCable === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'cableTv', lenguage)}:{' '}
+                  </span>
+                  {destination.TvCable === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
-                  <span>Piscina: </span>
-                  {destination.Piscina === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'swimmingPool',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>
+                  {destination.Piscina === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
                   <span>Wifi: </span>
-                  {destination.Wifi === 1 ? 'Si' : 'No'}
+                  {destination.Wifi === 1 ? '✅ ' : '❌'}
                 </p>
                 <p>
-                  <span>Aire Acondicionado: </span>
-                  {destination.AireAcondicionado === 1 ? 'Si' : 'No'}
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'airConditioner',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>
+                  {destination.AireAcondicionado === 1 ? '✅ ' : '❌'}
                 </p>
               </div>
             </div>
@@ -139,22 +253,37 @@ const PuntoInteresInfo = ({
         ) : destination.Tipo === 'Restaurantes' ? (
           <div className="puntoInteres__especificaciones__gastronomia">
             <div className="puntoInteres__especificaciones__info__gastronomia">
-              <h2>Especificaciones del Restaurante</h2>
+              <h2>
+                {filtrarTraduccion(traduccionesBD, 'restaurantEspec', lenguage)}
+              </h2>
             </div>
             <div className="puntoInteres__especificaciones__datos__gastronomia">
               <p>
-                <span>Comida: </span> {destination.Comida === 1 ? 'Si' : 'No'}
+                <span>
+                  {filtrarTraduccion(traduccionesBD, 'food', lenguage)}:{' '}
+                </span>{' '}
+                {destination.Comida === 1 ? '✅ ' : '❌'}
               </p>
               <p>
-                <span>Comida Vegge: </span>{' '}
-                {destination.ComidaVegge === 1 ? 'Si' : 'No'}
+                <span>
+                  {' '}
+                  {filtrarTraduccion(
+                    traduccionesBD,
+                    'veggieFood',
+                    lenguage
+                  )}:{' '}
+                </span>{' '}
+                {destination.ComidaVegge === 1 ? '✅ ' : '❌'}
               </p>
               <p>
-                <span>Alcohol: </span> {destination.Alcohol === 1 ? 'Si' : 'No'}
+                <span>Alcohol: </span>{' '}
+                {destination.Alcohol === 1 ? '✅ ' : '❌'}
               </p>
               <p>
-                <span>Menu infantil: </span>{' '}
-                {destination.MenuInfantil === 1 ? 'Si' : 'No'}
+                <span>
+                  {filtrarTraduccion(traduccionesBD, 'childrenMenu', lenguage)}:{' '}
+                </span>{' '}
+                {destination.MenuInfantil === 1 ? '✅ ' : '❌'}
               </p>
             </div>
           </div>

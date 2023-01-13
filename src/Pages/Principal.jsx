@@ -39,14 +39,6 @@ const Principal = ({
   latitud,
   longitud,
 }) => {
-  // console.log(
-  //   'LOCATION PRINCIPAL: ',
-  //   loaded,
-  //   latitud,
-  //   longitud
-  // );
-
-
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -105,19 +97,37 @@ const Principal = ({
     navigate('/results');
   };
 
+  /* let weareSorryModal = filtrarTraduccion(
+    traduccionesBD,
+    'predefinedToursLabel',
+    lenguage
+  ); */
+
   const handlebuildTour = (e) => {
     e.preventDefault();
 
     const id = sessionStorage.getItem('id');
     if (id === null) {
       Swal.fire({
-        title: 'Lo sentimos!',
-        text: 'Para poder armar su tour debe estar logueado',
+        title: filtrarTraduccion(traduccionesBD, 'weAreSorryModal', lenguage),
+        text: filtrarTraduccion(
+          traduccionesBD,
+          'sorryExplanationModal',
+          lenguage
+        ),
         icon: 'info',
         showConfirmButton: true,
         showCancelButton: true,
-        confirmButtonText: 'Iniciar Sesion',
-        cancelButtonText: 'Cerrar',
+        confirmButtonText: filtrarTraduccion(
+          traduccionesBD,
+          'loginBtnModal',
+          lenguage
+        ),
+        cancelButtonText: filtrarTraduccion(
+          traduccionesBD,
+          'closeBtnModal',
+          lenguage
+        ),
         confirmButtonColor: '#083d99',
         cancelButtonColor: 'gray',
       }).then((result) => {
@@ -142,7 +152,7 @@ const Principal = ({
 
   const handlePredefinedTours = () => {
     navigate('/predefined');
-  }
+  };
 
   handleUserBar(userBar);
 
@@ -151,10 +161,7 @@ const Principal = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="container">
         <div className="containerCategories">
-          <div
-            className="categories"
-            onClick={(e) => handlePredefinedTours(e)}
-          >
+          <div className="categories" onClick={(e) => handlePredefinedTours(e)}>
             <div className="categoriesImage">
               <img src={predefTour} alt="hotel"></img>
             </div>
@@ -169,7 +176,6 @@ const Principal = ({
             </div>
           </div>
           <div className="categories" onClick={(e) => handlebuildTour(e)}>
-
             <div className="categoriesImage">
               <img src={setYourTour} alt="setYourTour"></img>
             </div>
@@ -253,8 +259,8 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div className="categories"
-
+              <div
+                className="categories"
                 onClick={() => handleCategories('Actividades Nocturnas')}
               >
                 <div className="categoriesImage">
@@ -294,7 +300,8 @@ const Principal = ({
                   </span>
                 </div>
               </div>
-              <div className="categories"
+              <div
+                className="categories"
                 onClick={() => handleCategories('Actividades Infantiles')}
               >
                 <div className="categoriesImage">
@@ -323,10 +330,10 @@ const Principal = ({
             {btnText === true
               ? filtrarTraduccion(traduccionesBD, 'seeLessCategories', lenguage)
               : filtrarTraduccion(
-                traduccionesBD,
-                'seeMoreCategories',
-                lenguage
-              )}
+                  traduccionesBD,
+                  'seeMoreCategories',
+                  lenguage
+                )}
           </button>
         </div>
       </div>

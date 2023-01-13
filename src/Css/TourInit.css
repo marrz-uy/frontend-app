@@ -1,4 +1,4 @@
-.touInit {
+.tourInit {
 	margin-top: 110px;
 	width: 90%;
 	justify-content: center;
@@ -7,14 +7,20 @@
 	font-family: sans-serif;
 }
 
-.contenedorTitulo{
+.contenedorTitulo {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+.textBlur {
+	background-color: #ffffffd6;
+}
+
 .pageText {
-	margin-top: 1rem
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
 }
 
 .tourSecciones {
@@ -35,12 +41,26 @@
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 	font-size: 1.5rem;
 	font-weight: 600;
+	background-color: #fbfbfb;
 }
 
 .seccionCrearTour:hover {
 	color: aliceblue;
 	background-color: #00499d;
-	text-transform: uppercase;
+}
+
+.btnBuildTourContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.btnBuildTour {
+	width: 100%;
+}
+
+.icons {
+	padding: 0 5px;
 }
 
 .tourList {
@@ -50,26 +70,28 @@
 	min-height: 220px;
 	margin-bottom: 2rem;
 }
-details{
-padding: 1rem;
-border-radius: 5px;
-box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
+
+li { list-style-image: url('../Assets/localizacion.png'); }
+
+details {
+	padding: 1rem;
+	border-radius: 5px;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
 }
 
 .tourList details:nth-child(odd) {
 	border: 1px solid rgb(233, 233, 233);
+	background-color: #ffffff;
 }
 
 .tourList details:nth-child(even) {
-	background:rgb(216, 216, 216);
+	background: rgb(216, 216, 216);
 }
-
 
 .myToursCard {
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;
-	/* box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2); */
 	padding: .9rem;
 	gap: 5px;
 }
@@ -78,29 +100,98 @@ box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
 	background-color: #b8d5f6;
 }
 
-@media screen and (min-width: 480px) { /* tablets */
-	.touInit {
-		margin-top: 130px;
-		width: 90%;
-		
-	}
- 
+.cardContent{
+	padding-left: 10px;
 }
 
-@media screen and (min-width: 768px) { /* notebooks */
-	.touInit {
+.cardTitlePresentation{
+	color: #00699d;
+	margin-bottom: 5px;
+}
+
+.cardHour {
+	font-size: 12px;
+	color: rgb(255, 145, 0);
+}
+
+
+/* tablets */
+@media screen and (min-width: 480px) {
+
+	.tourInit {
+		margin-top: 140px;
+		width: 90%;
+	}
+
+	.btnBuildTour {
+		width: 90%;
+	}
+
+	.tourList {
+		justify-content: center;
+		align-items: center;
+	}
+
+	details {
+		width: 90%;
+	}
+
+}
+
+/* notebooks */
+@media screen and (min-width: 768px) {
+	.tourInit {
 		width: 70%;
 	}
+
+	.tourList {
+		justify-content: center;
+		align-items: center;
+	}
+
+	details {
+		width: 90%;
+	}
 }
 
-@media screen and (min-width: 1024px) { /* large screens */
-	.touInit {
+/* large screens */
+@media screen and (min-width: 1024px) {
+
+	.tourInit {
+		width: 60%;
+	}
+
+	.btnBuildTour {
+		width: 60%;
+	}
+
+	.tourList {
+		justify-content: center;
+		align-items: center;
+	}
+
+	details {
 		width: 60%;
 	}
 }
 
-@media screen and (min-width: 1200px) { /* extra large screens */
-	.touInit {
-		width: 50%;
+/* extra large screens */
+@media screen and (min-width: 1200px) {
+
+	.tourInit {
+		width: 60%;
+	}
+
+	.btnBuildTour {
+		width: 60%;
+	}
+
+	.tourList {
+		justify-content: center;
+		align-items: center;
+	}
+
+	details {
+		width: 60%;
 	}
 }
