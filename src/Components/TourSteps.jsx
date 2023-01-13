@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { useNavigate } from 'react-router-dom';
 import AuthUser from './AuthUser';
 import { Button, message, Steps } from 'antd';
@@ -10,29 +12,6 @@ import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
 import TourContext from '../Context/TourContext';
 import Swal from 'sweetalert2';
 import '../Css/TourSteps.css';
-
-const steps = [
-  {
-    title: 'Preferencias',
-    content: 'First-content',
-  },
-  {
-    title: 'Ver Preferencias',
-    content: 'Second-content',
-  },
-  {
-    title: 'Elegir',
-    content: 'Third-content',
-  },
-  {
-    title: 'Ver Tour',
-    content: 'Fourth-content',
-  },
-  {
-    title: 'Fin',
-    content: 'Last-content',
-  },
-];
 
 const TourSteps = () => {
   const {
@@ -47,6 +26,31 @@ const TourSteps = () => {
     dataTourForSave,
     setDataTourForSave,
   } = useContext(TourContext);
+
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
+
+  const steps = [
+    {
+      title: filtrarTraduccion(traduccionesBD, 'stepPreferences', lenguage),
+      content: 'First-content',
+    },
+    {
+      title: filtrarTraduccion(traduccionesBD, 'stepSeePreferences', lenguage),
+      content: 'Second-content',
+    },
+    {
+      title: filtrarTraduccion(traduccionesBD, 'stepChoose', lenguage),
+      content: 'Third-content',
+    },
+    {
+      title: filtrarTraduccion(traduccionesBD, 'stepSeeTour', lenguage),
+      content: 'Fourth-content',
+    },
+    {
+      title: filtrarTraduccion(traduccionesBD, 'stepEnd', lenguage),
+      content: 'Last-content',
+    },
+  ];
 
   const { http } = AuthUser();
   const [current, setCurrent] = useState(0);
@@ -78,8 +82,12 @@ const TourSteps = () => {
   const next = () => {
     if (current === 2 && savedTourItems.length === 0) {
       Swal.fire({
-        title: 'Atencion!',
-        text: 'Elija algun punto de interes para continuar',
+        title: filtrarTraduccion(traduccionesBD, 'atentionModal', lenguage),
+        text: filtrarTraduccion(
+          traduccionesBD,
+          'atentionChooseExplanationModal',
+          lenguage
+        ),
         icon: 'info',
         showConfirmButton: true,
         confirmButtonColor: '#015abb',
@@ -96,8 +104,12 @@ const TourSteps = () => {
     ) {
       console.log('Complete todos los campos');
       Swal.fire({
-        title: 'Atencion!',
-        text: 'Complete todos los campos para continuar',
+        title: filtrarTraduccion(traduccionesBD, 'atentionModal', lenguage),
+        text: filtrarTraduccion(
+          traduccionesBD,
+          'atentionExplanationModal',
+          lenguage
+        ),
         icon: 'info',
         showConfirmButton: true,
         confirmButtonColor: '#015abb',
@@ -127,8 +139,12 @@ const TourSteps = () => {
     if (dataTourForSave.nombreTour === '') {
       console.log('El tour debe llevar un nombre');
       Swal.fire({
-        title: 'Atencion!',
-        text: 'El tour debe llevar un nombre para poder guardarlo',
+        title: filtrarTraduccion(traduccionesBD, 'atentionModal', lenguage),
+        text: filtrarTraduccion(
+          traduccionesBD,
+          'atentionSaveTourExplanationModal',
+          lenguage
+        ),
         icon: 'info',
         showConfirmButton: true,
         confirmButtonColor: '#015abb',
@@ -156,13 +172,25 @@ const TourSteps = () => {
         setStatusResponse(res.status);
         if (res.status === 200) {
           Swal.fire({
-            title: 'Exelente!',
-            text: 'Su tour se creo correctamente',
+            title: filtrarTraduccion(traduccionesBD, 'succesModal', lenguage),
+            text: filtrarTraduccion(
+              traduccionesBD,
+              'succesExplanationModal',
+              lenguage
+            ),
             icon: 'success',
             showConfirmButton: true,
             showCancelButton: true,
-            confirmButtonText: 'Ver sus tours',
-            cancelButtonText: 'Cerrar',
+            confirmButtonText: filtrarTraduccion(
+              traduccionesBD,
+              'seeToursBtnModal',
+              lenguage
+            ),
+            cancelButtonText: filtrarTraduccion(
+              traduccionesBD,
+              'closeBtnSuccesModal',
+              lenguage
+            ),
             confirmButtonColor: '#083d99',
             cancelButtonColor: 'gray',
           }).then((result) => {
@@ -209,7 +237,7 @@ const TourSteps = () => {
       <div className="steps-action">
         {current < steps.length - 1 && (
           <Button type="primary" onClick={() => next()}>
-            Siguiente
+            {filtrarTraduccion(traduccionesBD, 'stepBtnNext', lenguage)}
           </Button>
         )}
         {current === steps.length - 1 && (
@@ -218,12 +246,12 @@ const TourSteps = () => {
             type="primary"
             onClick={() => savedTour()}
           >
-            Guardar
+            {filtrarTraduccion(traduccionesBD, 'saveTourBtn', lenguage)}
           </Button>
         )}
         {current > 0 && (
           <Button style={{ margin: '0 3rem' }} onClick={() => prev()}>
-            Previo
+            {filtrarTraduccion(traduccionesBD, 'stepBtnPrev', lenguage)}
           </Button>
         )}
       </div>

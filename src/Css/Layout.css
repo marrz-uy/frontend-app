@@ -5,7 +5,8 @@
 	align-items: center;
 	color: rgb(81, 81, 81);
 	min-width: 320px;
-}
+	background-size: 80rem;
+}	
 
 h1,h2, h3, h4, h5, h6  {
 	color: rgb(81, 81, 81);
@@ -22,24 +23,14 @@ h1,h2, h3, h4, h5, h6  {
 	 /* tablets */
 	.layout {
 		min-height: 100vh;
+		background-size: 100rem;
 	}
 }
 
-@media screen and (min-width: 768px) { /* notebooks */
-	/* .layout {
-		min-height: 100vh;
-	} */
-}
-
-@media screen and (min-width: 1024px) { /* large screens */
-	/* .layout {
-		min-height: 100vh;
-	} */
-}
-
-@media screen and (min-width: 1200px) { /* extra large screens */
-	/* .layout {
-		min-height: 100vh;
-	} */
+@media screen and (min-width: 748px) {
+	/* tablets */
+ .layout {
+	background-size: 150rem;
+ }
 }
 

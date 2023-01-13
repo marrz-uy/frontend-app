@@ -3,15 +3,15 @@ import '../Css/ResultCard.css';
 import { useNavigate } from 'react-router-dom';
 
 const ResultsCard = (props) => {
-  const { setDestination } = props
-  const { dato } = props
+  const { setDestination } = props;
+  const { dato } = props;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    setDestination(dato)
-    navigate('/infoResults')
-  }
+    setDestination(dato);
+    navigate('/infoResults');
+  };
 
   return (
     <div className="resultCard" onClick={handleClick}>
@@ -20,7 +20,9 @@ const ResultsCard = (props) => {
       </div>
       <div className="data">
         {props.nombreEvento ? (
-          <h3>{props.nombreEvento} en {props.lugarDeEvento}</h3>
+          <h3>
+            {props.nombreEvento} en {props.lugarDeEvento}
+          </h3>
         ) : (
           <h3>{props.nombre}</h3>
         )}

@@ -17,7 +17,6 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
 
   const logoutUser = () => {
     if (token) {
-      
       logout();
       sessionStorage.setItem('isLoggedIn', 'false');
       setIsLoggedIn('false');
