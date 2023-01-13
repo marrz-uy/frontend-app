@@ -226,6 +226,8 @@ function App() {
                     userBar={userBar}
                     setUserBar={setUserBar}
                     destination={destination}
+                    categoryName={categoryName}
+                    setCategoryName={setCategoryName}
                   />
                 }
               />
