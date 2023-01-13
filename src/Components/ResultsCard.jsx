@@ -6,7 +6,6 @@ const ResultsCard = (props) => {
   const { setDestination } = props;
   const { dato } = props;
 
-  console.log('DATOOO', dato);
   const navigate = useNavigate();
 
   const handleClick = () => {
