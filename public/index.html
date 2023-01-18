@@ -32,25 +32,7 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <!-- Animate Css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
   <title>FeelUy</title>
-
-  <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-  <script>
-
-    /* ! Enable pusher logging - don't include this in production */
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('1c46a8cd6b365e0381ea', {
-      cluster: 'us2'
-    });
-
-    var channel = pusher.subscribe('notifications');
-    channel.bind('send', function (data) {
-      alert(JSON.stringify(data));
-    });
-  </script>
-
 </head>
 
 <body>

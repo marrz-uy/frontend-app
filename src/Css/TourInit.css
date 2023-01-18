@@ -71,12 +71,25 @@
 	margin-bottom: 2rem;
 }
 
-li { list-style-image: url('../Assets/localizacion.png'); }
+.puntoInteresLi {
+	list-style-image: url('../Assets/localizacion.png');
+}
 
 details {
 	padding: 1rem;
 	border-radius: 5px;
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
+}
+
+.deleteIcon {
+	cursor: pointer;
+	position: relative;
+	float: right;
+}
+
+.deleteIcon>img {
+	width: 15px;
+	height: auto;
 }
 
 .tourList details:nth-child(odd) {
@@ -96,15 +109,11 @@ details {
 	gap: 5px;
 }
 
-.myToursCard:hover {
-	background-color: #b8d5f6;
-}
-
-.cardContent{
+.cardContent {
 	padding-left: 10px;
 }
 
-.cardTitlePresentation{
+.cardTitlePresentation {
 	color: #00699d;
 	margin-bottom: 5px;
 }
