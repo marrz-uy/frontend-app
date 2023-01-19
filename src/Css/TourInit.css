@@ -19,6 +19,7 @@
 
 .pageText {
 	margin-top: 1rem;
+	text-align: justify;
 	display: flex;
 	justify-content: center;
 }
@@ -64,11 +65,16 @@
 }
 
 .tourList {
+	padding: 5px;
+	min-height: 50vh;
+	margin-bottom: 2rem;
+	border: 1px solid rgb(234, 234, 234);
+	border-radius: 5px;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+	background-color: #fbfbfbc0;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	min-height: 220px;
-	margin-bottom: 2rem;
 }
 
 .puntoInteresLi {
@@ -124,6 +130,8 @@ details {
 }
 
 
+
+
 /* tablets */
 @media screen and (min-width: 480px) {
 
@@ -145,6 +153,10 @@ details {
 		width: 90%;
 	}
 
+	.tourPredefinedDescription {
+		min-width: 95%;
+	}
+
 }
 
 /* notebooks */
@@ -156,11 +168,14 @@ details {
 	.tourList {
 		justify-content: center;
 		align-items: center;
+		border: none;
+		box-shadow: none;
+		background-color: transparent;
 	}
 
-	details {
+	/* details {
 		width: 90%;
-	}
+	} */
 }
 
 /* large screens */
@@ -179,9 +194,6 @@ details {
 		align-items: center;
 	}
 
-	details {
-		width: 60%;
-	}
 }
 
 /* extra large screens */
@@ -200,7 +212,4 @@ details {
 		align-items: center;
 	}
 
-	details {
-		width: 60%;
-	}
 }

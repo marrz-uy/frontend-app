@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
+import AuthUser from '../../Components/AuthUser';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import '../../Css/TourStep1.css';
 
 const TourStep1 = () => {
+  const { http } = AuthUser();
   const { setTourPreferences, GetTourPreferences } = useContext(TourContext);
   const savedPreferences = GetTourPreferences();
   const [horaInicio, setHoraInicio] = useState(savedPreferences.horaInicio);
@@ -17,6 +19,7 @@ const TourStep1 = () => {
   );
   const [ubicacion, setUbicacion] = useState(savedPreferences.ubicacion);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const [ciudades, setCiudades] = useState();
 
   useEffect(() => {
     setTourPreferences({
@@ -39,6 +42,23 @@ const TourStep1 = () => {
     let stringLower = string.toLowerCase();
     return stringLower && stringLower[0].toUpperCase() + stringLower.slice(1);
   };
+
+  const getCities = () => {
+    http
+      .get(`/ciudades/`, {})
+      .then((response) => {
+        console.log('%cCiudades:', 'color: blue;', response?.data);
+        setCiudades(response?.data);
+        // console.log('');
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  useEffect(() => {
+    getCities();
+    console.log('CIUDADES: ', ciudades);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="tourStep1">
@@ -179,11 +199,22 @@ const TourStep1 = () => {
                   lenguage
                 )}
               </p>
-              <input
+              {/* <input
                 type="text"
                 className="inputsPreferencias"
                 onChange={(e) => setUbicacion(capitalize(e.target.value))}
-              ></input>
+              ></input> */}
+              <select
+                className="ciudadesSelect"
+                onChange={(e) => setUbicacion(e.target.value)}
+                // value={nacionalidad}
+              >
+                {ciudades !== null
+                  ? ciudades?.map((item, index) => {
+                      return <option key={index}>{item.Ciudad}</option>;
+                    })
+                  : 'nada'}
+              </select>
             </div>
           </div>
         </div>
