@@ -20,6 +20,7 @@ import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
+// import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
 
 const Principal = ({
@@ -31,14 +32,13 @@ const Principal = ({
   setUserBar,
   isLoggedIn,
   setIsLoggedIn,
-  searchType,
   setSearchType,
-  categoryName,
   setCategoryName,
   loaded,
   latitud,
   longitud,
 }) => {
+  // console.log('channel: ', channel);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');

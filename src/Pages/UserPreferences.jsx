@@ -33,10 +33,10 @@ import espectaculosIcono from '../Assets/categoriesImages/teatro 1.png';
 import nocturnaIcono from '../Assets/categoriesImages/cocktail 1.png';
 import infantilesIcono from '../Assets/categoriesImages/calesita 1.png';
 import serviciosIcono from '../Assets/categoriesImages/services 1.png';
-import '../Css/UserPreferences.css';
 import UserBar from './UserBar';
-import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import '../Css/UserPreferences.css';
+import '../Css/userBarClick.css';
 
 const UserPreferences = ({
   setPage,
@@ -252,9 +252,6 @@ const UserPreferences = ({
     //eslint-disable-next-line
   }, []);
 
- 
-
-
   const nationalitiesAndFlagsSort = nationalitiesAndFlags.sort((a, b) => {
     return a.ccn3 - b.ccn3;
   });
@@ -302,11 +299,13 @@ const UserPreferences = ({
                   onChange={handleChangeNationality}
                   value={nacionalidad}
                 >
-                  {nationalitiesAndFlagsSort?.map((item,index) => {
+                  {nationalitiesAndFlagsSort?.map((item, index) => {
                     return (
                       <option key={index}>
-                      {item.flag}{' '}
-                      {language === 'es' ? item.translations.spa.common: item.name.common}
+                        {item.flag}{' '}
+                        {language === 'es'
+                          ? item.translations.spa.common
+                          : item.name.common}
                       </option>
                     );
                   })}
@@ -355,6 +354,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.alojamiento,
                 label: pefilExistente?.alojamiento,
@@ -380,6 +380,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.gastronomia,
                 label: pefilExistente?.gastronomia,
@@ -405,6 +406,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.espectaculos,
                 label: pefilExistente?.espectaculos,
@@ -428,6 +430,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.paseos,
                 label: pefilExistente?.paseos,
@@ -455,6 +458,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.actividadesNocturnas,
                 label: pefilExistente?.actividadesNocturnas,
@@ -482,6 +486,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.transporte,
                 label: pefilExistente?.transporte,
@@ -507,6 +512,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.actividadesInfantiles,
                 label: pefilExistente?.actividadesInfantiles,
@@ -534,6 +540,7 @@ const UserPreferences = ({
               )}
             </label>
             <Select
+              className="selectProfile"
               defaultValue={{
                 value: pefilExistente?.serviciosEsenciales,
                 label: pefilExistente?.serviciosEsenciales,
