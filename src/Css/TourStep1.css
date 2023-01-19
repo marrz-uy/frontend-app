@@ -72,6 +72,17 @@
 	min-height: 22px;
 }
 
+.ciudadesSelect {
+	border: 1px solid rgb(0, 128, 248);
+	background-color: aliceblue;
+	font-size: 0.9rem;
+	padding: 1px;
+	margin-top: 3px;
+	border-radius: 4px;
+	width: 150%;
+	color: rgb(74, 74, 74);
+}
+
 .inputsPreferencias:onfocus {
 	border: 1px solid rgb(0, 128, 248);
 
@@ -81,16 +92,19 @@
 	.descripcionTourStep4Text {
 		margin-bottom: .8rem;
 	}
+
+
 }
 
 @media screen and (min-width: 768px) {
-	.tourStep1{
+	.tourStep1 {
 		min-height: 490px;
 	}
+
 }
 
 @media screen and (min-width: 1024px) {
-	.TourStep2{
+	.TourStep2 {
 		min-height: 500px;
 	}
 }

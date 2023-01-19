@@ -7,6 +7,8 @@ import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
+import trash from '../../Assets/trash.svg';
+import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
 import '../../Css/TourInit.css';
 
 const TourInit = ({
@@ -18,44 +20,76 @@ const TourInit = ({
   setUserBar,
 }) => {
   const { setActivePage } = useContext(PageContext);
-  useEffect(() => {
-    setPage('tourInit');
-    setActivePage('tourInit')
-  }, [setPage, setActivePage]);
-  console.log('PAGE: ', page)
   const { http } = AuthUser();
-
   const Id = sessionStorage.getItem('id');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-
   const [misTours, setMisTours] = useState();
+  const [cantTours, setCantTours] = useState();
+
   useEffect(() => {
+    setPage('tourInit');
+    setActivePage('tourInit');
+  }, [setPage, setActivePage]);
+
+  const getTours = () => {
     http
       .get(`/tourArmado/${Id}`, {})
       .then((response) => {
-        const toursData = response?.data['0'];
-        console.log('%cTOURS DATA - toutInit:', 'color: violet;', toursData);
-
-        setMisTours(toursData);
+        // const toursData = response?.data['0'];
+        console.log(
+          '%cMis Tours:',
+          'color: violet;',
+          response?.data['0'].length
+        );
+        setMisTours(response?.data['0']);
+        setCantTours(response?.data['0'].length);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  useEffect(() => {
+    getTours();
     // eslint-disable-next-line
   }, []);
 
-  console.log('MIS TOURS - var: ', misTours);
+  // console.log('MIS TOURS - var: ', misTours);
+
   handleUserBar(userBar);
 
   const hora = (str) => {
     str = str.substring(0, str.length - 3);
     return str;
   };
+
+  const deleteTour = (tourId) => {
+    http
+      .delete(`/tourArmado/${tourId}`, {})
+      .then((response) => {
+        console.log(
+          '%cTOURS DATA - toutInit:',
+          'color: violet;',
+          response?.data
+        );
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  const handleDeleteTour = (e) => {
+    deleteTour(e.target.id);
+    getTours();
+  };
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="tourInit">
         <div className="contenedorTitulo">
-          <h2 className='textBlur'>{filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)}: </h2>
-          <h1 className='textBlur'>{filtrarTraduccion(traduccionesBD, 'splashScreenTextSup', lenguage)}</h1>
+          <h2 className="textBlur">
+            {filtrarTraduccion(traduccionesBD, 'welcomeTo', lenguage)}:{' '}
+          </h2>
+          <h1 className="textBlur">
+            {filtrarTraduccion(traduccionesBD, 'splashScreenTextSup', lenguage)}
+          </h1>
         </div>
         <div className="pageText">
           <h3>{filtrarTraduccion(traduccionesBD, 'yourOwnTours', lenguage)}</h3>
@@ -65,46 +99,76 @@ const TourInit = ({
             <div className="btnBuildTour">
               <Link to="/buildTour">
                 <div className="seccionCrearTour">
-                <span className='icons'>🚍</span><p>{filtrarTraduccion(traduccionesBD, 'createTour', lenguage)}</p>
+                  <span className="icons">🚍</span>
+                  <p>
+                    {filtrarTraduccion(traduccionesBD, 'createTour', lenguage)}
+                  </p>
                 </div>
               </Link>
             </div>
           </div>
           <div className="seccionVerMisTours">
             <div className="contenedorTitulo">
-              <h1 className='textBlur'>{filtrarTraduccion(traduccionesBD, 'seeMyTours', lenguage)} <span className='icons'></span>🚡</h1>
+              <h1 className="textBlur">
+                {filtrarTraduccion(traduccionesBD, 'seeMyTours', lenguage)}{' '}
+                <span className="icons"></span>🚡
+              </h1>
             </div>
             <div className="pageText">
-              <h3 className='textBlur'>
-               {filtrarTraduccion(traduccionesBD, 'previouslyTours', lenguage)}
-             </h3>
+              <h3 className="textBlur">
+                {filtrarTraduccion(traduccionesBD, 'previouslyTours', lenguage)}
+              </h3>
             </div>
           </div>
           <div className="tourList">
-            {misTours?.map((tour) => {
-              return (
-                <details key={tour.id}>
-                  <summary>
-                    <span>{tour.nombreTour}</span>
-                  </summary>
-                  <div className="myToursCard">
-                    <div>
-                      <span>🕛</span>{filtrarTraduccion(traduccionesBD, 'beginsAt', lenguage)}{' '} {hora(tour.horaInicioTour)} hs
+            {cantTours > 0 ? (
+              misTours?.map((tour) => {
+                return (
+                  <details key={tour.id}>
+                    <div></div>
+                    <summary>
+                      <span>{tour.nombreTour}</span>
+                    </summary>
+                    <div className="myToursCard">
+                      <div>
+                        <span>🕛</span>
+                        {filtrarTraduccion(
+                          traduccionesBD,
+                          'beginsAt',
+                          lenguage
+                        )}{' '}
+                        {hora(tour.horaInicioTour)} hs
+                      </div>
+                      <div className="cardContent">
+                        {' '}
+                        {tour?.tour_items?.map((tourItem) => {
+                          return (
+                            <div key={tourItem.puntoInteresId}>
+                              <li className="puntoInteresLi">
+                                {tourItem.puntos_interes.Nombre}
+                              </li>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <div className="cardContent">
-                      {' '}
-                      {tour?.tour_items?.map((tourItem) => {
-                        return (
-                          <div key={tourItem.puntoInteresId}>
-                            <li>{tourItem.puntos_interes.Nombre}</li>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </details>
-              );
-            })}
+                    <span className="deleteIcon">
+                      <img
+                        src={trash}
+                        alt="trashCan"
+                        id={tour.id}
+                        onClick={handleDeleteTour}
+                      ></img>
+                    </span>
+                  </details>
+                );
+              })
+            ) : (
+              <NoTourMsg
+                message="No ha creado ningun tour"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgT-zon1BIn2mDvSt2Q-lA9oak5RCZBH4ku6T2llIMm_tQTZ4SNvvECVwprRO3nEHalA&usqp=CAU"
+              />
+            )}
           </div>
         </div>
       </div>

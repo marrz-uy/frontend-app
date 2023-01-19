@@ -61,12 +61,12 @@ label {
     justify-content: space-between;
 }
 
-select {
+.selectProfile {
     max-height: 2rem;
     background-color: white;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 5px;
-    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.351);
+    /* box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.351); */
 }
 
 form {
