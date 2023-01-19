@@ -1,0 +1,34 @@
+.divNoTour {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.divNoTourMsg {
+	display: flex;
+	justify-content: center;
+}
+
+.messageNoTour {
+	margin: 0 auto;
+	color: rgb(129, 129, 129);
+}
+
+.divImage {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 1rem 0;
+}
+
+.divImage>img {
+	border: 1px solid gray;
+	border-radius: 50%;
+	filter: grayscale();
+}
+
+@media screen and (min-width: 480px) {
+	.divImage>img {
+		width: 200px;
+	}
+}
