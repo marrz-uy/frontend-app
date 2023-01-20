@@ -5,14 +5,14 @@ var pusher = new Pusher('1c46a8cd6b365e0381ea', {
 });
 // pusher.logToConsole = true;
 
-const notifications = [];
+// const notifications = [];
 var channel = pusher.subscribe('notifications');
-channel.bind('send', function (data) {
+/* channel.bind('send', function (data) {
   console.log(data);
   const newData = data;
   notifications.push(newData);
   localStorage.setItem('notifications', JSON.stringify(notifications));
   console.log('NOTIFICATIONS', notifications);
-});
+}); */
 
 export { channel };

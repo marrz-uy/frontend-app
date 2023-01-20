@@ -1,16 +1,17 @@
 import React, { useEffect, useContext, useState } from 'react';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import AuthUser from '../Components/AuthUser';
 import { useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import AuthUser from '../Components/AuthUser';
+import LenguageContext from '../Context/LenguageContext';
+import NotificationsContext from '../Context/NotificationsContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
-import '../Css/Nav.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import locationOn from '../Assets/locationOn.png';
 import locationOff from '../Assets/locationOff.png';
+import '../Css/Nav.css';
 
 const Nav = ({
   text,
@@ -30,13 +31,15 @@ const Nav = ({
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
+  const { GetNotificationsFromLocSt } = useContext(NotificationsContext);
+
   // const { loaded, latitud, longitud } = useGeoLocation();
 
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
-
   useEffect(() => {
+    console.log('NOTIFICATION NAV: ', GetNotificationsFromLocSt());
     setIsLoggedIn(getLoggedIn());
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
@@ -44,7 +47,15 @@ const Nav = ({
       setDistanciaAEnviar(50000);
       // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
-  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
+  }, [
+    setIsLoggedIn,
+    getLoggedIn,
+    isLoggedIn,
+    loaded,
+    latitud,
+    longitud,
+    GetNotificationsFromLocSt,
+  ]);
 
   const navigate = useNavigate();
 
@@ -95,25 +106,37 @@ const Nav = ({
   return (
     <div className="navbar">
       <div className="locationIcon">
-        {latitud && longitud ? (<>
-          <div className="hideActive"><p>Geolocalizacion activa</p> </div>
-          <img src={ locationOn } alt="sds" id='locOn'></img>
+        {latitud && longitud ? (
+          <>
+            <div className="hideActive">
+              <p>Geolocalizacion activa</p>{' '}
+            </div>
+            <img src={locationOn} alt="sds" id="locOn"></img>
           </>
-        ) : (<>
-          <div className="hideInactive">Geolocalizacion inactiva</div>
-          <img src={ locationOff } alt="sds"></img>
-
-        </>
+        ) : (
+          <>
+            <div className="hideInactive">Geolocalizacion inactiva</div>
+            <img src={locationOff} alt="sds"></img>
+          </>
         )}
       </div>
       <div className="contentNavbar">
         <div className="logoFellUy">
-          {
-            page !== 'principal' 
-          ? (page === 'infoResults' ? (<Link to="/results"><img id="arrowImg" src={backArrow} alt="back"></img></Link>) : (<Link to="/"><img id="arrowImg" src={backArrow} alt="back"></img> </Link>)) 
-          : (<Link to="/"><img id="feelLogoImg" src={logo} alt="logo"></img></Link>)
-          
-          }
+          {page !== 'principal' ? (
+            page === 'infoResults' ? (
+              <Link to="/results">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            ) : (
+              <Link to="/">
+                <img id="arrowImg" src={backArrow} alt="back"></img>{' '}
+              </Link>
+            )
+          ) : (
+            <Link to="/">
+              <img id="feelLogoImg" src={logo} alt="logo"></img>
+            </Link>
+          )}
         </div>
         <div className="search">
           <div className="searchIntDiv">
