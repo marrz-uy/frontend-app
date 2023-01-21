@@ -17,6 +17,7 @@ import PuntoInteresInfo from './Pages/PuntoInteresInfo';
 import TourInit from './Pages/BuildTour/TourInit';
 import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour';
 import PredefinedTour from './Pages/BuildTour/PredefinedTour';
+import Notifications from './Pages/Notifications';
 import './App.css';
 
 function App() {
@@ -290,6 +291,18 @@ function App() {
                       isLoggedIn={isLoggedIn}
                       setIsLoggedIn={setIsLoggedIn}
                       userBar={userBar}
+                      setUserBar={setUserBar}
+                    />
+                  }
+                />
+                <Route
+                  path="/notifications"
+                  element={
+                    <Notifications
+                      setPage={setPage}
+                      userBar={userBar}
+                      setIsLoggedIn={setIsLoggedIn}
+                      isLoggedIn={isLoggedIn}
                       setUserBar={setUserBar}
                     />
                   }

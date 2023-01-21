@@ -22,7 +22,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       setIsLoggedIn('false');
       console.log('Cerrando sesion...');
       navigate('/');
-      setUserBar(false)
+      setUserBar(false);
     }
   };
 
@@ -44,12 +44,22 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 onClick={() => setUserBar(false)}
               >
                 <Link to="/register">
+                  <span>📝</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'registerLabel', lenguage)}
                 </Link>
               </li>
               <li className="userBar__login" onClick={() => setUserBar(false)}>
                 <Link to="/login">
+                  <span>🔑</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)}
+                </Link>
+              </li>
+              <li
+                className="userBar__notifications"
+                onClick={() => setUserBar(false)}
+              >
+                <Link to="/notifications">
+                  <span>🔖</span> Notificaciones
                 </Link>
               </li>
             </>
@@ -78,6 +88,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
             <>
               <li className="userBar__perfil" onClick={() => setUserBar(false)}>
                 <Link to="/user">
+                  <span></span>{' '}
                   {filtrarTraduccion(
                     traduccionesBD,
                     'userProfileLabel',
@@ -85,8 +96,16 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                   )}
                 </Link>
               </li>
+              <li
+                className="userBar__notifications"
+                onClick={() => setUserBar(false)}
+              >
+                <Link to="/notifications">
+                  <span>🔖</span> Notificaciones
+                </Link>
+              </li>
               <li className="userBar__lenguage" onClick={logoutUser}>
-               {userType === 'feel' ? (
+                {userType === 'feel' ? (
                   <p>
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
                   </p>

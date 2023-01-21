@@ -1,12 +1,12 @@
-import Pusher from 'pusher-js';
+// import Pusher from 'pusher-js';
 
-var pusher = new Pusher('1c46a8cd6b365e0381ea', {
-  cluster: 'us2',
-});
+// var pusher = new Pusher('1c46a8cd6b365e0381ea', {
+//   cluster: 'us2',
+// });
 // pusher.logToConsole = true;
 
 // const notifications = [];
-var channel = pusher.subscribe('notifications');
+// var channel = pusher.subscribe('notifications');
 /* channel.bind('send', function (data) {
   console.log(data);
   const newData = data;
@@ -15,4 +15,4 @@ var channel = pusher.subscribe('notifications');
   console.log('NOTIFICATIONS', notifications);
 }); */
 
-export { channel };
+// export { channel };

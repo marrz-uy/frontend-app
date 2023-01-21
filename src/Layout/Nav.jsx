@@ -31,7 +31,7 @@ const Nav = ({
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
-  const { GetNotificationsFromLocSt } = useContext(NotificationsContext);
+  const { GetNotificationsFromLocalStorage } = useContext(NotificationsContext);
 
   // const { loaded, latitud, longitud } = useGeoLocation();
 
@@ -39,7 +39,7 @@ const Nav = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
   useEffect(() => {
-    console.log('NOTIFICATION NAV: ', GetNotificationsFromLocSt());
+    // console.log('NOTIFICATION NAV: ', GetNotificationsFromLocalStorage());
     setIsLoggedIn(getLoggedIn());
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
@@ -54,7 +54,7 @@ const Nav = ({
     loaded,
     latitud,
     longitud,
-    GetNotificationsFromLocSt,
+    GetNotificationsFromLocalStorage,
   ]);
 
   const navigate = useNavigate();

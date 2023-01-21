@@ -1,6 +1,12 @@
 import { createContext } from 'react';
-import { channel } from '../Components/Notification';
+import Pusher from 'pusher-js';
 const NotificationsContext = createContext();
+
+var pusher = new Pusher('1c46a8cd6b365e0381ea', {
+  cluster: 'us2',
+});
+pusher.logToConsole = true;
+var channel = pusher.subscribe('notifications');
 
 const NotificationsProvider = ({ children }) => {
   const notifications = JSON.parse(localStorage?.getItem('notifications'));
@@ -8,12 +14,16 @@ const NotificationsProvider = ({ children }) => {
   channel.bind('send', function (data) {
     const newNoti = { title: data.title, message: data.message, read: false };
     notifications.unshift(newNoti);
+    if (notifications.length > 7) {
+      notifications.pop();
+    }
     localStorage.setItem('notifications', JSON.stringify(notifications));
-    // console.log('NOTIFICATIONS', notifications);
-    console.log('new NOTIFICATIONS', newNoti);
+    console.log('NOTIFICATIONS CONTEXT', notifications);
+    // console.log('LENGTH', notifications.length);
+    // console.log('new NOTIFICATIONS', newNoti);
   });
 
-  const GetNotificationsFromLocSt = () => {
+  const GetNotificationsFromLocalStorage = () => {
     return JSON.parse(localStorage?.getItem('notifications'));
   };
 
@@ -21,20 +31,19 @@ const NotificationsProvider = ({ children }) => {
     return notifications.filter(({ read }) => !read).map((index) => index);
   }
 
-  console.log(
+  /*  console.log(
     'NOTIFICACIONES SIN LEER: ',
-    GetUnreadNotificationIndexes(GetNotificationsFromLocSt())
-  );
+    GetUnreadNotificationIndexes(GetNotificationsFromLocalStorage())
+  ); */
 
-  const data = {
-    channel,
+  const dataExport = {
     notifications,
-    GetNotificationsFromLocSt,
+    GetNotificationsFromLocalStorage,
     GetUnreadNotificationIndexes,
   };
 
   return (
-    <NotificationsContext.Provider value={data}>
+    <NotificationsContext.Provider value={dataExport}>
       {children}
     </NotificationsContext.Provider>
   );
