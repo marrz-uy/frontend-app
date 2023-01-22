@@ -59,11 +59,11 @@ const Notifications = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="notifications">
-        <div className="notificationTitle">
-          <h1>Notificaciones feeluy</h1>
+        <div className="notificationPageTitle">
+          <h2>Notificaciones 📢 </h2>
         </div>
         <div className="notificationlist">
-          {allNotifications.map((item, index) => {
+          {allNotifications?.map((item, index) => {
             return (
               <details
                 onToggle={handleReadNotifications}
@@ -79,7 +79,7 @@ const Notifications = ({
                   <span className="notificationTitle">{item.title}</span>
                 </summary>
                 <div className="divNotificationMessage">
-                  <h6 className={item.read === false ? 'msg' : 'msgLeido'}>
+                  <h6 className={item.read === false ? 'msg' : 'msg msgLeido'}>
                     {item.message}
                   </h6>
                 </div>

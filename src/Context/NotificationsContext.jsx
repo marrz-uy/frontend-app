@@ -10,7 +10,7 @@ var channel = pusher.subscribe('notifications');
 
 const NotificationsProvider = ({ children }) => {
   const notifications = JSON.parse(localStorage?.getItem('notifications'));
-
+  console.log('NOTIFICATIONS CONTEXT 1', notifications);
   channel.bind('send', function (data) {
     const newNoti = { title: data.title, message: data.message, read: false };
     notifications.unshift(newNoti);
@@ -18,7 +18,7 @@ const NotificationsProvider = ({ children }) => {
       notifications.pop();
     }
     localStorage.setItem('notifications', JSON.stringify(notifications));
-    console.log('NOTIFICATIONS CONTEXT', notifications);
+    console.log('NOTIFICATIONS CONTEXT 2', notifications);
     // console.log('LENGTH', notifications.length);
     // console.log('new NOTIFICATIONS', newNoti);
   });
