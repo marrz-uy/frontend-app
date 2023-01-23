@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../Components/notificationsDB.js';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link } from 'react-router-dom';
@@ -25,6 +27,10 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       setUserBar(false);
     }
   };
+
+  const unreadsNotifications = useLiveQuery(async () => {
+    return await db.myNotifications.where('read').equals('false').count();
+  });
 
   const userType = sessionStorage?.getItem('userType');
 
@@ -59,7 +65,9 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 onClick={() => setUserBar(false)}
               >
                 <Link to="/notifications">
-                  <span>🔖</span> Notificaciones
+                  <span>🔖</span> Notificaciones{'('}
+                  {unreadsNotifications}
+                  {')'}
                 </Link>
               </li>
             </>

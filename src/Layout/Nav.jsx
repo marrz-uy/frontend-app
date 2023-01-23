@@ -28,12 +28,9 @@ const Nav = ({
   latitud,
   longitud,
 }) => {
-  // const [unread, setUnread] = useState(null);
-
-  // const unread = useLiveQuery(async () => {
-  //   return await db.notificationsTable.toArray();
-  // });
-  // console.log('UNREAD: ', unread);
+  const unreadsNotifications = useLiveQuery(async () => {
+    return await db.myNotifications.where('read').equals('false').count();
+  });
 
   const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
@@ -172,6 +169,14 @@ const Nav = ({
             />
           </div>
           <>
+            {/* mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm */}
+            <div className="divLightNotifications">
+              <div
+                className={
+                  unreadsNotifications > 0 ? 'light' : 'light lightOff'
+                }
+              ></div>
+            </div>
             <FontAwesomeIcon
               icon={faBars}
               className="userLogo__faBars"

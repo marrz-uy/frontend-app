@@ -24,18 +24,12 @@ const Notifications = ({
     return await db.myNotifications.orderBy('id').reverse().limit(8).toArray();
   });
 
-  let unread = useLiveQuery(async () => {
+  const unreadsNotifications = useLiveQuery(async () => {
     return await db.myNotifications.where('read').equals('false').count();
   });
 
-  /*   function getUnread() {
-    return db.notificationsTable.where('read').equals('false').toArray();
-  } */
-
-  // const unread = db.notificationsTable.where({ read: '1' });
-
   console.log('NOTIS: ', notificaciones);
-  console.log('UNREAD: ', unread);
+  console.log('UNREAD: ', unreadsNotifications);
 
   useEffect(() => {
     setPage('notifications');
@@ -48,7 +42,11 @@ const Notifications = ({
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="notifications">
         <div className="notificationPageTitle">
-          <h2>Notificaciones 📢 </h2>
+          <h2>
+            Notificaciones 📢 {'('}
+            {unreadsNotifications}
+            {')'}{' '}
+          </h2>
         </div>
         <div className="notificationlist">
           {notificaciones?.map((notificacion) => (
