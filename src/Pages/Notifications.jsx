@@ -1,7 +1,8 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect } from 'react';
 import { Layout } from '../Layout';
-import NotificationsContext from '../Context/NotificationsContext';
 import UserBar from '../Pages/UserBar';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../Components/notificationsDB.js';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/Notifications.css';
 
@@ -12,47 +13,34 @@ const Notifications = ({
   userBar,
   setUserBar,
 }) => {
-  const {
-    notifications,
-    GetNotificationsFromLocalStorage,
-    GetUnreadNotificationIndexes,
-  } = useContext(NotificationsContext);
-
-  const [allNotifications, setAllNotifications] = useState(notifications);
-
-  const handleReadNotifications = (e) => {
+  const handleReadNotifications = async (e) => {
     e.preventDefault();
     let indice = +e.target.id;
-
     console.log('leida: ', indice);
-    console.log('notis: ', allNotifications);
-
-    let updatedNotifications = allNotifications.map(function (
-      notification,
-      index
-    ) {
-      if (index === indice) {
-        return { ...notification, read: true };
-      }
-      return notification;
-    });
-    console.log('NUEVO ARRAY NOTIFIC page', updatedNotifications);
-    localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
-    setAllNotifications(JSON.parse(localStorage?.getItem('notifications')));
+    await db.myNotifications.update(indice, { read: 'true' });
   };
+
+  const notificaciones = useLiveQuery(async () => {
+    return await db.myNotifications.orderBy('id').reverse().limit(8).toArray();
+  });
+
+  let unread = useLiveQuery(async () => {
+    return await db.myNotifications.where('read').equals('false').count();
+  });
+
+  /*   function getUnread() {
+    return db.notificationsTable.where('read').equals('false').toArray();
+  } */
+
+  // const unread = db.notificationsTable.where({ read: '1' });
+
+  console.log('NOTIS: ', notificaciones);
+  console.log('UNREAD: ', unread);
 
   useEffect(() => {
     setPage('notifications');
-    setInterval(function () {
-      let dataFromLocalStorage = localStorage?.getItem('notifications');
-      setAllNotifications(JSON.parse(dataFromLocalStorage));
-    }, 500);
-    return (dataFromLocalStorage) => {
-      dataFromLocalStorage = '';
-    };
   }, [setPage]);
 
-  // console.log('ALL NOTIS NOTIS: ', notifications);
   handleUserBar(userBar);
 
   return (
@@ -63,29 +51,31 @@ const Notifications = ({
           <h2>Notificaciones 📢 </h2>
         </div>
         <div className="notificationlist">
-          {allNotifications?.map((item, index) => {
-            return (
-              <details
-                onToggle={handleReadNotifications}
-                key={index}
-                id={index}
-                className={
-                  item.read === false
-                    ? 'notificacionCard'
-                    : 'notificacionCardLeida'
-                }
-              >
-                <summary>
-                  <span className="notificationTitle">{item.title}</span>
-                </summary>
-                <div className="divNotificationMessage">
-                  <h6 className={item.read === false ? 'msg' : 'msg msgLeido'}>
-                    {item.message}
-                  </h6>
-                </div>
-              </details>
-            );
-          })}
+          {notificaciones?.map((notificacion) => (
+            <details
+              onToggle={handleReadNotifications}
+              key={notificacion.id}
+              id={notificacion.id}
+              className={
+                notificacion.read === 'false'
+                  ? 'notificacionCard'
+                  : 'notificacionCardLeida'
+              }
+            >
+              <summary>
+                <span className="notificationTitle">{notificacion.title}</span>
+              </summary>
+              <div className="divNotificationMessage">
+                <h6
+                  className={
+                    notificacion.read === 'false' ? 'msg' : 'msg msgLeido'
+                  }
+                >
+                  {notificacion.message}
+                </h6>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
       {userBar && (

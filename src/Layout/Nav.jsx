@@ -1,10 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../Components/notificationsDB.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
-import NotificationsContext from '../Context/NotificationsContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
@@ -27,11 +28,16 @@ const Nav = ({
   latitud,
   longitud,
 }) => {
+  // const [unread, setUnread] = useState(null);
+
+  // const unread = useLiveQuery(async () => {
+  //   return await db.notificationsTable.toArray();
+  // });
+  // console.log('UNREAD: ', unread);
+
   const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
-
-  const { GetNotificationsFromLocalStorage } = useContext(NotificationsContext);
 
   // const { loaded, latitud, longitud } = useGeoLocation();
 
@@ -47,15 +53,7 @@ const Nav = ({
       setDistanciaAEnviar(50000);
       // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
-  }, [
-    setIsLoggedIn,
-    getLoggedIn,
-    isLoggedIn,
-    loaded,
-    latitud,
-    longitud,
-    GetNotificationsFromLocalStorage,
-  ]);
+  }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
 
   const navigate = useNavigate();
 
