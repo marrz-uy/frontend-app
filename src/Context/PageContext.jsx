@@ -5,7 +5,7 @@ const PageContext = createContext();
 const PageProvider = ({ children }) => {
   const [activePage, setActivePage] = useState('');
   const [backGround, setBackGround] = useState('');
-  console.log('ACTIVE PAGE: ', activePage);
+  // console.log('ACTIVE PAGE: ', activePage);
   useEffect(() => {
     if (activePage === 'tourInit' || activePage === 'predefinedTour') {
       setBackGround(backBuildTour);

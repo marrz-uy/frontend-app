@@ -85,6 +85,7 @@ const Register = ({
         <form onSubmit={submitRegister}>
           <div>
             <h2 className="title">
+              <span>📝</span>{' '}
               {filtrarTraduccion(traduccionesBD, 'registerTitle', lenguage)}
             </h2>
           </div>

@@ -64,11 +64,19 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 className="userBar__notifications"
                 onClick={() => setUserBar(false)}
               >
-                <Link to="/notifications">
-                  <span>🔖</span> Notificaciones{'('}
-                  {unreadsNotifications}
-                  {')'}
+                <Link to="/notifications" className="notificationlink">
+                  <span className="notificationIcon">📢</span>{' '}
+                  {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
                 </Link>
+                <span className="unreadNotification">
+                  {unreadsNotifications > 0
+                    ? `${filtrarTraduccion(
+                        traduccionesBD,
+                        'new',
+                        lenguage
+                      )}(${unreadsNotifications})`
+                    : null}
+                </span>
               </li>
             </>
           ) : (
@@ -80,7 +88,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
             className="userBar__lenguage"
             id="id__lenguage"
           >
-            <p>
+            <p className="changeLenguageLabel">
               {filtrarTraduccion(
                 traduccionesBD,
                 'changeLanguageLabel',
@@ -95,8 +103,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
           {isLoggedIn === 'true' ? (
             <>
               <li className="userBar__perfil" onClick={() => setUserBar(false)}>
-                <Link to="/user">
-                  <span></span>{' '}
+                <Link to="/user" className="linkToUserProfile">
                   {filtrarTraduccion(
                     traduccionesBD,
                     'userProfileLabel',
@@ -108,9 +115,19 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 className="userBar__notifications"
                 onClick={() => setUserBar(false)}
               >
-                <Link to="/notifications">
-                  <span>🔖</span> Notificaciones
+                <Link to="/notifications" className="notificationlink">
+                  <span className="notificationIcon">📢</span>{' '}
+                  {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
                 </Link>
+                <span className="unreadNotification">
+                  {unreadsNotifications > 0
+                    ? `${filtrarTraduccion(
+                        traduccionesBD,
+                        'new',
+                        lenguage
+                      )}(${unreadsNotifications})`
+                    : null}
+                </span>
               </li>
               <li className="userBar__lenguage" onClick={logoutUser}>
                 {userType === 'feel' ? (
