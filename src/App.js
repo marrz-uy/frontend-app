@@ -19,6 +19,7 @@ import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour';
 import PredefinedTour from './Pages/BuildTour/PredefinedTour';
 import Notifications from './Pages/Notifications';
 import './App.css';
+import '../src/Css/Toast.css';
 
 function App() {
   const [searchType, setSearchType] = useState('');

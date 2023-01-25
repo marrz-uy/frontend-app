@@ -23,6 +23,7 @@ import { Slider } from '../Components/Slider';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 // import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
+import '../Css/Toast.css';
 
 const Principal = ({
   setItems,
