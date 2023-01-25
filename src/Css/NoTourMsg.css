@@ -5,13 +5,11 @@
 }
 
 .divNoTourMsg {
-	display: flex;
-	justify-content: center;
+	text-align: center;
 }
 
 .messageNoTour {
-	margin: 0 auto;
-	color: rgb(129, 129, 129);
+	color: rgb(105, 105, 105);
 }
 
 .divImage {
@@ -22,6 +20,7 @@
 }
 
 .divImage>img {
+	min-width: 200px;
 	border: 1px solid gray;
 	border-radius: 50%;
 	filter: grayscale();

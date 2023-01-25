@@ -151,9 +151,6 @@ const SearchResults = ({
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
 
-  console.log(datos);
-  console.log(datos.Tipo);
-
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>

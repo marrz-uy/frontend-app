@@ -38,10 +38,10 @@ const TourStep1 = () => {
     setTourPreferences,
   ]);
 
-  const capitalize = (string) => {
+  /*  const capitalize = (string) => {
     let stringLower = string.toLowerCase();
     return stringLower && stringLower[0].toUpperCase() + stringLower.slice(1);
-  };
+  }; */
 
   const getCities = () => {
     http
@@ -199,15 +199,10 @@ const TourStep1 = () => {
                   lenguage
                 )}
               </p>
-              {/* <input
-                type="text"
-                className="inputsPreferencias"
-                onChange={(e) => setUbicacion(capitalize(e.target.value))}
-              ></input> */}
               <select
                 className="ciudadesSelect"
                 onChange={(e) => setUbicacion(e.target.value)}
-                // value={nacionalidad}
+                defaultValue={(e) => e.target.value}
               >
                 {ciudades !== null
                   ? ciudades?.map((item, index) => {

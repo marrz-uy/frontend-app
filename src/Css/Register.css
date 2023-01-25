@@ -14,7 +14,7 @@
 .inputGroup {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1em;
 }
 
 .input {
@@ -37,6 +37,8 @@
 .linkALogin {
     margin-top: 10px;
     font-family: 'Kodchasan';
+
+    margin-bottom: 20px;
 }
 
 .linkALogin a,
@@ -52,13 +54,19 @@ a:visited {
 
 @media screen and (min-width: 480px) {
     .register {
-        width: 30%;
+        width: 60%;
     }
 }
 
 @media screen and (max-height: 666px) {
     .inputGroup {
         gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 748px) {
+    .register {
+        width: 50%;
     }
 }
 

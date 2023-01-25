@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
 import { LenguageProvider } from '../src/Context/LenguageContext';
+import { channel } from '../src/Components/notificationsDB';
 import { TourProvider } from '../src/Context/TourContext';
 import { PageProvider } from './Context/PageContext';
 import SearchResults from './Pages/SearchResults';
@@ -17,6 +17,8 @@ import PuntoInteresInfo from './Pages/PuntoInteresInfo';
 import TourInit from './Pages/BuildTour/TourInit';
 import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour';
 import PredefinedTour from './Pages/BuildTour/PredefinedTour';
+import Notifications from './Pages/Notifications';
+import './App.css';
 
 function App() {
   const [searchType, setSearchType] = useState('');
@@ -35,6 +37,8 @@ function App() {
   const handleClickBars = () => {
     setBars(!bars);
   };
+
+  // console.log(channel);
 
   const { loaded, latitud, longitud } = useGeoLocation();
 
@@ -280,6 +284,18 @@ function App() {
                     isLoggedIn={isLoggedIn}
                     setIsLoggedIn={setIsLoggedIn}
                     userBar={userBar}
+                    setUserBar={setUserBar}
+                  />
+                }
+              />
+              <Route
+                path="/notifications"
+                element={
+                  <Notifications
+                    setPage={setPage}
+                    userBar={userBar}
+                    setIsLoggedIn={setIsLoggedIn}
+                    isLoggedIn={isLoggedIn}
                     setUserBar={setUserBar}
                   />
                 }

@@ -1,16 +1,18 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../Components/notificationsDB.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import AuthUser from '../Components/AuthUser';
-import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
-import '../Css/Nav.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import locationOn from '../Assets/locationOn.png';
 import locationOff from '../Assets/locationOff.png';
+import '../Css/Nav.css';
 
 const Nav = ({
   text,
@@ -26,6 +28,10 @@ const Nav = ({
   latitud,
   longitud,
 }) => {
+  const unreadsNotifications = useLiveQuery(async () => {
+    return await db.myNotifications.where('read').equals('false').count();
+  });
+
   const { http, getUser, getLoggedIn } = AuthUser();
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
@@ -35,8 +41,8 @@ const Nav = ({
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
-
   useEffect(() => {
+    // console.log('NOTIFICATION NAV: ', GetNotificationsFromLocalStorage());
     setIsLoggedIn(getLoggedIn());
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
@@ -95,25 +101,37 @@ const Nav = ({
   return (
     <div className="navbar">
       <div className="locationIcon">
-        {latitud && longitud ? (<>
-          <div className="hideActive"><p>Geolocalizacion activa</p> </div>
-          <img src={ locationOn } alt="sds" id='locOn'></img>
+        {latitud && longitud ? (
+          <>
+            <div className="hideActive">
+              <p>Geolocalizacion activa</p>{' '}
+            </div>
+            <img src={locationOn} alt="sds" id="locOn"></img>
           </>
-        ) : (<>
-          <div className="hideInactive">Geolocalizacion inactiva</div>
-          <img src={ locationOff } alt="sds"></img>
-
-        </>
+        ) : (
+          <>
+            <div className="hideInactive">Geolocalizacion inactiva</div>
+            <img src={locationOff} alt="sds"></img>
+          </>
         )}
       </div>
       <div className="contentNavbar">
         <div className="logoFellUy">
-          {
-            page !== 'principal' 
-          ? (page === 'infoResults' ? (<Link to="/results"><img id="arrowImg" src={backArrow} alt="back"></img></Link>) : (<Link to="/"><img id="arrowImg" src={backArrow} alt="back"></img> </Link>)) 
-          : (<Link to="/"><img id="feelLogoImg" src={logo} alt="logo"></img></Link>)
-          
-          }
+          {page !== 'principal' ? (
+            page === 'infoResults' ? (
+              <Link to="/results">
+                <img id="arrowImg" src={backArrow} alt="back"></img>
+              </Link>
+            ) : (
+              <Link to="/">
+                <img id="arrowImg" src={backArrow} alt="back"></img>{' '}
+              </Link>
+            )
+          ) : (
+            <Link to="/">
+              <img id="feelLogoImg" src={logo} alt="logo"></img>
+            </Link>
+          )}
         </div>
         <div className="search">
           <div className="searchIntDiv">
@@ -151,6 +169,14 @@ const Nav = ({
             />
           </div>
           <>
+            {/* mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm */}
+            <div className="divLightNotifications">
+              <div
+                className={
+                  unreadsNotifications > 0 ? 'light' : 'light lightOff'
+                }
+              ></div>
+            </div>
             <FontAwesomeIcon
               icon={faBars}
               className="userLogo__faBars"

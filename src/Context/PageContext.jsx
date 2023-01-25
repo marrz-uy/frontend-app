@@ -1,23 +1,22 @@
 import { createContext, useState, useEffect } from 'react';
-import backBuildTour from '../Assets/backBuildTour.png'
+import backBuildTour from '../Assets/backBuildTour.png';
 const PageContext = createContext();
 
 const PageProvider = ({ children }) => {
-  const [activePage, setActivePage] = useState('')
-  const [backGround, setBackGround] = useState('')
+  const [activePage, setActivePage] = useState('');
+  const [backGround, setBackGround] = useState('');
+  // console.log('ACTIVE PAGE: ', activePage);
   useEffect(() => {
-    if(activePage === 'tourInit' || activePage === 'predefinedTour') {
-      setBackGround(backBuildTour)
-    }else{
-      setBackGround('transparent')
+    if (activePage === 'tourInit' || activePage === 'predefinedTour') {
+      setBackGround(backBuildTour);
+    } else {
+      setBackGround('transparent');
     }
-  }, [activePage])
-  
+  }, [activePage]);
+
   const data = { activePage, setActivePage, backGround };
 
-  return (
-    <PageContext.Provider value={data}>{children}</PageContext.Provider>
-  );
+  return <PageContext.Provider value={data}>{children}</PageContext.Provider>;
 };
 
 export { PageProvider };

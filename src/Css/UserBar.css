@@ -3,9 +3,7 @@
 	flex-direction: column;
 	gap: 2rem;
 	transition: all .3s ease;
-	/* overflow: hidden; */
 	margin-top: 3rem;
-	/* z-index: 1000; */
 	z-index: 5;
 	position: fixed;
 	top: 0;
@@ -44,11 +42,37 @@
 	cursor: pointer;
 }
 
-/* @media (min-width: 880px) and (max-width:) {
-	.userBar__cancel {
-		margin-top: 16%;
-	}
+/* .userBar__link li .userProfileIcon {
+	height: 16px;
+	margin-bottom: -1px;
 } */
+
+.userBar__notifications {
+	display: flex;
+	justify-content: space-around;
+}
+
+.notificationlink {
+	display: flex;
+	width: 2rem;
+}
+
+.notificationIcon {
+	margin-right: 3px;
+}
+
+.changeLenguageLabel {
+	width: 164px;
+}
+
+.unreadNotification {
+	display: flex;
+	padding-bottom: 3.9px;
+	margin-left: 125px;
+	color: rgba(74, 252, 89, 0.726);
+	text-shadow: 1px 1px 10px rgba(74, 248, 5, 0.705);
+	font-size: 14px;
+}
 
 @media (min-width: 580px) {
 	.userBar__cancel {
@@ -106,20 +130,20 @@
 	transition: all 0.3s ease 0s;
 	border-radius: 50px;
 	text-decoration: none;
-	/* text-transform: uppercase; */
 	margin-bottom: 5px;
 
 }
 
+
+
 .userBar__link li p {
 	color: #edf0f1;
-	padding: 0px 25px;
+	padding: 0px -25px;
 	font-weight: 500;
 	font-size: 16px;
 	transition: all 0.3s ease 0s;
 	border-radius: 50px;
 	text-decoration: none;
-	/* text-transform: uppercase; */
 	cursor: pointer;
 	margin-bottom: 5px;
 }
@@ -137,7 +161,6 @@
 	font-size: 16px;
 	transition: all 0.3s ease 0s;
 	text-decoration: none;
-	/* text-transform: uppercase; */
 }
 
 .userBar__register {
@@ -150,19 +173,4 @@
 		display: none;
 	}
 
-
-	/* .userBar__link li:nth-child(1) {
-		display: none;
-	}
-	
-	.userBar__register {
-		display: none;
-	}
-
-	.userBar__register a {
-		display: none;
-	}
-	.userBar__login a {
-		display: none;
-	} */
 }
