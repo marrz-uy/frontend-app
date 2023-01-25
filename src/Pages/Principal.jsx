@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Layout } from '../Layout';
 import LenguageContext from '../Context/LenguageContext';
+import PageContext from '../Context/PageContext';
 import Swal from 'sweetalert2';
 import AuthUser from '../Components/AuthUser';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
@@ -38,7 +39,7 @@ const Principal = ({
   latitud,
   longitud,
 }) => {
-  // console.log('channel: ', channel);
+  const { setActivePage } = useContext(PageContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
@@ -49,6 +50,7 @@ const Principal = ({
 
   useEffect(() => {
     setPage('principal');
+    setActivePage('principal');
     if (page === 'principal') {
       setText('');
     }

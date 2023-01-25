@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../Components/notificationsDB.js';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link } from 'react-router-dom';
@@ -22,9 +24,13 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       setIsLoggedIn('false');
       console.log('Cerrando sesion...');
       navigate('/');
-      setUserBar(false)
+      setUserBar(false);
     }
   };
+
+  const unreadsNotifications = useLiveQuery(async () => {
+    return await db.myNotifications.where('read').equals('false').count();
+  });
 
   const userType = sessionStorage?.getItem('userType');
 
@@ -44,13 +50,33 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 onClick={() => setUserBar(false)}
               >
                 <Link to="/register">
+                  <span>📝</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'registerLabel', lenguage)}
                 </Link>
               </li>
               <li className="userBar__login" onClick={() => setUserBar(false)}>
                 <Link to="/login">
+                  <span>🔑</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)}
                 </Link>
+              </li>
+              <li
+                className="userBar__notifications"
+                onClick={() => setUserBar(false)}
+              >
+                <Link to="/notifications" className="notificationlink">
+                  <span className="notificationIcon">📢</span>{' '}
+                  {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
+                </Link>
+                <span className="unreadNotification">
+                  {unreadsNotifications > 0
+                    ? `${filtrarTraduccion(
+                        traduccionesBD,
+                        'new',
+                        lenguage
+                      )}(${unreadsNotifications})`
+                    : null}
+                </span>
               </li>
             </>
           ) : (
@@ -62,7 +88,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
             className="userBar__lenguage"
             id="id__lenguage"
           >
-            <p>
+            <p className="changeLenguageLabel">
               {filtrarTraduccion(
                 traduccionesBD,
                 'changeLanguageLabel',
@@ -77,7 +103,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
           {isLoggedIn === 'true' ? (
             <>
               <li className="userBar__perfil" onClick={() => setUserBar(false)}>
-                <Link to="/user">
+                <Link to="/user" className="linkToUserProfile">
                   {filtrarTraduccion(
                     traduccionesBD,
                     'userProfileLabel',
@@ -85,8 +111,26 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                   )}
                 </Link>
               </li>
+              <li
+                className="userBar__notifications"
+                onClick={() => setUserBar(false)}
+              >
+                <Link to="/notifications" className="notificationlink">
+                  <span className="notificationIcon">📢</span>{' '}
+                  {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
+                </Link>
+                <span className="unreadNotification">
+                  {unreadsNotifications > 0
+                    ? `${filtrarTraduccion(
+                        traduccionesBD,
+                        'new',
+                        lenguage
+                      )}(${unreadsNotifications})`
+                    : null}
+                </span>
+              </li>
               <li className="userBar__lenguage" onClick={logoutUser}>
-               {userType === 'feel' ? (
+                {userType === 'feel' ? (
                   <p>
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
                   </p>
