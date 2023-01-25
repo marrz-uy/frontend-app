@@ -14,7 +14,7 @@
 .inputGroup {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1em;
 }
 
 .input {
@@ -105,12 +105,26 @@ a:visited {
 .google-btn::hover {
     box-shadow: 0 0 6px #00499de9;
 }
+
 .google-btn::active {
-    background:  #013a7ce9;
+    background: #013a7ce9;
 }
 
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
+    .login {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 748px) {
+    .login {
+        width: 50%;
+    }
+}
+
+/* laptop/desktop - de 1024px en adelante */
+@media screen and (min-width: 1024px) {
     .login {
         width: 30%;
     }

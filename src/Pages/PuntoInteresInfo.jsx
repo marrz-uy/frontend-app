@@ -46,20 +46,20 @@ const PuntoInteresInfo = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleCategories = (e) => {
-    navigate('/results');
-  };
+  // const handleCategories = (e) => {
+  //   navigate('/results');
+  // };
 
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="divBackbtn">
-        <button
+        {/* <button
           className="backBtn"
           onClick={() => handleCategories(categoryName)}
         >
           Volver
-        </button>
+        </button> */}
       </div>
       <div className="puntoInteres__container">
         <div className="puntoInteres__imagen">
