@@ -1,0 +1,18 @@
+.swal2-popup.swal2-toast {
+	padding: 2px;
+}
+
+.swal2-popup.swal2-toast .swal2-title {
+	color: #2874ca;
+	margin: 2px 0 0 17px;
+	font-size: 15px;
+}
+
+.swal2-popup.swal2-toast .swal2-html-container {
+	color: rgb(134, 134, 134);
+	font-size: 15px;
+}
+
+.swal2-timer-progress-bar {
+	background-color: rgb(224, 224, 224);
+}
