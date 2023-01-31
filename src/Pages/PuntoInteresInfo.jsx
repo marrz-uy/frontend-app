@@ -4,10 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import LenguageContext from '../Context/LenguageContext';
+import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';
 import SliderMain from '../Components/SliderMain';
+import LikeButton from '../Components/LikeButton';
+import LikeNumbers from '../Components/LikeQuantity';
 import '../Css/PuntoInteresInfo.css';
 import '../Css/userBarClick.css';
 import '../Css/Slider.css';
@@ -20,32 +23,49 @@ const PuntoInteresInfo = ({
   setIsLoggedIn,
   destination,
   setPage,
-  categoryName,
 }) => {
-  const { setActivePage } = useContext(PageContext);
-  handleUserBar(userBar);
   const navigate = useNavigate();
-  const { Facebook, Instagram } = destination;
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const { setActivePage } = useContext(PageContext);
+  const { Facebook, Instagram } = destination;
+  handleUserBar(userBar);
   const [firefox, setFirefox] = useState(false);
-  console.log('CATEGORY NAME: ', categoryName);
+
+  const [user_Id] = useState(sessionStorage?.getItem('id'));
+  const { GetIdsFavouritesFromDB, idsFavouritesFromDB } =
+    useContext(FavouritesContext);
+  const [initialState, setInitialState] = useState();
+  console.log('idsFavouritesFromDB: ', idsFavouritesFromDB);
+
+  /* FUNCION isFavourite busca en array favoritos si este punto existe */
+  const isFavourite = (array, punto) => {
+    if (array && punto) {
+      const exists = array.includes(punto);
+      return exists;
+    }
+  };
+
   useEffect(() => {
+    GetIdsFavouritesFromDB(user_Id);
+    console.log('ARRAY IDS: ', idsFavouritesFromDB);
     setActivePage('PuntoInteresInfo');
     var sUsrAg = navigator.userAgent;
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
-  }, [setActivePage]);
+    setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
+    // eslint-disable-next-line
+  }, [setActivePage, destination.id, initialState]);
 
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
     setPage('PuntoInteresInfo');
-
     // eslint-disable-next-line
   }, []);
 
+  console.log('INITIAL STATE: ', initialState);
   // const handleCategories = (e) => {
   //   navigate('/results');
   // };
@@ -54,6 +74,7 @@ const PuntoInteresInfo = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="divBackbtn">
+        *//handleCategories */
         {/* <button
           className="backBtn"
           onClick={() => handleCategories(categoryName)}
@@ -70,6 +91,16 @@ const PuntoInteresInfo = ({
           )}
         </div>
         <div className="puntoInteres__info">
+          <div className="containerLikeButton">
+            {/*! LIKEBUTTON  */}
+            <LikeButton
+              puntoInteres_Id={destination.id}
+              user_Id={user_Id}
+              state={initialState}
+              setState={setInitialState}
+            />
+            <LikeNumbers />
+          </div>
           <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
           <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
@@ -260,9 +291,9 @@ const PuntoInteresInfo = ({
             <div className="puntoInteres__especificaciones__datos__gastronomia">
               <p>
                 <span>
-                  {filtrarTraduccion(traduccionesBD, 'food', lenguage)}:{' '}
+                  {filtrarTraduccion(traduccionesBD, 'especiality', lenguage)}:{' '}
                 </span>{' '}
-                {destination.Comida === 1 ? '✅ ' : '❌'}
+                {destination.Especialidad}
               </p>
               <p>
                 <span>

@@ -20,8 +20,8 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
   const logoutUser = () => {
     if (token) {
       logout();
-      sessionStorage.setItem('isLoggedIn', 'false');
-      setIsLoggedIn('false');
+      sessionStorage.setItem('isLoggedIn', false);
+      setIsLoggedIn(false);
       console.log('Cerrando sesion...');
       navigate('/');
       setUserBar(false);
@@ -43,7 +43,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
           onClick={() => setUserBar(false)}
         />
         <ul className="userBar__link">
-          {isLoggedIn === 'false' || isLoggedIn === null ? (
+          {!isLoggedIn ? (
             <>
               <li
                 className="userBar__register"
@@ -64,7 +64,10 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 className="userBar__notifications"
                 onClick={() => setUserBar(false)}
               >
-                <Link to="/notifications" className="notificationlink">
+                <Link
+                  to="/notifications"
+                  className="notificationlink masEspacio"
+                >
                   <span className="notificationIcon">📢</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
                 </Link>
@@ -100,10 +103,11 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               alt="img"
             />
           </li>
-          {isLoggedIn === 'true' ? (
+          {isLoggedIn ? (
             <>
               <li className="userBar__perfil" onClick={() => setUserBar(false)}>
                 <Link to="/user" className="linkToUserProfile">
+                  <span className="notificationIcon">👤</span>{' '}
                   {filtrarTraduccion(
                     traduccionesBD,
                     'userProfileLabel',
@@ -116,7 +120,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 onClick={() => setUserBar(false)}
               >
                 <Link to="/notifications" className="notificationlink">
-                  <span className="notificationIcon">📢</span>{' '}
+                  <span className="notificationIcon masEspacio">📢 </span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'notifications', lenguage)}
                 </Link>
                 <span className="unreadNotification">
@@ -129,7 +133,16 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                     : null}
                 </span>
               </li>
-              <li className="userBar__lenguage" onClick={logoutUser}>
+              <li
+                className="userBar__notifications"
+                onClick={() => setUserBar(false)}
+              >
+                <Link to="/favourites" className="notificationlink ">
+                  <span className="notificationIcon masEspacio">🤍</span>{' '}
+                  {filtrarTraduccion(traduccionesBD, 'favourites', lenguage)}
+                </Link>
+              </li>
+              <li className="userBar__logout" onClick={logoutUser}>
                 {userType === 'feel' ? (
                   <p>
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}

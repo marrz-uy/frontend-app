@@ -203,6 +203,7 @@ const TourStep1 = () => {
                 className="ciudadesSelect"
                 onChange={(e) => setUbicacion(e.target.value)}
                 defaultValue={(e) => e.target.value}
+                id="ciudadesSelect"
               >
                 {ciudades !== null
                   ? ciudades?.map((item, index) => {

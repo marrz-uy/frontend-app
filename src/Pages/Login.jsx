@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
+import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -28,12 +29,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     setPage('login');
     setActivePage('login');
   }, [setPage, setActivePage]);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-
   const { http, setToken } = AuthUser();
   const navigate = useNavigate();
 
@@ -56,7 +55,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'userProfile',
           JSON.stringify(res?.data.userProfile)
         );
-        setIsLoggedIn('true');
+        setIsLoggedIn(true);
+        // setFavouritesFromDB(res?.data.favoritos);
         navigate('/');
       })
       .catch(function (error) {
@@ -121,8 +121,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .then((response) => {
         sessionStorage.setItem('token', response?.data.access_token);
         sessionStorage.setItem('refresh_token', response?.data.refresh_token);
-        sessionStorage.setItem('isLoggedIn', 'true');
-        setIsLoggedIn('true');
+        sessionStorage.setItem('isLoggedIn', true);
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         console.error(`Error en catch: ${error}`);
@@ -132,6 +132,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     // console.log('emailGoogleUser:', emailGoogleUser);
 
     traerIduserGoogle();
+
     navigate('/');
   };
 
@@ -147,6 +148,13 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'userProfile',
           JSON.stringify(response?.data.userProfile)
         );
+        sessionStorage.setItem(
+          'favourites',
+          JSON.stringify(response?.data.favoritos)
+        );
+        /* PARA BORRAR */
+        console.log('DATA GOOGLE LOGIN: ', response?.data.favoritos);
+        // setFavouritesFromDB(response?.data.favoritos);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };

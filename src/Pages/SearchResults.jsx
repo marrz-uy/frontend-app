@@ -38,16 +38,16 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  console.log('SEARCH TYPE:', searchType);
-  console.log('TEXT RESULTS', text, typeof text);
-  console.log('CATEGORIA', text);
+  // console.log('SEARCH TYPE:', searchType);
+  // console.log('TEXT RESULTS', text, typeof text);
+  // console.log('CATEGORIA', text);
 
-  console.log(
-    '%cLAST PAGES ITEMS y DATOS:',
-    'color: yellow;',
-    items?.last_page,
-    datos?.last_page
-  );
+  // console.log(
+  //   '%cLAST PAGES ITEMS y DATOS:',
+  //   'color: yellow;',
+  //   items?.last_page,
+  //   datos?.last_page
+  // );
 
   // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
 
@@ -63,7 +63,7 @@ const SearchResults = ({
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      console.log('A ENVIAR: ', loaded, latitud, longitud);
+      // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
@@ -140,12 +140,12 @@ const SearchResults = ({
 
   handleUserBar(userBar);
 
-  console.log(
-    'DATA A enviar',
-    latitudAEnviar,
-    longitudAEnviar,
-    distanciaAEnviar
-  );
+  // console.log(
+  //   'DATA A enviar',
+  //   latitudAEnviar,
+  //   longitudAEnviar,
+  //   distanciaAEnviar
+  // );
 
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
