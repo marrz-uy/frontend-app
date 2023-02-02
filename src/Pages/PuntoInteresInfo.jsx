@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import AuthUser from '../Components/AuthUser';
 import PageContext from '../Context/PageContext';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
@@ -24,6 +25,8 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
+  console.log('DESTINATION: ', destination);
+  const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const { setActivePage } = useContext(PageContext);
@@ -35,9 +38,20 @@ const PuntoInteresInfo = ({
   const { GetIdsFavouritesFromDB, idsFavouritesFromDB } =
     useContext(FavouritesContext);
   const [initialState, setInitialState] = useState();
-  console.log('idsFavouritesFromDB: ', idsFavouritesFromDB);
 
-  /* FUNCION isFavourite busca en array favoritos si este punto existe */
+  const [cantLikes, setCantLikes] = useState();
+  const [hotelStars, setHotelStars] = useState();
+
+  const cantMegusta = () => {
+    http
+      .get(`/megusta/${destination.id}`)
+      .then((response) => {
+        console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
+        setCantLikes(response.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
   const isFavourite = (array, punto) => {
     if (array && punto) {
       const exists = array.includes(punto);
@@ -45,17 +59,45 @@ const PuntoInteresInfo = ({
     }
   };
 
+  const stars = () => {
+    let star = '⭐';
+    let allstars = '';
+    for (let i = 0; i < destination.Calificaciones; i++) {
+      allstars += star;
+    }
+    console.log(allstars);
+    return allstars;
+  };
+
   useEffect(() => {
     GetIdsFavouritesFromDB(user_Id);
+    if (isLoggedIn) {
+      cantMegusta();
+    }
+
+    if (destination?.Calificaciones) {
+      setHotelStars(stars());
+    }
+    console.log('%cSTARS: ', 'color:blue;', stars());
+    console.log(
+      '%cCALIFICACIONES: ',
+      'color:pink;',
+      destination.Calificaciones
+    );
+
     console.log('ARRAY IDS: ', idsFavouritesFromDB);
+
     setActivePage('PuntoInteresInfo');
+
     var sUsrAg = navigator.userAgent;
+
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
+
     setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
     // eslint-disable-next-line
-  }, [setActivePage, destination.id, initialState]);
+  }, [setActivePage, destination.id]);
 
   useEffect(() => {
     if (!destination.Nombre) {
@@ -65,7 +107,7 @@ const PuntoInteresInfo = ({
     // eslint-disable-next-line
   }, []);
 
-  console.log('INITIAL STATE: ', initialState);
+  console.log('%cINITIAL STATE: ', 'color:red;', initialState);
   // const handleCategories = (e) => {
   //   navigate('/results');
   // };
@@ -74,7 +116,6 @@ const PuntoInteresInfo = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="divBackbtn">
-        *//handleCategories */
         {/* <button
           className="backBtn"
           onClick={() => handleCategories(categoryName)}
@@ -96,12 +137,18 @@ const PuntoInteresInfo = ({
             <LikeButton
               puntoInteres_Id={destination.id}
               user_Id={user_Id}
-              state={initialState}
-              setState={setInitialState}
+              initialState={initialState}
+              setInitialState={setInitialState}
+              cantLikes={cantLikes}
+              setCantLikes={setCantLikes}
             />
-            <LikeNumbers />
+            <LikeNumbers cantLikes={cantLikes} />
           </div>
-          <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
+          <h2 className="puntoInteres__info__tipo">
+            {destination.Tipo === 'Hotel'
+              ? `${destination.Tipo}${' '}${hotelStars}`
+              : `${destination.Tipo}`}
+          </h2>
           <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
             <p>

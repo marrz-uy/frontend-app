@@ -29,6 +29,8 @@ const Favourites = ({
     setPage('favourites');
   }, [setPage]);
 
+  handleUserBar(userBar);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>

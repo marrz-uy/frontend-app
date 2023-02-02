@@ -30,7 +30,10 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
       .get(`/favoritos/${user_Id}`)
       .then((response) => {
         setIdsFavouritesFromDB(response.data.favoritos_ids);
-        console.log('EJECUTANDO FUNCION GetIdsFavouritesFromDB');
+        console.log(
+          '%cEJECUTANDO FUNCION GetIdsFavouritesFromDB',
+          'color:green;'
+        );
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }

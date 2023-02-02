@@ -21,8 +21,10 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
     if (token) {
       logout();
       sessionStorage.setItem('isLoggedIn', false);
+      sessionStorage.clear();
       setIsLoggedIn(false);
       console.log('Cerrando sesion...');
+      console.log('loggedIn: ', setIsLoggedIn);
       navigate('/');
       setUserBar(false);
     }
@@ -92,6 +94,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
             id="id__lenguage"
           >
             <p className="changeLenguageLabel">
+              <span className="notificationIcon">🗣️</span>{' '}
               {filtrarTraduccion(
                 traduccionesBD,
                 'changeLanguageLabel',
@@ -145,6 +148,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               <li className="userBar__logout" onClick={logoutUser}>
                 {userType === 'feel' ? (
                   <p>
+                    <span className="notificationIcon">🚪</span>{' '}
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
                   </p>
                 ) : (

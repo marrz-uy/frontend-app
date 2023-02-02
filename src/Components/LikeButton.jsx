@@ -7,58 +7,73 @@ import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 
 import '../Css/LikeButton.css';
 
-const LikeButton = ({ user_Id, puntoInteres_Id, state }) => {
+const LikeButton = ({
+  user_Id,
+  puntoInteres_Id,
+  initialState,
+  setInitialState,
+  cantLikes,
+  setCantLikes,
+}) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
-  // console.log('PUNTO ID: ', puntoInteres_Id);
+  console.log('cantLikes: ', cantLikes);
+  console.log('%cPUNTO ID: ', 'color:orange;', puntoInteres_Id);
   const { http } = AuthUser();
-  const [isLike, setIsLike] = useState(false);
+  // const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
-    setIsLike(state);
-    console.log('ES FAVORITO: ', state);
-  }, [state]);
+    setInitialState(initialState);
+    console.log('ES FAVORITO: ', initialState);
+  }, []);
 
   const toggleLIke = () => {
-    setIsLike(!isLike);
+    setInitialState(!initialState);
   };
-  // console.log('isLike: ', isLike);
 
   const Addlike = () => {
-    http
-      .post('/favoritos', {
+    const requests = [
+      http.post('/favoritos', {
         user_Id: user_Id,
         puntoInteres_Id: puntoInteres_Id,
+      }),
+      http.patch(`/megusta/${puntoInteres_Id}`),
+    ];
+    Promise.all(requests)
+      .then((responses) => {
+        console.log(responses[0].data, responses[1].data);
+        setCantLikes(cantLikes + 1);
       })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const Removelike = () => {
-    http
-      .delete('/favoritos', {
+    const requests = [
+      http.delete('/favoritos', {
         data: {
           user_Id: user_Id,
           puntoInteres_Id: puntoInteres_Id,
         },
+      }),
+      http.patch(`/nomegusta/${puntoInteres_Id}`),
+    ];
+    Promise.all(requests)
+      .then((responses) => {
+        console.log(responses[0].data, responses[1].data);
+        setCantLikes(cantLikes - 1);
       })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleLike = () => {
     if (!user_Id) {
       Swal.fire({
         title: filtrarTraduccion(traduccionesBD, 'weAreSorryModal', lenguage),
-        text: filtrarTraduccion(
-          traduccionesBD,
-          'sorryExplanationModal',
-          lenguage
-        ),
+        text: 'Para poder dar me gusta debe estar registrado',
         icon: 'info',
         showConfirmButton: true,
         showCancelButton: true,
@@ -80,15 +95,14 @@ const LikeButton = ({ user_Id, puntoInteres_Id, state }) => {
         }
       });
       return;
-      return;
     }
     toggleLIke();
-    if (!isLike) {
+    if (!initialState) {
       console.log('AGREGANDO FAVORITO: ');
       Addlike();
     }
 
-    if (isLike) {
+    if (initialState) {
       console.log('ELIMINANDO FAVORITO: ');
       Removelike();
     }
@@ -97,7 +111,7 @@ const LikeButton = ({ user_Id, puntoInteres_Id, state }) => {
   return (
     <div className="divLikeButton">
       <button className="btnLike" onClick={handleLike}>
-        {isLike === true ? '💙' : '🤍'}
+        {initialState === true ? '💙' : '🤍'}
       </button>
     </div>
   );

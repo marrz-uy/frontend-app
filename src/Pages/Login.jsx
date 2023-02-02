@@ -72,7 +72,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         } else {
           if (error.response.status === UNAUTHORIZED) {
             setLoginErrorMessage(
-              'Error en suario y/o contraseña. Revise los datos ingresados'
+              'Error en los datos ingresados y/o no ha verificado su correo'
             );
           } else if (
             error.response.status === UNPROCESABLE &&
@@ -127,12 +127,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .catch((error) => {
         console.error(`Error en catch: ${error}`);
       });
-
     // let emailGoogleUser = sessionStorage.getItem('email');
     // console.log('emailGoogleUser:', emailGoogleUser);
-
     traerIduserGoogle();
-
     navigate('/');
   };
 
@@ -166,7 +163,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         <form onSubmit={submitLogin}>
           <div className="titulo">
             <h2 className="title">
-              {filtrarTraduccion(traduccionesBD, 'loginTitle', lenguage)}
+              🔑 {filtrarTraduccion(traduccionesBD, 'loginTitle', lenguage)}
             </h2>
           </div>
           <div className="message">{`${loginErrorMessage}`}</div>

@@ -66,9 +66,9 @@
 	margin-right: 8px;
 }
 
-.changeLenguageLabel {
-	width: 184px;
-	padding-left: 40px;
+.userBar__link li .changeLenguageLabel {
+	width: 100%;
+	margin-left: 20px;
 }
 
 .unreadNotification {
@@ -161,6 +161,8 @@
 }
 
 .userBar__lenguage {
+	display: flex;
+	justify-content: space-between;
 	color: #edf0f1;
 	padding: 0px 25px 0 0;
 	font-weight: 500;
@@ -170,6 +172,10 @@
 }
 
 .userBar__logout div {
+	margin-left: 1.5rem;
+}
+
+.userBar__logout p {
 	margin-left: 1.5rem;
 }
 
