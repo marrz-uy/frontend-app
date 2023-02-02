@@ -1,13 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
+import AuthUser from '../Components/AuthUser';
 import PageContext from '../Context/PageContext';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import LenguageContext from '../Context/LenguageContext';
+import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';
 import SliderMain from '../Components/SliderMain';
+import LikeButton from '../Components/LikeButton';
+import LikeNumbers from '../Components/LikeQuantity';
 import '../Css/PuntoInteresInfo.css';
 import '../Css/userBarClick.css';
 import '../Css/Slider.css';
@@ -20,32 +24,90 @@ const PuntoInteresInfo = ({
   setIsLoggedIn,
   destination,
   setPage,
-  categoryName,
 }) => {
-  const { setActivePage } = useContext(PageContext);
-  handleUserBar(userBar);
+  console.log('DESTINATION: ', destination);
+  const { http } = AuthUser();
   const navigate = useNavigate();
-  const { Facebook, Instagram } = destination;
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const { setActivePage } = useContext(PageContext);
+  const { Facebook, Instagram } = destination;
+  handleUserBar(userBar);
   const [firefox, setFirefox] = useState(false);
-  console.log('CATEGORY NAME: ', categoryName);
+
+  const [user_Id] = useState(sessionStorage?.getItem('id'));
+  const { GetIdsFavouritesFromDB, idsFavouritesFromDB } =
+    useContext(FavouritesContext);
+  const [initialState, setInitialState] = useState();
+
+  const [cantLikes, setCantLikes] = useState();
+  const [hotelStars, setHotelStars] = useState();
+
+  const cantMegusta = () => {
+    http
+      .get(`/megusta/${destination.id}`)
+      .then((response) => {
+        console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
+        setCantLikes(response.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+
+  const isFavourite = (array, punto) => {
+    if (array && punto) {
+      const exists = array.includes(punto);
+      return exists;
+    }
+  };
+
+  const stars = () => {
+    let star = '⭐';
+    let allstars = '';
+    for (let i = 0; i < destination.Calificaciones; i++) {
+      allstars += star;
+    }
+    console.log(allstars);
+    return allstars;
+  };
+
   useEffect(() => {
+    GetIdsFavouritesFromDB(user_Id);
+    if (isLoggedIn) {
+      cantMegusta();
+    }
+
+    if (destination?.Calificaciones) {
+      setHotelStars(stars());
+    }
+    console.log('%cSTARS: ', 'color:blue;', stars());
+    console.log(
+      '%cCALIFICACIONES: ',
+      'color:pink;',
+      destination.Calificaciones
+    );
+
+    console.log('ARRAY IDS: ', idsFavouritesFromDB);
+
     setActivePage('PuntoInteresInfo');
+
     var sUsrAg = navigator.userAgent;
+
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
-  }, [setActivePage]);
+
+    setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
+    // eslint-disable-next-line
+  }, [setActivePage, destination.id]);
 
   useEffect(() => {
     if (!destination.Nombre) {
       navigate('/');
     }
     setPage('PuntoInteresInfo');
-
     // eslint-disable-next-line
   }, []);
 
+  console.log('%cINITIAL STATE: ', 'color:red;', initialState);
   // const handleCategories = (e) => {
   //   navigate('/results');
   // };
@@ -70,7 +132,23 @@ const PuntoInteresInfo = ({
           )}
         </div>
         <div className="puntoInteres__info">
-          <h2 className="puntoInteres__info__tipo">{destination.Tipo}</h2>
+          <div className="containerLikeButton">
+            {/*! LIKEBUTTON  */}
+            <LikeButton
+              puntoInteres_Id={destination.id}
+              user_Id={user_Id}
+              initialState={initialState}
+              setInitialState={setInitialState}
+              cantLikes={cantLikes}
+              setCantLikes={setCantLikes}
+            />
+            <LikeNumbers cantLikes={cantLikes} />
+          </div>
+          <h2 className="puntoInteres__info__tipo">
+            {destination.Tipo === 'Hotel'
+              ? `${destination.Tipo}${' '}${hotelStars}`
+              : `${destination.Tipo}`}
+          </h2>
           <h1 className="puntoInteres__info__nombre">{destination.Nombre}</h1>
           <div className="puntoInteres__info__datos">
             <p>
@@ -260,9 +338,9 @@ const PuntoInteresInfo = ({
             <div className="puntoInteres__especificaciones__datos__gastronomia">
               <p>
                 <span>
-                  {filtrarTraduccion(traduccionesBD, 'food', lenguage)}:{' '}
+                  {filtrarTraduccion(traduccionesBD, 'especiality', lenguage)}:{' '}
                 </span>{' '}
-                {destination.Comida === 1 ? '✅ ' : '❌'}
+                {destination.Especialidad}
               </p>
               <p>
                 <span>

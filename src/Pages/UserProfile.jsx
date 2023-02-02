@@ -36,8 +36,8 @@ const UserProfile = ({
   const logoutUser = () => {
     if (token) {
       logout();
-      sessionStorage.setItem('isLoggedIn', 'false');
-      setIsLoggedIn('false');
+      sessionStorage.setItem('isLoggedIn', false);
+      setIsLoggedIn(false);
       console.log('Cerrando sesion...');
       navigate('/');
     }

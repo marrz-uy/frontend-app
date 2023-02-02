@@ -14,12 +14,12 @@
 	display: flex;
 	text-align: center;
 	flex-direction: column;
-	gap: 5rem;
+	gap: 3rem;
 	align-items: center;
 	background-color: #00499d;
 	width: 100vw;
 	height: 100vh;
-	padding-top: 7rem;
+	padding-top: 6rem;
 	/* min-height: 480px; */
 }
 
@@ -57,12 +57,18 @@
 	width: 2rem;
 }
 
+
 .notificationIcon {
 	margin-right: 3px;
 }
 
-.changeLenguageLabel {
-	width: 164px;
+.masEspacio {
+	margin-right: 8px;
+}
+
+.userBar__link li .changeLenguageLabel {
+	width: 100%;
+	margin-left: 20px;
 }
 
 .unreadNotification {
@@ -98,20 +104,20 @@
 
 @media (min-width: 1600px) {
 	.userBar__cancel {
-		margin-top: 14%;
+		margin-top: 10%;
 	}
 }
 
-@media (min-width: 2000px) {
+/* @media (min-width: 2000px) {
 	.userBar__cancel {
 		margin-top: 13%;
 	}
-}
+} */
 
 .userBar__link li {
 	display: flex;
 	justify-content: flex-start;
-	gap: 30%;
+	gap: 34%;
 	align-items: left;
 	width: 100%;
 	text-align: center;
@@ -155,12 +161,22 @@
 }
 
 .userBar__lenguage {
+	display: flex;
+	justify-content: space-between;
 	color: #edf0f1;
 	padding: 0px 25px 0 0;
 	font-weight: 500;
 	font-size: 16px;
 	transition: all 0.3s ease 0s;
 	text-decoration: none;
+}
+
+.userBar__logout div {
+	margin-left: 1.5rem;
+}
+
+.userBar__logout p {
+	margin-left: 1.5rem;
 }
 
 .userBar__register {

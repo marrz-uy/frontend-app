@@ -22,7 +22,7 @@ export default function AuthUser() {
       if (userString !== null) {
         // const user_detail = JSON.parse(userString);
         const user_detail = userString;
-        let userDetail = user_detail.toString().replace(/[",']/gi, '')
+        let userDetail = user_detail.toString().replace(/[",']/gi, '');
         return userDetail;
       }
     } catch (error) {
@@ -35,10 +35,10 @@ export default function AuthUser() {
       const emailString = sessionStorage.getItem('email');
       // const userEmail = JSON.parse(emailString);
       // const user_Email = emailString;
-      if(!emailString) {
-        return ''
+      if (!emailString) {
+        return '';
       }
-      let userEmail = emailString.toString().replace(/[",']/gi, '')
+      let userEmail = emailString.toString().replace(/[",']/gi, '');
       return userEmail;
     } catch (error) {
       console.log('EMAIL SIN DATOS', error);
@@ -56,12 +56,24 @@ export default function AuthUser() {
     }
   };
 
+  const getUserfavourites = () => {
+    try {
+      const userFavouritesString = sessionStorage?.getItem('favourites');
+      const userFavourites_detail = JSON.parse(userFavouritesString);
+      // const userProfile_detail = userProfileString;
+      return userFavourites_detail;
+    } catch (error) {
+      console.log('USER FAVOURITES SIN DATOS', error);
+    }
+  };
+
   const [token, setToken] = useState(getToken());
   const [user, setUser] = useState(getUser());
   const [email, setEmail] = useState(getEmail());
   const [userProfile, setUserProfile] = useState(getUserProfile());
+  const [userfavourites, setUserfavourites] = useState(getUserfavourites());
 
-    const saveToken = (user, token, email, userProfile) => {
+  const saveToken = (user, token, email, userProfile) => {
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('user', user);
     sessionStorage.setItem('email', email);
@@ -70,11 +82,17 @@ export default function AuthUser() {
     } else {
       sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
     }
+    if (userfavourites === null || userfavourites === 'undefined') {
+      sessionStorage.setItem('favourites', JSON.stringify({}));
+    } else {
+      sessionStorage.setItem('favourites', JSON.stringify(userfavourites));
+    }
 
     setToken(token);
     setUser(user);
     setUserProfile(userProfile);
     setEmail(email);
+    setUserfavourites(userfavourites);
     navigate('/principal');
   };
 
@@ -83,12 +101,16 @@ export default function AuthUser() {
     setUserProfile(userProfile);
   };
 
+  const saveUserFavourites = (userfavourites) => {
+    sessionStorage.setItem('favourites', JSON.stringify(userfavourites));
+    setUserfavourites(userfavourites);
+  };
+
   const logout = () => {
     http
-      .post('/logout', {
-      })
+      .post('/logout', {})
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(`Error en catch lOGOUT: ${error}`);
@@ -101,8 +123,8 @@ export default function AuthUser() {
     baseURL: 'http://localhost:8000/api',
     headers: {
       'Content-type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }, 
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   const getLoggedIn = () => {
@@ -128,5 +150,7 @@ export default function AuthUser() {
     getLoggedIn,
     logout,
     saveUserProfile,
+    getUserfavourites,
+    saveUserFavourites,
   };
 }
