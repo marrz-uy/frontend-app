@@ -69,6 +69,7 @@
 .userBar__link li .changeLenguageLabel {
 	width: 100%;
 	margin-left: 20px;
+	display: flex;
 }
 
 .unreadNotification {
@@ -158,6 +159,7 @@
 	width: 40px;
 	height: 25px;
 	cursor: pointer;
+	margin-right: 3rem;
 }
 
 .userBar__lenguage {
