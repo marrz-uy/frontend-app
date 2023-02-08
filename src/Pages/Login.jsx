@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
-import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -60,7 +59,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         navigate('/');
       })
       .catch(function (error) {
-        // console.log('%cRESP:', 'color: red;', error.response.data);
+        console.log('%cRESP:', 'color: yellow;', error.response.data);
         if (error.response.status === SERVIDOR_APAGADO) {
           setLoginErrorMessage('Servidor apagado');
         } else if (!email && !password) {
@@ -72,7 +71,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         } else {
           if (error.response.status === UNAUTHORIZED) {
             setLoginErrorMessage(
-              'Error en los datos ingresados y/o no ha verificado su correo'
+              'Error en los datos ingresados o no ha verificado su correo aun'
+            );
+          } else if (error.response.data.code === 256) {
+            setLoginErrorMessage(
+              'Cuenta sin verificar, se envio un nuevo enlace de verificacion a su correo electronico'
             );
           } else if (
             error.response.status === UNPROCESABLE &&
@@ -135,8 +138,8 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const traerIduserGoogle = () => {
     let emailGoogleUser = sessionStorage.getItem('email');
-    axios
-      .post('http://localhost:8000/api/userGoogleData', {
+    http
+      .post('/userGoogleData', {
         email: emailGoogleUser,
       })
       .then((response) => {
@@ -151,7 +154,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         );
         /* PARA BORRAR */
         console.log('DATA GOOGLE LOGIN: ', response?.data.favoritos);
-        // setFavouritesFromDB(response?.data.favoritos);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -195,6 +197,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <Link to="/forget">
+              <span className="forget">Olvidé mi contraseña</span>
+            </Link>
             <input
               type="submit"
               value={filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)}

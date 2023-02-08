@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
@@ -19,10 +20,12 @@ const Register = ({
   setUserBar,
 }) => {
   const { setActivePage } = useContext(PageContext);
+
   useEffect(() => {
     setPage('register');
     setActivePage('register');
   }, [setPage, setActivePage]);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -39,10 +42,28 @@ const Register = ({
       .then((res) => {
         console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Usuario se registro correctamente');
-        setTimeout(() => {}, 3000);
+        setTimeout(() => {
+          if (res.data.status === 201) {
+            Swal.fire({
+              titleText:
+                'Registro exitoso, se envio un enlace de verificacion a su correo electronico',
+              showConfirmButton: true,
+              showCancelButton: false,
+              confirmButtonColor: '#083d99',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown',
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp',
+              },
+            });
+          }
+        }, 1000);
         navigate('/login');
       })
       .catch(function (error) {
+        console.log('RESPUESTA:', error.response.data.errors);
+        console.log('RESPUESTA:', error.response.data.errors.length);
         if (error.response.status === SERVIDOR_APAGADO) {
           setRegisterErrorMessage('Servidor apagado');
         }

@@ -32,12 +32,13 @@
     border-radius: 5px;
     height: 30px;
     font-family: 'Kodchasan';
+    cursor: pointer;
 }
 
 .linkALogin {
     margin-top: 10px;
     font-family: 'Kodchasan';
-
+    cursor: pointer;
     margin-bottom: 20px;
 }
 
