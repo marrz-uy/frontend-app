@@ -1,6 +1,6 @@
 .divLikeButton {
 	display: flex;
-	z-index: 10;
+	/* z-index: 10; */
 }
 
 .cantidadlike {

@@ -38,6 +38,7 @@ const UserProfile = ({
       logout();
       sessionStorage.setItem('isLoggedIn', false);
       setIsLoggedIn(false);
+      sessionStorage.clear();
       console.log('Cerrando sesion...');
       navigate('/');
     }

@@ -235,6 +235,7 @@ function App() {
                       userBar={userBar}
                       setUserBar={setUserBar}
                       destination={destination}
+                      setDestination={setDestination}
                       categoryName={categoryName}
                       setCategoryName={setCategoryName}
                     />
@@ -250,6 +251,8 @@ function App() {
                       setIsLoggedIn={setIsLoggedIn}
                       userBar={userBar}
                       setUserBar={setUserBar}
+                      destination={destination}
+                      setDestination={setDestination}
                     />
                   }
                 />
@@ -290,6 +293,8 @@ function App() {
                       setIsLoggedIn={setIsLoggedIn}
                       userBar={userBar}
                       setUserBar={setUserBar}
+                      destination={destination}
+                      setDestination={setDestination}
                     />
                   }
                 />

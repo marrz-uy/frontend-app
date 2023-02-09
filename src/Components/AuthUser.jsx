@@ -26,7 +26,7 @@ export default function AuthUser() {
         return userDetail;
       }
     } catch (error) {
-      console.log('USER SIN DATOS- getUser()-AuthUser.jsx', error);
+      console.log('USER SIN DATOS', error);
     }
   };
 
@@ -105,6 +105,13 @@ export default function AuthUser() {
     sessionStorage.setItem('favourites', JSON.stringify(userfavourites));
     setUserfavourites(userfavourites);
   };
+  const http = axios.create({
+    baseURL: 'http://localhost:8000/api',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   const logout = () => {
     http
@@ -118,14 +125,6 @@ export default function AuthUser() {
     sessionStorage.clear();
     // navigate('*');
   };
-
-  const http = axios.create({
-    baseURL: 'http://localhost:8000/api',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
 
   const getLoggedIn = () => {
     try {

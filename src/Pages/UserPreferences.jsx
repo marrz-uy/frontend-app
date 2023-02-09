@@ -258,7 +258,8 @@ const UserPreferences = ({
 
   const handleChangeNationality = (e) => {
     e.preventDefault();
-    console.log('sdhshdks', e.target.value);
+    console.log('SET-NACIONALIDAD', e.target.value);
+    console.log('NACIONALIDAD', nacionalidad);
     setNacionalidad(e.target.value);
   };
 

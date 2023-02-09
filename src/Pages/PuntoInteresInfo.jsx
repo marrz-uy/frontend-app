@@ -23,6 +23,7 @@ const PuntoInteresInfo = ({
   isLoggedIn,
   setIsLoggedIn,
   destination,
+  setDestination,
   setPage,
 }) => {
   console.log('DESTINATION: ', destination);
@@ -71,9 +72,11 @@ const PuntoInteresInfo = ({
 
   useEffect(() => {
     GetIdsFavouritesFromDB(user_Id);
-    if (isLoggedIn) {
-      cantMegusta();
-    }
+    setTimeout(() => {
+      if (isLoggedIn) {
+        cantMegusta();
+      }
+    }, 3000);
 
     if (destination?.Calificaciones) {
       setHotelStars(stars());
