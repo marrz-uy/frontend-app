@@ -60,8 +60,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           JSON.stringify(res?.data.userProfile)
         );
         setIsLoggedIn(true);
-        // setFavouritesFromDB(res?.data.favoritos);
-        // navigate('/');
+        navigate('/');
       })
       .catch(function (error) {
         setLoader(false);
@@ -118,10 +117,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'favourites',
           JSON.stringify(response?.data.favoritos)
         );
-
-        /* PARA BORRAR */
-        console.log('DATA GOOGLE LOGIN: ', response?.data.favoritos);
-        // setFavouritesFromDB(response?.data.favoritos);
       })
       .catch(function (error) {
         setLoader(false);
