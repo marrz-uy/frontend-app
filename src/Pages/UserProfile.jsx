@@ -48,6 +48,7 @@ const UserProfile = ({
   const userType = sessionStorage?.getItem('userType');
   // console.log('userType: ' + userType);
   // console.log('perfilUsuario: ', perfilUsuario);
+  const changePassword = () => {};
 
   return (
     <Layout>
@@ -74,7 +75,7 @@ const UserProfile = ({
                   </Link>
                 </button>
                 <button className="updateBtn">
-                  <Link to="/updatePassword">
+                  <Link to="/forget">
                     {filtrarTraduccion(
                       traduccionesBD,
                       'changePassword',

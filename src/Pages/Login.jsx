@@ -63,7 +63,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         navigate('/');
       })
       .catch(function (error) {
-        setLoader(false);
+        if (error) {
+          setLoader(false);
+        }
         console.log('%cRESP:', 'color: yellow;', error.response.data);
         if (!email || !password) {
           setLoginErrorMessage('Todos los campos son obligatorios');

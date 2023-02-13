@@ -38,11 +38,13 @@ const Register = ({
 
   const submitRegister = (e) => {
     e.preventDefault();
+    console.log('Me registro!!');
+    setRegisterErrorMessage('');
     setLoader(true);
     http
       .post('/register', { email, password, passwordConfirmation, name })
       .then((res) => {
-        console.log('RESPUESTA:', res.data);
+        console.log('RESPUESTA ok:', res.data);
         if (res.data) {
           setLoader(false);
         }
@@ -66,10 +68,14 @@ const Register = ({
         navigate('/login');
       })
       .catch(function (error) {
+        if (error) {
+          setLoader(false);
+        }
         /* console.log('RESPUESTA:', error.response.data.errors); */
-        let errores = error.response.data.errors;
-        console.log('RESPUESTA:', errores);
-        if (!email && !password && !passwordConfirmation && !name) {
+        let ERRORES = error.response.data.errors;
+        console.log('RESPUESTA errores:', ERRORES);
+
+        if (!email || !password || !passwordConfirmation || !name) {
           setRegisterErrorMessage('Todos los campos son obligatorios');
         } else if (
           error.response.data.errors.email[0] ===
