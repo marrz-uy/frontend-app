@@ -114,8 +114,12 @@ export default function AuthUser() {
   });
 
   const logout = () => {
+    const id = sessionStorage?.getItem('id');
+    console.log('IDDDDDD; ', id);
     http
-      .post('/logout', {})
+      .post('/logout', {
+        id: id,
+      })
       .then((response) => {
         console.log(response.data);
       })

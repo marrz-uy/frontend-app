@@ -152,7 +152,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         setIsLoggedIn(true);
       })
       .catch((error) => {
-        setLoader(false);
+        if (error) {
+          setLoader(false);
+        }
         console.error(`Error en catch: ${error}`);
       });
     setTimeout(() => {

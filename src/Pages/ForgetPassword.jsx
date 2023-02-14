@@ -27,14 +27,19 @@ const ForgetPassword = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const { http } = AuthUser();
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
 
-  const submitLogin = (e) => {
+  const submitReset = (e) => {
     e.preventDefault();
+    setLoader(true);
     sessionStorage.setItem('userType', 'feel');
     http
       .post('/password/email', { email })
       .then((res) => {
         console.log(res.data);
+        if (res.data) {
+          setLoader(false);
+        }
         if (res.data.success === true) {
           Swal.fire({
             titleText:
@@ -55,17 +60,17 @@ const ForgetPassword = ({
               popup: 'animate__animated animate__fadeOutUp',
             },
           });
-          /* setResetErrorMessage(
-            'Se envio un enlace de reseteo de contraseña a su correo'
-          ); */
           setTimeout(() => {
             navigate('/login');
           }, 3000);
         }
       })
       .catch(function (error) {
+        if (error) {
+          setLoader(false);
+        }
         if (!email) {
-          setResetErrorMessage(error.response.data.email);
+          setResetErrorMessage('El email es obligatorio');
         }
       });
     return resetErrorMessage;
@@ -77,7 +82,7 @@ const ForgetPassword = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="forgetPassword">
-        <form onSubmit={submitLogin}>
+        <form onSubmit={submitReset}>
           <div className="titulo">
             <h2 className="title">🔑 Resetear pasword</h2>
           </div>
@@ -97,11 +102,17 @@ const ForgetPassword = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
-              type="submit"
-              value="Solicitar reseteo"
-              className="btn-login"
-            />
+            {loader ? (
+              <div className="divLoader">
+                <span className="loader"></span>
+              </div>
+            ) : (
+              <input
+                type="submit"
+                value="Solicitar reseteo"
+                className="btn-login"
+              />
+            )}
           </div>
 
           <div className="salir">
