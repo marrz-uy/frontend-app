@@ -1,24 +1,24 @@
 .steps-content {
-  min-height: 24rem;
-  text-align: center;
-  /* background-color: #ffffff; */
+	min-height: 24rem;
+	text-align: center;
+	/* background-color: #ffffff; */
 	border: none;
-  border-radius: 2px;
+	border-radius: 2px;
 }
 
 
-.ant-steps-vertical{
+.ant-steps-vertical {
 	flex-direction: row !important;
 	justify-content: space-around !important;
 	margin-left: 35px;
-} 
+}
 
-.ant-steps-horizontal{
+.ant-steps-horizontal {
 	background-color: white;
-} 
+}
 
 
-.ant-steps-item-title{
+.ant-steps-item-title {
 	display: none !important;
 	font-size: 10px !important;
 }
@@ -32,36 +32,34 @@
 }
 
 .ant-message {
-	top:10rem !important;
+	top: 10rem !important;
 }
 
-.steps-action{
+.steps-action {
 	width: 100%;
 	display: flex !important;
-	justify-content:flex-start !important;
+	justify-content: flex-start !important;
 	max-width: 500px !important;
-  margin: 1rem 0;
+	margin: 1rem 0;
 }
 
-.btnSiguienteGuardar{
+.btnSiguienteGuardar {
 	min-width: 90px;
 }
 
-@media screen and (min-width: 480px) { 
-	.ant-steps-item-title{
+@media screen and (min-width: 480px) {
+	.ant-steps-item-title {
 		margin-bottom: 1rem;
 	}
-
-	
 }
 
-@media screen and (min-width: 840px) { 
-	.ant-steps-item-title{
+@media screen and (min-width: 840px) {
+	.ant-steps-item-title {
 		display: flex !important;
-		font-size: 16px !important; 
+		font-size: 16px !important;
 	}
 
-	.step-action{
+	.step-action {
 		display: flex !important;
 		justify-content: space-between !important;
 		max-width: 450px !important;
@@ -71,6 +69,6 @@
 @media screen and (max-height: 666px) {
 	.steps-content {
 		min-height: 10rem;
-		
+
 	}
 }
