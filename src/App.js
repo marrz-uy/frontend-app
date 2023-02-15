@@ -20,6 +20,7 @@ import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour';
 import PredefinedTour from './Pages/BuildTour/PredefinedTour';
 import Notifications from './Pages/Notifications';
 import Favourites from './Pages/Favourites';
+import ForgetPassword from '../src/Pages/ForgetPassword';
 import './App.css';
 import '../src/Css/Toast.css';
 
@@ -234,6 +235,7 @@ function App() {
                       userBar={userBar}
                       setUserBar={setUserBar}
                       destination={destination}
+                      setDestination={setDestination}
                       categoryName={categoryName}
                       setCategoryName={setCategoryName}
                     />
@@ -249,6 +251,8 @@ function App() {
                       setIsLoggedIn={setIsLoggedIn}
                       userBar={userBar}
                       setUserBar={setUserBar}
+                      destination={destination}
+                      setDestination={setDestination}
                     />
                   }
                 />
@@ -289,6 +293,8 @@ function App() {
                       setIsLoggedIn={setIsLoggedIn}
                       userBar={userBar}
                       setUserBar={setUserBar}
+                      destination={destination}
+                      setDestination={setDestination}
                     />
                   }
                 />
@@ -308,6 +314,19 @@ function App() {
                   path="/favourites"
                   element={
                     <Favourites
+                      setPage={setPage}
+                      userBar={userBar}
+                      setIsLoggedIn={setIsLoggedIn}
+                      isLoggedIn={isLoggedIn}
+                      setUserBar={setUserBar}
+                      setDestination={setDestination}
+                    />
+                  }
+                />
+                <Route
+                  path="/forget"
+                  element={
+                    <ForgetPassword
                       setPage={setPage}
                       userBar={userBar}
                       setIsLoggedIn={setIsLoggedIn}

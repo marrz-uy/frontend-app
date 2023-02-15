@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../Layout';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
@@ -16,12 +17,15 @@ const PredefinedTour = ({
   isLoggedIn,
   userBar,
   setUserBar,
+  destination,
+  setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);
   const [appTours, setAppTours] = useState();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [cantTours, setCantTours] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage('predefinedTour');
@@ -46,6 +50,47 @@ const PredefinedTour = ({
   const hora = (str) => {
     str = str.substring(0, str.length - 3);
     return str;
+  };
+
+  // const Request = async (id) => {
+  //   const req = await http
+  //     .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+  //     .then((response) => {
+  //       console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
+  //       console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
+  //       let punto = response?.data.punto;
+  //       let tipo = response?.data.tipo;
+  //       const objetoUnido = { ...punto, ...tipo };
+
+  //       return objetoUnido;
+  //     })
+  //     .catch((error) => console.error(`Error en catch: ${error}`));
+  //   console.log('REQ: ', req);
+  //   return req;
+  // };
+
+  const goOnPoint = async (e) => {
+    e.preventDefault();
+    // console.log('TARGET: ');
+    const id = e.target.id;
+    const req = await http
+      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .then((response) => {
+        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
+        console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
+        let punto = response?.data.punto;
+        let tipo = response?.data.tipo;
+        const objetoUnido = { ...punto, ...tipo };
+
+        return objetoUnido;
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+    console.log('REQ: ', req);
+    // setTimeout(() => {}, 2000);
+    setDestination(req);
+
+    console.log('DESTINATION: ', destination);
+    navigate('/infoResults');
   };
 
   return (
@@ -97,7 +142,13 @@ const PredefinedTour = ({
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
-                              <li>{tourItem.puntos_interes.Nombre}</li>
+                              <li
+                                className="puntoInteresLi"
+                                id={tourItem.puntoInteresId}
+                                onClick={goOnPoint}
+                              >
+                                {tourItem.puntos_interes.Nombre}
+                              </li>
                             </div>
                           );
                         })}

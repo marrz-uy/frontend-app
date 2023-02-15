@@ -38,6 +38,7 @@ const UserProfile = ({
       logout();
       sessionStorage.setItem('isLoggedIn', false);
       setIsLoggedIn(false);
+      sessionStorage.clear();
       console.log('Cerrando sesion...');
       navigate('/');
     }
@@ -47,6 +48,11 @@ const UserProfile = ({
   const userType = sessionStorage?.getItem('userType');
   // console.log('userType: ' + userType);
   // console.log('perfilUsuario: ', perfilUsuario);
+
+  const changePassword = () => {
+    logoutUser();
+    navigate('/forget');
+  };
 
   return (
     <Layout>
@@ -72,14 +78,14 @@ const UserProfile = ({
                     {filtrarTraduccion(traduccionesBD, 'changename', lenguage)}
                   </Link>
                 </button>
-                <button className="updateBtn">
-                  <Link to="/updatePassword">
+                <button className="updateBtn" onClick={changePassword}>
+                  <p>
                     {filtrarTraduccion(
                       traduccionesBD,
                       'changePassword',
                       lenguage
                     )}
-                  </Link>
+                  </p>
                 </button>
               </div>
             ) : null}

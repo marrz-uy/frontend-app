@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
-import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
@@ -24,25 +23,30 @@ import '../Css/userBarClick.css';
 import { CLIENT_SECRET } from '../Config/config.js';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
+  const { http, setToken } = AuthUser();
   const { setActivePage } = useContext(PageContext);
   useEffect(() => {
     setPage('login');
     setActivePage('login');
-  }, [setPage, setActivePage]);
+  }, [setPage, setActivePage, http]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
+  const [loader, setLoader] = useState(false);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-  const { http, setToken } = AuthUser();
   const navigate = useNavigate();
 
   const submitLogin = (e) => {
     e.preventDefault();
+    setLoader(true);
     sessionStorage.setItem('userType', 'feel');
     http
       .post('/login', { email, password })
       .then((res) => {
         // console.log('%cLOGIN RESPONSE:', 'color: green;', res);
+        if (res.data) {
+          setLoader(false);
+        }
         setToken(
           res.data.user,
           res.data.access_token,
@@ -56,33 +60,25 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           JSON.stringify(res?.data.userProfile)
         );
         setIsLoggedIn(true);
-        // setFavouritesFromDB(res?.data.favoritos);
         navigate('/');
       })
       .catch(function (error) {
-        // console.log('%cRESP:', 'color: red;', error.response.data);
-        if (error.response.status === SERVIDOR_APAGADO) {
-          setLoginErrorMessage('Servidor apagado');
-        } else if (!email && !password) {
-          setLoginErrorMessage('Todos los campos son obligatorios');
-        } else if (!email) {
-          setLoginErrorMessage(error.response.data.email);
-        } else if (!password) {
-          setLoginErrorMessage(error.response.data.password);
-        } else {
-          if (error.response.status === UNAUTHORIZED) {
-            setLoginErrorMessage(
-              'Error en los datos ingresados y/o no ha verificado su correo'
-            );
-          } else if (
-            error.response.status === UNPROCESABLE &&
-            error.response.data.email !== undefined
-          ) {
-            setLoginErrorMessage(error.response.data.email);
-          } else {
-            setLoginErrorMessage(error.response.data.password);
-          }
+        if (error) {
+          setLoader(false);
         }
+        console.log('%cRESP:', 'color: yellow;', error.response.data);
+        if (!email || !password) {
+          setLoginErrorMessage('Todos los campos son obligatorios');
+        } else if (error.response.data.status === 401) {
+          setLoginErrorMessage(
+            'Error en los datos ingresados o usuario sin registrarse'
+          );
+        } else if (error.response.data.code === 256) {
+          setLoginErrorMessage(
+            'Debe verificar su cuenta en su correo electronico'
+          );
+        }
+
         return loginErrorMessage;
       });
   };
@@ -105,36 +101,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     console.log('Error o cambio de cuenta cancelado:', result);
   };
 
-  const handleOAuth = (googleUser) => {
-    sessionStorage.setItem('email', googleUser.profileObj.email);
-    sessionStorage.setItem('userType', 'google');
-    sessionStorage.setItem('user', googleUser.profileObj.name);
-    http
-      .post('http://localhost:8000/oauth/token', {
-        grant_type: 'social',
-        client_id: '2',
-
-        client_secret: CLIENT_SECRET,
-        provider: 'google',
-        access_token: googleUser.tokenObj.access_token,
-      })
-      .then((response) => {
-        sessionStorage.setItem('token', response?.data.access_token);
-        sessionStorage.setItem('refresh_token', response?.data.refresh_token);
-        sessionStorage.setItem('isLoggedIn', true);
-        setIsLoggedIn(true);
-      })
-      .catch((error) => {
-        console.error(`Error en catch: ${error}`);
-      });
-    // let emailGoogleUser = sessionStorage.getItem('email');
-    // console.log('emailGoogleUser:', emailGoogleUser);
-    traerIduserGoogle();
-    navigate('/');
-  };
-
   const traerIduserGoogle = () => {
-    let emailGoogleUser = sessionStorage.getItem('email');
+    let emailGoogleUser = sessionStorage?.getItem('email');
+    // let token = sessionStorage?.getItem('token');
+    //
     axios
       .post('http://localhost:8000/api/userGoogleData', {
         email: emailGoogleUser,
@@ -149,11 +119,48 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'favourites',
           JSON.stringify(response?.data.favoritos)
         );
-        /* PARA BORRAR */
-        console.log('DATA GOOGLE LOGIN: ', response?.data.favoritos);
-        // setFavouritesFromDB(response?.data.favoritos);
       })
-      .catch((error) => console.error(`Error en catch: ${error}`));
+      .catch(function (error) {
+        setLoader(false);
+        console.log('traerIduserGoogle error: ', error);
+        setLoginErrorMessage(error);
+        return loginErrorMessage;
+      });
+  };
+
+  const handleOAuth = (googleUser) => {
+    setLoader(true);
+    sessionStorage.setItem('email', googleUser.profileObj.email);
+    sessionStorage.setItem('userType', 'google');
+    sessionStorage.setItem('user', googleUser.profileObj.name);
+    http
+      .post('http://localhost:8000/oauth/token', {
+        grant_type: 'social',
+        client_id: '2',
+
+        client_secret: CLIENT_SECRET,
+        provider: 'google',
+        access_token: googleUser.tokenObj.access_token,
+      })
+      .then((response) => {
+        if (response.data) {
+          setLoader(false);
+        }
+        sessionStorage.setItem('token', response?.data.access_token);
+        sessionStorage.setItem('refresh_token', response?.data.refresh_token);
+        sessionStorage.setItem('isLoggedIn', true);
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        if (error) {
+          setLoader(false);
+        }
+        console.error(`Error en catch: ${error}`);
+      });
+    setTimeout(() => {
+      traerIduserGoogle();
+    }, 500);
+    navigate('/');
   };
 
   return (
@@ -195,25 +202,44 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input
-              type="submit"
-              value={filtrarTraduccion(traduccionesBD, 'loginLabel', lenguage)}
-              className="btn-login"
-            />
+            <Link to="/forget">
+              <span className="forget">Olvidé mi contraseña</span>
+            </Link>
+            {loader ? (
+              <div className="divLoader">
+                <span className="loader"></span>
+              </div>
+            ) : (
+              <input
+                type="submit"
+                value={filtrarTraduccion(
+                  traduccionesBD,
+                  'loginLabel',
+                  lenguage
+                )}
+                className="btn-login"
+              />
+            )}
           </div>
           <Separador />
-          <GoogleLogin
-            clientId={clientId}
-            buttonText={filtrarTraduccion(
-              traduccionesBD,
-              'loginWhithGoole',
-              lenguage
-            )}
-            onSuccess={handleOAuth}
-            onFailure={handleFailure}
-            cookiePolicy={'single_host_origin'}
-            // isSignedIn={true}
-          ></GoogleLogin>
+          {loader ? (
+            <div className="divLoader">
+              <span className="loader"></span>
+            </div>
+          ) : (
+            <GoogleLogin
+              clientId={clientId}
+              buttonText={filtrarTraduccion(
+                traduccionesBD,
+                'loginWhithGoole',
+                lenguage
+              )}
+              onSuccess={handleOAuth}
+              onFailure={handleFailure}
+              cookiePolicy={'single_host_origin'}
+              // isSignedIn={true}
+            ></GoogleLogin>
+          )}
           <div className="linkAregistro">
             <Link to="/register">
               {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}

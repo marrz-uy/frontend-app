@@ -42,11 +42,6 @@
 	cursor: pointer;
 }
 
-/* .userBar__link li .userProfileIcon {
-	height: 16px;
-	margin-bottom: -1px;
-} */
-
 .userBar__notifications {
 	display: flex;
 	justify-content: space-around;
@@ -68,7 +63,7 @@
 
 .userBar__link li .changeLenguageLabel {
 	width: 100%;
-	margin-left: 20px;
+	margin-left: 24px;
 	display: flex;
 }
 
@@ -109,25 +104,17 @@
 	}
 }
 
-/* @media (min-width: 2000px) {
-	.userBar__cancel {
-		margin-top: 13%;
-	}
-} */
-
 .userBar__link li {
 	display: flex;
 	justify-content: flex-start;
-	gap: 34%;
-	align-items: left;
+	gap: 24%;
+	/* align-items: left; */
 	width: 100%;
 	text-align: center;
 	padding: 10px;
 	border-bottom: 1px solid gray;
 	align-items: flex-end;
 }
-
-
 
 .userBar__link li a {
 	color: #edf0f1;
@@ -140,8 +127,6 @@
 	margin-bottom: 5px;
 
 }
-
-
 
 .userBar__link li p {
 	color: #edf0f1;
