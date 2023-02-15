@@ -7,17 +7,17 @@ const InitialLanguage = getLanguageStorage();
 const LenguageProvider = ({ children }) => {
   const [lenguage, setLenguage] = useState(InitialLanguage);
   const [traduccionesBD, setTraduccionesBD] = useState([]);
-  localStorage.setItem('language', 'en')
+  localStorage.setItem('language', 'en');
   const { http } = AuthUser();
-  
+
   useEffect(() => {
     http
-    .get('/translations',)
-    .then((response) => {
-      const tradBD = response.data;
-      setTraduccionesBD(tradBD);
-    })
-    .catch((error) => console.error(`Error en catch: ${error}`));
+      .get('/translations')
+      .then((response) => {
+        const tradBD = response.data;
+        setTraduccionesBD(tradBD);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
     // eslint-disable-next-line
   }, []);
 
@@ -31,7 +31,6 @@ const LenguageProvider = ({ children }) => {
       localStorage.setItem('language', 'es');
     }
   };
-  // console.log(lenguage)
 
   const data = { handleLenguage, lenguage, traduccionesBD };
 

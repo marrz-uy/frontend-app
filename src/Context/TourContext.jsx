@@ -13,10 +13,6 @@ const TourProvider = ({ children }) => {
     puntosdeInteresTour: '',
   });
 
-  // console.log('DATATOURFORSAVE:', dataTourForSave);
-
-  // console.log('TOURPREFERENCES CONTEXT:', tourPreferences);
-
   const SaveTourPreferences = (tourPreferences) => {
     sessionStorage.setItem('tourPreferences', JSON.stringify(tourPreferences));
   };

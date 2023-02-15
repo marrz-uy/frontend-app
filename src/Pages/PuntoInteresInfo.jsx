@@ -25,7 +25,6 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  // console.log('DESTINATION: ', destination);
   const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -46,7 +45,6 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -80,14 +78,6 @@ const PuntoInteresInfo = ({
     if (destination?.Calificaciones) {
       setHotelStars(stars());
     }
-    // console.log('%cSTARS: ', 'color:blue;', stars());
-    // console.log(
-    //   '%cCALIFICACIONES: ',
-    //   'color:pink;',
-    //   destination.Calificaciones
-    // );
-
-    // console.log('ARRAY IDS: ', idsFavouritesFromDB);
 
     setActivePage('PuntoInteresInfo');
 
@@ -109,7 +99,6 @@ const PuntoInteresInfo = ({
     // eslint-disable-next-line
   }, []);
 
-  // console.log('%cINITIAL STATE: ', 'color:red;', initialState);
   const handleCategories = () => {
     navigate(-1);
   };

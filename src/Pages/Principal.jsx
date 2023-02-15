@@ -21,7 +21,6 @@ import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
-// import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
 import '../Css/Toast.css';
 
@@ -55,6 +54,7 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
+    // eslint-disable-next-line
   }, [setPage, setText, page]);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
@@ -99,13 +99,6 @@ const Principal = ({
     setCategoryName(e);
     navigate('/results');
   };
-
-  /* let weareSorryModal = filtrarTraduccion(
-    traduccionesBD,
-    'predefinedToursLabel',
-    lenguage
-  ); */
-
   const handlebuildTour = (e) => {
     e.preventDefault();
 

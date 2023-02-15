@@ -10,11 +10,6 @@ import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import {
-  UNAUTHORIZED,
-  UNPROCESABLE,
-  SERVIDOR_APAGADO,
-} from '../Data/HTTPResponseStatusCodes';
 import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
@@ -106,7 +101,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     // let token = sessionStorage?.getItem('token');
     //
     axios
-      .post('http://localhost:8000/api/userGoogleData', {
+      .post('http://54.175.153.182/api/userGoogleData', {
         email: emailGoogleUser,
       })
       .then((response) => {
