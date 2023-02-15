@@ -30,14 +30,13 @@
   border-radius: .5rem;
   transition: all 1s ease;
   cursor: pointer;
-  width: 4rem;
+  width: 5rem;
   font-size: 0.7rem;
+  padding: 4px 10px;
 }
 
 .updateBtn:hover {
-
   background-color: rgba(196, 196, 196, 0.396);
-
 }
 
 .updateBtn a,
@@ -46,6 +45,10 @@ a:visited {
   text-decoration: none;
   color: rgb(81, 81, 81);
   cursor: pointer;
+}
+
+.updateBtn p {
+  font-size: 0.7rem;
 }
 
 .user-profile__container {

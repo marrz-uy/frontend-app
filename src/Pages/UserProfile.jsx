@@ -79,11 +79,13 @@ const UserProfile = ({
                   </Link>
                 </button>
                 <button className="updateBtn" onClick={changePassword}>
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'changePassword',
-                    lenguage
-                  )}
+                  <p>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'changePassword',
+                      lenguage
+                    )}
+                  </p>
                 </button>
               </div>
             ) : null}
