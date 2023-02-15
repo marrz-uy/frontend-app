@@ -4,7 +4,6 @@ import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';
 import { LenguageProvider } from '../src/Context/LenguageContext';
-// import { channel } from '../src/Components/notificationsDB';
 import { TourProvider } from '../src/Context/TourContext';
 import { PageProvider } from './Context/PageContext';
 import { FavouritesProvider } from '../src/Context/FavouritesContext';
@@ -41,8 +40,6 @@ function App() {
   const handleClickBars = () => {
     setBars(!bars);
   };
-
-  // console.log(channel);
 
   const { loaded, latitud, longitud } = useGeoLocation();
 

@@ -46,8 +46,6 @@ const UserProfile = ({
   handleUserBar(userBar);
 
   const userType = sessionStorage?.getItem('userType');
-  // console.log('userType: ' + userType);
-  // console.log('perfilUsuario: ', perfilUsuario);
 
   const changePassword = () => {
     logoutUser();
