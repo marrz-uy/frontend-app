@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../Layout';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
@@ -8,6 +9,8 @@ import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import PageContext from '../../Context/PageContext';
 import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
 import '../../Css/TourInit.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const PredefinedTour = ({
   setIsLoggedIn,
@@ -16,12 +19,15 @@ const PredefinedTour = ({
   isLoggedIn,
   userBar,
   setUserBar,
+  destination,
+  setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);
   const [appTours, setAppTours] = useState();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [cantTours, setCantTours] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage('predefinedTour');
@@ -48,6 +54,30 @@ const PredefinedTour = ({
     return str;
   };
 
+  const goOnPoint = async (e) => {
+    e.preventDefault();
+    // console.log('TARGET: ');
+    const id = e.target.id;
+    const req = await http
+      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .then((response) => {
+        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
+        console.log('%cPUNTO:', 'color: yellow;', response?.data.categoria);
+        let punto = response?.data.punto;
+        let categoria = response?.data.categoria;
+        const objetoUnido = { ...punto, ...categoria };
+
+        return objetoUnido;
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+    console.log('REQ: ', req);
+    // setTimeout(() => {}, 2000);
+    setDestination(req);
+
+    console.log('DESTINATION: ', destination);
+    navigate('/infoResults');
+  };
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -64,9 +94,9 @@ const PredefinedTour = ({
         <div className="tourSecciones">
           <div className="seccionVerMisTours">
             <div className="pageText">
-              <h3 className="textBlur">
+              <h4 className="textBlur">
                 {filtrarTraduccion(traduccionesBD, 'predefinedTour', lenguage)}
-              </h3>
+              </h4>
             </div>
           </div>
           <div className="tourList">
@@ -75,18 +105,22 @@ const PredefinedTour = ({
                 return (
                   <details key={tour.id}>
                     <summary>
-                      <span>{tour.nombreTourPredefinido}</span>
-                      {' / '}
-                      <span>&#9200;</span> Inicio a las{' '}
-                      {hora(tour.horaDeInicioTourPredefinido)} hs
-                      <h6 className="tourPredefinedDescription">
+                      <h4>
+                        <span className="summary-title">
+                          {tour.nombreTourPredefinido}
+                        </span>
+                      </h4>
+                      <span className="tourPredefinedDescription">
                         {tour.descripcionTourPredefinido}
-                      </h6>
+                      </span>
+                      <div className="summary-chevron-up">
+                        <FontAwesomeIcon icon={faArrowDown} />
+                      </div>
                     </summary>
-                    <div className="myToursCard">
+
+                    <div className="summary-content myToursCard">
                       <div className="cardContent">
                         {' '}
-                        <div className="cardHour"></div>
                         <h5 style={{ color: '#00699d' }}>
                           {filtrarTraduccion(
                             traduccionesBD,
@@ -94,14 +128,27 @@ const PredefinedTour = ({
                             lenguage
                           )}
                         </h5>
+                        <div className="cardHour">
+                          <span>&#9200;</span> Inicio a las{' '}
+                          {hora(tour.horaDeInicioTourPredefinido)} hs
+                        </div>
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
-                              <li>{tourItem.puntos_interes.Nombre}</li>
+                              <li
+                                className="puntoInteresLi"
+                                id={tourItem.puntoInteresId}
+                                onClick={goOnPoint}
+                              >
+                                {tourItem.puntos_interes.Nombre}
+                              </li>
                             </div>
                           );
                         })}
                       </div>
+                    </div>
+                    <div className="summary-chevron-down">
+                      <FontAwesomeIcon icon={faArrowUp} />
                     </div>
                   </details>
                 );

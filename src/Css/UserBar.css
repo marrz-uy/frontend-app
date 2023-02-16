@@ -14,12 +14,12 @@
 	display: flex;
 	text-align: center;
 	flex-direction: column;
-	gap: 5rem;
+	gap: 3rem;
 	align-items: center;
 	background-color: #00499d;
 	width: 100vw;
 	height: 100vh;
-	padding-top: 7rem;
+	padding-top: 6rem;
 	/* min-height: 480px; */
 }
 
@@ -42,11 +42,6 @@
 	cursor: pointer;
 }
 
-/* .userBar__link li .userProfileIcon {
-	height: 16px;
-	margin-bottom: -1px;
-} */
-
 .userBar__notifications {
 	display: flex;
 	justify-content: space-around;
@@ -57,12 +52,19 @@
 	width: 2rem;
 }
 
+
 .notificationIcon {
 	margin-right: 3px;
 }
 
-.changeLenguageLabel {
-	width: 164px;
+.masEspacio {
+	margin-right: 8px;
+}
+
+.userBar__link li .changeLenguageLabel {
+	width: 100%;
+	margin-left: 24px;
+	display: flex;
 }
 
 .unreadNotification {
@@ -98,29 +100,21 @@
 
 @media (min-width: 1600px) {
 	.userBar__cancel {
-		margin-top: 14%;
-	}
-}
-
-@media (min-width: 2000px) {
-	.userBar__cancel {
-		margin-top: 13%;
+		margin-top: 10%;
 	}
 }
 
 .userBar__link li {
 	display: flex;
 	justify-content: flex-start;
-	gap: 30%;
-	align-items: left;
+	gap: 24%;
+	/* align-items: left; */
 	width: 100%;
 	text-align: center;
 	padding: 10px;
 	border-bottom: 1px solid gray;
 	align-items: flex-end;
 }
-
-
 
 .userBar__link li a {
 	color: #edf0f1;
@@ -133,8 +127,6 @@
 	margin-bottom: 5px;
 
 }
-
-
 
 .userBar__link li p {
 	color: #edf0f1;
@@ -152,15 +144,26 @@
 	width: 40px;
 	height: 25px;
 	cursor: pointer;
+	margin-right: 3rem;
 }
 
 .userBar__lenguage {
+	display: flex;
+	justify-content: space-between;
 	color: #edf0f1;
 	padding: 0px 25px 0 0;
 	font-weight: 500;
 	font-size: 16px;
 	transition: all 0.3s ease 0s;
 	text-decoration: none;
+}
+
+.userBar__logout div {
+	margin-left: 1.5rem;
+}
+
+.userBar__logout p {
+	margin-left: 1.5rem;
 }
 
 .userBar__register {

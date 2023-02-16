@@ -1,0 +1,34 @@
+.divLikeButton {
+	display: flex;
+	/* z-index: 10; */
+}
+
+.cantidadlike {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	background-color: aliceblue;
+	border: 1px solid rgb(179, 179, 179);
+	height: 30px;
+	width: 50px;
+	margin-right: 2px;
+	border-radius: 3px;
+}
+
+.btnLike {
+	background-color: aliceblue;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	border: 1px solid rgb(179, 179, 179);
+	border-radius: 3px;
+}
+
+.divCantLike {
+	margin-left: 2px;
+}
+
+.heart {
+	font-size: 30px;
+}
