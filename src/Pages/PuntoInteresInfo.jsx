@@ -25,7 +25,7 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  // console.log('DESTINATION: ', destination);
+  console.log('DESTINATION: ', destination);
   const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -72,9 +72,9 @@ const PuntoInteresInfo = ({
   useEffect(() => {
     GetIdsFavouritesFromDB(user_Id);
     setTimeout(() => {
-      if (isLoggedIn) {
-        cantMegusta();
-      }
+      // if (isLoggedIn) {
+      cantMegusta();
+      // }
     }, 3000);
 
     if (destination?.Calificaciones) {

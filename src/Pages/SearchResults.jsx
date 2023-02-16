@@ -70,15 +70,6 @@ const SearchResults = ({
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
-    /* console.log(
-      items.path,
-      '------/?page=',
-      numPage,
-      '///',
-      latitudAEnviar,
-      longitudAEnviar,
-      distanciaAEnviar
-    ); */
     http
       .post(`${items?.path}?page=${numPage}`, {
         latitudAEnviar,
@@ -133,6 +124,7 @@ const SearchResults = ({
           setDatos(allDdata);
           setCantPaginas(allDdata?.last_page);
           console.log('%cDATA RESPONSE RESULTS:', 'color: green;', datos);
+          console.log('DATOSSSSSSSSSSSSSS ALLDATA: ', allDdata);
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
@@ -147,6 +139,8 @@ const SearchResults = ({
   //   distanciaAEnviar
   // );
 
+  console.log('DATOSSSSSSSSSSSSSS: ', datos);
+  console.log('DATOSSSSSSSSSSSSSS: ', datos.data);
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
