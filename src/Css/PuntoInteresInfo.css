@@ -1,10 +1,39 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300;1,500&display=swap');
 
+.containerLikeButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.puntoInteresInfo {
+    margin-top: 120px;
+}
+
+.nombrePunto {
+    padding: 10px 5px 5px;
+}
+
+.divBackbtn {
+    margin-bottom: 1rem;
+}
+
+.backBtn {
+    background-color: #00499de9;
+    padding: 5px;
+    color: aliceblue;
+    font-weight: bold;
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 30px;
+    font-family: 'Kodchasan';
+    cursor: pointer;
+}
+
 .puntoInteres__container {
     display: flex;
     flex-direction: column;
-    margin-top: 120px;
+
     background-color: rgb(225, 225, 225, 0.2);
     border: 1px solid #e1e1e1;
     width: 90vw;
@@ -17,6 +46,8 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
+
+
 }
 
 .puntoInteres__imagen {
@@ -179,9 +210,6 @@
     font-weight: bold;
 }
 
-.puntoInteres__info h1 {
-    /* font-size: 3rem; */
-}
 
 .puntoInteres__info__horarios {
     display: flex;
@@ -473,12 +501,7 @@
     font-weight: 700;
 }
 
-.puntoInteres__info__mapa {}
-
-#mapa {}
-
 /* Gastronomia */
-
 .puntoInteres__especificaciones__gastronomia {
     display: flex;
     flex-direction: column;

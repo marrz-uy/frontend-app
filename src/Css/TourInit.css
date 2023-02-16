@@ -77,10 +77,6 @@
 	gap: 1rem;
 }
 
-.puntoInteresLi {
-	list-style-image: url('../Assets/localizacion.png');
-}
-
 details {
 	padding: 1rem;
 	border-radius: 5px;
@@ -129,7 +125,19 @@ details {
 	color: rgb(255, 145, 0);
 }
 
+/* .irAPunto {
+	cursor: pointer;
+} */
 
+.puntoInteresLi {
+	list-style-image: url('../Assets/localizacion.png');
+}
+
+.puntoInteresLi:hover {
+	cursor: pointer;
+	color: black;
+	font-size: 17px;
+}
 
 
 /* tablets */

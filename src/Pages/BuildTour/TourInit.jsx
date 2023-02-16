@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import PageContext from '../../Context/PageContext';
 import { Layout } from '../../Layout';
-import { Link } from 'react-router-dom';
 import AuthUser from '../../Components/AuthUser';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
@@ -18,6 +18,8 @@ const TourInit = ({
   isLoggedIn,
   userBar,
   setUserBar,
+  destination,
+  setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);
   const { http } = AuthUser();
@@ -25,6 +27,7 @@ const TourInit = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [misTours, setMisTours] = useState();
   const [cantTours, setCantTours] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage('tourInit');
@@ -77,6 +80,30 @@ const TourInit = ({
   const handleDeleteTour = (e) => {
     deleteTour(e.target.id);
     getTours();
+  };
+
+  const goOnPoint = async (e) => {
+    e.preventDefault();
+    // console.log('TARGET: ');
+    const id = e.target.id;
+    const req = await http
+      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .then((response) => {
+        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
+        console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
+        let punto = response?.data.punto;
+        let tipo = response?.data.tipo;
+        const objetoUnido = { ...punto, ...tipo };
+
+        return objetoUnido;
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+    console.log('REQ: ', req);
+    // setTimeout(() => {}, 2000);
+    setDestination(req);
+
+    console.log('DESTINATION: ', destination);
+    navigate('/infoResults');
   };
 
   return (
@@ -144,7 +171,11 @@ const TourInit = ({
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
-                              <li className="puntoInteresLi">
+                              <li
+                                className="puntoInteresLi"
+                                id={tourItem.puntoInteresId}
+                                onClick={goOnPoint}
+                              >
                                 {tourItem.puntos_interes.Nombre}
                               </li>
                             </div>
