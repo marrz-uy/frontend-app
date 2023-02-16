@@ -46,7 +46,7 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
+        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));

@@ -99,7 +99,6 @@ const TourInit = ({
     // setTimeout(() => {
     setDestination(req);
     // }, 2000);
-
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
