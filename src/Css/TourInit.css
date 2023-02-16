@@ -77,16 +77,72 @@
 	gap: 1rem;
 }
 
+
 details {
-	padding: 1rem;
-	border-radius: 5px;
-	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .15);
+	font-size: 1rem;
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	width: 100%;
+	background: #ffffff;
+	border-radius: 8px;
+	position: relative;
 }
+
+.tourPredefinedDescription {
+	font-size: 12px;
+}
+
+details .summary-title {
+	user-select: none;
+}
+
+details:hover {
+	cursor: pointer;
+}
+
+details .summary-content {
+	border-top: 1px solid #e2e8f0;
+	cursor: default;
+	padding: 1em;
+	font-weight: 300;
+	line-height: 1.5;
+}
+
+details summary {
+	list-style: none;
+	padding: 1em;
+}
+
+details summary:focus {
+	outline: none;
+}
+
+details summary:hover .summary-chevron-up svg {
+	opacity: 1;
+}
+
+details .summary-chevron-up svg {
+	opacity: 0.5;
+}
+
+details .summary-chevron-up,
+details .summary-chevron-down {
+	pointer-events: none;
+	position: absolute;
+	top: 0.75em;
+	right: 1em;
+	background: #ffffff;
+}
+
+
+/* ----------------------- */
 
 .deleteIcon {
 	cursor: pointer;
 	position: relative;
 	float: right;
+	right: 10px;
+	bottom: 5px;
 }
 
 .deleteIcon>img {
@@ -94,14 +150,6 @@ details {
 	height: auto;
 }
 
-.tourList details:nth-child(odd) {
-	border: 1px solid rgb(233, 233, 233);
-	background-color: #ffffff;
-}
-
-.tourList details:nth-child(even) {
-	background: rgb(216, 216, 216);
-}
 
 .myToursCard {
 	display: flex;
@@ -123,11 +171,8 @@ details {
 .cardHour {
 	font-size: 12px;
 	color: rgb(255, 145, 0);
+	font-weight: 500;
 }
-
-/* .irAPunto {
-	cursor: pointer;
-} */
 
 .puntoInteresLi {
 	list-style-image: url('../Assets/localizacion.png');
@@ -153,7 +198,8 @@ details {
 	}
 
 	.tourList {
-		justify-content: center;
+		padding-top: 1.5rem;
+		justify-content: flex-start;
 		align-items: center;
 	}
 
@@ -162,7 +208,7 @@ details {
 	}
 
 	.tourPredefinedDescription {
-		min-width: 95%;
+		min-width: 90%;
 	}
 
 }
@@ -174,16 +220,15 @@ details {
 	}
 
 	.tourList {
-		justify-content: center;
+		padding-top: 1.5rem;
+		justify-content: flex-start;
 		align-items: center;
 		border: none;
 		box-shadow: none;
 		background-color: transparent;
 	}
 
-	/* details {
-		width: 90%;
-	} */
+
 }
 
 /* large screens */
@@ -198,7 +243,8 @@ details {
 	}
 
 	.tourList {
-		justify-content: center;
+		padding-top: 1.5rem;
+		justify-content: flex-start;
 		align-items: center;
 	}
 
@@ -216,7 +262,8 @@ details {
 	}
 
 	.tourList {
-		justify-content: center;
+		padding-top: 1.5rem;
+		justify-content: flex-start;
 		align-items: center;
 	}
 

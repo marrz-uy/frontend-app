@@ -9,6 +9,8 @@ import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import trash from '../../Assets/trash.svg';
 import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import '../../Css/TourInit.css';
 
 const TourInit = ({
@@ -38,7 +40,6 @@ const TourInit = ({
     http
       .get(`/tourArmado/${Id}`, {})
       .then((response) => {
-        // const toursData = response?.data['0'];
         console.log(
           '%cMis Tours:',
           'color: violet;',
@@ -54,8 +55,6 @@ const TourInit = ({
     getTours();
     // eslint-disable-next-line
   }, []);
-
-  // console.log('MIS TOURS - var: ', misTours);
 
   handleUserBar(userBar);
 
@@ -84,23 +83,22 @@ const TourInit = ({
 
   const goOnPoint = async (e) => {
     e.preventDefault();
-    // console.log('TARGET: ');
     const id = e.target.id;
     const req = await http
       .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
+        console.log('%cTIPO:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
-        let tipo = response?.data.tipo;
-        const objetoUnido = { ...punto, ...tipo };
-
+        let categoria = response?.data.categoria;
+        const objetoUnido = { ...punto, ...categoria };
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     console.log('REQ: ', req);
-    // setTimeout(() => {}, 2000);
+    // setTimeout(() => {
     setDestination(req);
+    // }, 2000);
 
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');
@@ -119,7 +117,7 @@ const TourInit = ({
           </h1>
         </div>
         <div className="pageText">
-          <h3>{filtrarTraduccion(traduccionesBD, 'yourOwnTours', lenguage)}</h3>
+          <h4>{filtrarTraduccion(traduccionesBD, 'yourOwnTours', lenguage)}</h4>
         </div>
         <div className="tourSecciones">
           <div className="btnBuildTourContainer">
@@ -142,9 +140,9 @@ const TourInit = ({
               </h1>
             </div>
             <div className="pageText">
-              <h3 className="textBlur">
+              <h4 className="textBlur">
                 {filtrarTraduccion(traduccionesBD, 'previouslyTours', lenguage)}
-              </h3>
+              </h4>
             </div>
           </div>
           <div className="tourList">
@@ -152,20 +150,13 @@ const TourInit = ({
               misTours?.map((tour) => {
                 return (
                   <details key={tour.id}>
-                    <div></div>
                     <summary>
-                      <span>{tour.nombreTour}</span>
-                    </summary>
-                    <div className="myToursCard">
-                      <div>
-                        <span>🕛</span>
-                        {filtrarTraduccion(
-                          traduccionesBD,
-                          'beginsAt',
-                          lenguage
-                        )}{' '}
-                        {hora(tour.horaInicioTour)} hs
+                      <span className="summary-title">{tour.nombreTour}</span>
+                      <div className="summary-chevron-up">
+                        <FontAwesomeIcon icon={faArrowDown} />
                       </div>
+                    </summary>
+                    <div className="summary-content myToursCard">
                       <div className="cardContent">
                         {' '}
                         {tour?.tour_items?.map((tourItem) => {
@@ -182,6 +173,10 @@ const TourInit = ({
                           );
                         })}
                       </div>
+                    </div>
+
+                    <div className="summary-chevron-down">
+                      <FontAwesomeIcon icon={faArrowUp} />
                     </div>
                     <span className="deleteIcon">
                       <img
