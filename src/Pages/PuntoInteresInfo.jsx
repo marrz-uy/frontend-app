@@ -25,7 +25,7 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  // console.log('DESTINATION: ', destination);
+  console.log('DESTINATION: ', destination);
   const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -46,7 +46,7 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
+        console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -72,9 +72,9 @@ const PuntoInteresInfo = ({
   useEffect(() => {
     GetIdsFavouritesFromDB(user_Id);
     setTimeout(() => {
-      if (isLoggedIn) {
-        cantMegusta();
-      }
+      // if (isLoggedIn) {
+      cantMegusta();
+      // }
     }, 3000);
 
     if (destination?.Calificaciones) {

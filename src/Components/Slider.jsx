@@ -11,7 +11,7 @@ export const Slider = ({ arrayimages, title, description }) => {
     <>
       <div className="tituloSlider" id="tituloSlider">
         <div className="titulo">
-          <h4>{title}</h4>
+          <h2>{title}</h2>
         </div>
         <div className="description">
           <span>{description}</span>

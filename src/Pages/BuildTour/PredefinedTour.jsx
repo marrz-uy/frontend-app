@@ -9,6 +9,8 @@ import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import PageContext from '../../Context/PageContext';
 import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
 import '../../Css/TourInit.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const PredefinedTour = ({
   setIsLoggedIn,
@@ -52,23 +54,6 @@ const PredefinedTour = ({
     return str;
   };
 
-  // const Request = async (id) => {
-  //   const req = await http
-  //     .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
-  //     .then((response) => {
-  //       console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-  //       console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
-  //       let punto = response?.data.punto;
-  //       let tipo = response?.data.tipo;
-  //       const objetoUnido = { ...punto, ...tipo };
-
-  //       return objetoUnido;
-  //     })
-  //     .catch((error) => console.error(`Error en catch: ${error}`));
-  //   console.log('REQ: ', req);
-  //   return req;
-  // };
-
   const goOnPoint = async (e) => {
     e.preventDefault();
     // console.log('TARGET: ');
@@ -77,10 +62,10 @@ const PredefinedTour = ({
       .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cPUNTO:', 'color: yellow;', response?.data.tipo);
+        console.log('%cPUNTO:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
-        let tipo = response?.data.tipo;
-        const objetoUnido = { ...punto, ...tipo };
+        let categoria = response?.data.categoria;
+        const objetoUnido = { ...punto, ...categoria };
 
         return objetoUnido;
       })
@@ -109,9 +94,9 @@ const PredefinedTour = ({
         <div className="tourSecciones">
           <div className="seccionVerMisTours">
             <div className="pageText">
-              <h3 className="textBlur">
+              <h4 className="textBlur">
                 {filtrarTraduccion(traduccionesBD, 'predefinedTour', lenguage)}
-              </h3>
+              </h4>
             </div>
           </div>
           <div className="tourList">
@@ -120,18 +105,22 @@ const PredefinedTour = ({
                 return (
                   <details key={tour.id}>
                     <summary>
-                      <span>{tour.nombreTourPredefinido}</span>
-                      {' / '}
-                      <span>&#9200;</span> Inicio a las{' '}
-                      {hora(tour.horaDeInicioTourPredefinido)} hs
-                      <h6 className="tourPredefinedDescription">
+                      <h4>
+                        <span className="summary-title">
+                          {tour.nombreTourPredefinido}
+                        </span>
+                      </h4>
+                      <span className="tourPredefinedDescription">
                         {tour.descripcionTourPredefinido}
-                      </h6>
+                      </span>
+                      <div className="summary-chevron-up">
+                        <FontAwesomeIcon icon={faArrowDown} />
+                      </div>
                     </summary>
-                    <div className="myToursCard">
+
+                    <div className="summary-content myToursCard">
                       <div className="cardContent">
                         {' '}
-                        <div className="cardHour"></div>
                         <h5 style={{ color: '#00699d' }}>
                           {filtrarTraduccion(
                             traduccionesBD,
@@ -139,6 +128,10 @@ const PredefinedTour = ({
                             lenguage
                           )}
                         </h5>
+                        <div className="cardHour">
+                          <span>&#9200;</span> Inicio a las{' '}
+                          {hora(tour.horaDeInicioTourPredefinido)} hs
+                        </div>
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
@@ -153,6 +146,9 @@ const PredefinedTour = ({
                           );
                         })}
                       </div>
+                    </div>
+                    <div className="summary-chevron-down">
+                      <FontAwesomeIcon icon={faArrowUp} />
                     </div>
                   </details>
                 );
