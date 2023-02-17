@@ -87,8 +87,10 @@ const TourInit = ({
     const req = await http
       .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
       .then((response) => {
+        console.log('%cDATA:', 'color: blue;', response?.data);
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
         console.log('%cTIPO:', 'color: yellow;', response?.data.categoria);
+        console.log('%cIMAGENES:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };

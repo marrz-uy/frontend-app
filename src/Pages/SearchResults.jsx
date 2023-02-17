@@ -140,7 +140,6 @@ const SearchResults = ({
   // );
 
   console.log('DATOSSSSSSSSSSSSSS: ', datos);
-  console.log('DATOSSSSSSSSSSSSSS: ', datos.data);
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
@@ -208,7 +207,7 @@ const SearchResults = ({
               <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
           ) : (
-            datos.data?.map((dato) => {
+            datos?.data?.map((dato) => {
               return (
                 <ResultsCard
                   key={dato.id}
@@ -224,7 +223,7 @@ const SearchResults = ({
                   tipoEvento={dato.TipoEvento}
                   tipo={dato.Tipo}
                   caracteristicas={dato.Contacto}
-                  imagen={dato.Imagen}
+                  imagen={dato.imagenes[1]?.url}
                   setDestination={setDestination}
                   dato={dato}
                 />

@@ -26,6 +26,12 @@ const PuntoInteresInfo = ({
   setPage,
 }) => {
   console.log('DESTINATION: ', destination);
+  let arrayImagenes = destination.imagenes;
+  console.log('arrayImagenes-INFO: ', arrayImagenes);
+  const arrURLS = arrayImagenes?.map((imagen) => imagen?.url.replace(/"/g, ''));
+  console.log('arr-INFO: ', arrURLS);
+  console.log('arr-LARGO: ', arrURLS?.length);
+
   const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -129,15 +135,25 @@ const PuntoInteresInfo = ({
         </div>
         <div className="puntoInteres__container">
           <div className="puntoInteres__imagen">
-            {firefox ? (
-              <SliderMain imagen={destination.Imagen} />
+            {arrURLS ? (
+              firefox ? (
+                <SliderMain array={arrURLS} />
+              ) : (
+                <Slider2 array={arrURLS} />
+              )
+            ) : firefox ? (
+              <SliderMain array={destination.Imagen} />
             ) : (
-              <Slider2 imagen={destination.Imagen} />
+              <Slider2 array={destination.Imagen} />
             )}
+            {/* {arrURLS ? (
+              <SliderMain array={arrURLS} />
+            ) : (
+              <SliderMain array={destination.Imagen} />
+            )} */}
           </div>
           <div className="puntoInteres__info">
             <div className="containerLikeButton">
-              {/*! LIKEBUTTON  */}
               <LikeButton
                 puntoInteres_Id={destination.id}
                 user_Id={user_Id}
