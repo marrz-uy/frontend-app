@@ -125,7 +125,6 @@ a {
 
 @media screen and (min-width: 820px) {
   .descriptionInImage {
-
     top: -60px;
     left: -250px;
   }
@@ -152,5 +151,12 @@ a {
   .description {
     padding-left: 10px;
     font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .descriptionInImage {
+    top: -60px;
+    left: -90px;
   }
 }
