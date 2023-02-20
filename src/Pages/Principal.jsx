@@ -20,6 +20,7 @@ import useScreenSize from '../Helpers/ScreenSize';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
+import { SliderEvents } from '../Components/SliderEvents';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 // import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
@@ -159,20 +160,33 @@ const Principal = ({
     navigate('/predefined');
   };
 
-  const [sliderPoints, setSliderPoints] = useState('');
+  const [sliderPoints1, setSliderPoints1] = useState('');
+  const [sliderPoints2, setSliderPoints2] = useState('');
+  const [sliderPoints3, setSliderPoints3] = useState('');
+
   const getSliderPoints = () => {
-    http
-      .post('/sliderUno', {
+    const requests = [
+      http.post('/sliderUno', {
         latitudAEnviar,
         longitudAEnviar,
         distanciaAEnviar,
-      })
-      .then((response) => {
-        setSliderPoints(response.data);
-        console.log('SLIDERPOINTS-PRINCIPAL: ', sliderPoints.data);
+      }),
+      http.post('/sliderDos', {
+        latitudAEnviar,
+        longitudAEnviar,
+        distanciaAEnviar,
+      }),
+    ];
+    Promise.all(requests)
+      .then((responses) => {
+        setSliderPoints1(responses[0].data);
+        setSliderPoints2(responses[1].data);
+        console.log('SLIDERPOINTS1-PRINCIPAL: ', sliderPoints1.data);
+        console.log('SLIDERPOINTS2-PRINCIPAL: ', sliderPoints2.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
+
   useEffect(() => {
     if (latitudAEnviar || longitudAEnviar || distanciaAEnviar)
       getSliderPoints();
@@ -370,11 +384,11 @@ const Principal = ({
             lenguage
           )}
           arrayimages={alojamientos}
-          sliderPoints={sliderPoints.data}
+          sliderPoints={sliderPoints1.data}
           destination={destination}
           setDestination={setDestination}
         />
-        <Slider
+        <SliderEvents
           title={`${filtrarTraduccion(
             traduccionesBD,
             'Slider2Title',
@@ -386,6 +400,9 @@ const Principal = ({
             lenguage
           )} Montevideo`}
           arrayimages={alojamientos}
+          sliderPoints={sliderPoints2.data}
+          destination={destination}
+          setDestination={setDestination}
         />
         <Slider
           title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link, useNavigate } from 'react-router-dom';
-import AuthUser from '../Components/AuthUser';
-import '../Css/Slider.css';
+import { useNavigate } from 'react-router-dom';
+import AuthUser from './AuthUser';
+import '../Css/SliderEvents.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
-export const Slider = ({
+export const SliderEvents = ({
   arrayimages,
   sliderPoints,
   title,
@@ -38,13 +38,33 @@ export const Slider = ({
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     console.log('REQ: ', req);
-    // setTimeout(() => {
+
     setDestination(req);
-    // }, 2000);
 
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
+
+  function capitalize(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+
+  function formatearFecha(fechaOriginal) {
+    const objetoFecha = new Date(fechaOriginal);
+    const opciones = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    };
+    const nuevaFecha = objetoFecha.toLocaleDateString('es-ES', opciones);
+    return capitalize(nuevaFecha);
+  }
+
+  function convertirHora(horaOriginal) {
+    return horaOriginal.substring(0, horaOriginal.length - 3);
+  }
+
   return (
     <>
       <div className="tituloSlider" id="tituloSlider">
@@ -91,8 +111,12 @@ export const Slider = ({
               return (
                 <div className="item" key={point.id} onClick={goOnPoint}>
                   <SwiperSlide key={point.id}>
-                    <img src={point?.imagenes[0].url} alt="" />
-                    <h6 className="descriptionInImage">💙 {point.Megusta}</h6>
+                    <img src={point.ImagenEvento} alt="" />
+                    <h6 className="dateInImage">
+                      📆 {formatearFecha(point.FechaInicio)},{' '}
+                      {convertirHora(point.HoraInicio)} Hs.
+                    </h6>
+
                     <span
                       className="titleLink"
                       id={point.id}
