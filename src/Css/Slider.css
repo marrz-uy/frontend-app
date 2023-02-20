@@ -12,9 +12,28 @@
   border-top-right-radius: 5px;
 }
 
+.descriptionInImage {
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  top: -60px;
+  left: -80px;
+  color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.116);
+  text-shadow: 1px 1px .5px rgb(114, 114, 114);
+  font-size: 12px;
+  max-width: 250px;
+  text-overflow: ellipsis;
+}
+
 .description {
   padding-left: 10px;
   font-size: 0.7rem;
+}
+
+.titleLink {
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .swiper {
@@ -90,7 +109,40 @@ a {
   cursor: pointer;
 }
 
+@media screen and (min-width: 768px) {
+  .descriptionInImage {
+    top: -60px;
+    left: -70px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .titleLink {
+    margin-bottom: 65px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 820px) {
+  .descriptionInImage {
+
+    top: -60px;
+    left: -250px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
+
+  .descriptionInImage {
+    top: -60px;
+    left: -270px;
+  }
+
+  .titleLink {
+    margin-bottom: 65px;
+    cursor: pointer;
+  }
+
   .sliderContainer {
     width: 120vh;
     height: auto;

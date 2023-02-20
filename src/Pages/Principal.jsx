@@ -39,6 +39,8 @@ const Principal = ({
   loaded,
   latitud,
   longitud,
+  destination,
+  setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -156,6 +158,25 @@ const Principal = ({
   const handlePredefinedTours = () => {
     navigate('/predefined');
   };
+
+  const [sliderPoints, setSliderPoints] = useState('');
+  const getSliderPoints = () => {
+    http
+      .post('/sliderUno', {
+        latitudAEnviar,
+        longitudAEnviar,
+        distanciaAEnviar,
+      })
+      .then((response) => {
+        setSliderPoints(response.data);
+        console.log('SLIDERPOINTS-PRINCIPAL: ', sliderPoints.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  };
+  useEffect(() => {
+    if (latitudAEnviar || longitudAEnviar || distanciaAEnviar)
+      getSliderPoints();
+  }, [latitudAEnviar, longitudAEnviar, distanciaAEnviar]);
 
   handleUserBar(userBar);
 
@@ -349,6 +370,9 @@ const Principal = ({
             lenguage
           )}
           arrayimages={alojamientos}
+          sliderPoints={sliderPoints.data}
+          destination={destination}
+          setDestination={setDestination}
         />
         <Slider
           title={`${filtrarTraduccion(
