@@ -1,0 +1,76 @@
+.dateInImage {
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    top: -55px;
+    left: -10px;
+    color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.116);
+    text-shadow: 1px 1px .5px rgb(114, 114, 114);
+    font-size: 12px;
+    max-width: 300px;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+.description {
+    padding-left: 10px;
+    font-size: 0.7rem;
+}
+
+.titleLink {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .dateInImage {
+        top: -55px;
+        left: 0px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .titleLink {
+        margin-bottom: 65px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 820px) {
+    .dateInImage {
+        top: -60px;
+        left: -150px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .dateInImage {
+        top: -60px;
+        left: -250px;
+    }
+
+    .titleLink {
+        margin-bottom: 65px;
+        cursor: pointer;
+    }
+
+    .sliderContainer {
+        width: 120vh;
+        height: auto;
+
+    }
+
+    .description {
+        padding-left: 10px;
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .dateInImage {
+        top: -55px;
+        left: -20px;
+    }
+}

@@ -34,7 +34,7 @@ const TourStep3 = () => {
                   <img
                     className="imagenCardTourFinal"
                     id="imagenCardTourFinal"
-                    src={dat.Imagen}
+                    src={dat.imagenes[0].url}
                     alt=""
                   ></img>
                 </div>

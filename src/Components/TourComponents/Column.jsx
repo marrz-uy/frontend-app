@@ -56,7 +56,7 @@ const Column = ({ droppableId, column }) => {
                               </span>
                               <img
                                 className="imagenCardTour"
-                                src={item.Imagen}
+                                src={item.imagenes[0].url}
                                 alt=""
                               ></img>
                             </div>
