@@ -76,7 +76,7 @@ const Nav = ({
 
   const handleSearch = () => {
     setItems([]);
-    if (text.length > 3) {
+    if (text.length >= 3) {
       setSearchType('nombre');
       getData(text);
       navigate('/results');
