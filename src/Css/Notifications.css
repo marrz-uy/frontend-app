@@ -3,6 +3,11 @@
 	width: 95%;
 }
 
+.summaryNotifications {
+	list-style: none;
+	padding: 1em;
+}
+
 .notificationPageTitle {
 	display: flex;
 	justify-content: center;
