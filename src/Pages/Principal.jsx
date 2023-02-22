@@ -21,6 +21,7 @@ import { handleUserBar } from '../Helpers/HandUserBarClick';
 import UserBar from './UserBar';
 import { Slider } from '../Components/Slider';
 import { SliderEvents } from '../Components/SliderEvents';
+import { SliderTours } from '../Components/SliderTours';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 // import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
@@ -103,12 +104,6 @@ const Principal = ({
     navigate('/results');
   };
 
-  /* let weareSorryModal = filtrarTraduccion(
-    traduccionesBD,
-    'predefinedToursLabel',
-    lenguage
-  ); */
-
   const handlebuildTour = (e) => {
     e.preventDefault();
 
@@ -176,13 +171,13 @@ const Principal = ({
         longitudAEnviar,
         distanciaAEnviar,
       }),
+      http.get('/sliderTres'),
     ];
     Promise.all(requests)
       .then((responses) => {
         setSliderPoints1(responses[0].data);
         setSliderPoints2(responses[1].data);
-        console.log('SLIDERPOINTS1-PRINCIPAL: ', sliderPoints1.data);
-        console.log('SLIDERPOINTS2-PRINCIPAL: ', sliderPoints2.data);
+        setSliderPoints3(responses[2].data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -404,7 +399,7 @@ const Principal = ({
           destination={destination}
           setDestination={setDestination}
         />
-        <Slider
+        <SliderTours
           title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
           description={filtrarTraduccion(
             traduccionesBD,
@@ -412,6 +407,9 @@ const Principal = ({
             lenguage
           )}
           arrayimages={gastronomicas}
+          sliderPoints={sliderPoints3.data}
+          destination={destination}
+          setDestination={setDestination}
         />
       </div>
       {userBar && (

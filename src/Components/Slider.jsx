@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import '../Css/Slider.css';
 import 'swiper/css';
@@ -18,7 +18,7 @@ export const Slider = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  console.log('SLIDERPOINT-DATA-SLIDER: ', sliderPoints);
+  console.log('SLIDER 1-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
@@ -89,10 +89,15 @@ export const Slider = ({
         {sliderPoints
           ? sliderPoints.map((point) => {
               return (
-                <div className="item" key={point.id} onClick={goOnPoint}>
+                <div className="item" key={point.id}>
                   <SwiperSlide key={point.id}>
-                    <img src={point?.imagenes[0].url} alt="" />
-                    <h6 className="descriptionInImage">💙 {point.Megusta}</h6>
+                    <img
+                      src={point?.imagenes[0].url}
+                      alt=""
+                      onClick={goOnPoint}
+                      id={point.id}
+                    />
+                    <h6 className="likesLabel">💙 {point.Megusta}</h6>
                     <span
                       className="titleLink"
                       id={point.id}

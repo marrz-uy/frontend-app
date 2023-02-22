@@ -12,7 +12,7 @@
   border-top-right-radius: 5px;
 }
 
-.descriptionInImage {
+.likesLabel {
   padding: 5px;
   border-radius: 5px;
   position: relative;
@@ -24,6 +24,7 @@
   font-size: 12px;
   max-width: 250px;
   text-overflow: ellipsis;
+  font-size: 1rem;
 }
 
 .description {
@@ -32,12 +33,13 @@
 }
 
 .titleLink {
+  font-size: 1rem;
   margin-bottom: 20px;
   cursor: pointer;
 }
 
 .swiper {
-  width: 85%;
+  /* width: 85%; */
   height: 100%;
   margin-bottom: 2rem;
   border-top: none;
@@ -82,7 +84,7 @@
 }
 
 .swiper-pagination {
-  position: relative;
+  position: absolute;
 }
 
 .swiper-button-next::after {
@@ -109,37 +111,71 @@ a {
   cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
-  .descriptionInImage {
-    top: -50px;
-    left: -120px;
+@media screen and (min-width: 414px) {
+  .likesLabel {
+    top: -60px;
+    left: -130px;
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 540px) {
+  .likesLabel {
+    top: -50px;
+    left: -70px;
+  }
+
   .titleLink {
     margin-bottom: 65px;
     cursor: pointer;
+    font-size: 1rem;
   }
 }
 
-@media screen and (min-width: 820px) {
-  .descriptionInImage {
-    top: -60px;
-    left: -270px;
+@media screen and (min-width: 768px) {
+  .likesLabel {
+    top: -65px;
+    left: -110px;
+    font-size: 1.5rem;
   }
+}
+
+@media screen and (min-width: 800px) {}
+
+@media screen and (min-width: 820px) {
+
+  .likesLabel {
+    top: -70px;
+    left: -260px;
+    font-size: 1.5rem;
+  }
+
+  .titleLink {
+    margin-bottom: 65px;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .likesLabel {
+    top: -3rem;
+    left: 0;
+    font-size: .7rem;
+  }
+
+  .titleLink {
+    margin-bottom: 65px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
 
-  .descriptionInImage {
-    top: -60px;
-    left: -340px;
-  }
-
-  .titleLink {
-    margin-bottom: 65px;
-    cursor: pointer;
+  .likesLabel {
+    top: -50px;
+    left: -80px;
   }
 
   .sliderContainer {
@@ -154,9 +190,23 @@ a {
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .descriptionInImage {
+@media screen and (min-width: 1280px) {
+  .likesLabel {
+    top: -45px;
+    left: -70px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .likesLabel {
     top: -50px;
-    left: -120px;
+    left: -130px;
+    font-size: 1rem;
+  }
+
+  .titleLink {
+    margin-bottom: 65px;
+    cursor: pointer;
+    font-size: 1.5rem;
   }
 }

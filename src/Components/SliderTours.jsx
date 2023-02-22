@@ -1,73 +1,24 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
-import AuthUser from './AuthUser';
-import '../Css/SliderEvents.css';
+import '../Css/SliderTours.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
-export const SliderEvents = ({
+export const SliderTours = ({
   arrayimages,
   sliderPoints,
   title,
   description,
-  destination,
-  setDestination,
 }) => {
   const navigate = useNavigate();
-  const { http } = AuthUser();
-  console.log('SLIDER 2-SLIDER: ', sliderPoints);
+  console.log('SLIDER 3-SLIDER: ', sliderPoints);
 
-  const goOnPoint = async (e) => {
-    e.preventDefault();
-    const id = e.target.id;
-    console.log('TARGET-ID: ', id);
-    const req = await http
-      .post(`http://localhost:8000/api/sliderDos/evento/${id}`, {})
-      .then((response) => {
-        console.log('%cDATA:', 'color: blue;', response?.data);
-        console.log(
-          '%cpunto:',
-          'color: yellow;',
-          response?.data.puntos_interes
-        );
-        console.log('%cevento:', 'color: pink;', response?.data[0]);
-        let punto = response?.data[0].puntos_interes;
-        let evento = response?.data[0];
-        let categoria = response?.data[1];
-        const objetoUnido = { ...punto, ...evento, ...categoria };
-        return objetoUnido;
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('%cREQ: ', 'color:red;', req);
-
-    setDestination(req);
-
-    console.log('DESTINATION: ', destination);
-    navigate('/infoResults');
+  const goToPredefinedTours = async (e) => {
+    navigate('/predefined');
   };
-
-  function capitalize(texto) {
-    return texto.charAt(0).toUpperCase() + texto.slice(1);
-  }
-
-  function formatearFecha(fechaOriginal) {
-    const objetoFecha = new Date(fechaOriginal);
-    const opciones = {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    };
-    const nuevaFecha = objetoFecha.toLocaleDateString('es-ES', opciones);
-    return capitalize(nuevaFecha);
-  }
-
-  function convertirHora(horaOriginal) {
-    return horaOriginal.substring(0, horaOriginal.length - 3);
-  }
 
   return (
     <>
@@ -116,18 +67,18 @@ export const SliderEvents = ({
                 <div className="item" key={point.id}>
                   <SwiperSlide key={point.id}>
                     <img
-                      src={point.ImagenEvento}
+                      src={point.imagenTour}
                       alt=""
-                      id={point.Eventos_id}
-                      onClick={goOnPoint}
+                      onClick={goToPredefinedTours}
                     />
-                    <h6 className="dateInImage">
-                      📆 {formatearFecha(point.FechaInicio)},{' '}
-                      {convertirHora(point.HoraInicio)} Hs.
-                    </h6>
+                    <h6 className="dateInImage"></h6>
 
-                    <span className="titleLink" onClick={goOnPoint}>
-                      {point.NombreEvento}
+                    <span
+                      className="titleLink"
+                      id={point.id}
+                      onClick={goToPredefinedTours}
+                    >
+                      {point.nombreTourPredefinido}
                     </span>
                   </SwiperSlide>
                 </div>

@@ -87,14 +87,15 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const clientId =
     '714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com';
+
   useEffect(() => {
-    const initClient = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: '',
-      });
-    };
-    gapi.load('client:auth2', initClient);
+    // const initClient = () => {
+    //   gapi.client.init({
+    //     clientId: clientId,
+    //     scope: '',
+    //   });
+    // };
+    // gapi.load('client:auth2', initClient);
   });
 
   const handleFailure = (result) => {
