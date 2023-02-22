@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useState } from 'react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -40,7 +40,7 @@ export default function Slider2({ array }) {
         onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={10}
-        slidesPerView={array.lenght}
+        slidesPerView={array?.length}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
@@ -48,7 +48,11 @@ export default function Slider2({ array }) {
       >
         {array?.map((imagen, index) => (
           <SwiperSlide key={index}>
-            <img src={imagen} alt="imagen de punto de interes" />
+            <img
+              src={imagen}
+              alt="imagen de punto de interes"
+              // style={{ width: '120px' }}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

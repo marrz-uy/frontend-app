@@ -120,6 +120,26 @@ const PuntoInteresInfo = ({
     navigate(-1);
   };
 
+  function capitalize(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+
+  function formatearFecha(fechaOriginal) {
+    const objetoFecha = new Date(fechaOriginal);
+    const opciones = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    };
+    const nuevaFecha = objetoFecha.toLocaleDateString('es-ES', opciones);
+    return capitalize(nuevaFecha);
+  }
+
+  function convertirHora(horaOriginal) {
+    return horaOriginal.substring(0, horaOriginal.length - 3);
+  }
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -130,27 +150,36 @@ const PuntoInteresInfo = ({
             Volver
           </button>
         </div>
-        <div className="nombrePunto">
-          <h2>{destination.Nombre}</h2>
-        </div>
+        {/* <div className="nombrePunto"> */}
+        {destination.Eventos_id ? (
+          <div className="divEventosNombreYlugar">
+            {' '}
+            <h2 className="nombreylugar">
+              {destination.NombreEvento} - {destination.Nombre}
+            </h2>
+            <h5 className="eventoFechaYHora">
+              📆 {formatearFecha(destination.FechaInicio)},{' '}
+              {convertirHora(destination.HoraInicio)} Hs.
+            </h5>{' '}
+          </div>
+        ) : (
+          <div className="divEventosNombreYlugar">
+            <h2 className="nombreylugar"> {destination.Nombre} </h2>
+          </div>
+        )}
+        {/* </div> */}
         <div className="puntoInteres__container">
           <div className="puntoInteres__imagen">
-            {arrURLS ? (
-              firefox ? (
-                <SliderMain array={arrURLS} />
-              ) : (
-                <Slider2 array={arrURLS} />
-              )
+            {destination.Eventos_id ? (
+              <img
+                className="imgEventoPinteresinfo"
+                src={destination.ImagenEvento}
+              />
             ) : firefox ? (
-              <SliderMain array={destination.Imagen} />
-            ) : (
-              <Slider2 array={destination.Imagen} />
-            )}
-            {/* {arrURLS ? (
               <SliderMain array={arrURLS} />
             ) : (
-              <SliderMain array={destination.Imagen} />
-            )} */}
+              <Slider2 array={arrURLS} />
+            )}
           </div>
           <div className="puntoInteres__info">
             <div className="containerLikeButton">

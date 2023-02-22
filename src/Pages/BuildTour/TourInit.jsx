@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AuthUser from '../../Components/AuthUser';
 import PageContext from '../../Context/PageContext';
 import { Layout } from '../../Layout';
-import AuthUser from '../../Components/AuthUser';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import UserBar from '../../Pages/UserBar';

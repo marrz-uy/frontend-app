@@ -1,50 +1,25 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
-import AuthUser from '../Components/AuthUser';
-import '../Css/Slider.css';
+import '../Css/SliderTours.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
-export const Slider = ({
+export const SliderTours = ({
   arrayimages,
   sliderPoints,
   title,
   description,
-  destination,
-  setDestination,
 }) => {
   const navigate = useNavigate();
-  const { http } = AuthUser();
-  console.log('SLIDER 1-SLIDER: ', sliderPoints);
+  console.log('SLIDER 3-SLIDER: ', sliderPoints);
 
-  const goOnPoint = async (e) => {
-    e.preventDefault();
-    const id = e.target.id;
-    console.log('TARGET-ID: ', id);
-    const req = await http
-      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
-      .then((response) => {
-        console.log('%cDATA:', 'color: blue;', response?.data);
-        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cTIPO:', 'color: yellow;', response?.data.categoria);
-        console.log('%cIMAGENES:', 'color: yellow;', response?.data.categoria);
-        let punto = response?.data.punto;
-        let categoria = response?.data.categoria;
-        const objetoUnido = { ...punto, ...categoria };
-        return objetoUnido;
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('REQ: ', req);
-    // setTimeout(() => {
-    setDestination(req);
-    // }, 2000);
-
-    console.log('DESTINATION: ', destination);
-    navigate('/infoResults');
+  const goToPredefinedTours = async (e) => {
+    navigate('/predefined');
   };
+
   return (
     <>
       <div className="tituloSlider" id="tituloSlider">
@@ -92,18 +67,18 @@ export const Slider = ({
                 <div className="item" key={point.id}>
                   <SwiperSlide key={point.id}>
                     <img
-                      src={point?.imagenes[0].url}
+                      src={point.imagenTour}
                       alt=""
-                      onClick={goOnPoint}
-                      id={point.id}
+                      onClick={goToPredefinedTours}
                     />
-                    <h6 className="likesLabel">💙 {point.Megusta}</h6>
+                    <h6 className="dateInImage"></h6>
+
                     <span
                       className="titleLink"
                       id={point.id}
-                      onClick={goOnPoint}
+                      onClick={goToPredefinedTours}
                     >
-                      {point.Nombre}
+                      {point.nombreTourPredefinido}
                     </span>
                   </SwiperSlide>
                 </div>

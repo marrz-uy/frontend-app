@@ -96,6 +96,7 @@ function App() {
                       categoryName={categoryName}
                       setCategoryName={setCategoryName}
                       setDestination={setDestination}
+                      destination={destination}
                       loaded={loaded}
                       latitud={latitud}
                       longitud={longitud}

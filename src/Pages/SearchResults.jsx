@@ -139,7 +139,7 @@ const SearchResults = ({
   //   distanciaAEnviar
   // );
 
-  console.log('DATOSSSSSSSSSSSSSS: ', datos);
+  // console.log('DATOSSSSSSSSSSSSSS: ', datos?.data);
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
@@ -151,11 +151,11 @@ const SearchResults = ({
         <h6 className="resultsText">
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
-            : `${datos.total} ${filtrarTraduccion(
+            : `${datos.total || '1'} ${filtrarTraduccion(
                 traduccionesBD,
                 'resultsFor',
                 lenguage
-              )} ${text}, pagina ${datos.current_page}`}
+              )} ${text}, pagina ${datos?.current_page || '1'}`}
         </h6>
         {latitud && longitud ? (
           <div className="filtrarDistancia">
@@ -200,9 +200,9 @@ const SearchResults = ({
             </h6>
           </div>
         )}
-
+        {/* //! NO RESULT FOR THIS SEARCH */}
         <div className="infoResults">
-          {!datos?.data || datos.data?.length === 0 ? (
+          {!datos?.data ? (
             <div className="sinResultado">
               <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
@@ -210,20 +210,20 @@ const SearchResults = ({
             datos?.data?.map((dato) => {
               return (
                 <ResultsCard
-                  key={dato.id}
-                  nombre={dato.Nombre}
-                  nombreEvento={dato.NombreEvento}
-                  lugarDeEvento={dato.Nombre}
-                  ciudad={dato.Ciudad}
-                  direccion={dato.Direccion}
-                  fechaInicio={dato.FechaInicio}
-                  fechaFin={dato.FechaFin}
-                  horaInicio={dato.HoraDeApertura}
-                  horaFin={dato.HoraDeCierre}
-                  tipoEvento={dato.TipoEvento}
-                  tipo={dato.Tipo}
-                  caracteristicas={dato.Contacto}
-                  imagen={dato.imagenes[1]?.url}
+                  key={dato?.id}
+                  nombre={dato?.Nombre}
+                  nombreEvento={dato?.NombreEvento}
+                  lugarDeEvento={dato?.Nombre}
+                  ciudad={dato?.Ciudad}
+                  direccion={dato?.Direccion}
+                  fechaInicio={dato?.FechaInicio}
+                  fechaFin={dato?.FechaFin}
+                  horaInicio={dato?.HoraDeApertura}
+                  horaFin={dato?.HoraDeCierre}
+                  tipoEvento={dato?.TipoEvento}
+                  tipo={dato?.Tipo}
+                  caracteristicas={dato?.Contacto}
+                  imagen={dato?.imagenes[0].url}
                   setDestination={setDestination}
                   dato={dato}
                 />

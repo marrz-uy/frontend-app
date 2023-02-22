@@ -71,12 +71,12 @@ const PredefinedTour = ({
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     console.log('REQ: ', req);
-    // setTimeout(() => {}, 2000);
     setDestination(req);
 
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
+  console.log('TOURS: ', appTours);
 
   return (
     <Layout>
@@ -105,6 +105,10 @@ const PredefinedTour = ({
                 return (
                   <details key={tour.id}>
                     <summary>
+                      <div
+                        className="imagePredefinedTour"
+                        style={{ backgroundImage: `url(${tour.imagenTour})` }}
+                      ></div>
                       <h4>
                         <span className="summary-title">
                           {tour.nombreTourPredefinido}
