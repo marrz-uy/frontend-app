@@ -76,7 +76,7 @@ const Notifications = ({
                   : 'notificacionCardLeida'
               }
             >
-              <summary>
+              <summary className="summaryNotifications">
                 <span className="notificationTitle">{notificacion.title}</span>
               </summary>
               <div className="divNotificationMessage">
