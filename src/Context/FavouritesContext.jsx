@@ -4,11 +4,9 @@ const FavouritesContext = createContext();
 
 const FavouritesProvider = ({ isLoggedIn, children }) => {
   const { http } = AuthUser();
-  const [user_Id, setUser_Id] = useState(sessionStorage?.getItem('id'));
+  const [user_Id] = useState(sessionStorage?.getItem('id'));
   const [favouritesFromDB, setFavouritesFromDB] = useState();
   const [idsFavouritesFromDB, setIdsFavouritesFromDB] = useState();
-  // console.log('LOGGED IN: ', isLoggedIn);
-  // console.log('FAVOURITES FROM DB: ', favouritesFromDB.favoritos_ids);
 
   useEffect(() => {
     if (isLoggedIn && user_Id) {
@@ -31,10 +29,6 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
       .get(`/favoritos/${user_Id}`)
       .then((response) => {
         setIdsFavouritesFromDB(response.data.favoritos_ids);
-        // console.log(
-        //   '%cEJECUTANDO FUNCION GetIdsFavouritesFromDB',
-        //   'color:green;'
-        // );
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }

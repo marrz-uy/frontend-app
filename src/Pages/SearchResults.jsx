@@ -38,19 +38,6 @@ const SearchResults = ({
     pages.push(p + 1);
   }
 
-  // console.log('SEARCH TYPE:', searchType);
-  // console.log('TEXT RESULTS', text, typeof text);
-  // console.log('CATEGORIA', text);
-
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
-
-  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
-
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
@@ -140,6 +127,7 @@ const SearchResults = ({
   // );
 
   // console.log('DATOSSSSSSSSSSSSSS: ', datos?.data);
+
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
