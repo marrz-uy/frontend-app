@@ -15,9 +15,16 @@ const ResultsCard = (props) => {
 
   return (
     <div className="resultCard" onClick={handleClick}>
-      <div className="divImg">
-        <img className="imagen" src={props.imagen} alt=""></img>
-      </div>
+      {props.imagenEvento ? (
+        <div className="divImg">
+          <img className="imagen" /* src={props?.imagenEvento} */ alt=""></img>
+        </div>
+      ) : (
+        <div className="divImg">
+          <img className="imagen" /* src={props?.imagenes[0]?.url}  */ alt=""></img>
+        </div>
+      )}
+
       <div className="data">
         {props.nombreEvento ? (
           <h3>
