@@ -92,7 +92,7 @@ export const Slider = ({
                 <div className="item" key={point.id}>
                   <SwiperSlide key={point.id}>
                     <img
-                      src={point?.imagenes[0].url}
+                      src={point?.imagenes[0]?.url}
                       alt=""
                       onClick={goOnPoint}
                       id={point.id}

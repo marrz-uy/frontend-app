@@ -271,22 +271,10 @@ h6 {
 	}
 }
 
-container__results {
-	/* display: grid; */
-	/* grid-template-columns: repeat(10, 1fr); */
-	/* width: 100vw; */
-	/* flex-direction: column; */
-	/* height: 100vh; */
-}
-
 .filtro_results {
 	position: absolute;
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* text-align: center; */
-	/* width: 250px;	 */
 	width: 100vw;
-	height: 200vh;
+	height: 100vh;
 	left: 0;
 	top: 10%;
 	box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%);

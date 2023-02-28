@@ -8,7 +8,7 @@ import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
-import Filter from './Filter'
+import Filter from './Filter';
 
 const SearchResults = ({
   items,
@@ -34,7 +34,7 @@ const SearchResults = ({
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
   const [handleFilter, setHandleFilter] = useState(true);
-  const [allFilters, setAllFilters] = useState([])
+  const [allFilters, setAllFilters] = useState([]);
   const [filtersToSend, setFiltersToSend] = useState({
     latitudAEnviar: 3481272,
     longitudAEnviar: 5592842,
@@ -57,11 +57,11 @@ const SearchResults = ({
     Mascota: null,
 
     FechaInicio: null,
-    TipoEvento: null
-  })
-  const [tipoToFilter, setTipoToFilter] = useState("")
-  const [filtersOn, setFiltersOn] = useState(false)
-  const [datosTwo, setDatosTwo] = useState([])
+    TipoEvento: null,
+  });
+  const [tipoToFilter, setTipoToFilter] = useState('');
+  const [filtersOn, setFiltersOn] = useState(false);
+  const [datosTwo, setDatosTwo] = useState([]);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
@@ -98,7 +98,7 @@ const SearchResults = ({
       // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
     if (window.screen.width <= 810) {
-      setHandleFilter(false)
+      setHandleFilter(false);
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
@@ -120,11 +120,11 @@ const SearchResults = ({
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
-    var mama
+    var mama;
     if (allFilters) {
-      mama = datos
+      mama = datos;
     } else {
-      mama = items
+      mama = items;
     }
     http
       .post(`${mama?.path}?page=${numPage}`, {
@@ -145,7 +145,7 @@ const SearchResults = ({
         Bar: filtersToSend.Bar,
         Restaurante: filtersToSend.Restaurante,
         Desayuno: filtersToSend.objectToSend,
-        Mascota: filtersToSend.Mascota
+        Mascota: filtersToSend.Mascota,
       })
       .then((response) => {
         const allDdata = response?.data;
@@ -221,16 +221,16 @@ const SearchResults = ({
         Bar: filtersToSend.Bar,
         Restaurante: filtersToSend.Restaurante,
         Desayuno: filtersToSend.objectToSend,
-        Mascota: filtersToSend.Mascota
+        Mascota: filtersToSend.Mascota,
       })
       .then((res) => {
-        setAllFilters(res.data)
-        setDatos(res.data)
-        setCantPaginas(res.data.last_page)
+        setAllFilters(res.data);
+        setDatos(res.data);
+        setCantPaginas(res.data.last_page);
         console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  }
+  };
 
   const handleGetFilterEventos = () => {
     http
@@ -239,16 +239,16 @@ const SearchResults = ({
         longitudAEnviar,
         distanciaAEnviar,
         FechaInicio: filtersToSend.FechaInicio,
-        TipoEvento: filtersToSend.TipoEvento
+        TipoEvento: filtersToSend.TipoEvento,
       })
       .then((res) => {
-        setAllFilters(res.data)
-        setDatos(res)
-        setCantPaginas(res.data.last_page)
+        setAllFilters(res.data);
+        setDatos(res);
+        setCantPaginas(res.data.last_page);
         console.log(res);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  }
+  };
 
   const getFiltersPages = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
@@ -280,16 +280,15 @@ const SearchResults = ({
         Bar: filtersToSend.Bar,
         Restaurante: filtersToSend.Restaurante,
         Desayuno: filtersToSend.objectToSend,
-        Mascota: filtersToSend.Mascota
+        Mascota: filtersToSend.Mascota,
       })
       .then((response) => {
         const allDdata = response?.data;
         setDatos(allDdata);
-        setAllFilters(allDdata)
+        setAllFilters(allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-  }
-
+  };
 
   handleUserBar(userBar);
 
@@ -310,16 +309,14 @@ const SearchResults = ({
       http
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
-          setPuntodeInteresTipo(res.data)
+          setPuntodeInteresTipo(res.data);
           console.log(res.data);
         })
         .catch((error) => {
-          console.log(error)
-        })
+          console.log(error);
+        });
     }
-  }, [datos])
-
-
+  }, [datos]);
 
   return (
     <Layout>
@@ -329,10 +326,10 @@ const SearchResults = ({
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
             : `${datos.total || '1'} ${filtrarTraduccion(
-              traduccionesBD,
-              'resultsFor',
-              lenguage
-            )} ${text}, pagina ${datos?.current_page || '1'}`}
+                traduccionesBD,
+                'resultsFor',
+                lenguage
+              )} ${text}, pagina ${datos?.current_page || '1'}`}
         </h6>
         {latitud && longitud ? (
           <div className="filtrarDistancia">
@@ -400,7 +397,7 @@ const SearchResults = ({
                   tipoEvento={dato?.TipoEvento}
                   tipo={dato?.Tipo}
                   caracteristicas={dato?.Contacto}
-                  imagen={dato?.imagenes[0].url}
+                  imagen={dato?.imagenes[0]?.url}
                   setDestination={setDestination}
                   dato={dato}
                 />
@@ -410,29 +407,27 @@ const SearchResults = ({
         </div>
       </div>
 
-      {
-        handleFilter && (
-          <Filter
-            latitud={latitud}
-            longitud={longitud}
-            distanciaAEnviar={distanciaAEnviar}
-            setDistanciaAEnviar={setDistanciaAEnviar}
-            getBackgroundSize={getBackgroundSize}
-            loaded={loaded}
-            handleDistance={handleDistance}
-            puntodeInteresTipo={puntodeInteresTipo}
-            setHandleFilter={setHandleFilter}
-            allFilters={allFilters}
-            setAllFilters={setAllFilters}
-            filtersToSend={filtersToSend}
-            setFiltersToSend={setFiltersToSend}
-            handleGetFIlters={handleGetFIlters}
-            tipoToFilter={tipoToFilter}
-            setTipoToFilter={setTipoToFilter}
-            handleGetFilterEventos={handleGetFilterEventos}
-          />
-        )
-      }
+      {handleFilter && (
+        <Filter
+          latitud={latitud}
+          longitud={longitud}
+          distanciaAEnviar={distanciaAEnviar}
+          setDistanciaAEnviar={setDistanciaAEnviar}
+          getBackgroundSize={getBackgroundSize}
+          loaded={loaded}
+          handleDistance={handleDistance}
+          puntodeInteresTipo={puntodeInteresTipo}
+          setHandleFilter={setHandleFilter}
+          allFilters={allFilters}
+          setAllFilters={setAllFilters}
+          filtersToSend={filtersToSend}
+          setFiltersToSend={setFiltersToSend}
+          handleGetFIlters={handleGetFIlters}
+          tipoToFilter={tipoToFilter}
+          setTipoToFilter={setTipoToFilter}
+          handleGetFilterEventos={handleGetFilterEventos}
+        />
+      )}
 
       <div className="seccionPaginado">
         {cantPaginas > 1 ? (
