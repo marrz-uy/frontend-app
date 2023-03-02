@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
@@ -8,18 +10,11 @@ import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
-import { GoogleLogin } from 'react-google-login';
-import { gapi } from 'gapi-script';
-import {
-  UNAUTHORIZED,
-  UNPROCESABLE,
-  SERVIDOR_APAGADO,
-} from '../Data/HTTPResponseStatusCodes';
 import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
-/*#  VARIABLE DE ENTORNO ruta src/Config/config.js */
+/*# CLIENT_SECRE DE PASSPORT ruta src/Config/config.js */
 import { CLIENT_SECRET } from '../Config/config.js';
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
@@ -85,27 +80,12 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
-  const clientId =
-    '714352746420-h2p28su155a6u5vmgide4nhe8728kvvo.apps.googleusercontent.com';
-
-  useEffect(() => {
-    // const initClient = () => {
-    //   gapi.client.init({
-    //     clientId: clientId,
-    //     scope: '',
-    //   });
-    // };
-    // gapi.load('client:auth2', initClient);
-  });
-
-  const handleFailure = (result) => {
-    console.log('Error o cambio de cuenta cancelado:', result);
-  };
+  // const handleFailure = (result) => {
+  //   console.log('Error o cambio de cuenta cancelado:', result);
+  // };
 
   const traerIduserGoogle = () => {
     let emailGoogleUser = sessionStorage?.getItem('email');
-    // let token = sessionStorage?.getItem('token');
-    //
     axios
       .post('http://localhost:8000/api/userGoogleData', {
         email: emailGoogleUser,
@@ -129,26 +109,31 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       });
   };
 
-  const handleOAuth = (googleUser) => {
+  const handleOAuth = (credentialResponse) => {
     setLoader(true);
-    sessionStorage.setItem('email', googleUser.profileObj.email);
-    sessionStorage.setItem('userType', 'google');
-    sessionStorage.setItem('user', googleUser.profileObj.name);
+    onSuccess: (credentialResponse) => console.log(credentialResponse);
+    const details = jwt_decode(credentialResponse.credential);
+    console.log('DETAILS', details);
+    sessionStorage.setItem('picture', details.picture);
     http
-      .post('http://localhost:8000/oauth/token', {
-        grant_type: 'social',
-        client_id: '2',
-
-        client_secret: CLIENT_SECRET,
-        provider: 'google',
-        access_token: googleUser.tokenObj.access_token,
+      .post('http://localhost:8000/api/userGoogle', {
+        email: details.email,
+        name: details.name,
       })
       .then((response) => {
-        if (response.data) {
+        console.log(
+          '%cRESPUESTA BACK LOGIN GOOGLE: ',
+          'color:blue;',
+          response.data
+        );
+        if (response?.data) {
           setLoader(false);
         }
-        sessionStorage.setItem('token', response?.data.access_token);
-        sessionStorage.setItem('refresh_token', response?.data.refresh_token);
+        sessionStorage.setItem('id', response?.data.id);
+        sessionStorage.setItem('user', response?.data.user);
+        sessionStorage.setItem('email', response?.data.email);
+        sessionStorage.setItem('userType', 'google');
+        sessionStorage.setItem('access_token', response?.data.access_token);
         sessionStorage.setItem('isLoggedIn', true);
         setIsLoggedIn(true);
       })
@@ -156,12 +141,17 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         if (error) {
           setLoader(false);
         }
-        console.error(`Error en catch: ${error}`);
+        console.error(`Error en catch LOGIN GOOGLE: ${error}`);
       });
-    setTimeout(() => {
-      traerIduserGoogle();
-    }, 500);
+
     navigate('/');
+  };
+
+  const handleFailure = () => {
+    // alert(result);
+    onError = () => {
+      console.log('Login Failed');
+    };
   };
 
   return (
@@ -228,18 +218,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               <span className="loader"></span>
             </div>
           ) : (
-            <GoogleLogin
-              clientId={clientId}
-              buttonText={filtrarTraduccion(
-                traduccionesBD,
-                'loginWhithGoole',
-                lenguage
-              )}
-              onSuccess={handleOAuth}
-              onFailure={handleFailure}
-              cookiePolicy={'single_host_origin'}
-              // isSignedIn={true}
-            ></GoogleLogin>
+            <GoogleLogin onSuccess={handleOAuth} onError={handleFailure} />
           )}
           <div className="linkAregistro">
             <Link to="/register">

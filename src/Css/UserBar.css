@@ -54,7 +54,7 @@
 
 
 .notificationIcon {
-	margin-right: 3px;
+	margin-right: 5px;
 }
 
 .masEspacio {
@@ -65,6 +65,7 @@
 	width: 100%;
 	margin-left: 24px;
 	display: flex;
+	min-width: 205px;
 }
 
 .unreadNotification {
@@ -140,7 +141,7 @@
 	margin-bottom: 5px;
 }
 
-.userBar__link li img {
+.userBar__lenguage img {
 	width: 40px;
 	height: 25px;
 	cursor: pointer;
@@ -158,13 +159,13 @@
 	text-decoration: none;
 }
 
-.userBar__logout div {
+/* .userBar__logout div {
 	margin-left: 1.5rem;
-}
+} */
 
-.userBar__logout p {
+/* .userBar__logout p {
 	margin-left: 1.5rem;
-}
+} */
 
 .userBar__register {
 	display: block;

@@ -69,10 +69,12 @@
 .swiper-slide img {
   display: block;
   width: 100%;
+  min-width: 338px;
+  height: 138.3px;
   height: 100%;
   object-fit: cover;
 }
 
-/* .swiper-slide-duplicate {
-  display: none !important
-} */
+.swiper-button-next, .swiper-button-prev {
+  top: 38%;
+}

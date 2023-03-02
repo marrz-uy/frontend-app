@@ -24,7 +24,6 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       sessionStorage.clear();
       setIsLoggedIn(false);
       console.log('Cerrando sesion...');
-      console.log('loggedIn: ', setIsLoggedIn);
       navigate('/');
       setUserBar(false);
     }
