@@ -14,9 +14,6 @@ import Separador from '../Components/Separador';
 import '../Css/Login.css';
 import '../Css/userBarClick.css';
 
-/*# CLIENT_SECRE DE PASSPORT ruta src/Config/config.js */
-import { CLIENT_SECRET } from '../Config/config.js';
-
 function useWidthElement() {
   const [width, setWidth] = useState(null);
   const refElement = useRef(null);
@@ -39,10 +36,12 @@ function useWidthElement() {
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const { http, setToken } = AuthUser();
   const { setActivePage } = useContext(PageContext);
+
   useEffect(() => {
     setPage('login');
     setActivePage('login');
   }, [setPage, setActivePage, http]);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
@@ -102,40 +101,11 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   handleUserBar(userBar);
 
-  // const handleFailure = (result) => {
-  //   console.log('Error o cambio de cuenta cancelado:', result);
-  // };
-
-  const traerIduserGoogle = () => {
-    let emailGoogleUser = sessionStorage?.getItem('email');
-    axios
-      .post('http://localhost:8000/api/userGoogleData', {
-        email: emailGoogleUser,
-      })
-      .then((response) => {
-        sessionStorage.setItem('id', response?.data.userGoogleId);
-        sessionStorage.setItem(
-          'userProfile',
-          JSON.stringify(response?.data.userProfile)
-        );
-        sessionStorage.setItem(
-          'favourites',
-          JSON.stringify(response?.data.favoritos)
-        );
-      })
-      .catch(function (error) {
-        setLoader(false);
-        console.log('traerIduserGoogle error: ', error);
-        setLoginErrorMessage(error);
-        return loginErrorMessage;
-      });
-  };
-
   const handleOAuth = (credentialResponse) => {
     setLoader(true);
     onSuccess: (credentialResponse) => console.log(credentialResponse);
     const details = jwt_decode(credentialResponse.credential);
-    console.log('DETAILS', details);
+    // console.log('DETAILS', details);
     sessionStorage.setItem('picture', details.picture);
     http
       .post('http://localhost:8000/api/userGoogle', {
@@ -170,7 +140,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   };
 
   const handleFailure = () => {
-    // alert(result);
     onError = () => {
       console.log('Login Failed');
     };
