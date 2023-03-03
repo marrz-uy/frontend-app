@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
-
+import sinImagen from '../Assets/sinimagen.png';
 export const Slider = ({
   arrayimages,
   sliderPoints,
@@ -18,7 +18,7 @@ export const Slider = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  console.log('SLIDER 1-SLIDER: ', sliderPoints);
+  // console.log('SLIDER 1-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
@@ -92,7 +92,11 @@ export const Slider = ({
                 <div className="item" key={point.id}>
                   <SwiperSlide key={point.id}>
                     <img
-                      src={point?.imagenes[0]?.url}
+                      src={
+                        !point?.imagenes[0]
+                          ? sinImagen
+                          : point?.imagenes[0]?.url
+                      }
                       alt=""
                       onClick={goOnPoint}
                       id={point.id}

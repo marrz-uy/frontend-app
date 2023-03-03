@@ -190,3 +190,8 @@ a:visited {
         width: 30%;
     }
 }
+
+.googleLoginBtnYloader {
+    display: flex;
+    justify-content: center;
+}

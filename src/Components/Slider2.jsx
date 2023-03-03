@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import sinImagen from '../Assets/sinimagen.png';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -12,9 +14,9 @@ import '../Css/Slider2.css';
 import { FreeMode, Navigation, Thumbs } from 'swiper';
 
 export default function Slider2({ array }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState();
 
-  console.log('ARRAYIMAGENES: ', array);
+  // console.log('ARRAYIMAGENES: ', array);
 
   return (
     <>
@@ -32,30 +34,34 @@ export default function Slider2({ array }) {
       >
         {array?.map((imagen, index) => (
           <SwiperSlide key={index}>
-            <img src={imagen} alt="imagen de punto de interes" />
+            {!imagen ? (
+              sinImagen
+            ) : (
+              <img src={imagen} alt="imagen de punto de interes" />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={10}
-        slidesPerView={array?.length}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
-        {array?.map((imagen, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={imagen}
-              alt="imagen de punto de interes"
-              // style={{ width: '120px' }}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {!array ? (
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          loop={true}
+          spaceBetween={10}
+          slidesPerView={array?.length}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper"
+        >
+          {array?.map((imagen, index) => (
+            <SwiperSlide key={index}>
+              <img src={imagen} alt="imagen de punto de interes" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <div>Sin Imagen</div>
+      )}
     </>
   );
 }

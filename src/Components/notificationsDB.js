@@ -5,12 +5,11 @@ import '../Css/Toast.css';
 
 const Toast = Swal.mixin({
   toast: true,
-  position: 'bottom-end',
+  position: 'bottom-start',
   showCloseButton: true,
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
-  // background: '#00499d',
   didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer);
     toast.addEventListener('mouseleave', Swal.resumeTimer);
@@ -30,10 +29,7 @@ db.version(1).stores({
 });
 
 channel.bind('send', async function (data) {
-  // alert(JSON.stringify(data));
-  // const read = 'false';
   try {
-    // Add the new friend!
     await db.myNotifications.add({
       title: data.title,
       message: data.message,

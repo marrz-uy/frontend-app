@@ -7,7 +7,7 @@ export default function AuthUser() {
 
   const getToken = () => {
     try {
-      const tokenString = sessionStorage.getItem('token');
+      const tokenString = sessionStorage.getItem('access_token');
       // const userToken = JSON.parse(tokenString);
       const userToken = tokenString;
       return userToken;
@@ -74,7 +74,7 @@ export default function AuthUser() {
   const [userfavourites, setUserfavourites] = useState(getUserfavourites());
 
   const saveToken = (user, token, email, userProfile) => {
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('access_token', token);
     sessionStorage.setItem('user', user);
     sessionStorage.setItem('email', email);
     if (userProfile === null || userProfile === 'undefined') {

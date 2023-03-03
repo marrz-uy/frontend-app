@@ -18,7 +18,7 @@ export const SliderEvents = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  console.log('SLIDER 2-SLIDER: ', sliderPoints);
+  // console.log('SLIDER 2-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
@@ -111,10 +111,10 @@ export const SliderEvents = ({
         className="mySwiper"
       >
         {sliderPoints
-          ? sliderPoints.map((point) => {
+          ? sliderPoints.map((point, index) => {
               return (
-                <div className="item" key={point.id}>
-                  <SwiperSlide key={point.id}>
+                <div className="item" key={point.Eventos_id}>
+                  <SwiperSlide key={point.Eventos_id}>
                     <img
                       src={point.ImagenEvento}
                       alt=""

@@ -41,8 +41,15 @@ const Register = ({
     console.log('Me registro!!');
     setRegisterErrorMessage('');
     setLoader(true);
+    const provider = 'feeluy';
     http
-      .post('/register', { email, password, passwordConfirmation, name })
+      .post('/register', {
+        email,
+        password,
+        passwordConfirmation,
+        name,
+        provider,
+      })
       .then((res) => {
         console.log('RESPUESTA ok:', res.data);
         if (res.data) {
