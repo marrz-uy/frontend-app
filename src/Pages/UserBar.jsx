@@ -34,6 +34,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
   });
 
   const userType = sessionStorage?.getItem('userType');
+  console.log(userType);
 
   return (
     <nav className="userBar">
@@ -146,7 +147,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               </li>
               <li className="userBar__logout" onClick={logoutUser}>
                 {userType === 'feel' ? (
-                  <p>
+                  <p className={userType === 'feel' ? 'marginLeft' : null}>
                     <span className="notificationIcon">🚪</span>{' '}
                     {filtrarTraduccion(traduccionesBD, 'logoutLabel', lenguage)}
                   </p>

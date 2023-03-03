@@ -159,13 +159,9 @@
 	text-decoration: none;
 }
 
-/* .userBar__logout div {
-	margin-left: 1.5rem;
-} */
-
-/* .userBar__logout p {
-	margin-left: 1.5rem;
-} */
+.marginLeft {
+	margin-left: 21px;
+}
 
 .userBar__register {
 	display: block;

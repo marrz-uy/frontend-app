@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const initImage = sessionStorage?.getItem('picture');
-const initEmail = sessionStorage?.getItem('email');
 
 import '../Css/LogoutGoogleButton.css';
 
 export const LogoutGoogleButton = () => {
-  const [picture, setPicture] = useState(initImage);
-  const [email, setEmail] = useState(initEmail);
+  const [picture, setPicture] = useState(sessionStorage?.getItem('picture'));
+  const [email, setEmail] = useState('');
+
+  console.log('PICTURE:', initImage);
 
   const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ export const LogoutGoogleButton = () => {
   return (
     <div className="divBtnGoogleLogout" onClick={onSuccess}>
       <div className="imageBtngoogle">
-        <img className="picture" src={picture}></img>
+        <img className="picture" loading="lazy" src={picture}></img>
       </div>
       <div className="textBtnGoogle">
         <div className="divTextSupGoogleBtn">Cerrar sesión de google </div>

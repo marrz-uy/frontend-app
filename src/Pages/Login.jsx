@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
@@ -17,6 +17,25 @@ import '../Css/userBarClick.css';
 /*# CLIENT_SECRE DE PASSPORT ruta src/Config/config.js */
 import { CLIENT_SECRET } from '../Config/config.js';
 
+function useWidthElement() {
+  const [width, setWidth] = useState(null);
+  const refElement = useRef(null);
+
+  useEffect(() => {
+    function actualizarAncho() {
+      const widthBtn = refElement.current.offsetWidth;
+      setWidth(widthBtn);
+    }
+    actualizarAncho();
+    window.addEventListener('resize', actualizarAncho);
+    return () => {
+      window.removeEventListener('resize', actualizarAncho);
+    };
+  }, []);
+
+  return [refElement, width?.toString()];
+}
+
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const { http, setToken } = AuthUser();
   const { setActivePage } = useContext(PageContext);
@@ -30,6 +49,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const [loader, setLoader] = useState(false);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
+
+  const [refMyElement, widhtMyElemnt] = useWidthElement();
+  console.log('anchoMiElemento:', widhtMyElemnt);
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -209,17 +231,25 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
                   lenguage
                 )}
                 className="btn-login"
+                ref={refMyElement}
               />
             )}
           </div>
           <Separador />
-          {loader ? (
-            <div className="divLoader">
-              <span className="loader"></span>
-            </div>
-          ) : (
-            <GoogleLogin onSuccess={handleOAuth} onError={handleFailure} />
-          )}
+          <div className="googleLoginBtnYloader">
+            {loader ? (
+              <div className="divLoader">
+                <span className="loader"></span>
+              </div>
+            ) : (
+              <GoogleLogin
+                width={widhtMyElemnt}
+                onSuccess={handleOAuth}
+                onError={handleFailure}
+                useOneTap
+              />
+            )}
+          </div>
           <div className="linkAregistro">
             <Link to="/register">
               {filtrarTraduccion(traduccionesBD, 'needAnAccountText', lenguage)}
