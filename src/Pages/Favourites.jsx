@@ -1,7 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 import ResultsCard from '../Components/ResultsCard';
-import PageContext from '../Context/PageContext';
-import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import LenguageContext from '../Context/LenguageContext';
@@ -9,7 +7,6 @@ import FavouritesContext from '../Context/FavouritesContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/Favourites.css';
-// import '../Css/userBarClick.css';
 
 const Favourites = ({
   setIsLoggedIn,
@@ -27,6 +24,7 @@ const Favourites = ({
   useEffect(() => {
     GetFavouritesFromDB(user_Id);
     setPage('favourites');
+    // eslint-disable-next-line
   }, [setPage]);
 
   handleUserBar(userBar);

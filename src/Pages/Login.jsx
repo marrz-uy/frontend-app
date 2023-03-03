@@ -109,7 +109,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const traerIduserGoogle = () => {
     let emailGoogleUser = sessionStorage?.getItem('email');
     axios
-      .post('http://localhost:8000/api/userGoogleData', {
+      .post('http://54.175.153.182/api/userGoogleData', {
         email: emailGoogleUser,
       })
       .then((response) => {

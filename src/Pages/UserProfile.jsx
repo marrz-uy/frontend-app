@@ -5,11 +5,11 @@ import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { Link, useNavigate } from 'react-router-dom';
-import '../Css/UserProfile.css';
 import UserBar from './UserBar';
-import '../Css/userBarClick.css';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import LogoutGoogleButton from '../Components/LogoutGoogleButton';
+import '../Css/userBarClick.css';
+import '../Css/UserProfile.css';
 
 const UserProfile = ({
   setPage,
@@ -46,8 +46,6 @@ const UserProfile = ({
   handleUserBar(userBar);
 
   const userType = sessionStorage?.getItem('userType');
-  // console.log('userType: ' + userType);
-  // console.log('perfilUsuario: ', perfilUsuario);
 
   const changePassword = () => {
     logoutUser();

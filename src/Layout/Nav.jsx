@@ -36,19 +36,15 @@ const Nav = ({
   const { handleLenguage, traduccionesBD, lenguage } =
     useContext(LenguageContext);
 
-  // const { loaded, latitud, longitud } = useGeoLocation();
-
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
   useEffect(() => {
-    // console.log('NOTIFICATION NAV: ', GetNotificationsFromLocalStorage());
     setIsLoggedIn(getLoggedIn());
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
   }, [setIsLoggedIn, getLoggedIn, isLoggedIn, loaded, latitud, longitud]);
 
@@ -169,7 +165,6 @@ const Nav = ({
             />
           </div>
           <>
-            {/* mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm */}
             <div className="divLightNotifications">
               <div
                 className={

@@ -97,15 +97,12 @@
 	.ciudadesSelect {
 		width: 85% important !;
 	}
-
-
 }
 
 @media screen and (min-width: 768px) {
 	.tourStep1 {
 		min-height: 490px;
 	}
-
 }
 
 @media screen and (min-width: 1024px) {

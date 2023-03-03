@@ -41,6 +41,7 @@ function App() {
   const handleClickBars = () => {
     setBars(!bars);
   };
+
   const { loaded, latitud, longitud } = useGeoLocation();
 
   useEffect(() => {

@@ -23,7 +23,6 @@ import { Slider } from '../Components/Slider';
 import { SliderEvents } from '../Components/SliderEvents';
 import { SliderTours } from '../Components/SliderTours';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
-// import { channel } from '../Components/Notification';
 import '../Css/Principal.css';
 import '../Css/Toast.css';
 
@@ -59,6 +58,7 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
+    // eslint-disable-next-line
   }, [setPage, setText, page]);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');

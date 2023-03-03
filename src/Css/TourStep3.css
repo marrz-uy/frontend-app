@@ -12,10 +12,9 @@
 
 .descripcionTourStep3 {
 	display: flex;
-	/* justify-content: space-between; */
 }
 
-.descripcionTourStep3Text{
+.descripcionTourStep3Text {
 	line-height: 18px;
 	background-color: white;
 }
@@ -29,17 +28,17 @@
 
 .btnInfoTour:hover {
 	transform: scale(1.1);
-	background-color:rgb(3, 87, 198);
+	background-color: rgb(3, 87, 198);
 	color: aliceblue;
 }
 
-.titulosColumnas{
+.titulosColumnas {
 	margin: 10px 0;
 	display: flex;
 	width: 100%;
 	justify-content: space-around;
 	border-radius: 3px;
-	color:rgb(92, 92, 92)
+	color: rgb(92, 92, 92)
 }
 
 @media screen and (min-width: 480px) {
@@ -49,13 +48,13 @@
 }
 
 @media screen and (min-width: 768px) {
-	.tourStep3{
+	.tourStep3 {
 		min-height: 500px;
 	}
 }
 
 @media screen and (min-width: 1024px) {
-	.tourStep3{
+	.tourStep3 {
 		min-height: 500px;
 	}
 }
