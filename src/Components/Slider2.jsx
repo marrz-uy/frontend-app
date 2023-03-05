@@ -1,17 +1,19 @@
 import { useState } from 'react';
+import { FreeMode, Navigation, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import sinImagen from '../Assets/sinimagen.png';
+// import 'swiper/swiper.min.css'
+// import 'swiper/css/free-mode';
+// import 'swiper/';
+// import 'swiper/css/thumbs';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/free-mode/free-mode.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
+import 'swiper/modules/thumbs/thumbs.min.css';
+
 import '../Css/Slider2.css';
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper';
+import sinImagen from '../Assets/sinimagen.png';
 
 export default function Slider2({ array }) {
   const [thumbsSwiper, setThumbsSwiper] = useState();

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
-import AuthUser from './AuthUser';
-import '../Css/SliderEvents.css';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
+import '../Css/SliderEvents.css';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/free-mode/free-mode.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
+import AuthUser from './AuthUser';
 
 export const SliderEvents = ({
   arrayimages,

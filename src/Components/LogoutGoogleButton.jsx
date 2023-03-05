@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const initImage = sessionStorage?.getItem('picture');
-
 import '../Css/LogoutGoogleButton.css';
 
 export const LogoutGoogleButton = () => {
   const [picture, setPicture] = useState(sessionStorage?.getItem('picture'));
   const [email, setEmail] = useState('');
 
-  console.log('PICTURE:', initImage);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     setPicture(sessionStorage?.getItem('picture'));
     setEmail(sessionStorage?.getItem('email'));
-  }, [initImage]);
+  }, []);
 
   const GoogleIcon = () => (
     <svg

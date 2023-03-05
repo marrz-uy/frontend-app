@@ -103,7 +103,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const handleOAuth = (credentialResponse) => {
     setLoader(true);
-    onSuccess: (credentialResponse) => console.log(credentialResponse);
+    // onSuccess: (credentialResponse) => console.log(credentialResponse);
     const details = jwt_decode(credentialResponse.credential);
     // console.log('DETAILS', details);
     sessionStorage.setItem('picture', details.picture);
@@ -140,9 +140,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   };
 
   const handleFailure = () => {
-    onError = () => {
-      console.log('Login Failed');
-    };
+    console.log('Login Failed');
   };
 
   return (
