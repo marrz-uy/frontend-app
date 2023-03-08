@@ -66,21 +66,25 @@ export const Slider = ({
           clickable: true,
         }}
         breakpoints={{
-          '@0.00': {
+          // when window width is >= 375px
+          375: {
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 20,
           },
-          '@0.75': {
+          // when window width is >= 900px
+          900: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          '@1.00': {
+          // when window width is >= 1280px
+          1280: {
             slidesPerView: 3,
-            spaceBetween: 40,
+            spaceBetween: 20,
           },
-          '@1.50': {
+          // when window width is >= 1720px
+          1720: {
             slidesPerView: 4,
-            spaceBetween: 50,
+            spaceBetween: 20,
           },
         }}
         navigation={true}

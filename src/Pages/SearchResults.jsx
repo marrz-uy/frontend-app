@@ -318,6 +318,8 @@ const SearchResults = ({
     }
   }, [datos]);
 
+  console.log('DATOS.data', datos.data);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
