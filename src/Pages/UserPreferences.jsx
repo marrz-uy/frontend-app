@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Select from 'react-select';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthUser from '../Components/AuthUser';
+import Select from 'react-select';
 import { Layout } from '../Layout';
+import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 import {
   CategoriaAlojamiento,
   CategoriaGastronomia,
@@ -33,14 +35,11 @@ import espectaculosIcono from '../Assets/categoriesImages/teatro 1.png';
 import nocturnaIcono from '../Assets/categoriesImages/cocktail 1.png';
 import infantilesIcono from '../Assets/categoriesImages/calesita 1.png';
 import serviciosIcono from '../Assets/categoriesImages/services 1.png';
-import UserBar from './UserBar';
-import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/UserPreferences.css';
 import '../Css/userBarClick.css';
 
 const UserPreferences = ({
   setPage,
-  pefilRecuperado,
   setPefilRecuperado,
   setUserBar,
   userBar,

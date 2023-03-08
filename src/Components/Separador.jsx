@@ -1,5 +1,4 @@
-import React from 'react';
-import '../Css/Separador.css'
+import '../Css/Separador.css';
 
 const Separador = () => {
   return (

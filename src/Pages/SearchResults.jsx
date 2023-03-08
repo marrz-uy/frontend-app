@@ -1,14 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import { Layout } from '../Layout';
 import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import Filter from './Filter';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
-import Filter from './Filter';
 
 const SearchResults = ({
   items,

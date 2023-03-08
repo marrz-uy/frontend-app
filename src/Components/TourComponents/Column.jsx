@@ -1,5 +1,4 @@
 // import React, { memo } from 'react';
-import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import '../../Css/Column.css';
 import drag from '../../Assets/drag.png';

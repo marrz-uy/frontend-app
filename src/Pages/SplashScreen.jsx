@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import logo from '../Assets/logos/logofeel.svg';
@@ -15,7 +15,7 @@ export const SplashScreen = () => {
       setmostrarPantallaInicio(false);
     }, 3000);
     sessionStorage.setItem('splash', null);
-  }, [mostrarPantallaInicio]);
+  }, []);
 
   return (
     <div className="splashScreen">

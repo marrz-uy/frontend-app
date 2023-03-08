@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { Button, message, Steps } from 'antd';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import { useNavigate } from 'react-router-dom';
 import AuthUser from './AuthUser';
-import { Button, message, Steps } from 'antd';
 import TourStep1 from '../Pages/BuildTour/TourStep1';
 import TourStep2 from '../Pages/BuildTour/TourStep2';
 import TourStep3 from '../Pages/BuildTour/TourStep3';
 import TourStep4 from '../Pages/BuildTour/TourStep4';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
 import TourContext from '../Context/TourContext';
-import Swal from 'sweetalert2';
 import '../Css/TourSteps.css';
 
 const TourSteps = () => {

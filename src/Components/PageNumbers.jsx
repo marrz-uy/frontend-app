@@ -1,7 +1,6 @@
-import React from 'react';
 import '../Css/PageNumbers.css';
 
-const PageNumbers = ({cant}) => {
+const PageNumbers = ({ cant }) => {
   const pages = [];
   for (let p = 0; p < cant; p++) {
     pages.push(p + 1);
@@ -9,16 +8,14 @@ const PageNumbers = ({cant}) => {
 
   console.log('PAGES: ', pages);
 
-  const RenderPageNumber = pages.map((number)  => {
-		
-		console.log('NUMBER',number)
+  const RenderPageNumber = pages.map((number) => {
+    console.log('NUMBER', number);
     return (
       <div key={number}>
-        <button  id={number}>{number}</button>
+        <button id={number}>{number}</button>
       </div>
     );
   });
-
 
   return (
     <div className="pageNumbersDiv">

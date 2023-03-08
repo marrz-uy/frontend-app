@@ -1,19 +1,12 @@
-import { useState, useEffect } from 'react';
-import '../Css/SearchResults.css';
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import AuthUser from '../Components/AuthUser';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import '../Css/SearchResults.css';
 
 const Filtros = ({
   allFilters,
   setAllFilters,
-  latitud,
-  longitud,
-  distanciaAEnviar,
-  setDistanciaAEnviar,
-  getBackgroundSize,
-  loaded,
-  handleDistance,
   puntodeInteresTipo,
   setHandleFilter,
   filtersToSend,

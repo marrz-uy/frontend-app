@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Layout } from '../Layout';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import Swal from 'sweetalert2';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import '../Css/ForgetPassword.css';

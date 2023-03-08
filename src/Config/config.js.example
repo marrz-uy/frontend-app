@@ -1,5 +1,0 @@
-const CLIENT_SECRET='*****PONER ACA LA KEY DE PASSPORT******'
-
-export {
-  CLIENT_SECRET
-};

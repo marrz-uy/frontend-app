@@ -1,11 +1,10 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper';
 import '../Css/SliderTours.css';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
-import { Pagination, Navigation } from 'swiper';
 
 export const SliderTours = ({
   arrayimages,

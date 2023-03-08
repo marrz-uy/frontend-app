@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useContext, useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
-import { useNavigate, Link } from 'react-router-dom';
+import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Separador from '../Components/Separador';
@@ -16,19 +15,27 @@ import '../Css/userBarClick.css';
 
 function useWidthElement() {
   const [width, setWidth] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
   const refElement = useRef(null);
 
   useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  useEffect(() => {
     function actualizarAncho() {
-      const widthBtn = refElement.current.offsetWidth;
-      setWidth(widthBtn);
+      if (isMounted) {
+        const widthBtn = refElement.current.offsetWidth;
+        setWidth(widthBtn);
+      }
     }
     actualizarAncho();
     window.addEventListener('resize', actualizarAncho);
     return () => {
       window.removeEventListener('resize', actualizarAncho);
     };
-  }, []);
+  }, [isMounted]);
 
   return [refElement, width?.toString()];
 }
@@ -59,7 +66,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
     http
       .post('/login', { email, password })
       .then((res) => {
-        // console.log('%cLOGIN RESPONSE:', 'color: green;', res);
         if (res.data) {
           setLoader(false);
         }
@@ -103,9 +109,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   const handleOAuth = (credentialResponse) => {
     setLoader(true);
-    // onSuccess: (credentialResponse) => console.log(credentialResponse);
     const details = jwt_decode(credentialResponse.credential);
-    // console.log('DETAILS', details);
     sessionStorage.setItem('picture', details.picture);
     http
       .post('http://localhost:8000/api/userGoogle', {

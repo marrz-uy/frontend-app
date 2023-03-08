@@ -1,6 +1,5 @@
-import React from 'react';
-import '../Css/ResultCard.css';
 import { useNavigate } from 'react-router-dom';
+import '../Css/ResultCard.css';
 
 const ResultsCard = (props) => {
   const { setDestination } = props;

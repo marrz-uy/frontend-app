@@ -283,10 +283,10 @@ h6 {
 	margin-top: -1rem;
 }
 
-.filtro_tipos {
-	/* text-align: center; */
-	/* align-items: center; */
-}
+/* .filtro_tipos {
+	text-align: center;
+	align-items: center;
+} */
 
 @media screen and (min-width: 800px) {
 	.filtro_results {

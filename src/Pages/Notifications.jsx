@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react';
-import { Layout } from '../Layout';
-import UserBar from '../Pages/UserBar';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
+import { Layout } from '../Layout';
+import UserBar from '../Pages/UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate.js';

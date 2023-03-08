@@ -1,8 +1,13 @@
 import { traerPreferencias } from '../Helpers/TraerPreferencias';
 
 export const filterData = (categoria) => {
-  const data = traerPreferencias()?.filter(
-    (item) => item.categoria === categoria
-  );
-  return data;
+  try {
+    const data = traerPreferencias()?.filter(
+      ({ categoria: itemCategoria }) => itemCategoria === categoria
+    );
+    return data || [];
+  } catch (error) {
+    console.error('Ha ocurrido un error al filtrar las preferencias:', error);
+    return [];
+  }
 };

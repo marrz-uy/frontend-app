@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleOAuthProvider, useGoogleOneTapLogin } from '@react-oauth/google';
+import { useState, useEffect } from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
@@ -339,7 +339,9 @@ function App() {
                     path="*"
                     element={
                       <div>
-                        <h2>404 Page not found</h2>
+                        <h2 style={{ paddingTop: '150px', marginLeft: '20%' }}>
+                          404 Page not found
+                        </h2>
                       </div>
                     }
                   />

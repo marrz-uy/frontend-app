@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
-import AuthUser from '../Components/AuthUser';
-import PageContext from '../Context/PageContext';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../Layout';
-import UserBar from './UserBar';
+import AuthUser from '../Components/AuthUser';
+import PageContext from '../Context/PageContext';
 import LenguageContext from '../Context/LenguageContext';
 import FavouritesContext from '../Context/FavouritesContext';
+import UserBar from './UserBar';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Slider2 from '../Components/Slider2';

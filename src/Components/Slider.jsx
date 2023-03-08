@@ -1,13 +1,14 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useNavigate } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
+
 import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
 import '../Css/Slider.css';
 import sinImagen from '../Assets/sinimagen.png';
+
 export const Slider = ({
   arrayimages,
   sliderPoints,

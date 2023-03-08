@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import { Link } from 'react-router-dom';
 import AuthUser from '../Components/AuthUser';
-import { useNavigate } from 'react-router-dom';
+import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import '../Css/UserBar.css';
 
 const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
