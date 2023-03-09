@@ -1,4 +1,4 @@
-FROM node:12.22.12-buster-slim
+FROM node:16
 COPY . /root
 WORKDIR /root 
 RUN  npm install 
