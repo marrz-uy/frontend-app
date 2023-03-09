@@ -15,7 +15,6 @@ import '../../Css/TourInit.css';
 
 const TourInit = ({
   setIsLoggedIn,
-  page,
   setPage,
   isLoggedIn,
   userBar,
@@ -53,7 +52,6 @@ const TourInit = ({
 
   useEffect(() => {
     getTours();
-    // eslint-disable-next-line
   }, []);
 
   handleUserBar(userBar);

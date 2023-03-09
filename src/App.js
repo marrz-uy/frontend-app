@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { SplashScreen } from './Pages/SplashScreen';
 import { Principal, Login, Register, UserPreferences, UserBar } from './Pages';
 import { Nav } from './Layout';

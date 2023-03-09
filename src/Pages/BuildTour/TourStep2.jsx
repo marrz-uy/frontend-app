@@ -9,7 +9,6 @@ const TourStep2 = () => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   useEffect(() => {
     setSavedTourItems({});
-    // eslint-disable-next-line
   }, []);
 
   return (
