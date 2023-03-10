@@ -13,75 +13,75 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
-  const handleTipo = () => {
-    if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Bares'
-    ) {
-      /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
-      setTipoToFilter('Gastronomia');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Hotel' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Hostel' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Motel' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Estancia' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Camping' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Casa'
-    ) {
-      /* 'Tipo',['Hotel','Hostel','Motel','Estancia','Camping','Casa']); */
-      setTipoToFilter('Alojamiento');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Teatro'
-    ) {
-      /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
-      setTipoToFilter('Espectaculos');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Murga' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Partido' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Carrera' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
-    ) {
-      setTipoToFilter('Eventos');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Lugar turistico' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Cerros' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Sierras'
-    ) {
-      setTipoToFilter('Paseos');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Farmacias'
-    ) {
-      /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
-      setTipoToFilter('Servicios Esenciales');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Omnibus' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Taxi'
-    ) {
-      setTipoToFilter('Transporte');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Discoteca' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Casino'
-    ) {
-      /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
-      setTipoToFilter('Actividades Nocturnas');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Calesita'
-    ) {
-      /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
-      setTipoToFilter('Actividades Infantiles');
-    }
-  };
   useEffect(() => {
+    const handleTipo = () => {
+      if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Bares'
+      ) {
+        /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
+        setTipoToFilter('Gastronomia');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Hotel' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Hostel' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Motel' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Estancia' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Camping' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Casa'
+      ) {
+        /* 'Tipo',['Hotel','Hostel','Motel','Estancia','Camping','Casa']); */
+        setTipoToFilter('Alojamiento');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Teatro'
+      ) {
+        /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
+        setTipoToFilter('Espectaculos');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Murga' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Partido' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Carrera' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
+      ) {
+        setTipoToFilter('Eventos');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Lugar turistico' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Cerros' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Sierras'
+      ) {
+        setTipoToFilter('Paseos');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Farmacias'
+      ) {
+        /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
+        setTipoToFilter('Servicios Esenciales');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Omnibus' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Taxi'
+      ) {
+        setTipoToFilter('Transporte');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Discoteca' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Casino'
+      ) {
+        /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
+        setTipoToFilter('Actividades Nocturnas');
+      } else if (
+        puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
+        puntodeInteresTipo?.categoria?.Tipo === 'Calesita'
+      ) {
+        /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
+        setTipoToFilter('Actividades Infantiles');
+      }
+    };
     handleTipo();
-  }, [puntodeInteresTipo, handleTipo]);
+  }, [puntodeInteresTipo]);
 
   const handleClickRadio = (e) => {
     let mm;
