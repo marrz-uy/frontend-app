@@ -73,8 +73,6 @@ export const SliderTours = ({
                       alt=""
                       onClick={goToPredefinedTours}
                     />
-                    <h6 className="dateInImage"></h6>
-
                     <span
                       className="titleLink"
                       id={point.id}

@@ -12,7 +12,7 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
     if (isLoggedIn && user_Id) {
       GetFavouritesFromDB(user_Id);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user_Id]);
 
   function GetFavouritesFromDB(user_Id) {
     http

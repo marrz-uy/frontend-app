@@ -17,16 +17,14 @@ const LikeButton = ({
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
-  console.log('cantLikes: ', cantLikes);
-  console.log('%cPUNTO ID: ', 'color:orange;', puntoInteres_Id);
   const { http } = AuthUser();
-  // const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
     setInitialState(initialState);
     console.log('ES FAVORITO: ', initialState);
-  }, []);
+  }, [initialState, setInitialState]);
 
+  console.log('INITIAL STATE: ', initialState);
   const toggleLIke = () => {
     setInitialState(!initialState);
   };
