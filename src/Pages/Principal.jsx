@@ -14,13 +14,13 @@ import { SliderTours } from '../Components/SliderTours';
 import hotelImg from '../Assets/categoriesImages/hospedaje.png';
 import predefTour from '../Assets/categoriesImages/la-carretera.png';
 import setYourTour from '../Assets/categoriesImages/mosaico2.png';
-import restaurant from '../Assets/categoriesImages/fast-food 1.png';
-import trips from '../Assets/categoriesImages/summer-holidays 1.png';
+import restaurant from '../Assets/categoriesImages/fast-food1.png';
+import trips from '../Assets/categoriesImages/summer-holidays1.png';
 import transport from '../Assets/categoriesImages/bus.png';
-import teatro from '../Assets/categoriesImages/teatro 1.png';
-import actividaesNocturnas from '../Assets/categoriesImages/cocktail 1.png';
-import serviciosEscenciales from '../Assets/categoriesImages/services 1.png';
-import serviciosInfantiles from '../Assets/categoriesImages/calesita 1.png';
+import teatro from '../Assets/categoriesImages/teatro1.png';
+import actividaesNocturnas from '../Assets/categoriesImages/cocktail1.png';
+import serviciosEscenciales from '../Assets/categoriesImages/services1.png';
+import serviciosInfantiles from '../Assets/categoriesImages/calesita1.png';
 import useScreenSize from '../Helpers/ScreenSize';
 import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
@@ -277,7 +277,7 @@ const Principal = ({
 
         {seeAll || width > 809 ? (
           <>
-            <div className="containerCategories">
+            <div className="secondPart containerCategories">
               <div
                 className="categories"
                 onClick={() => handleCategories('Espectaculos')}
