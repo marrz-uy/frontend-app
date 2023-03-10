@@ -28,13 +28,13 @@ import {
   EssentialServicesCategory,
 } from '../Data/Categories';
 import alojamientoIcono from '../Assets/categoriesImages/hospedaje.png';
-import gastronomiaIcono from '../Assets/categoriesImages/fast-food 1.png';
-import airelibreIcono from '../Assets/categoriesImages/hiking 1.png';
+import gastronomiaIcono from '../Assets/categoriesImages/fast-food1.png';
+import airelibreIcono from '../Assets/categoriesImages/hiking1.png';
 import transporteIcono from '../Assets/categoriesImages/bus.png';
-import espectaculosIcono from '../Assets/categoriesImages/teatro 1.png';
-import nocturnaIcono from '../Assets/categoriesImages/cocktail 1.png';
-import infantilesIcono from '../Assets/categoriesImages/calesita 1.png';
-import serviciosIcono from '../Assets/categoriesImages/services 1.png';
+import espectaculosIcono from '../Assets/categoriesImages/teatro1.png';
+import nocturnaIcono from '../Assets/categoriesImages/cocktail1.png';
+import infantilesIcono from '../Assets/categoriesImages/calesita1.png';
+import serviciosIcono from '../Assets/categoriesImages/services1.png';
 import '../Css/UserPreferences.css';
 import '../Css/userBarClick.css';
 

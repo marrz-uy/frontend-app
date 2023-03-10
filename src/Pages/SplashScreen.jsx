@@ -11,7 +11,7 @@ export const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setmostrarPantallaInicio(!mostrarPantallaInicio);
+      // setmostrarPantallaInicio(!mostrarPantallaInicio);
       setmostrarPantallaInicio(false);
     }, 3000);
     sessionStorage.setItem('splash', null);
@@ -33,7 +33,7 @@ export const SplashScreen = () => {
               </h2>
             </div>
             <div className="divlogoFeel">
-              <img src={logo} alt="logo"></img>
+              <img src={logo} alt="logo" />
             </div>
             <div className="wrapper">
               <div className="border">
