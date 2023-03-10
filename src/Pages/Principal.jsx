@@ -58,7 +58,7 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
-  }, [setPage, setText, page]);
+  }, [setPage, setText, page, setActivePage]);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');

@@ -60,26 +60,11 @@ const SearchResults = ({
     TipoEvento: null,
   });
   const [tipoToFilter, setTipoToFilter] = useState('');
-  const [filtersOn, setFiltersOn] = useState(false);
-  const [datosTwo, setDatosTwo] = useState([]);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
   }
-
-  // console.log('SEARCH TYPE:', searchType);
-  // console.log('TEXT RESULTS', text, typeof text);
-  // console.log('CATEGORIA', text);
-
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
-
-  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
@@ -102,21 +87,6 @@ const SearchResults = ({
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
-
-  /* const getData = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    http
-      .post(`${items?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  }; */
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
@@ -250,56 +220,7 @@ const SearchResults = ({
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-  const getFiltersPages = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    /* console.log(
-      items.path,
-      '------/?page=',
-      numPage,
-      '///',
-      latitudAEnviar,
-      longitudAEnviar,
-      distanciaAEnviar
-    ); */
-    http
-      .post(`${allFilters?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-        Tipo: filtersToSend.Tipo,
-        ComidaVegge: filtersToSend.ComidaVegge,
-        Alcohol: filtersToSend.Alcohol,
-        MenuInfantil: filtersToSend.MenuInfantil,
-        Calificaciones: filtersToSend.Calificaciones,
-        TvCable: filtersToSend.TvCable,
-        Piscina: filtersToSend.Piscina,
-        Wifi: filtersToSend.Wifi,
-        AireAcondicionado: filtersToSend.AireAcondicionado,
-        BanoPrivad: filtersToSend.BanoPrivad,
-        Casino: filtersToSend.Casino,
-        Bar: filtersToSend.Bar,
-        Restaurante: filtersToSend.Restaurante,
-        Desayuno: filtersToSend.objectToSend,
-        Mascota: filtersToSend.Mascota,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-        setAllFilters(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  };
-
   handleUserBar(userBar);
-
-  // console.log(
-  //   'DATA A enviar',
-  //   latitudAEnviar,
-  //   longitudAEnviar,
-  //   distanciaAEnviar
-  // );
-
-  // console.log('DATOSSSSSSSSSSSSSS: ', datos?.data);
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };

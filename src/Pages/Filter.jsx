@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AuthUser from '../Components/AuthUser';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
@@ -16,8 +15,6 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
-  const { http } = AuthUser();
-
   useEffect(() => {
     handleTipo();
   }, [puntodeInteresTipo]);
@@ -86,34 +83,6 @@ const Filtros = ({
     ) {
       /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
       setTipoToFilter('Actividades Infantiles');
-    }
-  };
-
-  // const [tipoa, setTipoa] = useState("restaurante")
-
-  const handleText = (e) => {
-    if (allFilters.includes(e.target.id + e.target.innerText)) {
-      e.target.style.fontWeight = '500';
-      let newFilters = allFilters.filter(
-        (item) => item !== e.target.id + e.target.innerText
-      );
-      setAllFilters(newFilters);
-    } else if (
-      allFilters.find((element) =>
-        element.startsWith(e.target.id) ? true : false
-      )
-    ) {
-      let mm = document.querySelectorAll(`.${e.target.id} `);
-      Array.from(mm).forEach((el) => (el.style.fontWeight = '500'));
-      let newFilters = allFilters.filter((item) =>
-        item.startsWith(e.target.id) ? false : true
-      );
-      setAllFilters([...newFilters, e.target.id + e.target.innerText]);
-      e.target.style.fontWeight = '700';
-    } else {
-      allFilters.find((element) => console.log(element));
-      setAllFilters([...allFilters, e.target.id + e.target.innerText]);
-      e.target.style.fontWeight = '700';
     }
   };
 
