@@ -182,9 +182,8 @@ const Principal = ({
   };
 
   useEffect(() => {
-    if (latitudAEnviar || longitudAEnviar || distanciaAEnviar)
-      getSliderPoints();
-  }, [latitudAEnviar, longitudAEnviar, distanciaAEnviar]);
+    getSliderPoints();
+  }, []);
 
   handleUserBar(userBar);
 
