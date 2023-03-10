@@ -70,7 +70,6 @@ const SearchResults = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
-  const [puntodeInteresId, setPuntodeInteresId] = useState();
 
   useEffect(() => {
     setPage('results');
@@ -237,7 +236,7 @@ const SearchResults = ({
           console.log(error);
         });
     }
-  }, [datos]);
+  }, [datos, http, puntodeInteresTipo]);
 
   console.log('DATOS.data', datos.data);
 

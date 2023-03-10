@@ -4,8 +4,6 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
 const Filtros = ({
-  allFilters,
-  setAllFilters,
   puntodeInteresTipo,
   setHandleFilter,
   filtersToSend,
@@ -15,10 +13,6 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
-  useEffect(() => {
-    handleTipo();
-  }, [puntodeInteresTipo]);
-
   const handleTipo = () => {
     if (
       puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
@@ -85,6 +79,9 @@ const Filtros = ({
       setTipoToFilter('Actividades Infantiles');
     }
   };
+  useEffect(() => {
+    handleTipo();
+  }, [puntodeInteresTipo, handleTipo]);
 
   const handleClickRadio = (e) => {
     let mm;
@@ -140,7 +137,7 @@ const Filtros = ({
                   value="Restaurantes"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Restaurantes">Restaurantes</label>
+                <label htmlFor="Restaurantes">Restaurantes</label>
               </div>
               <div className="llamame_mimosa as">
                 <input
@@ -150,7 +147,7 @@ const Filtros = ({
                   value="Bares"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Bares">Bares</label>
+                <label htmlFor="Bares">Bares</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -161,7 +158,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="ComidaVegge">ComidaVegge</label>
+                <label htmlFor="ComidaVegge">ComidaVegge</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -172,7 +169,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Alcohol">Alcohol</label>
+                <label htmlFor="Alcohol">Alcohol</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -183,30 +180,16 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="MenuInfantil">MenuInfantil</label>
+                <label htmlFor="MenuInfantil">MenuInfantil</label>
               </div>
               <br />
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
               </button>
-              {/* <h3>Distancia</h3>
-                            <FilterDistance
-                                latitud={latitud}
-                                longitud={longitud}
-                                distanciaAEnviar={distanciaAEnviar}
-                                getBackgroundSize={getBackgroundSize}
-                                setDistanciaAEnviar={setDistanciaAEnviar}
-                                handleDistance={handleDistance}
-                                loaded={loaded}
-                            /> */}
             </div>
           ) : tipoToFilter === 'Alojamiento' ? (
             <div div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <input type="radio" name="Alojamiento" id='Hotel' value="Hotel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Hostel' value="Hostel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Motel' value="Motel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Estancia' value="Estancia" /> */}
               <div className="llamame_mimosa">
                 <input
                   type="radio"
@@ -215,7 +198,7 @@ const Filtros = ({
                   value="Hotel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Hotel">Hotel</label>
+                <label htmlFor="Hotel">Hotel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -225,7 +208,7 @@ const Filtros = ({
                   value="Hostel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Hostel">Hostel</label>
+                <label htmlFor="Hostel">Hostel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -235,7 +218,7 @@ const Filtros = ({
                   value="Motel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Motel">Motel</label>
+                <label htmlFor="Motel">Motel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -245,7 +228,7 @@ const Filtros = ({
                   value="Estancia"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Estancia">Estancia</label>
+                <label htmlFor="Estancia">Estancia</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -255,7 +238,7 @@ const Filtros = ({
                   value="Camping"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Camping">Camping</label>
+                <label htmlFor="Camping">Camping</label>
               </div>
               <div className="llamame_mimosa as">
                 <input
@@ -265,7 +248,7 @@ const Filtros = ({
                   value="Casa"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Casa">Casa</label>
+                <label htmlFor="Casa">Casa</label>
               </div>
               <br />
               {/* <input type="text" /> */}
@@ -278,7 +261,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="TvCable">Tv Cable</label>
+                <label htmlFor="TvCable">Tv Cable</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -289,7 +272,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Piscina">Piscina</label>
+                <label htmlFor="Piscina">Piscina</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -300,7 +283,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Wifi">Wifi</label>
+                <label htmlFor="Wifi">Wifi</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -311,7 +294,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="AireAcondicionado">Aire Acondicionado</label>
+                <label htmlFor="AireAcondicionado">Aire Acondicionado</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -322,7 +305,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="BanoPrivad">Baño privado</label>
+                <label htmlFor="BanoPrivad">Baño privado</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -333,7 +316,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Casino">Casino</label>
+                <label htmlFor="Casino">Casino</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -344,7 +327,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Bar">Bar</label>
+                <label htmlFor="Bar">Bar</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -355,7 +338,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Restaurante">Restaurante</label>
+                <label htmlFor="Restaurante">Restaurante</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -366,7 +349,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Desayuno">Desayuno</label>
+                <label htmlFor="Desayuno">Desayuno</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -383,11 +366,11 @@ const Filtros = ({
                   value="Cine"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Cine">Cine</label>
+                <label htmlFor="Cine">Cine</label>
               </div>
               <div className="llamame_mimosa">
                 <input type="radio" name="Teatro" id="Teatro" value="Teatro" />
-                <label for="Teatro">Teatro</label>
+                <label htmlFor="Teatro">Teatro</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -397,7 +380,7 @@ const Filtros = ({
                   value="Carnaval"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Carnaval">Carnaval</label>
+                <label htmlFor="Carnaval">Carnaval</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -407,7 +390,7 @@ const Filtros = ({
                   value="EventoDeportivo"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="EventoDeportivo">Evento Deportivo</label>
+                <label htmlFor="EventoDeportivo">Evento Deportivo</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -416,26 +399,6 @@ const Filtros = ({
           ) : tipoToFilter === 'Eventos' ? (
             <div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Pelicula' value="Pelicula" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Pelicula">Pelicula</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Obra de teatro' value="Obra de teatro" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Obra de teatro">Obra de teatro</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Murga' value="Murga" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Murga">Murga</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Partido' value="Partido" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Partido">Partido</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Carrera' value="Carrera" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Carrera">Carrera</label>
-                            </div> */}
               <div className="llamame_mimosa">
                 <input
                   type="text"
@@ -463,7 +426,7 @@ const Filtros = ({
               <h3>Tipo</h3>
               <div className="llamame_mimosa">
                 <input type="radio" name="Playas" id="Playas" value="Playas" />
-                <label for="Playas">Playas</label>
+                <label htmlFor="Playas">Playas</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -473,7 +436,7 @@ const Filtros = ({
                   value="Ejercicios al aire libre"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Ejercicios al aire libre">
+                <label htmlFor="Ejercicios al aire libre">
                   Ejercicios al aire libre
                 </label>
               </div>
@@ -485,7 +448,7 @@ const Filtros = ({
                   value="Cerros"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Cerros">Cerros</label>
+                <label htmlFor="Cerros">Cerros</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -495,7 +458,7 @@ const Filtros = ({
                   value="Sierras"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Sierras">Sierras</label>
+                <label htmlFor="Sierras">Sierras</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -512,7 +475,7 @@ const Filtros = ({
                   value="Hospitales"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Hospitales">Hospitales</label>
+                <label htmlFor="Hospitales">Hospitales</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -522,7 +485,7 @@ const Filtros = ({
                   value="Farmacias"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Farmacias">Farmacias</label>
+                <label htmlFor="Farmacias">Farmacias</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -532,7 +495,7 @@ const Filtros = ({
                   value="Cerrajerias"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Cerrajerias">Cerrajerias</label>
+                <label htmlFor="Cerrajerias">Cerrajerias</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -542,7 +505,7 @@ const Filtros = ({
                   value="Estaciones de Servicio"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Estaciones de Servicio">
+                <label htmlFor="Estaciones de Servicio">
                   Estaciones de Servicio
                 </label>
               </div>
@@ -554,7 +517,7 @@ const Filtros = ({
                   value="Seccionales"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Seccionales">Seccionales</label>
+                <label htmlFor="Seccionales">Seccionales</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -571,7 +534,7 @@ const Filtros = ({
                   value="Omnibus"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Omnibus">Omnibus</label>
+                <label htmlFor="Omnibus">Omnibus</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -581,7 +544,7 @@ const Filtros = ({
                   value="Taxi"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Taxi">Taxi</label>
+                <label htmlFor="Taxi">Taxi</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -598,7 +561,7 @@ const Filtros = ({
                   value="Circo"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Circo">Circo</label>
+                <label htmlFor="Circo">Circo</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -608,7 +571,7 @@ const Filtros = ({
                   value="Calesita"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Calesita">Calesita</label>
+                <label htmlFor="Calesita">Calesita</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -618,7 +581,7 @@ const Filtros = ({
                   value="Maquinitas"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Maquinitas">Maquinitas</label>
+                <label htmlFor="Maquinitas">Maquinitas</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -628,7 +591,7 @@ const Filtros = ({
                   value="Juegos Infantiles"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Juegos Infantiles">Juegos Infantiles</label>
+                <label htmlFor="Juegos Infantiles">Juegos Infantiles</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -645,7 +608,7 @@ const Filtros = ({
                   value="Discoteca"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Discoteca">Discoteca</label>
+                <label htmlFor="Discoteca">Discoteca</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -655,7 +618,7 @@ const Filtros = ({
                   value="Casino"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Casino">Casino</label>
+                <label htmlFor="Casino">Casino</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -665,7 +628,7 @@ const Filtros = ({
                   value="Pool"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Pool">Pool</label>
+                <label htmlFor="Pool">Pool</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -675,7 +638,7 @@ const Filtros = ({
                   value="Cantina"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Cantina">Cantina</label>
+                <label htmlFor="Cantina">Cantina</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -685,7 +648,7 @@ const Filtros = ({
                   value="Bowling"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label for="Bowling">Bowling</label>
+                <label htmlFor="Bowling">Bowling</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
