@@ -170,7 +170,7 @@ const TourSteps = () => {
         // message.success('Su tour se ha guardado correctamente!');
         setRegisterErrorMessage('El Tour se registro correctamente');
         setStatusResponse(res.status);
-        if (res.status === 200) {
+        if (res.status === 201) {
           Swal.fire({
             title: filtrarTraduccion(traduccionesBD, 'succesModal', lenguage),
             text: filtrarTraduccion(
@@ -208,7 +208,7 @@ const TourSteps = () => {
         }
       })
       .catch(function (error) {
-        setRegisterErrorMessage('No se pudo registrar el tour');
+        setRegisterErrorMessage('No se pudo registrar el tour', error);
         message.error('NO se pudo guardar su tour');
       });
     console.log('registerErrorMessage ', registerErrorMessage, statusResponse);

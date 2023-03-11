@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AuthUser from '../Components/AuthUser';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
 const Filtros = ({
+  allFilters,
+  setAllFilters,
   puntodeInteresTipo,
   setHandleFilter,
   filtersToSend,
@@ -13,75 +16,78 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
+  const { http } = AuthUser();
+
   useEffect(() => {
-    const handleTipo = () => {
-      if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Bares'
-      ) {
-        /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
-        setTipoToFilter('Gastronomia');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Hotel' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Hostel' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Motel' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Estancia' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Camping' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Casa'
-      ) {
-        /* 'Tipo',['Hotel','Hostel','Motel','Estancia','Camping','Casa']); */
-        setTipoToFilter('Alojamiento');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Teatro'
-      ) {
-        /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
-        setTipoToFilter('Espectaculos');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Murga' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Partido' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Carrera' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
-      ) {
-        setTipoToFilter('Eventos');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Lugar turistico' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Cerros' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Sierras'
-      ) {
-        setTipoToFilter('Paseos');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Farmacias'
-      ) {
-        /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
-        setTipoToFilter('Servicios Esenciales');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Omnibus' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Taxi'
-      ) {
-        setTipoToFilter('Transporte');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Discoteca' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Casino'
-      ) {
-        /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
-        setTipoToFilter('Actividades Nocturnas');
-      } else if (
-        puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
-        puntodeInteresTipo?.categoria?.Tipo === 'Calesita'
-      ) {
-        /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
-        setTipoToFilter('Actividades Infantiles');
-      }
-    };
     handleTipo();
   }, [puntodeInteresTipo]);
+
+  const handleTipo = () => {
+    if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Bares'
+    ) {
+      /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
+      setTipoToFilter('Gastronomia');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Hotel' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Hostel' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Motel' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Estancia' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Camping' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Casa'
+    ) {
+      /* 'Tipo',['Hotel','Hostel','Motel','Estancia','Camping','Casa']); */
+      setTipoToFilter('Alojamiento');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Teatro'
+    ) {
+      /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
+      setTipoToFilter('Espectaculos');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Murga' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Partido' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Carrera' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
+    ) {
+      setTipoToFilter('Eventos');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Lugar turistico' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Cerros' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Sierras'
+    ) {
+      setTipoToFilter('Paseos');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Farmacias'
+    ) {
+      /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
+      setTipoToFilter('Servicios Esenciales');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Omnibus' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Taxi'
+    ) {
+      setTipoToFilter('Transporte');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Discoteca' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Casino'
+    ) {
+      /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
+      setTipoToFilter('Actividades Nocturnas');
+    } else if (
+      puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Calesita'
+    ) {
+      /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
+      setTipoToFilter('Actividades Infantiles');
+    }
+  };
 
   const handleClickRadio = (e) => {
     let mm;
@@ -137,7 +143,7 @@ const Filtros = ({
                   value="Restaurantes"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Restaurantes">Restaurantes</label>
+                <label for="Restaurantes">Restaurantes</label>
               </div>
               <div className="llamame_mimosa as">
                 <input
@@ -147,7 +153,7 @@ const Filtros = ({
                   value="Bares"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Bares">Bares</label>
+                <label for="Bares">Bares</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -158,7 +164,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="ComidaVegge">ComidaVegge</label>
+                <label for="ComidaVegge">ComidaVegge</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -169,7 +175,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Alcohol">Alcohol</label>
+                <label for="Alcohol">Alcohol</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -180,7 +186,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="MenuInfantil">MenuInfantil</label>
+                <label for="MenuInfantil">MenuInfantil</label>
               </div>
               <br />
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
@@ -198,7 +204,7 @@ const Filtros = ({
                   value="Hotel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Hotel">Hotel</label>
+                <label for="Hotel">Hotel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -208,7 +214,7 @@ const Filtros = ({
                   value="Hostel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Hostel">Hostel</label>
+                <label for="Hostel">Hostel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -218,7 +224,7 @@ const Filtros = ({
                   value="Motel"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Motel">Motel</label>
+                <label for="Motel">Motel</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -228,7 +234,7 @@ const Filtros = ({
                   value="Estancia"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Estancia">Estancia</label>
+                <label for="Estancia">Estancia</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -238,7 +244,7 @@ const Filtros = ({
                   value="Camping"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Camping">Camping</label>
+                <label for="Camping">Camping</label>
               </div>
               <div className="llamame_mimosa as">
                 <input
@@ -248,7 +254,7 @@ const Filtros = ({
                   value="Casa"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Casa">Casa</label>
+                <label for="Casa">Casa</label>
               </div>
               <br />
               {/* <input type="text" /> */}
@@ -261,7 +267,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="TvCable">Tv Cable</label>
+                <label for="TvCable">Tv Cable</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -272,7 +278,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Piscina">Piscina</label>
+                <label for="Piscina">Piscina</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -283,7 +289,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Wifi">Wifi</label>
+                <label for="Wifi">Wifi</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -294,7 +300,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="AireAcondicionado">Aire Acondicionado</label>
+                <label for="AireAcondicionado">Aire Acondicionado</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -305,7 +311,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="BanoPrivad">Baño privado</label>
+                <label for="BanoPrivad">Baño privado</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -316,7 +322,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Casino">Casino</label>
+                <label for="Casino">Casino</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -327,7 +333,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Bar">Bar</label>
+                <label for="Bar">Bar</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -338,7 +344,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Restaurante">Restaurante</label>
+                <label for="Restaurante">Restaurante</label>
               </div>
               <br />
               <div className="llamame_mimosa as">
@@ -349,7 +355,7 @@ const Filtros = ({
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Desayuno">Desayuno</label>
+                <label for="Desayuno">Desayuno</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -366,11 +372,11 @@ const Filtros = ({
                   value="Cine"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Cine">Cine</label>
+                <label for="Cine">Cine</label>
               </div>
               <div className="llamame_mimosa">
                 <input type="radio" name="Teatro" id="Teatro" value="Teatro" />
-                <label htmlFor="Teatro">Teatro</label>
+                <label for="Teatro">Teatro</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -380,7 +386,7 @@ const Filtros = ({
                   value="Carnaval"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Carnaval">Carnaval</label>
+                <label for="Carnaval">Carnaval</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -390,7 +396,7 @@ const Filtros = ({
                   value="EventoDeportivo"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="EventoDeportivo">Evento Deportivo</label>
+                <label for="EventoDeportivo">Evento Deportivo</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -426,7 +432,7 @@ const Filtros = ({
               <h3>Tipo</h3>
               <div className="llamame_mimosa">
                 <input type="radio" name="Playas" id="Playas" value="Playas" />
-                <label htmlFor="Playas">Playas</label>
+                <label for="Playas">Playas</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -436,7 +442,7 @@ const Filtros = ({
                   value="Ejercicios al aire libre"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Ejercicios al aire libre">
+                <label for="Ejercicios al aire libre">
                   Ejercicios al aire libre
                 </label>
               </div>
@@ -448,7 +454,7 @@ const Filtros = ({
                   value="Cerros"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Cerros">Cerros</label>
+                <label for="Cerros">Cerros</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -458,7 +464,7 @@ const Filtros = ({
                   value="Sierras"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Sierras">Sierras</label>
+                <label for="Sierras">Sierras</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -475,7 +481,7 @@ const Filtros = ({
                   value="Hospitales"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Hospitales">Hospitales</label>
+                <label for="Hospitales">Hospitales</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -485,7 +491,7 @@ const Filtros = ({
                   value="Farmacias"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Farmacias">Farmacias</label>
+                <label for="Farmacias">Farmacias</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -495,7 +501,7 @@ const Filtros = ({
                   value="Cerrajerias"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Cerrajerias">Cerrajerias</label>
+                <label for="Cerrajerias">Cerrajerias</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -505,7 +511,7 @@ const Filtros = ({
                   value="Estaciones de Servicio"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Estaciones de Servicio">
+                <label for="Estaciones de Servicio">
                   Estaciones de Servicio
                 </label>
               </div>
@@ -517,7 +523,7 @@ const Filtros = ({
                   value="Seccionales"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Seccionales">Seccionales</label>
+                <label for="Seccionales">Seccionales</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -534,7 +540,7 @@ const Filtros = ({
                   value="Omnibus"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Omnibus">Omnibus</label>
+                <label for="Omnibus">Omnibus</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -544,7 +550,7 @@ const Filtros = ({
                   value="Taxi"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Taxi">Taxi</label>
+                <label for="Taxi">Taxi</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -561,7 +567,7 @@ const Filtros = ({
                   value="Circo"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Circo">Circo</label>
+                <label for="Circo">Circo</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -571,7 +577,7 @@ const Filtros = ({
                   value="Calesita"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Calesita">Calesita</label>
+                <label for="Calesita">Calesita</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -581,7 +587,7 @@ const Filtros = ({
                   value="Maquinitas"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Maquinitas">Maquinitas</label>
+                <label for="Maquinitas">Maquinitas</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -591,7 +597,7 @@ const Filtros = ({
                   value="Juegos Infantiles"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Juegos Infantiles">Juegos Infantiles</label>
+                <label for="Juegos Infantiles">Juegos Infantiles</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
@@ -608,7 +614,7 @@ const Filtros = ({
                   value="Discoteca"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Discoteca">Discoteca</label>
+                <label for="Discoteca">Discoteca</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -618,7 +624,7 @@ const Filtros = ({
                   value="Casino"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Casino">Casino</label>
+                <label for="Casino">Casino</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -628,7 +634,7 @@ const Filtros = ({
                   value="Pool"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Pool">Pool</label>
+                <label for="Pool">Pool</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -638,7 +644,7 @@ const Filtros = ({
                   value="Cantina"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Cantina">Cantina</label>
+                <label for="Cantina">Cantina</label>
               </div>
               <div className="llamame_mimosa">
                 <input
@@ -648,7 +654,7 @@ const Filtros = ({
                   value="Bowling"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="Bowling">Bowling</label>
+                <label for="Bowling">Bowling</label>
               </div>
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar

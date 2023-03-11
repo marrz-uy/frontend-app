@@ -52,7 +52,7 @@ const TourInit = ({
 
   useEffect(() => {
     getTours();
-  });
+  }, []);
 
   handleUserBar(userBar);
 
