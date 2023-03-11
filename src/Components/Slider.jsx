@@ -26,7 +26,7 @@ export const Slider = ({
     const id = e.target.id;
     console.log('TARGET-ID: ', id);
     const req = await http
-      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cDATA:', 'color: blue;', response?.data);
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);

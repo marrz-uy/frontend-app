@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AuthUser from '../Components/AuthUser';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
@@ -16,8 +15,6 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
-  const { http } = AuthUser();
-
   useEffect(() => {
     handleTipo();
   }, [puntodeInteresTipo]);
