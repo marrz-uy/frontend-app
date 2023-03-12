@@ -30,7 +30,7 @@ export const SliderTours = ({
         </div>
       </div>
       <Swiper
-        id="slider1"
+        id="slider3"
         slidesPerView={1}
         spaceBetween={10}
         loop={true}

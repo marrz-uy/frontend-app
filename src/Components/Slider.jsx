@@ -48,7 +48,7 @@ export const Slider = ({
   };
   return (
     <>
-      <div className="tituloSlider" id="tituloSlider">
+      <div className="tituloSlider">
         <div className="titulo">
           <h2>{title}</h2>
         </div>
@@ -102,6 +102,7 @@ export const Slider = ({
                           ? sinImagen
                           : point?.imagenes[0]?.url
                       }
+                      className="imgSliderPoint"
                       alt=""
                       onClick={goOnPoint}
                       id={point.id}

@@ -12,22 +12,6 @@
 	border-top-right-radius: 5px;
 }
 
-.likesLabel {
-	padding: 5px;
-	border-radius: 5px;
-	position: relative;
-	top: -50px;
-	left: -126px;
-	color: whitesmoke;
-	background-color: rgba(245, 245, 245, 0.116);
-	text-shadow: 1px 1px .5px rgb(114, 114, 114);
-	font-size: 12px;
-	max-width: 250px;
-	text-overflow: ellipsis;
-	font-size: 1rem;
-	margin-left: 18px;
-}
-
 .description {
 	padding-left: 10px;
 	font-size: 0.7rem;

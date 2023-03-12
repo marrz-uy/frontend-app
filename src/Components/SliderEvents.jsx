@@ -79,7 +79,7 @@ export const SliderEvents = ({
         </div>
       </div>
       <Swiper
-        id="slider1"
+        id="slider2"
         slidesPerView={1}
         spaceBetween={10}
         loop={true}
