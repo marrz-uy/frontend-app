@@ -69,9 +69,9 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  min-width: 338px;
-  height: 138.3px;
-  height: 100%;
+  /* min-width: 338px; */
+  /* height: 138.3px; */
+  /* height: 100%; */
   object-fit: cover;
 }
 
