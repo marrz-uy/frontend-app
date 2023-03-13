@@ -96,18 +96,10 @@ a {
 	cursor: pointer;
 }
 
-@media screen and (min-width: 414px) {
-	.likesLabel {
-		top: -60px;
-		left: -130px;
-	}
-}
+@media screen and (min-width: 414px) {}
 
 @media screen and (min-width: 540px) {
-	.likesLabel {
-		top: -50px;
-		left: -70px;
-	}
+
 
 	.titleLink {
 		margin-bottom: 65px;
@@ -116,23 +108,13 @@ a {
 	}
 }
 
-@media screen and (min-width: 768px) {
-	.likesLabel {
-		top: -65px;
-		left: -110px;
-		font-size: 1.5rem;
-	}
-}
+@media screen and (min-width: 768px) {}
 
 @media screen and (min-width: 800px) {}
 
 @media screen and (min-width: 820px) {
 
-	.likesLabel {
-		top: -70px;
-		left: -260px;
-		font-size: 1.5rem;
-	}
+
 
 	.titleLink {
 		margin-bottom: 65px;
@@ -142,11 +124,6 @@ a {
 }
 
 @media screen and (min-width: 900px) {
-	.likesLabel {
-		top: -3rem;
-		left: 0;
-		font-size: .7rem;
-	}
 
 	.titleLink {
 		margin-bottom: 65px;
@@ -158,10 +135,6 @@ a {
 
 @media screen and (min-width: 1024px) {
 
-	.likesLabel {
-		top: -50px;
-		left: -80px;
-	}
 
 	.sliderContainer {
 		width: 120vh;
@@ -175,19 +148,9 @@ a {
 	}
 }
 
-@media screen and (min-width: 1280px) {
-	.likesLabel {
-		top: -45px;
-		left: -70px;
-	}
-}
+@media screen and (min-width: 1280px) {}
 
 @media screen and (min-width: 1920px) {
-	.likesLabel {
-		top: -50px;
-		left: -130px;
-		font-size: 1rem;
-	}
 
 	.titleLink {
 		margin-bottom: 65px;
