@@ -2,15 +2,14 @@
     padding: 5px;
     border-radius: 5px;
     position: relative;
-    top: -55px;
+    top: -125px;
     left: -10px;
     color: whitesmoke;
     background-color: rgba(245, 245, 245, 0.116);
     text-shadow: 1px 1px .5px rgb(114, 114, 114);
     font-size: 12px;
     max-width: 300px;
-    text-overflow: ellipsis;
-    line-height: 1;
+    /* line-height: 1; */
 }
 
 .description {

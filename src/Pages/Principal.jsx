@@ -381,7 +381,7 @@ const Principal = ({
           destination={destination}
           setDestination={setDestination}
         />
-        {/* <SliderEvents
+        <SliderEvents
           title={`${filtrarTraduccion(
             traduccionesBD,
             'Slider2Title',
@@ -396,7 +396,7 @@ const Principal = ({
           sliderPoints={sliderPoints2.data}
           destination={destination}
           setDestination={setDestination}
-        /> */}
+        />
         {/* <SliderTours
           title={filtrarTraduccion(traduccionesBD, 'Slider3Title', lenguage)}
           description={filtrarTraduccion(
