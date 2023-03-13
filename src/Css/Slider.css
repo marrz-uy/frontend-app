@@ -28,7 +28,6 @@
   text-shadow: 1px 1px .5px rgb(114, 114, 114);
   max-width: 250px;
   font-size: 1rem;
-  border: 1px solid red;
 }
 
 .description {
@@ -41,8 +40,6 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
-
-
 
 .swiper {
   /* width: 85%; */
