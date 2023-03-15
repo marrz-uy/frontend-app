@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import ResultsCard from '../Components/ResultsCard';
+import FavouriteCard from '../Components/FavouriteCard';
 import { Layout } from '../Layout';
 import UserBar from './UserBar';
 import LenguageContext from '../Context/LenguageContext';
@@ -11,6 +11,7 @@ import '../Css/userBarClick.css';
 
 const Favourites = ({
   setIsLoggedIn,
+  page,
   setPage,
   isLoggedIn,
   userBar,
@@ -46,7 +47,7 @@ const Favourites = ({
           ) : (
             favouritesFromDB?.map((dato) => {
               return (
-                <ResultsCard
+                <FavouriteCard
                   key={dato.id}
                   nombre={dato.Nombre}
                   nombreEvento={dato.NombreEvento}
@@ -63,6 +64,7 @@ const Favourites = ({
                   imagen={dato.Imagen}
                   setDestination={setDestination}
                   dato={dato}
+                  page={page}
                 />
               );
             })

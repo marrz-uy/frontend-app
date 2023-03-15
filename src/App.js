@@ -313,6 +313,7 @@ function App() {
                     path="/favourites"
                     element={
                       <Favourites
+                        page={page}
                         setPage={setPage}
                         userBar={userBar}
                         setIsLoggedIn={setIsLoggedIn}

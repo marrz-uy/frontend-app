@@ -27,7 +27,7 @@ const TourStep1 = () => {
       tipoDeLugar: tipoDeLugar,
       restriccionDeEdad: restriccionDeEdad,
       enfoqueDePersonas: enfoqueDePersonas,
-      ubicacion: !ubicacion ? '' : ubicacion,
+      ubicacion: !ubicacion ? 'Montevideo' : ubicacion,
     });
   }, [
     horaInicio,
@@ -37,11 +37,6 @@ const TourStep1 = () => {
     ubicacion,
     setTourPreferences,
   ]);
-
-  /*  const capitalize = (string) => {
-    let stringLower = string.toLowerCase();
-    return stringLower && stringLower[0].toUpperCase() + stringLower.slice(1);
-  }; */
 
   const getCities = () => {
     http
@@ -202,14 +197,17 @@ const TourStep1 = () => {
               <select
                 className="ciudadesSelect"
                 onChange={(e) => setUbicacion(e.target.value)}
-                defaultValue={(e) => e.target.value}
+                // defaultValue={(e) => setUbicacion(e.target.value)}
+                value={ubicacion}
                 id="ciudadesSelect"
               >
-                {ciudades !== null
-                  ? ciudades?.map((item, index) => {
-                      return <option key={index}>{item.Ciudad}</option>;
-                    })
-                  : 'nada'}
+                {ciudades !== null ? (
+                  ciudades?.map((item, index) => {
+                    return <option key={index}>{item.Ciudad}</option>;
+                  })
+                ) : (
+                  <option value="">Sin datos</option>
+                )}
               </select>
             </div>
           </div>
