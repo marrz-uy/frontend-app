@@ -11,7 +11,6 @@ import '../Css/userBarClick.css';
 
 const Favourites = ({
   setIsLoggedIn,
-  page,
   setPage,
   isLoggedIn,
   userBar,
@@ -64,7 +63,6 @@ const Favourites = ({
                   imagen={dato.Imagen}
                   setDestination={setDestination}
                   dato={dato}
-                  page={page}
                 />
               );
             })

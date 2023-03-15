@@ -48,11 +48,9 @@ const FavouriteCard = (props) => {
           <h6>{props.contacto}</h6>
         </div>
         <div className="divDeleteFav">
-          {props.page === 'favourites' ? (
-            <span className="deleteFavourite" id={props.id}>
-              <img src={trash} alt="trashCan"></img>
-            </span>
-          ) : null}
+          <span className="deleteFavourite" id={props.id}>
+            <img src={trash} alt="trashCan"></img>
+          </span>
         </div>
       </div>
     </div>

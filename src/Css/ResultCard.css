@@ -88,6 +88,7 @@ h6 {
 		display: flex;
 		flex-direction: column;
 		padding: 5px;
+		max-height: 151px;
 	}
 
 	.data h2 {
