@@ -56,11 +56,6 @@ const TourInit = ({
 
   handleUserBar(userBar);
 
-  const hora = (str) => {
-    str = str.substring(0, str.length - 3);
-    return str;
-  };
-
   const deleteTour = (tourId) => {
     http
       .delete(`/tourArmado/${tourId}`, {})
@@ -151,7 +146,9 @@ const TourInit = ({
                 return (
                   <details key={tour.id}>
                     <summary>
-                      <span className="summary-title">{tour.nombreTour}</span>
+                      <span className="summary-title">
+                        🗺️ {tour.nombreTour}
+                      </span>
                       <div className="summary-chevron-up">
                         <FontAwesomeIcon icon={faArrowDown} />
                       </div>
@@ -162,6 +159,7 @@ const TourInit = ({
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
+                              {' '}
                               <li
                                 className="puntoInteresLi"
                                 id={tourItem.puntoInteresId}

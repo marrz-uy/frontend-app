@@ -12,16 +12,19 @@
   border-top-right-radius: 5px;
 }
 
+.imgSliderPoint {
+  width: 100%;
+}
+
 .likesLabel {
   padding: 5px;
   border-radius: 5px;
   position: relative;
-  top: -50px;
-  left: -120px;
+  top: -203px;
+  left: -123px;
   color: whitesmoke;
   background-color: rgba(245, 245, 245, 0.116);
   text-shadow: 1px 1px .5px rgb(114, 114, 114);
-  font-size: 12px;
   max-width: 250px;
   text-overflow: ellipsis;
   font-size: 1rem;
@@ -33,13 +36,13 @@
 }
 
 .titleLink {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 20px;
   cursor: pointer;
 }
 
 .swiper {
-  /* width: 85%; */
   height: 100%;
   margin-bottom: 2rem;
   border-top: none;
@@ -55,7 +58,6 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-  /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -70,17 +72,6 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  cursor: grab;
 }
 
 .swiper-pagination {
@@ -115,17 +106,31 @@ a {
   cursor: pointer;
 }
 
-@media screen and (min-width: 414px) {
+@media screen and (min-width: 360px) {
   .likesLabel {
-    top: -60px;
-    left: -130px;
+    top: -203px;
+    left: -117px;
   }
 }
 
+@media screen and (min-width: 412px) {
+  .likesLabel {
+    top: -203px;
+    left: -140px;
+  }
+}
+
+/* @media screen and (min-width: 414px) {
+  .likesLabel {
+    top: -203px;
+    left: -140px;
+  }
+} */
+
 @media screen and (min-width: 540px) {
   .likesLabel {
-    top: -50px;
-    left: -70px;
+    top: -200px;
+    left: -191px;
   }
 
   .titleLink {
@@ -137,49 +142,40 @@ a {
 
 @media screen and (min-width: 768px) {
   .likesLabel {
-    top: -65px;
-    left: -110px;
-    font-size: 1.5rem;
+    top: -238px;
+    left: -280px;
   }
 }
-
-@media screen and (min-width: 800px) {}
 
 @media screen and (min-width: 820px) {
-
   .likesLabel {
-    top: -70px;
-    left: -260px;
-    font-size: 1.5rem;
-  }
-
-  .titleLink {
-    margin-bottom: 65px;
-    cursor: pointer;
-    font-size: 1.5rem;
+    top: -238px;
+    left: -280px;
   }
 }
+
+
+
 
 @media screen and (min-width: 900px) {
   .likesLabel {
-    top: -3rem;
-    left: 0;
-    font-size: .7rem;
+    top: -201px;
+    left: -123px;
   }
+}
 
-  .titleLink {
-    margin-bottom: 65px;
-    cursor: pointer;
+@media screen and (min-width: 912px) {
+  .likesLabel {
+    top: -200px;
+    left: -129px;
     font-size: 1rem;
   }
-
 }
 
 @media screen and (min-width: 1024px) {
-
   .likesLabel {
-    top: -50px;
-    left: -80px;
+    top: -200px;
+    left: -149px;
   }
 
   .sliderContainer {
@@ -196,21 +192,14 @@ a {
 
 @media screen and (min-width: 1280px) {
   .likesLabel {
-    top: -45px;
-    left: -70px;
+    top: -200px;
+    left: -118px;
   }
 }
 
 @media screen and (min-width: 1920px) {
   .likesLabel {
-    top: -50px;
-    left: -130px;
-    font-size: 1rem;
-  }
-
-  .titleLink {
-    margin-bottom: 65px;
-    cursor: pointer;
-    font-size: 1.5rem;
+    top: -200px;
+    left: -135px;
   }
 }

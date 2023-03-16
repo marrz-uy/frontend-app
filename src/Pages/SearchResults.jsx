@@ -250,56 +250,9 @@ const SearchResults = ({
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-  const getFiltersPages = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    /* console.log(
-      items.path,
-      '------/?page=',
-      numPage,
-      '///',
-      latitudAEnviar,
-      longitudAEnviar,
-      distanciaAEnviar
-    ); */
-    http
-      .post(`${allFilters?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-        Tipo: filtersToSend.Tipo,
-        ComidaVegge: filtersToSend.ComidaVegge,
-        Alcohol: filtersToSend.Alcohol,
-        MenuInfantil: filtersToSend.MenuInfantil,
-        Calificaciones: filtersToSend.Calificaciones,
-        TvCable: filtersToSend.TvCable,
-        Piscina: filtersToSend.Piscina,
-        Wifi: filtersToSend.Wifi,
-        AireAcondicionado: filtersToSend.AireAcondicionado,
-        BanoPrivad: filtersToSend.BanoPrivad,
-        Casino: filtersToSend.Casino,
-        Bar: filtersToSend.Bar,
-        Restaurante: filtersToSend.Restaurante,
-        Desayuno: filtersToSend.objectToSend,
-        Mascota: filtersToSend.Mascota,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-        setAllFilters(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  };
-
+  console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
 
-  // console.log(
-  //   'DATA A enviar',
-  //   latitudAEnviar,
-  //   longitudAEnviar,
-  //   distanciaAEnviar
-  // );
-
-  // console.log('DATOSSSSSSSSSSSSSS: ', datos?.data);
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
@@ -317,9 +270,7 @@ const SearchResults = ({
         });
     }
   }, [datos]);
-
-  console.log('DATOS.data', datos.data);
-
+  console.log('tipo de dato', typeof datos?.current_page);
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
