@@ -57,7 +57,6 @@ export const Slider = ({
         </div>
       </div>
       <Swiper
-        id="slider1"
         slidesPerView={1}
         spaceBetween={10}
         loop={true}

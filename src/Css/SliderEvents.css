@@ -2,12 +2,12 @@
     padding: 5px;
     border-radius: 5px;
     position: relative;
-    top: -208px;
+    top: -185px;
     left: -10px;
-    color: whitesmoke;
+    color: rgb(255, 255, 255);
     background-color: rgba(245, 245, 245, 0.116);
     text-shadow: 1px 1px .5px rgb(114, 114, 114);
-    font-size: 12px;
+    font-size: 1rem;
     max-width: 300px;
 }
 
@@ -16,48 +16,39 @@
     font-size: 0.7rem;
 }
 
-.titleLink {
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 360px) {
     .dateInImage {
-        top: -55px;
+        top: -185px;
         left: 0px;
     }
 }
 
-@media screen and (min-width: 800px) {
-    .titleLink {
-        margin-bottom: 65px;
-        cursor: pointer;
+@media screen and (min-width: 768px) {
+    .dateInImage {
+        top: -215px;
+        left: -10px;
     }
 }
 
 @media screen and (min-width: 820px) {
     .dateInImage {
-        top: -60px;
-        left: -150px;
+        top: -205px;
+        left: -10px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .dateInImage {
+        top: -185px;
+        left: -5px;
     }
 }
 
 @media screen and (min-width: 1024px) {
 
     .dateInImage {
-        top: -60px;
-        left: -250px;
-    }
-
-    .titleLink {
-        margin-bottom: 65px;
-        cursor: pointer;
-    }
-
-    .sliderContainer {
-        width: 120vh;
-        height: auto;
-
+        top: -185px;
+        left: -5px;
     }
 
     .description {
@@ -66,9 +57,4 @@
     }
 }
 
-@media screen and (min-width: 1200px) {
-    .dateInImage {
-        top: -55px;
-        left: -20px;
-    }
-}
+@media screen and (min-width: 1920px) {}

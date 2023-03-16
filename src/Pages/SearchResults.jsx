@@ -219,7 +219,10 @@ const SearchResults = ({
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
+
+  console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
+
   const getBackgroundSize = () => {
     return { backgroundSize: `${(distanciaAEnviar * 100) / 50000}% 100%` };
   };
@@ -236,10 +239,8 @@ const SearchResults = ({
           console.log(error);
         });
     }
-  }, [datos, http, puntodeInteresTipo]);
-
-  console.log('DATOS.data', datos.data);
-
+  }, [datos]);
+  console.log('tipo de dato', typeof datos?.current_page);
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>

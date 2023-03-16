@@ -10,20 +10,9 @@
   background-position: center;
 }
 
-/* .mySwiper2 {
-  height: 65%;
-  width: 100%;
-} */
-
 .swiper-wrapper {
   height: 110%;
 }
-
-/* .mySwiper {
-  height: 20%;
-  box-sizing: border-box;
-  padding: 10px 0;
-} */
 
 .mySwiper .swiper-slide {
   width: 25%;
@@ -39,9 +28,9 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  /* min-width: 338px; */
-  /* height: 138.3px; */
-  /* height: 100%; */
+  /* min-width: 338px;
+  height: 138.3px;
+  height: 100%; */
   object-fit: cover;
 }
 
