@@ -146,7 +146,9 @@ const TourInit = ({
                 return (
                   <details key={tour.id}>
                     <summary>
-                      <span className="summary-title">{tour.nombreTour}</span>
+                      <span className="summary-title">
+                        🗺️ {tour.nombreTour}
+                      </span>
                       <div className="summary-chevron-up">
                         <FontAwesomeIcon icon={faArrowDown} />
                       </div>
@@ -157,6 +159,7 @@ const TourInit = ({
                         {tour?.tour_items?.map((tourItem) => {
                           return (
                             <div key={tourItem.puntoInteresId}>
+                              {' '}
                               <li
                                 className="puntoInteresLi"
                                 id={tourItem.puntoInteresId}

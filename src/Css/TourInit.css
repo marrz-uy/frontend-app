@@ -12,10 +12,8 @@
 	height: 200px;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
-
 	background-size: cover;
 	background-repeat: no-repeat;
-
 	margin-bottom: 10px;
 }
 
@@ -105,8 +103,13 @@ details {
 }
 
 details .summary-title {
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-moz-user-select: none;
+	/* Firefox */
 	user-select: none;
-	margin: 50px 0 0 10px;
 }
 
 details:hover {
@@ -123,7 +126,7 @@ details .summary-content {
 
 details summary {
 	list-style: none;
-	/* padding: 1em; */
+	padding: 1em;
 }
 
 details summary:focus {
@@ -142,8 +145,8 @@ details .summary-chevron-up,
 details .summary-chevron-down {
 	pointer-events: none;
 	position: absolute;
-	top: 1.2em;
-	right: 1.1em;
+	top: .7em;
+	right: .1em;
 	background: #ffffff;
 	border-radius: 50%;
 	width: 2rem;
@@ -176,8 +179,6 @@ details .summary-chevron-down {
 	border-radius: 5px;
 	padding: .9rem;
 	gap: 5px;
-	background-color: #ececec;
-	border-bottom: 1px solid rgb(211, 211, 211);
 }
 
 .cardContent {
