@@ -51,7 +51,7 @@ export const LogoutGoogleButton = () => {
   return (
     <div className="divBtnGoogleLogout" onClick={onSuccess}>
       <div className="imageBtngoogle">
-        <img className="picture" loading="lazy" src={picture}></img>
+        <img className="picture" loading="lazy" src={picture} alt="img"></img>
       </div>
       <div className="textBtnGoogle">
         <div className="divTextSupGoogleBtn">Cerrar sesión de google </div>

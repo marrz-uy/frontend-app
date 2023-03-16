@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AuthUser from '../Components/AuthUser';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
@@ -16,8 +15,6 @@ const Filtros = ({
   setTipoToFilter,
   handleGetFilterEventos,
 }) => {
-  const { http } = AuthUser();
-
   useEffect(() => {
     handleTipo();
   }, [puntodeInteresTipo]);
@@ -86,34 +83,6 @@ const Filtros = ({
     ) {
       /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
       setTipoToFilter('Actividades Infantiles');
-    }
-  };
-
-  // const [tipoa, setTipoa] = useState("restaurante")
-
-  const handleText = (e) => {
-    if (allFilters.includes(e.target.id + e.target.innerText)) {
-      e.target.style.fontWeight = '500';
-      let newFilters = allFilters.filter(
-        (item) => item !== e.target.id + e.target.innerText
-      );
-      setAllFilters(newFilters);
-    } else if (
-      allFilters.find((element) =>
-        element.startsWith(e.target.id) ? true : false
-      )
-    ) {
-      let mm = document.querySelectorAll(`.${e.target.id} `);
-      Array.from(mm).forEach((el) => (el.style.fontWeight = '500'));
-      let newFilters = allFilters.filter((item) =>
-        item.startsWith(e.target.id) ? false : true
-      );
-      setAllFilters([...newFilters, e.target.id + e.target.innerText]);
-      e.target.style.fontWeight = '700';
-    } else {
-      allFilters.find((element) => console.log(element));
-      setAllFilters([...allFilters, e.target.id + e.target.innerText]);
-      e.target.style.fontWeight = '700';
     }
   };
 
@@ -220,24 +189,10 @@ const Filtros = ({
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
               </button>
-              {/* <h3>Distancia</h3>
-                            <FilterDistance
-                                latitud={latitud}
-                                longitud={longitud}
-                                distanciaAEnviar={distanciaAEnviar}
-                                getBackgroundSize={getBackgroundSize}
-                                setDistanciaAEnviar={setDistanciaAEnviar}
-                                handleDistance={handleDistance}
-                                loaded={loaded}
-                            /> */}
             </div>
           ) : tipoToFilter === 'Alojamiento' ? (
             <div div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <input type="radio" name="Alojamiento" id='Hotel' value="Hotel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Hostel' value="Hostel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Motel' value="Motel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Estancia' value="Estancia" /> */}
               <div className="llamame_mimosa">
                 <input
                   type="radio"
@@ -447,26 +402,6 @@ const Filtros = ({
           ) : tipoToFilter === 'Eventos' ? (
             <div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Pelicula' value="Pelicula" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Pelicula">Pelicula</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Obra de teatro' value="Obra de teatro" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Obra de teatro">Obra de teatro</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Murga' value="Murga" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Murga">Murga</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Partido' value="Partido" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Partido">Partido</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Carrera' value="Carrera" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Carrera">Carrera</label>
-                            </div> */}
               <div className="llamame_mimosa">
                 <input
                   type="text"

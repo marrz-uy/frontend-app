@@ -1,18 +1,18 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import AuthUser from '../Components/AuthUser';
 const FavouritesContext = createContext();
 
-const FavouritesProvider = ({ isLoggedIn, children }) => {
+const FavouritesProvider = ({ children }) => {
   const { http } = AuthUser();
-  const [user_Id] = useState(sessionStorage?.getItem('id'));
+  // const [user_Id] = useState(sessionStorage?.getItem('id'));
   const [favouritesFromDB, setFavouritesFromDB] = useState();
   const [idsFavouritesFromDB, setIdsFavouritesFromDB] = useState();
 
-  useEffect(() => {
-    if (isLoggedIn && user_Id) {
-      GetFavouritesFromDB(user_Id);
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn && user_Id) {
+  //     GetFavouritesFromDB(user_Id);
+  //   }
+  // }, [isLoggedIn, user_Id]);
 
   function GetFavouritesFromDB(user_Id) {
     http

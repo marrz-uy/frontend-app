@@ -26,7 +26,6 @@
   background-color: rgba(245, 245, 245, 0.116);
   text-shadow: 1px 1px .5px rgb(114, 114, 114);
   max-width: 250px;
-  text-overflow: ellipsis;
   font-size: 1rem;
 }
 
@@ -73,6 +72,7 @@
   display: flex;
   flex-direction: column;
 }
+
 
 .swiper-pagination {
   position: absolute;
@@ -133,6 +133,7 @@ a {
     left: -191px;
   }
 
+
   .titleLink {
     margin-bottom: 65px;
     cursor: pointer;
@@ -164,6 +165,7 @@ a {
   }
 }
 
+
 @media screen and (min-width: 912px) {
   .likesLabel {
     top: -200px;
@@ -177,6 +179,7 @@ a {
     top: -200px;
     left: -149px;
   }
+
 
   .sliderContainer {
     width: 120vh;

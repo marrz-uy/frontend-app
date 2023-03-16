@@ -26,7 +26,7 @@ export const Slider = ({
     const id = e.target.id;
     console.log('TARGET-ID: ', id);
     const req = await http
-      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cDATA:', 'color: blue;', response?.data);
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
@@ -48,7 +48,7 @@ export const Slider = ({
   };
   return (
     <>
-      <div className="tituloSlider" id="tituloSlider">
+      <div className="tituloSlider">
         <div className="titulo">
           <h2>{title}</h2>
         </div>
@@ -101,6 +101,7 @@ export const Slider = ({
                           ? sinImagen
                           : point?.imagenes[0]?.url
                       }
+                      className="imgSliderPoint"
                       alt=""
                       onClick={goOnPoint}
                       id={point.id}

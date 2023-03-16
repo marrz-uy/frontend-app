@@ -106,7 +106,7 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://backend-feel.up.railway.app/api',
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
