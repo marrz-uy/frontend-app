@@ -56,11 +56,6 @@ const TourInit = ({
 
   handleUserBar(userBar);
 
-  const hora = (str) => {
-    str = str.substring(0, str.length - 3);
-    return str;
-  };
-
   const deleteTour = (tourId) => {
     http
       .delete(`/tourArmado/${tourId}`, {})

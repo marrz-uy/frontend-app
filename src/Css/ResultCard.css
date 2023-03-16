@@ -4,8 +4,8 @@
 	border: 1px solid rgb(236, 236, 236);
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 	border-radius: 5px;
-	max-height: 25vh;
-	min-height: 141px;
+	max-height: 26vh;
+	min-height: 143px;
 	background-color: rgb(255, 255, 255);
 	cursor: pointer;
 }
@@ -52,6 +52,7 @@ h6 {
 	margin-top: 10px;
 }
 
+
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
 
@@ -59,7 +60,7 @@ h6 {
 		display: flex;
 		flex-direction: column;
 		width: 250px;
-		min-height: 350px;
+		min-height: 365px;
 		border: transparent;
 		border-radius: 5px;
 	}

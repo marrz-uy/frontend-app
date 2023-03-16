@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import trash from '../Assets/trash.svg';
 import '../Css/ResultCard.css';
 
 const FavouriteCard = (props) => {
@@ -46,11 +45,6 @@ const FavouriteCard = (props) => {
           <h6>{props.tipoEvento}</h6>
           <br />
           <h6>{props.contacto}</h6>
-        </div>
-        <div className="divDeleteFav">
-          <span className="deleteFavourite" id={props.id}>
-            <img src={trash} alt="trashCan"></img>
-          </span>
         </div>
       </div>
     </div>
