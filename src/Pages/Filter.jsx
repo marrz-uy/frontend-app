@@ -4,8 +4,6 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/SearchResults.css';
 
 const Filtros = ({
-  allFilters,
-  setAllFilters,
   puntodeInteresTipo,
   setHandleFilter,
   filtersToSend,

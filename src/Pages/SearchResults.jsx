@@ -219,7 +219,6 @@ const SearchResults = ({
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-
   console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
 

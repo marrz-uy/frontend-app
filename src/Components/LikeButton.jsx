@@ -22,7 +22,7 @@ const LikeButton = ({
   useEffect(() => {
     setInitialState(initialState);
     console.log('ES FAVORITO: ', initialState);
-  }, [initialState, setInitialState]);
+  }, []);
 
   console.log('INITIAL STATE: ', initialState);
   const toggleLIke = () => {

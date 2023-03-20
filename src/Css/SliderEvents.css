@@ -23,23 +23,30 @@
     }
 }
 
+@media screen and (min-width: 540px) {
+    .dateInImage {
+        top: -155px;
+        left: 0px;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .dateInImage {
-        top: -215px;
+        top: -195px;
         left: -10px;
     }
 }
 
 @media screen and (min-width: 820px) {
     .dateInImage {
-        top: -205px;
+        top: -190px;
         left: -10px;
     }
 }
 
 @media screen and (min-width: 900px) {
     .dateInImage {
-        top: -185px;
+        top: -145px;
         left: -5px;
     }
 }
@@ -47,7 +54,7 @@
 @media screen and (min-width: 1024px) {
 
     .dateInImage {
-        top: -185px;
+        top: -145px;
         left: -5px;
     }
 

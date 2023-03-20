@@ -48,7 +48,7 @@ export const Slider = ({
   };
   return (
     <>
-      <div className="tituloSlider">
+      <div className="tituloSlider" id="tituloSlider">
         <div className="titulo">
           <h2>{title}</h2>
         </div>

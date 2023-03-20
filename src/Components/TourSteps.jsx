@@ -208,7 +208,7 @@ const TourSteps = () => {
         }
       })
       .catch(function (error) {
-        setRegisterErrorMessage('No se pudo registrar el tour', error);
+        setRegisterErrorMessage('No se pudo registrar el tour');
         message.error('NO se pudo guardar su tour');
       });
     console.log('registerErrorMessage ', registerErrorMessage, statusResponse);

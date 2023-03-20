@@ -30,7 +30,7 @@ const TourStep2 = () => {
                 )}{' '}
                 {tourPreferences.horaInicio}
               </h4>
-              <span className="preferencesIcon">🕛</span>
+              <span>🕛</span>
             </>
           </div>
           <div className="preferenciasIndividuales">
@@ -39,14 +39,14 @@ const TourStep2 = () => {
                 <h4>
                   {filtrarTraduccion(traduccionesBD, 'inEnclosed', lenguage)}
                 </h4>
-                <span className="preferencesIcon"> 🏠</span>
+                <span> 🏠</span>
               </>
             ) : tourPreferences.tipoDeLugar === 'Al aire libre' ? (
               <>
                 <h4>
                   {filtrarTraduccion(traduccionesBD, 'outdoorSpaces', lenguage)}
                 </h4>
-                <span className="preferencesIcon">🚴🏻‍♂️</span>
+                <span>🚴🏻‍♂️</span>
               </>
             ) : (
               <>
@@ -57,7 +57,7 @@ const TourStep2 = () => {
                     lenguage
                   )}
                 </h4>
-                <span className="preferencesIcon"> 🏠🚴🏻‍♂️</span>
+                <span> 🏠🚴🏻‍♂️</span>
               </>
             )}
           </div>
@@ -68,7 +68,7 @@ const TourStep2 = () => {
                 <h4>
                   {filtrarTraduccion(traduccionesBD, 'forAllAges', lenguage)}
                 </h4>
-                <span className="preferencesIcon">👩🧒🏽</span>
+                <span>👩🧒🏽</span>
               </>
             ) : (
               <>
@@ -89,7 +89,7 @@ const TourStep2 = () => {
                 <h4>
                   {filtrarTraduccion(traduccionesBD, 'toGoinGroup', lenguage)}
                 </h4>{' '}
-                <span className="preferencesIcon">👨‍👨‍👦‍👦👨‍👧‍👧👨‍👩‍👦</span>
+                <span>👨‍👨‍👦‍👦👨‍👧‍👧👨‍👩‍👦</span>
               </>
             ) : tourPreferences.enfoqueDePersonas === 'Familia' ? (
               <>
@@ -100,7 +100,7 @@ const TourStep2 = () => {
                     lenguage
                   )}
                 </h4>
-                <span className="preferencesIcon"> 👨‍👨‍👦‍👦</span>
+                <span> 👨‍👨‍👦‍👦</span>
               </>
             ) : tourPreferences.enfoqueDePersonas === 'Pareja' ? (
               <>
@@ -122,7 +122,7 @@ const TourStep2 = () => {
                     lenguage
                   )}
                 </h4>
-                <span className="preferencesIcon"> 🥷🏽</span>
+                <span> 🥷🏽</span>
               </>
             )}
           </div>
@@ -132,7 +132,7 @@ const TourStep2 = () => {
                 {filtrarTraduccion(traduccionesBD, 'locatedIn', lenguage)}{' '}
                 {tourPreferences.ubicacion}
               </h4>
-              <span className="preferencesIcon">🇺🇾</span>
+              <span>🇺🇾</span>
             </>
           </div>
         </div>
