@@ -131,10 +131,14 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         sessionStorage.setItem('email', response?.data.email);
         sessionStorage.setItem('userType', 'google');
         sessionStorage.setItem('access_token', response?.data.access_token);
-        sessionStorage.setItem(
-          'userProfile',
-          JSON.stringify(response?.data.userProfile)
-        );
+        if (!response?.data.userProfile) {
+          sessionStorage.setItem('userProfile', null);
+        } else {
+          sessionStorage.setItem(
+            'userProfile',
+            JSON.stringify(response?.data.userProfile)
+          );
+        }
         sessionStorage.setItem('isLoggedIn', true);
         setIsLoggedIn(true);
       })
