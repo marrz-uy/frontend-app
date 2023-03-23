@@ -1,4 +1,3 @@
-// import React, { memo } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import '../../Css/Column.css';
 import drag from '../../Assets/drag.png';
@@ -55,19 +54,38 @@ const Column = ({ droppableId, column }) => {
                               </span>
                               <img
                                 className="imagenCardTour"
-                                src={item.imagenes[0]?.url}
+                                src={
+                                  item?.puntos_interes
+                                    ? item?.puntos_interes?.imagenes[0]?.url
+                                    : item?.imagenes[0]?.url
+                                }
                                 alt=""
                               ></img>
                             </div>
                             <div className="dataTour">
                               {item.nombreEvento ? (
                                 <h6>
-                                  {item.nombreEvento} en {item.lugarDeEvento}
+                                  {item?.puntos_interes
+                                    ? item?.puntos_interes?.nombreEvento
+                                    : item.nombreEvento}{' '}
+                                  en{' '}
+                                  {item?.puntos_interes
+                                    ? item?.puntos_interes?.lugarDeEvento
+                                    : item.lugarDeEvento}
                                 </h6>
                               ) : (
-                                <h6>{item.Nombre}</h6>
+                                <h6>
+                                  {item?.puntos_interes
+                                    ? item?.puntos_interes?.Nombre
+                                    : item.Nombre}
+                                </h6>
                               )}
-                              <p>- {item.Tipo} </p>
+                              <p>
+                                -{' '}
+                                {item?.puntos_interes
+                                  ? item?.puntos_interes?.Tipo
+                                  : item.Tipo}{' '}
+                              </p>
                               <p>
                                 - Abre {''}
                                 {item.HoraDeApertura}
@@ -90,5 +108,4 @@ const Column = ({ droppableId, column }) => {
   );
 };
 
-// export default memo(Column);
 export default Column;

@@ -159,7 +159,7 @@ details .summary-chevron-down {
 
 /* ----------------------- */
 
-.deleteIcon {
+.deleteIcon, .editIcon {
 	cursor: pointer;
 	position: relative;
 	float: right;
@@ -172,8 +172,13 @@ details .summary-chevron-down {
 	height: auto;
 }
 
+.editIcon>img {
+	width: 23px;
+	height: auto;
+	margin-right: 10px;
+}
 
-.myToursCard {
+editIcon .myToursCard {
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;

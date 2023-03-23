@@ -81,6 +81,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'userProfile',
           JSON.stringify(res?.data.userProfile)
         );
+        console.log('%cRESPUESTA BACK LOGIN feel: ', 'color:blue;', res.data);
         setIsLoggedIn(true);
         navigate('/');
       })
@@ -115,6 +116,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       .post('http://localhost:8000/api/userGoogle', {
         email: details.email,
         name: details.name,
+        password: details.name,
       })
       .then((response) => {
         console.log(
@@ -130,7 +132,12 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         sessionStorage.setItem('email', response?.data.email);
         sessionStorage.setItem('userType', 'google');
         sessionStorage.setItem('access_token', response?.data.access_token);
+        sessionStorage.setItem(
+          'userProfile',
+          JSON.stringify(response?.data.userProfile)
+        );
         sessionStorage.setItem('isLoggedIn', true);
+
         setIsLoggedIn(true);
       })
       .catch((error) => {

@@ -29,27 +29,51 @@ const TourStep3 = () => {
         >
           {savedTourItems?.map((dat) => {
             return (
-              <div className="cardTourFinal" key={dat.id}>
+              <div
+                className="cardTourFinal"
+                key={dat?.puntos_interes ? dat?.puntos_interes?.id : dat.id}
+              >
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"
                     id="imagenCardTourFinal"
-                    src={dat.imagenes[0]?.url}
+                    src={
+                      dat?.puntos_interes
+                        ? dat?.puntos_interes?.imagenes[0]?.url
+                        : dat.imagenes[0]?.url
+                    }
                     alt=""
                   ></img>
                 </div>
                 <div className="dataTourFinal">
-                  {dat.nombreEvento ? (
+                  {dat?.puntos_interes ? (
+                    dat?.puntos_interes?.nombreEvento
+                  ) : dat.nombreEvento ? (
                     <h6>
-                      {dat.nombreEvento} en {dat.lugarDeEvento}
+                      {dat?.puntos_interes
+                        ? dat?.puntos_interes?.nombreEvento
+                        : dat.nombreEvento}{' '}
+                      en{' '}
+                      {dat?.puntos_interes
+                        ? dat?.puntos_interes?.lugarDeEvento
+                        : dat.lugarDeEvento}
                     </h6>
                   ) : (
-                    <h6>{dat.Nombre}</h6>
+                    <h6>
+                      {dat?.puntos_interes
+                        ? dat?.puntos_interes?.Nombre
+                        : dat.Nombre}
+                    </h6>
                   )}
-                  <p>- {dat.Tipo} </p>
+                  <p>
+                    -{' '}
+                    {dat?.puntos_interes ? dat?.puntos_interes?.Tipo : dat.Tipo}{' '}
+                  </p>
                   <p>
                     - Abre {''}
-                    {dat.HoraDeApertura}
+                    {dat?.puntos_interes
+                      ? dat?.puntos_interes?.HoraDeApertura
+                      : dat.HoraDeApertura}
                   </p>
                 </div>
               </div>

@@ -79,6 +79,7 @@ const Register = ({
         }
         /* console.log('RESPUESTA:', error.response.data.errors); */
         let ERRORES = error.response.data.errors;
+        // let ERRORES = error.response.data;
         console.log('RESPUESTA errores:', ERRORES);
 
         if (!email || !password || !passwordConfirmation || !name) {
@@ -90,7 +91,7 @@ const Register = ({
           setRegisterErrorMessage('Debe ser un correo valido');
         } else if (
           error.response.data.errors.email[0] ===
-          'The email has already been taken.'
+          'El campo email ya ha sido tomado.'
         ) {
           setRegisterErrorMessage('Existe un usuario con ese correo');
         } else if (error.response.data.errors.email) {

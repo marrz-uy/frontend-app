@@ -4,10 +4,12 @@ import AuthUser from '../../Components/AuthUser';
 import PageContext from '../../Context/PageContext';
 import { Layout } from '../../Layout';
 import LenguageContext from '../../Context/LenguageContext';
+import TourContext from '../../Context/TourContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import trash from '../../Assets/trash.svg';
+import edit from '../../Assets/edit.svg';
 import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -29,6 +31,7 @@ const TourInit = ({
   const [misTours, setMisTours] = useState();
   const [cantTours, setCantTours] = useState();
   const navigate = useNavigate();
+  const { itemsHeredados, setItemsHeredados } = useContext(TourContext);
 
   useEffect(() => {
     setPage('tourInit');
@@ -43,6 +46,17 @@ const TourInit = ({
           '%cMis Tours:',
           'color: violet;',
           response?.data['0'].length
+        );
+        console.log('%cMis Tours:', 'color: green;', response?.data['0']);
+        console.log(
+          '%cMis Tours:',
+          'color: red;',
+          response?.data['0'].map((item) => item.tour_items)
+        );
+        console.log(
+          '%cITEMS PARA HEREDAR:',
+          'color: blue;',
+          response?.data['0']['0'].tour_items.puntos_interes
         );
         setMisTours(response?.data['0']);
         setCantTours(response?.data['0'].length);
@@ -74,6 +88,18 @@ const TourInit = ({
     getTours();
   };
 
+  const handleEditTour = (e) => {
+    console.log('id: ' + e.target.id);
+    let tour_items = misTours[e.target.id]?.tour_items;
+    console.log('items_heredados: ', tour_items);
+    const newArray = tour_items.map((item) => item.puntos_interes);
+    console.log('NEW ARRAY: ', newArray);
+    setItemsHeredados(tour_items);
+    // setItemsHeredados(newArray);
+    navigate('/buildTour');
+  };
+  console.log('items_heredados: ', itemsHeredados);
+
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
@@ -91,9 +117,7 @@ const TourInit = ({
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     console.log('REQ: ', req);
-    // setTimeout(() => {
     setDestination(req);
-    // }, 2000);
 
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');
@@ -142,7 +166,7 @@ const TourInit = ({
           </div>
           <div className="tourList">
             {cantTours > 0 ? (
-              misTours?.map((tour) => {
+              misTours?.map((tour, index) => {
                 return (
                   <details key={tour.id}>
                     <summary>
@@ -158,11 +182,11 @@ const TourInit = ({
                         {' '}
                         {tour?.tour_items?.map((tourItem) => {
                           return (
-                            <div key={tourItem.puntoInteresId}>
+                            <div key={tourItem.puntosinteres_id}>
                               {' '}
                               <li
                                 className="puntoInteresLi"
-                                id={tourItem.puntoInteresId}
+                                id={tourItem.puntosinteres_id}
                                 onClick={goOnPoint}
                               >
                                 {tourItem.puntos_interes.Nombre}
@@ -182,6 +206,14 @@ const TourInit = ({
                         alt="trashCan"
                         id={tour.id}
                         onClick={handleDeleteTour}
+                      ></img>
+                    </span>
+                    <span className="editIcon">
+                      <img
+                        src={edit}
+                        alt="pencil"
+                        id={index}
+                        onClick={handleEditTour}
                       ></img>
                     </span>
                   </details>
