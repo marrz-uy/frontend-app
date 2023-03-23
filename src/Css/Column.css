@@ -30,14 +30,14 @@
 	background-color: white;
 }
 
-#TimeLine > .droppable {
+#TimeLine>.droppable {
 	gap: 20px;
 	width: 100%;
-	 /* justify-content: space-evenly;  */
+	/* justify-content: space-evenly;  */
 	align-items: center;
 }
 
-#TimeLine .tourCard  {
+#TimeLine .tourCard {
 	background-color: transparent;
 	border: none;
 	display: flex;
@@ -46,26 +46,27 @@
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 }
 
-#TimeLine .draggable  {
+#TimeLine .draggable {
 	z-index: 1;
 	max-width: 60px;
 	border-radius: 50%;
 }
 
-#TimeLine .tourCard  .dataTour{
+#TimeLine .tourCard .dataTour {
 	display: none;
 }
 
-#TimeLine .tourCard  span{
+#TimeLine .tourCard span {
 	display: none;
 }
 
-#TimeLine .tourCard  .divImgTour .imagenCardTour  {
+#TimeLine .tourCard .divImgTour .imagenCardTour {
 	display: flex;
 	border: 5px solid #026ce4;
 	border-radius: 90%;
 	width: 60px;
 	height: 60px;
+	background-color: rgb(245, 245, 245);
 }
 
 #Items {
@@ -74,20 +75,20 @@
 	justify-content: center;
 	border: 1px solid rgb(234, 234, 234);
 	background-color: white;
-} 
+}
 
-#Items > .droppable {
+#Items>.droppable {
 	width: 100%;
 	padding: 5px;
-	
+
 }
 
 #Items .droppable .tourCard h6 {
 	color: #025fca;
-	
+
 }
 
-#Items .timeLineVertical{
+#Items .timeLineVertical {
 	display: none;
 }
 
@@ -101,7 +102,7 @@
 	border-radius: 5px;
 }
 
-.timeLineVertical{
+.timeLineVertical {
 	background-color: #026ce4;
 	height: 90%;
 	width: 10px;
@@ -131,7 +132,7 @@
 
 .divImgTour {
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 	align-items: center;
 }
 
@@ -157,19 +158,19 @@
 
 }
 
-@media screen and (min-width: 480px) { 
+@media screen and (min-width: 480px) {
 	.dragNDropContainer {
 		max-width: 338px;
 	}
 }
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 768px) {
 	.dragNDropContainer {
 		max-width: 614px;
 	}
 }
 
-@media screen and (min-width: 1024px) { 
+@media screen and (min-width: 1024px) {
 	.dragNDropContainer {
 		max-width: 614px;
 	}
