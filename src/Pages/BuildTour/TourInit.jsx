@@ -48,16 +48,16 @@ const TourInit = ({
           response?.data['0'].length
         );
         console.log('%cMis Tours:', 'color: green;', response?.data['0']);
-        console.log(
-          '%cMis Tours:',
-          'color: red;',
-          response?.data['0'].map((item) => item.tour_items)
-        );
-        console.log(
-          '%cITEMS PARA HEREDAR:',
-          'color: blue;',
-          response?.data['0']['0'].tour_items.puntos_interes
-        );
+        // console.log(
+        //   '%cMis Tours:',
+        //   'color: red;',
+        //   response?.data['0']?.map((item) => item?.tour_items)
+        // );
+        // console.log(
+        //   '%cITEMS PARA HEREDAR:',
+        //   'color: blue;',
+        //   response?.data['0']['0'].tour_items.puntos_interes
+        // );
         setMisTours(response?.data['0']);
         setCantTours(response?.data['0'].length);
       })
@@ -90,12 +90,12 @@ const TourInit = ({
 
   const handleEditTour = (e) => {
     console.log('id: ' + e.target.id);
-    let tour_items = misTours[e.target.id]?.tour_items;
+    const tour_items = misTours[e.target.id]?.tour_items;
     console.log('items_heredados: ', tour_items);
-    const newArray = tour_items.map((item) => item.puntos_interes);
+    const newArray = tour_items?.map((item) => item?.puntos_interes);
     console.log('NEW ARRAY: ', newArray);
-    setItemsHeredados(tour_items);
-    // setItemsHeredados(newArray);
+    // setItemsHeredados(tour_items);
+    setItemsHeredados(newArray);
     navigate('/buildTour');
   };
   console.log('items_heredados: ', itemsHeredados);

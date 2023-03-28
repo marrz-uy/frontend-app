@@ -27,53 +27,55 @@ const TourStep3 = () => {
           scrollable={{ scrollbar: true }}
           hideControls={true}
         >
-          {savedTourItems?.map((dat) => {
+          {savedTourItems?.map((dato) => {
             return (
               <div
                 className="cardTourFinal"
-                key={dat?.puntos_interes ? dat?.puntos_interes?.id : dat.id}
+                key={dato?.puntos_interes ? dato?.puntos_interes?.id : dato.id}
               >
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"
                     id="imagenCardTourFinal"
                     src={
-                      dat?.puntos_interes
-                        ? dat?.puntos_interes?.imagenes[0]?.url
-                        : dat.imagenes[0]?.url
+                      dato?.puntos_interes
+                        ? dato?.puntos_interes?.imagenes[0]?.url
+                        : dato.imagenes[0]?.url
                     }
                     alt=""
                   ></img>
                 </div>
                 <div className="dataTourFinal">
-                  {dat?.puntos_interes ? (
-                    dat?.puntos_interes?.nombreEvento
-                  ) : dat.nombreEvento ? (
+                  {dato?.puntos_interes ? (
+                    dato.puntos_interes?.nombreEvento
+                  ) : dato.nombreEvento ? (
                     <h6>
-                      {dat?.puntos_interes
-                        ? dat?.puntos_interes?.nombreEvento
-                        : dat.nombreEvento}{' '}
+                      {dato?.puntos_interes
+                        ? dato?.puntos_interes?.nombreEvento
+                        : dato.nombreEvento}{' '}
                       en{' '}
-                      {dat?.puntos_interes
-                        ? dat?.puntos_interes?.lugarDeEvento
-                        : dat.lugarDeEvento}
+                      {dato?.puntos_interes
+                        ? dato.puntos_interes?.lugarDeEvento
+                        : dato.lugarDeEvento}
                     </h6>
                   ) : (
                     <h6>
-                      {dat?.puntos_interes
-                        ? dat?.puntos_interes?.Nombre
-                        : dat.Nombre}
+                      {dato?.Puntos_interes
+                        ? dato.puntos_interes?.Nombre
+                        : dato.Nombre}
                     </h6>
                   )}
                   <p>
                     -{' '}
-                    {dat?.puntos_interes ? dat?.puntos_interes?.Tipo : dat.Tipo}{' '}
+                    {dato?.puntos_interes
+                      ? dato.puntos_interes?.Tipo
+                      : dato.Tipo}{' '}
                   </p>
                   <p>
                     - Abre {''}
-                    {dat?.puntos_interes
-                      ? dat?.puntos_interes?.HoraDeApertura
-                      : dat.HoraDeApertura}
+                    {dato?.puntos_interes
+                      ? dato?.puntos_interes?.HoraDeApertura
+                      : dato.HoraDeApertura}
                   </p>
                 </div>
               </div>

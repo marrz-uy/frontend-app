@@ -9,7 +9,7 @@ import '../Css/LikeButton.css';
 
 const LikeButton = ({
   user_Id,
-  puntoInteres_Id,
+  puntosinteres_id,
   initialState,
   setInitialState,
   cantLikes,
@@ -18,7 +18,7 @@ const LikeButton = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
   console.log('cantLikes: ', cantLikes);
-  console.log('%cPUNTO ID: ', 'color:orange;', puntoInteres_Id);
+  console.log('%cPUNTO ID: ', 'color:orange;', puntosinteres_id);
   const { http } = AuthUser();
   // const [isLike, setIsLike] = useState(false);
 
@@ -35,9 +35,9 @@ const LikeButton = ({
     const requests = [
       http.post('/favoritos', {
         user_Id: user_Id,
-        puntoInteres_Id: puntoInteres_Id,
+        puntosinteres_id: puntosinteres_id,
       }),
-      http.patch(`/megusta/${puntoInteres_Id}`),
+      http.patch(`/megusta/${puntosinteres_id}`),
     ];
     Promise.all(requests)
       .then((responses) => {
@@ -54,10 +54,10 @@ const LikeButton = ({
       http.delete('/favoritos', {
         data: {
           user_Id: user_Id,
-          puntoInteres_Id: puntoInteres_Id,
+          puntosinteres_id: puntosinteres_id,
         },
       }),
-      http.patch(`/nomegusta/${puntoInteres_Id}`),
+      http.patch(`/nomegusta/${puntosinteres_id}`),
     ];
     Promise.all(requests)
       .then((responses) => {

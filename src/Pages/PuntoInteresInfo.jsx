@@ -184,7 +184,7 @@ const PuntoInteresInfo = ({
           <div className="puntoInteres__info">
             <div className="containerLikeButton">
               <LikeButton
-                puntoInteres_Id={destination.id}
+                puntosinteres_id={destination.id}
                 user_Id={user_Id}
                 initialState={initialState}
                 setInitialState={setInitialState}

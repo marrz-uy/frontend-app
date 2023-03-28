@@ -101,19 +101,18 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             'Debe verificar su cuenta en su correo electronico'
           );
         }
-
         return loginErrorMessage;
       });
   };
 
   handleUserBar(userBar);
 
-  const handleOAuth = (credentialResponse) => {
+  const handleLoginGoogle = (credentialResponse) => {
     setLoader(true);
     const details = jwt_decode(credentialResponse.credential);
     sessionStorage.setItem('picture', details.picture);
     http
-      .post('http://localhost:8000/api/userGoogle', {
+      .post('http://localhost:8000/api/loginUserGoogle', {
         email: details.email,
         name: details.name,
         password: details.name,
@@ -222,9 +221,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             ) : (
               <GoogleLogin
                 width={widhtMyElemnt}
-                onSuccess={handleOAuth}
+                onSuccess={handleLoginGoogle}
                 onError={handleFailure}
-                useOneTap
+                // useOneTap
               />
             )}
           </div>

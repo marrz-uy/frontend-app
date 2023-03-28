@@ -34,7 +34,7 @@ const Favourites = ({
       .delete(`/favoritos`, {
         data: {
           user_Id: userId,
-          puntoInteres_Id: puntoId,
+          puntosinteres_id: puntoId,
         },
       })
       .then((response) => {

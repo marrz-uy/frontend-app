@@ -8,7 +8,6 @@ const Column = ({ droppableId, column }) => {
       {(provided, snapshot) => {
         return (
           <>
-            <div className="timeLineVertical"></div>
             <div
               className="droppable"
               {...provided.droppableProps}
@@ -81,15 +80,14 @@ const Column = ({ droppableId, column }) => {
                                 </h6>
                               )}
                               <p>
-                                -{' '}
                                 {item?.puntos_interes
                                   ? item?.puntos_interes?.Tipo
                                   : item.Tipo}{' '}
                               </p>
-                              <p>
+                              {/* <p>
                                 - Abre {''}
                                 {item.HoraDeApertura}
-                              </p>
+                              </p> */}
                             </div>
                           </div>
                         </div>
