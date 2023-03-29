@@ -32,10 +32,14 @@ const TourInit = ({
   const [cantTours, setCantTours] = useState();
   const navigate = useNavigate();
   const { itemsHeredados, setItemsHeredados } = useContext(TourContext);
+  sessionStorage.setItem('itemsHeredados', null);
+  sessionStorage.setItem('tourActualizar', null);
+  sessionStorage.setItem('accionTour', null);
 
   useEffect(() => {
     setPage('tourInit');
     setActivePage('tourInit');
+    setItemsHeredados(null);
   }, [setPage, setActivePage]);
 
   const getTours = () => {
@@ -93,11 +97,20 @@ const TourInit = ({
     const tour_items = misTours[e.target.id]?.tour_items;
     console.log('items_heredados: ', tour_items);
     const newArray = tour_items?.map((item) => item?.puntos_interes);
+    console.log('tour_items completo: ', tour_items);
     console.log('NEW ARRAY: ', newArray);
-    // setItemsHeredados(tour_items);
     setItemsHeredados(newArray);
+
+    sessionStorage.setItem('itemsHeredados', JSON.stringify(newArray));
+    sessionStorage.setItem(
+      'tourActualizar',
+      JSON.stringify(tour_items[0].tourId)
+    );
+    sessionStorage.setItem('accionTour', 'actualizar');
+
     navigate('/buildTour');
   };
+
   console.log('items_heredados: ', itemsHeredados);
 
   const goOnPoint = async (e) => {

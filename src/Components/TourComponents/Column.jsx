@@ -20,7 +20,7 @@ const Column = ({ droppableId, column }) => {
                 return (
                   <Draggable
                     key={item.puntosinteres_id}
-                    draggableId={item.puntosinteres_id.toString()}
+                    draggableId={item.id.toString()}
                     index={index}
                   >
                     {(provided, snapshot) => {

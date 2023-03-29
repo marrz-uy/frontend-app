@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import { Chrono } from 'react-chrono';
 import '../../Css/TourStep4.css';
 
-const TourStep3 = () => {
+const TourStep4 = () => {
   const { savedTourItems } = useContext(TourContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
@@ -87,4 +88,4 @@ const TourStep3 = () => {
   );
 };
 
-export default TourStep3;
+export default TourStep4;
