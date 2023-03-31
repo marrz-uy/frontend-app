@@ -62,7 +62,7 @@
 
 @media screen and (min-width: 600px) {
     .puntoInteres__container {
-        height: 1350px;
+        height: auto;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
@@ -74,7 +74,7 @@
     }
 
     .puntoInteres__imagen {
-        height: 50rem;
+        /* height: 50rem; */
         grid-column: 1 / 3;
         padding: 1rem;
         /* width: 35rem; */

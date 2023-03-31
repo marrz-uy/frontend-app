@@ -144,9 +144,16 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           setLoader(false);
         }
         console.error(`Error en catch LOGIN GOOGLE: ${error}`);
+        console.log(`Error: `, error.response.request.status);
+        if (error.response.request.status) {
+          setLoginErrorMessage(
+            'No existe el usuario, debe registrarse previamente'
+          );
+        }
       });
-
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
   };
 
   const handleFailure = () => {

@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import AuthUser from './AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-
 import '../Css/LikeButton.css';
 
 const LikeButton = ({

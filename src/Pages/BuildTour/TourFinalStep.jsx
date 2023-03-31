@@ -68,7 +68,12 @@ const TourFinalStep = () => {
       {accionTour === 'actualizar' ? (
         <div className="descripcionTourFinalStep">
           <h2>
-            Se actualizara el tour de nombre: <span>{nombreTour}</span>{' '}
+            {filtrarTraduccion(
+              traduccionesBD,
+              'updateTextTourFinalStep',
+              lenguage
+            )}{' '}
+            <span>{nombreTour}</span>{' '}
           </h2>
         </div>
       ) : (

@@ -263,13 +263,11 @@ const TourSteps = () => {
         if (res.status === 200) {
           Swal.fire({
             title: filtrarTraduccion(traduccionesBD, 'succesModal', lenguage),
-            // text: filtrarTraduccion(
-            //   traduccionesBD,
-            //   'succesExplanationModal',
-            //   lenguage
-            // ),
-            //todo *Hacer traduccion
-            text: 'Bien actualizado su tour',
+            text: filtrarTraduccion(
+              traduccionesBD,
+              'succesUpdateExplanationModal',
+              lenguage
+            ),
             icon: 'success',
             showConfirmButton: true,
             showCancelButton: true,
@@ -346,7 +344,7 @@ const TourSteps = () => {
             type="primary"
             onClick={() => UpdateTour()}
           >
-            Actualizar
+            {filtrarTraduccion(traduccionesBD, 'updateTourBtn', lenguage)}
           </Button>
         ) : null}
         {current > 0 && (

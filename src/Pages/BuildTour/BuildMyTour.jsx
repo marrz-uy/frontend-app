@@ -35,7 +35,7 @@ const BuildMyTour = ({
           <h2 className="tituloTourPreferencesText">
             {accionTour === 'null'
               ? filtrarTraduccion(traduccionesBD, 'buildTour', lenguage)
-              : 'Actualizar Tour'}
+              : filtrarTraduccion(traduccionesBD, 'updateTour', lenguage)}
           </h2>
         </div>
         <TourSteps />
