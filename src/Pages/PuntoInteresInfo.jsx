@@ -25,12 +25,12 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  console.log('DESTINATION: ', destination);
+  // console.log('DESTINATION: ', destination);
   let arrayImagenes = destination.imagenes;
-  console.log('arrayImagenes-INFO: ', arrayImagenes);
+  // console.log('arrayImagenes-INFO: ', arrayImagenes);
   const arrURLS = arrayImagenes?.map((imagen) => imagen?.url.replace(/"/g, ''));
-  console.log('arr-INFO: ', arrURLS);
-  console.log('arr-LARGO: ', arrURLS?.length);
+  // console.log('arr-INFO: ', arrURLS);
+  // console.log('arr-LARGO: ', arrURLS?.length);
 
   const { http } = AuthUser();
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
+        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -61,6 +61,7 @@ const PuntoInteresInfo = ({
   const isFavourite = (array, punto) => {
     if (array && punto) {
       const exists = array.includes(punto);
+      console.log('%cEXIST FAVORITO: ', 'color:skyblue;', exists);
       return exists;
     }
   };

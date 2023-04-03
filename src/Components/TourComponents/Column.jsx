@@ -79,15 +79,15 @@ const Column = ({ droppableId, column }) => {
                                     : item.Nombre}
                                 </h6>
                               )}
-                              <p>
+                              {/* <p>
                                 {item?.puntos_interes
                                   ? item?.puntos_interes?.Tipo
                                   : item.Tipo}{' '}
-                              </p>
-                              {/* <p>
+                              </p> */}
+                              <p>
                                 - Abre {''}
                                 {item.HoraDeApertura}
-                              </p> */}
+                              </p>
                             </div>
                           </div>
                         </div>

@@ -53,15 +53,8 @@ const TourStep3 = () => {
     setSavedTourItems,
     savedTourItems,
     itemsHeredados,
-    setItemsHeredados,
   } = useContext(TourContext);
 
-  // useEffect(() => {
-  //   const storedItems = sessionStorage.getItem('itemsHeredados');
-  //   if (storedItems) {
-  //     setItemsHeredados(JSON.parse(storedItems));
-  //   }
-  // }, []);
   console.log('itemsHeredados step3:', itemsHeredados);
 
   const status = {
@@ -90,7 +83,7 @@ const TourStep3 = () => {
   const handleInfoTour = () => {
     Swal.fire({
       titleText: 'Informacion de su tour',
-      html: textoModal /* var afuera */,
+      html: textoModal,
       showConfirmButton: true,
       confirmButtonColor: '#015abb',
       showClass: {

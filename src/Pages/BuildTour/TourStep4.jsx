@@ -66,12 +66,12 @@ const TourStep4 = () => {
                         : dato.Nombre}
                     </h6>
                   )}
-                  <p>
+                  {/* <p>
                     -{' '}
                     {dato?.puntos_interes
                       ? dato.puntos_interes?.Tipo
                       : dato.Tipo}{' '}
-                  </p>
+                  </p> */}
                   <p>
                     - Abre {''}
                     {dato?.puntos_interes

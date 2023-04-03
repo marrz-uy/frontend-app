@@ -227,7 +227,7 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res.data);
         setCantPaginas(res.data.last_page);
-        console.log(filtersToSend);
+        // console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -245,12 +245,12 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res);
         setCantPaginas(res.data.last_page);
-        console.log(res);
+        // console.log(res);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
-  console.log('page: ', isNaN(pages));
+  // console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
 
   const getBackgroundSize = () => {
@@ -263,14 +263,14 @@ const SearchResults = ({
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
           setPuntodeInteresTipo(res.data);
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [datos]);
-  console.log('tipo de dato', typeof datos?.current_page);
+  // console.log('tipo de dato', typeof datos?.current_page);
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>

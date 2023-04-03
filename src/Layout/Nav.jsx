@@ -7,6 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
+import useScreenSize from '../Helpers/ScreenSize.jsx';
 import logo from '../Assets/logoFeelFuenteBlanca.svg';
 import backArrow from '../Assets/back.svg';
 import searchlogo from '../Assets/searchLogo.png';
@@ -41,7 +42,14 @@ const Nav = ({
   const [latitudAEnviar, setLatitudAEnviar] = useState();
   const [longitudAEnviar, setLongitudAEnviar] = useState();
   const [distanciaAEnviar, setDistanciaAEnviar] = useState('');
+  const [firefox, setFirefox] = useState(false);
+  const { width } = useScreenSize();
+
   useEffect(() => {
+    var sUsrAg = navigator.userAgent;
+    if (sUsrAg.indexOf('Firefox') > -1) {
+      setFirefox(true);
+    }
     // console.log('NOTIFICATION NAV: ', GetNotificationsFromLocalStorage());
     setIsLoggedIn(getLoggedIn());
     if (latitud !== null || longitud !== null) {
@@ -100,7 +108,11 @@ const Nav = ({
 
   return (
     <div className="navbar">
-      <div className="locationIcon">
+      <div
+        className={
+          firefox && width > 1800 ? 'locationIconFfox' : 'locationIcon'
+        }
+      >
         {latitud && longitud ? (
           <>
             <div className="hideActive">
