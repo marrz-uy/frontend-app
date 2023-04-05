@@ -46,7 +46,7 @@
 
 @media screen and (min-width: 900px) {
     .dateInImage {
-        top: -185px;
+        top: -145px;
         left: -5px;
     }
 }
@@ -54,7 +54,7 @@
 @media screen and (min-width: 1024px) {
 
     .dateInImage {
-        top: -185px;
+        top: -145px;
         left: -5px;
     }
 

@@ -58,7 +58,7 @@ const Principal = ({
     if (page === 'principal') {
       setText('');
     }
-  }, [setPage, setText, page]);
+  }, [setPage, setText, page, setActivePage]);
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
@@ -182,9 +182,8 @@ const Principal = ({
   };
 
   useEffect(() => {
-    if (latitudAEnviar || longitudAEnviar || distanciaAEnviar)
-      getSliderPoints();
-  }, [latitudAEnviar, longitudAEnviar, distanciaAEnviar]);
+    getSliderPoints();
+  }, []);
 
   handleUserBar(userBar);
 

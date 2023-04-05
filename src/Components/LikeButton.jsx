@@ -20,12 +20,13 @@ const LikeButton = ({
   console.log('%cPUNTO ID: ', 'color:orange;', puntosinteres_id);
   const { http } = AuthUser();
   // const [isLike, setIsLike] = useState(false);
-
+  
   useEffect(() => {
     setInitialState(initialState);
     console.log('ES FAVORITO?: ', initialState);
   }, []);
 
+  console.log('INITIAL STATE: ', initialState);
   const toggleLIke = () => {
     setInitialState(!initialState);
   };

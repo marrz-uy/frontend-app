@@ -60,32 +60,16 @@ const SearchResults = ({
     TipoEvento: null,
   });
   const [tipoToFilter, setTipoToFilter] = useState('');
-  const [filtersOn, setFiltersOn] = useState(false);
-  const [datosTwo, setDatosTwo] = useState([]);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
   }
 
-  // console.log('SEARCH TYPE:', searchType);
-  // console.log('TEXT RESULTS', text, typeof text);
-  // console.log('CATEGORIA', text);
-
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
-
-  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
-
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
-  const [puntodeInteresId, setPuntodeInteresId] = useState();
 
   useEffect(() => {
     setPage('results');
@@ -102,21 +86,6 @@ const SearchResults = ({
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
-
-  /* const getData = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    http
-      .post(`${items?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  }; */
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);

@@ -9,7 +9,7 @@ const TourStep2 = () => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   useEffect(() => {
     setSavedTourItems({});
-  }, []);
+  }, [setSavedTourItems]);
 
   return (
     <div className="TourStep2">

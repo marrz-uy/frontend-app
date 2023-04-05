@@ -79,22 +79,12 @@ const PuntoInteresInfo = ({
   useEffect(() => {
     GetIdsFavouritesFromDB(user_Id);
     setTimeout(() => {
-      // if (isLoggedIn) {
       cantMegusta();
-      // }
     }, 3000);
 
     if (destination?.Calificaciones) {
       setHotelStars(stars());
     }
-    // console.log('%cSTARS: ', 'color:blue;', stars());
-    // console.log(
-    //   '%cCALIFICACIONES: ',
-    //   'color:pink;',
-    //   destination.Calificaciones
-    // );
-
-    // console.log('ARRAY IDS: ', idsFavouritesFromDB);
 
     setActivePage('PuntoInteresInfo');
 
@@ -141,6 +131,8 @@ const PuntoInteresInfo = ({
     return horaOriginal.substring(0, horaOriginal.length - 3);
   }
 
+  console.log('INITIAL STATE info: ', initialState);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -174,6 +166,7 @@ const PuntoInteresInfo = ({
             {destination.Eventos_id ? (
               <img
                 className="imgEventoPinteresinfo"
+                alt="img"
                 src={destination.ImagenEvento}
               />
             ) : firefox ? (
