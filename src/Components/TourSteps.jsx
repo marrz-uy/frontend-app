@@ -1,8 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button, message, Steps } from 'antd';
 import LenguageContext from '../Context/LenguageContext';
+import TourContext from '../Context/TourContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from './AuthUser';
 import TourStep1 from '../Pages/BuildTour/TourStep1';
@@ -10,7 +11,6 @@ import TourStep2 from '../Pages/BuildTour/TourStep2';
 import TourStep3 from '../Pages/BuildTour/TourStep3';
 import TourStep4 from '../Pages/BuildTour/TourStep4';
 import TourFinalStep from '../Pages/BuildTour/TourFinalStep';
-import TourContext from '../Context/TourContext';
 import '../Css/TourSteps.css';
 
 const TourSteps = () => {
@@ -26,8 +26,13 @@ const TourSteps = () => {
     dataTourForSave,
     setDataTourForSave,
   } = useContext(TourContext);
-
+  const { itemsHeredados } = useContext(TourContext);
+  console.log('ITEMS HEREDADOS STEPS: ', itemsHeredados);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const accionTour = sessionStorage.getItem('accionTour');
+  const tourId = sessionStorage.getItem('tourActualizar');
+
+  console.log('accionTour: ', accionTour);
 
   const steps = [
     {
@@ -54,8 +59,29 @@ const TourSteps = () => {
 
   const { http } = AuthUser();
   const [current, setCurrent] = useState(0);
+  console.log('CURRENT: ', current);
   const navigate = useNavigate();
 
+  function getIdString(objects) {
+    let idString = '';
+    for (let i = 0; i < objects.length; i++) {
+      idString += objects[i].id + ',';
+    }
+    return idString;
+  }
+
+  const [puntosAExcluir, setPuntosAExcluir] = useState('');
+
+  useEffect(() => {
+    if (itemsHeredados) {
+      let string = getIdString(itemsHeredados);
+      const newStr = string.substring(0, string.length - 1);
+      console.log('NEW STRING', newStr);
+      setPuntosAExcluir(newStr);
+    }
+  }, [puntosAExcluir]);
+
+  //! Items para tour
   function GetItemsPraTour() {
     http
       .post('/PuntosInteresParaTour', {
@@ -64,6 +90,7 @@ const TourSteps = () => {
         restriccionDeEdad: tourPreferences?.restriccionDeEdad,
         enfoqueDePersonas: tourPreferences?.enfoqueDePersonas,
         ubicacion: tourPreferences?.ubicacion,
+        puntosAExcluir: puntosAExcluir,
       })
       .then((response) => {
         const allDdata = response?.data;
@@ -131,10 +158,12 @@ const TourSteps = () => {
       setCurrent(current - 1);
     }
   };
+
   // console.log('DATATOURFORSAVE en TOURSTEPS:', dataTourForSave);
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [statusResponse, setStatusResponse] = useState('');
 
+  //! save
   const savedTour = () => {
     if (dataTourForSave.nombreTour === '') {
       console.log('El tour debe llevar un nombre');
@@ -215,6 +244,67 @@ const TourSteps = () => {
     return { registerErrorMessage, statusResponse };
   };
 
+  //! update
+  const UpdateTour = () => {
+    if (dataTourForSave.puntosdeInteresTour === '') {
+      console.log('Debe elejir algunos puntos de interes para guardar el tour');
+      return;
+    }
+
+    http
+      .post('/tourArmadoActualizar', {
+        id: tourId,
+        puntosdeInteresTourUpdate: dataTourForSave.puntosdeInteresTour,
+      })
+      .then((res) => {
+        console.log('RESPUESTA:', res.data);
+        setRegisterErrorMessage('El Tour se actualizo correctamente');
+        setStatusResponse(res.status);
+        if (res.status === 200) {
+          Swal.fire({
+            title: filtrarTraduccion(traduccionesBD, 'succesModal', lenguage),
+            text: filtrarTraduccion(
+              traduccionesBD,
+              'succesUpdateExplanationModal',
+              lenguage
+            ),
+            icon: 'success',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: filtrarTraduccion(
+              traduccionesBD,
+              'seeToursBtnModal',
+              lenguage
+            ),
+            cancelButtonText: filtrarTraduccion(
+              traduccionesBD,
+              'closeBtnSuccesModal',
+              lenguage
+            ),
+            confirmButtonColor: '#083d99',
+            cancelButtonColor: 'gray',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              setTourPreferences({});
+              SaveTourPreferences({});
+              setItemsParaTourDB({});
+              setSavedTourItems({});
+              setDataTourForSave({});
+              SaveTourItems({});
+              navigate('/tour');
+            }
+          });
+          navigate('/');
+        }
+      })
+      .catch(function (error) {
+        setRegisterErrorMessage('No se pudo registrar el tour');
+        message.error('NO se pudo guardar su tour');
+      });
+    console.log('registerErrorMessage ', registerErrorMessage, statusResponse);
+    return { registerErrorMessage, statusResponse };
+  };
+
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
   // console.log('CURRENT PAGE: ', current + 1);
 
@@ -235,12 +325,12 @@ const TourSteps = () => {
         )}
       </div>
       <div className="steps-action">
-        {current < steps.length - 1 && (
+        {current < 4 && (
           <Button type="primary" onClick={() => next()}>
             {filtrarTraduccion(traduccionesBD, 'stepBtnNext', lenguage)}
           </Button>
         )}
-        {current === steps.length - 1 && (
+        {current === 4 && accionTour !== 'actualizar' ? (
           <Button
             className="btnSiguienteGuardar"
             type="primary"
@@ -248,7 +338,15 @@ const TourSteps = () => {
           >
             {filtrarTraduccion(traduccionesBD, 'saveTourBtn', lenguage)}
           </Button>
-        )}
+        ) : current === 4 && accionTour === 'actualizar' ? (
+          <Button
+            className="btnSiguienteGuardar"
+            type="primary"
+            onClick={() => UpdateTour()}
+          >
+            {filtrarTraduccion(traduccionesBD, 'updateTourBtn', lenguage)}
+          </Button>
+        ) : null}
         {current > 0 && (
           <Button style={{ margin: '0 3rem' }} onClick={() => prev()}>
             {filtrarTraduccion(traduccionesBD, 'stepBtnPrev', lenguage)}

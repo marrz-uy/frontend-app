@@ -1,15 +1,45 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 import PageContext from '../Context/PageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import Separador from '../Components/Separador';
 import '../Css/Register.css';
 import '../Css/userBarClick.css';
+
+function useWidthElement() {
+  const [width, setWidth] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const refElement = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  useEffect(() => {
+    function actualizarAncho() {
+      if (isMounted) {
+        const widthBtn = refElement.current.offsetWidth;
+        setWidth(widthBtn);
+      }
+    }
+    actualizarAncho();
+    window.addEventListener('resize', actualizarAncho);
+    return () => {
+      window.removeEventListener('resize', actualizarAncho);
+    };
+  }, [isMounted]);
+
+  return [refElement, width?.toString()];
+}
 
 const Register = ({
   setPage,
@@ -34,6 +64,8 @@ const Register = ({
   const navigate = useNavigate();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const [refMyElement, widhtMyElemnt] = useWidthElement();
+  console.log('anchoMiElemento:', widhtMyElemnt);
 
   const submitRegister = (e) => {
     e.preventDefault();
@@ -79,6 +111,7 @@ const Register = ({
         }
         /* console.log('RESPUESTA:', error.response.data.errors); */
         let ERRORES = error.response.data.errors;
+        // let ERRORES = error.response.data;
         console.log('RESPUESTA errores:', ERRORES);
 
         if (!email || !password || !passwordConfirmation || !name) {
@@ -90,7 +123,7 @@ const Register = ({
           setRegisterErrorMessage('Debe ser un correo valido');
         } else if (
           error.response.data.errors.email[0] ===
-          'The email has already been taken.'
+          'El campo email ya ha sido tomado.'
         ) {
           setRegisterErrorMessage('Existe un usuario con ese correo');
         } else if (error.response.data.errors.email) {
@@ -112,6 +145,69 @@ const Register = ({
   };
 
   handleUserBar(userBar);
+
+  const handleregisterGoogle = (credentialResponse) => {
+    setLoader(true);
+    const details = jwt_decode(credentialResponse.credential);
+    sessionStorage.setItem('picture', details.picture);
+    http
+      .post('http://localhost:8000/api/registerUserGoogle', {
+        email: details.email,
+        name: details.name,
+        password: details.name,
+        passwordConfirmation: details.name,
+        provider: 'google',
+      })
+      .then((response) => {
+        console.log(
+          '%cRESPUESTA BACK LOGIN GOOGLE: ',
+          'color:blue;',
+          response.data
+        );
+        if (response.data) {
+          setLoader(false);
+        }
+        setTimeout(() => {
+          if (response.data.status === 201) {
+            Swal.fire({
+              titleText: `Registro exitoso, ya puede iniciar sesion con su cuenta de Google como ${response.data.username}`,
+              showConfirmButton: true,
+              showCancelButton: false,
+              confirmButtonColor: '#083d99',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown',
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp',
+              },
+            });
+          }
+        }, 1000);
+
+        navigate('/login');
+      })
+      .catch((error) => {
+        if (error) {
+          setLoader(false);
+        }
+        console.error(`Error en catch Register GOOGLE: ${error}`);
+        let ERRORES = error.response.data.errors;
+        // let ERRORES = error.response.data;
+        console.log('RESPUESTA errores:', ERRORES);
+        if (
+          error.response.data.errors.email[0] ===
+          'The email has already been taken.'
+        ) {
+          setRegisterErrorMessage('Existe un usuario con ese correo');
+        }
+      });
+
+    return registerErrorMessage;
+  };
+
+  const handleFailure = () => {
+    console.log('Login Failed');
+  };
 
   return (
     <Layout>
@@ -188,6 +284,23 @@ const Register = ({
                   lenguage
                 )}
                 className="btn-register"
+                ref={refMyElement}
+              />
+            )}
+          </div>
+          <Separador />
+          <div className="googleLoginBtnYloader">
+            {loader ? (
+              <div className="divLoader">
+                <span className="loader"></span>
+              </div>
+            ) : (
+              <GoogleLogin
+                width={widhtMyElemnt}
+                onSuccess={handleregisterGoogle}
+                onError={handleFailure}
+                text="continue_with"
+                // useOneTap
               />
             )}
           </div>

@@ -1,16 +1,13 @@
 .dragNDropContainer {
-	width: 100%;
-	max-width: 338px;
+	width: 360px;
 	height: 50vh;
 	display: flex;
-	justify-content: space-between;
 	padding: 5px;
-	gap: 5px
+	gap: 5px;
 }
 
 .seccion {
-	/* margin-top: 10px; */
-	min-width: 30%;
+	width: 200px;
 	display: flex;
 	border-radius: 4px;
 	justify-content: center;
@@ -24,57 +21,48 @@
 }
 
 #TimeLine {
-	max-width: 20%;
-	display: flex;
-	justify-content: center;
-	background-color: white;
-}
-
-#TimeLine>.droppable {
-	gap: 20px;
-	width: 100%;
-	/* justify-content: space-evenly;  */
-	align-items: center;
-}
-
-#TimeLine .tourCard {
-	background-color: transparent;
-	border: none;
-	display: flex;
-	justify-content: center;
-	border-radius: 1500%;
-	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
-}
-
-#TimeLine .draggable {
-	z-index: 1;
-	max-width: 60px;
-	border-radius: 50%;
-}
-
-#TimeLine .tourCard .dataTour {
-	display: none;
-}
-
-#TimeLine .tourCard span {
-	display: none;
-}
-
-#TimeLine .tourCard .divImgTour .imagenCardTour {
-	display: flex;
-	border: 5px solid #026ce4;
-	border-radius: 90%;
-	width: 60px;
-	height: 60px;
-	background-color: rgb(245, 245, 245);
-}
-
-#Items {
-	width: 80%;
 	display: flex;
 	justify-content: center;
 	border: 1px solid rgb(234, 234, 234);
 	background-color: white;
+}
+
+#TimeLine>.droppable {
+	width: 100%;
+}
+
+#TimeLine>.droppable::before {
+	content: " Arrastrar aqui";
+}
+
+#TimeLine .tourCard {
+	border: none;
+	display: flex;
+	justify-content: center;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+	z-index: 3;
+}
+
+/* #TimeLine .draggable {
+	z-index: 1;
+} */
+
+#TimeLine .droppable .tourCard h6 {
+	color: rgb(230, 70, 70);
+}
+
+/* #TimeLine .tourCard span {
+	display: none;
+} */
+
+
+
+#Items {
+	display: flex;
+	justify-content: center;
+	border: 1px solid rgb(234, 234, 234);
+	background-color: white;
+	/* border: 1px solid green; */
 }
 
 #Items>.droppable {
@@ -102,16 +90,6 @@
 	border-radius: 5px;
 }
 
-.timeLineVertical {
-	background-color: #026ce4;
-	height: 90%;
-	width: 10px;
-	position: relative;
-	top: 20px;
-	left: 50%;
-	border-radius: 10px;
-}
-
 /****************** CARD **********************/
 
 .tourCard {
@@ -134,44 +112,75 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-radius: 3px;
+	background-color: aquamarine;
+}
+
+.divImgTour span {
+	/* border: 1px solid gray; */
+	display: flex;
 }
 
 .imagenCardTour {
 	border-radius: 5px;
-	max-width: 60px;
+	max-width: 40px;
 	height: auto;
 	background-size: cover;
 }
-
 
 .dataTour {
 	margin-left: 5px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	/* justify-content: space-around; */
 	align-items: flex-start;
 	width: 100%;
 }
 
+.dataTour>h6 {
+	flex-wrap: wrap;
+	word-break: normal;
+	text-align: left;
+}
+
 .dataTour p {
 	font-size: 10px;
-
 }
 
 @media screen and (min-width: 480px) {
 	.dragNDropContainer {
-		max-width: 338px;
+		width: 338px;
+		justify-content: center;
+	}
+
+	.seccion {
+		width: 300px;
+		min-width: 50%;
+	}
+
+	.divImgTour {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		/* border: 1px solid gray; */
+	}
+
+	.imagenCardTour {
+		border-radius: 5px;
+		max-width: 3rem;
+		height: auto;
+		background-size: cover;
 	}
 }
 
 @media screen and (min-width: 768px) {
 	.dragNDropContainer {
-		max-width: 614px;
+		width: 814px;
 	}
 }
 
 @media screen and (min-width: 1024px) {
 	.dragNDropContainer {
-		max-width: 614px;
+		width: 900px;
 	}
 }

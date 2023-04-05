@@ -12,6 +12,7 @@ const TourProvider = ({ children }) => {
     horaInicioTour: '',
     puntosdeInteresTour: '',
   });
+  const [itemsHeredados, setItemsHeredados] = useState(null);
 
   const SaveTourPreferences = (tourPreferences) => {
     sessionStorage.setItem('tourPreferences', JSON.stringify(tourPreferences));
@@ -44,6 +45,8 @@ const TourProvider = ({ children }) => {
     SaveTourPreferences /* FUNCION para guardar las preferencias en sessionStorage */,
     GetTourPreferences /* FUNCION para traer las preferencias guardados en el sessionStorage */,
     SaveTourItems /* FUNCION para guardar puntos de interes traidos de db en sessionStorage */,
+    itemsHeredados,
+    setItemsHeredados,
   };
 
   return <TourContext.Provider value={data}>{children}</TourContext.Provider>;

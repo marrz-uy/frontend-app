@@ -52,13 +52,16 @@ const TourStep3 = () => {
     itemsParaTourDB,
     setSavedTourItems,
     savedTourItems,
+    itemsHeredados,
   } = useContext(TourContext);
+
+  console.log('itemsHeredados step3:', itemsHeredados);
 
   const status = {
     '01': {
       name: 'TimeLine',
       color: '#FFFAE6',
-      items: [],
+      items: itemsHeredados ? itemsHeredados : [],
     },
     '02': {
       name: 'Items',
@@ -80,7 +83,7 @@ const TourStep3 = () => {
   const handleInfoTour = () => {
     Swal.fire({
       titleText: 'Informacion de su tour',
-      html: textoModal /* var afuera */,
+      html: textoModal,
       showConfirmButton: true,
       confirmButtonColor: '#015abb',
       showClass: {

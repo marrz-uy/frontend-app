@@ -20,8 +20,8 @@
   padding: 5px;
   border-radius: 5px;
   position: relative;
-  top: -200px;
-  left: -123px;
+  top: -195px;
+  left: -120px;
   color: whitesmoke;
   background-color: rgba(245, 245, 245, 0.116);
   text-shadow: 1px 1px .5px rgb(114, 114, 114);
@@ -40,6 +40,7 @@
   font-weight: 600;
   margin-bottom: 20px;
   cursor: pointer;
+  max-height: 18px;
 }
 
 .swiper {
@@ -113,21 +114,13 @@ a {
   }
 }
 
-/* @media screen and (min-width: 414px) {
-  .likesLabel {
-    top: -203px;
-    left: -140px;
-  }
-} */
-
 @media screen and (min-width: 540px) {
   .likesLabel {
-    top: -180px;
+    top: -195px;
     left: -191px;
   }
 
   .titleLink {
-    margin-bottom: 65px;
     cursor: pointer;
     font-size: 1rem;
   }
@@ -135,14 +128,14 @@ a {
 
 @media screen and (min-width: 768px) {
   .likesLabel {
-    top: -220px;
+    top: -190px;
     left: -290px;
   }
 }
 
 @media screen and (min-width: 820px) {
   .likesLabel {
-    top: -218px;
+    top: -195px;
     left: -280px;
   }
 }
@@ -156,7 +149,7 @@ a {
 
 @media screen and (min-width: 912px) {
   .likesLabel {
-    top: -155px;
+    top: -195px;
     left: -129px;
     font-size: 1rem;
   }
@@ -164,7 +157,7 @@ a {
 
 @media screen and (min-width: 1024px) {
   .likesLabel {
-    top: -163px;
+    top: -195px;
     left: -149px;
   }
 
@@ -189,7 +182,7 @@ a {
 
 @media screen and (min-width: 1920px) {
   .likesLabel {
-    top: -155px;
+    top: -190px;
     left: -135px;
   }
 }

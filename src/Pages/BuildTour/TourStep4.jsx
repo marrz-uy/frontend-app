@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import { Chrono } from 'react-chrono';
 import '../../Css/TourStep4.css';
 
-const TourStep3 = () => {
+const TourStep4 = () => {
   const { savedTourItems } = useContext(TourContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
@@ -27,29 +28,55 @@ const TourStep3 = () => {
           scrollable={{ scrollbar: true }}
           hideControls={true}
         >
-          {savedTourItems?.map((dat) => {
+          {savedTourItems?.map((dato) => {
             return (
-              <div className="cardTourFinal" key={dat.id}>
+              <div
+                className="cardTourFinal"
+                key={dato?.puntos_interes ? dato?.puntos_interes?.id : dato.id}
+              >
                 <div className="divImgTourFinal">
                   <img
                     className="imagenCardTourFinal"
                     id="imagenCardTourFinal"
-                    src={dat.imagenes[0]?.url}
+                    src={
+                      dato?.puntos_interes
+                        ? dato?.puntos_interes?.imagenes[0]?.url
+                        : dato.imagenes[0]?.url
+                    }
                     alt=""
                   ></img>
                 </div>
                 <div className="dataTourFinal">
-                  {dat.nombreEvento ? (
+                  {dato?.puntos_interes ? (
+                    dato.puntos_interes?.nombreEvento
+                  ) : dato.nombreEvento ? (
                     <h6>
-                      {dat.nombreEvento} en {dat.lugarDeEvento}
+                      {dato?.puntos_interes
+                        ? dato?.puntos_interes?.nombreEvento
+                        : dato.nombreEvento}{' '}
+                      en{' '}
+                      {dato?.puntos_interes
+                        ? dato.puntos_interes?.lugarDeEvento
+                        : dato.lugarDeEvento}
                     </h6>
                   ) : (
-                    <h6>{dat.Nombre}</h6>
+                    <h6>
+                      {dato?.Puntos_interes
+                        ? dato.puntos_interes?.Nombre
+                        : dato.Nombre}
+                    </h6>
                   )}
-                  <p>- {dat.Tipo} </p>
+                  {/* <p>
+                    -{' '}
+                    {dato?.puntos_interes
+                      ? dato.puntos_interes?.Tipo
+                      : dato.Tipo}{' '}
+                  </p> */}
                   <p>
                     - Abre {''}
-                    {dat.HoraDeApertura}
+                    {dato?.puntos_interes
+                      ? dato?.puntos_interes?.HoraDeApertura
+                      : dato.HoraDeApertura}
                   </p>
                 </div>
               </div>
@@ -61,4 +88,4 @@ const TourStep3 = () => {
   );
 };
 
-export default TourStep3;
+export default TourStep4;

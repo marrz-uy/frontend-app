@@ -81,6 +81,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           'userProfile',
           JSON.stringify(res?.data.userProfile)
         );
+        console.log('%cRESPUESTA BACK LOGIN feel: ', 'color:blue;', res.data);
         setIsLoggedIn(true);
         navigate('/');
       })
@@ -100,19 +101,18 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             'Debe verificar su cuenta en su correo electronico'
           );
         }
-
         return loginErrorMessage;
       });
   };
 
   handleUserBar(userBar);
 
-  const handleOAuth = (credentialResponse) => {
+  const handleLoginGoogle = (credentialResponse) => {
     setLoader(true);
     const details = jwt_decode(credentialResponse.credential);
     sessionStorage.setItem('picture', details.picture);
     http
-      .post('http://localhost:8000/api/userGoogle', {
+      .post('http://localhost:8000/api/loginUserGoogle', {
         email: details.email,
         name: details.name,
         password: details.name,
@@ -131,15 +131,12 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         sessionStorage.setItem('email', response?.data.email);
         sessionStorage.setItem('userType', 'google');
         sessionStorage.setItem('access_token', response?.data.access_token);
-        if (!response?.data.userProfile) {
-          sessionStorage.setItem('userProfile', null);
-        } else {
-          sessionStorage.setItem(
-            'userProfile',
-            JSON.stringify(response?.data.userProfile)
-          );
-        }
+        sessionStorage.setItem(
+          'userProfile',
+          JSON.stringify(response?.data.userProfile)
+        );
         sessionStorage.setItem('isLoggedIn', true);
+
         setIsLoggedIn(true);
       })
       .catch((error) => {
@@ -147,9 +144,16 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           setLoader(false);
         }
         console.error(`Error en catch LOGIN GOOGLE: ${error}`);
+        console.log(`Error: `, error.response.request.status);
+        if (error.response.request.status) {
+          setLoginErrorMessage(
+            'No existe el usuario, debe registrarse previamente'
+          );
+        }
       });
-
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
   };
 
   const handleFailure = () => {
@@ -224,9 +228,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             ) : (
               <GoogleLogin
                 width={widhtMyElemnt}
-                onSuccess={handleOAuth}
+                onSuccess={handleLoginGoogle}
                 onError={handleFailure}
-                useOneTap
+                // useOneTap
               />
             )}
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import PageContext from '../../Context/PageContext';
 import { Layout } from '../../Layout';
 import LenguageContext from '../../Context/LenguageContext';
@@ -18,6 +18,9 @@ const BuildMyTour = ({
 }) => {
   const { setActivePage } = useContext(PageContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const [accionTour, setAccionTour] = useState(
+    sessionStorage.getItem('accionTour')
+  );
   useEffect(() => {
     setPage('tour-preferences');
     setActivePage('tourInit');
@@ -30,7 +33,9 @@ const BuildMyTour = ({
         <div className="userbar-click" onClick={() => setUserBar(false)}></div>
         <div className="tituloTourPreferences">
           <h2 className="tituloTourPreferencesText">
-            {filtrarTraduccion(traduccionesBD, 'buildTour', lenguage)}
+            {accionTour === 'null'
+              ? filtrarTraduccion(traduccionesBD, 'buildTour', lenguage)
+              : filtrarTraduccion(traduccionesBD, 'updateTour', lenguage)}
           </h2>
         </div>
         <TourSteps />

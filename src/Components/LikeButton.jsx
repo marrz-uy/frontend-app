@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import AuthUser from './AuthUser';
 import LenguageContext from '../Context/LenguageContext';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-
 import '../Css/LikeButton.css';
 
 const LikeButton = ({
@@ -17,14 +16,14 @@ const LikeButton = ({
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
-  console.log('cantLikes: ', cantLikes);
+  // console.log('cantLikes: ', cantLikes);
   console.log('%cPUNTO ID: ', 'color:orange;', puntosinteres_id);
   const { http } = AuthUser();
   // const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
     setInitialState(initialState);
-    console.log('ES FAVORITO: ', initialState);
+    console.log('ES FAVORITO?: ', initialState);
   }, []);
 
   const toggleLIke = () => {
@@ -54,7 +53,7 @@ const LikeButton = ({
       http.delete('/favoritos', {
         data: {
           user_Id: user_Id,
-          puntoInteres_Id: puntosinteres_id,
+          puntosinteres_id: puntosinteres_id,
         },
       }),
       http.patch(`/nomegusta/${puntosinteres_id}`),

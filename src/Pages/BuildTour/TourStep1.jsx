@@ -42,16 +42,15 @@ const TourStep1 = () => {
     http
       .get(`/ciudades/`, {})
       .then((response) => {
-        console.log('%cCiudades:', 'color: blue;', response?.data);
+        // console.log('%cCiudades:', 'color: blue;', response?.data);
         setCiudades(response?.data);
-        // console.log('');
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   useEffect(() => {
     getCities();
-    console.log('CIUDADES: ', ciudades);
+    // console.log('CIUDADES: ', ciudades);
     // eslint-disable-next-line
   }, []);
 

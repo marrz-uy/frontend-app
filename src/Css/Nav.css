@@ -322,6 +322,11 @@
         top: 1px;
         right: 20px;
     }
+
+    .msgWelcome {
+        /* font-size: 1rem; */
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (min-width: 480px) and (orientation: landscape) {
@@ -348,6 +353,10 @@
 
     .locationIcon img {
         width: 0.9rem;
+    }
+
+    .msgWelcome {
+        margin-bottom: 10px;
     }
 }
 
@@ -410,12 +419,20 @@
         top: 0.37rem
     }
 
+    .msgWelcome {
+        margin-bottom: 10px;
+    }
+
 }
 
 @media (min-width: 920px) {
     .userLogo__contain {
         gap: 3rem;
         padding-bottom: 2px;
+    }
+
+    .msgWelcome {
+        margin-bottom: 10px;
     }
 }
 
@@ -491,5 +508,30 @@
     .locationIcon:hover>.hideInactive {
         right: -6.5rem;
         top: 2.5rem
+    }
+
+    .locationIconFfox {
+        width: 2rem;
+        position: relative;
+        top: 2.8rem;
+        right: -533px;
+    }
+
+    .locationIconFfox img {
+        width: 1.3rem;
+    }
+
+    .locationIconFfox:hover>.hideActive {
+        right: -6.5rem;
+        top: 2.5rem
+    }
+
+    .locationIconFfox:hover>.hideInactive {
+        right: -6.5rem;
+        top: 2.5rem
+    }
+
+    .msgWelcome {
+        margin-bottom: 10px;
     }
 }

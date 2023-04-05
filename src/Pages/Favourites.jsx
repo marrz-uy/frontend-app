@@ -24,6 +24,7 @@ const Favourites = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const { GetFavouritesFromDB, favouritesFromDB } =
     useContext(FavouritesContext);
+
   useEffect(() => {
     GetFavouritesFromDB(userId);
     setPage('favourites');
@@ -52,6 +53,7 @@ const Favourites = ({
     console.log('TARGET ID', e.target.id);
     GetFavouritesFromDB(userId);
   };
+  // console.log('FAVORITOS: ', favouritesFromDB[0].imagenes[0]);
 
   handleUserBar(userBar);
 
@@ -86,7 +88,7 @@ const Favourites = ({
                     tipoEvento={dato.TipoEvento}
                     tipo={dato.Tipo}
                     caracteristicas={dato.Contacto}
-                    imagen={dato.Imagen}
+                    imagen={dato.imagenes[0].url}
                     setDestination={setDestination}
                     dato={dato}
                   />
