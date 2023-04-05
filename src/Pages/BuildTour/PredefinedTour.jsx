@@ -54,6 +54,7 @@ const PredefinedTour = ({
     return str;
   };
 
+
   const goOnPoint = async (e) => {
     e.preventDefault();
     // console.log('TARGET: ');
@@ -62,11 +63,11 @@ const PredefinedTour = ({
       .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
+
         console.log('%cPUNTO:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };
-
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
