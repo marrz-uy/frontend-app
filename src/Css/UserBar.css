@@ -146,6 +146,7 @@
 	height: 25px;
 	cursor: pointer;
 	margin-right: 3rem;
+	border-radius: 2px;
 }
 
 .userBar__lenguage {
