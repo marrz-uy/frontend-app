@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import LenguageContext from '../../Context/LenguageContext';
+import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
 import '../../Css/Column.css';
 import drag from '../../Assets/drag.png';
 
 const Column = ({ droppableId, column }) => {
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
   return (
     <Droppable droppableId={droppableId} key={droppableId}>
       {(provided, snapshot) => {
@@ -39,18 +43,18 @@ const Column = ({ droppableId, column }) => {
                           }}
                         >
                           <div className="tourCard">
+                            <span>
+                              <img
+                                src={drag}
+                                style={{
+                                  width: '15px',
+                                  height: '40px',
+                                  padding: '0 3px 0 0 ',
+                                }}
+                                alt="drag-Simbol"
+                              ></img>
+                            </span>
                             <div className="divImgTour">
-                              <span>
-                                <img
-                                  src={drag}
-                                  style={{
-                                    width: '15px',
-                                    height: '40px',
-                                    padding: '0 3px 0 0 ',
-                                  }}
-                                  alt="drag-Simbol"
-                                ></img>
-                              </span>
                               <img
                                 className="imagenCardTour"
                                 src={
@@ -79,13 +83,14 @@ const Column = ({ droppableId, column }) => {
                                     : item.Nombre}
                                 </h6>
                               )}
-                              {/* <p>
-                                {item?.puntos_interes
-                                  ? item?.puntos_interes?.Tipo
-                                  : item.Tipo}{' '}
-                              </p> */}
                               <p>
-                                - Abre {''}
+                                -{' '}
+                                {filtrarTraduccion(
+                                  traduccionesBD,
+                                  'openToursHours',
+                                  lenguage
+                                )}{' '}
+                                {''}
                                 {item.HoraDeApertura}
                               </p>
                             </div>
@@ -96,8 +101,8 @@ const Column = ({ droppableId, column }) => {
                   </Draggable>
                 );
               })}
+              {/* no tocar la siguiente linea es de la libreria dnd */}
               {provided.placeholder}
-              {/* no tocar esta linea es de la libreria dnd */}
             </div>
           </>
         );
