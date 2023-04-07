@@ -90,47 +90,26 @@ export const Slider = ({
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {sliderPoints
-          ? sliderPoints.map((point) => {
-              return (
-                <div className="item" key={point.id}>
-                  <SwiperSlide key={point.id}>
-                    <img
-                      src={
-                        !point?.imagenes[0]
-                          ? sinImagen
-                          : point?.imagenes[0]?.url
-                      }
-                      alt=""
-                      onClick={goOnPoint}
-                      id={point.id}
-                    />
-                    <h6 className="likesLabel">💙 {point.Megusta}</h6>
-                    <span
-                      className="titleLink"
-                      id={point.id}
-                      onClick={goOnPoint}
-                    >
-                      {point.Nombre}
-                    </span>
-                  </SwiperSlide>
-                </div>
-              );
-            })
-          : arrayimages.map((img, index) => (
-              <div className="item" key={img}>
-                <SwiperSlide key={img}>
-                  <img src={img} alt=""></img>
-                  <p className="descriptionInImage">Imagenes ilustrativas</p>
-                  <a href={img}>
-                    <span>
-                      {' '}
-                      <h5 className="">{`Nombre de imagen ${index + 1}`}</h5>
-                    </span>
-                  </a>
-                </SwiperSlide>
-              </div>
-            ))}
+        {sliderPoints?.map((point) => {
+          return (
+            <div className="item" key={point.id}>
+              <SwiperSlide key={point.id}>
+                <img
+                  src={
+                    !point?.imagenes[0] ? sinImagen : point?.imagenes[0]?.url
+                  }
+                  alt=""
+                  onClick={goOnPoint}
+                  id={point.id}
+                />
+                <h6 className="likesLabel">💙 {point.Megusta}</h6>
+                <span className="titleLink" id={point.id} onClick={goOnPoint}>
+                  {point.Nombre}
+                </span>
+              </SwiperSlide>
+            </div>
+          );
+        })}
       </Swiper>
     </>
   );
