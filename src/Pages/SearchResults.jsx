@@ -262,15 +262,15 @@ const SearchResults = ({
       http
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
-          setPuntodeInteresTipo(res.data);
-          // console.log(res.data);
+          setPuntodeInteresTipo(res.data.categoria.Tipo);
+          console.log('aaaaa', res.data.categoria.Tipo);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [datos]);
-  // console.log('tipo de dato', typeof datos?.current_page);
+  console.log('DATOS.DATA:->', datos?.data);
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
@@ -334,10 +334,10 @@ const SearchResults = ({
               <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
           ) : (
-            datos?.data?.map((dato) => {
+            datos?.data?.map((dato, index) => {
               return (
                 <ResultsCard
-                  key={dato?.id}
+                  key={index}
                   nombre={dato?.Nombre}
                   nombreEvento={dato?.NombreEvento}
                   lugarDeEvento={dato?.Nombre}
@@ -348,7 +348,7 @@ const SearchResults = ({
                   horaInicio={dato?.HoraDeApertura}
                   horaFin={dato?.HoraDeCierre}
                   tipoEvento={dato?.TipoEvento}
-                  tipo={dato?.Tipo}
+                  tipo={dato?.Tipo && puntodeInteresTipo}
                   caracteristicas={dato?.Contacto}
                   imagen={dato?.imagenes[0]?.url}
                   setDestination={setDestination}
