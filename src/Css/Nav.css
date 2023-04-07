@@ -92,6 +92,7 @@
 .userLogo__lenguage img {
     width: 37px;
     height: 28px;
+    border-radius: 2px;
 }
 
 .userLogo__lenguage p {

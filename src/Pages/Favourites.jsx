@@ -88,7 +88,7 @@ const Favourites = ({
                     tipoEvento={dato.TipoEvento}
                     tipo={dato.Tipo}
                     caracteristicas={dato.Contacto}
-                    imagen={dato.imagenes[0].url}
+                    imagen={dato?.imagenes[0]?.url}
                     setDestination={setDestination}
                     dato={dato}
                   />
