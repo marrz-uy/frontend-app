@@ -19,7 +19,7 @@ export const Slider = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  // console.log('SLIDER 1-SLIDER: ', sliderPoints);
+  console.log('SLIDER 1-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();

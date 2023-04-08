@@ -89,8 +89,7 @@ const Column = ({ droppableId, column }) => {
                                   traduccionesBD,
                                   'openToursHours',
                                   lenguage
-                                )}{' '}
-                                {''}
+                                )}
                                 {item.HoraDeApertura}
                               </p>
                             </div>
@@ -101,7 +100,8 @@ const Column = ({ droppableId, column }) => {
                   </Draggable>
                 );
               })}
-              {/* no tocar la siguiente linea es de la libreria dnd */}
+              {/* no tocar esta linea es de la libreria dnd */}
+
               {provided.placeholder}
             </div>
           </>

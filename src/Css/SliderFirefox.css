@@ -1,0 +1,19 @@
+/* .carousel .slide {
+	height: 300px;
+} */
+
+.carousel .slide img {
+	height: 300px;
+	border-radius: 3px;
+}
+
+.carousel .thumb {
+	height: 80px;
+	width: auto;
+	display: inline-flex;
+	border-radius: 3px;
+}
+
+.carousel .thumb.selected {
+	background-color: rgba(42, 157, 165, 0.671);
+}

@@ -1,7 +1,8 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import '../Css/SliderFirefox.css';
 
-const SliderMain = ({ array }) => {
+const SliderFirefox = ({ array }) => {
   console.log('ARRAYIMAGENES: ', array);
   return (
     <div>
@@ -18,4 +19,4 @@ const SliderMain = ({ array }) => {
   );
 };
 
-export default SliderMain;
+export default SliderFirefox;
