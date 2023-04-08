@@ -151,7 +151,7 @@ const Register = ({
     const details = jwt_decode(credentialResponse.credential);
     sessionStorage.setItem('picture', details.picture);
     http
-      .post('http://localhost:8000/api/registerUserGoogle', {
+      .post('/registerUserGoogle', {
         email: details.email,
         name: details.name,
         password: details.name,

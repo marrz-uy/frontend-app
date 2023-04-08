@@ -101,6 +101,7 @@ const Column = ({ droppableId, column }) => {
                 );
               })}
               {/* no tocar esta linea es de la libreria dnd */}
+
               {provided.placeholder}
             </div>
           </>
