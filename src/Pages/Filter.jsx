@@ -220,24 +220,10 @@ const Filtros = ({
               <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
                 Filtrar
               </button>
-              {/* <h3>Distancia</h3>
-                            <FilterDistance
-                                latitud={latitud}
-                                longitud={longitud}
-                                distanciaAEnviar={distanciaAEnviar}
-                                getBackgroundSize={getBackgroundSize}
-                                setDistanciaAEnviar={setDistanciaAEnviar}
-                                handleDistance={handleDistance}
-                                loaded={loaded}
-                            /> */}
             </div>
           ) : tipoToFilter === 'Alojamiento' ? (
             <div div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <input type="radio" name="Alojamiento" id='Hotel' value="Hotel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Hostel' value="Hostel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Motel' value="Motel" /> */}
-              {/* <input type="radio" name="Alojamiento" id='Estancia' value="Estancia" /> */}
               <div className="llamame_mimosa">
                 <input
                   type="radio"
@@ -447,26 +433,6 @@ const Filtros = ({
           ) : tipoToFilter === 'Eventos' ? (
             <div className="filtro_tipos">
               <h3>Tipo</h3>
-              {/* <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Pelicula' value="Pelicula" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Pelicula">Pelicula</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Obra de teatro' value="Obra de teatro" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Obra de teatro">Obra de teatro</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Murga' value="Murga" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Murga">Murga</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Partido' value="Partido" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Partido">Partido</label>
-                            </div>
-                            <div className='llamame_mimosa'>
-                                <input type="radio" name="TipoEvento" id='Carrera' value="Carrera" onClick={(e) => handleClickRadio(e)} />
-                                <label for="Carrera">Carrera</label>
-                            </div> */}
               <div className="llamame_mimosa">
                 <input
                   type="text"

@@ -6,6 +6,8 @@ import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFilter} from '@fortawesome/free-solid-svg-icons';
 import Filter from './Filter';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
@@ -97,9 +99,12 @@ const SearchResults = ({
       setDistanciaAEnviar(50000);
       // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
-    if (window.screen.width <= 810) {
+    /* if (window.screen.width <= 810) {
       setHandleFilter(false);
-    }
+    } else if (window.screen.width >= 810) {
+      setHandleFilter(true);
+    } */
+   
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
 
@@ -153,6 +158,8 @@ const SearchResults = ({
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
+
+
 
   const handleChangePrevPage = (e) => {
     e.preventDefault();
@@ -275,6 +282,33 @@ const SearchResults = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
+      {handleFilter && (
+        <Filter
+          latitud={latitud}
+          longitud={longitud}
+          distanciaAEnviar={distanciaAEnviar}
+          setDistanciaAEnviar={setDistanciaAEnviar}
+          getBackgroundSize={getBackgroundSize}
+          loaded={loaded}
+          handleDistance={handleDistance}
+          puntodeInteresTipo={puntodeInteresTipo}
+          setHandleFilter={setHandleFilter}
+          allFilters={allFilters}
+          setAllFilters={setAllFilters}
+          filtersToSend={filtersToSend}
+          setFiltersToSend={setFiltersToSend}
+          handleGetFIlters={handleGetFIlters}
+          tipoToFilter={tipoToFilter}
+          setTipoToFilter={setTipoToFilter}
+          handleGetFilterEventos={handleGetFilterEventos}
+        />
+      )}
+      <div className='info_container_card'>
+
+      
+      <div className='filtro_container_btn'>
+          <button className='btnSearch filters' onClick={() => setHandleFilter(!handleFilter)}><FontAwesomeIcon icon={faFilter} />Filtros</button>
+        </div>
         <h6 className="resultsText">
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
@@ -359,29 +393,6 @@ const SearchResults = ({
           )}
         </div>
       </div>
-
-      {handleFilter && (
-        <Filter
-          latitud={latitud}
-          longitud={longitud}
-          distanciaAEnviar={distanciaAEnviar}
-          setDistanciaAEnviar={setDistanciaAEnviar}
-          getBackgroundSize={getBackgroundSize}
-          loaded={loaded}
-          handleDistance={handleDistance}
-          puntodeInteresTipo={puntodeInteresTipo}
-          setHandleFilter={setHandleFilter}
-          allFilters={allFilters}
-          setAllFilters={setAllFilters}
-          filtersToSend={filtersToSend}
-          setFiltersToSend={setFiltersToSend}
-          handleGetFIlters={handleGetFIlters}
-          tipoToFilter={tipoToFilter}
-          setTipoToFilter={setTipoToFilter}
-          handleGetFilterEventos={handleGetFilterEventos}
-        />
-      )}
-
       <div className="seccionPaginado">
         {cantPaginas > 1 ? (
           <div className="contenedorPaginado">
@@ -437,6 +448,7 @@ const SearchResults = ({
             </div>
           </div>
         ) : null}
+      </div>
       </div>
       {userBar && (
         <UserBar
