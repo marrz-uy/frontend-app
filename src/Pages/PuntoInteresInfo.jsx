@@ -186,9 +186,12 @@ const PuntoInteresInfo = ({
               </div>
             ) : (
               <div className="divEventosNombreYlugar">
-                <li className="puntoInteresMarker">
-                  <h2 className="nombreylugar"> {destination.Nombre} </h2>
-                </li>{' '}
+                {' '}
+                <h2 className="nombreylugar">
+                  {' '}
+                  <li className="puntoInteresMarker"></li>
+                  {destination.Nombre}{' '}
+                </h2>
               </div>
             )}
             <div className="puntoInteres__info__datos">
