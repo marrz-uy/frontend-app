@@ -24,7 +24,7 @@ export const SliderEvents = ({
     const id = e.target.id;
     console.log('TARGET-ID: ', id);
     const req = await http
-      .post(`http://localhost:8000/api/sliderDos/evento/${id}`, {})
+      .post(`/sliderDos/evento/${id}`, {})
       .then((response) => {
         console.log('%cDATA:', 'color: blue;', response?.data);
         console.log(
