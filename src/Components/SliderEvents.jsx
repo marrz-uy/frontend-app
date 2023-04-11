@@ -24,7 +24,7 @@ export const SliderEvents = ({
     const id = e.target.id;
     console.log('TARGET-ID: ', id);
     const req = await http
-      .post(`http://localhost:8000/api/sliderDos/evento/${id}`, {})
+      .post(`/sliderDos/evento/${id}`, {})
       .then((response) => {
         console.log('%cDATA:', 'color: blue;', response?.data);
         console.log(
@@ -112,43 +112,28 @@ export const SliderEvents = ({
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {sliderPoints
-          ? sliderPoints.map((point, index) => {
-              return (
-                <div className="item" key={point.Eventos_id}>
-                  <SwiperSlide key={point.Eventos_id}>
-                    <img
-                      src={point.ImagenEvento}
-                      alt=""
-                      id={point.Eventos_id}
-                      onClick={goOnPoint}
-                    />
-                    <h6 className="dateInImage">
-                      📆 {formatearFecha(point.FechaInicio)},{' '}
-                      {convertirHora(point.HoraInicio)} Hs.
-                    </h6>
+        {sliderPoints?.map((point, index) => {
+          return (
+            <div className="item" key={point.Eventos_id}>
+              <SwiperSlide key={point.Eventos_id}>
+                <img
+                  src={point.ImagenEvento}
+                  alt=""
+                  id={point.Eventos_id}
+                  onClick={goOnPoint}
+                />
+                <h6 className="dateInImage">
+                  📆 {formatearFecha(point.FechaInicio)},{' '}
+                  {convertirHora(point.HoraInicio)} Hs.
+                </h6>
 
-                    <span className="titleLink" onClick={goOnPoint}>
-                      {point.NombreEvento}
-                    </span>
-                  </SwiperSlide>
-                </div>
-              );
-            })
-          : arrayimages.map((img, index) => (
-              <div className="item" key={img}>
-                <SwiperSlide key={img}>
-                  <img src={img} alt=""></img>
-                  <p className="descriptionInImage">Imagenes ilustrativas</p>
-                  <a href={img}>
-                    <span>
-                      {' '}
-                      <h5 className="">{`Nombre de imagen ${index + 1}`}</h5>
-                    </span>
-                  </a>
-                </SwiperSlide>
-              </div>
-            ))}
+                <span className="titleLink" onClick={goOnPoint}>
+                  {point.NombreEvento}
+                </span>
+              </SwiperSlide>
+            </div>
+          );
+        })}
       </Swiper>
     </>
   );

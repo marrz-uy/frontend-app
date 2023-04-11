@@ -19,14 +19,14 @@ export const Slider = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  // console.log('SLIDER 1-SLIDER: ', sliderPoints);
+  console.log('SLIDER 1-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
     console.log('TARGET-ID: ', id);
     const req = await http
-      .get(`http://localhost:8000/api/PuntosInteres/${id}`, {})
+      .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
         console.log('%cDATA:', 'color: blue;', response?.data);
         console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
@@ -90,47 +90,26 @@ export const Slider = ({
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {sliderPoints
-          ? sliderPoints.map((point) => {
-              return (
-                <div className="item" key={point.id}>
-                  <SwiperSlide key={point.id}>
-                    <img
-                      src={
-                        !point?.imagenes[0]
-                          ? sinImagen
-                          : point?.imagenes[0]?.url
-                      }
-                      alt=""
-                      onClick={goOnPoint}
-                      id={point.id}
-                    />
-                    <h6 className="likesLabel">💙 {point.Megusta}</h6>
-                    <span
-                      className="titleLink"
-                      id={point.id}
-                      onClick={goOnPoint}
-                    >
-                      {point.Nombre}
-                    </span>
-                  </SwiperSlide>
-                </div>
-              );
-            })
-          : arrayimages.map((img, index) => (
-              <div className="item" key={img}>
-                <SwiperSlide key={img}>
-                  <img src={img} alt=""></img>
-                  <p className="descriptionInImage">Imagenes ilustrativas</p>
-                  <a href={img}>
-                    <span>
-                      {' '}
-                      <h5 className="">{`Nombre de imagen ${index + 1}`}</h5>
-                    </span>
-                  </a>
-                </SwiperSlide>
-              </div>
-            ))}
+        {sliderPoints?.map((point) => {
+          return (
+            <div className="item" key={point.id}>
+              <SwiperSlide key={point.id}>
+                <img
+                  src={
+                    !point?.imagenes[0] ? sinImagen : point?.imagenes[0]?.url
+                  }
+                  alt=""
+                  onClick={goOnPoint}
+                  id={point.id}
+                />
+                <h6 className="likesLabel">💙 {point.Megusta}</h6>
+                <span className="titleLink" id={point.id} onClick={goOnPoint}>
+                  {point.Nombre}
+                </span>
+              </SwiperSlide>
+            </div>
+          );
+        })}
       </Swiper>
     </>
   );

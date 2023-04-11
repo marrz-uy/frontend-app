@@ -14,7 +14,7 @@
 	display: flex;
 	text-align: center;
 	flex-direction: column;
-	gap: 3rem;
+	gap: 2.5rem;
 	align-items: center;
 	background-color: #00499d;
 	width: 100vw;
@@ -146,6 +146,7 @@
 	height: 25px;
 	cursor: pointer;
 	margin-right: 3rem;
+	border-radius: 2px;
 }
 
 .userBar__lenguage {
