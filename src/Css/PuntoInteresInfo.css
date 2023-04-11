@@ -3,9 +3,13 @@
     flex-direction: column;
     margin-top: 85px;
     padding: 10px;
+    max-width: 1300px;
 }
 
 .divBackbtn {
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -31,6 +35,13 @@
     box-shadow: 0 0 5px #3333338f;
 }
 
+.puntoInteres__info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: aquamarine; */
+}
+
 .puntoInteres__info__tipo {
     color: rgb(0, 73, 157);
     font-size: 1rem;
@@ -48,12 +59,14 @@
 
 .nombreylugar {
     display: flex;
-    /* width: 100%; */
+    /* justify-content: center; */
+    width: 100%;
     word-wrap: break-word;
 }
 
 .puntoInteresMarker {
     list-style-image: url('../Assets/localizacion.png');
+    list-style-position: inside;
 }
 
 .puntoInteres__imagen {
@@ -64,7 +77,6 @@
 
 .imgEventoPinteresinfo {
     width: 100%;
-    ;
 }
 
 .puntoInteres__info__datos {
@@ -233,8 +245,64 @@
     font-weight: 700;
 }
 
-@media screen and (min-width: 480px) {
+
+@media screen and (min-width: 768px) {
     .puntoInteresInfo {
         margin-top: 105px;
+        width: 100%;
+        align-items: center;
+        /* background-color: rgb(218, 119, 80); */
     }
+
+    .puntoInteres__container {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 820px) {
+    .puntoInteresInfo {
+        margin-top: 105px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .puntoInteres__container {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .divInfoYSlider {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .puntoInteres__info {
+        width: 50%;
+        min-width: 50%;
+    }
+
+    .puntoInteres__imagen {
+        width: 50%;
+        min-width: 50%;
+    }
+
+    .puntoInteres__especificaciones {
+        margin: 0 auto;
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .puntoInteres__especificaciones__gastronomia {
+        margin: 0 auto;
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
 }

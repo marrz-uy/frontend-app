@@ -17,3 +17,26 @@
 .carousel .thumb.selected {
 	background-color: rgba(42, 157, 165, 0.671);
 }
+
+@media screen and (min-width: 768px) {
+	.carousel-root {
+		width: 70%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 820px) {
+	.carousel-root {
+		outline: none;
+		width: 70%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.carousel-root {
+		outline: none;
+		width: 90%;
+		margin: 0 auto;
+	}
+}
