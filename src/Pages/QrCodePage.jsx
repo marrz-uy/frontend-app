@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Layout } from '../Layout';
 import UserBar from '../Pages/UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick.js';
@@ -10,7 +11,12 @@ export const QrCodePage = ({
   isLoggedIn,
   userBar,
   setUserBar,
+  setPage,
 }) => {
+  useEffect(() => {
+    setPage('qrcode');
+  }, [setPage]);
+
   handleUserBar(userBar);
   return (
     <Layout>

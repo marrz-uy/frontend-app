@@ -9,7 +9,6 @@ import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/UserBar.css';
-
 const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
   const { traduccionesBD, lenguage, handleLenguage } =
     useContext(LenguageContext);
@@ -136,7 +135,6 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                     : null}
                 </span>
               </li>
-
               <li
                 className="userBar__notifications"
                 onClick={() => setUserBar(false)}
@@ -146,11 +144,11 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                   {filtrarTraduccion(traduccionesBD, 'favourites', lenguage)}
                 </Link>
               </li>
-              <li>
+              <li onClick={() => setUserBar(false)}>
                 <Link to="/qrcode" className="linkToUserProfile">
-                  <p className="">
-                    <span className="notificationIcon">🔳</span> Compartir QR
-                  </p>
+                  {/* <p className=""> */}
+                  <span className="notificationIcon">🔳</span> Compartir QR
+                  {/* </p> */}
                 </Link>
               </li>
               <li className="userBar__logout" onClick={logoutUser}>
@@ -165,7 +163,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               </li>
             </>
           ) : (
-            <li>
+            <li onClick={() => setUserBar(false)}>
               <Link to="/qrcode" className="linkToUserProfile">
                 <p className="">
                   <span className="notificationIcon">🔳</span>Compartir QR
