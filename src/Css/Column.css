@@ -110,20 +110,21 @@
 
 .divImgTour {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	width: 55px;
+	height: 48px;
 	border-radius: 3px;
 	background-color: aquamarine;
 }
 
-.divImgTour span {
-	/* border: 1px solid gray; */
+.tourCard span {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .imagenCardTour {
 	border-radius: 5px;
-	max-width: 40px;
+	max-width: 55px;
 	height: auto;
 	background-size: cover;
 }
