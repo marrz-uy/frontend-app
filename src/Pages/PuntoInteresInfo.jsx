@@ -154,113 +154,120 @@ const PuntoInteresInfo = ({
           </button>
         </div>
         <div className="puntoInteres__container">
-          <div className="puntoInteres__info">
-            <div className="containerLikeButton">
-              <LikeButton
-                puntosinteres_id={destination.id}
-                user_Id={user_Id}
-                initialState={initialState}
-                setInitialState={setInitialState}
-                cantLikes={cantLikes}
-                setCantLikes={setCantLikes}
-              />
-              <LikeNumbers cantLikes={cantLikes} />
-            </div>
-            <h2 className="puntoInteres__info__tipo">
-              {destination.TipoEvento
-                ? destination.TipoEvento
-                : destination.Tipo === 'Hotel'
-                ? `${destination.Tipo}${' '}${hotelStars}`
-                : `${destination.Tipo}`}
-            </h2>
-            {destination.Eventos_id ? (
-              <div className="divEventosNombreYlugar">
-                {' '}
-                <h2 className="nombreylugar">
-                  {destination.NombreEvento} - {destination.Nombre}
-                </h2>
-                <h5 className="eventoFechaYHora">
-                  📆 {formatearFecha(destination.FechaInicio)},{' '}
-                  {convertirHora(destination.HoraInicio)} Hs.
-                </h5>{' '}
+          <div className="divInfoYSlider">
+            <div className="puntoInteres__info">
+              <div className="containerLikeButton">
+                <LikeButton
+                  puntosinteres_id={destination.id}
+                  user_Id={user_Id}
+                  initialState={initialState}
+                  setInitialState={setInitialState}
+                  cantLikes={cantLikes}
+                  setCantLikes={setCantLikes}
+                />
+                <LikeNumbers cantLikes={cantLikes} />
               </div>
-            ) : (
-              <div className="divEventosNombreYlugar">
-                {' '}
-                <h2 className="nombreylugar">
+              <h2 className="puntoInteres__info__tipo">
+                {destination.TipoEvento
+                  ? destination.TipoEvento
+                  : destination.Tipo === 'Hotel'
+                  ? `${destination.Tipo}${' '}${hotelStars}`
+                  : `${destination.Tipo}`}
+              </h2>
+              {destination.Eventos_id ? (
+                <div className="divEventosNombreYlugar">
                   {' '}
-                  <li className="puntoInteresMarker"></li>
-                  {destination.Nombre}{' '}
-                </h2>
+                  <h2 className="nombreylugar">
+                    {destination.NombreEvento} - {destination.Nombre}
+                  </h2>
+                  <h5 className="eventoFechaYHora">
+                    📆 {formatearFecha(destination.FechaInicio)},{' '}
+                    {convertirHora(destination.HoraInicio)} Hs.
+                  </h5>{' '}
+                </div>
+              ) : (
+                <div className="divEventosNombreYlugar">
+                  {' '}
+                  <h2 className="nombreylugar">
+                    {' '}
+                    <li className="puntoInteresMarker"></li>
+                    {destination.Nombre}{' '}
+                  </h2>
+                </div>
+              )}
+              <div className="puntoInteres__info__datos">
+                <p>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}:{' '}
+                  </span>
+                  {destination.Ciudad}
+                </p>
+                <p>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}:{' '}
+                  </span>
+                  {destination.Departamento}
+                </p>
+                <p>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'placeAddress',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>
+                  {destination.Direccion}
+                </p>
               </div>
-            )}
-            <div className="puntoInteres__info__datos">
-              <p>
-                <span>
-                  {filtrarTraduccion(traduccionesBD, 'placeCity', lenguage)}:{' '}
-                </span>
-                {destination.Ciudad}
-              </p>
-              <p>
-                <span>
-                  {filtrarTraduccion(traduccionesBD, 'placeState', lenguage)}:{' '}
-                </span>
-                {destination.Departamento}
-              </p>
-              <p>
-                <span>
-                  {filtrarTraduccion(traduccionesBD, 'placeAddress', lenguage)}:{' '}
-                </span>
-                {destination.Direccion}
-              </p>
+              <div className="puntoInteres__info__datos2">
+                <p className="puntoInteres__info__descripcion">
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'placeDescription',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>
+                  {destination.Descripcion}
+                </p>
+              </div>
+              <div className="puntoInteres__info__horarios">
+                <p>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'placeOpeningTime',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>{' '}
+                  {destination.HoraDeApertura}
+                </p>
+                <p>
+                  <span>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'placeClosingTime',
+                      lenguage
+                    )}
+                    :{' '}
+                  </span>{' '}
+                  {destination.HoraDeCierre}
+                </p>
+              </div>
             </div>
-            <div className="puntoInteres__info__datos2">
-              <p className="puntoInteres__info__descripcion">
-                <span>
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'placeDescription',
-                    lenguage
-                  )}
-                  :{' '}
-                </span>
-                {destination.Descripcion}
-              </p>
+            <div className="puntoInteres__imagen">
+              {destination.Eventos_id ? (
+                <img
+                  className="imgEventoPinteresinfo"
+                  src={destination.ImagenEvento}
+                />
+              ) : (
+                <SliderFirefox array={arrURLS} />
+              )}
             </div>
-            <div className="puntoInteres__info__horarios">
-              <p>
-                <span>
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'placeOpeningTime',
-                    lenguage
-                  )}
-                  :{' '}
-                </span>{' '}
-                {destination.HoraDeApertura}
-              </p>
-              <p>
-                <span>
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'placeClosingTime',
-                    lenguage
-                  )}
-                  :{' '}
-                </span>{' '}
-                {destination.HoraDeCierre}
-              </p>
-            </div>
-          </div>
-          <div className="puntoInteres__imagen">
-            {destination.Eventos_id ? (
-              <img
-                className="imgEventoPinteresinfo"
-                src={destination.ImagenEvento}
-              />
-            ) : (
-              <SliderFirefox array={arrURLS} />
-            )}
           </div>
           {destination.Tipo === 'Hotel' || destination.Tipo === 'Hostel' ? (
             <div className="puntoInteres__especificaciones">
@@ -363,7 +370,7 @@ const PuntoInteresInfo = ({
                   )}
                 </h2>
               </div>
-              <div className="puntoInteres__especificaciones__datos__gastronomia">
+              <div className="puntoInteres__especificaciones__datos1">
                 <table>
                   <tbody>
                     <tr>

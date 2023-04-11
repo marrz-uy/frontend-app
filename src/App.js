@@ -21,6 +21,7 @@ import PredefinedTour from './Pages/BuildTour/PredefinedTour';
 import Notifications from './Pages/Notifications';
 import Favourites from './Pages/Favourites';
 import ForgetPassword from '../src/Pages/ForgetPassword';
+import { QrCodePage } from './Pages/QrCodePage';
 import './App.css';
 import '../src/Css/Toast.css';
 
@@ -333,6 +334,18 @@ function App() {
                         isLoggedIn={isLoggedIn}
                         setUserBar={setUserBar}
                         setDestination={setDestination}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/qrcode"
+                    element={
+                      <QrCodePage
+                        setPage={setPage}
+                        userBar={userBar}
+                        setIsLoggedIn={setIsLoggedIn}
+                        isLoggedIn={isLoggedIn}
+                        setUserBar={setUserBar}
                       />
                     }
                   />

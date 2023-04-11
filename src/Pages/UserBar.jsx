@@ -105,6 +105,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               alt="img"
             />
           </li>
+
           {isLoggedIn ? (
             <>
               <li className="userBar__perfil" onClick={() => setUserBar(false)}>
@@ -135,6 +136,7 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                     : null}
                 </span>
               </li>
+
               <li
                 className="userBar__notifications"
                 onClick={() => setUserBar(false)}
@@ -142,6 +144,13 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 <Link to="/favourites" className="notificationlink ">
                   <span className="notificationIcon masEspacio">🤍</span>{' '}
                   {filtrarTraduccion(traduccionesBD, 'favourites', lenguage)}
+                </Link>
+              </li>
+              <li>
+                <Link to="/qrcode" className="linkToUserProfile">
+                  <p className="">
+                    <span className="notificationIcon">🔳</span> Compartir QR
+                  </p>
                 </Link>
               </li>
               <li className="userBar__logout" onClick={logoutUser}>
@@ -156,7 +165,13 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
               </li>
             </>
           ) : (
-            ''
+            <li>
+              <Link to="/qrcode" className="linkToUserProfile">
+                <p className="">
+                  <span className="notificationIcon">🔳</span>Compartir QR
+                </p>
+              </Link>
+            </li>
           )}
         </ul>
       </div>
