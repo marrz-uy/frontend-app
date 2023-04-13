@@ -1,25 +1,34 @@
 import '../Css/Faq.css';
 import { Layout } from '../Layout';
-
+import { useEffect } from 'react';
+// import Image1 from 'frontend-app\src\images\images\Screenshot-2023-03-30 144520.png'
+import Image1 from '../images/imagesFaq/ScreenShot1.png';
+import Image2 from '../images/imagesFaq/Screenshot 2023-03-30 144949.png';
+import Image3 from '../images/imagesFaq/Screenshot 2023-03-30 145329.png';
+import Image4 from '../images/imagesFaq/Screenshot 2023-03-30 145507.png';
+import Image5 from '../images/imagesFaq/Screenshot 2023-03-30 145621.png';
+import Image6 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';
+import Image7 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';  
+import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';  
+import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';  
+import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';  
 const Faq = () => {
 
-    const faqs = document.querySelectorAll(".faq");
+    useEffect(() => {
+        const faqs = document.querySelectorAll(".faq");
 
-    const handleFaq = (e) => {
         faqs.forEach(faq => {
-          if (e.target.id == faq.id) {
-            console.log("lalame mimosa")
-          }
+            faq.addEventListener("click", () => {
+                faq.classList.toggle("activeFaq");
+            })
         })
-        console.log("que te pasa bro");
-    }
+    }, [])
 
     return (
         <Layout>
             <section className='faq_container'>
-                <img src="./images//logoFeelSombreado.png" id="logo_feeluy" />
                 <h2 class="title">FAQs</h2>
-                <div class="faq" onClick={(e) => handleFaq(e)} id='faq1'>
+                <div class="faq">
                     <div class="question">
                         <h3>¿Cómo descargo FeelUy?</h3>
 
@@ -39,7 +48,7 @@ const Faq = () => {
                     </div>
                 </div>
 
-                <div class="faq" onClick={(e) => handleFaq(e)} id='faq2'>
+                <div class="faq">
                     <div class="question">
                         <h3>¿Cómo hago para crearme un usuario?</h3>
 
@@ -56,20 +65,20 @@ const Faq = () => {
                         <p>
                             En la página principal debe ir al menú que se encuentra al lado de la bandera (las 3 rayitas)
                             <br />
-                            <img src="./images/Screenshot 2023-03-30 144520.png" />
+                            <img src={Image1} />
                             En el menú seleccionar la opción que dice “Registrarse”
-                            <img src="./images//Screenshot 2023-03-30 144949.png" />
+                            <img src={Image2} />
                             Se le solicitará que ingrese:
                             Correo
                             Contraseña
                             Repetir la contraseña
                             Nombre
-                            <img src="./images/Screenshot 2023-03-30 145329.png" />
+                            <img src={Image3} />
                         </p>
                     </div>
                 </div>
 
-                <div class="faq" onClick={(e) => handleFaq(e)} id='faq3'>
+                <div class="faq">
                     <div class="question">
                         <h3>¿Cómo cambiar el idioma de FeelUy?</h3>
 
@@ -85,13 +94,13 @@ const Faq = () => {
                     <div class="answer">
                         <p>
                             FeelUy cuenta con Español e Inglés, si desea cambiar el idioma debe clickear sobre la bandera que se encuentra en la esquina superior derecha.
-                            <img src="./images/Screenshot 2023-03-30 145507.png" />
-                            <img src="./images/Screenshot 2023-03-30 145621.png" />
+                            <img src={Image4} />
+                            <img src={Image5} />
                         </p>
                     </div>
                 </div>
 
-                <div class="faq" onClick={(e) => handleFaq(e)} id='faq4'>
+                <div class="faq">
                     <div class="question">
                         <h3>¿Cómo puedo crear un nuevo tour?</h3>
 
@@ -107,14 +116,14 @@ const Faq = () => {
                     <div class="answer">
                         <p>
                             En el menú principal de FeelUy, seleccionar “Armar Mi Tour”
-                            <img src="./images/Screenshot 2023-03-30 145742.png" />
+                            <img src={Image6} />
                             Recordar tener en cuenta que para poder armar un tour debe iniciar sesión previamente
-                            <img src="./images/Screenshot 2023-03-30 145821.png" />
+                            <img src={Image7} />
                         </p>
                     </div>
                 </div>
 
-                <div class="faq as" onClick={(e) => handleFaq(e)} id='faq5'>
+                <div class="faq as">
                     <div class="question">
                         <h3>¿Cómo puedo acceder a los tours de la aplicación?</h3>
 
@@ -130,10 +139,10 @@ const Faq = () => {
                     <div class="answer">
                         <p>
                             En la pantalla principal de FeelUy, seleccionar “Tours Predefinidos”
-                            <img src="./images/Screenshot 2023-03-30 150050.png" />
+                            <img src={Image8} />
                             Podrá visualizar un listado de los Tours que se encuentran disponibles en la Aplicación.
-                            <img src="./images/Screenshot 2023-03-30 150130.png" />
-                            <img src="./images/Screenshot 2023-03-30 150207.png" />
+                            <img src={Image9} />
+                            <img src={Image10} />
                         </p>
                     </div>
                 </div>

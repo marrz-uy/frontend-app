@@ -3,11 +3,12 @@
 
 .faq_container {
     font-family: "Quicksand", sans-serif;
-    background-color: #00499d;
+    /* background-color: #eff3f7; */
     color: #FFFF;
     padding: 1rem;
     font-size: 1rem;
     margin-top: 5rem;
+    width: 100% ;
 }
 
 #logo_feeluy {
@@ -48,7 +49,7 @@ section {
     max-width: 700px;
     margin-top: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #000000;
     cursor: pointer;
     margin-bottom: 1rem;
     width: 100%;
@@ -86,12 +87,12 @@ section {
     /* object-fit: cover; */
 }
 
-.faq.active .answer {
+.faq.activeFaq .answer {
     max-height: 2300px;
     animation: fade 1s ease-in-out;
 }
 
-.faq.active svg {
+.faq.activeFaq svg {
     transform-origin: rotate(180deg);
 }
 
@@ -113,4 +114,8 @@ svg {
 
 .faq.as {
     margin-bottom: 5rem;
+}
+
+.activeFaq {
+    color: black;
 }

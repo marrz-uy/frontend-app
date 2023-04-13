@@ -6,6 +6,7 @@ import { faBrandsInstagram } from '@fortawesome/free-solid-svg-icons';
 import '../Css/Footer.css';
 import '../Css/NewFooter.css';
 import FeelUy from '../images/feel2.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -25,7 +26,8 @@ const Footer = () => {
             <p>MARRZ, es una empresa dedicada a el desarrollo de software a pedido.
               Nos especializamos en aplicaciones enteramentes webs (sin necesidad de disponer hardware)
             </p> */}
-            <h2>Preguntas Frecuentes</h2>
+            {/* <h2>Preguntas Frecuentes</h2> */}
+            <Link to='/faq'><h2>Preguntas Frecuentes</h2></Link>
           </div>
           <div class="box2">
             <h2>Siguenos</h2>
