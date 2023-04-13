@@ -17,10 +17,10 @@
     "dexie-react-hooks": "^1.1.1",
     "jwt-decode": "^3.1.2",
     "pusher-js": "^8.0.0",
-    "react": "17.0.2",
+    "react": "^16.13.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-chrono": "1.16.0",
-    "react-dom": "17.0.2",
+    "react-dom": "^16.13.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
@@ -42,7 +42,7 @@
     "workbox-streams": "^6.5.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

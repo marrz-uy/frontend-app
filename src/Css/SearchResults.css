@@ -272,15 +272,14 @@ h6 {
 }
 
 .filtro_results {
-	position: absolute;
+	position: fixed;
 	width: 100vw;
-	height: 100vh;
 	left: 0;
-	top: 10%;
+	/* top: 10%; */
 	box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%);
 	background-color: rgba(239, 239, 240, 1);
-	/* margin-top: 2rem; */
-	margin-top: -1rem;
+		height: 100vh;
+		margin-top: 5rem;
 }
 
 /* .filtro_tipos {
@@ -291,8 +290,8 @@ h6 {
 @media screen and (min-width: 800px) {
 	.filtro_results {
 		width: 200px;
-		margin-top: 0;
-		top: 15%;
+		position: absolute;
+		margin-top: 7rem;
 	}
 
 	.filtr_results p {
@@ -434,6 +433,12 @@ label {
 	padding-left: 10%;
 }
 
+@media screen and (min-width: 800px) {
+	.filtro_container_btn {
+		display: none;
+	}
+}
+
 .filtro_btn {
 	padding: 0.5rem;
 }
@@ -477,4 +482,24 @@ label {
 .buttonFilter {
 	width: 30px;
 	height: 30px;
+}
+
+.filtro_container_btn {
+	display: block;
+	position: relative;
+	left: -9%;
+	margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+	.filtro_container_btn {
+		display: none;
+	}
+}
+
+.info_container_card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
 }

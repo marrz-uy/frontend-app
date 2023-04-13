@@ -1,31 +1,20 @@
-import React, { useContext } from 'react';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBrandsInstagram } from '@fortawesome/free-solid-svg-icons';
-import '../Css/Footer.css';
-import '../Css/NewFooter.css';
-import FeelUy from '../images/feel2.png';
-
-const Footer = () => {
-  const { traduccionesBD, lenguage } = useContext(LenguageContext);
-
-  return (
-    <footer class="pie-pagina">
+const NewFooter = () => {
+    console.log('llamate');
+    return (
+        <footer class="pie-pagina">
         <div class="grupo-1">
           <div class="box2">
             <figure>
               <a href="#">
-                <img src={FeelUy} alt=""/>
+                <img src="../images/feel2.png" alt=""/>
               </a>
             </figure>
           </div>
           <div class="box2">
-            {/* <h2>Sobre nosotros</h2>
+            <h2>Sobre nosotros</h2>
             <p>MARRZ, es una empresa dedicada a el desarrollo de software a pedido.
               Nos especializamos en aplicaciones enteramentes webs (sin necesidad de disponer hardware)
-            </p> */}
-            <h2>Preguntas Frecuentes</h2>
+            </p>
           </div>
           <div class="box2">
             <h2>Siguenos</h2>
@@ -45,11 +34,7 @@ const Footer = () => {
           <small>&copy; 2021 <b>MARRZ</b> - Todos los Derechos Reservados</small>
         </div>
         </footer>
+    )
+}
 
-
-  );
-};
-
-export default Footer;
-
-
+export default NewFooter

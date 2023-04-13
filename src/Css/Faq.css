@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
+
+
+.faq_container {
+    font-family: "Quicksand", sans-serif;
+    background-color: #00499d;
+    color: #FFFF;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 5rem;
+}
+
+#logo_feeluy {
+    position: absolute;
+    top: 4.5%;
+    left: 3%;
+    width: 90px;
+    height: 70px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    /* margin: 1rem; */
+}
+
+@media screen and (min-width: 600px) {
+    .section {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        width: 90%;
+        margin: 0 auto;
+        gap: 2rem;
+        flex-direction: column;
+    }
+}
+
+.title {
+    font-size: 3rem;
+    margin: 2rem 0rem;
+}
+
+.faq {
+    max-width: 700px;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question h3 {
+    font-size: 1.8rem;
+}
+
+.answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.answer p {
+    padding-top: 1rem;
+    line-height: 1.6;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.answer p img {
+    width: 600px;
+    /* height: 300px; */
+    /* object-fit: cover; */
+}
+
+.faq.active .answer {
+    max-height: 2300px;
+    animation: fade 1s ease-in-out;
+}
+
+.faq.active svg {
+    transform-origin: rotate(180deg);
+}
+
+svg {
+    transition: transform 0.5s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+}
+
+.faq.as {
+    margin-bottom: 5rem;
+}

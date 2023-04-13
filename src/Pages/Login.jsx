@@ -252,7 +252,6 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           </div>
         </form>
       </div>
-
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}

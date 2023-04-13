@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { SplashScreen } from './Pages/SplashScreen';
@@ -20,6 +20,7 @@ import BuildMyTour from '../src/Pages/BuildTour/BuildMyTour';
 import PredefinedTour from './Pages/BuildTour/PredefinedTour';
 import Notifications from './Pages/Notifications';
 import Favourites from './Pages/Favourites';
+import Faq from './Pages/Faq';
 import ForgetPassword from '../src/Pages/ForgetPassword';
 import './App.css';
 import '../src/Css/Toast.css';
@@ -334,6 +335,12 @@ function App() {
                         setUserBar={setUserBar}
                         setDestination={setDestination}
                       />
+                    }
+                  />
+                  <Route
+                    path='/faq'
+                    element={
+                      <Faq/>
                     }
                   />
                   <Route

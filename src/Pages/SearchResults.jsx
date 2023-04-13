@@ -9,6 +9,8 @@ import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Filter from './Filter';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFilter} from '@fortawesome/free-solid-svg-icons';
 
 const SearchResults = ({
   items,
@@ -275,6 +277,9 @@ const SearchResults = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
+      <div className='filtro_container_btn'>
+          <button className='btnSearch filters' onClick={() => setHandleFilter(!handleFilter)}><FontAwesomeIcon icon={faFilter} />Filtros</button>
+        </div>
         <h6 className="resultsText">
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
