@@ -219,6 +219,11 @@ const PuntoInteresInfo = ({
                   </span>
                   {destination.Direccion}
                 </p>
+                <p>
+                  <span>Telefono: </span>
+                  {destination?.telefono?.Telefono ||
+                    'No tiene numero telefonico'}
+                </p>
               </div>
               <div className="puntoInteres__info__datos2">
                 <p className="puntoInteres__info__descripcion">
@@ -405,7 +410,7 @@ const PuntoInteresInfo = ({
                           lenguage
                         )}
                       </td>
-                      <td>{destination.MenuInfantil === 1 ? '✅ ' : '❌'}</td>
+                      <td>{destination?.MenuInfantil === 1 ? '✅ ' : '❌'}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -425,17 +430,25 @@ const PuntoInteresInfo = ({
                 :{' '}
               </h2>
               <div>
-                <a href={destination.Instagram}>
+                <a href={destination?.Instagram} target="_blank">
                   <img
                     src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
                     alt="instagram"
                   />
                 </a>
-                <a href={destination.Faceebok}>
+                <a href={destination?.Facebook} target="_blank">
                   <img
                     src="https://img.icons8.com/fluency/48/000000/facebook.png"
                     alt="facebook"
-                  />
+                  />{' '}
+                  {}
+                </a>
+                <a href={destination?.Web} target="_blank">
+                  <img
+                    src="https://img.icons8.com/fluency/48/000000/domain.png"
+                    alt="web"
+                  />{' '}
+                  {}
                 </a>
               </div>
             </div>
