@@ -430,26 +430,33 @@ const PuntoInteresInfo = ({
                 :{' '}
               </h2>
               <div>
-                <a href={destination?.Instagram} target="_blank">
-                  <img
-                    src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
-                    alt="instagram"
-                  />
-                </a>
-                <a href={destination?.Facebook} target="_blank">
-                  <img
-                    src="https://img.icons8.com/fluency/48/000000/facebook.png"
-                    alt="facebook"
-                  />{' '}
-                  {}
-                </a>
-                <a href={destination?.Web} target="_blank">
-                  <img
-                    src="https://img.icons8.com/fluency/48/000000/domain.png"
-                    alt="web"
-                  />{' '}
-                  {}
-                </a>
+                {destination?.Instagram ? (
+                  <a href={destination?.Instagram} target="_blank">
+                    <img
+                      src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
+                      alt="instagram"
+                    />
+                  </a>
+                ) : null}
+                {destination?.Facebook ? (
+                  <a href={destination?.Facebook} target="_blank">
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/facebook.png"
+                      alt="facebook"
+                    />{' '}
+                    {}
+                  </a>
+                ) : null}
+
+                {destination?.Web ? (
+                  <a href={destination?.Web} target="_blank">
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/domain.png"
+                      alt="web"
+                    />{' '}
+                    {}
+                  </a>
+                ) : null}
               </div>
             </div>
           ) : (
