@@ -278,8 +278,11 @@ h6 {
 	/* top: 10%; */
 	box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%);
 	background-color: rgba(239, 239, 240, 1);
-		height: 100vh;
+		height: 200vh;
 		margin-top: 5rem;
+		overflow-x: scroll;
+		z-index: 1;
+
 }
 
 /* .filtro_tipos {

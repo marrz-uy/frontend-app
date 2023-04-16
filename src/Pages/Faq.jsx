@@ -1,6 +1,8 @@
+import { useEffect, useContext } from 'react';
+import LenguageContext from '../Context/LenguageContext';
 import '../Css/Faq.css';
 import { Layout } from '../Layout';
-import { useEffect } from 'react';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 // import Image1 from 'frontend-app\src\images\images\Screenshot-2023-03-30 144520.png'
 import Image1 from '../images/imagesFaq/ScreenShot1.png';
 import Image2 from '../images/imagesFaq/Screenshot 2023-03-30 144949.png';
@@ -13,6 +15,7 @@ import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';
 import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';  
 import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';  
 const Faq = () => {
+    const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
     useEffect(() => {
         const faqs = document.querySelectorAll(".faq");
@@ -30,7 +33,7 @@ const Faq = () => {
                 <h2 class="title">FAQs</h2>
                 <div class="faq">
                     <div class="question">
-                        <h3>¿Cómo descargo FeelUy?</h3>
+                        <h3>{filtrarTraduccion(traduccionesBD, 'ComoDescargo', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
                             <path
@@ -43,14 +46,14 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                            FeelUy es una aplicación web, por lo que no es necesario instalarla, solo necesita conexión a internet, abrir un navegador e ingresar al siguiente enlace: estevaaserelenlacedefeeluy.com
+                        {filtrarTraduccion(traduccionesBD, 'ComoDescargoAnswer', lenguage)}
                         </p>
                     </div>
                 </div>
 
                 <div class="faq">
                     <div class="question">
-                        <h3>¿Cómo hago para crearme un usuario?</h3>
+                        <h3>{filtrarTraduccion(traduccionesBD, 'ComoCrearUsuario', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
                             <path
@@ -63,16 +66,12 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                            En la página principal debe ir al menú que se encuentra al lado de la bandera (las 3 rayitas)
+                        {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer1', lenguage)}
                             <br />
                             <img src={Image1} />
-                            En el menú seleccionar la opción que dice “Registrarse”
+                            {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer2', lenguage)}
                             <img src={Image2} />
-                            Se le solicitará que ingrese:
-                            Correo
-                            Contraseña
-                            Repetir la contraseña
-                            Nombre
+                            {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer3', lenguage)}
                             <img src={Image3} />
                         </p>
                     </div>
@@ -80,7 +79,7 @@ const Faq = () => {
 
                 <div class="faq">
                     <div class="question">
-                        <h3>¿Cómo cambiar el idioma de FeelUy?</h3>
+                        <h3>{filtrarTraduccion(traduccionesBD, 'ComoCambiarIdioma', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
                             <path
@@ -93,7 +92,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                            FeelUy cuenta con Español e Inglés, si desea cambiar el idioma debe clickear sobre la bandera que se encuentra en la esquina superior derecha.
+                        {filtrarTraduccion(traduccionesBD, 'ComoCambiarIdiomaAnswer', lenguage)}
                             <img src={Image4} />
                             <img src={Image5} />
                         </p>
@@ -102,7 +101,7 @@ const Faq = () => {
 
                 <div class="faq">
                     <div class="question">
-                        <h3>¿Cómo puedo crear un nuevo tour?</h3>
+                        <h3>{filtrarTraduccion(traduccionesBD, 'ComoCrearTour', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
                             <path
@@ -115,9 +114,9 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                            En el menú principal de FeelUy, seleccionar “Armar Mi Tour”
+                        {filtrarTraduccion(traduccionesBD, 'ComoCrearTourAnswer1', lenguage)}
                             <img src={Image6} />
-                            Recordar tener en cuenta que para poder armar un tour debe iniciar sesión previamente
+                            {filtrarTraduccion(traduccionesBD, 'ComoCrearTourAnswer2', lenguage)}
                             <img src={Image7} />
                         </p>
                     </div>
@@ -125,7 +124,7 @@ const Faq = () => {
 
                 <div class="faq as">
                     <div class="question">
-                        <h3>¿Cómo puedo acceder a los tours de la aplicación?</h3>
+                        <h3>{filtrarTraduccion(traduccionesBD, 'ComoAccederTour', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
                             <path
@@ -138,9 +137,9 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                            En la pantalla principal de FeelUy, seleccionar “Tours Predefinidos”
+                        {filtrarTraduccion(traduccionesBD, 'ComoAccederTourAnswer1', lenguage)}
                             <img src={Image8} />
-                            Podrá visualizar un listado de los Tours que se encuentran disponibles en la Aplicación.
+                            {filtrarTraduccion(traduccionesBD, 'ComoAccederTourAnswer2', lenguage)}
                             <img src={Image9} />
                             <img src={Image10} />
                         </p>
