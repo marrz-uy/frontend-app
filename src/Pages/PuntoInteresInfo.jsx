@@ -220,9 +220,15 @@ const PuntoInteresInfo = ({
                   {destination.Direccion}
                 </p>
                 <p>
-                  <span>Telefono: </span>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'telephone', lenguage)}:{' '}
+                  </span>
                   {destination?.telefono?.Telefono ||
-                    'No tiene numero telefonico'}
+                    `${filtrarTraduccion(
+                      traduccionesBD,
+                      'noNumber',
+                      lenguage
+                    )}`}
                 </p>
               </div>
               <div className="puntoInteres__info__datos2">
