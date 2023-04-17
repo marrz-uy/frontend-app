@@ -1,4 +1,5 @@
 import { useEffect, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
 import { Layout } from '../Layout';
@@ -43,6 +44,33 @@ const Notifications = ({
     deleteNotifications(value);
   };
 
+  const regex = /(https?:\/\/[^\s]+)/g;
+
+  function isLink(text, regex) {
+    const match = regex.exec(text);
+    if (match !== null) {
+      return match[0];
+    }
+    return null;
+  }
+
+  function extraerLink(text) {
+    const regex = /(https?:\/\/[^\s]+)/g;
+    const url = regex.exec(text);
+    return url ? url[0] : null;
+  }
+
+  function extraerTextoSinLink(str) {
+    const regex = /(https?:\/\/[^\s]+)/g;
+    const match = regex.exec(str);
+
+    if (match) {
+      return str.replace(match[0], '');
+    } else {
+      return str;
+    }
+  }
+
   // console.log('NOTIS: ', notificaciones);
   // console.log('UNREAD: ', unreadsNotifications);
 
@@ -77,16 +105,35 @@ const Notifications = ({
               }
             >
               <summary className="summaryNotifications">
-                <span className="notificationTitle">{notificacion.title}</span>
+                <span className="notificationTitle">{notificacion?.title}</span>
               </summary>
               <div className="divNotificationMessage">
-                <h6
-                  className={
-                    notificacion.read === 'false' ? 'msg' : 'msg msgLeido'
-                  }
-                >
-                  {notificacion.message}
-                </h6>
+                {isLink ? (
+                  <div>
+                    <h6
+                      className={
+                        notificacion.read === 'false' ? 'msg' : 'msg msgLeido'
+                      }
+                    >
+                      {extraerTextoSinLink(notificacion.message)}
+                    </h6>
+                    <Link
+                      className="link"
+                      to={extraerLink(notificacion.message)}
+                      target="_blank"
+                    >
+                      {extraerLink(notificacion.message)}
+                    </Link>
+                  </div>
+                ) : (
+                  <h6
+                    className={
+                      notificacion.read === 'false' ? 'msg' : 'msg msgLeido'
+                    }
+                  >
+                    {notificacion.message}
+                  </h6>
+                )}
               </div>
               <span className="deleteIcon">
                 <img

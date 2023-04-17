@@ -51,6 +51,11 @@
 	align-items: center;
 }
 
+.link {
+	padding-top: 20px;
+	font-size: .8rem;
+}
+
 .msg {
 	color: rgb(56, 56, 56);
 	padding-top: 20px;
