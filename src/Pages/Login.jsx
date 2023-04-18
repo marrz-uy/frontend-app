@@ -149,11 +149,14 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           setLoginErrorMessage(
             'No existe el usuario, debe registrarse previamente'
           );
+          setTimeout(() => {
+            navigate('/register');
+          }, 1500);
         }
       });
     setTimeout(() => {
       navigate('/');
-    }, 2000);
+    }, 1500);
   };
 
   const handleFailure = () => {
