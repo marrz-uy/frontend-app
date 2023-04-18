@@ -272,7 +272,7 @@ h6 {
 }
 
 .filtro_results {
-	position: fixed;
+	position: absolute;
 	width: 100vw;
 	left: 0;
 	/* top: 10%; */
@@ -295,6 +295,7 @@ h6 {
 		width: 200px;
 		position: absolute;
 		margin-top: 7rem;
+		height: unset;
 	}
 
 	.filtr_results p {

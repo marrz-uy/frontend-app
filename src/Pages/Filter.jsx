@@ -82,7 +82,8 @@ const Filtros = ({
       setTipoToFilter('Transporte');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Discoteca' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Casino'
+      puntodeInteresTipo?.categoria?.Tipo === 'Casino' || 
+      puntodeInteresTipo?.categoria?.Tipo === 'Pool' 
     ) {
       /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
       setTipoToFilter('Actividades Nocturnas');

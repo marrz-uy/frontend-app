@@ -87,6 +87,7 @@
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
+	margin-top: 10%;
 }
 /* 
 .pie-pagina:before {

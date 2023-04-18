@@ -277,6 +277,7 @@ const SearchResults = ({
         });
     }
   }, [datos]);
+
   // console.log('tipo de dato', typeof datos?.current_page);
   return (
     <Layout>

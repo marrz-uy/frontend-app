@@ -348,7 +348,7 @@ function App() {
                     path='/filter'
                     element={
                       <Filter
-                     /*    latitud={latitud}
+                    /* latitud={latitud}
                         longitud={longitud}
                         distanciaAEnviar={distanciaAEnviar}
                         setDistanciaAEnviar={setDistanciaAEnviar}
@@ -365,7 +365,7 @@ function App() {
                         tipoToFilter={tipoToFilter}
                         setTipoToFilter={setTipoToFilter}
                         handleGetFilterEventos={handleGetFilterEventos}
-                        mobileScreenActive={mobileScreenActive} */
+                        mobileScreenActive={mobileScreenActive}  */
                       />
                     }
                   />
