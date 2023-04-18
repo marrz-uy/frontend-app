@@ -150,7 +150,6 @@ const TourStep1 = () => {
               <p>{filtrarTraduccion(traduccionesBD, 'group', lenguage)}</p>
               <p>{filtrarTraduccion(traduccionesBD, 'family', lenguage)}</p>
               <p>{filtrarTraduccion(traduccionesBD, 'couple', lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD, 'only', lenguage)}</p>
             </div>
             <div className="preferencesInput">
               <input
@@ -169,12 +168,6 @@ const TourStep1 = () => {
                 type="radio"
                 name="cantPersonas"
                 value="Pareja"
-                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
-              ></input>
-              <input
-                type="radio"
-                name="cantPersonas"
-                value="Solo"
                 onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
             </div>

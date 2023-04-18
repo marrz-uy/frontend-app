@@ -25,12 +25,8 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  // console.log('DESTINATION: ', destination);
   let arrayImagenes = destination.imagenes;
-  // console.log('arrayImagenes-INFO: ', arrayImagenes);
   const arrURLS = arrayImagenes?.map((imagen) => imagen?.url.replace(/"/g, ''));
-  // console.log('arr-INFO: ', arrURLS);
-  // console.log('arr-LARGO: ', arrURLS?.length);
 
   const { http } = AuthUser();
   const navigate = useNavigate();
@@ -77,6 +73,7 @@ const PuntoInteresInfo = ({
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     GetIdsFavouritesFromDB(user_Id);
     setTimeout(() => {
       // if (isLoggedIn) {
@@ -87,14 +84,6 @@ const PuntoInteresInfo = ({
     if (destination?.Calificaciones) {
       setHotelStars(stars());
     }
-    // console.log('%cSTARS: ', 'color:blue;', stars());
-    // console.log(
-    //   '%cCALIFICACIONES: ',
-    //   'color:pink;',
-    //   destination.Calificaciones
-    // );
-
-    // console.log('ARRAY IDS: ', idsFavouritesFromDB);
 
     setActivePage('PuntoInteresInfo');
 
@@ -146,7 +135,6 @@ const PuntoInteresInfo = ({
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
-
       <div className="puntoInteresInfo">
         <div className="divBackbtn">
           <button className="backBtn" onClick={() => handleCategories()}>
