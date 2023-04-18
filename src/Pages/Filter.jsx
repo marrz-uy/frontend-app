@@ -18,6 +18,7 @@ const Filtros = ({
   tipoToFilter,
   setTipoToFilter,
   handleGetFilterEventos,
+  mobileScreenActive
 }) => {
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);

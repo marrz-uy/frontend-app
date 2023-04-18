@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
@@ -9,12 +9,15 @@ import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/UserBar.css';
+import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
-const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
+
+const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar, mobileScreenActive }) => {
   const { traduccionesBD, lenguage, handleLenguage } =
     useContext(LenguageContext);
   const { logout, token } = AuthUser();
   const navigate = useNavigate();
+  const [mobileScreenActiveUserBar, setMobileScreenActiveUserBar] = useState(false);
 
   const logoutUser = () => {
     if (token) {
@@ -27,6 +30,12 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
       setUserBar(false);
     }
   };
+
+  useEffect(() => {
+    if (window.screen.width <= 810) {
+      setMobileScreenActiveUserBar(true);
+    }
+  }, [])
 
   const unreadsNotifications = useLiveQuery(async () => {
     return await db.myNotifications.where('read').equals('false').count();
@@ -75,13 +84,14 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 <span className="unreadNotification">
                   {unreadsNotifications > 0
                     ? `${filtrarTraduccion(
-                        traduccionesBD,
-                        'new',
-                        lenguage
-                      )}(${unreadsNotifications})`
+                      traduccionesBD,
+                      'new',
+                      lenguage
+                    )}(${unreadsNotifications})`
                     : null}
                 </span>
               </li>
+             
             </>
           ) : (
             ''
@@ -128,10 +138,10 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                 <span className="unreadNotification">
                   {unreadsNotifications > 0
                     ? `${filtrarTraduccion(
-                        traduccionesBD,
-                        'new',
-                        lenguage
-                      )}(${unreadsNotifications})`
+                      traduccionesBD,
+                      'new',
+                      lenguage
+                    )}(${unreadsNotifications})`
                     : null}
                 </span>
               </li>
@@ -158,6 +168,16 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
           ) : (
             ''
           )}
+           {mobileScreenActiveUserBar && (
+                <li className='userBar__faq' onClick={() => setUserBar(false)}>
+                <Link
+                  to="/faq"
+                >
+                  <span><FontAwesomeIcon icon={faCircleQuestion} className='userBar__iconFaq'/></span>{' '}
+                  Faq
+                </Link>
+              </li>
+              )}
         </ul>
       </div>
     </nav>

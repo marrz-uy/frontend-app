@@ -1,4 +1,4 @@
- import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { SplashScreen } from './Pages/SplashScreen';
@@ -21,6 +21,7 @@ import PredefinedTour from './Pages/BuildTour/PredefinedTour';
 import Notifications from './Pages/Notifications';
 import Favourites from './Pages/Favourites';
 import Faq from './Pages/Faq';
+import Filter from './Pages/Filter';
 import ForgetPassword from '../src/Pages/ForgetPassword';
 import './App.css';
 import '../src/Css/Toast.css';
@@ -340,7 +341,32 @@ function App() {
                   <Route
                     path='/faq'
                     element={
-                      <Faq/>
+                      <Faq />
+                    }
+                  />
+                  <Route
+                    path='/filter'
+                    element={
+                      <Filter
+                     /*    latitud={latitud}
+                        longitud={longitud}
+                        distanciaAEnviar={distanciaAEnviar}
+                        setDistanciaAEnviar={setDistanciaAEnviar}
+                        getBackgroundSize={getBackgroundSize}
+                        loaded={loaded}
+                        handleDistance={handleDistance}
+                        puntodeInteresTipo={puntodeInteresTipo}
+                        setHandleFilter={setHandleFilter}
+                        allFilters={allFilters}
+                        setAllFilters={setAllFilters}
+                        filtersToSend={filtersToSend}
+                        setFiltersToSend={setFiltersToSend}
+                        handleGetFIlters={handleGetFIlters}
+                        tipoToFilter={tipoToFilter}
+                        setTipoToFilter={setTipoToFilter}
+                        handleGetFilterEventos={handleGetFilterEventos}
+                        mobileScreenActive={mobileScreenActive} */
+                      />
                     }
                   />
                   <Route

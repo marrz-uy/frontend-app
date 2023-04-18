@@ -88,6 +88,7 @@ const SearchResults = ({
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
   const [puntodeInteresId, setPuntodeInteresId] = useState();
+  const [mobileScreenActive, setMobileScreenActive] = useState(false);
 
   useEffect(() => {
     setPage('results');
@@ -101,6 +102,7 @@ const SearchResults = ({
     }
     if (window.screen.width <= 810) {
       setHandleFilter(false);
+      setMobileScreenActive(true);
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
@@ -232,6 +234,9 @@ const SearchResults = ({
         // console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+      if (mobileScreenActive) {
+        setHandleFilter(false);
+      }
   };
 
   const handleGetFilterEventos = () => {
@@ -384,6 +389,7 @@ const SearchResults = ({
           tipoToFilter={tipoToFilter}
           setTipoToFilter={setTipoToFilter}
           handleGetFilterEventos={handleGetFilterEventos}
+          mobileScreenActive={mobileScreenActive}
         />
       )}
 
@@ -448,6 +454,7 @@ const SearchResults = ({
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           setUserBar={setUserBar}
+          mobileScreenActive={mobileScreenActive}
         />
       )}
     </Layout>

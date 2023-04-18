@@ -36,13 +36,13 @@ const Footer = () => {
               icon={faInstagram}
               className="fa fa-facebook"
             /> */}
-            <a href="#" class="fa fa-instagram">
+            <a href="https://www.instagram.com/feeluruguay/" class="fa fa-instagram">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <a href="#" class="fa fa-twitter">
+            <a href="https://www.facebook.com/profile.php?id=100091526935097&mibextid=LQQJ4d" class="fa fa-twitter">
               <FontAwesomeIcon icon={faFacebook} />
             </a>
-            <a href="#" class="fa fa-youtube">
+            <a href="mailto:marrz2022@gmail.com?Subject=Aplicacion%20Web" class="fa fa-youtube">
               <FontAwesomeIcon icon={faEnvelope} />
             </a>
           </div>

@@ -10,10 +10,10 @@ import Image3 from '../images/imagesFaq/Screenshot 2023-03-30 145329.png';
 import Image4 from '../images/imagesFaq/Screenshot 2023-03-30 145507.png';
 import Image5 from '../images/imagesFaq/Screenshot 2023-03-30 145621.png';
 import Image6 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';
-import Image7 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';  
-import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';  
-import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';  
-import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';  
+import Image7 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';
+import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';
+import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';
+import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';
 const Faq = () => {
     const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
@@ -33,6 +33,29 @@ const Faq = () => {
                 <h2 class="title">FAQs</h2>
                 <div class="faq">
                     <div class="question">
+                        <h3>{filtrarTraduccion(traduccionesBD, 'QueEsFeelUy', lenguage)}</h3>
+
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path
+                                d="M3 3L21 21L39 3"
+                                stroke="white"
+                                stroke-width="7"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            {filtrarTraduccion(traduccionesBD, 'QueEsFeelUyAnswer', lenguage)}
+                        </p>
+                    </div>
+                </div>
+                <div class="faq">
+
+
+
+
+                    <div class="question">
                         <h3>{filtrarTraduccion(traduccionesBD, 'ComoDescargo', lenguage)}</h3>
 
                         <svg width="15" height="10" viewBox="0 0 42 25">
@@ -46,7 +69,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                        {filtrarTraduccion(traduccionesBD, 'ComoDescargoAnswer', lenguage)}
+                            {filtrarTraduccion(traduccionesBD, 'ComoDescargoAnswer', lenguage)}
                         </p>
                     </div>
                 </div>
@@ -66,7 +89,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                        {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer1', lenguage)}
+                            {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer1', lenguage)}
                             <br />
                             <img src={Image1} />
                             {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuarioAnswer2', lenguage)}
@@ -92,7 +115,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                        {filtrarTraduccion(traduccionesBD, 'ComoCambiarIdiomaAnswer', lenguage)}
+                            {filtrarTraduccion(traduccionesBD, 'ComoCambiarIdiomaAnswer', lenguage)}
                             <img src={Image4} />
                             <img src={Image5} />
                         </p>
@@ -114,7 +137,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                        {filtrarTraduccion(traduccionesBD, 'ComoCrearTourAnswer1', lenguage)}
+                            {filtrarTraduccion(traduccionesBD, 'ComoCrearTourAnswer1', lenguage)}
                             <img src={Image6} />
                             {filtrarTraduccion(traduccionesBD, 'ComoCrearTourAnswer2', lenguage)}
                             <img src={Image7} />
@@ -137,7 +160,7 @@ const Faq = () => {
                     </div>
                     <div class="answer">
                         <p>
-                        {filtrarTraduccion(traduccionesBD, 'ComoAccederTourAnswer1', lenguage)}
+                            {filtrarTraduccion(traduccionesBD, 'ComoAccederTourAnswer1', lenguage)}
                             <img src={Image8} />
                             {filtrarTraduccion(traduccionesBD, 'ComoAccederTourAnswer2', lenguage)}
                             <img src={Image9} />
