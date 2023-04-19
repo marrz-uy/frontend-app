@@ -10,7 +10,6 @@ import '../Css/Slider.css';
 import sinImagen from '../Assets/sinimagen.png';
 
 export const Slider = ({
-  arrayimages,
   sliderPoints,
   title,
   description,

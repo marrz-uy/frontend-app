@@ -8,7 +8,6 @@ import 'swiper/modules/navigation/navigation.min.css';
 import AuthUser from './AuthUser';
 
 export const SliderEvents = ({
-  arrayimages,
   sliderPoints,
   title,
   description,

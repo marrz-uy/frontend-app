@@ -197,7 +197,6 @@ h6 {
 	color: #8f8f8f;
 }
 
-
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
 
@@ -270,20 +269,22 @@ h6 {
 .filtro_results {
 	position: absolute;
 	width: 100vw;
-	height: 100vh;
 	left: 0;
-	top: 10%;
 	box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%);
 	background-color: rgba(239, 239, 240, 1);
-	/* margin-top: 2rem; */
-	margin-top: -1rem;
+	height: 200vh;
+	margin-top: 5rem;
+	overflow-x: scroll;
+	z-index: 1;
+
 }
 
 @media screen and (min-width: 800px) {
 	.filtro_results {
 		width: 200px;
-		margin-top: 0;
-		top: 15%;
+		position: absolute;
+		margin-top: 7rem;
+		height: unset;
 	}
 
 	.filtr_results p {
@@ -297,6 +298,7 @@ h6 {
 	.filtro_tipos h3 {
 		font-size: 12px;
 	}
+
 }
 
 /* @media screen and (min-width: 1000px) {} */
@@ -325,18 +327,14 @@ h6 {
 	.filtro_tipos label {
 		font-size: 19px;
 	}
-}
 
+}
 
 @media screen and (min-width: 1400px) {
 	.filtro_results {
 		width: 250px;
 	}
 }
-
-
-
-
 
 .filtro_back {
 	display: flex;
@@ -360,6 +358,7 @@ label {
 
 .filtro_results h1 {
 	padding: 2rem 0 0 2rem;
+	/* margin-bottom: ; */
 }
 
 .filtro_gastronomia {
@@ -407,6 +406,12 @@ label {
 	padding-left: 10%;
 }
 
+@media screen and (min-width: 800px) {
+	.filtro_container_btn {
+		display: none;
+	}
+}
+
 .filtro_btn {
 	padding: 0.5rem;
 }
@@ -448,4 +453,24 @@ label {
 .buttonFilter {
 	width: 30px;
 	height: 30px;
+}
+
+.filtro_container_btn {
+	display: block;
+	position: relative;
+	left: -9%;
+	margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+	.filtro_container_btn {
+		display: none;
+	}
+}
+
+.info_container_card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
 }

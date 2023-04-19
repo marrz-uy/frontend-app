@@ -1,4 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
@@ -26,7 +28,6 @@ const SearchResults = ({
   longitud,
 }) => {
   const { http } = AuthUser();
-
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState('');
@@ -59,33 +60,22 @@ const SearchResults = ({
     FechaInicio: null,
     TipoEvento: null,
   });
+
   const [tipoToFilter, setTipoToFilter] = useState('');
-  const [filtersOn, setFiltersOn] = useState(false);
-  const [datosTwo, setDatosTwo] = useState([]);
+  // const [filtersOn, setFiltersOn] = useState(false);
+  // const [datosTwo, setDatosTwo] = useState([]);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
   }
 
-  // console.log('SEARCH TYPE:', searchType);
-  // console.log('TEXT RESULTS', text, typeof text);
-  // console.log('CATEGORIA', text);
-
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
-
-  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
-
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
-  const [puntodeInteresId, setPuntodeInteresId] = useState();
+  // const [puntodeInteresId, setPuntodeInteresId] = useState();
+  const [mobileScreenActive, setMobileScreenActive] = useState(false);
 
   useEffect(() => {
     setPage('results');
@@ -99,24 +89,10 @@ const SearchResults = ({
     }
     if (window.screen.width <= 810) {
       setHandleFilter(false);
+      setMobileScreenActive(true);
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
-
-  /* const getData = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    http
-      .post(`${items?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  }; */
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
@@ -230,6 +206,9 @@ const SearchResults = ({
         // console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+    if (mobileScreenActive) {
+      setHandleFilter(false);
+    }
   };
 
   const handleGetFilterEventos = () => {
@@ -262,19 +241,30 @@ const SearchResults = ({
       http
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
-          setPuntodeInteresTipo(res.data.categoria.Tipo);
-          console.log('aaaaa', res.data.categoria.Tipo);
+          setPuntodeInteresTipo(res.data);
+          // console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [datos]);
-  console.log('DATOS.DATA:->', datos?.data);
+
+  // console.log('tipo de dato', typeof datos?.current_page);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="results ">
+        <div className="filtro_container_btn">
+          <button
+            className="btnSearch filters"
+            onClick={() => setHandleFilter(!handleFilter)}
+          >
+            <FontAwesomeIcon icon={faFilter} />
+            Filtros
+          </button>
+        </div>
         <h6 className="resultsText">
           {!datos?.data
             ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
@@ -334,10 +324,10 @@ const SearchResults = ({
               <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
             </div>
           ) : (
-            datos?.data?.map((dato, index) => {
+            datos?.data?.map((dato) => {
               return (
                 <ResultsCard
-                  key={index}
+                  key={dato?.id}
                   nombre={dato?.Nombre}
                   nombreEvento={dato?.NombreEvento}
                   lugarDeEvento={dato?.Nombre}
@@ -348,7 +338,7 @@ const SearchResults = ({
                   horaInicio={dato?.HoraDeApertura}
                   horaFin={dato?.HoraDeCierre}
                   tipoEvento={dato?.TipoEvento}
-                  tipo={dato?.Tipo && puntodeInteresTipo}
+                  tipo={dato?.Tipo}
                   caracteristicas={dato?.Contacto}
                   imagen={dato?.imagenes[0]?.url}
                   setDestination={setDestination}
@@ -379,6 +369,7 @@ const SearchResults = ({
           tipoToFilter={tipoToFilter}
           setTipoToFilter={setTipoToFilter}
           handleGetFilterEventos={handleGetFilterEventos}
+          mobileScreenActive={mobileScreenActive}
         />
       )}
 
@@ -443,6 +434,7 @@ const SearchResults = ({
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           setUserBar={setUserBar}
+          mobileScreenActive={mobileScreenActive}
         />
       )}
     </Layout>

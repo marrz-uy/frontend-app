@@ -1,0 +1,228 @@
+/* Footer */
+#footer {
+	background-color: #00499d;
+	position: relative;
+	z-index: 1000;
+	overflow: hidden;
+}
+
+#footer .footer {
+	min-height: 200px;
+	flex-direction: column;
+	padding-top: 50px;
+	padding-bottom: 10px;
+}
+
+#footer h2 {
+	color: white;
+	font-weight: 500;
+	font-size: 1.8rem;
+	letter-spacing: 0.1rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#footer .social-icon {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+#footer .social-item {
+	height: 50px;
+	width: 50px;
+	margin: 0 5px;
+}
+
+#footer .social-item img {
+	filter: grayscale(1);
+	transition: 0.3s ease filter;
+}
+
+#footer .social-item:hover img {
+	filter: grayscale(0);
+}
+
+#footer p {
+	color: white;
+	font-size: 1.3rem;
+}
+
+/* Footer */
+.pie-pagina {
+	width: 100%;
+	background-color: #00499d;
+	position: relative;
+	z-index: 1000;
+	overflow: hidden;
+	box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.6);
+	margin-top: 10%;
+}
+
+.box2 {
+	text-align: center;
+}
+
+.pie-pagina .grupo-1 {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 50px;
+	padding: 45px 0px;
+	justify-content: center;
+	align-items: center;
+}
+
+.pie-pagina .grupo-1 .box2 figure {
+	width: 100%;
+	height: 100%;
+	display: flex;
+
+}
+
+.pie-pagina .grupo-1 .box2 figure img {
+	width: 250px;
+}
+
+.pie-pagina .grupo-1 .box2 h2 {
+	color: #fff;
+	margin-bottom: 25px;
+	font-size: 20px;
+	align-items: center;
+	justify-content: center;
+}
+
+.pie-pagina .grupo-1 .box2 p {
+	color: #efefef;
+	margin-bottom: 10px;
+}
+
+.pie-pagina .grupo-1 .red-social a {
+	display: inline-block;
+	text-decoration: none;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	color: #fff;
+	margin-right: 10px;
+	background-color: rgba(25, 126, 227, 0.2);
+	text-align: center;
+	transition: all .5s ease;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.fa {
+	border-radius: 5px;
+}
+
+.pie-pagina .grupo-1 .red-social a img {
+	width: 100%;
+	height: 100%;
+}
+
+.pie-pagina .grupo-1 .red-social a:hover {
+	color: aqua;
+}
+
+.pie-pagina .grupo-2 {
+	background-color: #197ee3;
+	padding: 15px 10px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.pie-pagina .grupo-2::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	opacity: 0.55;
+	z-index: -1;
+}
+
+.pie-pagina .grupo-2 small {
+	font-size: 15px;
+}
+
+@media screen and (max-width: 800px) {
+	.pie-pagina .grupo-1 {
+		width: 90%;
+		grid-template-columns: repeat(1, 1fr);
+		grid-gap: 30px;
+		padding: 35px 0;
+	}
+
+	.pie-pagina {
+		display: none;
+	}
+}
+
+/* End Footer */
+
+/* Keyframes */
+@keyframes hamburger_puls {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.4);
+	}
+}
+
+@keyframes text_reveal_box {
+	50% {
+		width: 100%;
+		left: 0;
+	}
+
+	100% {
+		width: 0;
+		left: 100%;
+	}
+}
+
+@keyframes text_reveal {
+	100% {
+		color: white;
+	}
+}
+
+@keyframes text_reveal_name {
+	100% {
+		color: crimson;
+		font-weight: 500;
+	}
+}
+
+/* End Keyframes */
+
+.redirectToFaq {
+	display: flex;
+	gap: 1rem;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+.redirectFaq:hover .redirectToFaq .iconFaq {
+	color: aqua;
+}
+
+.redirectToFaq:hover h2 {
+	color: aqua;
+}
+
+.iconFaq {
+	color: #FFF;
+}
