@@ -53,7 +53,6 @@ const Favourites = ({
     console.log('TARGET ID', e.target.id);
     GetFavouritesFromDB(userId);
   };
-  // console.log('FAVORITOS: ', favouritesFromDB[0].imagenes[0]);
 
   handleUserBar(userBar);
 

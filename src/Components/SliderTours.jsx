@@ -13,7 +13,6 @@ export const SliderTours = ({
   description,
 }) => {
   const navigate = useNavigate();
-  // console.log('SLIDER 3-SLIDER: ', sliderPoints);
 
   const goToPredefinedTours = async (e) => {
     navigate('/predefined');

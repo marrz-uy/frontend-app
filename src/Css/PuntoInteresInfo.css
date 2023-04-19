@@ -39,7 +39,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* background-color: aquamarine; */
 }
 
 .puntoInteres__info__tipo {
@@ -200,7 +199,6 @@
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
-
 }
 
 .puntoInteres__especificaciones__datos p {
@@ -256,7 +254,6 @@
         margin-top: 105px;
         width: 100%;
         align-items: center;
-        /* background-color: rgb(218, 119, 80); */
     }
 
     .puntoInteres__container {

@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
 import { Layout } from '../Layout';
@@ -21,7 +21,6 @@ const Notifications = ({
   const handleReadNotifications = async (e) => {
     e.preventDefault();
     let indice = +e.target.id;
-    // console.log('leida: ', indice);
     await db.myNotifications.update(indice, { read: 'true' });
   };
 
@@ -71,9 +70,6 @@ const Notifications = ({
     }
   }
 
-  // console.log('NOTIS: ', notificaciones);
-  // console.log('UNREAD: ', unreadsNotifications);
-
   useEffect(() => {
     setPage('notifications');
   }, [setPage]);
@@ -109,7 +105,7 @@ const Notifications = ({
               </summary>
               <div className="divNotificationMessage">
                 {isLink ? (
-                  <div>
+                  <div className="notificationContent">
                     <h6
                       className={
                         notificacion.read === 'false' ? 'msg' : 'msg msgLeido'
@@ -117,6 +113,7 @@ const Notifications = ({
                     >
                       {extraerTextoSinLink(notificacion.message)}
                     </h6>
+
                     <Link
                       className="link"
                       to={extraerLink(notificacion.message)}

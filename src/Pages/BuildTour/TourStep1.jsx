@@ -42,7 +42,6 @@ const TourStep1 = () => {
     http
       .get(`/ciudades/`, {})
       .then((response) => {
-        // console.log('%cCiudades:', 'color: blue;', response?.data);
         setCiudades(response?.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -50,7 +49,6 @@ const TourStep1 = () => {
 
   useEffect(() => {
     getCities();
-    // console.log('CIUDADES: ', ciudades);
     // eslint-disable-next-line
   }, []);
 
@@ -189,7 +187,6 @@ const TourStep1 = () => {
               <select
                 className="ciudadesSelect"
                 onChange={(e) => setUbicacion(e.target.value)}
-                // defaultValue={(e) => setUbicacion(e.target.value)}
                 value={ubicacion}
                 id="ciudadesSelect"
               >

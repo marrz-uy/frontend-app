@@ -52,16 +52,6 @@ const TourInit = ({
           response?.data['0'].length
         );
         console.log('%cMis Tours:', 'color: green;', response?.data['0']);
-        // console.log(
-        //   '%cMis Tours:',
-        //   'color: red;',
-        //   response?.data['0']?.map((item) => item?.tour_items)
-        // );
-        // console.log(
-        //   '%cITEMS PARA HEREDAR:',
-        //   'color: blue;',
-        //   response?.data['0']['0'].tour_items.puntos_interes
-        // );
         setMisTours(response?.data['0']);
         setCantTours(response?.data['0'].length);
       })

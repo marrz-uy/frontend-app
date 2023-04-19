@@ -87,8 +87,6 @@
 
 .kilometros {
 	position: relative;
-	/* width: 8rem; */
-	/* background-color: #0a5eb7; */
 	color: #686868;
 	text-align: center;
 	border-radius: 50px;
@@ -134,7 +132,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 .btnSearch {
 	width: 5rem;
 	background-color: #0a5eb7;
-	/* color: #444; */
 	color: #f3f2f2;
 	box-shadow: .5rem .5rem 1rem #ccc,
 		-.5rem -.5rem 1rem #fff;
@@ -150,7 +147,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .btnSearchInactivo {
-	/* display: flex; */
 	background-color: gray;
 	color: #444;
 	box-shadow: .5rem .5rem 1rem #ccc,
@@ -283,11 +279,6 @@ h6 {
 	margin-top: -1rem;
 }
 
-/* .filtro_tipos {
-	text-align: center;
-	align-items: center;
-} */
-
 @media screen and (min-width: 800px) {
 	.filtro_results {
 		width: 200px;
@@ -306,13 +297,6 @@ h6 {
 	.filtro_tipos h3 {
 		font-size: 12px;
 	}
-
-	/* 	.llamame_mimosa input {
-		font-size: 12px;
-	}
-	.llamame_mimosa label {
-		font-size: 12px;
-	} */
 }
 
 /* @media screen and (min-width: 1000px) {} */
@@ -341,15 +325,8 @@ h6 {
 	.filtro_tipos label {
 		font-size: 19px;
 	}
-
-
 }
 
-/* @media screen and (min-width: 1250px) {
-	.filtro_results {
-		width: 200px;
-	}
-} */
 
 @media screen and (min-width: 1400px) {
 	.filtro_results {
@@ -362,11 +339,8 @@ h6 {
 
 
 .filtro_back {
-	/* background-color: rgba(239, 239, 240, 0.6); */
-	/* box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%); */
 	display: flex;
 	flex-direction: column;
-	/* gap: 1rem; */
 }
 
 .filtro_back input {
@@ -386,7 +360,6 @@ label {
 
 .filtro_results h1 {
 	padding: 2rem 0 0 2rem;
-	/* margin-bottom: ; */
 }
 
 .filtro_gastronomia {
@@ -465,12 +438,10 @@ label {
 	display: flex;
 	width: 100%;
 	flex-direction: row;
-	/* border-bottom: 1px solid black; */
 }
 
 .as {
 	border-bottom: 1px solid black;
-	/* padding-top: 0.5rem; */
 	padding-bottom: 0.5rem;
 }
 

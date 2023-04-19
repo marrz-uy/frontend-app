@@ -159,9 +159,6 @@ details .summary-chevron-down {
 	justify-content: center;
 }
 
-
-/* ----------------------- */
-
 .deleteIcon, .editIcon {
 	cursor: pointer;
 	position: relative;
@@ -257,8 +254,6 @@ editIcon .myToursCard {
 		box-shadow: none;
 		background-color: transparent;
 	}
-
-
 }
 
 /* large screens */

@@ -48,7 +48,6 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -68,7 +67,6 @@ const PuntoInteresInfo = ({
     for (let i = 0; i < destination.Calificaciones; i++) {
       allstars += star;
     }
-    // console.log(allstars);
     return allstars;
   };
 
@@ -76,9 +74,7 @@ const PuntoInteresInfo = ({
     window.scrollTo(0, 0);
     GetIdsFavouritesFromDB(user_Id);
     setTimeout(() => {
-      // if (isLoggedIn) {
       cantMegusta();
-      // }
     }, 3000);
 
     if (destination?.Calificaciones) {
@@ -105,7 +101,6 @@ const PuntoInteresInfo = ({
     // eslint-disable-next-line
   }, []);
 
-  // console.log('%cINITIAL STATE: ', 'color:red;', initialState);
   const handleCategories = () => {
     navigate(-1);
   };

@@ -39,9 +39,7 @@ export const Slider = ({
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     console.log('REQ: ', req);
-    // setTimeout(() => {
     setDestination(req);
-    // }, 2000);
 
     console.log('DESTINATION: ', destination);
     navigate('/infoResults');

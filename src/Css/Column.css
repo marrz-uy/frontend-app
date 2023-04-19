@@ -43,26 +43,16 @@
 	z-index: 3;
 }
 
-/* #TimeLine .draggable {
-	z-index: 1;
-} */
 
 #TimeLine .droppable .tourCard h6 {
 	color: rgb(230, 70, 70);
 }
-
-/* #TimeLine .tourCard span {
-	display: none;
-} */
-
-
 
 #Items {
 	display: flex;
 	justify-content: center;
 	border: 1px solid rgb(234, 234, 234);
 	background-color: white;
-	/* border: 1px solid green; */
 }
 
 #Items>.droppable {
@@ -133,7 +123,6 @@
 	margin-left: 5px;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: space-around; */
 	align-items: flex-start;
 	width: 100%;
 }
@@ -163,7 +152,6 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* border: 1px solid gray; */
 	}
 
 	.imagenCardTour {

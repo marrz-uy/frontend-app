@@ -112,7 +112,6 @@ img {
 	.containerCategories {
 		margin-top: 5rem;
 		padding: 1.5rem;
-		/* min-width: 710px; */
 	}
 
 	.container:first-child {
@@ -125,10 +124,6 @@ img {
 		display: none;
 		width: 30%;
 	}
-
-	/* .categoriesImage {
-		min-height: 100px;
-	} */
 
 	.container {
 		max-width: 100vw;
@@ -282,16 +277,9 @@ img {
 		font-size: 16px;
 	}
 
-	/* .seeAllButtonDiv {
-		display: none;
-		width: 30%;
-	} */
-
 	.contenedorSliders {
 		/* max-width: 70%; */
 		display: flex;
 		flex-direction: column;
 	}
-
-
 }
