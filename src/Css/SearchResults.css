@@ -322,10 +322,6 @@ h6 {
 		font-size: 50px;
 	}
 
-	.filtro_tipos p {
-		font-size: 14px;
-	}
-
 	.contFiltroYresultados .animate__animated.animate__faster {
 		width: 50%;
 	}
@@ -346,10 +342,6 @@ h6 {
 
 	.filtr_results p {
 		font-size: 50px;
-	}
-
-	.filtro_tipos p {
-		font-size: 17px;
 	}
 
 	.filtro_tipos input {
@@ -412,7 +404,7 @@ label {
 .filtro_tipos h3 {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 }
 
 .filtro_tipos button {
@@ -484,4 +476,9 @@ label {
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-end;
+}
+
+.ejemplo {
+	font-size: 10px;
+	padding-left: 2px;
 }

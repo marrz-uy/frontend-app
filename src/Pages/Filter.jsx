@@ -135,7 +135,6 @@ const Filtros = ({
 
   return (
     <div className="filtro_results animate__animated animate__slideInLeft animate__faster">
-      {/* <div className="animate__animated animate__slideInLeft animate__faster"> */}
       <FontAwesomeIcon
         icon={faXmark}
         className="userBar_cancel_filter"
@@ -145,7 +144,10 @@ const Filtros = ({
         <h1>{filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}</h1>
         {tipoToFilter === 'Gastronomia' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -171,7 +173,7 @@ const Filtros = ({
               </label>
             </div>
             <div className="especificacionesPunto">
-              <h4>Especificaciones de {tipoToFilter}</h4>
+              <h4>Especificaciones</h4>
               <div className="divXInputs as">
                 <input
                   type="radio"
@@ -217,7 +219,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Alojamiento' ? (
           <div div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -292,7 +297,7 @@ const Filtros = ({
             </div>
 
             <div className="especificacionesPunto">
-              <h4>Especificaciones de {tipoToFilter}</h4>
+              <h4>Especificaciones</h4>
               <div className="divXInputs as">
                 <input
                   type="radio"
@@ -420,7 +425,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Espectaculos' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -475,12 +483,14 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Eventos' ? (
           <div className="filtro_tipos">
+            <h3>?</h3>
             <input
               className="inputTipoEvento"
               type="text"
               name="TipoEvento"
               onKeyUp={(e) => handleClickRadio(e)}
             />
+            <span className="ejemplo">ejemplo:</span>
             <h3>
               {filtrarTraduccion(traduccionesBD, 'FechaDeInicio', lenguage)}
             </h3>
@@ -500,7 +510,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Paseos' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -559,7 +572,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Servicios Esenciales' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -630,7 +646,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Transporte' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -661,7 +680,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Actividades Infantiles' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -720,7 +742,10 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Actividades Nocturnas' ? (
           <div className="filtro_tipos">
-            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)} de{' '}
+              {tipoToFilter}
+            </h3>
             <div className="divXInputs">
               <input
                 type="radio"
@@ -789,7 +814,6 @@ const Filtros = ({
           ''
         )}
       </div>
-      {/* </div> */}
     </div>
   );
 };

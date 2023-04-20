@@ -195,8 +195,6 @@ const TourSteps = () => {
       })
       .then((res) => {
         console.log('RESPUESTA:', res.data);
-        // setRegisterErrorMessage('El Tour se registro correctamente');
-        // message.success('Su tour se ha guardado correctamente!');
         setRegisterErrorMessage('El Tour se registro correctamente');
         setStatusResponse(res.status);
         if (res.status === 201) {
@@ -308,6 +306,10 @@ const TourSteps = () => {
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
   // console.log('CURRENT PAGE: ', current + 1);
 
+  const backTours = () => {
+    navigate('/tour');
+  };
+
   return (
     <>
       <Steps current={current} items={items} />
@@ -323,35 +325,45 @@ const TourSteps = () => {
         ) : (
           <TourFinalStep />
         )}
-      </div>
-      <div className="steps-action">
-        {current < 4 && (
-          <Button type="primary" onClick={() => next()}>
-            {filtrarTraduccion(traduccionesBD, 'stepBtnNext', lenguage)}
-          </Button>
-        )}
-        {current === 4 && accionTour !== 'actualizar' ? (
-          <Button
-            className="btnSiguienteGuardar"
-            type="primary"
-            onClick={() => savedTour()}
-          >
-            {filtrarTraduccion(traduccionesBD, 'saveTourBtn', lenguage)}
-          </Button>
-        ) : current === 4 && accionTour === 'actualizar' ? (
-          <Button
-            className="btnSiguienteGuardar"
-            type="primary"
-            onClick={() => UpdateTour()}
-          >
-            {filtrarTraduccion(traduccionesBD, 'updateTourBtn', lenguage)}
-          </Button>
-        ) : null}
-        {current > 0 && (
-          <Button style={{ margin: '0 3rem' }} onClick={() => prev()}>
-            {filtrarTraduccion(traduccionesBD, 'stepBtnPrev', lenguage)}
-          </Button>
-        )}
+
+        <div className="steps-action">
+          {current < 4 && (
+            <Button type="primary" onClick={() => next()}>
+              {filtrarTraduccion(traduccionesBD, 'stepBtnNext', lenguage)}
+            </Button>
+          )}
+          {current === 4 && accionTour !== 'actualizar' ? (
+            <Button
+              className="btnSiguienteGuardar"
+              type="primary"
+              onClick={() => savedTour()}
+            >
+              {filtrarTraduccion(traduccionesBD, 'saveTourBtn', lenguage)}
+            </Button>
+          ) : current === 4 && accionTour === 'actualizar' ? (
+            <Button
+              className="btnSiguienteGuardar"
+              type="primary"
+              onClick={() => UpdateTour()}
+            >
+              {filtrarTraduccion(traduccionesBD, 'updateTourBtn', lenguage)}
+            </Button>
+          ) : null}
+          {current > 0 && (
+            <Button style={{ margin: '0 3rem' }} onClick={() => prev()}>
+              {filtrarTraduccion(traduccionesBD, 'stepBtnPrev', lenguage)}
+            </Button>
+          )}
+          {current === 0 && (
+            <Button
+              style={{ margin: '0 3rem' }}
+              onClick={() => backTours()}
+              className="btnBacktours"
+            >
+              Volver a tours
+            </Button>
+          )}
+        </div>
       </div>
     </>
   );

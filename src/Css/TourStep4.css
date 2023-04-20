@@ -8,18 +8,33 @@
 	border-radius: 5px;
 }
 
-.cardTourFinal {
-	max-width: 120px;
+.card-description {
+	height: 200px;
 }
 
+.cardTourFinal {
+	display: flex;
+	flex-direction: column;
+	max-width: 110px;
+	height: auto;
+	overflow: scroll;
+}
 
 .divImgTourFinal {
 	width: 100%;
+	min-height: 120px;
 }
 
 .imagenCardTourFinal {
+	display: flex;
 	border-radius: 5px;
-	width: 119px;
+	width: 100%;
+	/* min-height: 120px; */
+	background-size: cover;
+}
+
+.dataTourFinal {
+	max-height: 110px;
 }
 
 .dataTourFinal h6 {
@@ -80,5 +95,30 @@
 	.timelineTourFinal {
 		height: 460px;
 		border: 1px solid rgb(240, 240, 240);
+	}
+
+	.card-description {
+		height: fit-content;
+	}
+
+	.cardTourFinal {
+		display: flex;
+		flex-direction: column;
+		max-width: 210px;
+		height: auto;
+		overflow: scroll;
+	}
+
+	.imagenCardTourFinal {
+		display: flex;
+		border-radius: 5px;
+		width: 100%;
+		/* min-height: 120px; */
+		background-size: cover;
+	}
+
+	.cardTourFinal {
+		height: 300px;
+		overflow: scroll;
 	}
 }
