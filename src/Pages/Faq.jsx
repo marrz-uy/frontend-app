@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
 import LenguageContext from '../Context/LenguageContext';
-import '../Css/Faq.css';
 import { Layout } from '../Layout';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
-// import Image1 from 'frontend-app\src\images\images\Screenshot-2023-03-30 144520.png'
+import UserBar from './UserBar';
+import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Image1 from '../images/imagesFaq/ScreenShot1.png';
 import Image2 from '../images/imagesFaq/Screenshot 2023-03-30 144949.png';
 import Image3 from '../images/imagesFaq/Screenshot 2023-03-30 145329.png';
@@ -14,7 +14,10 @@ import Image7 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';
 import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';
 import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';
 import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';
-const Faq = ({ setPage }) => {
+import '../Css/Faq.css';
+import '../Css/userBarClick.css';
+
+const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   useEffect(() => {
@@ -28,10 +31,13 @@ const Faq = ({ setPage }) => {
     });
   }, []);
 
+  handleUserBar(userBar);
+
   return (
     <Layout>
+      <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <section className="faq_container">
-        <h2 className="title">FAQs</h2>
+        <h2 className="faqTitle">FAQs</h2>
         <div className="faq">
           <div className="question">
             <h3>
@@ -214,6 +220,14 @@ const Faq = ({ setPage }) => {
           </div>
         </div>
       </section>
+
+      {userBar && (
+        <UserBar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserBar={setUserBar}
+        />
+      )}
     </Layout>
   );
 };

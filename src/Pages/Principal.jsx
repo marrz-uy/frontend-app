@@ -53,6 +53,7 @@ const Principal = ({
   const { http } = AuthUser();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setPage('principal');
     setActivePage('principal');
     if (page === 'principal') {

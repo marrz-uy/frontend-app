@@ -8,7 +8,7 @@
     padding: 1rem;
     font-size: 1rem;
     margin-top: 5rem;
-    width: 100% ;
+    width: 100%;
 }
 
 #logo_feeluy {
@@ -40,7 +40,7 @@ section {
     }
 }
 
-.title {
+.faqTitle {
     font-size: 3rem;
     margin: 2rem 0rem;
 }

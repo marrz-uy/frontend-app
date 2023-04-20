@@ -50,7 +50,7 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'EventoMusical'
     ) {
       /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
-      setTipoToFilter('Espectaculos');
+      setTipoToFilter('Eventos');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
@@ -60,7 +60,7 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
       puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
     ) {
-      setTipoToFilter('Eventos');
+      setTipoToFilter('Espectaculos');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
@@ -134,45 +134,44 @@ const Filtros = ({
   // console.log(filtersToSend);
 
   return (
-    <div className="filtro_results">
-      <div className="animate__animated animate__slideInLeft animate__faster">
-        <FontAwesomeIcon
-          icon={faXmark}
-          className="userBar_cancel_filter"
-          onClick={() => setHandleFilter(false)}
-        />
-        <div className="filtro_back">
-          <h1>
-            {filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}
-          </h1>
-          {tipoToFilter === 'Gastronomia' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Restaurantes"
-                  value="Restaurantes"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Restaurantes">
-                  {filtrarTraduccion(traduccionesBD, 'Restaurantes', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa as">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Bares"
-                  value="Bares"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Bares">
-                  {filtrarTraduccion(traduccionesBD, 'Bares', lenguage)}
-                </label>
-              </div>
-              <br />
+    <div className="filtro_results animate__animated animate__slideInLeft animate__faster">
+      {/* <div className="animate__animated animate__slideInLeft animate__faster"> */}
+      <FontAwesomeIcon
+        icon={faXmark}
+        className="userBar_cancel_filter"
+        onClick={() => setHandleFilter(false)}
+      />
+      <div className="filtro_back">
+        <h1>{filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}</h1>
+        {tipoToFilter === 'Gastronomia' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Restaurantes"
+                value="Restaurantes"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Restaurantes">
+                {filtrarTraduccion(traduccionesBD, 'Restaurantes', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa as">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Bares"
+                value="Bares"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Bares">
+                {filtrarTraduccion(traduccionesBD, 'Bares', lenguage)}
+              </label>
+            </div>
+            <div className="especificacionesPunto">
+              <h4>Especificaciones de {tipoToFilter}</h4>
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -185,7 +184,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'ComidaVegge', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -198,7 +197,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Alcohol', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -211,89 +210,89 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'childrenMenu', lenguage)}
                 </label>
               </div>
-              <br />
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}
-              </button>
             </div>
-          ) : tipoToFilter === 'Alojamiento' ? (
-            <div div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Hotel"
-                  value="Hotel"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Hotel">
-                  {filtrarTraduccion(traduccionesBD, 'Hotel', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Hostel"
-                  value="Hostel"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Hostel">
-                  {filtrarTraduccion(traduccionesBD, 'Hostel', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Motel"
-                  value="Motel"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Motel">
-                  {filtrarTraduccion(traduccionesBD, 'Motel', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Estancia"
-                  value="Estancia"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Estancia">
-                  {filtrarTraduccion(traduccionesBD, 'Estancia', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Camping"
-                  value="Camping"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Camping">
-                  {filtrarTraduccion(traduccionesBD, 'Camping', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa as">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Casa"
-                  value="Casa"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Casa">
-                  {filtrarTraduccion(traduccionesBD, 'Casa', lenguage)}
-                </label>
-              </div>
-              <br />
-              {/* <input type="text" /> */}
-              <br />
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Alojamiento' ? (
+          <div div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Hotel"
+                value="Hotel"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Hotel">
+                {filtrarTraduccion(traduccionesBD, 'Hotel', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Hostel"
+                value="Hostel"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Hostel">
+                {filtrarTraduccion(traduccionesBD, 'Hostel', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Motel"
+                value="Motel"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Motel">
+                {filtrarTraduccion(traduccionesBD, 'Motel', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Estancia"
+                value="Estancia"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Estancia">
+                {filtrarTraduccion(traduccionesBD, 'Estancia', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Camping"
+                value="Camping"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Camping">
+                {filtrarTraduccion(traduccionesBD, 'Camping', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa as">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Casa"
+                value="Casa"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Casa">
+                {filtrarTraduccion(traduccionesBD, 'Casa', lenguage)}
+              </label>
+            </div>
+
+            <div className="especificacionesPunto">
+              <h4>Especificaciones de {tipoToFilter}</h4>
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -306,7 +305,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'TVCable', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -319,7 +318,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Piscina', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -332,7 +331,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Wifi', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -349,20 +348,20 @@ const Filtros = ({
                   )}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
-                  name="BanoPrivad"
-                  id="BanoPrivad"
+                  name="BanoPrivado"
+                  id="BanoPrivado"
                   value="1"
                   onClick={(e) => handleClickRadio(e)}
                 />
-                <label htmlFor="BanoPrivad">
+                <label htmlFor="BanoPrivado">
                   {filtrarTraduccion(traduccionesBD, 'BanoPrivado', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -375,7 +374,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Casino', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -388,7 +387,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Bar', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -401,7 +400,7 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Restaurantes', lenguage)}
                 </label>
               </div>
-              <br />
+
               <div className="llamame_mimosa as">
                 <input
                   type="radio"
@@ -414,381 +413,383 @@ const Filtros = ({
                   {filtrarTraduccion(traduccionesBD, 'Desayuno', lenguage)}
                 </label>
               </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
             </div>
-          ) : tipoToFilter === 'Espetaculos' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Cine"
-                  value="Cine"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Cine">
-                  {filtrarTraduccion(traduccionesBD, 'Cine', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input type="radio" name="Teatro" id="Teatro" value="Teatro" />
-                <label htmlFor="Teatro">
-                  {filtrarTraduccion(traduccionesBD, 'Teatro', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Carnaval"
-                  value="Carnaval"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Carnaval">
-                  {filtrarTraduccion(traduccionesBD, 'Carnaval', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="EventoDeportivo"
-                  value="EventoDeportivo"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="EventoDeportivo">
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'EventoDeportivo',
-                    lenguage
-                  )}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
-            </div>
-          ) : tipoToFilter === 'Eventos' ? (
-            <div className="filtro_tipos">
-              <div className="llamame_mimosa">
-                <input
-                  type="text"
-                  name="TipoEvento"
-                  onKeyUp={(e) => handleClickRadio(e)}
-                />
-              </div>
-              <h3>
-                {filtrarTraduccion(traduccionesBD, 'FechaDeInicio', lenguage)}
-              </h3>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Espectaculos' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
               <input
-                type="date"
-                id="FechaInicioEventos"
-                className="FechaInicioEventos"
+                type="radio"
+                name="Tipo"
+                id="Cine"
+                value="Cine"
                 onClick={(e) => handleClickRadio(e)}
-                name="FechaInicio"
               />
-              <button
-                className="btnSearch"
-                onClick={(e) => handleGetFilterEventos()}
-              >
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+              <label htmlFor="Cine">
+                {filtrarTraduccion(traduccionesBD, 'Cine', lenguage)}
+              </label>
             </div>
-          ) : tipoToFilter === 'Paseos' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Playas"
-                  value="Playas"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Playas">
-                  {filtrarTraduccion(traduccionesBD, 'beaches', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Ejercicios al aire libre"
-                  value="Ejercicios al aire libre"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Ejercicios al aire libre">
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'EjerciciosAlAireLibre',
-                    lenguage
-                  )}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Cerros"
-                  value="Cerros"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Cerros">
-                  {filtrarTraduccion(traduccionesBD, 'Cerros', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Sierras"
-                  value="Sierras"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Sierras">
-                  {filtrarTraduccion(traduccionesBD, 'Sierras', lenguage)}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Teatro"
+                id="Teatro"
+                value="Teatro"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Teatro">
+                {filtrarTraduccion(traduccionesBD, 'Teatro', lenguage)}
+              </label>
             </div>
-          ) : tipoToFilter === 'Servicios Esenciales' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Hospitales"
-                  value="Hospitales"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Hospitales">
-                  {filtrarTraduccion(traduccionesBD, 'Hospitales', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Farmacias"
-                  value="Farmacias"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Farmacias">
-                  {filtrarTraduccion(traduccionesBD, 'Farmacias', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Cerrajerias"
-                  value="Cerrajerias"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Cerrajerias">
-                  {filtrarTraduccion(traduccionesBD, 'Cerrajerias', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Estaciones de Servicio"
-                  value="Estaciones de Servicio"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Estaciones de Servicio">
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'EstacionesDeServicio',
-                    lenguage
-                  )}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Seccionales"
-                  value="Seccionales"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Seccionales">
-                  {filtrarTraduccion(traduccionesBD, 'police', lenguage)}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Carnaval"
+                value="Carnaval"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Carnaval">
+                {filtrarTraduccion(traduccionesBD, 'Carnaval', lenguage)}
+              </label>
             </div>
-          ) : tipoToFilter === 'Transporte' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Omnibus"
-                  value="Omnibus"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Omnibus">
-                  {filtrarTraduccion(traduccionesBD, 'Omnibus', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Taxi"
-                  value="Taxi"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Taxi">
-                  {filtrarTraduccion(traduccionesBD, 'Taxi', lenguage)}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="EventoDeportivo"
+                value="EventoDeportivo"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="EventoDeportivo">
+                {filtrarTraduccion(traduccionesBD, 'EventoDeportivo', lenguage)}
+              </label>
             </div>
-          ) : tipoToFilter === 'Actividades Infantiles' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Circo"
-                  value="Circo"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Circo">
-                  {filtrarTraduccion(traduccionesBD, 'Circo', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Calesita"
-                  value="Calesita"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Calesita">
-                  {filtrarTraduccion(traduccionesBD, 'Calesita', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Maquinitas"
-                  value="Maquinitas"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Maquinitas">
-                  {filtrarTraduccion(traduccionesBD, 'Maquinitas', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Juegos Infantiles"
-                  value="Juegos Infantiles"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Juegos Infantiles">
-                  {filtrarTraduccion(
-                    traduccionesBD,
-                    'JuegosInfantiles',
-                    lenguage
-                  )}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Eventos' ? (
+          <div className="filtro_tipos">
+            <input
+              className="inputTipoEvento"
+              type="text"
+              name="TipoEvento"
+              onKeyUp={(e) => handleClickRadio(e)}
+            />
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'FechaDeInicio', lenguage)}
+            </h3>
+            <input
+              type="date"
+              id="FechaInicioEventos"
+              className="FechaInicioEventos"
+              onClick={(e) => handleClickRadio(e)}
+              name="FechaInicio"
+            />
+            <button
+              className="btnSearch"
+              onClick={(e) => handleGetFilterEventos()}
+            >
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Paseos' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Playas"
+                value="Playas"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Playas">
+                {filtrarTraduccion(traduccionesBD, 'beaches', lenguage)}
+              </label>
             </div>
-          ) : tipoToFilter === 'Actividades Nocturnas' ? (
-            <div className="filtro_tipos">
-              <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Discoteca"
-                  value="Discoteca"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Discoteca">
-                  {filtrarTraduccion(traduccionesBD, 'Discoteca', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Casino"
-                  value="Casino"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Casino">
-                  {filtrarTraduccion(traduccionesBD, 'Casino', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Pool"
-                  value="Pool"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Pool">
-                  {filtrarTraduccion(traduccionesBD, 'Pool', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Cantina"
-                  value="Cantina"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Cantina">
-                  {filtrarTraduccion(traduccionesBD, 'canteen', lenguage)}
-                </label>
-              </div>
-              <div className="llamame_mimosa">
-                <input
-                  type="radio"
-                  name="Tipo"
-                  id="Bowling"
-                  value="Bowling"
-                  onClick={(e) => handleClickRadio(e)}
-                />
-                <label htmlFor="Bowling">
-                  {filtrarTraduccion(traduccionesBD, 'Bolos', lenguage)}
-                </label>
-              </div>
-              <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
-                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
-              </button>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Ejercicios al aire libre"
+                value="Ejercicios al aire libre"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Ejercicios al aire libre">
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'EjerciciosAlAireLibre',
+                  lenguage
+                )}
+              </label>
             </div>
-          ) : (
-            ''
-          )}
-        </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Cerros"
+                value="Cerros"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Cerros">
+                {filtrarTraduccion(traduccionesBD, 'Cerros', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Sierras"
+                value="Sierras"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Sierras">
+                {filtrarTraduccion(traduccionesBD, 'Sierras', lenguage)}
+              </label>
+            </div>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Servicios Esenciales' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Hospitales"
+                value="Hospitales"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Hospitales">
+                {filtrarTraduccion(traduccionesBD, 'Hospitales', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Farmacias"
+                value="Farmacias"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Farmacias">
+                {filtrarTraduccion(traduccionesBD, 'Farmacias', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Cerrajerias"
+                value="Cerrajerias"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Cerrajerias">
+                {filtrarTraduccion(traduccionesBD, 'Cerrajerias', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Estaciones de Servicio"
+                value="Estaciones de Servicio"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Estaciones de Servicio">
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'EstacionesDeServicio',
+                  lenguage
+                )}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Seccionales"
+                value="Seccionales"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Seccionales">
+                {filtrarTraduccion(traduccionesBD, 'police', lenguage)}
+              </label>
+            </div>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Transporte' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Omnibus"
+                value="Omnibus"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Omnibus">
+                {filtrarTraduccion(traduccionesBD, 'Omnibus', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Taxi"
+                value="Taxi"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Taxi">
+                {filtrarTraduccion(traduccionesBD, 'Taxi', lenguage)}
+              </label>
+            </div>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Actividades Infantiles' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Circo"
+                value="Circo"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Circo">
+                {filtrarTraduccion(traduccionesBD, 'Circo', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Calesita"
+                value="Calesita"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Calesita">
+                {filtrarTraduccion(traduccionesBD, 'Calesita', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Maquinitas"
+                value="Maquinitas"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Maquinitas">
+                {filtrarTraduccion(traduccionesBD, 'Maquinitas', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Juegos Infantiles"
+                value="Juegos Infantiles"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Juegos Infantiles">
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'JuegosInfantiles',
+                  lenguage
+                )}
+              </label>
+            </div>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : tipoToFilter === 'Actividades Nocturnas' ? (
+          <div className="filtro_tipos">
+            <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Discoteca"
+                value="Discoteca"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Discoteca">
+                {filtrarTraduccion(traduccionesBD, 'Discoteca', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Casino"
+                value="Casino"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Casino">
+                {filtrarTraduccion(traduccionesBD, 'Casino', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Pool"
+                value="Pool"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Pool">
+                {filtrarTraduccion(traduccionesBD, 'Pool', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Cantina"
+                value="Cantina"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Cantina">
+                {filtrarTraduccion(traduccionesBD, 'canteen', lenguage)}
+              </label>
+            </div>
+            <div className="llamame_mimosa">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Bowling"
+                value="Bowling"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Bowling">
+                {filtrarTraduccion(traduccionesBD, 'Bolos', lenguage)}
+              </label>
+            </div>
+            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+              {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
+      {/* </div> */}
     </div>
   );
 };

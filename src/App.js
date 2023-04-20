@@ -351,7 +351,18 @@ function App() {
                       />
                     }
                   />
-                  <Route path="/faq" element={<Faq setPage={setPage} />} />
+                  <Route
+                    path="/faq"
+                    element={
+                      <Faq
+                        setIsLoggedIn={setIsLoggedIn}
+                        setPage={setPage}
+                        userBar={userBar}
+                        isLoggedIn={isLoggedIn}
+                        setUserBar={setUserBar}
+                      />
+                    }
+                  />
                   <Route path="/filter" element={<Filter />} />
                   <Route
                     path="*"

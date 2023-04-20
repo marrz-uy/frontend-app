@@ -6,6 +6,22 @@
 	overflow: hidden;
 }
 
+.contFiltroYresultados {
+	display: flex;
+	min-height: 100vh;
+}
+
+.contFiltroYresultados .animate__animated.animate__faster {
+	width: 99%;
+	height: fit-content;
+	min-height: 100vh;
+	/* height: 100vh; */
+}
+
+.especificacionesPunto {
+	margin-left: 1rem;
+}
+
 .resultsText {
 	margin: 0px auto 10px;
 	min-height: .8rem;
@@ -197,11 +213,28 @@ h6 {
 	color: #8f8f8f;
 }
 
+.inputTipoEvento {
+	width: 98%;
+	margin: 0 auto;
+}
+
+.FechaInicioEventos {
+	width: 98%;
+}
+
+.filtro_back {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+	border-radius: 5px;
+}
+
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
 
 	.results {
-		width: 70%;
+		/* width: 70%; */
 		min-height: 72vh;
 		display: flex;
 		flex-direction: column;
@@ -215,7 +248,7 @@ h6 {
 	}
 
 	.infoResults {
-		width: 70vw;
+		/* width: 70vw; */
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
@@ -274,9 +307,7 @@ h6 {
 	background-color: rgba(239, 239, 240, 1);
 	height: 200vh;
 	margin-top: 5rem;
-	overflow-x: scroll;
-	z-index: 1;
-
+	/* z-index: 1; */
 }
 
 @media screen and (min-width: 800px) {
@@ -287,7 +318,7 @@ h6 {
 		height: unset;
 	}
 
-	.filtr_results p {
+	.filtro_results p {
 		font-size: 50px;
 	}
 
@@ -295,8 +326,13 @@ h6 {
 		font-size: 14px;
 	}
 
-	.filtro_tipos h3 {
-		font-size: 12px;
+	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 50%;
+	}
+
+	.inputTipoEvento, .FechaInicioEventos {
+		width: 50%;
+		margin-left: 0;
 	}
 
 }
@@ -316,10 +352,6 @@ h6 {
 		font-size: 17px;
 	}
 
-	.filtro_tipos h3 {
-		font-size: 19px;
-	}
-
 	.filtro_tipos input {
 		font-size: 17px;
 	}
@@ -328,21 +360,17 @@ h6 {
 		font-size: 19px;
 	}
 
+	.userBar_cancel_filter {
+		position: relative;
+		top: -100px
+	}
+
 }
 
 @media screen and (min-width: 1400px) {
 	.filtro_results {
 		width: 250px;
 	}
-}
-
-.filtro_back {
-	display: flex;
-	flex-direction: column;
-}
-
-.filtro_back input {
-	margin: 0.4rem;
 }
 
 .filtro_back p,
@@ -384,6 +412,7 @@ label {
 .filtro_tipos h3 {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
+	font-size: 1.8rem;
 }
 
 .filtro_tipos button {
@@ -406,12 +435,6 @@ label {
 	padding-left: 10%;
 }
 
-@media screen and (min-width: 800px) {
-	.filtro_container_btn {
-		display: none;
-	}
-}
-
 .filtro_btn {
 	padding: 0.5rem;
 }
@@ -423,7 +446,7 @@ label {
 .userBar_cancel_filter {
 	display: block;
 	position: absolute;
-	/* top: -10%; */
+	top: -30px;
 	right: 0;
 	width: 30px;
 	height: 30px;
@@ -433,12 +456,6 @@ label {
 	cursor: pointer;
 }
 
-@media screen and (min-width: 800px) {
-	.userBar_cancel_filter {
-		display: none;
-	}
-}
-
 .llamame_mimosa {
 	display: flex;
 	width: 100%;
@@ -446,7 +463,7 @@ label {
 }
 
 .as {
-	border-bottom: 1px solid black;
+	/* border-bottom: 1px solid black; */
 	padding-bottom: 0.5rem;
 }
 
@@ -460,12 +477,6 @@ label {
 	position: relative;
 	left: -9%;
 	margin-bottom: 1rem;
-}
-
-@media screen and (min-width: 800px) {
-	.filtro_container_btn {
-		display: none;
-	}
 }
 
 .info_container_card {
