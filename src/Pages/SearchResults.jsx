@@ -102,14 +102,14 @@ const SearchResults = ({
 
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
-    var mama;
+    var puntos;
     if (allFilters) {
-      mama = datos;
+      puntos = datos;
     } else {
-      mama = items;
+      puntos = items;
     }
     http
-      .post(`${mama?.path}?page=${numPage}`, {
+      .post(`${puntos?.path}?page=${numPage}`, {
         latitudAEnviar,
         longitudAEnviar,
         distanciaAEnviar,
@@ -230,7 +230,6 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res);
         setCantPaginas(res.data.last_page);
-        // console.log(res);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     // if (mobileScreenActive) {
@@ -238,7 +237,6 @@ const SearchResults = ({
     // }
   };
 
-  // console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
 
   const getBackgroundSize = () => {
@@ -251,15 +249,12 @@ const SearchResults = ({
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
           setPuntodeInteresTipo(res.data);
-          // console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [datos]);
-
-  // console.log('tipo de dato', typeof datos?.current_page);
 
   return (
     <Layout>

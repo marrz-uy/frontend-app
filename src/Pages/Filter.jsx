@@ -27,8 +27,8 @@ const Filtros = ({
     if (
       puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Bares' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Comida rapida' || //! agregue esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Cervecerias' //! agregue esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Comida rapida' || //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Cervecerias' //! agregué esto
     ) {
       /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
       setTipoToFilter('Gastronomia');
@@ -72,9 +72,9 @@ const Filtros = ({
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Farmacias' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Cerrajerias' || //! agregue esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Estaciones de Servicio' || //! agregue esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Seccionales' //! agregue esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Cerrajerias' || //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Estaciones de Servicio' || //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Seccionales' //! agregué esto
     ) {
       /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
       setTipoToFilter('Servicios Esenciales');
@@ -95,8 +95,8 @@ const Filtros = ({
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Calesita' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Maquinitas' || //! agregue esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Juegos Infantiles' //! agregue esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Maquinitas' || //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Juegos Infantiles' //! agregué esto
     ) {
       /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
       setTipoToFilter('Actividades Infantiles');
@@ -146,7 +146,7 @@ const Filtros = ({
         {tipoToFilter === 'Gastronomia' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -158,7 +158,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Restaurantes', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa as">
+            <div className="divXInputs as">
               <input
                 type="radio"
                 name="Tipo"
@@ -172,7 +172,7 @@ const Filtros = ({
             </div>
             <div className="especificacionesPunto">
               <h4>Especificaciones de {tipoToFilter}</h4>
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="ComidaVegge"
@@ -185,7 +185,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Alcohol"
@@ -198,7 +198,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="MenuInfantil"
@@ -218,7 +218,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Alojamiento' ? (
           <div div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -230,7 +230,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Hotel', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -242,7 +242,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Hostel', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -254,7 +254,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Motel', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -266,7 +266,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Estancia', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -278,7 +278,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Camping', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa as">
+            <div className="divXInputs as">
               <input
                 type="radio"
                 name="Tipo"
@@ -293,7 +293,7 @@ const Filtros = ({
 
             <div className="especificacionesPunto">
               <h4>Especificaciones de {tipoToFilter}</h4>
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="TvCable"
@@ -306,7 +306,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Piscina"
@@ -319,7 +319,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Wifi"
@@ -332,7 +332,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="AireAcondicionado"
@@ -349,7 +349,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="BanoPrivado"
@@ -362,7 +362,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Casino"
@@ -375,7 +375,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Bar"
@@ -388,7 +388,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Restaurante"
@@ -401,7 +401,7 @@ const Filtros = ({
                 </label>
               </div>
 
-              <div className="llamame_mimosa as">
+              <div className="divXInputs as">
                 <input
                   type="radio"
                   name="Desayuno"
@@ -421,7 +421,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Espectaculos' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -433,7 +433,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Cine', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Teatro"
@@ -445,7 +445,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Teatro', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -457,7 +457,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Carnaval', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -501,7 +501,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Paseos' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -513,7 +513,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'beaches', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -529,7 +529,7 @@ const Filtros = ({
                 )}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -541,7 +541,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Cerros', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -560,7 +560,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Servicios Esenciales' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -572,7 +572,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Hospitales', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -584,7 +584,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Farmacias', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -596,7 +596,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Cerrajerias', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -612,7 +612,7 @@ const Filtros = ({
                 )}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -631,7 +631,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Transporte' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -643,7 +643,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Omnibus', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -662,7 +662,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Actividades Infantiles' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -674,7 +674,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Circo', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -686,7 +686,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Calesita', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -698,7 +698,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Maquinitas', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -721,7 +721,7 @@ const Filtros = ({
         ) : tipoToFilter === 'Actividades Nocturnas' ? (
           <div className="filtro_tipos">
             <h3>{filtrarTraduccion(traduccionesBD, 'Tipos', lenguage)}</h3>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -733,7 +733,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Discoteca', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -745,7 +745,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Casino', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -757,7 +757,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Pool', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -769,7 +769,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'canteen', lenguage)}
               </label>
             </div>
-            <div className="llamame_mimosa">
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
