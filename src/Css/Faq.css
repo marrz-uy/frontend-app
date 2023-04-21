@@ -1,9 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
-
-
 .faq_container {
-    font-family: "Quicksand", sans-serif;
-    /* background-color: #eff3f7; */
     color: #FFFF;
     padding: 1rem;
     font-size: 1rem;
@@ -25,7 +20,6 @@ section {
     align-items: center;
     justify-content: center;
     min-height: 30vh;
-    /* margin: 1rem; */
 }
 
 @media screen and (min-width: 600px) {
@@ -41,15 +35,15 @@ section {
 }
 
 .faqTitle {
-    font-size: 3rem;
-    margin: 2rem 0rem;
+    font-size: 2rem;
+    margin: 2rem 0 0 1rem;
 }
 
 .faq {
     max-width: 700px;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid #000000;
+    border-bottom: 1px dashed #7a7a7a;
     cursor: pointer;
     margin-bottom: 1rem;
     width: 100%;
@@ -62,7 +56,7 @@ section {
 }
 
 .question h3 {
-    font-size: 1.8rem;
+    font-size: 1rem;
 }
 
 .answer {
@@ -74,7 +68,7 @@ section {
 .answer p {
     padding-top: 1rem;
     line-height: 1.6;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -82,9 +76,10 @@ section {
 }
 
 .answer p img {
-    width: 600px;
-    /* height: 300px; */
-    /* object-fit: cover; */
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .faq.activeFaq .answer {
@@ -117,5 +112,5 @@ svg {
 }
 
 .activeFaq {
-    color: black;
+    color: rgb(1, 72, 139);
 }

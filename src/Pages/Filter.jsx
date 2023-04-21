@@ -46,21 +46,11 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Teatro' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'EventoMusical'
+      puntodeInteresTipo?.categoria?.Tipo === 'Evento Deportivo' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Evento Musical'
     ) {
       /* 'Tipo',['Cine','Teatro','Carnaval','EventoDeportivo','EventoMusical']); */
       setTipoToFilter('Eventos');
-    } else if (
-      puntodeInteresTipo?.categoria?.Tipo === 'Cine' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Obra de teatro' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Murga' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Partido' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Carrera' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Carnaval' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'EventoDeportivo'
-    ) {
-      setTipoToFilter('Espectaculos');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Ejercicios al aire libre' ||
