@@ -29,7 +29,6 @@
 	display: flex;
 	border-radius: 5px;
 	width: 100%;
-	/* min-height: 120px; */
 	background-size: cover;
 }
 
@@ -97,9 +96,9 @@
 		border: 1px solid rgb(240, 240, 240);
 	}
 
-	.card-description {
+	/* .card-description {
 		height: fit-content;
-	}
+	} */
 
 	.cardTourFinal {
 		display: flex;
@@ -113,7 +112,6 @@
 		display: flex;
 		border-radius: 5px;
 		width: 100%;
-		/* min-height: 120px; */
 		background-size: cover;
 	}
 

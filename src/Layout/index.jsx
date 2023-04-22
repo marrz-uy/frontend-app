@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Nav from './Nav';
 import Footer from './Footer';
 import PageContext from '../Context/PageContext';

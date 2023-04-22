@@ -52,7 +52,6 @@ const UserPreferences = ({
   const [submitMessage, setSubmitMessage] = useState('');
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [language, setLenguage] = useState('');
-
   const [nacionalidad, setNacionalidad] = useState(
     pefilExistente?.nacionalidad
   );
@@ -77,48 +76,27 @@ const UserPreferences = ({
   );
   const f_nacimiento = fechaDeNacimiento;
 
-  console.log('USER =>', pefilExistente);
-
   useEffect(() => {
     setPage('preferences');
     setLenguage(localStorage.getItem('language'));
     try {
       setUser_id(sessionStorage?.getItem('id'));
-      console.log('ID-USUARIO: ', user_id);
     } catch (error) {
-      console.log('NO HAY NADIE LOGUEADO', error);
+      console.error(error.message);
     }
   }, [setPage, getUser, user_id, setUser_id, setLenguage, language]);
-
-  console.log('LENGUAJE: ', language);
 
   const recuperarPerfil = () => {
     if (user_id) {
       try {
         setPefilRecuperado(getUserProfile());
       } catch (error) {
-        console.log('NO HAY PERFIL', error);
+        console.error(error.message);
       }
     }
   };
 
   const updateUserProfile = () => {
-    console.group('%cSOLICITUD CORRECTA', 'color: green');
-    console.log(
-      '%cDATOS UPDATE ENVIADOS: ',
-      'color: blue;',
-      user_id,
-      nacionalidad,
-      f_nacimiento,
-      alojamiento,
-      gastronomia,
-      espectaculos,
-      paseos,
-      actividadesNocturnas,
-      transporte,
-      actividadesInfantiles,
-      serviciosEsenciales
-    );
     http
       .patch(`/userProfile/${user_id}`, {
         nacionalidad,
@@ -133,51 +111,15 @@ const UserPreferences = ({
         serviciosEsenciales,
       })
       .then((res) => {
-        console.log(
-          '%cUPDATE PERFIL RESPONSE MESSAGE:',
-          'color: orange;',
-          res.data.message
-        );
-        console.log(
-          '%cUPDATE PERFIL RESPONSE .DATA:',
-          'color: blue;',
-          res.data.user
-        );
-        console.groupEnd();
         if (res.data.message !== 'NO EXISTE PERFIL PARA EL USUARIO') {
-          console.log(
-            '%cDATOS UPDATE A GUARDAR EN SESSIONSTORAGE',
-            'color: pink;',
-            res.data.user
-          );
           saveUserProfile(res.data.user);
           recuperarPerfil();
         }
       })
-      .catch(function (error) {
-        console.group('%cERRORES', 'color: red;');
-        console.log('%cERROR:', 'color: red;', error.message);
-        console.groupEnd();
-      });
+      .catch((error) => console.error(error.message));
   };
 
   const submitUserProfile = () => {
-    console.group('%cSOLICITUD CORRECTA', 'color: green');
-    console.log(
-      '%cDATOS ENVIADOS: ',
-      'color: blue;',
-      user_id,
-      nacionalidad,
-      f_nacimiento,
-      alojamiento,
-      gastronomia,
-      espectaculos,
-      paseos,
-      actividadesNocturnas,
-      transporte,
-      actividadesInfantiles,
-      serviciosEsenciales
-    );
     http
       .post('/userProfile', {
         user_id,
@@ -193,16 +135,10 @@ const UserPreferences = ({
         serviciosEsenciales,
       })
       .then((res) => {
-        console.log('%cPERFIL RESPONSE:', 'color: blue;', res.data.userprofile);
-        console.groupEnd();
         saveUserProfile(res.data.userprofile);
         recuperarPerfil();
       })
-      .catch(function (error) {
-        console.group('%cERRORES', 'color: red;');
-        console.log('%cERROR:', 'color: red;', error.message);
-        console.groupEnd();
-      });
+      .catch((error) => console.error(error.message));
   };
 
   const handleUserProfile = (e) => {
@@ -240,14 +176,9 @@ const UserPreferences = ({
     http
       .get('https://restcountries.com/v3.1/all')
       .then((res) => {
-        console.log('%cNACIONALIDAD RESPONSE:', 'color: blue;', res.data);
         setNationalitiesAndFlags(res.data);
       })
-      .catch(function (error) {
-        console.group('%cNACIONALIDAD ERRORES', 'color: red;');
-        console.log('%cERROR:', 'color: red;', error.message);
-        console.groupEnd();
-      });
+      .catch((error) => console.error(error.message));
     //eslint-disable-next-line
   }, []);
 
@@ -257,8 +188,6 @@ const UserPreferences = ({
 
   const handleChangeNationality = (e) => {
     e.preventDefault();
-    console.log('SET-NACIONALIDAD', e.target.value);
-    console.log('NACIONALIDAD', nacionalidad);
     setNacionalidad(e.target.value);
   };
 

@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import LenguageContext from '../Context/LenguageContext';
-import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import {
   faEnvelope,
   faCircleQuestion,
 } from '@fortawesome/free-solid-svg-icons';
+import LenguageContext from '../Context/LenguageContext';
+import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import FeelUy from '../images/feel2.png';
 import '../Css/Footer.css';
 import '../Css/NewFooter.css';
@@ -40,11 +40,6 @@ const Footer = () => {
         <div className="box2 siguenos">
           <h2>{filtrarTraduccion(traduccionesBD, 'Siguenos', lenguage)}</h2>
           <div className="red-social">
-            {/* <a href="#" className="fa fa-facebook"></a> */}
-            {/*   <FontAwesomeIcon
-              icon={faInstagram}
-              classNameName="fa fa-facebook"
-            /> */}
             <a
               href="https://www.instagram.com/feeluruguay/"
               className="fa fa-instagram"

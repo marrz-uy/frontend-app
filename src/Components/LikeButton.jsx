@@ -16,12 +16,10 @@ const LikeButton = ({
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
-  console.log('%cPUNTO ID: ', 'color:orange;', puntosinteres_id);
   const { http } = AuthUser();
 
   useEffect(() => {
     setInitialState(initialState);
-    console.log('ES FAVORITO?: ', initialState);
   }, []);
 
   const toggleLIke = () => {
@@ -38,7 +36,6 @@ const LikeButton = ({
     ];
     Promise.all(requests)
       .then((responses) => {
-        console.log(responses[0].data, responses[1].data);
         setCantLikes(cantLikes + 1);
       })
       .catch((err) => {
@@ -58,7 +55,6 @@ const LikeButton = ({
     ];
     Promise.all(requests)
       .then((responses) => {
-        console.log(responses[0].data, responses[1].data);
         setCantLikes(cantLikes - 1);
       })
       .catch((err) => {
@@ -95,12 +91,10 @@ const LikeButton = ({
     }
     toggleLIke();
     if (!initialState) {
-      console.log('AGREGANDO FAVORITO: ');
       Addlike();
     }
 
     if (initialState) {
-      console.log('ELIMINANDO FAVORITO: ');
       Removelike();
     }
   };

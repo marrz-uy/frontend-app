@@ -69,7 +69,6 @@ const Nav = ({
       .then((res) => {
         const allDdata = res.data;
         setItems(allDdata);
-        console.log('%cDATA RESPONSE NAV:', 'color: green;', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };

@@ -4,6 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	scroll-behavior: smooth;
 }
 
 .contFiltroYresultados {
@@ -15,7 +16,6 @@
 	width: 99%;
 	height: fit-content;
 	min-height: 100vh;
-	/* height: 100vh; */
 }
 
 .especificacionesPunto {
@@ -338,7 +338,6 @@ h6 {
 }
 
 /* @media screen and (min-width: 1000px) {} */
-
 @media screen and (min-width: 1050px) {
 	.filtro_results {
 		width: 200px;
@@ -385,7 +384,6 @@ label {
 
 .filtro_results h1 {
 	padding: 2rem 0 0 2rem;
-	/* margin-bottom: ; */
 }
 
 .filtro_gastronomia {
@@ -462,7 +460,6 @@ label {
 }
 
 .as {
-	/* border-bottom: 1px solid black; */
 	padding-bottom: 0.5rem;
 }
 
@@ -489,8 +486,3 @@ label {
 	font-size: 10px;
 	padding-left: 2px;
 }
-
-/* .ejemplo p {
-	color: blue;
-	font-size: 82px;
-} */

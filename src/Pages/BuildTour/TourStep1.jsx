@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
 import AuthUser from '../../Components/AuthUser';

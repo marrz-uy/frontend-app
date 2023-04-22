@@ -156,7 +156,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
       });
     setTimeout(() => {
       navigate('/');
-    }, 1500);
+    }, 1000);
   };
 
   const handleFailure = () => {

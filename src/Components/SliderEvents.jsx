@@ -20,17 +20,9 @@ export const SliderEvents = ({
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
-    console.log('TARGET-ID: ', id);
     const req = await http
       .post(`/sliderDos/evento/${id}`, {})
       .then((response) => {
-        console.log('%cDATA:', 'color: blue;', response?.data);
-        console.log(
-          '%cpunto:',
-          'color: yellow;',
-          response?.data.puntos_interes
-        );
-        console.log('%cevento:', 'color: pink;', response?.data[0]);
         let punto = response?.data[0].puntos_interes;
         let evento = response?.data[0];
         let categoria = response?.data[1];
@@ -38,11 +30,7 @@ export const SliderEvents = ({
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('%cREQ: ', 'color:red;', req);
-
     setDestination(req);
-
-    console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
 

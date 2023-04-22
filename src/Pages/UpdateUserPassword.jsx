@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
@@ -33,7 +33,6 @@ const UpdateUserData = ({
     http
       .patch(`/updatePassword/${Id}`, { password, passwordConfirmation })
       .then((res) => {
-        console.log('RESPUESTA:', res.data.user);
         setRegisterErrorMessage('El Usuario se actualizo correctamente');
         navigate('/user');
       })

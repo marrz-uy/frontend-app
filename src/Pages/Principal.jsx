@@ -47,9 +47,7 @@ const Principal = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [seeAll, setSeeAll] = useState(false);
   const [btnText, setBtnText] = useState('');
-
   const { width } = useScreenSize();
-
   const { http } = AuthUser();
 
   useEffect(() => {

@@ -34,7 +34,7 @@ const PuntoInteresInfo = ({
   const { setActivePage } = useContext(PageContext);
   const { Facebook, Instagram } = destination;
   handleUserBar(userBar);
-  const [firefox, setFirefox] = useState(false);
+  const [setFirefox] = useState(false);
 
   const [user_Id] = useState(sessionStorage?.getItem('id'));
   const { GetIdsFavouritesFromDB, idsFavouritesFromDB } =
@@ -56,7 +56,6 @@ const PuntoInteresInfo = ({
   const isFavourite = (array, punto) => {
     if (array && punto) {
       const exists = array.includes(punto);
-      console.log('%cEXIST FAVORITO: ', 'color:skyblue;', exists);
       return exists;
     }
   };
@@ -124,8 +123,6 @@ const PuntoInteresInfo = ({
   function convertirHora(horaOriginal) {
     return horaOriginal.substring(0, horaOriginal.length - 3);
   }
-
-  console.log('DESTINATION: ', destination);
 
   return (
     <Layout>
