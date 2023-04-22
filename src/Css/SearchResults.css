@@ -22,6 +22,10 @@
 	margin-left: 1rem;
 }
 
+.especificacionesPunto h4 {
+	display: flex;
+}
+
 .resultsText {
 	margin: 0px auto 10px;
 	min-height: .8rem;
@@ -346,6 +350,9 @@ h6 {
 
 	.filtro_tipos input {
 		font-size: 17px;
+		color: #686868;
+		border: 1px solid gray;
+		border-radius: 4px;
 	}
 
 	.filtro_tipos label {
@@ -482,3 +489,8 @@ label {
 	font-size: 10px;
 	padding-left: 2px;
 }
+
+/* .ejemplo p {
+	color: blue;
+	font-size: 82px;
+} */

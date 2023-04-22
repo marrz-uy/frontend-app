@@ -44,7 +44,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'QueEsFeelUy', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -65,7 +64,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'ComoDescargo', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -90,7 +88,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'ComoCrearUsuario', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -129,7 +126,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'ComoCambiarIdioma', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -156,7 +152,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'ComoCrearTour', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -188,7 +183,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             <h3>
               {filtrarTraduccion(traduccionesBD, 'ComoAccederTour', lenguage)}
             </h3>
-
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -217,7 +211,6 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           </div>
         </div>
       </section>
-
       {userBar && (
         <UserBar
           isLoggedIn={isLoggedIn}

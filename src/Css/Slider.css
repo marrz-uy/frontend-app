@@ -30,6 +30,12 @@
   font-size: 1rem;
 }
 
+.likesLabel:hover {
+  background-color: rgba(240, 248, 255, 0.918);
+  color: rgb(49, 49, 49);
+  text-shadow: none;
+}
+
 .description {
   padding-left: 10px;
   font-size: 0.7rem;

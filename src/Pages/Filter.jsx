@@ -150,7 +150,19 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Restaurantes', lenguage)}
               </label>
             </div>
-            <div className="divXInputs as">
+            <div className="divXInputs">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Comida rapida"
+                value="Comida rapida"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Comida rapida">
+                {filtrarTraduccion(traduccionesBD, 'fastFood', lenguage)}
+              </label>
+            </div>
+            <div className="divXInputs">
               <input
                 type="radio"
                 name="Tipo"
@@ -162,8 +174,26 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Bares', lenguage)}
               </label>
             </div>
+            <div className="divXInputs as">
+              <input
+                type="radio"
+                name="Tipo"
+                id="Cervecerias"
+                value="Cervecerias"
+                onClick={(e) => handleClickRadio(e)}
+              />
+              <label htmlFor="Cervecerias">
+                {filtrarTraduccion(traduccionesBD, 'breweries', lenguage)}
+              </label>
+            </div>
             <div className="especificacionesPunto">
-              <h4>Especificaciones</h4>
+              <h4>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'filterEspecifications',
+                  lenguage
+                )}
+              </h4>
               <div className="divXInputs as">
                 <input
                   type="radio"
@@ -287,7 +317,13 @@ const Filtros = ({
             </div>
 
             <div className="especificacionesPunto">
-              <h4>Especificaciones</h4>
+              <h4>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'filterEspecifications',
+                  lenguage
+                )}
+              </h4>
               <div className="divXInputs as">
                 <input
                   type="radio"
@@ -459,8 +495,8 @@ const Filtros = ({
               <input
                 type="radio"
                 name="Tipo"
-                id="EventoDeportivo"
-                value="EventoDeportivo"
+                id="Evento Deportivo"
+                value="Evento Deportivo"
                 onClick={(e) => handleClickRadio(e)}
               />
               <label htmlFor="EventoDeportivo">
@@ -473,14 +509,19 @@ const Filtros = ({
           </div>
         ) : tipoToFilter === 'Eventos' ? (
           <div className="filtro_tipos">
-            <h3>?</h3>
+            <h3>{filtrarTraduccion(traduccionesBD, 'typeEvent', lenguage)}</h3>
             <input
               className="inputTipoEvento"
               type="text"
               name="TipoEvento"
               onKeyUp={(e) => handleClickRadio(e)}
             />
-            <span className="ejemplo">ejemplo:</span>
+            <span className="ejemplo">
+              <span style={{ fontWeight: '700' }}>
+                {filtrarTraduccion(traduccionesBD, 'example', lenguage)}:{' '}
+              </span>
+              cadillacs, basquet, murga, etc.
+            </span>
             <h3>
               {filtrarTraduccion(traduccionesBD, 'FechaDeInicio', lenguage)}
             </h3>

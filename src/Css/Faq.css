@@ -43,7 +43,7 @@ section {
     max-width: 700px;
     margin-top: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px dashed #7a7a7a;
+    border-bottom: 1px solid #7a7a7a;
     cursor: pointer;
     margin-bottom: 1rem;
     width: 100%;
@@ -57,6 +57,11 @@ section {
 
 .question h3 {
     font-size: 1rem;
+
+}
+
+.question svg {
+    width: 25px;
 }
 
 .answer {
@@ -112,5 +117,5 @@ svg {
 }
 
 .activeFaq {
-    color: rgb(1, 72, 139);
+    color: rgb(82, 82, 82);
 }
