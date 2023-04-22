@@ -26,7 +26,7 @@ export const QrCodePage = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="qrCodePage">
-        <h6>{filtrarTraduccion(traduccionesBD, 'qrShare', lenguage)}</h6>
+        <h4>{filtrarTraduccion(traduccionesBD, 'qrShare', lenguage)}</h4>
         <h1>{filtrarTraduccion(traduccionesBD, 'scan', lenguage)}</h1>
         <img src={qr}></img>
       </div>
