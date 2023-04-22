@@ -19,10 +19,7 @@ const TourStep4 = () => {
           {filtrarTraduccion(traduccionesBD, 'thisIsYourTour', lenguage)}
         </p>
       </div>
-      <div
-        className="timelineTourFinal"
-        // style={{ width: '102%', height: '350px' }}
-      >
+      <div className="timelineTourFinal">
         <Chrono
           mode="VERTICAL_ALTERNATING"
           scrollable={{ scrollbar: true }}
@@ -66,12 +63,6 @@ const TourStep4 = () => {
                         : dato.Nombre}
                     </h6>
                   )}
-                  {/* <p>
-                    -{' '}
-                    {dato?.puntos_interes
-                      ? dato.puntos_interes?.Tipo
-                      : dato.Tipo}{' '}
-                  </p> */}
                   <p>
                     - Abre {''}
                     {dato?.puntos_interes

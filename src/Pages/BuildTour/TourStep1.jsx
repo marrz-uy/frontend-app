@@ -42,7 +42,6 @@ const TourStep1 = () => {
     http
       .get(`/ciudades/`, {})
       .then((response) => {
-        // console.log('%cCiudades:', 'color: blue;', response?.data);
         setCiudades(response?.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -50,7 +49,6 @@ const TourStep1 = () => {
 
   useEffect(() => {
     getCities();
-    // console.log('CIUDADES: ', ciudades);
     // eslint-disable-next-line
   }, []);
 
@@ -150,7 +148,6 @@ const TourStep1 = () => {
               <p>{filtrarTraduccion(traduccionesBD, 'group', lenguage)}</p>
               <p>{filtrarTraduccion(traduccionesBD, 'family', lenguage)}</p>
               <p>{filtrarTraduccion(traduccionesBD, 'couple', lenguage)}</p>
-              <p>{filtrarTraduccion(traduccionesBD, 'only', lenguage)}</p>
             </div>
             <div className="preferencesInput">
               <input
@@ -169,12 +166,6 @@ const TourStep1 = () => {
                 type="radio"
                 name="cantPersonas"
                 value="Pareja"
-                onChange={(e) => setEnfoqueDePersonas(e.target.value)}
-              ></input>
-              <input
-                type="radio"
-                name="cantPersonas"
-                value="Solo"
                 onChange={(e) => setEnfoqueDePersonas(e.target.value)}
               ></input>
             </div>
@@ -196,7 +187,6 @@ const TourStep1 = () => {
               <select
                 className="ciudadesSelect"
                 onChange={(e) => setUbicacion(e.target.value)}
-                // defaultValue={(e) => setUbicacion(e.target.value)}
                 value={ubicacion}
                 id="ciudadesSelect"
               >

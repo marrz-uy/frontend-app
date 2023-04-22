@@ -22,6 +22,8 @@ import Notifications from './Pages/Notifications';
 import Favourites from './Pages/Favourites';
 import ForgetPassword from '../src/Pages/ForgetPassword';
 import { QrCodePage } from './Pages/QrCodePage';
+import Faq from './Pages/Faq';
+import Filter from './Pages/Filter';
 import './App.css';
 import '../src/Css/Toast.css';
 
@@ -349,6 +351,19 @@ function App() {
                       />
                     }
                   />
+                  <Route
+                    path="/faq"
+                    element={
+                      <Faq
+                        setIsLoggedIn={setIsLoggedIn}
+                        setPage={setPage}
+                        userBar={userBar}
+                        isLoggedIn={isLoggedIn}
+                        setUserBar={setUserBar}
+                      />
+                    }
+                  />
+                  <Route path="/filter" element={<Filter />} />
                   <Route
                     path="*"
                     element={

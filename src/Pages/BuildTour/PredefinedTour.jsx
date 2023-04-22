@@ -14,7 +14,6 @@ import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const PredefinedTour = ({
   setIsLoggedIn,
-  page,
   setPage,
   isLoggedIn,
   userBar,
@@ -45,8 +44,6 @@ const PredefinedTour = ({
     // eslint-disable-next-line
   }, []);
 
-  // console.log('MIS TOURS: ', appTours);
-
   handleUserBar(userBar);
 
   const hora = (str) => {
@@ -56,7 +53,6 @@ const PredefinedTour = ({
 
   const goOnPoint = async (e) => {
     e.preventDefault();
-    // console.log('TARGET: ');
     const id = e.target.id;
     const req = await http
       .get(`/PuntosInteres/${id}`, {})
@@ -66,7 +62,6 @@ const PredefinedTour = ({
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };
-
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));

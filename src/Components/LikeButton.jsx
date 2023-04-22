@@ -16,10 +16,8 @@ const LikeButton = ({
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const navigate = useNavigate();
-  // console.log('cantLikes: ', cantLikes);
   console.log('%cPUNTO ID: ', 'color:orange;', puntosinteres_id);
   const { http } = AuthUser();
-  // const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
     setInitialState(initialState);

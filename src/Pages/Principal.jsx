@@ -22,7 +22,7 @@ import actividaesNocturnas from '../Assets/categoriesImages/cocktail1.png';
 import serviciosEscenciales from '../Assets/categoriesImages/services1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita1.png';
 import useScreenSize from '../Helpers/ScreenSize';
-import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
+// import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 import '../Css/Toast.css';
 
@@ -53,6 +53,7 @@ const Principal = ({
   const { http } = AuthUser();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setPage('principal');
     setActivePage('principal');
     if (page === 'principal') {
@@ -377,7 +378,6 @@ const Principal = ({
             'Slider1Description',
             lenguage
           )}
-          arrayimages={alojamientos}
           sliderPoints={sliderPoints1.data}
           destination={destination}
           setDestination={setDestination}
@@ -393,7 +393,6 @@ const Principal = ({
             'Slider2Description',
             lenguage
           )} Montevideo`}
-          arrayimages={alojamientos}
           sliderPoints={sliderPoints2.data}
           destination={destination}
           setDestination={setDestination}
@@ -405,7 +404,6 @@ const Principal = ({
             'Slider3Description',
             lenguage
           )}
-          arrayimages={gastronomicas}
           sliderPoints={sliderPoints3.data}
           destination={destination}
           setDestination={setDestination}

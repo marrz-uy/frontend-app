@@ -112,7 +112,6 @@
     width: 30px;
     height: 30px;
     color: #FFF;
-    /* display: flex; */
     cursor: pointer;
 }
 
@@ -120,7 +119,6 @@
     width: 30px;
     height: 30px;
     color: #FFF;
-    /* display: flex; */
     cursor: pointer;
 }
 
@@ -325,7 +323,6 @@
     }
 
     .msgWelcome {
-        /* font-size: 1rem; */
         margin-bottom: 10px;
     }
 }
@@ -391,7 +388,6 @@
     #arrowImg {
         position: relative;
         top: 2px;
-        /* filter: drop-shadow(2px 8px 5px #000000e8); */
     }
 
     .inputSearch {

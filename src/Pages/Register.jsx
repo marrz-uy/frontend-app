@@ -109,9 +109,7 @@ const Register = ({
         if (error) {
           setLoader(false);
         }
-        /* console.log('RESPUESTA:', error.response.data.errors); */
         let ERRORES = error.response.data.errors;
-        // let ERRORES = error.response.data;
         console.log('RESPUESTA errores:', ERRORES);
 
         if (!email || !password || !passwordConfirmation || !name) {
@@ -192,7 +190,6 @@ const Register = ({
         }
         console.error(`Error en catch Register GOOGLE: ${error}`);
         let ERRORES = error.response.data.errors;
-        // let ERRORES = error.response.data;
         console.log('RESPUESTA errores:', ERRORES);
         if (
           error.response.data.errors.email[0] ===

@@ -8,7 +8,6 @@ import 'swiper/modules/navigation/navigation.min.css';
 import AuthUser from './AuthUser';
 
 export const SliderEvents = ({
-  arrayimages,
   sliderPoints,
   title,
   description,
@@ -17,7 +16,6 @@ export const SliderEvents = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  // console.log('SLIDER 2-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
@@ -126,7 +124,6 @@ export const SliderEvents = ({
                   📆 {formatearFecha(point.FechaInicio)},{' '}
                   {convertirHora(point.HoraInicio)} Hs.
                 </h6>
-
                 <span className="titleLink" onClick={goOnPoint}>
                   {point.NombreEvento}
                 </span>

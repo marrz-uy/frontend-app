@@ -6,9 +6,9 @@
 	color: rgb(81, 81, 81);
 	min-width: 320px;
 	background-size: 80rem;
-}	
+}
 
-h1,h2, h3, h4, h5, h6  {
+h1, h2, h3, h4, h5, h6 {
 	color: rgb(81, 81, 81);
 }
 
@@ -16,11 +16,10 @@ h1,h2, h3, h4, h5, h6  {
 	position: relative;
 	bottom: 0;
 	border-top: 2px solid #083d92;
-  box-shadow: 0px -4px 10px -4px rgba(0, 0, 0, 6);
+	box-shadow: 0px -4px 10px -4px rgba(0, 0, 0, 6);
 }
 
 @media screen and (min-width: 480px) {
-	 /* tablets */
 	.layout {
 		min-height: 100vh;
 		background-size: 100rem;
@@ -28,9 +27,7 @@ h1,h2, h3, h4, h5, h6  {
 }
 
 @media screen and (min-width: 748px) {
-	/* tablets */
- .layout {
-	background-size: 150rem;
- }
+	.layout {
+		background-size: 150rem;
+	}
 }
-

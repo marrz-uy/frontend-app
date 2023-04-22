@@ -20,7 +20,6 @@ export default function AuthUser() {
     try {
       const userString = sessionStorage?.getItem('user');
       if (userString !== null) {
-        // const user_detail = JSON.parse(userString);
         const user_detail = userString;
         let userDetail = user_detail.toString().replace(/[",']/gi, '');
         return userDetail;
@@ -33,8 +32,6 @@ export default function AuthUser() {
   const getEmail = () => {
     try {
       const emailString = sessionStorage.getItem('email');
-      // const userEmail = JSON.parse(emailString);
-      // const user_Email = emailString;
       if (!emailString) {
         return '';
       }
@@ -49,7 +46,6 @@ export default function AuthUser() {
     try {
       const userProfileString = sessionStorage?.getItem('userProfile');
       const userProfile_detail = JSON.parse(userProfileString);
-      // const userProfile_detail = userProfileString;
       return userProfile_detail;
     } catch (error) {
       console.log('USER PROFILE SIN DATOS', error);
@@ -60,7 +56,6 @@ export default function AuthUser() {
     try {
       const userFavouritesString = sessionStorage?.getItem('favourites');
       const userFavourites_detail = JSON.parse(userFavouritesString);
-      // const userProfile_detail = userProfileString;
       return userFavourites_detail;
     } catch (error) {
       console.log('USER FAVOURITES SIN DATOS', error);
@@ -127,7 +122,6 @@ export default function AuthUser() {
         console.error(`Error en catch lOGOUT: ${error}`);
       });
     sessionStorage.clear();
-    // navigate('*');
   };
 
   const getLoggedIn = () => {
