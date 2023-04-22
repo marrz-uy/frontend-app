@@ -18,29 +18,21 @@ export const Slider = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
-  console.log('SLIDER 1-SLIDER: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
-    console.log('TARGET-ID: ', id);
     const req = await http
       .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
-        console.log('%cDATA:', 'color: blue;', response?.data);
-        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cTIPO:', 'color: yellow;', response?.data.categoria);
-        console.log('%cIMAGENES:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('REQ: ', req);
     setDestination(req);
 
-    console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
   return (

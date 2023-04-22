@@ -6,10 +6,7 @@ const PageNumbers = ({ cant }) => {
     pages.push(p + 1);
   }
 
-  console.log('PAGES: ', pages);
-
   const RenderPageNumber = pages.map((number) => {
-    console.log('NUMBER', number);
     return (
       <div key={number}>
         <button id={number}>{number}</button>

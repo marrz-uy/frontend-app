@@ -77,8 +77,6 @@ const SearchResults = ({
   // const [puntodeInteresId, setPuntodeInteresId] = useState();
   const [mobileScreenActive, setMobileScreenActive] = useState(false);
 
-  console.log('DATOS: ', datos);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     if (datos.length === 0) {
@@ -91,7 +89,6 @@ const SearchResults = ({
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
     if (window.screen.width <= 810) {
       setHandleFilter(false);
@@ -176,8 +173,6 @@ const SearchResults = ({
           const allDdata = res.data;
           setDatos(allDdata);
           setCantPaginas(allDdata?.last_page);
-          console.log('%cDATA RESPONSE RESULTS:', 'color: green;', datos);
-          console.log('DATOSSSSSSSSSSSSSS ALLDATA: ', allDdata);
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
@@ -209,11 +204,13 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res.data);
         setCantPaginas(res.data.last_page);
-        // console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
     // if (mobileScreenActive) {
     setHandleFilter(false);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 300);
     // }
   };
 

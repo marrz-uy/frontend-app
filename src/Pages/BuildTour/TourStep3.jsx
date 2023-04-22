@@ -55,8 +55,6 @@ const TourStep3 = () => {
     itemsHeredados,
   } = useContext(TourContext);
 
-  console.log('itemsHeredados step3:', itemsHeredados);
-
   const status = {
     '01': {
       name: 'TimeLine',
@@ -97,15 +95,11 @@ const TourStep3 = () => {
     });
   };
 
-  console.log('COLUMNS:', columns);
   let chosenItems = '';
-  console.log('CHOSEN ITEMS FUERA: ', chosenItems);
-  console.log('savedTourItems- final', savedTourItems);
   useEffect(() => {
     //eslint-disable-next-line
     chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
-    console.log('CHOSEN ITEMS DENTRO: ', chosenItems);
   }, [columns, setSavedTourItems]);
 
   return (

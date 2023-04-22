@@ -33,7 +33,6 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
   });
 
   const userType = sessionStorage?.getItem('userType');
-  console.log(userType);
 
   return (
     <nav className="userBar">

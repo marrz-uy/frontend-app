@@ -17,8 +17,6 @@ const Filtros = ({
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
-  console.log('TIPO FILTER: ', tipoToFilter);
-
   useEffect(() => {
     handleTipo();
   }, [puntodeInteresTipo]);
@@ -27,8 +25,8 @@ const Filtros = ({
     if (
       puntodeInteresTipo?.categoria?.Tipo === 'Restaurantes' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Bares' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Comida rapida' || //! agregué esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Cervecerias' //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Comida rapida' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Cervecerias'
     ) {
       /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
       setTipoToFilter('Gastronomia');
@@ -62,9 +60,9 @@ const Filtros = ({
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Hospitales' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Farmacias' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Cerrajerias' || //! agregué esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Estaciones de Servicio' || //! agregué esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Seccionales' //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Cerrajerias' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Estaciones de Servicio' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Seccionales'
     ) {
       /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
       setTipoToFilter('Servicios Esenciales');
@@ -85,8 +83,8 @@ const Filtros = ({
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Calesita' ||
-      puntodeInteresTipo?.categoria?.Tipo === 'Maquinitas' || //! agregué esto
-      puntodeInteresTipo?.categoria?.Tipo === 'Juegos Infantiles' //! agregué esto
+      puntodeInteresTipo?.categoria?.Tipo === 'Maquinitas' ||
+      puntodeInteresTipo?.categoria?.Tipo === 'Juegos Infantiles'
     ) {
       /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
       setTipoToFilter('Actividades Infantiles');
@@ -96,7 +94,6 @@ const Filtros = ({
   const handleClickRadio = (e) => {
     let mm;
     e.persist();
-    // console.log(filtersToSend[e.target.name]);
 
     if (tipoToFilter === 'Eventos') {
       setFiltersToSend((prevState) => ({
@@ -111,7 +108,6 @@ const Filtros = ({
           ...prevState,
           [e.target.name]: null,
         }));
-        console.log('llamame mimosa');
       } else {
         setFiltersToSend((prevState) => ({
           ...prevState,
@@ -120,8 +116,6 @@ const Filtros = ({
       }
     }
   };
-
-  // console.log(filtersToSend);
 
   return (
     <div className="filtro_results animate__animated animate__slideInLeft animate__faster">

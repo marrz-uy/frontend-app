@@ -27,12 +27,9 @@ const TourSteps = () => {
     setDataTourForSave,
   } = useContext(TourContext);
   const { itemsHeredados } = useContext(TourContext);
-  console.log('ITEMS HEREDADOS STEPS: ', itemsHeredados);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const accionTour = sessionStorage.getItem('accionTour');
   const tourId = sessionStorage.getItem('tourActualizar');
-
-  console.log('accionTour: ', accionTour);
 
   const steps = [
     {
@@ -59,7 +56,6 @@ const TourSteps = () => {
 
   const { http } = AuthUser();
   const [current, setCurrent] = useState(0);
-  console.log('CURRENT: ', current);
   const navigate = useNavigate();
 
   function getIdString(objects) {
@@ -76,7 +72,6 @@ const TourSteps = () => {
     if (itemsHeredados) {
       let string = getIdString(itemsHeredados);
       const newStr = string.substring(0, string.length - 1);
-      console.log('NEW STRING', newStr);
       setPuntosAExcluir(newStr);
     }
   }, [puntosAExcluir]);
@@ -95,13 +90,6 @@ const TourSteps = () => {
       .then((response) => {
         const allDdata = response?.data;
         setItemsParaTourDB(allDdata);
-        console.log('%callDdata - tourSteps:', 'color: violet;', allDdata);
-        console.log(
-          '%cITEMS-PARA-TOUR - tourSteps: ',
-          'color: yellow;',
-          itemsParaTourDB
-        );
-        console.log('RESPONSE HTTP: ', response?.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }
@@ -129,7 +117,6 @@ const TourSteps = () => {
       tourPreferences.personas === '' ||
       tourPreferences.ubicacion === ''
     ) {
-      console.log('Complete todos los campos');
       Swal.fire({
         title: filtrarTraduccion(traduccionesBD, 'atentionModal', lenguage),
         text: filtrarTraduccion(
@@ -159,14 +146,12 @@ const TourSteps = () => {
     }
   };
 
-  // console.log('DATATOURFORSAVE en TOURSTEPS:', dataTourForSave);
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [statusResponse, setStatusResponse] = useState('');
 
   //! save
   const savedTour = () => {
     if (dataTourForSave.nombreTour === '') {
-      console.log('El tour debe llevar un nombre');
       Swal.fire({
         title: filtrarTraduccion(traduccionesBD, 'atentionModal', lenguage),
         text: filtrarTraduccion(
@@ -194,7 +179,6 @@ const TourSteps = () => {
         puntosdeInteresTour: dataTourForSave.puntosdeInteresTour,
       })
       .then((res) => {
-        console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Tour se registro correctamente');
         setStatusResponse(res.status);
         if (res.status === 201) {
@@ -238,7 +222,6 @@ const TourSteps = () => {
         setRegisterErrorMessage('No se pudo registrar el tour');
         message.error('NO se pudo guardar su tour');
       });
-    console.log('registerErrorMessage ', registerErrorMessage, statusResponse);
     return { registerErrorMessage, statusResponse };
   };
 
@@ -255,7 +238,6 @@ const TourSteps = () => {
         puntosdeInteresTourUpdate: dataTourForSave.puntosdeInteresTour,
       })
       .then((res) => {
-        console.log('RESPUESTA:', res.data);
         setRegisterErrorMessage('El Tour se actualizo correctamente');
         setStatusResponse(res.status);
         if (res.status === 200) {
@@ -299,12 +281,10 @@ const TourSteps = () => {
         setRegisterErrorMessage('No se pudo registrar el tour');
         message.error('NO se pudo guardar su tour');
       });
-    console.log('registerErrorMessage ', registerErrorMessage, statusResponse);
     return { registerErrorMessage, statusResponse };
   };
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
-  // console.log('CURRENT PAGE: ', current + 1);
 
   const backTours = () => {
     navigate('/tour');

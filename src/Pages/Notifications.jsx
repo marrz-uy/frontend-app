@@ -43,9 +43,8 @@ const Notifications = ({
     deleteNotifications(value);
   };
 
-  const regex = /(https?:\/\/[^\s]+)/g;
-
-  function isLink(text, regex) {
+  function isLink(text) {
+    const regex = /(https?:\/\/[^\s]+)/g;
     const match = regex.exec(text);
     if (match !== null) {
       return match[0];

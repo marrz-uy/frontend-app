@@ -8,7 +8,6 @@ export default function AuthUser() {
   const getToken = () => {
     try {
       const tokenString = sessionStorage.getItem('access_token');
-      // const userToken = JSON.parse(tokenString);
       const userToken = tokenString;
       return userToken;
     } catch (error) {
@@ -110,7 +109,6 @@ export default function AuthUser() {
 
   const logout = () => {
     const id = sessionStorage?.getItem('id');
-    console.log('IDDDDDD; ', id);
     http
       .post('/logout', {
         id: id,

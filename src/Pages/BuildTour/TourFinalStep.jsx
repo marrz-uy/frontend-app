@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import AuthUser from '../../Components/AuthUser';
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
@@ -17,18 +17,15 @@ const TourFinalStep = () => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
 
   const accionTour = sessionStorage.getItem('accionTour');
-  console.log('accionTour: ', accionTour);
 
   const tourId = sessionStorage.getItem('tourActualizar');
   const [nombreTour, setNombreTour] = useState('');
 
   useEffect(() => {
-    console.log('accionTour S4: ', accionTour);
     if (accionTour === 'actualizar') {
       http
         .get(`/nombreTour/${tourId}`)
         .then((response) => {
-          console.log('nombreTour: ', response.data.tour);
           setNombreTour(response.data.tour);
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
@@ -46,7 +43,6 @@ const TourFinalStep = () => {
   useEffect(() => {
     let string = getIdString(savedTourItems);
     const newStr = string.substring(0, string.length - 1);
-    console.log('NEW STRING', newStr);
     setPInteresString(newStr);
     setDataTourForSave({
       usuarioId: Id,
@@ -62,7 +58,7 @@ const TourFinalStep = () => {
     savedTourItems,
     setDataTourForSave,
   ]);
-  console.log('savedTourItems- final', savedTourItems);
+
   return (
     <div className="tourFinalStep">
       {accionTour === 'actualizar' ? (

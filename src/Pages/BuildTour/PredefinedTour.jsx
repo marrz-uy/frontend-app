@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../Layout';
 import LenguageContext from '../../Context/LenguageContext';
@@ -8,9 +8,9 @@ import UserBar from '../../Pages/UserBar';
 import { handleUserBar } from '../../Helpers/HandUserBarClick';
 import PageContext from '../../Context/PageContext';
 import NoTourMsg from '../../Components/TourComponents/NoTourMsg';
-import '../../Css/TourInit.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import '../../Css/TourInit.css';
 
 const PredefinedTour = ({
   setIsLoggedIn,
@@ -57,21 +57,16 @@ const PredefinedTour = ({
     const req = await http
       .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
-        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cPUNTO:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('REQ: ', req);
     setDestination(req);
 
-    console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
-  console.log('TOURS: ', appTours);
 
   return (
     <Layout>
