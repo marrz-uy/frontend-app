@@ -28,6 +28,10 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
       .get(`/favoritos/${user_Id}`)
       .then((response) => {
         setIdsFavouritesFromDB(response.data.favoritos_ids);
+        const favoritosIds = response.data.favoritos_ids;
+        const favoritosIdsString = JSON.stringify(favoritosIds);
+
+        sessionStorage.setItem('favoritos', favoritosIdsString);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }

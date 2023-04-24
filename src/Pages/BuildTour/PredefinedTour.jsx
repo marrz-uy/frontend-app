@@ -52,20 +52,18 @@ const PredefinedTour = ({
   };
 
   const goOnPoint = async (e) => {
-    e.preventDefault();
-    const id = e.target.id;
-    const req = await http
-      .get(`/PuntosInteres/${id}`, {})
-      .then((response) => {
-        let punto = response?.data.punto;
-        let categoria = response?.data.categoria;
-        const objetoUnido = { ...punto, ...categoria };
-        return objetoUnido;
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-    setDestination(req);
-
-    navigate('/infoResults');
+    try {
+      e.preventDefault();
+      const id = e?.target?.id;
+      const response = await http.get(`/PuntosInteres/${id}`, {});
+      const punto = response?.data?.punto;
+      const categoria = response?.data?.categoria;
+      const objetoUnido = { ...punto, ...categoria };
+      setDestination(objetoUnido);
+      navigate('/infoResults');
+    } catch (error) {
+      console.error(`Error en catch: ${error}`);
+    }
   };
 
   return (
