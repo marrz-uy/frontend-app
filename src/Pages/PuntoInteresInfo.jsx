@@ -34,7 +34,7 @@ const PuntoInteresInfo = ({
   const { setActivePage } = useContext(PageContext);
   const { Facebook, Instagram } = destination;
   handleUserBar(userBar);
-  const [setFirefox] = useState(false);
+  const [firefox, setFirefox] = useState(false);
 
   const [user_Id] = useState(sessionStorage?.getItem('id'));
   const { GetIdsFavouritesFromDB, idsFavouritesFromDB } =
