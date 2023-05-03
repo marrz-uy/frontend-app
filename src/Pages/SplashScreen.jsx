@@ -11,7 +11,6 @@ export const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      // setmostrarPantallaInicio(!mostrarPantallaInicio);
       setmostrarPantallaInicio(false);
     }, 3000);
     sessionStorage.setItem('splash', null);

@@ -28,7 +28,10 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
       .get(`/favoritos/${user_Id}`)
       .then((response) => {
         setIdsFavouritesFromDB(response.data.favoritos_ids);
-        console.log('%cPIDO FAVORITOS A BD: ', 'color:red');
+        const favoritosIds = response.data.favoritos_ids;
+        const favoritosIdsString = JSON.stringify(favoritosIds);
+
+        sessionStorage.setItem('favoritos', favoritosIdsString);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }

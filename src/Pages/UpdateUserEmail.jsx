@@ -33,7 +33,6 @@ const UpdateUserData = ({
     http
       .patch(`/updateEmail/${Id}`, { email })
       .then((res) => {
-        console.log('RESPUESTA:', res.data.user);
         setRegisterErrorMessage('El Usuario se actualizo correctamente');
         sessionStorage.setItem('email', res.data.user.email);
         navigate('/user');

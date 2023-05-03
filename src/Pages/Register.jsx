@@ -65,11 +65,9 @@ const Register = ({
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [refMyElement, widhtMyElemnt] = useWidthElement();
-  console.log('anchoMiElemento:', widhtMyElemnt);
 
   const submitRegister = (e) => {
     e.preventDefault();
-    console.log('Me registro!!');
     setRegisterErrorMessage('');
     setLoader(true);
     const provider = 'feeluy';
@@ -82,7 +80,6 @@ const Register = ({
         provider,
       })
       .then((res) => {
-        console.log('RESPUESTA ok:', res.data);
         if (res.data) {
           setLoader(false);
         }
@@ -102,18 +99,13 @@ const Register = ({
               },
             });
           }
-        }, 1000);
+        }, 500);
         navigate('/login');
       })
       .catch(function (error) {
         if (error) {
           setLoader(false);
         }
-        /* console.log('RESPUESTA:', error.response.data.errors); */
-        let ERRORES = error.response.data.errors;
-        // let ERRORES = error.response.data;
-        console.log('RESPUESTA errores:', ERRORES);
-
         if (!email || !password || !passwordConfirmation || !name) {
           setRegisterErrorMessage('Todos los campos son obligatorios');
         } else if (
@@ -139,7 +131,6 @@ const Register = ({
         } else if (error.response.data.errors.name) {
           setRegisterErrorMessage('Debe ingresar un nombre de usuario');
         }
-        console.log('registerErrorMessage', registerErrorMessage);
       });
     return registerErrorMessage;
   };
@@ -159,11 +150,6 @@ const Register = ({
         provider: 'google',
       })
       .then((response) => {
-        console.log(
-          '%cRESPUESTA BACK LOGIN GOOGLE: ',
-          'color:blue;',
-          response.data
-        );
         if (response.data) {
           setLoader(false);
         }
@@ -190,10 +176,6 @@ const Register = ({
         if (error) {
           setLoader(false);
         }
-        console.error(`Error en catch Register GOOGLE: ${error}`);
-        let ERRORES = error.response.data.errors;
-        // let ERRORES = error.response.data;
-        console.log('RESPUESTA errores:', ERRORES);
         if (
           error.response.data.errors.email[0] ===
           'The email has already been taken.'

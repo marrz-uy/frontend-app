@@ -112,7 +112,6 @@
     width: 30px;
     height: 30px;
     color: #FFF;
-    /* display: flex; */
     cursor: pointer;
 }
 
@@ -120,7 +119,6 @@
     width: 30px;
     height: 30px;
     color: #FFF;
-    /* display: flex; */
     cursor: pointer;
 }
 
@@ -302,7 +300,6 @@
 }
 
 /* animation: loading 3s steps(1000) infinite; */
-
 @media screen and (min-width: 480px) {
     #feelLogoImg {
         position: relative;
@@ -325,7 +322,6 @@
     }
 
     .msgWelcome {
-        /* font-size: 1rem; */
         margin-bottom: 10px;
     }
 }
@@ -391,7 +387,6 @@
     #arrowImg {
         position: relative;
         top: 2px;
-        /* filter: drop-shadow(2px 8px 5px #000000e8); */
     }
 
     .inputSearch {
@@ -439,7 +434,6 @@
 
 
 /* laptop/desktop - de 1024px en adelante */
-
 @media screen and (min-width: 1024px) {
     .navbar {
         min-height: 115px;

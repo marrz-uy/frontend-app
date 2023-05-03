@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
@@ -25,32 +25,27 @@ const UpdateUserData = ({
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const navigate = useNavigate();
   const { http } = AuthUser();
-  const { traduccionesBD, lenguage  } = useContext(LenguageContext);
-  const Id = sessionStorage.getItem('id')
+  const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const Id = sessionStorage.getItem('id');
 
   const submitUpdateName = (e) => {
     e.preventDefault();
     http
-    .patch(`/updatePassword/${Id}`, { password, passwordConfirmation })
+      .patch(`/updatePassword/${Id}`, { password, passwordConfirmation })
       .then((res) => {
-        console.log('RESPUESTA:', res.data.user);
         setRegisterErrorMessage('El Usuario se actualizo correctamente');
-        // sessionStorage.setItem('user', JSON.stringify(res.data.user));
         navigate('/user');
       })
       .catch(function (error) {
         if (error.response.status === SERVIDOR_APAGADO) {
           setRegisterErrorMessage('Servidor apagado');
         }
-
         if (password === '') {
           setRegisterErrorMessage('Todos los campos son obligatorios');
         }
-
         if (password.length < 8) {
           setRegisterErrorMessage(error.response.data.password);
         }
-
         return registerErrorMessage;
       });
   };
@@ -63,7 +58,13 @@ const UpdateUserData = ({
       <div className="register">
         <form onSubmit={submitUpdateName}>
           <div>
-            <h2 className="title">{filtrarTraduccion(traduccionesBD, 'passwordUpdateTitle', lenguage)}</h2>
+            <h2 className="title">
+              {filtrarTraduccion(
+                traduccionesBD,
+                'passwordUpdateTitle',
+                lenguage
+              )}
+            </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
           <div className="inputGroup">
@@ -71,7 +72,11 @@ const UpdateUserData = ({
               className="input"
               type="password"
               name="password"
-              placeholder={filtrarTraduccion(traduccionesBD, 'registerPasswordPlaceholder', lenguage)}
+              placeholder={filtrarTraduccion(
+                traduccionesBD,
+                'registerPasswordPlaceholder',
+                lenguage
+              )}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -87,11 +92,16 @@ const UpdateUserData = ({
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-
-            <input type="submit" value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}  className="btn-register" />
+            <input
+              type="submit"
+              value={filtrarTraduccion(traduccionesBD, 'updateLabel', lenguage)}
+              className="btn-register"
+            />
           </div>
           <div className="linkALogin">
-            <Link to="/user">{filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}</Link>
+            <Link to="/user">
+              {filtrarTraduccion(traduccionesBD, 'backToUserProfile', lenguage)}
+            </Link>
           </div>
         </form>
       </div>

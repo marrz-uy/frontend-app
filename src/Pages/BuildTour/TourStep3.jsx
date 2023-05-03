@@ -55,8 +55,6 @@ const TourStep3 = () => {
     itemsHeredados,
   } = useContext(TourContext);
 
-  console.log('itemsHeredados step3:', itemsHeredados);
-
   const status = {
     '01': {
       name: 'TimeLine',
@@ -74,11 +72,13 @@ const TourStep3 = () => {
 
   let textoModal = `Los puntos que se ofrecen para armar su tour 
   estan basados en las preferencias brindadas por ud en el paso 1.<br/>
-  <br/>Hora de Comienzo: ${tourPreferences?.horaInicio},
-  <br/>Espacios: ${tourPreferences.tipoDeLugar},
-  <br/>Para edades: ${tourPreferences.restriccionDeEdad.toLowerCase()},
-  <br/>Para: ${tourPreferences.enfoqueDePersonas.toLowerCase()},
-  <br/>Ubicados en: ${tourPreferences.ubicacion}`;
+  <div class="swalInfoPreferences"> 
+  <span>Hora de Comienzo: <h4> ${tourPreferences?.horaInicio}</h4>,</span>
+  <span>Espacios: <h4> ${tourPreferences.tipoDeLugar}</h4>,</span>
+  <span>Para edades: <h4> ${tourPreferences.restriccionDeEdad}</h4>,</span>
+  <span>Para: <h4> ${tourPreferences.enfoqueDePersonas}</h4>,</span>
+  <span>Ubicados en: <h4> ${tourPreferences.ubicacion}</h4></span>
+  </div>`;
 
   const handleInfoTour = () => {
     Swal.fire({
@@ -95,15 +95,11 @@ const TourStep3 = () => {
     });
   };
 
-  console.log('COLUMNS:', columns);
   let chosenItems = '';
-  console.log('CHOSEN ITEMS FUERA: ', chosenItems);
-  console.log('savedTourItems- final', savedTourItems);
   useEffect(() => {
     //eslint-disable-next-line
     chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
-    console.log('CHOSEN ITEMS DENTRO: ', chosenItems);
   }, [columns, setSavedTourItems]);
 
   return (
@@ -111,7 +107,12 @@ const TourStep3 = () => {
       <div className="descripcionTourStep3">
         <p className="descripcionTourStep3Text">
           {filtrarTraduccion(traduccionesBD, 'dragPointsInterest', lenguage)}
-          <button className="btnInfoTour" onClick={handleInfoTour}>
+          <button
+            className="btnInfoTour"
+            // onMouseOver={(e) => (e.target.style.backgroundColor = 'red')}
+            // onMouseOut={(e) => (e.target.style.backgroundColor = 'transparent')}
+            onClick={handleInfoTour}
+          >
             {filtrarTraduccion(traduccionesBD, 'tourInfo', lenguage)}
           </button>
         </p>

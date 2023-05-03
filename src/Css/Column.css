@@ -1,8 +1,8 @@
 .dragNDropContainer {
+	display: flex;
+	justify-content: space-between;
 	width: 360px;
 	height: 50vh;
-	display: flex;
-	padding: 5px;
 	gap: 5px;
 }
 
@@ -23,6 +23,7 @@
 #TimeLine {
 	display: flex;
 	justify-content: center;
+	width: 176px;
 	border: 1px solid rgb(234, 234, 234);
 	background-color: white;
 }
@@ -39,30 +40,22 @@
 	border: none;
 	display: flex;
 	justify-content: center;
-	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
+	align-items: flex-start;
+	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .3);
 	z-index: 3;
 }
 
-/* #TimeLine .draggable {
-	z-index: 1;
-} */
 
 #TimeLine .droppable .tourCard h6 {
 	color: rgb(230, 70, 70);
 }
 
-/* #TimeLine .tourCard span {
-	display: none;
-} */
-
-
-
 #Items {
 	display: flex;
 	justify-content: center;
+	width: 176px;
 	border: 1px solid rgb(234, 234, 234);
 	background-color: white;
-	/* border: 1px solid green; */
 }
 
 #Items>.droppable {
@@ -90,14 +83,13 @@
 	border-radius: 5px;
 }
 
-/****************** CARD **********************/
-
 .tourCard {
 	border: 1px solid rgb(236, 236, 236);
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 	border-radius: 5px;
 	display: flex;
 	justify-content: flex-start;
+	align-items: flex-start;
 	width: 100%;
 	height: 50px;
 	max-height: 25vh;
@@ -110,22 +102,28 @@
 
 .divImgTour {
 	display: flex;
-	width: 55px;
-	height: 48px;
+	width: 60px;
+	height: 100%;
 	border-radius: 3px;
-	background-color: aquamarine;
 }
 
 .tourCard span {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
+	margin-right: 2px;
+}
+
+.tourCard span img {
+	height: 100%;
+	width: 15px;
 }
 
 .imagenCardTour {
 	border-radius: 5px;
-	max-width: 55px;
-	height: auto;
+	width: 100%;
+	height: 100%;
 	background-size: cover;
 }
 
@@ -133,9 +131,9 @@
 	margin-left: 5px;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: space-around; */
 	align-items: flex-start;
 	width: 100%;
+	overflow: scroll;
 }
 
 .dataTour>h6 {
@@ -161,22 +159,26 @@
 
 	.divImgTour {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
-		/* border: 1px solid gray; */
+		width: 60px;
+		height: 48px;
 	}
 
-	.imagenCardTour {
-		border-radius: 5px;
-		max-width: 3rem;
-		height: auto;
-		background-size: cover;
+	.tourCard span {
+		height: 100%;
+		margin-right: 2px;
+	}
+
+	.tourCard span img {
+		height: 100%;
+		width: 15px;
 	}
 }
 
 @media screen and (min-width: 768px) {
 	.dragNDropContainer {
-		width: 814px;
+		width: 98%;
 	}
 }
 

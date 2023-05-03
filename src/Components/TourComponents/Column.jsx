@@ -44,15 +44,7 @@ const Column = ({ droppableId, column }) => {
                         >
                           <div className="tourCard">
                             <span>
-                              <img
-                                src={drag}
-                                style={{
-                                  width: '15px',
-                                  height: '40px',
-                                  padding: '0 3px 0 0 ',
-                                }}
-                                alt="drag-Simbol"
-                              ></img>
+                              <img src={drag} alt="drag-Simbol"></img>
                             </span>
                             <div className="divImgTour">
                               <img
