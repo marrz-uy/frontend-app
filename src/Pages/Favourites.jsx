@@ -38,22 +38,13 @@ const Favourites = ({
           puntosinteres_id: puntoId,
         },
       })
-      .then((response) => {
-        console.log(
-          '%cFav data - eliminado:',
-          'color: violet;',
-          response?.data
-        );
-      })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
   const handleDeleteFavourite = (e) => {
     deleteFavourite(userId, e.target.id);
-    console.log('TARGET ID', e.target.id);
     GetFavouritesFromDB(userId);
   };
-  // console.log('FAVORITOS: ', favouritesFromDB[0].imagenes[0]);
 
   handleUserBar(userBar);
 

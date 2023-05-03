@@ -1,4 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Layout } from '../Layout';
 import AuthUser from '../Components/AuthUser';
 import LenguageContext from '../Context/LenguageContext';
@@ -25,8 +28,8 @@ const SearchResults = ({
   latitud,
   longitud,
 }) => {
+  const navigate = useNavigate();
   const { http } = AuthUser();
-
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
   const [cantPaginas, setCantPaginas] = useState('');
@@ -49,7 +52,7 @@ const SearchResults = ({
     Piscina: null,
     Wifi: null,
     AireAcondicionado: null,
-    BanoPrivad: null,
+    BanoPrivado: null,
     Casino: null,
     Bar: null,
     Restaurante: null,
@@ -59,35 +62,26 @@ const SearchResults = ({
     FechaInicio: null,
     TipoEvento: null,
   });
+
   const [tipoToFilter, setTipoToFilter] = useState('');
-  const [filtersOn, setFiltersOn] = useState(false);
-  const [datosTwo, setDatosTwo] = useState([]);
 
   let pages = [];
   for (let p = 0; p < cantPaginas; p++) {
     pages.push(p + 1);
   }
 
-  // console.log('SEARCH TYPE:', searchType);
-  // console.log('TEXT RESULTS', text, typeof text);
-  // console.log('CATEGORIA', text);
-
-  // console.log(
-  //   '%cLAST PAGES ITEMS y DATOS:',
-  //   'color: yellow;',
-  //   items?.last_page,
-  //   datos?.last_page
-  // );
-
-  // console.log('%cCANTPAGINAS:', 'color: blue;', cantPaginas);
-
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
-  const [puntodeInteresId, setPuntodeInteresId] = useState();
+  // const [puntodeInteresId, setPuntodeInteresId] = useState();
+  const [mobileScreenActive, setMobileScreenActive] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    if (datos.length === 0) {
+      navigate('/');
+    }
     setPage('results');
     setDatos(items);
     setCantPaginas(items?.last_page);
@@ -95,39 +89,24 @@ const SearchResults = ({
       setLatitudAEnviar(+latitud);
       setLongitudAEnviar(+longitud);
       setDistanciaAEnviar(50000);
-      // console.log('A ENVIAR: ', loaded, latitud, longitud);
     }
     if (window.screen.width <= 810) {
       setHandleFilter(false);
+      setMobileScreenActive(true);
     }
     // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
 
-  /* const getData = (numPage) => {
-    setDistanciaAEnviar(distanciaAEnviar);
-    http
-      .post(`${items?.path}?page=${numPage}`, {
-        latitudAEnviar,
-        longitudAEnviar,
-        distanciaAEnviar,
-      })
-      .then((response) => {
-        const allDdata = response?.data;
-        setDatos(allDdata);
-      })
-      .catch((error) => console.error(`Error en catch: ${error}`));
-  }; */
-
   const getData = (numPage) => {
     setDistanciaAEnviar(distanciaAEnviar);
-    var mama;
+    var puntos;
     if (allFilters) {
-      mama = datos;
+      puntos = datos;
     } else {
-      mama = items;
+      puntos = items;
     }
     http
-      .post(`${mama?.path}?page=${numPage}`, {
+      .post(`${puntos?.path}?page=${numPage}`, {
         latitudAEnviar,
         longitudAEnviar,
         distanciaAEnviar,
@@ -140,7 +119,7 @@ const SearchResults = ({
         Piscina: filtersToSend.Piscina,
         Wifi: filtersToSend.Wifi,
         AireAcondicionado: filtersToSend.AireAcondicionado,
-        BanoPrivad: filtersToSend.BanoPrivad,
+        BanoPrivado: filtersToSend.BanoPrivado,
         Casino: filtersToSend.Casino,
         Bar: filtersToSend.Bar,
         Restaurante: filtersToSend.Restaurante,
@@ -194,8 +173,6 @@ const SearchResults = ({
           const allDdata = res.data;
           setDatos(allDdata);
           setCantPaginas(allDdata?.last_page);
-          console.log('%cDATA RESPONSE RESULTS:', 'color: green;', datos);
-          console.log('DATOSSSSSSSSSSSSSS ALLDATA: ', allDdata);
         })
         .catch((error) => console.error(`Error en catch: ${error}`));
     }
@@ -216,7 +193,7 @@ const SearchResults = ({
         Piscina: filtersToSend.Piscina,
         Wifi: filtersToSend.Wifi,
         AireAcondicionado: filtersToSend.AireAcondicionado,
-        BanoPrivad: filtersToSend.BanoPrivad,
+        BanoPrivado: filtersToSend.BanoPrivado,
         Casino: filtersToSend.Casino,
         Bar: filtersToSend.Bar,
         Restaurante: filtersToSend.Restaurante,
@@ -227,9 +204,14 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res.data);
         setCantPaginas(res.data.last_page);
-        // console.log(filtersToSend);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+    // if (mobileScreenActive) {
+    setHandleFilter(false);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 300);
+    // }
   };
 
   const handleGetFilterEventos = () => {
@@ -245,12 +227,13 @@ const SearchResults = ({
         setAllFilters(res.data);
         setDatos(res);
         setCantPaginas(res.data.last_page);
-        // console.log(res);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
+    // if (mobileScreenActive) {
+    setHandleFilter(false);
+    // }
   };
 
-  // console.log('page: ', isNaN(pages));
   handleUserBar(userBar);
 
   const getBackgroundSize = () => {
@@ -262,126 +245,142 @@ const SearchResults = ({
       http
         .get(`/PuntosInteres/${datos?.data[0]?.id}`)
         .then((res) => {
-          setPuntodeInteresTipo(res.data.categoria.Tipo);
-          console.log('aaaaa', res.data.categoria.Tipo);
+          setPuntodeInteresTipo(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [datos]);
-  console.log('DATOS.DATA:->', datos?.data);
+
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
-      <div className="results ">
-        <h6 className="resultsText">
-          {!datos?.data
-            ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
-            : `${datos.total || '1'} ${filtrarTraduccion(
-                traduccionesBD,
-                'resultsFor',
-                lenguage
-              )} ${text}, pagina ${datos?.current_page || '1'}`}
-        </h6>
-        {latitud && longitud ? (
-          <div className="filtrarDistancia">
-            <div className="etiquetasDistancia">
-              <label htmlFor="inputRange">Distancia</label>
-            </div>
-            <div className="box">
-              <input
-                className="inputRange"
-                id="inputRange"
-                name="inputRange"
-                type="range"
-                min="1000"
-                max="50000"
-                step="1000"
-                value={distanciaAEnviar}
-                style={getBackgroundSize()}
-                onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
-              ></input>
-              <div className="divKilometros">
-                <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
-              </div>
-            </div>
+      <div className="contFiltroYresultados">
+        <div className="results ">
+          <div className="filtro_container_btn">
             <button
-              onClick={handleDistance}
-              className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
+              className="btnSearch filters"
+              onClick={() => setHandleFilter(!handleFilter)}
             >
-              Filtrar
+              <FontAwesomeIcon icon={faFilter} />
+              Filtros
             </button>
           </div>
-        ) : (
-          <div className="sinGeolocalizacion">
-            <h5>
-              {filtrarTraduccion(
-                traduccionesBD,
-                'localizationNotSupported',
-                lenguage
-              )}
-            </h5>
-            <h6>
-              {filtrarTraduccion(traduccionesBD, 'reloadApplication', lenguage)}
-            </h6>
-          </div>
-        )}
-        {/* //! NO RESULT FOR THIS SEARCH */}
-        <div className="infoResults">
-          {!datos?.data ? (
-            <div className="sinResultado">
-              <p>{filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}</p>
+          <h6 className="resultsText">
+            {!datos?.data
+              ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
+              : `${datos.total || '0'} ${filtrarTraduccion(
+                  traduccionesBD,
+                  'resultsFor',
+                  lenguage
+                )} ${text}, pagina ${datos?.current_page || '1'}`}
+          </h6>
+          {latitud && longitud ? (
+            <div className="filtrarDistancia">
+              <div className="etiquetasDistancia">
+                <label htmlFor="inputRange">Distancia</label>
+              </div>
+              <div className="box">
+                <input
+                  className="inputRange"
+                  id="inputRange"
+                  name="inputRange"
+                  type="range"
+                  min="1000"
+                  max="50000"
+                  step="1000"
+                  value={distanciaAEnviar}
+                  style={getBackgroundSize()}
+                  onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
+                ></input>
+                <div className="divKilometros">
+                  <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
+                </div>
+              </div>
+              <button
+                onClick={handleDistance}
+                className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
+              >
+                Filtrar
+              </button>
             </div>
           ) : (
-            datos?.data?.map((dato, index) => {
-              return (
-                <ResultsCard
-                  key={index}
-                  nombre={dato?.Nombre}
-                  nombreEvento={dato?.NombreEvento}
-                  lugarDeEvento={dato?.Nombre}
-                  ciudad={dato?.Ciudad}
-                  direccion={dato?.Direccion}
-                  fechaInicio={dato?.FechaInicio}
-                  fechaFin={dato?.FechaFin}
-                  horaInicio={dato?.HoraDeApertura}
-                  horaFin={dato?.HoraDeCierre}
-                  tipoEvento={dato?.TipoEvento}
-                  tipo={dato?.Tipo && puntodeInteresTipo}
-                  caracteristicas={dato?.Contacto}
-                  imagen={dato?.imagenes[0]?.url}
-                  setDestination={setDestination}
-                  dato={dato}
-                />
-              );
-            })
+            <div className="sinGeolocalizacion">
+              <h5>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'localizationNotSupported',
+                  lenguage
+                )}
+              </h5>
+              <h6>
+                {filtrarTraduccion(
+                  traduccionesBD,
+                  'reloadApplication',
+                  lenguage
+                )}
+              </h6>
+            </div>
           )}
+          {/* //! NO RESULT FOR THIS SEARCH */}
+          <div className="infoResults">
+            {!datos?.data ? (
+              <div className="sinResultado">
+                <p>
+                  {filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}
+                </p>
+              </div>
+            ) : (
+              datos?.data?.map((dato) => {
+                return (
+                  <ResultsCard
+                    key={dato?.Eventos_id ? dato?.Eventos_id : dato?.id}
+                    nombre={dato?.Nombre}
+                    nombreEvento={dato?.NombreEvento}
+                    lugarDeEvento={dato?.Nombre}
+                    ciudad={dato?.Ciudad}
+                    direccion={dato?.Direccion}
+                    fechaInicio={dato?.FechaInicio}
+                    fechaFin={dato?.FechaFin}
+                    horaInicio={dato?.HoraDeApertura}
+                    horaFin={dato?.HoraDeCierre}
+                    tipoEvento={dato?.TipoEvento}
+                    tipo={dato?.Tipo}
+                    caracteristicas={dato?.Contacto}
+                    imagen={dato?.imagenes[0]?.url}
+                    setDestination={setDestination}
+                    dato={dato}
+                  />
+                );
+              })
+            )}
+          </div>
         </div>
+
+        {handleFilter && (
+          <Filter
+            latitud={latitud}
+            longitud={longitud}
+            distanciaAEnviar={distanciaAEnviar}
+            setDistanciaAEnviar={setDistanciaAEnviar}
+            getBackgroundSize={getBackgroundSize}
+            loaded={loaded}
+            handleDistance={handleDistance}
+            puntodeInteresTipo={puntodeInteresTipo}
+            setHandleFilter={setHandleFilter}
+            allFilters={allFilters}
+            setAllFilters={setAllFilters}
+            filtersToSend={filtersToSend}
+            setFiltersToSend={setFiltersToSend}
+            handleGetFIlters={handleGetFIlters}
+            tipoToFilter={tipoToFilter}
+            setTipoToFilter={setTipoToFilter}
+            handleGetFilterEventos={handleGetFilterEventos}
+            mobileScreenActive={mobileScreenActive}
+          />
+        )}
       </div>
-
-      {handleFilter && (
-        <Filter
-          latitud={latitud}
-          longitud={longitud}
-          distanciaAEnviar={distanciaAEnviar}
-          setDistanciaAEnviar={setDistanciaAEnviar}
-          getBackgroundSize={getBackgroundSize}
-          loaded={loaded}
-          handleDistance={handleDistance}
-          puntodeInteresTipo={puntodeInteresTipo}
-          setHandleFilter={setHandleFilter}
-          allFilters={allFilters}
-          setAllFilters={setAllFilters}
-          filtersToSend={filtersToSend}
-          setFiltersToSend={setFiltersToSend}
-          handleGetFIlters={handleGetFIlters}
-          tipoToFilter={tipoToFilter}
-          setTipoToFilter={setTipoToFilter}
-          handleGetFilterEventos={handleGetFilterEventos}
-        />
-      )}
-
       <div className="seccionPaginado">
         {cantPaginas > 1 ? (
           <div className="contenedorPaginado">
@@ -443,6 +442,7 @@ const SearchResults = ({
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           setUserBar={setUserBar}
+          mobileScreenActive={mobileScreenActive}
         />
       )}
     </Layout>

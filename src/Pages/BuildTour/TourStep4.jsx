@@ -1,16 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-
+import { useContext } from 'react';
+import { Chrono } from 'react-chrono';
 import TourContext from '../../Context/TourContext';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
-import { Chrono } from 'react-chrono';
 import '../../Css/TourStep4.css';
 
 const TourStep4 = () => {
   const { savedTourItems } = useContext(TourContext);
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
-
-  console.log('STEP 4 - savedTourItems: ', savedTourItems);
 
   return (
     <div className="tourStep4">
@@ -19,10 +16,7 @@ const TourStep4 = () => {
           {filtrarTraduccion(traduccionesBD, 'thisIsYourTour', lenguage)}
         </p>
       </div>
-      <div
-        className="timelineTourFinal"
-        // style={{ width: '102%', height: '350px' }}
-      >
+      <div className="timelineTourFinal">
         <Chrono
           mode="VERTICAL_ALTERNATING"
           scrollable={{ scrollbar: true }}
@@ -66,12 +60,6 @@ const TourStep4 = () => {
                         : dato.Nombre}
                     </h6>
                   )}
-                  {/* <p>
-                    -{' '}
-                    {dato?.puntos_interes
-                      ? dato.puntos_interes?.Tipo
-                      : dato.Tipo}{' '}
-                  </p> */}
                   <p>
                     - Abre {''}
                     {dato?.puntos_interes
