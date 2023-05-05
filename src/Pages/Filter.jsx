@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { filtrarTraduccion } from '../Helpers/FilterTranslate';
@@ -16,10 +16,40 @@ const Filtros = ({
   handleGetFilterEventos,
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
+  const [filtersToCheck, setFiltersToCheck] = useState([]);
 
   useEffect(() => {
     handleTipo();
+
+
   }, [puntodeInteresTipo]);
+
+  useEffect(() => {
+    setFiltersToCheck(filtersToSend);
+    let mm;
+    let valueOfFilter
+    Object.keys(filtersToSend).map((key, value) => {
+      if (filtersToSend[key] != null && key != 'latitudAEnviar' && key != 'longitudAEnviar' && key != 'distanciaAEnviar') {
+        if (filtersToSend[key] === '1') {
+          valueOfFilter = key.toString()
+        } else {
+          valueOfFilter = filtersToSend[key].toString()
+        }
+        console.log(valueOfFilter)
+        mm = document.getElementById(valueOfFilter)
+        mm.checked = true
+      }
+    })
+  }, [])
+
+
+
+  const handleChecked = () => {
+
+  }
+
+
+
 
   const handleTipo = () => {
     if (
@@ -137,6 +167,8 @@ const Filtros = ({
                 type="radio"
                 name="Tipo"
                 id="Restaurantes"
+                className='Restaurantes'
+                // checked={selectedOption === 'option1'}
                 value="Restaurantes"
                 onClick={(e) => handleClickRadio(e)}
               />
