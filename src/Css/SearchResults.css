@@ -230,6 +230,8 @@ h6 {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	height: 50vh;
+	width: 35vw;
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 	border-radius: 5px;
 }
@@ -305,7 +307,7 @@ h6 {
 
 .filtro_results {
 	position: absolute;
-	width: 100vw;
+	width: 30vw;
 	left: 0;
 	box-shadow: 1px 3px 10px 0 rgb(0 0 0 / 10%);
 	background-color: rgba(239, 239, 240, 1);
@@ -327,7 +329,7 @@ h6 {
 	}
 
 	.contFiltroYresultados .animate__animated.animate__faster {
-		width: 50%;
+		width: 35vw;
 	}
 
 	.inputTipoEvento, .FechaInicioEventos {
