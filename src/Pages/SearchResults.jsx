@@ -36,7 +36,7 @@ const SearchResults = ({
   const [limiteCantidadPaginas] = useState(5);
   const [limiteMaximoPaginas, setLimiteMaximoPaginas] = useState(5);
   const [limiteMinimoPaginas, setLimiteMinimoPaginas] = useState(0);
-  const [handleFilter, setHandleFilter] = useState(true);
+  const [handleFilter, setHandleFilter] = useState(false);
   const [allFilters, setAllFilters] = useState([]);
   const [filtersToSend, setFiltersToSend] = useState({
     latitudAEnviar: 3481272,
@@ -252,6 +252,8 @@ const SearchResults = ({
         });
     }
   }, [datos]);
+
+  console.log(filtersToSend);
 
   return (
     <Layout>
