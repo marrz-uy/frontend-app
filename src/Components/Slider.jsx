@@ -13,7 +13,6 @@ export const Slider = ({
   sliderPoints,
   title,
   description,
-  destination,
   setDestination,
 }) => {
   const navigate = useNavigate();
