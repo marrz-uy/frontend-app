@@ -20,36 +20,30 @@ const Filtros = ({
 
   useEffect(() => {
     handleTipo();
-
-
   }, [puntodeInteresTipo]);
 
   useEffect(() => {
     setFiltersToCheck(filtersToSend);
     let mm;
-    let valueOfFilter
+    let valueOfFilter;
     Object.keys(filtersToSend).map((key, value) => {
-      if (filtersToSend[key] != null && key != 'latitudAEnviar' && key != 'longitudAEnviar' && key != 'distanciaAEnviar') {
+      if (
+        filtersToSend[key] != null &&
+        key != 'latitudAEnviar' &&
+        key != 'longitudAEnviar' &&
+        key != 'distanciaAEnviar'
+      ) {
         if (filtersToSend[key] === '1') {
-          valueOfFilter = key.toString()
+          valueOfFilter = key.toString();
         } else {
-          valueOfFilter = filtersToSend[key].toString()
+          valueOfFilter = filtersToSend[key].toString();
         }
-        console.log(valueOfFilter)
-        mm = document.getElementById(valueOfFilter)
-        mm.checked = true
+        console.log(valueOfFilter);
+        mm = document.getElementById(valueOfFilter);
+        mm.checked = true;
       }
-    })
-  }, [])
-
-
-
-  const handleChecked = () => {
-
-  }
-
-
-
+    });
+  }, []);
 
   const handleTipo = () => {
     if (
@@ -167,7 +161,7 @@ const Filtros = ({
                 type="radio"
                 name="Tipo"
                 id="Restaurantes"
-                className='Restaurantes'
+                className="Restaurantes"
                 // checked={selectedOption === 'option1'}
                 value="Restaurantes"
                 onClick={(e) => handleClickRadio(e)}

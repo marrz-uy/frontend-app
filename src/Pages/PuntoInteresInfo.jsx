@@ -72,22 +72,15 @@ const PuntoInteresInfo = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     GetIdsFavouritesFromDB(user_Id);
-    setTimeout(() => {
-      cantMegusta();
-    }, 3000);
-
+    cantMegusta();
     if (destination?.Calificaciones) {
       setHotelStars(stars());
     }
-
     setActivePage('PuntoInteresInfo');
-
     var sUsrAg = navigator.userAgent;
-
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
-
     setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
     // eslint-disable-next-line
   }, [setActivePage, destination.id]);
