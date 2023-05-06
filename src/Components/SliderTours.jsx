@@ -13,8 +13,6 @@ export const SliderTours = ({ sliderPoints, title, description }) => {
     navigate('/predefined');
   };
 
-  console.log(sliderPoints);
-
   return (
     <>
       <div className="tituloSlider" id="tituloSlider">

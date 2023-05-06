@@ -107,12 +107,7 @@ const TourStep3 = () => {
       <div className="descripcionTourStep3">
         <p className="descripcionTourStep3Text">
           {filtrarTraduccion(traduccionesBD, 'dragPointsInterest', lenguage)}
-          <button
-            className="btnInfoTour"
-            // onMouseOver={(e) => (e.target.style.backgroundColor = 'red')}
-            // onMouseOut={(e) => (e.target.style.backgroundColor = 'transparent')}
-            onClick={handleInfoTour}
-          >
+          <button className="btnInfoTour" onClick={handleInfoTour}>
             {filtrarTraduccion(traduccionesBD, 'tourInfo', lenguage)}
           </button>
         </p>

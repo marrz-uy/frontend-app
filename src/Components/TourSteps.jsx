@@ -18,7 +18,6 @@ const TourSteps = () => {
     SaveTourPreferences,
     tourPreferences,
     setTourPreferences,
-    itemsParaTourDB,
     setItemsParaTourDB,
     savedTourItems,
     setSavedTourItems,
