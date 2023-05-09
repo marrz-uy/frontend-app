@@ -11,14 +11,22 @@ const Toast = Swal.mixin({
   timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
+    toast.addEventListener('click', () => {
+      gotoNotifications();
+    });
     toast.addEventListener('mouseenter', Swal.stopTimer);
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   },
 });
 
+function gotoNotifications() {
+  window.location.href = 'http://localhost:3000/notifications';
+}
+
 var pusher = new Pusher('1c46a8cd6b365e0381ea', {
   cluster: 'us2',
 });
+
 pusher.logToConsole = true;
 var channel = pusher.subscribe('notifications');
 

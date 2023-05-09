@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import LenguageContext from '../../Context/LenguageContext';
 import { filtrarTraduccion } from '../../Helpers/FilterTranslate';
-import '../../Css/Column.css';
 import drag from '../../Assets/drag.png';
+import '../../Css/Column.css';
 
 const Column = ({ droppableId, column }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -44,15 +44,7 @@ const Column = ({ droppableId, column }) => {
                         >
                           <div className="tourCard">
                             <span>
-                              <img
-                                src={drag}
-                                style={{
-                                  width: '15px',
-                                  height: '40px',
-                                  padding: '0 3px 0 0 ',
-                                }}
-                                alt="drag-Simbol"
-                              ></img>
+                              <img src={drag} alt="drag-Simbol"></img>
                             </span>
                             <div className="divImgTour">
                               <img
@@ -100,8 +92,6 @@ const Column = ({ droppableId, column }) => {
                   </Draggable>
                 );
               })}
-              {/* no tocar esta linea es de la libreria dnd */}
-
               {provided.placeholder}
             </div>
           </>

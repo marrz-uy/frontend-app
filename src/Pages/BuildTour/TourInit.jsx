@@ -21,7 +21,6 @@ const TourInit = ({
   isLoggedIn,
   userBar,
   setUserBar,
-  destination,
   setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);
@@ -46,22 +45,6 @@ const TourInit = ({
     http
       .get(`/tourArmado/${Id}`, {})
       .then((response) => {
-        console.log(
-          '%cMis Tours:',
-          'color: violet;',
-          response?.data['0'].length
-        );
-        console.log('%cMis Tours:', 'color: green;', response?.data['0']);
-        // console.log(
-        //   '%cMis Tours:',
-        //   'color: red;',
-        //   response?.data['0']?.map((item) => item?.tour_items)
-        // );
-        // console.log(
-        //   '%cITEMS PARA HEREDAR:',
-        //   'color: blue;',
-        //   response?.data['0']['0'].tour_items.puntos_interes
-        // );
         setMisTours(response?.data['0']);
         setCantTours(response?.data['0'].length);
       })
@@ -77,13 +60,6 @@ const TourInit = ({
   const deleteTour = (tourId) => {
     http
       .delete(`/tourArmado/${tourId}`, {})
-      .then((response) => {
-        console.log(
-          '%cTOURS DATA - toutInit:',
-          'color: violet;',
-          response?.data
-        );
-      })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
 
@@ -93,12 +69,8 @@ const TourInit = ({
   };
 
   const handleEditTour = (e) => {
-    console.log('id: ' + e.target.id);
     const tour_items = misTours[e.target.id]?.tour_items;
-    console.log('items_heredados: ', tour_items);
     const newArray = tour_items?.map((item) => item?.puntos_interes);
-    console.log('tour_items completo: ', tour_items);
-    console.log('NEW ARRAY: ', newArray);
     setItemsHeredados(newArray);
 
     sessionStorage.setItem('itemsHeredados', JSON.stringify(newArray));
@@ -111,28 +83,20 @@ const TourInit = ({
     navigate('/buildTour');
   };
 
-  console.log('items_heredados: ', itemsHeredados);
-
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
     const req = await http
       .get(`/PuntosInteres/${id}`, {})
       .then((response) => {
-        console.log('%cDATA:', 'color: blue;', response?.data);
-        console.log('%cPUNTO:', 'color: blue;', response?.data.punto);
-        console.log('%cTIPO:', 'color: yellow;', response?.data.categoria);
-        console.log('%cIMAGENES:', 'color: yellow;', response?.data.categoria);
         let punto = response?.data.punto;
         let categoria = response?.data.categoria;
         const objetoUnido = { ...punto, ...categoria };
         return objetoUnido;
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    console.log('REQ: ', req);
     setDestination(req);
 
-    console.log('DESTINATION: ', destination);
     navigate('/infoResults');
   };
 

@@ -25,12 +25,8 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
-  // console.log('DESTINATION: ', destination);
   let arrayImagenes = destination.imagenes;
-  // console.log('arrayImagenes-INFO: ', arrayImagenes);
   const arrURLS = arrayImagenes?.map((imagen) => imagen?.url.replace(/"/g, ''));
-  // console.log('arr-INFO: ', arrURLS);
-  // console.log('arr-LARGO: ', arrURLS?.length);
 
   const { http } = AuthUser();
   const navigate = useNavigate();
@@ -52,7 +48,6 @@ const PuntoInteresInfo = ({
     http
       .get(`/megusta/${destination.id}`)
       .then((response) => {
-        // console.log('%cCANTIDAD DE LIKES: ', 'color:skyblue;', response.data);
         setCantLikes(response.data);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
@@ -61,7 +56,6 @@ const PuntoInteresInfo = ({
   const isFavourite = (array, punto) => {
     if (array && punto) {
       const exists = array.includes(punto);
-      console.log('%cEXIST FAVORITO: ', 'color:skyblue;', exists);
       return exists;
     }
   };
@@ -72,38 +66,21 @@ const PuntoInteresInfo = ({
     for (let i = 0; i < destination.Calificaciones; i++) {
       allstars += star;
     }
-    // console.log(allstars);
     return allstars;
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     GetIdsFavouritesFromDB(user_Id);
-    setTimeout(() => {
-      // if (isLoggedIn) {
-      cantMegusta();
-      // }
-    }, 3000);
-
+    cantMegusta();
     if (destination?.Calificaciones) {
       setHotelStars(stars());
     }
-    // console.log('%cSTARS: ', 'color:blue;', stars());
-    // console.log(
-    //   '%cCALIFICACIONES: ',
-    //   'color:pink;',
-    //   destination.Calificaciones
-    // );
-
-    // console.log('ARRAY IDS: ', idsFavouritesFromDB);
-
     setActivePage('PuntoInteresInfo');
-
     var sUsrAg = navigator.userAgent;
-
     if (sUsrAg.indexOf('Firefox') > -1) {
       setFirefox(true);
     }
-
     setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
     // eslint-disable-next-line
   }, [setActivePage, destination.id]);
@@ -116,7 +93,6 @@ const PuntoInteresInfo = ({
     // eslint-disable-next-line
   }, []);
 
-  // console.log('%cINITIAL STATE: ', 'color:red;', initialState);
   const handleCategories = () => {
     navigate(-1);
   };
@@ -141,12 +117,9 @@ const PuntoInteresInfo = ({
     return horaOriginal.substring(0, horaOriginal.length - 3);
   }
 
-  console.log('DESTINATION: ', destination);
-
   return (
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
-
       <div className="puntoInteresInfo">
         <div className="divBackbtn">
           <button className="backBtn" onClick={() => handleCategories()}>
@@ -218,6 +191,17 @@ const PuntoInteresInfo = ({
                     :{' '}
                   </span>
                   {destination.Direccion}
+                </p>
+                <p>
+                  <span>
+                    {filtrarTraduccion(traduccionesBD, 'telephone', lenguage)}:{' '}
+                  </span>
+                  {destination?.telefono?.Telefono ||
+                    `${filtrarTraduccion(
+                      traduccionesBD,
+                      'noNumber',
+                      lenguage
+                    )}`}
                 </p>
               </div>
               <div className="puntoInteres__info__datos2">
@@ -405,7 +389,7 @@ const PuntoInteresInfo = ({
                           lenguage
                         )}
                       </td>
-                      <td>{destination.MenuInfantil === 1 ? '✅ ' : '❌'}</td>
+                      <td>{destination?.MenuInfantil === 1 ? '✅ ' : '❌'}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -425,18 +409,33 @@ const PuntoInteresInfo = ({
                 :{' '}
               </h2>
               <div>
-                <a href={destination.Instagram}>
-                  <img
-                    src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
-                    alt="instagram"
-                  />
-                </a>
-                <a href={destination.Faceebok}>
-                  <img
-                    src="https://img.icons8.com/fluency/48/000000/facebook.png"
-                    alt="facebook"
-                  />
-                </a>
+                {destination?.Instagram ? (
+                  <a href={destination?.Instagram} target="_blank">
+                    <img
+                      src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
+                      alt="instagram"
+                    />
+                  </a>
+                ) : null}
+                {destination?.Facebook ? (
+                  <a href={destination?.Facebook} target="_blank">
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/facebook.png"
+                      alt="facebook"
+                    />{' '}
+                    {}
+                  </a>
+                ) : null}
+
+                {destination?.Web ? (
+                  <a href={destination?.Web} target="_blank">
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/domain.png"
+                      alt="web"
+                    />{' '}
+                    {}
+                  </a>
+                ) : null}
               </div>
             </div>
           ) : (

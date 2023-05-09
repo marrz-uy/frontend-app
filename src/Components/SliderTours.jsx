@@ -6,14 +6,8 @@ import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
 
-export const SliderTours = ({
-  arrayimages,
-  sliderPoints,
-  title,
-  description,
-}) => {
+export const SliderTours = ({ sliderPoints, title, description }) => {
   const navigate = useNavigate();
-  // console.log('SLIDER 3-SLIDER: ', sliderPoints);
 
   const goToPredefinedTours = async (e) => {
     navigate('/predefined');
