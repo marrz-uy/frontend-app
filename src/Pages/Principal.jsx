@@ -22,7 +22,6 @@ import actividaesNocturnas from '../Assets/categoriesImages/cocktail1.png';
 import serviciosEscenciales from '../Assets/categoriesImages/services1.png';
 import serviciosInfantiles from '../Assets/categoriesImages/calesita1.png';
 import useScreenSize from '../Helpers/ScreenSize';
-// import { gastronomicas, alojamientos } from '../Data/SliderImages.js';
 import '../Css/Principal.css';
 import '../Css/Toast.css';
 
