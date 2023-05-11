@@ -309,19 +309,13 @@ const SearchResults = ({
             </div>
           ) : (
             <div className="sinGeolocalizacion">
-              <h5>
+              <h6>
                 {filtrarTraduccion(
                   traduccionesBD,
                   'localizationNotSupported',
                   lenguage
-                )}
-              </h5>
-              <h6>
-                {filtrarTraduccion(
-                  traduccionesBD,
-                  'reloadApplication',
-                  lenguage
-                )}
+                )}{' '}
+                recargue la aplicacion para volver a activarla.
               </h6>
             </div>
           )}
