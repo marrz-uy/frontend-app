@@ -14,6 +14,19 @@ import Image7 from '../images/imagesFaq/Screenshot 2023-03-30 145742.png';
 import Image8 from '../images/imagesFaq/Screenshot 2023-03-30 150050.png';
 import Image9 from '../images/imagesFaq/Screenshot 2023-03-30 150130.png';
 import Image10 from '../images/imagesFaq/Screenshot 2023-03-30 150207.png';
+import AndroidInstall1 from '../images/imagesFaq/AndroidInstall1.jpeg';
+import AndroidInstall2 from '../images/imagesFaq/AndroidInstall2.jpeg';
+import AndroidInstall3 from '../images/imagesFaq/AndroidInstall3.jpeg';
+import AndroidInstall4 from '../images/imagesFaq/AndroidInstall4.jpeg';
+import AndroidInstall5 from '../images/imagesFaq/AndroidInstall5.jpeg';
+import iOSInstall1 from '../images/imagesFaq/iOSInstall1.jpg';
+import iOSInstall2 from '../images/imagesFaq/iOSInstall2.jpg';
+import iOSInstall3 from '../images/imagesFaq/iOSInstall3.jpeg';
+import iOSInstall4 from '../images/imagesFaq/iOSInstall4.jpeg';
+import WebInstall1 from '../images/imagesFaq/WebInstall1.jpg';
+import WebInstall2 from '../images/imagesFaq/WebInstall2.png';
+import LocationPermission from '../images/imagesFaq/UbicacionPermiso.jpeg';
+
 import '../Css/Faq.css';
 import '../Css/userBarClick.css';
 
@@ -81,6 +94,109 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
                 lenguage
               )}
             </p>
+          </div>
+        </div>
+        <div className="faq">
+          <div className="question">
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'faqLocalization', lenguage)}
+            </h3>
+            <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
+              <path
+                d="M3 3L21 21L39 3"
+                stroke="white"
+                strokeWidth="7"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div className="answer">
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqLocalizationExplanation',
+                lenguage
+              )}
+            </p>
+            <img src={LocationPermission} style={{ maxWidth: '300px' }} />
+          </div>
+        </div>
+        <div className="faq">
+          <div className="question">
+            <h3>{filtrarTraduccion(traduccionesBD, 'faqInstall', lenguage)}</h3>
+            <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
+              <path
+                d="M3 3L21 21L39 3"
+                stroke="white"
+                strokeWidth="7"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div className="answer">
+            <h5>Android(Chrome)</h5>
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid1',
+                lenguage
+              )}
+            </p>
+            <img src={AndroidInstall1} style={{ maxWidth: '300px' }} />
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid2',
+                lenguage
+              )}
+            </p>
+            <img src={AndroidInstall2} style={{ maxWidth: '300px' }} />
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid3',
+                lenguage
+              )}
+            </p>
+            <img
+              src={AndroidInstall3}
+              style={{ maxWidth: '500px', marginBottom: '20px' }}
+            />
+            <img src={AndroidInstall4} style={{ maxWidth: '500px' }} />
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid4',
+                lenguage
+              )}
+            </p>
+            <img src={AndroidInstall5} style={{ maxWidth: '500px' }} />
+            <h5>iOS(Safari)</h5>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS1', lenguage)}
+            </p>
+            <img src={iOSInstall1} style={{ maxWidth: '300px' }} />
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS2', lenguage)}
+            </p>
+            <img src={iOSInstall2} style={{ maxWidth: '300px' }} />
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS3', lenguage)}
+            </p>
+            <img src={iOSInstall3} style={{ maxWidth: '300px' }} />
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS4', lenguage)}
+            </p>
+            <img src={iOSInstall4} style={{ maxWidth: '300px' }} />
+            <h5>PC (Chrome, Edge)</h5>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstallPc1', lenguage)}
+            </p>
+            <img src={WebInstall1} />
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstallPc2', lenguage)}
+            </p>
+            <img src={WebInstall2} />
           </div>
         </div>
         <div className="faq">
