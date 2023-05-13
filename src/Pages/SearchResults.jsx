@@ -74,14 +74,10 @@ const SearchResults = ({
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
-  // const [puntodeInteresId, setPuntodeInteresId] = useState();
   const [mobileScreenActive, setMobileScreenActive] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (datos.length === 0) {
-      navigate('/');
-    }
     setPage('results');
     setDatos(items);
     setCantPaginas(items?.last_page);
@@ -206,12 +202,10 @@ const SearchResults = ({
         setCantPaginas(res.data.last_page);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    // if (mobileScreenActive) {
     setHandleFilter(false);
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 300);
-    // }
   };
 
   const handleGetFilterEventos = () => {

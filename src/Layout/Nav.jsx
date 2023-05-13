@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../Components/notificationsDB.js';
@@ -69,6 +69,7 @@ const Nav = ({
       .then((res) => {
         const allDdata = res.data;
         setItems(allDdata);
+        console.log('allDdata: ', allDdata);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -88,6 +89,7 @@ const Nav = ({
     }
     alert('Ingrese un texto mayor a 2 caracteres');
   };
+  console.log('text: ', text);
 
   const handleEnter = (e) => {
     setItems([]);
@@ -95,6 +97,7 @@ const Nav = ({
       if (text.length > 2) {
         setSearchType('nombre');
         getData(text);
+        console.log('text: ', text);
         navigate('/results');
         return;
       }
