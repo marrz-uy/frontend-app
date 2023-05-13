@@ -28,7 +28,7 @@ const SearchResults = ({
   latitud,
   longitud,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
@@ -246,8 +246,6 @@ const SearchResults = ({
         });
     }
   }, [datos]);
-
-  console.log(filtersToSend);
 
   return (
     <Layout>

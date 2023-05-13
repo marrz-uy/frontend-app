@@ -98,7 +98,9 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         </div>
         <div className="faq">
           <div className="question">
-            <h3>¿La aplicacion solicita localizacion?</h3>
+            <h3>
+              {filtrarTraduccion(traduccionesBD, 'faqLocalization', lenguage)}
+            </h3>
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -110,20 +112,18 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
           </div>
           <div className="answer">
             <p>
-              SI, y es OPCIONAL. La aplicacion unicamente utiliza su
-              localizacion para filtrar por distancia y ofrecerle los puntos de
-              interés mas cercanos a su ubicación. NUNCA se guardará las
-              ubicación de los usuarios. Puede rechazar la solicitúd de
-              ubicación y seguir usando la aplicación sin problemas pero la
-              experiencia no será la mas óptima en cuanto a los resultados de
-              las búsquedas que esta le ofrezca.
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqLocalizationExplanation',
+                lenguage
+              )}
             </p>
             <img src={LocationPermission} style={{ maxWidth: '300px' }} />
           </div>
         </div>
         <div className="faq">
           <div className="question">
-            <h3>¿Como instalo FeelUy en mi dispositivo?</h3>
+            <h3>{filtrarTraduccion(traduccionesBD, 'faqInstall', lenguage)}</h3>
             <svg width="15" height="10" viewBox="0 0 42 25" fill="#e74d4d">
               <path
                 d="M3 3L21 21L39 3"
@@ -134,38 +134,68 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             </svg>
           </div>
           <div className="answer">
-            <h5>En Android(Chrome)</h5>
-            <p>1-Se mostrará un aviso que la app es instalable</p>
+            <h5>Android(Chrome)</h5>
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid1',
+                lenguage
+              )}
+            </p>
             <img src={AndroidInstall1} style={{ maxWidth: '300px' }} />
-            <p>2-Luego presione en instalar</p>
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid2',
+                lenguage
+              )}
+            </p>
             <img src={AndroidInstall2} style={{ maxWidth: '300px' }} />
-            <p>La aplicacion comenzara a instalarse</p>
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid3',
+                lenguage
+              )}
+            </p>
             <img
               src={AndroidInstall3}
               style={{ maxWidth: '500px', marginBottom: '20px' }}
             />
             <img src={AndroidInstall4} style={{ maxWidth: '500px' }} />
-            <p>Ya puede ver la App en su pantalla de inicio</p>
+            <p>
+              {filtrarTraduccion(
+                traduccionesBD,
+                'faqInstallAndroid4',
+                lenguage
+              )}
+            </p>
             <img src={AndroidInstall5} style={{ maxWidth: '500px' }} />
-            <h5>En iOS(Safari)</h5>
-            <p>1-Seleccione el icono de opciones en el navegador</p>
+            <h5>iOS(Safari)</h5>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS1', lenguage)}
+            </p>
             <img src={iOSInstall1} style={{ maxWidth: '300px' }} />
-            <p>2-Luego, seleccione "Agregar al Inicio +"</p>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS2', lenguage)}
+            </p>
             <img src={iOSInstall2} style={{ maxWidth: '300px' }} />
             <p>
-              3-Al final podra escojer el nombre de la App o dejar FeelUY por
-              defecto, presione "Agregar"
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS3', lenguage)}
             </p>
             <img src={iOSInstall3} style={{ maxWidth: '300px' }} />
-            <p>Ya puede ver la App en su pantalla de inicio</p>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstalliOS4', lenguage)}
+            </p>
             <img src={iOSInstall4} style={{ maxWidth: '300px' }} />
             <h5>PC (Chrome, Edge)</h5>
             <p>
-              1-Click en el icono que aparece en la barra de direcciones del
-              navegador
+              {filtrarTraduccion(traduccionesBD, 'faqInstallPc1', lenguage)}
             </p>
             <img src={WebInstall1} />
-            <p>2-Click en "Instalar"</p>
+            <p>
+              {filtrarTraduccion(traduccionesBD, 'faqInstallPc2', lenguage)}
+            </p>
             <img src={WebInstall2} />
           </div>
         </div>
