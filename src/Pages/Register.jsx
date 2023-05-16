@@ -185,11 +185,10 @@ const Register = ({
           if (response.data.status === 201) {
             Swal.fire({
               title: 'Registro exitoso.',
-              text: filtrarTraduccion(
-                traduccionesBD,
-                'loginGoogleAs',
-                lenguage
-              )` ${response.data.username}`, //todo translate
+              text:
+                filtrarTraduccion(traduccionesBD, 'loginGoogleAs', lenguage) +
+                ' ' +
+                response.data.username,
               icon: 'success',
               showConfirmButton: true,
               confirmButtonText: filtrarTraduccion(
@@ -197,7 +196,6 @@ const Register = ({
                 'loginBtnModal',
                 lenguage
               ),
-
               confirmButtonColor: '#083d99',
               showClass: {
                 popup: 'animate__animated animate__fadeInDown',
@@ -225,7 +223,7 @@ const Register = ({
         ) {
           setRegisterErrorMessage(
             filtrarTraduccion(traduccionesBD, 'emailUserExists', lenguage)
-          ); //todo translate
+          );
         }
       });
 
