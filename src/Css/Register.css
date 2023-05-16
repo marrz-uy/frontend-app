@@ -27,24 +27,35 @@
 }
 
 
-.G, .g {
+.G {
     font-size: 1rem;
     color: #4285f4;
+    line-height: 1;
+    margin-left: 5px;
+}
+
+.g {
+    font-size: 1rem;
+    color: #4285f4;
+    line-height: 1;
 }
 
 .o, .e {
     font-size: 1rem;
     color: #ea4335;
+    line-height: 1;
 }
 
 .o2 {
     font-size: 1rem;
     color: #fbbc05;
+    line-height: 1;
 }
 
 .l {
     font-size: 1rem;
-    color: #fbbc05;
+    color: #34a853;
+    line-height: 1;
 }
 
 
