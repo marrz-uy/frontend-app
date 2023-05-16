@@ -57,7 +57,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const navigate = useNavigate();
 
   const [refMyElement, widhtMyElemnt] = useWidthElement();
-  console.log('anchoMiElemento:', widhtMyElemnt);
+  // console.log('anchoMiElemento:', widhtMyElemnt);
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -91,14 +91,16 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         }
         console.log('%cRESP:', 'color: yellow;', error.response.data);
         if (!email || !password) {
-          setLoginErrorMessage('Todos los campos son obligatorios');
+          setLoginErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'allFielsRequired', lenguage)
+          );
         } else if (error.response.data.status === 401) {
           setLoginErrorMessage(
-            'Error en los datos ingresados o usuario sin registrarse'
+            filtrarTraduccion(traduccionesBD, 'errorDataEntered', lenguage)
           );
         } else if (error.response.data.code === 256) {
           setLoginErrorMessage(
-            'Debe verificar su cuenta en su correo electronico'
+            filtrarTraduccion(traduccionesBD, 'verifyAccount', lenguage)
           );
         }
         return loginErrorMessage;
@@ -145,9 +147,10 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
         }
         console.error(`Error en catch LOGIN GOOGLE: ${error}`);
         console.log(`Error: `, error.response.request.status);
+
         if (error.response.request.status) {
           setLoginErrorMessage(
-            'No existe el usuario, debe registrarse previamente'
+            filtrarTraduccion(traduccionesBD, 'userDoesntExists', lenguage)
           );
           setTimeout(() => {
             navigate('/register');
@@ -180,6 +183,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="text"
               id="email"
               name="email"
+              title={filtrarTraduccion(traduccionesBD, 'emailValid', lenguage)}
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'emailPlaceholder',
@@ -194,6 +200,13 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="password"
               id="password"
               name="password"
+              minLength="8"
+              title={filtrarTraduccion(
+                traduccionesBD,
+                'password8Character',
+                lenguage
+              )}
+              required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'passwordPlaceholder',
@@ -203,7 +216,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Link to="/forget">
-              <span className="forget">Olvidé mi contraseña</span>
+              <span className="forget">
+                {filtrarTraduccion(traduccionesBD, 'forgotPassword', lenguage)}
+              </span>
             </Link>
             {loader ? (
               <div className="divLoader">
@@ -223,6 +238,15 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
             )}
           </div>
           <Separador />
+          <h6 className="secondaryTitle">
+            {filtrarTraduccion(traduccionesBD, 'loginWith', lenguage)}{' '}
+            <span className="G">G</span>
+            <span className="o">o</span>
+            <span className="o2">o</span>
+            <span className="g">g</span>
+            <span className="l">l</span>
+            <span className="e">e</span>
+          </h6>
           <div className="googleLoginBtnYloader">
             {loader ? (
               <div className="divLoader">
