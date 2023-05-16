@@ -101,6 +101,19 @@ const TourStep3 = () => {
     chosenItems = columns['01'].items;
     setSavedTourItems(chosenItems);
   }, [columns, setSavedTourItems]);
+  console.log('items:', itemsParaTourDB);
+  if (itemsParaTourDB.length === 0) {
+    Swal.fire({
+      title: 'Lo lamentamos!',
+      text: 'No se encontraron puntos de interes que coincida con las preferencias ingresadas. Intente cambiar alguna preferencia en el paso 1',
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgT-zon1BIn2mDvSt2Q-lA9oak5RCZBH4ku6T2llIMm_tQTZ4SNvvECVwprRO3nEHalA&usqp=CAU',
+      imageWidth: 400,
+      imageHeight: 300,
+      imageAlt: 'Custom image',
+      confirmButtonColor: '#015abb',
+    });
+  }
 
   return (
     <div className="tourStep3">
