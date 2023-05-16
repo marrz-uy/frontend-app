@@ -26,13 +26,27 @@
     font-size: 1rem;
 }
 
-/* .input:required {
-    border-color: red
+
+.G, .g {
+    font-size: 1rem;
+    color: #4285f4;
 }
 
-.input:valid {
-    border-color: green
-} */
+.o, .e {
+    font-size: 1rem;
+    color: #ea4335;
+}
+
+.o2 {
+    font-size: 1rem;
+    color: #fbbc05;
+}
+
+.l {
+    font-size: 1rem;
+    color: #fbbc05;
+}
+
 
 .btn-register {
     background-color: #00499de9;

@@ -97,8 +97,11 @@ const Register = ({
         setTimeout(() => {
           if (res.data.status === 201) {
             Swal.fire({
-              titleText:
-                'Registro exitoso, se envio un enlace de verificacion a su correo electronico',
+              titleText: filtrarTraduccion(
+                traduccionesBD,
+                'registerModal',
+                lenguage
+              ), //?translate
               showConfirmButton: true,
               showCancelButton: false,
               confirmButtonColor: '#083d99',
@@ -110,7 +113,7 @@ const Register = ({
               },
             });
           }
-        }, 500);
+        }, 50000);
         navigate('/login');
       })
       //! *************************************
@@ -121,27 +124,33 @@ const Register = ({
           setLoader(false);
         }
         if (!email || !password || !passwordConfirmation || !name) {
-          setRegisterErrorMessage('Todos los campos son obligatorios'); //?translate
+          setRegisterErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'allFielsRequired', lenguage)
+          ); //todo translate
         }
         if (errores.email?.length > 0) {
           setEmailErrorMEssage(
-            'El correo no es valido o ya existe un usuario con este correo electronico'
-          ); //?translate
+            filtrarTraduccion(traduccionesBD, 'errorExistEmail', lenguage)
+          ); //todo translate
         }
         if (errores.password) {
           setPasswordErrorMessage(
-            'El password debe tener 8 caracteres como minimo'
-          ); //?translate
+            filtrarTraduccion(traduccionesBD, 'password8Character', lenguage)
+          ); // todo translate
         }
         if (errores.passwordConfirmation) {
           setPasswordConfirmationErrorMessage(
-            'La confirmacion de password debe coincidir con el password'
-          ); //?translate
+            filtrarTraduccion(
+              traduccionesBD,
+              'confirmationPasswordMatch',
+              lenguage
+            )
+          ); //todo translate
         }
         if (errores.name) {
           setNameErrorMessage(
-            'Debe ingresar un nombre de 2 cararcteres minimos'
-          ); //?translate
+            filtrarTraduccion(traduccionesBD, 'name2Character', lenguage)
+          ); //todo translate
         }
       });
     console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
@@ -175,9 +184,20 @@ const Register = ({
         setTimeout(() => {
           if (response.data.status === 201) {
             Swal.fire({
-              titleText: `Registro exitoso, ya puede iniciar sesion con su cuenta de Google como ${response.data.username}`,
+              title: 'Registro exitoso.',
+              text: filtrarTraduccion(
+                traduccionesBD,
+                'loginGoogleAs',
+                lenguage
+              )` ${response.data.username}`, //todo translate
+              icon: 'success',
               showConfirmButton: true,
-              showCancelButton: false,
+              confirmButtonText: filtrarTraduccion(
+                traduccionesBD,
+                'loginBtnModal',
+                lenguage
+              ),
+
               confirmButtonColor: '#083d99',
               showClass: {
                 popup: 'animate__animated animate__fadeInDown',
@@ -185,6 +205,10 @@ const Register = ({
               hideClass: {
                 popup: 'animate__animated animate__fadeOutUp',
               },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate('/login');
+              }
             });
           }
         }, 1000);
@@ -199,7 +223,9 @@ const Register = ({
           error.response.data.errors.email[0] ===
           'The email has already been taken.'
         ) {
-          setRegisterErrorMessage('Existe un usuario con ese correo'); //?translate
+          setRegisterErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'emailUserExists', lenguage)
+          ); //todo translate
         }
       });
 
@@ -222,15 +248,12 @@ const Register = ({
             </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
-
           <div className="inputGroup">
             <input
               className="input"
               type="text"
               name="email"
-              title="Debe ingresar un correo electronico valido. Ej: usuario@correo.com" //?translate
-              // pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              // required
+              title={filtrarTraduccion(traduccionesBD, 'emailValid', lenguage)} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerEmailPlaceholder',
@@ -241,14 +264,15 @@ const Register = ({
               onChange={(e) => setEmail(e.target.value)}
             />
             <div className="message">{`${emailErrorMEssage}`}</div>
-
             <input
               className="input"
               type="password"
               name="password"
-              // minLength="8"
-              title="La contraseña debe contener al menos 8 caracteres." //?translate
-              // required
+              title={filtrarTraduccion(
+                traduccionesBD,
+                'password8Character',
+                lenguage
+              )} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordPlaceholder',
@@ -258,14 +282,15 @@ const Register = ({
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="message">{`${passwordErrorMessage}`}</div>
-
             <input
               className="input"
               type="password"
               name="passwordConfirm"
-              // minLength="8"
-              title="La confirmacion de contraseña debe contener al menos 8 caracteres y coincidir con el password." //?translate
-              // required
+              title={filtrarTraduccion(
+                traduccionesBD,
+                'confirmationPassword8Andmatch',
+                lenguage
+              )}
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordConfirmationPlaceholder',
@@ -275,14 +300,12 @@ const Register = ({
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
             <div className="message">{`${passwordConfirmationErrorMessage}`}</div>
-
             <input
               className="input"
               type="text"
               name="name"
               minLength="2"
-              // required
-              title="Debe ingresar un nombre." //?translate
+              title={filtrarTraduccion(traduccionesBD, 'emailEnter', lenguage)} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerNamePlaceholder',
@@ -310,6 +333,15 @@ const Register = ({
             )}
           </div>
           <Separador />
+          <h6 className="secondaryTitle">
+            {filtrarTraduccion(traduccionesBD, 'registerWith', lenguage)}{' '}
+            <span className="G">G</span>
+            <span className="o">o</span>
+            <span className="o2">o</span>
+            <span className="g">g</span>
+            <span className="l">l</span>
+            <span className="e">e</span>
+          </h6>
           <div className="googleLoginBtnYloader">
             {loader ? (
               <div className="divLoader">
