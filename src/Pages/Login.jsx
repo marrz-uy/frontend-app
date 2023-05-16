@@ -180,6 +180,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="text"
               id="email"
               name="email"
+              title="Debe ingresar un correo electronico valido. Ej: usuario@correo.com"
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'emailPlaceholder',
@@ -194,6 +197,9 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
               type="password"
               id="password"
               name="password"
+              minLength="8"
+              title="La contraseña debe contener al menos 8 caracteres."
+              required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'passwordPlaceholder',

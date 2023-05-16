@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 .login {
     margin-top: 130px;
     width: 70%;
@@ -20,6 +22,14 @@
     padding-left: 10px;
     color: rgb(170, 170, 170);
 }
+
+/* .input:required {
+    border-color: red
+}
+
+.input:valid {
+    border-color: green
+} */
 
 .btn-login {
     background-color: #00499de9;
@@ -55,7 +65,7 @@ a:visited {
 }
 
 .message {
-    height: 37px;
+    /* height: 37px; */
     color: red;
 }
 

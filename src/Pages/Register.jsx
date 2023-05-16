@@ -60,6 +60,13 @@ const Register = ({
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [name, setName] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
+  const [emailErrorMEssage, setEmailErrorMEssage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [
+    passwordConfirmationErrorMessage,
+    setPasswordConfirmationErrorMessage,
+  ] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const { http } = AuthUser();
@@ -69,6 +76,10 @@ const Register = ({
   const submitRegister = (e) => {
     e.preventDefault();
     setRegisterErrorMessage('');
+    setEmailErrorMEssage('');
+    setPasswordErrorMessage('');
+    setPasswordConfirmationErrorMessage('');
+    setNameErrorMessage('');
     setLoader(true);
     const provider = 'feeluy';
     http
@@ -102,37 +113,45 @@ const Register = ({
         }, 500);
         navigate('/login');
       })
+      //! *************************************
       .catch(function (error) {
+        const errores = error.response.data.errors;
+        console.log('sdsdsds', errores);
         if (error) {
           setLoader(false);
         }
         if (!email || !password || !passwordConfirmation || !name) {
-          setRegisterErrorMessage('Todos los campos son obligatorios');
-        } else if (
-          error.response.data.errors.email[0] ===
-          'The email must be a valid email address.'
-        ) {
-          setRegisterErrorMessage('Debe ser un correo valido');
-        } else if (
-          error.response.data.errors.email[0] ===
-          'El campo email ya ha sido tomado.'
-        ) {
-          setRegisterErrorMessage('Existe un usuario con ese correo');
-        } else if (error.response.data.errors.email) {
-          setRegisterErrorMessage('El email debe ser valido');
-        } else if (error.response.data.errors.password) {
-          setRegisterErrorMessage(
-            'La contraseña debe tener minimo 8 caracteres'
-          );
-        } else if (error.response.data.errors.passwordConfirmation) {
-          setRegisterErrorMessage(
-            'La confirmacion de contraseña no concide con su contraseña'
-          );
-        } else if (error.response.data.errors.name) {
-          setRegisterErrorMessage('Debe ingresar un nombre de usuario');
+          setRegisterErrorMessage('Todos los campos son obligatorios'); //?translate
+        }
+        if (errores.email?.length > 0) {
+          setEmailErrorMEssage(
+            'El correo no es valido o ya existe un usuario con este correo electronico'
+          ); //?translate
+        }
+        if (errores.password) {
+          setPasswordErrorMessage(
+            'El password debe tener 8 caracteres como minimo'
+          ); //?translate
+        }
+        if (errores.passwordConfirmation) {
+          setPasswordConfirmationErrorMessage(
+            'La confirmacion de password debe coincidir con el password'
+          ); //?translate
+        }
+        if (errores.name) {
+          setNameErrorMessage(
+            'Debe ingresar un nombre de 2 cararcteres minimos'
+          ); //?translate
         }
       });
-    return registerErrorMessage;
+    console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
+    return (
+      registerErrorMessage,
+      emailErrorMEssage,
+      passwordErrorMessage,
+      passwordConfirmationErrorMessage,
+      nameErrorMessage
+    );
   };
 
   handleUserBar(userBar);
@@ -180,7 +199,7 @@ const Register = ({
           error.response.data.errors.email[0] ===
           'The email has already been taken.'
         ) {
-          setRegisterErrorMessage('Existe un usuario con ese correo');
+          setRegisterErrorMessage('Existe un usuario con ese correo'); //?translate
         }
       });
 
@@ -203,11 +222,15 @@ const Register = ({
             </h2>
           </div>
           <div className="message">{`${registerErrorMessage}`}</div>
+
           <div className="inputGroup">
             <input
               className="input"
               type="text"
               name="email"
+              title="Debe ingresar un correo electronico valido. Ej: usuario@correo.com" //?translate
+              // pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              // required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerEmailPlaceholder',
@@ -217,10 +240,15 @@ const Register = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <div className="message">{`${emailErrorMEssage}`}</div>
+
             <input
               className="input"
               type="password"
               name="password"
+              // minLength="8"
+              title="La contraseña debe contener al menos 8 caracteres." //?translate
+              // required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordPlaceholder',
@@ -229,10 +257,15 @@ const Register = ({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="message">{`${passwordErrorMessage}`}</div>
+
             <input
               className="input"
               type="password"
               name="passwordConfirm"
+              // minLength="8"
+              title="La confirmacion de contraseña debe contener al menos 8 caracteres y coincidir con el password." //?translate
+              // required
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordConfirmationPlaceholder',
@@ -241,10 +274,15 @@ const Register = ({
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
+            <div className="message">{`${passwordConfirmationErrorMessage}`}</div>
+
             <input
               className="input"
               type="text"
               name="name"
+              minLength="2"
+              // required
+              title="Debe ingresar un nombre." //?translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerNamePlaceholder',
@@ -253,6 +291,7 @@ const Register = ({
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <div className="message">{`${nameErrorMessage}`}</div>
             {loader ? (
               <div className="divLoader">
                 <span className="loader"></span>
