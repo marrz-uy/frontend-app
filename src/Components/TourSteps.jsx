@@ -89,6 +89,8 @@ const TourSteps = () => {
       .then((response) => {
         const allDdata = response?.data;
         setItemsParaTourDB(allDdata);
+        console.log('allData:', allDdata);
+        console.log('allData length:', allDdata.length);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   }

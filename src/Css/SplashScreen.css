@@ -21,7 +21,7 @@
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-    width: 94%;
+    /* width: 94%; */
 }
 
 .content {
@@ -36,8 +36,8 @@ h2 {
 
 .divTextSuperior {
     margin-bottom: 10%;
-    font-size: 2rem;
-    width: 70%;
+    font-size: 1.8rem;
+    width: 90%;
     text-align: justify;
 }
 
@@ -58,8 +58,8 @@ h2 {
 }
 
 .divTextInferior {
-    width: 70%;
-    font-size: 23px;
+    width: 82%;
+    font-size: 1.3rem;
     margin-top: 10%;
     word-wrap: break-word;
     text-align: justify;
