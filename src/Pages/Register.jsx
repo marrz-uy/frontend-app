@@ -60,6 +60,13 @@ const Register = ({
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [name, setName] = useState('');
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
+  const [emailErrorMEssage, setEmailErrorMEssage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [
+    passwordConfirmationErrorMessage,
+    setPasswordConfirmationErrorMessage,
+  ] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const { http } = AuthUser();
@@ -69,6 +76,10 @@ const Register = ({
   const submitRegister = (e) => {
     e.preventDefault();
     setRegisterErrorMessage('');
+    setEmailErrorMEssage('');
+    setPasswordErrorMessage('');
+    setPasswordConfirmationErrorMessage('');
+    setNameErrorMessage('');
     setLoader(true);
     const provider = 'feeluy';
     http
@@ -86,8 +97,11 @@ const Register = ({
         setTimeout(() => {
           if (res.data.status === 201) {
             Swal.fire({
-              titleText:
-                'Registro exitoso, se envio un enlace de verificacion a su correo electronico',
+              titleText: filtrarTraduccion(
+                traduccionesBD,
+                'registerModal',
+                lenguage
+              ), //?translate
               showConfirmButton: true,
               showCancelButton: false,
               confirmButtonColor: '#083d99',
@@ -99,40 +113,54 @@ const Register = ({
               },
             });
           }
-        }, 500);
+        }, 50000);
         navigate('/login');
       })
+      //! *************************************
       .catch(function (error) {
+        const errores = error.response.data.errors;
+        console.log('sdsdsds', errores);
         if (error) {
           setLoader(false);
         }
         if (!email || !password || !passwordConfirmation || !name) {
-          setRegisterErrorMessage('Todos los campos son obligatorios');
-        } else if (
-          error.response.data.errors.email[0] ===
-          'The email must be a valid email address.'
-        ) {
-          setRegisterErrorMessage('Debe ser un correo valido');
-        } else if (
-          error.response.data.errors.email[0] ===
-          'El campo email ya ha sido tomado.'
-        ) {
-          setRegisterErrorMessage('Existe un usuario con ese correo');
-        } else if (error.response.data.errors.email) {
-          setRegisterErrorMessage('El email debe ser valido');
-        } else if (error.response.data.errors.password) {
           setRegisterErrorMessage(
-            'La contraseña debe tener minimo 8 caracteres'
-          );
-        } else if (error.response.data.errors.passwordConfirmation) {
-          setRegisterErrorMessage(
-            'La confirmacion de contraseña no concide con su contraseña'
-          );
-        } else if (error.response.data.errors.name) {
-          setRegisterErrorMessage('Debe ingresar un nombre de usuario');
+            filtrarTraduccion(traduccionesBD, 'allFielsRequired', lenguage)
+          ); //todo translate
+        }
+        if (errores.email?.length > 0) {
+          setEmailErrorMEssage(
+            filtrarTraduccion(traduccionesBD, 'errorExistEmail', lenguage)
+          ); //todo translate
+        }
+        if (errores.password) {
+          setPasswordErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'password8Character', lenguage)
+          ); // todo translate
+        }
+        if (errores.passwordConfirmation) {
+          setPasswordConfirmationErrorMessage(
+            filtrarTraduccion(
+              traduccionesBD,
+              'confirmationPasswordMatch',
+              lenguage
+            )
+          ); //todo translate
+        }
+        if (errores.name) {
+          setNameErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'name2Character', lenguage)
+          ); //todo translate
         }
       });
-    return registerErrorMessage;
+    console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
+    return (
+      registerErrorMessage,
+      emailErrorMEssage,
+      passwordErrorMessage,
+      passwordConfirmationErrorMessage,
+      nameErrorMessage
+    );
   };
 
   handleUserBar(userBar);
@@ -156,9 +184,20 @@ const Register = ({
         setTimeout(() => {
           if (response.data.status === 201) {
             Swal.fire({
-              titleText: `Registro exitoso, ya puede iniciar sesion con su cuenta de Google como ${response.data.username}`,
+              title: 'Registro exitoso.',
+              text: filtrarTraduccion(
+                traduccionesBD,
+                'loginGoogleAs',
+                lenguage
+              )` ${response.data.username}`, //todo translate
+              icon: 'success',
               showConfirmButton: true,
-              showCancelButton: false,
+              confirmButtonText: filtrarTraduccion(
+                traduccionesBD,
+                'loginBtnModal',
+                lenguage
+              ),
+
               confirmButtonColor: '#083d99',
               showClass: {
                 popup: 'animate__animated animate__fadeInDown',
@@ -166,6 +205,10 @@ const Register = ({
               hideClass: {
                 popup: 'animate__animated animate__fadeOutUp',
               },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate('/login');
+              }
             });
           }
         }, 1000);
@@ -180,7 +223,9 @@ const Register = ({
           error.response.data.errors.email[0] ===
           'The email has already been taken.'
         ) {
-          setRegisterErrorMessage('Existe un usuario con ese correo');
+          setRegisterErrorMessage(
+            filtrarTraduccion(traduccionesBD, 'emailUserExists', lenguage)
+          ); //todo translate
         }
       });
 
@@ -208,6 +253,7 @@ const Register = ({
               className="input"
               type="text"
               name="email"
+              title={filtrarTraduccion(traduccionesBD, 'emailValid', lenguage)} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerEmailPlaceholder',
@@ -217,10 +263,16 @@ const Register = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <div className="message">{`${emailErrorMEssage}`}</div>
             <input
               className="input"
               type="password"
               name="password"
+              title={filtrarTraduccion(
+                traduccionesBD,
+                'password8Character',
+                lenguage
+              )} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordPlaceholder',
@@ -229,10 +281,16 @@ const Register = ({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="message">{`${passwordErrorMessage}`}</div>
             <input
               className="input"
               type="password"
               name="passwordConfirm"
+              title={filtrarTraduccion(
+                traduccionesBD,
+                'confirmationPassword8Andmatch',
+                lenguage
+              )}
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordConfirmationPlaceholder',
@@ -241,10 +299,13 @@ const Register = ({
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
+            <div className="message">{`${passwordConfirmationErrorMessage}`}</div>
             <input
               className="input"
               type="text"
               name="name"
+              minLength="2"
+              title={filtrarTraduccion(traduccionesBD, 'emailEnter', lenguage)} //todo translate
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerNamePlaceholder',
@@ -253,6 +314,7 @@ const Register = ({
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <div className="message">{`${nameErrorMessage}`}</div>
             {loader ? (
               <div className="divLoader">
                 <span className="loader"></span>
@@ -271,6 +333,15 @@ const Register = ({
             )}
           </div>
           <Separador />
+          <h6 className="secondaryTitle">
+            {filtrarTraduccion(traduccionesBD, 'registerWith', lenguage)}{' '}
+            <span className="G">G</span>
+            <span className="o">o</span>
+            <span className="o2">o</span>
+            <span className="g">g</span>
+            <span className="l">l</span>
+            <span className="e">e</span>
+          </h6>
           <div className="googleLoginBtnYloader">
             {loader ? (
               <div className="divLoader">
