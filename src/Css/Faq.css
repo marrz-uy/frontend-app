@@ -65,19 +65,37 @@ section {
 }
 
 .answer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
 }
 
+.answer h5 {
+    margin: 2rem 0 0px;
+    color: rgb(126, 126, 126);
+}
+
 .answer p {
-    padding-top: 1rem;
+    margin: 10px 0;
+    padding-top: 0.5rem;
     line-height: 1.6;
     font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    align-items: center;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.answer img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .answer p img {
@@ -88,7 +106,7 @@ section {
 }
 
 .faq.activeFaq .answer {
-    max-height: 2300px;
+    max-height: 6500px;
     animation: fade 1s ease-in-out;
 }
 

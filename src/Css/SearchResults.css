@@ -209,10 +209,11 @@ input[type="range"]::-webkit-slider-thumb:active {
 	color: #8f8f8f;
 }
 
-.sinGeolocalizacion h5,
-h6 {
-
+.sinGeolocalizacion h6 {
+	padding: 0 15px;
 	color: #8f8f8f;
+	width: 90%;
+	min-width: fit-content;
 }
 
 .inputTipoEvento {
@@ -228,8 +229,7 @@ h6 {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	height: 50vh;
-	width: 35vw;
+	height: fit-content;
 	box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, .2);
 	border-radius: 5px;
 }
@@ -238,7 +238,6 @@ h6 {
 @media screen and (min-width: 480px) {
 
 	.results {
-		/* width: 70%; */
 		min-height: 72vh;
 		display: flex;
 		flex-direction: column;
@@ -312,7 +311,35 @@ h6 {
 	background-color: rgba(239, 239, 240, 1);
 	height: 200vh;
 	margin-top: 5rem;
-	/* z-index: 1; */
+}
+
+@media screen and (min-width: 768px) {
+	.filtro_results {
+		width: 200px;
+		position: absolute;
+		margin-top: 7rem;
+		height: unset;
+	}
+
+	.filtro_results p {
+		font-size: 50px;
+	}
+
+	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 37.5vw;
+		min-width: 307px;
+	}
+
+	.filtro_back {
+		width: 35vw;
+		min-width: 307px;
+	}
+
+	.inputTipoEvento, .FechaInicioEventos {
+		width: 50%;
+		margin-left: 0;
+	}
+
 }
 
 @media screen and (min-width: 800px) {
@@ -328,7 +355,13 @@ h6 {
 	}
 
 	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 37.5vw;
+		min-width: 307px;
+	}
+
+	.filtro_back {
 		width: 35vw;
+		min-width: 307px;
 	}
 
 	.inputTipoEvento, .FechaInicioEventos {
@@ -339,6 +372,32 @@ h6 {
 	.filtrarDistancia {
 		min-width: 87%;
 	}
+}
+
+@media screen and (min-width: 912px) {
+	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 35vw;
+		min-width: 307px;
+	}
+
+	.filtro_back {
+		width: 35vw;
+		min-width: 307px;
+	}
+
+}
+
+@media screen and (min-width: 1024px) {
+	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 35vw;
+		min-width: 307px;
+	}
+
+	.filtro_back {
+		width: 35vw;
+		min-width: 307px;
+	}
+
 }
 
 /* @media screen and (min-width: 1000px) {} */
@@ -365,6 +424,16 @@ h6 {
 	.userBar_cancel_filter {
 		position: relative;
 		top: -100px
+	}
+
+	.filtro_back {
+		width: 25vw;
+		min-width: 307px;
+	}
+
+	.contFiltroYresultados .animate__animated.animate__faster {
+		width: 25vw;
+		min-width: 307px;
 	}
 
 }
