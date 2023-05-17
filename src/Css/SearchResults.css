@@ -76,12 +76,7 @@
 	background-color: transparent;
 }
 
-.filtrarDistancia {
-	height: 3rem;
-	display: flex;
-	align-items: center;
-	padding: 0 10px;
-}
+
 
 .box {
 	margin: 0 5px;
@@ -198,9 +193,12 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .filtrarDistancia {
+	height: 3rem;
 	display: flex;
+	align-items: center;
+	padding: 0 10px;
 	justify-content: space-around;
-	margin: 0.5rem 0;
+	margin: 0 auto;
 }
 
 .sinGeolocalizacion {
@@ -254,7 +252,8 @@ h6 {
 	}
 
 	.infoResults {
-		/* width: 70vw; */
+		min-width: 70%;
+		min-height: 75vh;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
@@ -337,6 +336,9 @@ h6 {
 		margin-left: 0;
 	}
 
+	.filtrarDistancia {
+		min-width: 87%;
+	}
 }
 
 /* @media screen and (min-width: 1000px) {} */
