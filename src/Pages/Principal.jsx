@@ -48,6 +48,7 @@ const Principal = ({
   const [btnText, setBtnText] = useState('');
   const { width } = useScreenSize();
   const { http } = AuthUser();
+  // console.log('WIDTH: ', width);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -172,9 +173,11 @@ const Principal = ({
     ];
     Promise.all(requests)
       .then((responses) => {
-        setSliderPoints1(responses[0].data);
-        setSliderPoints2(responses[1].data);
-        setSliderPoints3(responses[2].data);
+        setTimeout(() => {
+          setSliderPoints1(responses[0].data);
+          setSliderPoints2(responses[1].data);
+          setSliderPoints3(responses[2].data);
+        }, 300);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
@@ -368,17 +371,20 @@ const Principal = ({
         </div>
       </div>
       <div className="contenedorSliders">
-        <Slider
-          title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
-          description={filtrarTraduccion(
-            traduccionesBD,
-            'Slider1Description',
-            lenguage
-          )}
-          sliderPoints={sliderPoints1.data}
-          destination={destination}
-          setDestination={setDestination}
-        />
+        {
+          <Slider
+            title={filtrarTraduccion(traduccionesBD, 'Slider1Title', lenguage)}
+            description={filtrarTraduccion(
+              traduccionesBD,
+              'Slider1Description',
+              lenguage
+            )}
+            sliderPoints={sliderPoints1.data}
+            destination={destination}
+            setDestination={setDestination}
+          />
+        }
+
         <SliderEvents
           title={`${filtrarTraduccion(
             traduccionesBD,

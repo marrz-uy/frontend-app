@@ -5,7 +5,9 @@ import '../Css/SliderEvents.css';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
-import AuthUser from './AuthUser';
+import { MyLoader } from './LoaderImage';
+import AuthUser from '../Components/AuthUser';
+import useScreenSize from '../Helpers/ScreenSize';
 
 export const SliderEvents = ({
   sliderPoints,
@@ -16,6 +18,9 @@ export const SliderEvents = ({
 }) => {
   const navigate = useNavigate();
   const { http } = AuthUser();
+  const { width } = useScreenSize();
+
+  // console.log('sliderPoints: ', sliderPoints);
 
   const goOnPoint = async (e) => {
     e.preventDefault();
@@ -64,62 +69,88 @@ export const SliderEvents = ({
           <span>{description}</span>
         </div>
       </div>
-      <Swiper
-        // id="slider1"
-        slidesPerView={1}
-        spaceBetween={10}
-        loop={true}
-        loopFillGroupWithBlank={true}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          375: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          // when window width is >= 900px
-          900: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          // when window width is >= 1280px
-          1280: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          // when window width is >= 1720px
-          1720: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        {sliderPoints?.map((point, index) => {
-          return (
-            <div className="item" key={point.Eventos_id}>
-              <SwiperSlide key={point.Eventos_id}>
-                <img
-                  src={point.ImagenEvento}
-                  alt=""
-                  id={point.Eventos_id}
-                  onClick={goOnPoint}
-                />
-                <h6 className="dateInImage">
-                  📆 {formatearFecha(point.FechaInicio)},{' '}
-                  {convertirHora(point.HoraInicio)} Hs.
-                </h6>
-                <span className="titleLink" onClick={goOnPoint}>
-                  {point.NombreEvento}
-                </span>
-              </SwiperSlide>
-            </div>
-          );
-        })}
-      </Swiper>
+      {!sliderPoints ? (
+        width <= 375 ? (
+          <div className="divSkelton">
+            <MyLoader width={355} height={332} />
+          </div>
+        ) : width >= 900 && width < 1280 ? (
+          <div className="divSkelton">
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+          </div>
+        ) : width >= 1280 && width < 1720 ? (
+          <div className="divSkelton">
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+          </div>
+        ) : width >= 1720 ? (
+          <div className="divSkelton">
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+            <MyLoader width={500} height={332} />
+          </div>
+        ) : null
+      ) : (
+        <Swiper
+          // id="slider1"
+          slidesPerView={1}
+          spaceBetween={10}
+          loop={true}
+          loopFillGroupWithBlank={true}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            375: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            // when window width is >= 900px
+            900: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            // when window width is >= 1280px
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            // when window width is >= 1720px
+            1720: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {sliderPoints?.map((point, index) => {
+            return (
+              <div className="item" key={point.Eventos_id}>
+                <SwiperSlide key={point.Eventos_id}>
+                  <img
+                    src={point.ImagenEvento}
+                    alt=""
+                    id={point.Eventos_id}
+                    onClick={goOnPoint}
+                  />
+                  <h6 className="dateInImage">
+                    📆 {formatearFecha(point.FechaInicio)},{' '}
+                    {convertirHora(point.HoraInicio)} Hs.
+                  </h6>
+                  <span className="titleLink" onClick={goOnPoint}>
+                    {point.NombreEvento}
+                  </span>
+                </SwiperSlide>
+              </div>
+            );
+          })}
+        </Swiper>
+      )}
     </>
   );
 };
