@@ -96,7 +96,7 @@ const SearchResults = ({
         console.log('DATOS in: ', datos);
         console.log('LOADING in: ', loading);
       }
-    }, 300);
+    }, 600);
 
     console.log('LOADING out: ', loading);
     console.log('DATOS out: ', datos);
