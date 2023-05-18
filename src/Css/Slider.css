@@ -113,6 +113,11 @@ a {
   cursor: pointer;
 }
 
+.divSkelton {
+  display: flex;
+  gap: 20px;
+}
+
 @media screen and (min-width: 412px) {
   .likesLabel {
     top: -203px;

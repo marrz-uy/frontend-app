@@ -10,6 +10,13 @@ import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Filter from './Filter';
+import useScreenSize from '../Helpers/ScreenSize';
+import {
+  CatalogS,
+  CatalogM,
+  CatalogL,
+  CatalogXl,
+} from '../Components/LoaderImage';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
 
@@ -29,6 +36,7 @@ const SearchResults = ({
   longitud,
 }) => {
   // const navigate = useNavigate();
+  const { width } = useScreenSize();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
@@ -75,11 +83,23 @@ const SearchResults = ({
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
   const [mobileScreenActive, setMobileScreenActive] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage('results');
-    setDatos(items);
+
+    setTimeout(() => {
+      setDatos(items);
+      if (datos !== null) {
+        setLoading(false);
+        console.log('DATOS in: ', datos);
+        console.log('LOADING in: ', loading);
+      }
+    }, 300);
+
+    console.log('LOADING out: ', loading);
+    console.log('DATOS out: ', datos);
     setCantPaginas(items?.last_page);
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
@@ -251,100 +271,142 @@ const SearchResults = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="contFiltroYresultados">
-        <div className="results ">
-          <div className="filtro_container_btn">
-            <button
-              className="btnSearch filters"
-              onClick={() => setHandleFilter(!handleFilter)}
-            >
-              <FontAwesomeIcon icon={faFilter} />
-              Filtros
-            </button>
-          </div>
-          <h6 className="resultsText">
-            {!datos?.data
-              ? `${filtrarTraduccion(traduccionesBD, 'ceroResults', lenguage)}`
-              : `${datos.total || '0'} ${filtrarTraduccion(
-                  traduccionesBD,
-                  'resultsFor',
-                  lenguage
-                )} ${text}, pagina ${datos?.current_page || '1'}`}
-          </h6>
-          {latitud && longitud ? (
-            <div className="filtrarDistancia">
-              <div className="etiquetasDistancia">
-                <label htmlFor="inputRange">Distancia</label>
-              </div>
-              <div className="box">
-                <input
-                  className="inputRange"
-                  id="inputRange"
-                  name="inputRange"
-                  type="range"
-                  min="1000"
-                  max="50000"
-                  step="1000"
-                  value={distanciaAEnviar}
-                  style={getBackgroundSize()}
-                  onChange={(e) => setDistanciaAEnviar(Number(e.target.value))}
-                ></input>
-                <div className="divKilometros">
-                  <p className="kilometros"> {distanciaAEnviar / 1000}Kmts</p>
-                </div>
-              </div>
-              <button
-                onClick={handleDistance}
-                className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
-              >
-                Filtrar
-              </button>
+        {loading ? (
+          width <= 375 ? (
+            <div className="skeltonResults">
+              <CatalogS />
+              <CatalogS />
+              <CatalogS />
+              <CatalogS />
             </div>
-          ) : (
-            <div className="sinGeolocalizacion">
-              <h6>
-                {filtrarTraduccion(
-                  traduccionesBD,
-                  'localizationNotSupported',
-                  lenguage
-                )}{' '}
-                recargue la aplicacion para volver a activarla.
+          ) : width >= 480 && width < 845 ? (
+            <div className="skeltonResults">
+              <CatalogM />
+              <CatalogM />
+              <CatalogM />
+            </div>
+          ) : width >= 845 && width < 1128 ? (
+            <div className="skeltonResults">
+              <CatalogL />
+              <CatalogL />
+              <CatalogL />
+              <CatalogL />
+            </div>
+          ) : width >= 1128 ? (
+            <div className="skeltonResults">
+              <CatalogXl />
+            </div>
+          ) : null
+        ) : (
+          <>
+            <div className="results ">
+              <div className="filtro_container_btn">
+                <button
+                  className="btnSearch filters"
+                  onClick={() => setHandleFilter(!handleFilter)}
+                >
+                  <FontAwesomeIcon icon={faFilter} />
+                  Filtros
+                </button>
+              </div>
+              <h6 className="resultsText">
+                {!datos?.data
+                  ? `${filtrarTraduccion(
+                      traduccionesBD,
+                      'ceroResults',
+                      lenguage
+                    )}`
+                  : `${datos.total || '0'} ${filtrarTraduccion(
+                      traduccionesBD,
+                      'resultsFor',
+                      lenguage
+                    )} ${text}, pagina ${datos?.current_page || '1'}`}
               </h6>
-            </div>
-          )}
-          {/* //! NO RESULT FOR THIS SEARCH */}
-          <div className="infoResults">
-            {!datos?.data ? (
-              <div className="sinResultado">
-                <p>
-                  {filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}
-                </p>
+              {latitud && longitud ? (
+                <div className="filtrarDistancia">
+                  <div className="etiquetasDistancia">
+                    <label htmlFor="inputRange">Distancia</label>
+                  </div>
+                  <div className="box">
+                    <input
+                      className="inputRange"
+                      id="inputRange"
+                      name="inputRange"
+                      type="range"
+                      min="1000"
+                      max="50000"
+                      step="1000"
+                      value={distanciaAEnviar}
+                      style={getBackgroundSize()}
+                      onChange={(e) =>
+                        setDistanciaAEnviar(Number(e.target.value))
+                      }
+                    ></input>
+                    <div className="divKilometros">
+                      <p className="kilometros">
+                        {' '}
+                        {distanciaAEnviar / 1000}Kmts
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleDistance}
+                    className={
+                      loaded === true ? 'btnSearch' : 'btnSearchInactivo'
+                    }
+                  >
+                    Filtrar
+                  </button>
+                </div>
+              ) : (
+                <div className="sinGeolocalizacion">
+                  <h6>
+                    {filtrarTraduccion(
+                      traduccionesBD,
+                      'localizationNotSupported',
+                      lenguage
+                    )}{' '}
+                    recargue la aplicacion para volver a activarla.
+                  </h6>
+                </div>
+              )}
+              {/* //! NO RESULT FOR THIS SEARCH */}
+
+              <div className="infoResults">
+                {!datos?.data ? (
+                  <div className="sinResultado">
+                    <p>
+                      {filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}
+                    </p>
+                  </div>
+                ) : (
+                  datos?.data?.map((dato) => {
+                    return (
+                      <ResultsCard
+                        key={dato?.Eventos_id ? dato?.Eventos_id : dato?.id}
+                        nombre={dato?.Nombre}
+                        nombreEvento={dato?.NombreEvento}
+                        lugarDeEvento={dato?.Nombre}
+                        ciudad={dato?.Ciudad}
+                        direccion={dato?.Direccion}
+                        fechaInicio={dato?.FechaInicio}
+                        fechaFin={dato?.FechaFin}
+                        horaInicio={dato?.HoraDeApertura}
+                        horaFin={dato?.HoraDeCierre}
+                        tipoEvento={dato?.TipoEvento}
+                        tipo={dato?.Tipo}
+                        caracteristicas={dato?.Contacto}
+                        imagen={dato?.imagenes[0]?.url}
+                        setDestination={setDestination}
+                        dato={dato}
+                      />
+                    );
+                  })
+                )}
               </div>
-            ) : (
-              datos?.data?.map((dato) => {
-                return (
-                  <ResultsCard
-                    key={dato?.Eventos_id ? dato?.Eventos_id : dato?.id}
-                    nombre={dato?.Nombre}
-                    nombreEvento={dato?.NombreEvento}
-                    lugarDeEvento={dato?.Nombre}
-                    ciudad={dato?.Ciudad}
-                    direccion={dato?.Direccion}
-                    fechaInicio={dato?.FechaInicio}
-                    fechaFin={dato?.FechaFin}
-                    horaInicio={dato?.HoraDeApertura}
-                    horaFin={dato?.HoraDeCierre}
-                    tipoEvento={dato?.TipoEvento}
-                    tipo={dato?.Tipo}
-                    caracteristicas={dato?.Contacto}
-                    imagen={dato?.imagenes[0]?.url}
-                    setDestination={setDestination}
-                    dato={dato}
-                  />
-                );
-              })
-            )}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
 
         {handleFilter && (
           <Filter
