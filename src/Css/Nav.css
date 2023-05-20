@@ -530,3 +530,12 @@
         margin-bottom: 10px;
     }
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+    .inputSearch:focus,
+    select:focus,
+    textarea:focus {
+        font-size: 16px;
+    }
+}

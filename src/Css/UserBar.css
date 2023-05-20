@@ -19,7 +19,7 @@
 	background-color: #00499d;
 	width: 100vw;
 	height: 100vh;
-	padding-top: 6rem;
+	padding-top: 5rem;
 }
 
 .userBar__containerCancel {
@@ -107,7 +107,7 @@
 	gap: 24%;
 	width: 100%;
 	text-align: center;
-	padding: 10px;
+	padding: 8px;
 	border-bottom: 1px solid gray;
 	align-items: flex-end;
 }
