@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MyLoader } from './LoaderImage';
+import { MyLoader, MyLoaderWide } from './LoaderImage';
 import AuthUser from '../Components/AuthUser';
 import useScreenSize from '../Helpers/ScreenSize';
 
@@ -51,9 +51,13 @@ export const Slider = ({
         </div>
       </div>
       {!sliderPoints ? (
-        width <= 375 ? (
+        width <= 450 ? (
           <div className="divSkelton">
             <MyLoader width={355} height={332} />
+          </div>
+        ) : width >= 451 && width < 900 ? (
+          <div className="divSkelton">
+            <MyLoaderWide width={700} height={332} />
           </div>
         ) : width >= 900 && width < 1280 ? (
           <div className="divSkelton">

@@ -5,7 +5,7 @@ import '../Css/SliderTours.css';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
-import { MyLoader } from './LoaderImage';
+import { MyLoader, MyLoaderWide } from './LoaderImage';
 import useScreenSize from '../Helpers/ScreenSize';
 
 export const SliderTours = ({ sliderPoints, title, description }) => {
@@ -27,9 +27,13 @@ export const SliderTours = ({ sliderPoints, title, description }) => {
         </div>
       </div>
       {!sliderPoints ? (
-        width <= 375 ? (
+        width <= 450 ? (
           <div className="divSkelton">
             <MyLoader width={355} height={332} />
+          </div>
+        ) : width >= 451 && width < 900 ? (
+          <div className="divSkelton">
+            <MyLoaderWide width={700} height={332} />
           </div>
         ) : width >= 900 && width < 1280 ? (
           <div className="divSkelton">

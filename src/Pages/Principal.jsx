@@ -177,7 +177,7 @@ const Principal = ({
           setSliderPoints1(responses[0].data);
           setSliderPoints2(responses[1].data);
           setSliderPoints3(responses[2].data);
-        }, 300);
+        }, 100);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
   };
