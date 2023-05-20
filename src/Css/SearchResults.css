@@ -34,6 +34,7 @@
 
 .sinResultado {
 	display: flex;
+	justify-content: center;
 }
 
 .sinResultado p {
@@ -76,12 +77,7 @@
 	background-color: transparent;
 }
 
-.filtrarDistancia {
-	height: 3rem;
-	display: flex;
-	align-items: center;
-	padding: 0 10px;
-}
+
 
 .box {
 	margin: 0 5px;
@@ -198,9 +194,12 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .filtrarDistancia {
+	height: 3rem;
 	display: flex;
+	align-items: center;
+	padding: 0 10px;
 	justify-content: space-around;
-	margin: 0.5rem 0;
+	margin: 0 auto;
 }
 
 .sinGeolocalizacion {
@@ -236,8 +235,20 @@ input[type="range"]::-webkit-slider-thumb:active {
 	border-radius: 5px;
 }
 
+.skeltonResults {
+	/* margin-top: 210px; */
+	padding-left: 10px;
+}
+
+
+
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
+	.skeltonResults {
+		/* margin-top: 210px; */
+		display: flex;
+		flex-direction: column;
+	}
 
 	.results {
 		min-height: 72vh;
@@ -253,6 +264,8 @@ input[type="range"]::-webkit-slider-thumb:active {
 	}
 
 	.infoResults {
+		min-width: 70%;
+		min-height: 75vh;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
@@ -340,6 +353,16 @@ input[type="range"]::-webkit-slider-thumb:active {
 		margin-left: 0;
 	}
 
+	.sinGeolocalizacion {
+		min-height: 48px;
+	}
+
+	.resultsText {
+		font-size: 1rem;
+		min-width: 500px;
+		min-height: 19px;
+	}
+
 }
 
 @media screen and (min-width: 800px) {
@@ -369,6 +392,18 @@ input[type="range"]::-webkit-slider-thumb:active {
 		margin-left: 0;
 	}
 
+	.filtrarDistancia {
+		min-width: 87%;
+	}
+}
+
+@media screen and (min-width: 845px) {
+	.skeltonResults {
+		/* margin-top: 210px; */
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
 }
 
 @media screen and (min-width: 912px) {
@@ -435,11 +470,15 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 }
 
-@media screen and (min-width: 1400px) {
-	.filtro_results {
-		width: 250px;
+@media screen and (min-width: 1127px) {
+	.skeltonResults {
+		/* margin-top: 210px; */
+		display: flex;
+		flex-direction: row;
 	}
 }
+
+
 
 .filtro_back p,
 label {
@@ -555,4 +594,19 @@ label {
 .ejemplo {
 	font-size: 10px;
 	padding-left: 2px;
+}
+
+@media screen and (min-width: 1400px) {
+
+	.results {
+		min-width: 98vw;
+	}
+
+	.filtro_results {
+		width: 250px;
+	}
+
+	/* .skeltonResults {
+		margin-top: 210px;
+	} */
 }

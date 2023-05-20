@@ -10,8 +10,41 @@ import ResultsCard from '../Components/ResultsCard';
 import UserBar from './UserBar';
 import { handleUserBar } from '../Helpers/HandUserBarClick';
 import Filter from './Filter';
+import useScreenSize from '../Helpers/ScreenSize';
+import {
+  CatalogS,
+  CatalogM,
+  CatalogL,
+  CatalogXl,
+  CatalogXxl,
+} from '../Components/LoaderImage';
 import '../Css/SearchResults.css';
 import '../Css/userBarClick.css';
+
+const NoResultsForSearch = (props) => {
+  const [showComponent, setShowComponent] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowComponent(true);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  });
+
+  return (
+    showComponent && (
+      <div className="divNoTour">
+        <div className="divNoTourMsg">
+          <h2 className="messageNoTour">{props.message}</h2>
+        </div>
+        <div className="divImage">
+          <img src={props.image} alt="img" />
+        </div>
+      </div>
+    )
+  );
+};
 
 const SearchResults = ({
   items,
@@ -29,6 +62,7 @@ const SearchResults = ({
   longitud,
 }) => {
   // const navigate = useNavigate();
+  const { width } = useScreenSize();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [datos, setDatos] = useState(items);
@@ -75,11 +109,18 @@ const SearchResults = ({
   const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
   const [mobileScreenActive, setMobileScreenActive] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage('results');
     setDatos(items);
+    if (datos !== null) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+
     setCantPaginas(items?.last_page);
     if (latitud !== null || longitud !== null) {
       setLatitudAEnviar(+latitud);
@@ -258,7 +299,7 @@ const SearchResults = ({
               onClick={() => setHandleFilter(!handleFilter)}
             >
               <FontAwesomeIcon icon={faFilter} />
-              Filtros
+              {''} {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
           <h6 className="resultsText">
@@ -273,7 +314,9 @@ const SearchResults = ({
           {latitud && longitud ? (
             <div className="filtrarDistancia">
               <div className="etiquetasDistancia">
-                <label htmlFor="inputRange">Distancia</label>
+                <label htmlFor="inputRange">
+                  {filtrarTraduccion(traduccionesBD, 'distanceLbel', lenguage)}
+                </label>
               </div>
               <div className="box">
                 <input
@@ -296,7 +339,7 @@ const SearchResults = ({
                 onClick={handleDistance}
                 className={loaded === true ? 'btnSearch' : 'btnSearchInactivo'}
               >
-                Filtrar
+                {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
               </button>
             </div>
           ) : (
@@ -311,37 +354,72 @@ const SearchResults = ({
               </h6>
             </div>
           )}
-          {/* //! NO RESULT FOR THIS SEARCH */}
+
           <div className="infoResults">
-            {!datos?.data ? (
-              <div className="sinResultado">
-                <p>
-                  {filtrarTraduccion(traduccionesBD, 'noResults', lenguage)}
-                </p>
-              </div>
+            {loading ? (
+              width <= 375 ? (
+                <div className="skeltonResults">
+                  <CatalogS />
+                  <CatalogS />
+                  <CatalogS />
+                  <CatalogS />
+                </div>
+              ) : width >= 480 && width < 845 ? (
+                <div className="skeltonResults">
+                  <CatalogM />
+                  <CatalogM />
+                  <CatalogM />
+                </div>
+              ) : width >= 845 && width < 1410 ? (
+                <div className="skeltonResults">
+                  <CatalogL />
+                  <CatalogL />
+                  <CatalogL />
+                  <CatalogL />
+                </div>
+              ) : width >= 1410 && width < 1691 ? (
+                <div className="skeltonResults">
+                  <CatalogXl />
+                  <CatalogXl />
+                </div>
+              ) : width >= 1692 ? (
+                <div className="skeltonResults">
+                  <CatalogXxl />
+                </div>
+              ) : null
+            ) : datos?.data && datos.data.length > 0 ? (
+              datos.data.map((dato) => (
+                <ResultsCard
+                  key={dato?.Eventos_id ? dato?.Eventos_id : dato?.id}
+                  nombre={dato?.Nombre}
+                  nombreEvento={dato?.NombreEvento}
+                  lugarDeEvento={dato?.Nombre}
+                  ciudad={dato?.Ciudad}
+                  direccion={dato?.Direccion}
+                  fechaInicio={dato?.FechaInicio}
+                  fechaFin={dato?.FechaFin}
+                  horaInicio={dato?.HoraDeApertura}
+                  horaFin={dato?.HoraDeCierre}
+                  tipoEvento={dato?.TipoEvento}
+                  tipo={dato?.Tipo}
+                  caracteristicas={dato?.Contacto}
+                  imagen={dato?.imagenes[0]?.url}
+                  setDestination={setDestination}
+                  dato={dato}
+                />
+              ))
             ) : (
-              datos?.data?.map((dato) => {
-                return (
-                  <ResultsCard
-                    key={dato?.Eventos_id ? dato?.Eventos_id : dato?.id}
-                    nombre={dato?.Nombre}
-                    nombreEvento={dato?.NombreEvento}
-                    lugarDeEvento={dato?.Nombre}
-                    ciudad={dato?.Ciudad}
-                    direccion={dato?.Direccion}
-                    fechaInicio={dato?.FechaInicio}
-                    fechaFin={dato?.FechaFin}
-                    horaInicio={dato?.HoraDeApertura}
-                    horaFin={dato?.HoraDeCierre}
-                    tipoEvento={dato?.TipoEvento}
-                    tipo={dato?.Tipo}
-                    caracteristicas={dato?.Contacto}
-                    imagen={dato?.imagenes[0]?.url}
-                    setDestination={setDestination}
-                    dato={dato}
-                  />
-                );
-              })
+              <div className="sinResultado">
+                {/* //! NO RESULT FOR THIS SEARCH */}
+                <NoResultsForSearch
+                  message={filtrarTraduccion(
+                    traduccionesBD,
+                    'noResults',
+                    lenguage
+                  )}
+                  image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgT-zon1BIn2mDvSt2Q-lA9oak5RCZBH4ku6T2llIMm_tQTZ4SNvvECVwprRO3nEHalA&usqp=CAU"
+                />
+              </div>
             )}
           </div>
         </div>
