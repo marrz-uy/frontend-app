@@ -25,9 +25,19 @@ const PuntoInteresInfo = ({
   destination,
   setPage,
 }) => {
+  const [dataInfo, setDataInfo] = useState('');
+
+  useEffect(() => {
+    http
+      .get(`/PuntosInteres/${destination.id}`)
+      .then((response) => {
+        setDataInfo(response.data);
+      })
+      .catch((error) => console.error(`Error en catch: ${error}`));
+  }, []);
+
   let arrayImagenes = destination.imagenes;
   const arrURLS = arrayImagenes?.map((imagen) => imagen?.url.replace(/"/g, ''));
-
   const { http } = AuthUser();
   const navigate = useNavigate();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -42,7 +52,7 @@ const PuntoInteresInfo = ({
   const [initialState, setInitialState] = useState();
 
   const [cantLikes, setCantLikes] = useState();
-  const [hotelStars, setHotelStars] = useState();
+  const [hotelStars, setHotelStars] = useState('');
 
   const cantMegusta = () => {
     http
@@ -63,7 +73,7 @@ const PuntoInteresInfo = ({
   const stars = () => {
     let star = '⭐';
     let allstars = '';
-    for (let i = 0; i < destination.Calificaciones; i++) {
+    for (let i = 0; i < dataInfo.categoria?.Calificaciones; i++) {
       allstars += star;
     }
     return allstars;
@@ -73,8 +83,10 @@ const PuntoInteresInfo = ({
     window.scrollTo(0, 0);
     GetIdsFavouritesFromDB(user_Id);
     cantMegusta();
-    if (destination?.Calificaciones) {
-      setHotelStars(stars());
+    if (dataInfo.categoria?.Calificaciones) {
+      setTimeout(() => {
+        setHotelStars(stars());
+      }, 100);
     }
     setActivePage('PuntoInteresInfo');
     var sUsrAg = navigator.userAgent;
@@ -83,7 +95,7 @@ const PuntoInteresInfo = ({
     }
     setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
     // eslint-disable-next-line
-  }, [setActivePage, destination.id]);
+  }, [setActivePage, destination.id, dataInfo.categoria?.Calificaciones]);
 
   useEffect(() => {
     if (!destination.Nombre) {
@@ -143,9 +155,9 @@ const PuntoInteresInfo = ({
               <h2 className="puntoInteres__info__tipo">
                 {destination.TipoEvento
                   ? destination.TipoEvento
-                  : destination.Tipo === 'Hotel'
-                  ? `${destination.Tipo}${' '}${hotelStars}`
-                  : `${destination.Tipo}`}
+                  : dataInfo?.categoria?.Tipo === 'Hotel'
+                  ? `${dataInfo.categoria.Tipo}${' '}${hotelStars}`
+                  : `${dataInfo?.categoria?.Tipo}`}
               </h2>
               {destination.Eventos_id ? (
                 <div className="divEventosNombreYlugar">
@@ -196,7 +208,7 @@ const PuntoInteresInfo = ({
                   <span>
                     {filtrarTraduccion(traduccionesBD, 'telephone', lenguage)}:{' '}
                   </span>
-                  {destination?.telefono?.Telefono ||
+                  {dataInfo.telefono?.Telefono ||
                     `${filtrarTraduccion(
                       traduccionesBD,
                       'noNumber',
@@ -253,7 +265,8 @@ const PuntoInteresInfo = ({
               )}
             </div>
           </div>
-          {destination.Tipo === 'Hotel' || destination.Tipo === 'Hostel' ? (
+          {dataInfo?.categoria?.Tipo === 'Hotel' ||
+          dataInfo?.categoria?.Tipo === 'Hostel' ? (
             <div className="puntoInteres__especificaciones">
               <div className="puntoInteres__especificaciones__info">
                 <h2>
@@ -272,11 +285,15 @@ const PuntoInteresInfo = ({
                             lenguage
                           )}
                         </td>
-                        <td>{destination.BanoPrivad === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.BanoPrivad === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>Casino</td>
-                        <td>{destination.Casino === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.Casino === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>
@@ -286,7 +303,11 @@ const PuntoInteresInfo = ({
                             lenguage
                           )}
                         </td>
-                        <td>{destination.Restaurante === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.Restaurante === 1
+                            ? '✅ '
+                            : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>
@@ -296,7 +317,9 @@ const PuntoInteresInfo = ({
                             lenguage
                           )}
                         </td>
-                        <td>{destination.Desayuno === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.Desayuno === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>
@@ -306,7 +329,9 @@ const PuntoInteresInfo = ({
                             lenguage
                           )}
                         </td>
-                        <td>{destination.TvCable === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.TvCable === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>
@@ -316,11 +341,15 @@ const PuntoInteresInfo = ({
                             lenguage
                           )}
                         </td>
-                        <td>{destination.Piscina === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.Piscina === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>Wifi</td>
-                        <td>{destination.Wifi === 1 ? '✅ ' : '❌'}</td>
+                        <td>
+                          {dataInfo?.categoria?.Wifi === 1 ? '✅ ' : '❌'}
+                        </td>
                       </tr>
                       <tr>
                         <td>
@@ -331,19 +360,21 @@ const PuntoInteresInfo = ({
                           )}
                         </td>
                         <td>
-                          {destination.AireAcondicionado === 1 ? '✅ ' : '❌'}
+                          {dataInfo?.categoria?.AireAcondicionado === 1
+                            ? '✅ '
+                            : '❌'}
                         </td>
                       </tr>
                       <tr>
                         <td>Bar</td>
-                        <td>{destination.Bar === 1 ? '✅ ' : '❌'}</td>
+                        <td>{dataInfo?.categoria?.Bar === 1 ? '✅ ' : '❌'}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-          ) : destination.Tipo === 'Restaurantes' ? (
+          ) : dataInfo.categoria?.Tipo === 'Restaurantes' ? (
             <div className="puntoInteres__especificaciones__gastronomia">
               <div className="puntoInteres__especificaciones__info__gastronomia">
                 <h2>
@@ -365,7 +396,7 @@ const PuntoInteresInfo = ({
                           lenguage
                         )}
                       </td>
-                      <td>{destination.Especialidad === 1 ? '✅ ' : '❌'}</td>
+                      <td>{dataInfo.categoria?.Especialidad}</td>
                     </tr>
                     <tr>
                       <td>
@@ -375,11 +406,15 @@ const PuntoInteresInfo = ({
                           lenguage
                         )}
                       </td>
-                      <td>{destination.ComidaVegge === 1 ? '✅ ' : '❌'}</td>
+                      <td>
+                        {dataInfo.categoria?.ComidaVegge === 1 ? '✅ ' : '❌'}
+                      </td>
                     </tr>
                     <tr>
                       <td>Alcohol</td>
-                      <td>{destination.Alcohol === 1 ? '✅ ' : '❌'}</td>
+                      <td>
+                        {dataInfo.categoria?.Alcohol === 1 ? '✅ ' : '❌'}
+                      </td>
                     </tr>
                     <tr>
                       <td>
@@ -389,7 +424,9 @@ const PuntoInteresInfo = ({
                           lenguage
                         )}
                       </td>
-                      <td>{destination?.MenuInfantil === 1 ? '✅ ' : '❌'}</td>
+                      <td>
+                        {dataInfo.categoria?.MenuInfantil === 1 ? '✅ ' : '❌'}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
