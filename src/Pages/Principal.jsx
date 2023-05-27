@@ -90,6 +90,7 @@ const Principal = ({
   const handleSeeAll = () => {
     setSeeAll(!seeAll);
     setBtnText(!btnText);
+    window.scrollTo(0, 0);
   };
 
   const handleCategories = (e) => {
