@@ -18,7 +18,6 @@ const PredefinedTour = ({
   isLoggedIn,
   userBar,
   setUserBar,
-  destination,
   setDestination,
 }) => {
   const { setActivePage } = useContext(PageContext);

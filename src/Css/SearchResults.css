@@ -77,8 +77,6 @@
 	background-color: transparent;
 }
 
-
-
 .box {
 	margin: 0 5px;
 	width: 60%;
@@ -164,8 +162,8 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .btnSearchInactivo {
 	background-color: gray;
-	color: #444;
-	box-shadow: .5rem .5rem 1rem #ccc,
+	color: #f30f0f;
+	box-shadow: .5rem .5rem 1rem #f70202,
 		-.5rem -.5rem 1rem #fff;
 	-moz-box-shadow: .5rem .5rem 1rem #ccc,
 		-.5rem -.5rem 1rem #fff;
@@ -182,7 +180,8 @@ input[type="range"]::-webkit-slider-thumb:active {
 .active {
 	width: 3rem;
 	background-color: #00499d;
-	color: black;
+	color: #f8f8f8;
+	font-weight: 700;
 }
 
 .none {
@@ -236,16 +235,12 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .skeltonResults {
-	/* margin-top: 210px; */
 	padding-left: 10px;
 }
-
-
 
 /* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 480px) {
 	.skeltonResults {
-		/* margin-top: 210px; */
 		display: flex;
 		flex-direction: column;
 	}
@@ -308,7 +303,7 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 	.active {
 		background-color: #00499d;
-		color: black;
+		color: rgb(255, 255, 255);
 	}
 
 	.none {
@@ -399,7 +394,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 @media screen and (min-width: 845px) {
 	.skeltonResults {
-		/* margin-top: 210px; */
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
@@ -472,7 +466,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 @media screen and (min-width: 1127px) {
 	.skeltonResults {
-		/* margin-top: 210px; */
 		display: flex;
 		flex-direction: row;
 	}
@@ -546,7 +539,8 @@ label {
 }
 
 .active {
-	color: #444;
+	color: #ffffff;
+	font-weight: 700;
 }
 
 .userBar_cancel_filter {

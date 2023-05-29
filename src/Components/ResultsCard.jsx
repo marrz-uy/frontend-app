@@ -15,7 +15,7 @@ const ResultsCard = (props) => {
   return (
     <div className="resultCard" onClick={handleClick}>
       <div className="divImg">
-        <img className="imagen" src={props.imagen} alt=""></img>
+        <img className="imagen" src={props.imagen} alt="" loading="lazy"></img>
       </div>
       <div className="data">
         {props.nombreEvento ? (
