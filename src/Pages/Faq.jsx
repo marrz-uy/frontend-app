@@ -35,8 +35,8 @@ const Faq = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
 
   useEffect(() => {
     setPage('faq');
+    window.scrollTo(0, 0);
     const faqs = document.querySelectorAll('.faq');
-
     faqs.forEach((faq) => {
       faq.addEventListener('click', () => {
         faq.classList.toggle('activeFaq');
