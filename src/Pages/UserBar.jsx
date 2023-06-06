@@ -7,6 +7,8 @@ import { filtrarTraduccion } from '../Helpers/FilterTranslate';
 import AuthUser from '../Components/AuthUser';
 import LogoutGoogleButton from '../Components/LogoutGoogleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import '../Css/UserBar.css';
 
@@ -156,6 +158,38 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                   Faq
                 </Link>
               </li>
+              <div className="followUs">
+                <p>{filtrarTraduccion(traduccionesBD, 'Siguenos', lenguage)}</p>
+                <div className="socialMedia">
+                  <div className="iconDiv">
+                    <a
+                      href="https://www.instagram.com/feeluruguay/"
+                      className="fa fa-instagram"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faInstagram} color="#00499d" />
+                    </a>
+                  </div>
+                  <div className="iconDiv">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100091526935097&mibextid=LQQJ4d"
+                      className="fa fa-twitter"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faFacebook} color="#00499d" />
+                    </a>
+                  </div>
+                  <div className="iconDiv">
+                    <a
+                      href="mailto:marrz2022@gmail.com?Subject=Aplicacion%20Web"
+                      className="fa fa-youtube"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faEnvelope} color="#00499d" />
+                    </a>
+                  </div>
+                </div>
+              </div>
               <li className="userBar__logout" onClick={logoutUser}>
                 {userType === 'feel' ? (
                   <p className={userType === 'feel' ? 'marginLeft' : null}>
@@ -183,6 +217,38 @@ const UserBar = ({ isLoggedIn, setIsLoggedIn, setUserBar }) => {
                   Faq
                 </Link>
               </li>
+              <div className="followUs">
+                <p>{filtrarTraduccion(traduccionesBD, 'Siguenos', lenguage)}</p>
+                <div className="socialMedia">
+                  <div className="iconDiv">
+                    <a
+                      href="https://www.instagram.com/feeluruguay/"
+                      className="fa fa-instagram"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faInstagram} color="#00499d" />
+                    </a>
+                  </div>
+                  <div className="iconDiv">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100091526935097&mibextid=LQQJ4d"
+                      className="fa fa-twitter"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faFacebook} color="#00499d" />
+                    </a>
+                  </div>
+                  <div className="iconDiv">
+                    <a
+                      href="mailto:marrz2022@gmail.com?Subject=Aplicacion%20Web"
+                      className="fa fa-youtube"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faEnvelope} color="#00499d" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </ul>
