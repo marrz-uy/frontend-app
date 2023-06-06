@@ -14,7 +14,7 @@
 	display: flex;
 	text-align: center;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 1.3rem;
 	align-items: center;
 	background-color: #00499d;
 	width: 100vw;
@@ -166,4 +166,36 @@
 	.userBar__link .userBar__lenguage {
 		display: none;
 	}
+}
+
+.followUs {
+	display: flex;
+	/* flex-direction: column; */
+	justify-content: center;
+	width: 100%;
+	text-align: center;
+	padding: 0 0 13px 36px;
+	border-bottom: 1px solid gray;
+	color: #edf0f1;
+	gap: 5px
+}
+
+.followUs p {
+	line-height: 1.7;
+}
+
+.socialMedia {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+
+.iconDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #ffffffe3;
+	width: 30px;
+	height: 30px;
+	border-radius: 3px;
 }
