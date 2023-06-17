@@ -21,8 +21,6 @@ export const Slider = ({
   const { http } = AuthUser();
   const { width } = useScreenSize();
 
-  console.log('WIDTH: ', width);
-
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
