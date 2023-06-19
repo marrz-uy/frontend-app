@@ -9,7 +9,7 @@ FeelUy es una aplicación diseñada para promover el turismo y la exploración d
 - Explora destinos turísticos populares y ocultos en Uruguay.
 - Encuentra información detallada sobre lugares de interés, como playas, parques, restaurantes y más.
 - Descubre la cultura uruguaya a través de eventos, festivales y tradiciones locales.
-- Guarda tus lugares favoritos, crea tus propis tours o conoce los que nosotros te ofrecemos.
+- Guarda tus lugares favoritos, crea tus propios tours o conoce los que nosotros te ofrecemos.
 - Obtén recomendaciones basadas en tu ubicación.
 
 ## Características Tecnicas
@@ -38,5 +38,5 @@ FeelUy es una aplicación diseñada para promover el turismo y la exploración d
 ![8](https://res.cloudinary.com/dioeqw1za/image/upload/v1686695108/Imagenes%20para%20readme/4m_lpfxwt.png)
 
 
-### FeelUy
+### Aclaracion
 FeelUy es una aplicación web desarrollada por un grupo de estudiantes de UTU (Universidad del Trabajo del Uruguay) para la Tecnicatura de Redes y Software 2021-2023.
