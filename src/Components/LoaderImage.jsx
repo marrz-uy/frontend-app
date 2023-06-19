@@ -145,38 +145,6 @@ const CatalogXl = (props) => (
     <rect x="1130" y="270" rx="5" ry="5" width="120" height="15" />
     <rect x="1130" y="310" rx="5" ry="5" width="190" height="10" />
     <rect x="1130" y="330" rx="5" ry="5" width="190" height="10" />
-
-    {/* 6 ------------------------------------------------------*/}
-    {/* <rect x="1410" y="50" rx="8" ry="8" width="250" height="165" />
-    <rect x="1410" y="230" rx="5" ry="5" width="200" height="18" />
-    <rect x="1410" y="270" rx="5" ry="5" width="120" height="15" />
-    <rect x="1410" y="310" rx="5" ry="5" width="190" height="10" />
-    <rect x="1410" y="330" rx="5" ry="5" width="190" height="10" />
-
-    {/* 7 */}
-    {/* <rect x="10" y="450" rx="8" ry="8" width="250" height="165" />
-    <rect x="10" y="630" rx="5" ry="5" width="200" height="18" />
-    <rect x="10" y="670" rx="5" ry="5" width="120" height="15" />
-    <rect x="10" y="710" rx="5" ry="5" width="190" height="10" />
-    <rect x="10" y="730" rx="5" ry="5" width="190" height="10" /> */}
-    {/* 8 */}
-    {/* <rect x="290" y="450" rx="8" ry="8" width="250" height="165" />
-    <rect x="290" y="630" rx="5" ry="5" width="200" height="18" />
-    <rect x="290" y="670" rx="5" ry="5" width="120" height="15" />
-    <rect x="290" y="710" rx="5" ry="5" width="190" height="10" />
-    <rect x="290" y="730" rx="5" ry="5" width="190" height="10" /> */}
-    {/* 9 */}
-    {/* <rect x="570" y="450" rx="8" ry="8" width="250" height="165" />
-    <rect x="570" y="630" rx="5" ry="5" width="200" height="18" />
-    <rect x="570" y="670" rx="5" ry="5" width="120" height="15" />
-    <rect x="570" y="710" rx="5" ry="5" width="190" height="10" />
-    <rect x="570" y="730" rx="5" ry="5" width="190" height="10" /> */}
-    {/* 10 */}
-    {/* <rect x="850" y="450" rx="8" ry="8" width="250" height="165" />
-    <rect x="850" y="630" rx="5" ry="5" width="200" height="18" />
-    <rect x="850" y="670" rx="5" ry="5" width="120" height="15" />
-    <rect x="850" y="710" rx="5" ry="5" width="190" height="10" />
-    <rect x="850" y="730" rx="5" ry="5" width="190" height="10" /> */}
   </ContentLoader>
 );
 
