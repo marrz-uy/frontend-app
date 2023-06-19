@@ -216,7 +216,7 @@ const SearchResults = ({
     }
   };
 
-  const handleGetFIlters = () => {
+  const handleGetFilters = () => {
     http
       .post(`/filtrarPuntos/${tipoToFilter}`, {
         latitudAEnviar,
@@ -440,7 +440,7 @@ const SearchResults = ({
             setAllFilters={setAllFilters}
             filtersToSend={filtersToSend}
             setFiltersToSend={setFiltersToSend}
-            handleGetFIlters={handleGetFIlters}
+            handleGetFilters={handleGetFilters}
             tipoToFilter={tipoToFilter}
             setTipoToFilter={setTipoToFilter}
             handleGetFilterEventos={handleGetFilterEventos}

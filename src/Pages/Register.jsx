@@ -66,6 +66,7 @@ const Register = ({
     passwordConfirmationErrorMessage,
     setPasswordConfirmationErrorMessage,
   ] = useState('');
+
   const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
@@ -116,7 +117,7 @@ const Register = ({
         }, 50000);
         navigate('/login');
       })
-      //! *************************************
+
       .catch(function (error) {
         const errores = error.response.data.errors;
         console.log('sdsdsds', errores);
@@ -126,17 +127,17 @@ const Register = ({
         if (!email || !password || !passwordConfirmation || !name) {
           setRegisterErrorMessage(
             filtrarTraduccion(traduccionesBD, 'allFielsRequired', lenguage)
-          ); //todo translate
+          );
         }
         if (errores.email?.length > 0) {
           setEmailErrorMEssage(
             filtrarTraduccion(traduccionesBD, 'errorExistEmail', lenguage)
-          ); //todo translate
+          );
         }
         if (errores.password) {
           setPasswordErrorMessage(
             filtrarTraduccion(traduccionesBD, 'password8Character', lenguage)
-          ); // todo translate
+          );
         }
         if (errores.passwordConfirmation) {
           setPasswordConfirmationErrorMessage(
@@ -145,12 +146,12 @@ const Register = ({
               'confirmationPasswordMatch',
               lenguage
             )
-          ); //todo translate
+          );
         }
         if (errores.name) {
           setNameErrorMessage(
             filtrarTraduccion(traduccionesBD, 'name2Character', lenguage)
-          ); //todo translate
+          );
         }
       });
     console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
