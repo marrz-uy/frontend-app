@@ -162,7 +162,6 @@ const Filtros = ({
                 name="Tipo"
                 id="Restaurantes"
                 className="Restaurantes"
-                // checked={selectedOption === 'option1'}
                 value="Restaurantes"
                 onClick={(e) => handleClickRadio(e)}
               />

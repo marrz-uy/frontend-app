@@ -28,7 +28,7 @@ const UpdateUserData = ({
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const Id = sessionStorage.getItem('id');
 
-  const submitUpdateName = (e) => {
+  const submitUpdatePassword = (e) => {
     e.preventDefault();
     http
       .patch(`/updatePassword/${Id}`, { password, passwordConfirmation })
@@ -56,7 +56,7 @@ const UpdateUserData = ({
     <Layout>
       <div className="userbar-click" onClick={() => setUserBar(false)}></div>
       <div className="register">
-        <form onSubmit={submitUpdateName}>
+        <form onSubmit={submitUpdatePassword}>
           <div>
             <h2 className="title">
               {filtrarTraduccion(
