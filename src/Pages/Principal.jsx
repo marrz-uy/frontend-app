@@ -61,7 +61,7 @@ const Principal = ({
 
   const [latitudAEnviar, setLatitudAEnviar] = useState('');
   const [longitudAEnviar, setLongitudAEnviar] = useState('');
-  const [distanciaAEnviar, setDistanciaAEnviar] = useState(50000);
+  const [distanciaAEnviar, setDistanciaAEnviar] = useState(5000);
 
   useEffect(() => {
     if (latitud !== null || longitud !== null) {
