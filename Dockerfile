@@ -1,4 +1,3 @@
-
 # Etapa 1: Compilar la aplicación React
 FROM node:16-alpine as builder
 
@@ -29,7 +28,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
 
 # Exponer el puerto 80 para acceder a la aplicación
-EXPOSE 80
+EXPOSE 3000
 
 # Comando para iniciar Nginx al iniciar el contenedor
 CMD ["nginx", "-g", "daemon off;"]
