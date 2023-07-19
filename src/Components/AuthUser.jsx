@@ -100,7 +100,7 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    baseURL: 'http://192.168.3.3:8000/api',
+    baseURL: 'http://192.168.1.4:8000/api',
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
