@@ -10,7 +10,7 @@ const Filtros = ({
   setHandleFilter,
   filtersToSend,
   setFiltersToSend,
-  handleGetFIlters,
+  handleGetFilters,
   tipoToFilter,
   setTipoToFilter,
   handleGetFilterEventos,
@@ -252,7 +252,7 @@ const Filtros = ({
                 </label>
               </div>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'FiltrosTitulo', lenguage)}
             </button>
           </div>
@@ -464,7 +464,7 @@ const Filtros = ({
                 </label>
               </div>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -522,7 +522,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'EventoDeportivo', lenguage)}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -616,7 +616,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Sierras', lenguage)}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -690,7 +690,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'police', lenguage)}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -724,7 +724,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Taxi', lenguage)}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -786,7 +786,7 @@ const Filtros = ({
                 )}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
@@ -856,7 +856,7 @@ const Filtros = ({
                 {filtrarTraduccion(traduccionesBD, 'Bolos', lenguage)}
               </label>
             </div>
-            <button className="btnSearch" onClick={(e) => handleGetFIlters()}>
+            <button className="btnSearch" onClick={(e) => handleGetFilters()}>
               {filtrarTraduccion(traduccionesBD, 'filterBtn', lenguage)}
             </button>
           </div>
