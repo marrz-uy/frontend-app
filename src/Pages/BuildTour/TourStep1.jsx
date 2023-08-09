@@ -40,7 +40,7 @@ const TourStep1 = () => {
 
   const getCities = () => {
     http
-      .get(`/ciudades`, {})
+      .get(`/ciudades`)
       .then((response) => {
         setCiudades(response?.data);
       })
