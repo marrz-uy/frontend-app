@@ -37,7 +37,7 @@ function useWidthElement() {
     };
   }, [isMounted]);
 
-  return [refElement, width?.toString()];
+  return [refElement, width];
 }
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {

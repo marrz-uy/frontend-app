@@ -38,7 +38,7 @@ function useWidthElement() {
     };
   }, [isMounted]);
 
-  return [refElement, width?.toString()];
+  return [refElement, width];
 }
 
 const Register = ({
