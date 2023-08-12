@@ -36,8 +36,8 @@ function useWidthElement() {
       window.removeEventListener('resize', actualizarAncho);
     };
   }, [isMounted]);
-
-  return [refElement, width?.toString()];
+  console.log('AAAAAA', refElement, 'bbbbbbb', width?.toString());
+  return [refElement, width];
 }
 
 const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
@@ -57,7 +57,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
   const navigate = useNavigate();
 
   const [refMyElement, widhtMyElemnt] = useWidthElement();
-  // console.log('anchoMiElemento:', widhtMyElemnt);
+  console.log('WIDHT: ', widhtMyElemnt);
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -257,7 +257,7 @@ const Login = ({ setIsLoggedIn, setPage, isLoggedIn, userBar, setUserBar }) => {
                 width={widhtMyElemnt}
                 onSuccess={handleLoginGoogle}
                 onError={handleFailure}
-                // useOneTap
+                size="large"
               />
             )}
           </div>
