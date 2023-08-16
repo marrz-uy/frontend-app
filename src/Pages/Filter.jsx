@@ -39,6 +39,9 @@ const Filtros = ({
           valueOfFilter = filtersToSend[key].toString();
         }
         console.log(valueOfFilter);
+        if (tipoToFilter === 'Eventos') {
+          return;
+        }
         mm = document.getElementById(valueOfFilter);
         mm.checked = true;
       }
