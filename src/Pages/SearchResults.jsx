@@ -110,7 +110,7 @@ const SearchResults = ({
   const [puntodeInteresTipo, setPuntodeInteresTipo] = useState('');
   const [mobileScreenActive, setMobileScreenActive] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  console.log('PUNTOINTERESTIPO1: ', puntodeInteresTipo);
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage('results');
@@ -440,11 +440,12 @@ const SearchResults = ({
             setAllFilters={setAllFilters}
             filtersToSend={filtersToSend}
             setFiltersToSend={setFiltersToSend}
-            handleGetFilters={handleGetFilters}
             tipoToFilter={tipoToFilter}
             setTipoToFilter={setTipoToFilter}
+            handleGetFilters={handleGetFilters}
             handleGetFilterEventos={handleGetFilterEventos}
             mobileScreenActive={mobileScreenActive}
+            // tipoEvento={dato?.TipoEvento}
           />
         )}
       </div>
