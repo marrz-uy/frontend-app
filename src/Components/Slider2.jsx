@@ -14,10 +14,10 @@ export default function Slider2({ array }) {
   return (
     <>
       <Swiper
-        style={{
-          '--swiper-navigation-color': 'transparent',
-          '--swiper-pagination-color': 'transparent',
-        }}
+        // style={{
+        //   '--swiper-navigation-color': 'transparent',
+        //   '--swiper-pagination-color': 'transparent',
+        // }}
         loop={true}
         spaceBetween={10}
         navigation={true}
