@@ -18,6 +18,7 @@ const ResultsCard = (props) => {
         <img className="imagen" src={props.imagen} alt="" loading="lazy"></img>
       </div>
       <div className="data">
+        <h6>{props.tipoEvento}</h6>
         {props.nombreEvento ? (
           <h3>
             {props.nombreEvento} en {props.lugarDeEvento}
@@ -41,7 +42,6 @@ const ResultsCard = (props) => {
             </h6>
           )}
         </div>
-        <h6>{props.tipoEvento}</h6>
         <br />
         <h6>{props.contacto}</h6>
       </div>

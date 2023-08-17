@@ -38,7 +38,7 @@ function useWidthElement() {
     };
   }, [isMounted]);
 
-  return [refElement, width?.toString()];
+  return [refElement, width];
 }
 
 const Register = ({
@@ -348,10 +348,10 @@ const Register = ({
               </div>
             ) : (
               <GoogleLogin
-                width={widhtMyElemnt}
                 onSuccess={handleregisterGoogle}
                 onError={handleFailure}
                 text="continue_with"
+                width={widhtMyElemnt}
                 // useOneTap
               />
             )}
