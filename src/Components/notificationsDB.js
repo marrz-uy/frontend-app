@@ -20,7 +20,7 @@ const Toast = Swal.mixin({
 });
 
 function gotoNotifications() {
-  window.location.href = 'https://feeluy.netlify.app/notifications';
+  window.location.href = 'https://localhost:3000/notifications';
 }
 
 var pusher = new Pusher('1c46a8cd6b365e0381ea', {
