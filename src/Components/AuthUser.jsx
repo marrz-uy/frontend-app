@@ -106,6 +106,7 @@ export default function AuthUser() {
       Authorization: `Bearer ${token}`,
     },
   });
+  
 
   const logout = () => {
     const id = sessionStorage?.getItem('id');
