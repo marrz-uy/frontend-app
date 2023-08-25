@@ -41,6 +41,30 @@ function App() {
   const [splash, setSplash] = useState();
   const [destination, setDestination] = useState([]);
 
+  // Obtiene la URL completa
+  var urlCompleta = window.location.href;
+
+  // Obtiene el protocolo (http, https, etc.)
+  var protocolo = window.location.protocol;
+
+  // Obtiene el nombre de dominio (ejemplo.com)
+  var dominio = window.location.hostname;
+
+  // Obtiene el número de puerto (si está presente en la URL)
+  var puerto = window.location.port;
+
+  // Obtiene la ruta y parámetros de la URL (/ruta/pagina.html?parametro=valor)
+  var rutaYParametros = window.location.pathname + window.location.search;
+
+  // Imprime los valores obtenidos
+  console.group('URL');
+  console.log('URL completa:', urlCompleta);
+  console.log('Protocolo:', protocolo);
+  console.log('Dominio:', dominio);
+  console.log('Puerto:', puerto);
+  console.log('Ruta y Parámetros:', rutaYParametros);
+  console.groupEnd;
+
   const handleClickBars = () => {
     setBars(!bars);
   };
