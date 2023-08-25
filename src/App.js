@@ -63,7 +63,7 @@ function App() {
   console.log('Dominio:', dominio);
   console.log('Puerto:', puerto);
   console.log('Ruta y Parámetros:', rutaYParametros);
-  console.groupEnd;
+  console.groupEnd();
 
   const handleClickBars = () => {
     setBars(!bars);
