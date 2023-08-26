@@ -23,7 +23,7 @@ if (
   URLBACK = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
 }
 
-console.log('BACK:', URLBACK);
+// console.log('BACK:', URLBACK);
 
 export default function AuthUser() {
   const navigate = useNavigate();

@@ -43,18 +43,21 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/feeluruguay/"
               className="fa fa-instagram"
+              target="_blank"
             >
               <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a
               href="https://www.facebook.com/profile.php?id=100091526935097&mibextid=LQQJ4d"
               className="fa fa-twitter"
+              target="_blank"
             >
               <FontAwesomeIcon icon={faFacebook} />
             </a>
             <a
               href="mailto:marrz2022@gmail.com?Subject=Aplicacion%20Web"
               className="fa fa-youtube"
+              target="_blank"
             >
               <FontAwesomeIcon icon={faEnvelope} />
             </a>
