@@ -114,7 +114,7 @@ const Register = ({
               },
             });
           }
-        }, 50000);
+        }, 1000);
         navigate('/login');
       })
 
@@ -154,7 +154,7 @@ const Register = ({
           );
         }
       });
-    console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
+    // console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
     return (
       registerErrorMessage,
       emailErrorMEssage,
