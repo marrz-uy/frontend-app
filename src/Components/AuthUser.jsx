@@ -2,6 +2,20 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const urlInfo = (function () {
+  const { protocol, hostname, port } = window.location;
+  return {
+    protocol,
+    hostname,
+    port,
+  };
+})();
+
+// console.log(urlInfo.protocolo, urlInfo.dominio, urlInfo.puerto);
+
+const urlString = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
+console.log('BACK:', urlString);
+
 export default function AuthUser() {
   const navigate = useNavigate();
 
@@ -100,7 +114,8 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    baseURL: 'https://feeluy.javierjar.shop/api',
+    // baseURL: 'https://feeluy.javierjar.shop/api',
+    baseURL: urlString,
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
