@@ -36,7 +36,6 @@ function useWidthElement() {
       window.removeEventListener('resize', actualizarAncho);
     };
   }, [isMounted]);
-  console.log('AAAAAA', refElement, 'bbbbbbb', width?.toString());
   return [refElement, width];
 }
 
