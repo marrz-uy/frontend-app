@@ -3,18 +3,27 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const urlInfo = (function () {
-  const { protocol, hostname, port } = window.location;
+  const { protocol, hostname } = window.location;
   return {
     protocol,
     hostname,
-    port,
   };
 })();
 
-// console.log(urlInfo.protocolo, urlInfo.dominio, urlInfo.puerto);
+console.log('PROTO', urlInfo.protocol);
+console.log('HOST', urlInfo.hostname);
 
-const urlString = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
-console.log('BACK:', urlString);
+let URLBACK;
+if (
+  urlInfo.hostname === 'feeluy.netlify.app' ||
+  urlInfo.protocol === 'https:'
+) {
+  URLBACK = 'https://feeluy.javierjar.shop/api';
+} else {
+  URLBACK = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
+}
+
+console.log('BACK:', URL);
 
 export default function AuthUser() {
   const navigate = useNavigate();
@@ -115,7 +124,7 @@ export default function AuthUser() {
   };
   const http = axios.create({
     // baseURL: 'https://feeluy.javierjar.shop/api',
-    baseURL: urlString,
+    baseURL: URLBACK,
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
