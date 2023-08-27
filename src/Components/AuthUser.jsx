@@ -2,6 +2,29 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const urlInfo = (function () {
+  const { protocol, hostname } = window.location;
+  return {
+    protocol,
+    hostname,
+  };
+})();
+
+console.log('PROTO', urlInfo.protocol);
+console.log('HOST', urlInfo.hostname);
+
+let URLBACK;
+if (
+  urlInfo.hostname === 'feeluy.netlify.app' ||
+  urlInfo.protocol === 'https:'
+) {
+  URLBACK = 'https://feeluy.javierjar.shop/api';
+} else {
+  URLBACK = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
+}
+
+console.log('BACK:', URLBACK);
+
 export default function AuthUser() {
   const navigate = useNavigate();
 
@@ -100,7 +123,8 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    // baseURL: 'https://feeluy.javierjar.shop/api',
+    baseURL: URLBACK,
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -149,5 +173,3 @@ export default function AuthUser() {
     saveUserFavourites,
   };
 }
-
-
