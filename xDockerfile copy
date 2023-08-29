@@ -13,3 +13,5 @@ RUN yum install httpd -y
 WORKDIR /var/www/html
 COPY --from=0 /tmp/build/* /var/www/html/
 CMD httpd -D FOREGROUND
+# ss
+
