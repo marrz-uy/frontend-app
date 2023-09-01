@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const urlInfo = (function () {
+/* const urlInfo = (function () {
   const { protocol, hostname } = window.location;
   return {
     protocol,
@@ -23,7 +23,7 @@ if (
   URLBACK = `${urlInfo.protocol}//${urlInfo.hostname}:8000/api`;
 }
 
-console.log('BACK:', URLBACK);
+console.log('BACK:', URLBACK); */
 
 export default function AuthUser() {
   const navigate = useNavigate();
@@ -123,8 +123,8 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    // baseURL: 'https://feeluy.javierjar.shop/api',
-    baseURL: URLBACK,
+     baseURL: 'http://192.168.3.3:8000/api',
+   // baseURL: URLBACK,
     headers: {
       'Content-type': 'application/json',
       Authorization: `Bearer ${token}`,
