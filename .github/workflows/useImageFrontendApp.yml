@@ -13,8 +13,10 @@ jobs:
           fetch-depth: 1
       - name: Actualizar imagen
         run: |
+          cd /var/www/html/Arquitectura-de-App
+          docker compose down
+          docker rmi marrzuy/frontend-app:latest || true
           docker pull marrzuy/frontend-app:latest
-
       - name: Detenes contenedores
         run: |
           cd /var/www/html/Arquitectura-de-App
@@ -23,3 +25,8 @@ jobs:
         run: |
           cd /var/www/html/Arquitectura-de-App
           docker compose up -d
+      - name: Preparar contenedores
+        run: |
+          docker exec -i laravel chmod o+w ./storage/ -R  
+          docker exec -i laravel php artisan key:generate
+          docker exec -i laravel php artisan optimize
