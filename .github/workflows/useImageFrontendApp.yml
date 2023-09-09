@@ -23,9 +23,4 @@ jobs:
       - name: Iniciar contenedores
         run: |
           cd /var/www/html/Arquitectura-de-App
-          docker compose up -d
-      - name: Preparar contenedores
-        run: |
-          docker exec -i laravel chmod o+w ./storage/ -R  
-          docker exec -i laravel php artisan key:generate
-          docker exec -i laravel php artisan optimize
+          ./RUN_APP.sh
