@@ -20,7 +20,7 @@ const Toast = Swal.mixin({
 });
 
 function gotoNotifications() {
-  window.location.href = 'http://localhost:3000/notifications';
+  window.location.href = 'http://912.168.2.125/notifications';
 }
 
 var pusher = new Pusher('1c46a8cd6b365e0381ea', {
