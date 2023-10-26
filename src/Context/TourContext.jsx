@@ -32,19 +32,17 @@ const TourProvider = ({ children }) => {
   };
 
   const data = {
-    /* VARIABLES */
-    tourPreferences /* preferencias para solicitud de puntos de interes al backend */,
-    setTourPreferences /*SET de preferencias para solicitar de puntos de interes al backend */,
-    itemsParaTourDB /* puntos de interes que vienen del backend para llenar la columna ITEMS */,
-    setItemsParaTourDB /* SET de puntos de interes que vienen del backend para llenar la columna ITEMS */,
-    savedTourItems /* Puntos de interes elegidos para guardar en el tour */,
-    setSavedTourItems /* SET de puntos de interes elegidos para guardar en el tour */,
-    dataTourForSave /* datos para guardar tour en bd */,
-    setDataTourForSave /* SET de datos para guardar tour en bd */,
-    /* FUNCIONES */
-    SaveTourPreferences /* FUNCION para guardar las preferencias en sessionStorage */,
-    GetTourPreferences /* FUNCION para traer las preferencias guardados en el sessionStorage */,
-    SaveTourItems /* FUNCION para guardar puntos de interes traidos de db en sessionStorage */,
+    tourPreferences,
+    setTourPreferences,
+    itemsParaTourDB,
+    setItemsParaTourDB,
+    savedTourItems,
+    setSavedTourItems,
+    dataTourForSave,
+    setDataTourForSave,
+    SaveTourPreferences,
+    GetTourPreferences,
+    SaveTourItems,
     itemsHeredados,
     setItemsHeredados,
   };

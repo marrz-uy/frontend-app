@@ -75,7 +75,6 @@ const TourSteps = () => {
     }
   }, [puntosAExcluir]);
 
-  //! Items para tour
   function GetItemsPraTour() {
     http
       .post('/PuntosInteresParaTour', {
@@ -150,7 +149,6 @@ const TourSteps = () => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [statusResponse, setStatusResponse] = useState('');
 
-  //! save
   const savedTour = () => {
     if (dataTourForSave.nombreTour === '') {
       Swal.fire({
@@ -226,7 +224,6 @@ const TourSteps = () => {
     return { registerErrorMessage, statusResponse };
   };
 
-  //! update
   const UpdateTour = () => {
     if (dataTourForSave.puntosdeInteresTour === '') {
       console.log('Debe elejir algunos puntos de interes para guardar el tour');

@@ -179,7 +179,6 @@ const UserPreferences = ({
         setNationalitiesAndFlags(res.data);
       })
       .catch((error) => console.error(error.message));
-    //eslint-disable-next-line
   }, []);
 
   const nationalitiesAndFlagsSort = nationalitiesAndFlags.sort((a, b) => {

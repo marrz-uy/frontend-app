@@ -21,7 +21,6 @@
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-    /* width: 94%; */
 }
 
 .content {
@@ -78,9 +77,6 @@ h2 {
     width: 100vh;
 }
 
-
-/* -------------ANIMACION--------------------------- */
-
 .wrapper {
     display: flex;
     justify-content: center;
@@ -124,8 +120,6 @@ h2 {
     background-color: rgb(233, 233, 233);
     animation: loading 2s steps(1000) infinite;
 }
-
-/* laptop/desktop - de 1024px en adelante */
 
 @media screen and (min-width: 1024px) {
     .pantalla-inicio div {

@@ -94,7 +94,6 @@ const PuntoInteresInfo = ({
       setFirefox(true);
     }
     setInitialState(isFavourite(idsFavouritesFromDB, destination.id));
-    // eslint-disable-next-line
   }, [setActivePage, destination.id, dataInfo.categoria?.Calificaciones]);
 
   useEffect(() => {
@@ -102,7 +101,6 @@ const PuntoInteresInfo = ({
       navigate('/');
     }
     setPage('PuntoInteresInfo');
-    // eslint-disable-next-line
   }, []);
 
   const handleCategories = () => {

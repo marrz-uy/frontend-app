@@ -154,7 +154,6 @@ const Register = ({
           );
         }
       });
-    // console.log('%cERROR MESSAGES', 'color:red;', registerErrorMessage);
     return (
       registerErrorMessage,
       emailErrorMEssage,
@@ -252,7 +251,7 @@ const Register = ({
               className="input"
               type="text"
               name="email"
-              title={filtrarTraduccion(traduccionesBD, 'emailValid', lenguage)} //todo translate
+              title={filtrarTraduccion(traduccionesBD, 'emailValid', lenguage)}
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerEmailPlaceholder',
@@ -271,7 +270,7 @@ const Register = ({
                 traduccionesBD,
                 'password8Character',
                 lenguage
-              )} //todo translate
+              )}
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerPasswordPlaceholder',
@@ -304,7 +303,7 @@ const Register = ({
               type="text"
               name="name"
               minLength="2"
-              title={filtrarTraduccion(traduccionesBD, 'emailEnter', lenguage)} //todo translate
+              title={filtrarTraduccion(traduccionesBD, 'emailEnter', lenguage)}
               placeholder={filtrarTraduccion(
                 traduccionesBD,
                 'registerNamePlaceholder',

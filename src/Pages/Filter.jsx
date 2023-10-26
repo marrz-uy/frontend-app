@@ -14,7 +14,6 @@ const Filtros = ({
   tipoToFilter,
   setTipoToFilter,
   handleGetFilterEventos,
-  // tipoEvento,
 }) => {
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
   const [filtersToCheck, setFiltersToCheck] = useState([]);
@@ -57,7 +56,6 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Comida rapida' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Cervecerias'
     ) {
-      /* 'Tipo',['Restaurantes','Bares','Comida rapida','Cervecerias']); */
       setTipoToFilter('Gastronomia');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Hotel' ||
@@ -67,10 +65,8 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Camping' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Casa'
     ) {
-      /* 'Tipo',['Hotel','Hostel','Motel','Estancia','Camping','Casa']); */
       setTipoToFilter('Alojamiento');
     } else if (puntodeInteresTipo?.categoria?.Tipo === '') {
-      /* 'Tipo',['Cine','Teatro','Carnaval','Evento Deportivo','Evento Musical']); */
       setTipoToFilter('Eventos');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Playas' ||
@@ -87,7 +83,6 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Estaciones de Servicio' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Seccionales'
     ) {
-      /* { /* 'Tipo',['Hospitales','Farmacias','Cerrajerias','Estaciones de Servicio','Seccionales']) */
       setTipoToFilter('Servicios Esenciales');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Omnibus' ||
@@ -101,7 +96,6 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Cantina' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Bowling'
     ) {
-      /* 'Tipo', ['Discoteca','Casino','Pool','Cantina','Bowling']); */
       setTipoToFilter('Actividades Nocturnas');
     } else if (
       puntodeInteresTipo?.categoria?.Tipo === 'Circo' ||
@@ -109,7 +103,6 @@ const Filtros = ({
       puntodeInteresTipo?.categoria?.Tipo === 'Maquinitas' ||
       puntodeInteresTipo?.categoria?.Tipo === 'Juegos Infantiles'
     ) {
-      /* 'Tipo', ['Circo','Calesita','Maquinitas','Juegos Infantiles']); */
       setTipoToFilter('Actividades Infantiles');
     }
   };
