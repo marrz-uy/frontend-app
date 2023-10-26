@@ -86,11 +86,9 @@ a:visited {
 .message {
     display: flex;
     font-size: 0.7rem;
-    /* min-height: 1rem; */
     color: red;
 }
 
-/* LOADER */
 .divLoader {
     display: flex;
     justify-content: center;
@@ -161,8 +159,6 @@ a:visited {
     }
 }
 
-
-/* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 1024px) {
     .register {
         width: 30%;

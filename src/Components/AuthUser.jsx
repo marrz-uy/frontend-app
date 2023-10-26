@@ -123,7 +123,6 @@ export default function AuthUser() {
     setUserfavourites(userfavourites);
   };
   const http = axios.create({
-    // baseURL: 'https://feeluy.javierjar.shop/api',
     baseURL: URLBACK,
     headers: {
       'Content-type': 'application/json',

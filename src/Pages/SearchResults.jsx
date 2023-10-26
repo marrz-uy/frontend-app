@@ -61,7 +61,6 @@ const SearchResults = ({
   latitud,
   longitud,
 }) => {
-  // const navigate = useNavigate();
   const { width } = useScreenSize();
   const { http } = AuthUser();
   const { traduccionesBD, lenguage } = useContext(LenguageContext);
@@ -131,7 +130,6 @@ const SearchResults = ({
       setHandleFilter(false);
       setMobileScreenActive(true);
     }
-    // eslint-disable-next-line
   }, [setPage, items, searchType, categoryName, loaded, latitud, longitud]);
 
   const getData = (numPage) => {
@@ -265,9 +263,8 @@ const SearchResults = ({
         setCantPaginas(res.data.last_page);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    // if (mobileScreenActive) {
+
     setHandleFilter(false);
-    // }
   };
 
   handleUserBar(userBar);
@@ -411,7 +408,6 @@ const SearchResults = ({
               ))
             ) : (
               <div className="sinResultado">
-                {/* //! NO RESULT FOR THIS SEARCH */}
                 <NoResultsForSearch
                   message={filtrarTraduccion(
                     traduccionesBD,
@@ -445,7 +441,6 @@ const SearchResults = ({
             handleGetFilters={handleGetFilters}
             handleGetFilterEventos={handleGetFilterEventos}
             mobileScreenActive={mobileScreenActive}
-            // tipoEvento={dato?.TipoEvento}
           />
         )}
       </div>

@@ -48,7 +48,6 @@ const Principal = ({
   const [btnText, setBtnText] = useState('');
   const { width } = useScreenSize();
   const { http } = AuthUser();
-  // console.log('WIDTH: ', width);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -18,7 +18,6 @@ const LenguageProvider = ({ children }) => {
         setTraduccionesBD(tradBD);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    // eslint-disable-next-line
   }, []);
 
   const handleLenguage = (e) => {
