@@ -299,11 +299,9 @@
     visibility: hidden;
 }
 
-/* animation: loading 3s steps(1000) infinite; */
 @media screen and (min-width: 480px) {
     #feelLogoImg {
         position: relative;
-        /* top: 10px; */
     }
 
     #userLogoImg--login {
@@ -356,8 +354,6 @@
         margin-bottom: 10px;
     }
 }
-
-
 
 @media screen and (min-width: 800px) {
     .contentNavbar {
@@ -432,8 +428,6 @@
     }
 }
 
-
-/* laptop/desktop - de 1024px en adelante */
 @media screen and (min-width: 1024px) {
     .navbar {
         min-height: 115px;

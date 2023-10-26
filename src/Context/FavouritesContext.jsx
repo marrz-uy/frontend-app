@@ -37,10 +37,10 @@ const FavouritesProvider = ({ isLoggedIn, children }) => {
   }
 
   const dataExport = {
-    GetFavouritesFromDB /* FUNCION => SOLICITUD a bd devuelve array con favoritos completos */,
-    GetIdsFavouritesFromDB /* FUNCION => SOLICITUD a bd, devuelve array con ids de favoritos */,
-    favouritesFromDB /* ARRAY de favoritos favoritos completos */,
-    idsFavouritesFromDB /* ARRAY de favoritos ids */,
+    GetFavouritesFromDB,
+    GetIdsFavouritesFromDB,
+    favouritesFromDB,
+    idsFavouritesFromDB,
   };
 
   return (

@@ -20,8 +20,6 @@ export const SliderEvents = ({
   const { http } = AuthUser();
   const { width } = useScreenSize();
 
-  // console.log('sliderPoints: ', sliderPoints);
-
   const goOnPoint = async (e) => {
     e.preventDefault();
     const id = e.target.id;
@@ -112,17 +110,14 @@ export const SliderEvents = ({
               slidesPerView: 1,
               spaceBetween: 20,
             },
-            // when window width is >= 900px
             900: {
               slidesPerView: 2,
               spaceBetween: 20,
             },
-            // when window width is >= 1280px
             1280: {
               slidesPerView: 3,
               spaceBetween: 20,
             },
-            // when window width is >= 1720px
             1720: {
               slidesPerView: 4,
               spaceBetween: 20,

@@ -6,7 +6,6 @@
 	border-radius: 2px;
 }
 
-
 .ant-steps-vertical {
 	flex-direction: row !important;
 	justify-content: space-around !important;
@@ -55,7 +54,6 @@
 	.ant-steps-item-title {
 		margin-bottom: 1rem;
 	}
-
 }
 
 @media screen and (min-width: 840px) {

@@ -9,7 +9,6 @@ const useGeoLocation = () => {
     altitude: '',
     speed: '',
   });
-  // console.log('GEOLOCATION: ', location);
   const onSuccess = (location) => {
     let latitud = location.coords.latitude
       .toString()
@@ -55,11 +54,6 @@ const useGeoLocation = () => {
   }, []);
 
   return location;
-  // return {
-  //   loaded: location.loaded,
-  //   latitud: location.coords.latitude,
-  //   longitud: location.coords.longitude,
-  // };
 };
 
 export default useGeoLocation;

@@ -47,7 +47,6 @@
 	font-size: 1.3rem;
 }
 
-/* Footer */
 .pie-pagina {
 	width: 100%;
 	background-color: #00499d;
@@ -78,7 +77,6 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
-
 }
 
 .pie-pagina .grupo-1 .box2 figure img {
@@ -166,9 +164,6 @@
 	}
 }
 
-/* End Footer */
-
-/* Keyframes */
 @keyframes hamburger_puls {
 	0% {
 		opacity: 1;
@@ -205,8 +200,6 @@
 		font-weight: 500;
 	}
 }
-
-/* End Keyframes */
 
 .redirectToFaq {
 	display: flex;

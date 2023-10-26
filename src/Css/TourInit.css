@@ -103,11 +103,8 @@ details {
 
 details .summary-title {
 	-webkit-touch-callout: none;
-	/* iOS Safari */
 	-webkit-user-select: none;
-	/* Safari */
 	-moz-user-select: none;
-	/* Firefox */
 	user-select: none;
 }
 
@@ -210,7 +207,6 @@ editIcon .myToursCard {
 	font-size: 17px;
 }
 
-/* tablets */
 @media screen and (min-width: 480px) {
 
 	.tourInit {
@@ -238,7 +234,6 @@ editIcon .myToursCard {
 
 }
 
-/* notebooks */
 @media screen and (min-width: 768px) {
 	.tourInit {
 		width: 70%;
@@ -254,7 +249,6 @@ editIcon .myToursCard {
 	}
 }
 
-/* large screens */
 @media screen and (min-width: 1024px) {
 
 	.tourInit {
@@ -273,7 +267,6 @@ editIcon .myToursCard {
 
 }
 
-/* extra large screens */
 @media screen and (min-width: 1200px) {
 
 	.tourInit {

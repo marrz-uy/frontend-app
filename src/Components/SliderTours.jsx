@@ -69,17 +69,14 @@ export const SliderTours = ({ sliderPoints, title, description }) => {
               slidesPerView: 1,
               spaceBetween: 20,
             },
-            // when window width is >= 900px
             900: {
               slidesPerView: 2,
               spaceBetween: 20,
             },
-            // when window width is >= 1280px
             1280: {
               slidesPerView: 3,
               spaceBetween: 20,
             },
-            // when window width is >= 1720px
             1720: {
               slidesPerView: 4,
               spaceBetween: 20,

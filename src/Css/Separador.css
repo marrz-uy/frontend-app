@@ -1,4 +1,4 @@
-.divSeparatorsExt{
+.divSeparatorsExt {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -6,6 +6,7 @@
 	align-items: center;
 	width: 100%;
 }
+
 .separatorInt {
 	display: flex;
 	justify-content: center;
@@ -14,7 +15,7 @@
 	width: 100%;
 }
 
-.separator{
+.separator {
 	height: 1px;
 	background-color: rgb(176, 176, 176);
 	width: 90%;

@@ -40,7 +40,6 @@ const PredefinedTour = ({
         setCantTours(response?.data['0'].length);
       })
       .catch((error) => console.error(`Error en catch: ${error}`));
-    // eslint-disable-next-line
   }, []);
 
   handleUserBar(userBar);
